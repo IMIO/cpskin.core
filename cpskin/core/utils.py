@@ -1,7 +1,7 @@
 from plone import api
 
 
-def reactivateTopic(portal):
+def reactivateTopic():
     """Reactivate old Topic content type"""
     portal = api.portal.get()
     portal.portal_types.Topic.manage_changeProperties(global_allow=True)
