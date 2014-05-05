@@ -37,6 +37,7 @@ setup(name='cpskin.core',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.api',
           'Plone',
           # -*- Extra requirements: -*-
       ],
