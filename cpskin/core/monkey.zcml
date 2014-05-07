@@ -1,0 +1,13 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:monkey="http://namespaces.plone.org/monkey">
+
+    <include package="collective.monkeypatcher" />
+
+    <monkey:patch
+        description="Patch of empty method called after user creation"
+        class="Products.CMFCore.RegistrationTool.RegistrationTool"
+        original="afterAdd"
+        replacement=".monkeypatches.afterMemberAdd"
+        />
+
+</configure>

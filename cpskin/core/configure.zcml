@@ -1,6 +1,8 @@
 <configure xmlns="http://namespaces.zope.org/zope">
 
-  <!-- Dependencies -->
-  <include package="cpskin.locales" />
+    <!-- Dependencies -->
+    <include package="cpskin.locales" />
+
+    <include file="monkey.zcml" />
 
 </configure>
