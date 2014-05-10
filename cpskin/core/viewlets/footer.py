@@ -10,12 +10,6 @@ from Products.CMFCore.utils import getToolByName
 class CPSkinFooterSitemapViewlet(ViewletBase):
     render = ViewPageTemplateFile('templates/footersitemap.pt')
 
-    def update(self):
-        pass
-
-    def index(self):
-        return ''
-
     def createSiteMap(self):
         context = aq_inner(self.context)
         # take the 2 first levels of the site that respect the navigation strategy
@@ -35,7 +29,7 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
             if not theme.meta_type in metaTypesNotToList and \
                not theme.id in idsNotToList and not theme.exclude_from_nav:
                 themeRes = {'theme': theme, 'children': []}
-                #do a second catalog_search by theme
+                # do a second catalog_search by theme
                 queryDict['path'] = {'query': theme.getPath(), 'depth': 1}
                 children = portal_catalog(queryDict)
                 for child in children:
