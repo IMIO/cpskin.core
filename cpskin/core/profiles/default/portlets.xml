@@ -12,4 +12,14 @@
    <for interface="plone.app.portlets.interfaces.IColumn" />
  </portlet>
 
+ <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="portlets.Classic"
+     name="firefox-portlet">
+  <property name="template">portlet_firefox</property>
+  <property name="macro">portlet</property>
+ </assignment>
+
 </portlets>
