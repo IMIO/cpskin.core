@@ -1,0 +1,17 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="cpskin">
+
+    <genericsetup:registerProfile
+        name="default"
+        title="cpskin.core"
+        directory="profiles/default"
+        description='Installs cpskin core'
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title gs_profiles_default_title;
+                         description gs_profiles_default_description;"
+        />
+
+</configure>
