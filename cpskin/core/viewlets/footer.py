@@ -8,7 +8,7 @@ from Products.CMFCore.utils import getToolByName
 
 
 class CPSkinFooterSitemapViewlet(ViewletBase):
-    render = ViewPageTemplateFile('templates/footersitemap.pt')
+    render = ViewPageTemplateFile('footersitemap.pt')
 
     def createSiteMap(self):
         context = aq_inner(self.context)
