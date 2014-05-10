@@ -1,10 +1,14 @@
 <configure xmlns="http://namespaces.zope.org/zope">
 
     <!-- Dependencies -->
+    <include package="archetypes.schemaextender" />
     <include package="cpskin.locales" />
 
     <include package=".browser" />
 
     <include file="monkey.zcml" />
+
+    <adapter factory=".extender.ContentExtender"
+             provides="archetypes.schemaextender.interfaces.ISchemaExtender" />
 
 </configure>

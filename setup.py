@@ -39,6 +39,7 @@ setup(name='cpskin.core',
           'setuptools',
           'plone.api',
           'Plone',
+          'archetypes.schemaextender',
           'collective.monkeypatcher',
           'cpskin.locales'
           # -*- Extra requirements: -*-
