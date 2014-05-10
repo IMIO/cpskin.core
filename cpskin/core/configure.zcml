@@ -8,6 +8,9 @@
 
     <include file="monkey.zcml" />
 
+    <utility component=".vocabulary.HiddenTagsVocabularyFactory"
+             name="cpskin.core.vocabularies.hiddenTags" />
+
     <adapter factory=".extender.ContentExtender"
              provides="archetypes.schemaextender.interfaces.ISchemaExtender" />
 
