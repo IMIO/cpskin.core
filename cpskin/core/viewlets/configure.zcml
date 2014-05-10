@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="cpskin">
+
+    <browser:viewlet
+        name="cpskin.footer_sitemap"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".footer.CPSkinFooterSitemapViewlet"
+        permission="zope2.View"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+</configure>
