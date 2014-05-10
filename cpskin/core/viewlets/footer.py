@@ -24,7 +24,8 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
         portal = getToolByName(context, 'portal_url').getPortalObject()
         queryDict = {}
         queryDict['path'] = {'query': '/'.join(portal.getPhysicalPath()), 'depth': 1}
-        queryDict['review_state'] = navtreeProps.wf_states_to_show
+        if navtreeProps.enable_wf_state_filtering:
+            queryDict['review_state'] = navtreeProps.wf_states_to_show
         queryDict['sort_on'] = 'getObjPositionInParent'
         themes = portal_catalog(queryDict)
         res = []
