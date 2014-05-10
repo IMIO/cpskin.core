@@ -5,6 +5,7 @@
     <include package="cpskin.locales" />
 
     <include package=".browser" />
+    <include package=".portlets" />
 
     <include file="monkey.zcml" />
 
