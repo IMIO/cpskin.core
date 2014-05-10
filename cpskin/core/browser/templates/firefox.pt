@@ -1,0 +1,13 @@
+<div metal:define-macro="portlet" tal:condition="python: 'Firefox' not in context.REQUEST.get('HTTP_USER_AGENT', None)">
+    <dl class="portlet" id="portlet-firefox">
+        <dd class="portletItem odd">
+            Ce site est optimisé pour le navigateur Firefox.<br>
+            <br>
+            Sécurisé, fiable et rapide, <a href="http://www.getfirefox.com">Firefox</a> est gratuit et simple à installer.<br>
+            <br>
+            <a href="http://www.getfirefox.com">
+                <img src=""
+                     tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++cpskin.core.images/portlet-firefox.png"></a>
+        </dd>
+    </dl>
+</div>

@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="cpskin">
+
+  <browser:resourceDirectory
+      directory="resources/images/"
+      name="cpskin.core.images"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
+      name="portlet_firefox"
+      for="*"
+      template="templates/firefox.pt"
+      permission="zope.Public"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+</configure>

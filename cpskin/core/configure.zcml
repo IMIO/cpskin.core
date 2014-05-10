@@ -3,6 +3,8 @@
     <!-- Dependencies -->
     <include package="cpskin.locales" />
 
+    <include package=".browser" />
+
     <include file="monkey.zcml" />
 
 </configure>
