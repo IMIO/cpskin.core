@@ -30,6 +30,7 @@ class ContentExtender(object):
             multiValued=1,
             searchable=False,
             schemata="categorization",
+            languageIndependent= True,
             widget=atapi.KeywordWidget(
                 label=_(u'label_hidden_tags', default=u'Hidden Tags'),
                 description=_(u'help_hidden_tags',
