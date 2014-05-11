@@ -12,6 +12,25 @@
    <for interface="plone.app.portlets.interfaces.IColumn" />
  </portlet>
 
+ <!-- Remove standard navigation portlet -->
+ <assignment
+     manager="plone.leftcolumn"
+     category="context"
+     key="/"
+     type="portlets.Navigation"
+     name="navigation"
+     remove="True"
+     />
+
+ <!-- Add cpskin portlets -->
+ <assignment
+     manager="plone.leftcolumn"
+     category="context"
+     key="/"
+     type="cpskin.portlets.navigation"
+     name="cpskin-navigation"
+     />
+
  <assignment
      manager="plone.rightcolumn"
      category="context"
