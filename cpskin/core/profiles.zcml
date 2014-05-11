@@ -7,7 +7,18 @@
         name="default"
         title="cpskin.core"
         directory="profiles/default"
-        description='Installs cpskin core'
+        description='Installs CPSkin core'
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title gs_profiles_default_title;
+                         description gs_profiles_default_description;"
+        />
+
+    <genericsetup:registerProfile
+        name="members-configuration"
+        title="cpskin.core: members configuration"
+        directory="profiles/members-config"
+        description='Installs members configuration'
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         i18n:attributes="title gs_profiles_default_title;
