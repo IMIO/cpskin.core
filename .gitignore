@@ -16,3 +16,8 @@ fake-eggs/
 parts/
 dist/
 var/
+src/
+log.html
+output.xml
+report.html
+selenium-screenshot-1.png
