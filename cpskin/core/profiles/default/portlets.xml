@@ -2,35 +2,6 @@
 <portlets xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="plone">
 
- <portlet
-   addview="cpskin.portlets.navigation"
-   title="CPSkin Navigation"
-   description="A portlet which can render a navigation tree"
-   i18n:attributes="title title_navigation_portlet;
-                    description description_navigation_portlet"
-   >
-   <for interface="plone.app.portlets.interfaces.IColumn" />
- </portlet>
-
- <!-- Remove standard navigation portlet -->
- <assignment
-     manager="plone.leftcolumn"
-     category="context"
-     key="/"
-     type="portlets.Navigation"
-     name="navigation"
-     remove="True"
-     />
-
- <!-- Add cpskin portlets -->
- <assignment
-     manager="plone.leftcolumn"
-     category="context"
-     key="/"
-     type="cpskin.portlets.navigation"
-     name="cpskin-navigation"
-     />
-
  <assignment
      manager="plone.rightcolumn"
      category="context"

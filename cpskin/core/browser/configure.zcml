@@ -9,9 +9,6 @@
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
-  <browser:resourceDirectory
-      directory="resources/stylesheets/"
-      name="cpskin.core.stylesheets"
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
