@@ -1,6 +1,19 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="cpskin">
+
+  <browser:resource
+      name="cpskin.portlets.firefox.png"
+      file="firefox.png"
+      />
+
+  <browser:page
+      name="portlet_firefox"
+      for="*"
+      template="firefox.pt"
+      permission="zope.Public"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
 
 </configure>
