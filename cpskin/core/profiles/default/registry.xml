@@ -2,8 +2,6 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="plone">
 
-    <records interface="cpskin.core.interfaces.ICPSkinSettings" />
-
     <records interface="plone.app.querystring.interfaces.IQueryField"
              prefix="plone.app.querystring.field.hiddenTags">
         <value key="title" i18n:translate="">Hidden Tag</value>
