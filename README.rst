@@ -27,3 +27,5 @@ And launch the tests:
     bin/robot cpskin/core/tests/robot/test_main.robot
 
 You can sandbox on http://localhost:55001/plone/
+
+Robot tests are launched with bin/test too

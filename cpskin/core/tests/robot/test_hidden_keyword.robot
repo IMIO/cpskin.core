@@ -19,10 +19,6 @@ Scenario: Test collection hidden tags criteria
      Then the collection 'simple_collection' should contain 'simple_document'
 
 
-Scenario: Test topic hidden tags criteria
-    Given logged as owner
-
-
 *** Keywords ***
 
 logged as owner
