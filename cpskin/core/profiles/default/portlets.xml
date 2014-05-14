@@ -2,6 +2,29 @@
 <portlets xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="plone">
 
+ <!-- Remove unneeded Plone portlets -->
+
+ <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="portlets.News"
+     name="news"
+     remove="True"
+     />
+
+ <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="portlets.Events"
+     name="events"
+     remove="True"
+     />
+
+
+ <!-- Add new portlets -->
+
  <assignment
      manager="plone.rightcolumn"
      category="context"
