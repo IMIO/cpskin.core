@@ -3,4 +3,12 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="cpskin">
 
+  <browser:page
+      name="cpskin-controlpanel"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".controlpanel.CPSkinControlPanel"
+      permission="cmf.ManagePortal"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
 </configure>
