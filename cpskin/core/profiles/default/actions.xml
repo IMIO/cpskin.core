@@ -5,7 +5,7 @@
     <object name="document_actions" meta_type="CMF Action Category">
 
         <object name="sendtomanager" meta_type="CMF Action" i18n:domain="cpskin">
-            <property name="title" i18n:translate="">indicate_error</property>
+            <property name="title" i18n:translate="">Indicate an error</property>
             <property name="description" i18n:translate=""></property>
             <property name="url_expr">string:$object_url/sendtomanager_form</property>
             <property name="icon_expr"></property>
