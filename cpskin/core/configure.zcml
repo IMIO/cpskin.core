@@ -17,4 +17,12 @@
     <adapter factory=".extender.ContentExtender"
              provides="archetypes.schemaextender.interfaces.ISchemaExtender" />
 
+    <!-- We should add a condition on this : members-configuration profile must be installed -->
+    <subscriber for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
+                handler=".events.user_logged_in" />
+
+    <!-- We should add a condition on this : members-configuration profile must be installed -->
+    <subscriber for="Products.PlonePAS.interfaces.events.IUserInitialLoginInEvent"
+                handler=".events.user_initial_logged_in" />
+
 </configure>

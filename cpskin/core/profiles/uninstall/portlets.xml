@@ -2,7 +2,7 @@
 <portlets xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="plone">
 
- <!-- Remove unneeded Plone portlets -->
+ <!-- Restore Plone portlets -->
 
  <assignment
      manager="plone.rightcolumn"
@@ -10,7 +10,6 @@
      key="/"
      type="portlets.News"
      name="news"
-     remove="True"
      />
 
  <assignment
@@ -19,20 +18,28 @@
      key="/"
      type="portlets.Events"
      name="events"
-     remove="True"
      />
 
 
- <!-- Add new portlets -->
+ <!-- Remove portlets added by cpskin -->
 
  <assignment
      manager="plone.rightcolumn"
      category="context"
      key="/"
      type="portlets.Classic"
-     name="firefox-portlet">
+     name="firefox-portlet"
+     remove="True">
   <property name="template">portlet_firefox</property>
   <property name="macro">portlet</property>
  </assignment>
+
+ <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="portlets.Review"
+     name="review"
+     remove="True" />
 
 </portlets>
