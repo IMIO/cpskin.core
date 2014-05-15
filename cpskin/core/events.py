@@ -9,8 +9,7 @@ def user_logged_in(event):
     """
     portal = api.portal.get()
     pm = getToolByName(portal, 'portal_membership')
-
-    # XXX needed because happens after notifying the event we are subscribed to
+    # needed because happens after notifying the event we are subscribed to :
     pm.createMemberArea()
 
     if 'citizens' in pm.getAuthenticatedMember().getGroups():
@@ -28,17 +27,15 @@ def user_initial_logged_in(event):
     """
     portal = api.portal.get()
     pm = getToolByName(portal, 'portal_membership')
+    # needed because happens after notifying the event we are subscribed to :
+    pm.createMemberArea()
     members = pm.getMembersFolder()
     if 'citizens' in pm.getAuthenticatedMember().getGroups():
         request = getattr(portal, "REQUEST", None)
         request.set('came_from', members.absolute_url())
         request.form['came_from'] = members.absolute_url()
 
-    # XXX needed because happens after notifying the event we are subscribed to
-    pm.createMemberArea()
-
     home = pm.getHomeFolder()
-    print home
     if home is None:
         return
     # Restrict content
