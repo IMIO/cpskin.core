@@ -1,0 +1,22 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xml:lang="en"
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+     i18n:domain="cpskin"
+     tal:omit-tag=""
+     tal:define="utool nocall:context/portal_url; charset context/email_charset|string:utf-8; dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=%s' % charset)">
+
+<span i18:translate="sendtomanager_mail_template_content" tal:omit-tag="">An error has been reported by</span>:
+<span tal:omit-tag=""
+      tal:replace="structure options/send_from_address" />
+
+<span i18n:translate="on_the_page" tal:omit-tag="">On the page</span>:
+<span tal:omit-tag=""
+      tal:replace="structure options/url | context/absolute_url" />
+
+<span i18n:translate="with_the_following_comment" tal:omit-tag="">With the following comment</span>:
+
+<span tal:omit-tag=""
+      tal:replace="structure options/comment | nothing" />
+</div>

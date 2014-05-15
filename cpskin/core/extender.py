@@ -5,6 +5,7 @@ from zope.interface import implements
 
 from Products.Archetypes import public as atapi
 from Products.Archetypes.interfaces import IBaseContent
+from Products.CMFCore import permissions
 
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
@@ -30,13 +31,15 @@ class ContentExtender(object):
             multiValued=1,
             searchable=False,
             schemata="categorization",
-            languageIndependent= True,
+            languageIndependent=True,
             widget=atapi.KeywordWidget(
                 label=_(u'label_hidden_tags', default=u'Hidden Tags'),
                 description=_(u'help_hidden_tags',
                               default=u'Hidden Tags are used for webmaster '
                                       u'organization of content.'),
-                ),
+            ),
+            read_permission=permissions.View,
+            write_permission='Content rules: Manage rules',
         ),
     ]
 

@@ -3,4 +3,11 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="cpskin">
 
+  <browser:page
+      for="*"
+      name="sendtomanager_form"
+      class=".sendtomanager.SendToManagerForm"
+      permission="zope.Public"
+      />
+
 </configure>
