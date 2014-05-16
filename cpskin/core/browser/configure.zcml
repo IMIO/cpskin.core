@@ -3,11 +3,29 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="cpskin">
 
+  <include package="plone.app.contentmenu" />
+
   <browser:page
       for="*"
       name="sendtomanager_form"
       class=".sendtomanager.SendToManagerForm"
       permission="zope.Public"
+      />
+
+  <browser:page
+      for="Products.ATContentTypes.interface.IATFolder"
+      name="index_cpskin"
+      class=".index_cpskin.IndexCPSkin"
+      permission="zope.Public"
+      template="templates/index_cpskin.pt"
+      />
+
+  <browser:menuItem
+      for="Products.ATContentTypes.interface.IATFolder"
+      menu="plone_displayviews"
+      title="Index"
+      action="index_cpskin"
+      description="Index"
       />
 
   <browser:page
