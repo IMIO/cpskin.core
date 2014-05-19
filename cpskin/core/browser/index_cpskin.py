@@ -5,25 +5,26 @@ from Products.CMFCore.utils import getToolByName
 
 class IndexCPSkin(BrowserView):
 
+    def getNews(self, navigation_root_path):
+        path = '/'.join([navigation_root_path, 'actualites'])
+        return self.searchCollection(path)
 
-    def getActualites(self, navigation_root_path):
+    def getEvents(self, navigation_root_path):
+        path = '/'.join([navigation_root_path, 'evenements'])
+        return self.searchCollection(path)
+
+    def searchCollection(self, path):
         portal_catalog = getToolByName(self.context, 'portal_catalog')
         queryDict = {}
-        queryDict['path'] = {'query': navigation_root_path, 'depth': 1}
+        queryDict['path'] = {'query': path, 'depth': 1}
         queryDict['portal_type'] = 'Collection'
-        queryDict['Title'] = 'actualites'
-        return portal_catalog.searchResults(queryDict)[0]
-
-    def getEvenements(self, navigation_root_path):
-        portal_catalog = getToolByName(self.context, 'portal_catalog')
-        queryDict = {}
-        queryDict['path'] = {'query': navigation_root_path, 'depth': 1}
-        queryDict['portal_type'] = 'Collection'
-        queryDict['Title'] = 'evenements'
-        return portal_catalog.searchResults(queryDict)[0]
+        queryDict['sort_limit'] = 1
+        collections = portal_catalog.searchResults(queryDict)
+        return collections and collections[0] or None
 
     def getFrontPageText(self):
         frontPage = getattr(self.context, 'front-page')
         if hasattr(frontPage, 'getTranslation'):
-            frontPage = frontPage.getTranslation(context.REQUEST.get('LANGUAGE', 'fr'))
+            lang = self.context.REQUEST.get('LANGUAGE', 'fr')
+            frontPage = frontPage.getTranslation(lang)
         return frontPage.getText()
