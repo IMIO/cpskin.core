@@ -1,17 +1,16 @@
 <configure xmlns="http://namespaces.zope.org/zope">
 
-    <include file="permissions.zcml" />
-
     <!-- Dependencies -->
     <include package="archetypes.schemaextender" />
     <include package="cpskin.locales" />
 
+    <include file="permissions.zcml" />
+    <include file="profiles.zcml" />
+    <include file="monkey.zcml" />
+
     <include package=".browser" />
     <include package=".portlets" />
     <include package=".viewlets" />
-
-    <include file="profiles.zcml" />
-    <include file="monkey.zcml" />
 
     <utility component=".vocabulary.HiddenTagsVocabularyFactory"
              name="cpskin.core.vocabularies.hiddenTags" />
