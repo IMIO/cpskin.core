@@ -3,7 +3,6 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="cpskin">
 
-<<<<<<< Updated upstream
   <include package="plone.app.contentmenu" />
 
   <browser:page
@@ -36,13 +35,5 @@
       permission="cmf.ManagePortal"
       layer="..interfaces.ICPSkinCoreLayer"
       />
-
-<!--  <browser:page-->
-<!--      name="cpskin-controlpanel"-->
-<!--      for="Products.CMFPlone.interfaces.IPloneSiteRoot"-->
-<!--      class=".controlpanel.CPSkinControlPanel"-->
-<!--      permission="cmf.ManagePortal"-->
-<!--      layer="..interfaces.ICPSkinCoreLayer"-->
-<!--      />-->
 
 </configure>
