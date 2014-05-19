@@ -1,5 +1,7 @@
 <configure xmlns="http://namespaces.zope.org/zope">
 
+    <include file="permissions.zcml" />
+
     <!-- Dependencies -->
     <include package="archetypes.schemaextender" />
     <include package="cpskin.locales" />
@@ -9,7 +11,6 @@
     <include package=".viewlets" />
 
     <include file="profiles.zcml" />
-    <include file="permissions.zcml" />
     <include file="monkey.zcml" />
 
     <utility component=".vocabulary.HiddenTagsVocabularyFactory"

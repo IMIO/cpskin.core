@@ -14,7 +14,7 @@
         icon_expr="string:${portal_url}/maintenance_icon.png"
         visible="True"
         i18n:attributes="title">
-            <permission>Manage portal</permission>
+            <permission>CPSkin: Site administrator</permission>
     </configlet>
 
 </object>

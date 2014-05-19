@@ -32,7 +32,7 @@
       name="cpskin-controlpanel"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       class=".controlpanel.CPSkinControlPanel"
-      permission="cmf.ManagePortal"
+      permission="cpskin.siteadministrator"
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
