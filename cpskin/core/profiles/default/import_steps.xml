@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="cpskin.core.default"
+               handler="cpskin.core.setuphandlers.installCore"
+               title="cpskin.core: install import step">
+  </import-step>
+</import-steps>

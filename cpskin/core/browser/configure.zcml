@@ -6,6 +6,13 @@
   <include package="plone.app.contentmenu" />
   <include package=".resources" />
 
+  <browser:view
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="cpskin-frontpage-setup"
+      class=".folderview.FrontPage"
+      permission="zope.Public"
+      />
+
   <browser:page
       for="*"
       name="sendtomanager_form"
