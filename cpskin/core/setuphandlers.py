@@ -17,7 +17,7 @@ def installCore(context):
     portal = context.getSite()
     request = getattr(portal, 'REQUEST', None)
 
-    frontPage = getattr(portal, 'front-page')
+    frontPage = getattr(portal, 'front-page', None)
     if frontPage:
         if request is not None:
             view = queryMultiAdapter((portal, request),
