@@ -4,6 +4,7 @@
     i18n_domain="cpskin">
 
   <include package="plone.app.contentmenu" />
+  <include package=".resources" />
 
   <browser:page
       for="*"

@@ -44,7 +44,7 @@
                           class="imagebloc1"
                           align="right">
                       <a href="actualites/aggregator/RSS">
-                        <img src="rss-accueil.png"
+                        <img src="++resource++core_images/rss-accueil.png"
                              alt="Flux RSS des dernières actualités" />
                       </a>&#160;</td>
                     </tr>
@@ -95,7 +95,7 @@
                           class="imagebloc2"
                           align="right">
                       <a href="evenements/aggregator/RSS">
-                        <img src="rss-accueil.png"
+                        <img src="++resource++core_images/rss-accueil.png"
                              alt="Flux RSS des derniers évènements" />
                       </a>&#160;</td>
                     </tr>
