@@ -35,7 +35,7 @@
       />
 
   <browser:page
-      for="Products.ATContentTypes.interface.IATFolder"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
       name="index_cpskin"
       class=".index_cpskin.IndexCPSkin"
       permission="zope.Public"
@@ -44,7 +44,7 @@
       />
 
   <browser:menuItem
-      for="Products.ATContentTypes.interface.IATFolder"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
       menu="plone_displayviews"
       title="Index"
       action="index_cpskin"
