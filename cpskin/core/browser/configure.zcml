@@ -36,19 +36,19 @@
 
   <browser:page
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
-      name="index_cpskin"
-      class=".index_cpskin.IndexCPSkin"
+      name="folderview"
+      class=".folderview.FolderView"
       permission="zope.Public"
-      template="templates/index_cpskin.pt"
+      template="templates/folderview.pt"
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
   <browser:menuItem
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
       menu="plone_displayviews"
-      title="Index"
-      action="index_cpskin"
-      description="Index"
+      title="Vue index avec collections"
+      action="folderview"
+      description="Vue index avec collections"
       layer="..interfaces.ICPSkinCoreLayer"
       />
 

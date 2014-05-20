@@ -3,7 +3,7 @@ from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 
 
-class IndexCPSkin(BrowserView):
+class FolderView(BrowserView):
 
     def getNews(self, navigation_root_path):
         path = '/'.join([navigation_root_path, 'actualites'])
