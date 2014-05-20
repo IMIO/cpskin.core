@@ -9,7 +9,14 @@
   <browser:view
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       name="cpskin-frontpage-setup"
-      class=".folderview.FrontPage"
+      class=".pages.FrontPage"
+      permission="zope.Public"
+      />
+
+  <browser:view
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="cpskin-helppage-setup"
+      class=".pages.HelpPage"
       permission="zope.Public"
       />
 

@@ -15,16 +15,8 @@ def installCore(context):
 
     logger.info('Installing')
     portal = context.getSite()
-    request = getattr(portal, 'REQUEST', None)
-
     frontPage = getattr(portal, 'front-page', None)
-    if frontPage:
-        if request is not None:
-            view = queryMultiAdapter((portal, request),
-                                     name='cpskin-frontpage-setup')
-            if view is not None:
-                text = bodyfinder(view.index()).strip()
-                frontPage.setText(text, mimetype='text/html')
+    setPageText(portal, frontPage, 'cpskin-frontpage-setup')
 
 
 def configureMembers(context):
@@ -61,3 +53,29 @@ def configureMembers(context):
     members.manage_permission('Modify constrain types',
                               ('Manager', 'Site Administrator', 'Reviewer'),
                               acquire=0)
+
+    if not members.hasObject('help-page'):
+        # add Members help page
+        helpPage = api.content.create(container=members, type='Document',
+                                      id='help-page',
+                                      title="Bienvenue dans l'espace citoyen")
+        # needed because of https://github.com/plone/plone.api/issues/99
+        helpPage.setTitle("Bienvenue dans l'espace citoyen")
+        setPageText(portal, helpPage, 'cpskin-helppage-setup')
+        members.setDefaultPage('help-page')
+        # we set locally allowed types at the first configuration
+        members.setConstrainTypesMode(1)
+        members.setLocallyAllowedTypes(['Event'])
+        members.setImmediatelyAddableTypes(['Event'])
+
+
+def setPageText(portal, page, viewName):
+    if page is None:
+        return
+    request = getattr(portal, 'REQUEST', None)
+    if request is not None:
+        view = queryMultiAdapter((portal, request), name=viewName)
+        if view is not None:
+            text = bodyfinder(view.index()).strip()
+            page.setText(text, mimetype='text/html')
+            page.reindexObject()
