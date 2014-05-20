@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<registry>
+
+    <records interface="cpskin.core.interfaces.ICPSkinSettings" remove="True"/>
+
+    <records interface="plone.app.querystring.interfaces.IQueryField" remove="True"/>
+
+</registry>
