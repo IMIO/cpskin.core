@@ -15,8 +15,18 @@ def installCore(context):
 
     logger.info('Installing')
     portal = context.getSite()
+
+    # Add the MaildropHost if possible
+    addMaildropHost(portal)
+
+    # Edit front page
     frontPage = getattr(portal, 'front-page', None)
     setPageText(portal, frontPage, 'cpskin-frontpage-setup')
+
+    # Add the Editor role to the Manage portlet permission
+    portal.manage_permission('Portlets: Manage portlets',
+                             ('Editor', 'Manager', 'Site Administrator'),
+                             acquire=1)
 
 
 def configureMembers(context):
@@ -70,6 +80,10 @@ def configureMembers(context):
 
 
 def setPageText(portal, page, viewName):
+    """
+    Sets text of a Plone document if it exists and reindex the document
+    The text is coming from a browser view template <body> tag
+    """
     if page is None:
         return
     request = getattr(portal, 'REQUEST', None)
@@ -79,3 +93,18 @@ def setPageText(portal, page, viewName):
             text = bodyfinder(view.index()).strip()
             page.setText(text, mimetype='text/html')
             page.reindexObject()
+
+
+def addMaildropHost(self):
+    """
+     Add a MaildropHost if Products.MaildropHost is available...
+     If MaildropHost exist, PloneGazette will use it to send mails.
+     This will avoid duplicate emails send as reported by
+    """
+    portal = getToolByName(self, 'portal_url').getPortalObject()
+    if not hasattr(portal, "MaildropHost"):
+        try:
+            portal.manage_addProduct['MaildropHost'].manage_addMaildropHost('MaildropHost', title='MaildropHost')
+        except AttributeError:
+            # if MaildropHost is not available, we pass...
+            pass
