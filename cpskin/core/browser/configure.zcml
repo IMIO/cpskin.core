@@ -4,8 +4,13 @@
     i18n_domain="cpskin">
 
   <include package="plone.app.contentmenu" />
-  <include package=".resources" />
 
+  <browser:resourceDirectory
+      name="cpskin.core.images"
+      directory="resources/images"
+      layer="..interfaces.ICPSkinCoreLayer" />
+
+  <!-- Browser pages used by profile - no layer allowed here -->
   <browser:view
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       name="cpskin-frontpage-setup"
@@ -20,11 +25,13 @@
       permission="zope.Public"
       />
 
+  <!-- Other browser pages -->
   <browser:page
       for="*"
       name="sendtomanager_form"
       class=".sendtomanager.SendToManagerForm"
       permission="zope.Public"
+      layer="..interfaces.ICPSkinCoreLayer"
       />
 
   <browser:page
@@ -33,6 +40,7 @@
       class=".index_cpskin.IndexCPSkin"
       permission="zope.Public"
       template="templates/index_cpskin.pt"
+      layer="..interfaces.ICPSkinCoreLayer"
       />
 
   <browser:menuItem
@@ -41,6 +49,7 @@
       title="Index"
       action="index_cpskin"
       description="Index"
+      layer="..interfaces.ICPSkinCoreLayer"
       />
 
   <browser:page

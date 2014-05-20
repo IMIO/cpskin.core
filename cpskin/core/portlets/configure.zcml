@@ -7,6 +7,7 @@
   <browser:resource
       name="cpskin.portlets.firefox.png"
       file="firefox.png"
+      layer="..interfaces.ICPSkinCoreLayer"
       />
 
   <browser:page
@@ -18,11 +19,11 @@
       />
 
   <include package="plone.app.portlets"  />
+
   <plone:portletRenderer
       portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
       template="navigation.pt"
       layer="..interfaces.ICPSkinCoreLayer"
       />
-
 
 </configure>
