@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_actions" meta_type="Plone Actions Tool"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-    <action-provider name="portal_actions"/>
     <object name="document_actions" meta_type="CMF Action Category">
 
         <object name="sendtomanager" meta_type="CMF Action" i18n:domain="cpskin">
@@ -16,5 +15,11 @@
             <property name="visible">True</property>
         </object>
 
+    </object>
+    <object name="user" meta_type="CMF Action Category">
+        <property name="title"></property>
+        <object name="undo" meta_type="CMF Action" i18n:domain="plone">
+         <property name="visible">True</property>
+        </object>
     </object>
 </object>
