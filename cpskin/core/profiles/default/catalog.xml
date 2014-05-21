@@ -1,11 +1,4 @@
 <?xml version="1.0"?>
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
-  <!-- 
-        XXX Put this in an import step
-        See http://maurits.vanrees.org/weblog/archive/2009/12/catalog
-  -->
-  <index name="hiddenTags" meta_type="KeywordIndex">
-    <indexed_attr value="hiddenTags"/>
-  </index>
   <column value="hiddenTags"/>
 </object>

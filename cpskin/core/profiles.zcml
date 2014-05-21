@@ -30,4 +30,11 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <!-- Register the import step -->
+    <genericsetup:importStep
+        name="cpskin.core"
+        title="cpskin.core special import handlers"
+        description=""
+        handler="cpskin.core.setuphandlers.import_various" />
+
 </configure>
