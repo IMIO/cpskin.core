@@ -1,5 +1,4 @@
 <tal:block i18n:domain="plone">
-bsuttor
 <dl class="portlet portletNavigationTree"  
     tal:define="root view/navigation_root;">
 
