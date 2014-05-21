@@ -8,9 +8,6 @@ from plone.app.controlpanel.security import ISecuritySchema
 
 logger = logging.getLogger('cpskin.core')
 
-# The profile id of your package:
-PROFILE_ID = 'profile-cpskin.core:default'
-
 
 def installCore(context):
     if context.readDataFile('cpskin.core-default.txt') is None:
@@ -21,6 +18,9 @@ def installCore(context):
 
     # Add the MaildropHost if possible
     addMaildropHost(portal)
+
+    # Add catalog indexes
+    addCatalogIndexes(portal)
 
     # Edit front page
     frontPage = getattr(portal, 'front-page', None)
@@ -113,7 +113,7 @@ def addMaildropHost(self):
             pass
 
 
-def add_catalog_indexes(context):
+def addCatalogIndexes(context):
     """Method to add our wanted indexes to the portal_catalog.
 
     @parameters:
@@ -132,7 +132,7 @@ def add_catalog_indexes(context):
     is quite safe.
     """
     setup = getToolByName(context, 'portal_setup')
-    setup.runImportStepFromProfile(PROFILE_ID, 'catalog')
+    setup.runImportStepFromProfile('profile-cpskin.core:default', 'catalog')
 
     catalog = getToolByName(context, 'portal_catalog')
     indexes = catalog.indexes()
@@ -148,13 +148,3 @@ def add_catalog_indexes(context):
     if len(indexables) > 0:
         logger.info("Indexing new indexes %s.", ', '.join(indexables))
         catalog.manage_reindexIndex(ids=indexables)
-
-
-def import_various(context):
-    """Import step for configuration that is not handled in xml files.
-    """
-    # Only run step if a flag file is present
-    if context.readDataFile('cpskin.core-default.txt') is None:
-        return
-    site = context.getSite()
-    add_catalog_indexes(site)
