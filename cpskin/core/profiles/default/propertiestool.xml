@@ -1,6 +1,33 @@
 <?xml version="1.0"?>
 <object name="portal_properties">
+
  <object name="site_properties">
   <property name="icon_visibility" type="string">authenticated</property>
+  <property name="available_editors" type="lines" purge="True">
+   <element value="CKeditor"/>
+  </property>
+  <property name="default_editor" type="string">CKeditor</property>
  </object>
+
+ <object name="ckeditor_properties" meta_type="Plone Property Sheet">
+  <property name="forcePasteAsPlainText" type="boolean">True</property>
+  <property name="toolbar" type="string">Custom</property>
+  <property name="toolbar_Custom" type="text">
+[
+    ['Source','-','AjaxSave','Preview','-','Templates'],
+    ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print', 'SpellChecker', 'Scayt'],
+    ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+    '/',
+    ['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+    ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
+    ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+    ['Link','Unlink','Anchor'],
+    ['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
+    '/',
+    ['Styles','Format'],
+    ['Maximize', 'ShowBlocks','-','About']
+]
+  </property>
+ </object>
+
 </object>
