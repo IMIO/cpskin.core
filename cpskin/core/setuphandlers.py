@@ -131,8 +131,6 @@ def addCatalogIndexes(context):
     this silently does nothing when there is no catalog.xml, so it
     is quite safe.
     """
-    setup = getToolByName(context, 'portal_setup')
-    setup.runImportStepFromProfile('profile-cpskin.core:default', 'catalog')
 
     catalog = getToolByName(context, 'portal_catalog')
     indexes = catalog.indexes()
