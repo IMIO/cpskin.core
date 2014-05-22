@@ -113,30 +113,15 @@ def addMaildropHost(self):
             pass
 
 
-def addCatalogIndexes(context):
-    """Method to add our wanted indexes to the portal_catalog.
-
-    @parameters:
-
-    When called from the import_various method below, 'context' is
-    the plone site and 'logger' is the portal_setup logger.  But
-    this method can also be used as upgrade step, in which case
-    'context' will be portal_setup and 'logger' will be None.
-
-
-    Run the catalog.xml step as that may have defined new metadata
-    columns.  We could instead add <depends name="catalog"/> to
-    the registration of our import step in zcml, but doing it in
-    code makes this method usable as upgrade step as well.  Note that
-    this silently does nothing when there is no catalog.xml, so it
-    is quite safe.
+def addCatalogIndexes(portal):
     """
-
-    catalog = getToolByName(context, 'portal_catalog')
+    Method to add our wanted indexes to the portal_catalog.
+    We couldn't do it in the profile directly, see :
+        http://maurits.vanrees.org/weblog/archive/2009/12/catalog
+    """
+    catalog = getToolByName(portal, 'portal_catalog')
     indexes = catalog.indexes()
-    # Specify the indexes you want, with ('index_name', 'index_type')
-    wanted = (('hiddenTags', 'KeywordIndex'),
-              )
+    wanted = (('hiddenTags', 'KeywordIndex'),)
     indexables = []
     for name, meta_type in wanted:
         if name not in indexes:
