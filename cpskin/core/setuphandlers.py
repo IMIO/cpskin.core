@@ -1,4 +1,3 @@
-import os
 import logging
 from zope.component import getAdapter
 from zope.component import queryMultiAdapter
@@ -146,10 +145,9 @@ def addCatalogIndexes(portal):
 
 
 def ChangeCollectionsIds(portal):
-    if os.environ.get('ZOPETESTCASE'):
-        # required for testing - topic object need a _p_jar for rename
-        import transaction
-        transaction.savepoint()
+    # required : topic object need a _p_jar for rename
+    import transaction
+    transaction.savepoint()
     if portal.hasObject('news'):
         news = portal['news']
         if news.hasObject('aggregator'):
