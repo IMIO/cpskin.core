@@ -145,6 +145,9 @@ def addCatalogIndexes(portal):
 
 
 def ChangeCollectionsIds(portal):
+    # required for testing - topic object need a _p_jar for rename
+    import transaction
+    transaction.savepoint()
     if portal.hasObject('news'):
         news = portal['news']
         if news.hasObject('aggregator'):
