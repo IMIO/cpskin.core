@@ -16,6 +16,9 @@ def installCore(context):
     logger.info('Installing')
     portal = context.getSite()
 
+    # Rename events and news
+    ChangeCollectionsIds(portal)
+
     # Add the MaildropHost if possible
     addMaildropHost(portal)
 
@@ -139,3 +142,16 @@ def addCatalogIndexes(portal):
     if len(indexables) > 0:
         logger.info("Indexing new indexes %s.", ', '.join(indexables))
         catalog.manage_reindexIndex(ids=indexables)
+
+
+def ChangeCollectionsIds(portal):
+    if portal.hasObject('news'):
+        news = portal['news']
+        if news.hasObject('aggregator'):
+            api.content.rename(obj=news['aggregator'], new_id='index')
+        api.content.rename(obj=news, new_id='actualites')
+    if portal.hasObject('events'):
+        events = portal['events']
+        if events.hasObject('aggregator'):
+            api.content.rename(obj=events['aggregator'], new_id='index')
+        api.content.rename(obj=events, new_id='evenements')

@@ -43,7 +43,7 @@
                       <td id="bloc1a"
                           class="imagebloc1"
                           align="right">
-                      <a href="actualites/aggregator/RSS">
+                      <a href="actualites/index/RSS">
                         <img src="++resource++cpskin.core.images/rss-accueil.gif"
                              alt="Flux RSS des dernières actualités" />
                       </a>&#160;</td>
@@ -94,7 +94,7 @@
                       <td id="bloc1a"
                           class="imagebloc2"
                           align="right">
-                      <a href="evenements/aggregator/RSS">
+                      <a href="evenements/index/RSS">
                         <img src="++resource++cpskin.core.images/rss-accueil.gif"
                              alt="Flux RSS des derniers évènements" />
                       </a>&#160;</td>
