@@ -85,14 +85,6 @@ def configureMembers(context):
         members.setImmediatelyAddableTypes(['Event'])
 
 
-def uninstallCore(context):
-    if context.readDataFile('cpskin.core-uninstall.txt') is None:
-        return
-
-    logger.info('Uninstalling')
-    portal = context.getSite()
-
-
 def setPageText(portal, page, viewName):
     """
     Sets text of a Plone document if it exists and reindex the document
