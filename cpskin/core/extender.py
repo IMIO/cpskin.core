@@ -5,7 +5,7 @@ from zope.interface import implements
 
 from Products.Archetypes import public as atapi
 from Products.Archetypes.interfaces import IBaseContent
-from Products.CMFCore import permissions
+from Products.CMFCore import permissions as zope_permissions
 
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
@@ -13,6 +13,7 @@ from archetypes.schemaextender.interfaces import IBrowserLayerAwareExtender
 
 from cpskin.locales import CPSkinMessageFactory as _
 
+import permissions
 from cpskin.core.interfaces import ICPSkinCoreLayer
 
 
@@ -38,8 +39,8 @@ class ContentExtender(object):
                               default=u'Hidden Tags are used for webmaster '
                                       u'organization of content.'),
             ),
-            read_permission=permissions.View,
-            write_permission='Content rules: Manage rules',
+            read_permission=zope_permissions.View,
+            write_permission=permissions.CPSkinSiteAdministrator,
         ),
     ]
 

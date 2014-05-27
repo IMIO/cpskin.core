@@ -1,1 +1,3 @@
 - Laurent Lasudry, Original Author [Affinitic]
+- François Bruynbroeck [Affinitic]
+- Gillian Sampont [Affinitic]

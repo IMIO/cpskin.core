@@ -18,14 +18,22 @@ This package is tested using Travis CI. The current status is :
 Robot tests
 ===========
 
+
+Run all tests
+-------------
+
+bin/test
+
+
+Run specific tests
+------------------
+
 You can launch the robot server with the command:
 
     bin/robot-server cpskin.core.testing.CPSKIN_CORE_ROBOT_TESTING
 
 And launch the tests:
 
-    bin/robot cpskin/core/tests/robot/test_main.robot
+    bin/robot cpskin/core/tests/robot/<yourfile>.robot
 
 You can sandbox on http://localhost:55001/plone/
-
-Robot tests are launched with bin/test too

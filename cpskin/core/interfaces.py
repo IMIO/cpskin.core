@@ -7,6 +7,12 @@ class ICPSkinCoreLayer(Interface):
     """
 
 
+class ICPSkinCoreWithMembersLayer(Interface):
+    """
+    Marker interface that defines a ZTK browser layer.
+    """
+
+
 class ICPSkinSettings(Interface):
     """
     Settings for CPSkin

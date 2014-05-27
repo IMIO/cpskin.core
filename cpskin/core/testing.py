@@ -10,9 +10,9 @@ import cpskin.core
 
 CPSKIN_CORE_FIXTURE = PloneWithPackageLayer(
     name="CPSKIN_CORE_FIXTURE",
-    zcml_filename="configure.zcml",
+    zcml_filename="testing.zcml",
     zcml_package=cpskin.core,
-    gs_profile_id="cpskin.core:default")
+    gs_profile_id="cpskin.core:testing")
 
 
 CPSKIN_CORE_ROBOT_TESTING = FunctionalTesting(

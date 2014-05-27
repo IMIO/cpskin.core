@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="cpskin">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body i18n:translate="cpskin-help-page">
+
+<h4>Comment encoder un élément sur le site ?</h4>
+<p>&nbsp;</p>
+<ul>
+    <li>En premier lieu, vous devrez accéder à votre dossier personnel en utilisant le lien nommé &quot;mon dossier personnel&quot;, situé généralement en haut à droite.</li>
+    <li>Une fois dans votre dossier, vous pouvez ajouter un élément en cliquant sur le menu intitulé &quot;Ajout d'un élément&quot; et en sélectionnant un type d'élément. </li>
+    <li>Dès que le formulaire d'encodage apparaît, vous pouvez compléter les zones voulues. <br />
+    Une zone marquée par un carré rouge doit obligatoirement être remplie.<br />
+    Une fois l'information entrée, vous pouvez sauvegarder celle-ci en cliquant sur le bouton &quot;Enregistrer&quot; situé en bas du formulaire. <br />
+    Vous pouvez retourner au formulaire d'édition en cliquant sur l'onglet &quot;Modifier&quot;. </li>
+    <li>Dès que vous estimez que votre élément est prêt à être publié, vous devez le proposer en cliquant sur le menu &quot;état: privé&quot; et en sélectionnant &quot;soumettre à la publication&quot;. <br />
+    L'état de votre élément devient alors &quot;en attente de modération&quot;.</li>
+    <li>Dès que votre élément aura été approuvé pour publication, il sera dans l'état &quot;publié&quot; et événtuellement déplacé à un autre endroit du site.<br />
+    Pas d'inquiétude donc si vous ne voyez plus votre élément dans votre dossier personnel.</li>
+</ul>
+<p>&nbsp;</p>
+
+</body>
+</html>

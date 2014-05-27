@@ -7,7 +7,7 @@
      tal:omit-tag=""
      tal:define="utool nocall:context/portal_url; charset context/email_charset|string:utf-8; dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=%s' % charset)">
 
-<span i18:translate="sendtomanager_mail_template_content" tal:omit-tag="" i18n:translate="an_error_had_been_reported_by">An error has been reported by</span>:
+<span i18n:translate="sendtomanager_mail_error_reported" tal:omit-tag="">An error has been reported by</span>:
 <span tal:omit-tag=""
       tal:replace="structure options/send_from_address" />
 

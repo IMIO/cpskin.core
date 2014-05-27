@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="cpskin">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body i18n:translate="cpskin-front-text">
+
+<h2 style="text-decoration: underline;">Vous venez d'installer le canevas de site internet proposé par CommunesPlone.</h2>
+<p><br />
+Pour bien prendre en main cet outil, nous vous recommandons de lire la documentation suivante :</p>
+<ul>
+    <li>une <a href="http://www.communesplone.org/support/documentation/tutoriels/cpskin3-le-site-communal-en-plone-3/">documentation CPSkin3</a>, vous présentant le canevas de site internet CPSkin3.</li>
+    <li>une <a href="http://www.communesplone.org/support/documentation/topic/section_internet">documentation spécifique au site internet</a>, vous présentant les différents modules utilisés dans les sites internet ainsi que des tutoriaux vous aidant à concevoir votre site.</li>
+    <li>une <a href="http://www.communesplone.org/support/documentation/topic/section_basic_use">documentation général sur Plone</a>, vous présentant l'outil et son interface.</li>
+</ul>
+<p><br />
+En tant qu'administrateur du site, vous pourrez effectuer (entre autres) les <span style="font-weight: bold;">adaptations suivantes</span> :<br />
+</p>
+<p>1) <span style="text-decoration: underline;">Ajouter une page d'accueil dynamique</span></p>
+<p>Vous trouverez dans cette <a href="http://www.communesplone.org/support/documentation/tutoriels/integration-dune-page-daccueil">documentation</a> les informations nécessaires pour intégrée une des pages d'accueils dynamique fournies avec le produit CPSkin3.</p>
+<p><br />
+2) <span style="text-decoration: underline;">Modifier le logo</span> <br />
+<br />
+Il est nécessaire pour cela de se rendre dans la <a href="http://www.communesplone.org/support/documentation/glossary/zmi">ZMI</a> et plus particulièrement dans /portal_skins/custom. Vous y trouverez un élément nommé logo.jpg. En cliquant sur cet élément, vous pourrez remplacer l'image proposée par une image de votre choix mais qui doit être de même dimension.  <br />
+Nous vous conseillons d'utiliser comme navigateur Firefox qui vous permettra d'ouvrir plusieurs onglets différents (par exemple un dans la ZMI et un dans Plone) et qui vous permettra également d'installer des modules complémentaires très utiles dans l'élaboration d'un site (Firebug, web developer, colorzilla, rainbowpicker, ...).<br />
+<br />
+3) <span style="text-decoration: underline;">Modifier la bannière supérieure</span><br />
+<br />
+La bannière peut être différente de dossier en dossier. C'est le cas après l'installation : la bannière est différente lorsque l'on se trouve dans un thème ou ses sous-dossiers. <br />
+Afin de remplacer la bannière proposée par défaut (à  la racine du site), il est nécessaire d'ouvrir l'élément appelé &quot;banner.jpg&quot;. Vous trouverez cet élément en vous positionnant à  la racine du site (dans Plone) et en cliquant sur l'onglet &quot;Contenu&quot;. Cette vue très pratique affiche tous les éléments présents dans un dossier. Après avoir cliqué sur l'élément banner.jpg,&nbsp; vous pourrez le modifier via l'onglet  &quot;Modifier&quot; et remplacer la bannière par une image de même dimension. <br />
+Pour modifier les bannières utilisées dans les dossiers &quot;thème&quot;, il suffit d'éditer l'élément &quot;banner.jpg&quot; se trouvant dans chaque dossier &quot;thème. <br />
+Pour ajouter une nouvelle bannière qui sera affichée sur un dossier et ses sous-dossiers, il suffira de créer dans ce dossier une image dont l'id doit être &quot;banner.jpg&quot;. <br />
+<br />
+4) <span style="text-decoration: underline;">Ajouter un thème</span><br />
+<br />
+En se positionnant à  la racine du site et il suffit de rajouter un dossier et de le publier dans la navigation. Il est conseillé de ne pas créer plus de 5 thèmes.<br />
+<br />
+5) <span style="text-decoration: underline;">Créer du contenu dans les dossiers &quot;thème&quot;</span><br />
+<br />
+Afin que les éléments présents dans les dossiers &quot;Thème&quot; soient affichés correctement dans les menus, il est nécessaire de les créer suivant les recommandations indiquées dans la documentation. <br />
+<br />
+6) <span style="text-decoration: underline;">Donner à  un utilisateur les droits de modification sur un dossier et son contenu</span> <br />
+<br />
+Par défaut, seul l'administrateur peut modifier ou créer des éléments à  n'importe quel endroit du site. Un utilisateur &quot;normal&quot; ne le pourra pas. <br />
+Pour donner à  un utilisateur ou un groupe d'utilisateurs les droits de gestion sur un dossier particulier et son contenu (par exemple pour qu'un service puisse gérer le contenu du dossier le concernant), l'administrateur doit spécifier certains droits sur ce dossier. Cela peut être fait via l'onglet &quot;Partage&quot;, comme expliqué dans <a href="http://www.communesplone.org/support/documentation/how-to/comment-gerer-les-roles-locaux">cette documentation</a>.<br />
+&nbsp;</p>
+
+</body>
+</html>

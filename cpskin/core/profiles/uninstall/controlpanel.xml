@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel">
+
+    <configlet
+        title="CPSkin"
+        action_id="cpskin.settings"
+        appId="cpskin.core"
+        remove="True" />
+
+</object>

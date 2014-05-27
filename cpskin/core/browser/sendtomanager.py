@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from Products.CMFPlone import PloneMessageFactory as _
+from cpskin.locales import CPSkinMessageFactory as _
 from Products.CMFPlone.utils import pretty_title_or_id
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.MailHost.interfaces import IMailHost
@@ -24,10 +24,10 @@ logger = logging.getLogger("Plone")
 
 
 class SendToManagerForm(form.Form):
-    label = _(u'signaler_erreur_gestionnaire_site',
-              default=u'Signaler une erreur au gestionnaire du site')
+    label = _(u'report_error_to_site_manager',
+              default=u'Report an error to the site manager')
 
-    description = _(u'fournir_maximum_informations',
+    description = _(u'provide_maximum_informations',
                     default=u"Merci de fournir le maximum d'information ainsi que tout renseignement qui permette de la valider (source).")
 
     fields = field.Fields(ISendToManagerForm)

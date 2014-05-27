@@ -3,18 +3,60 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="cpskin">
 
+  <include package="plone.app.contentmenu" />
+
+  <browser:resourceDirectory
+      name="cpskin.core.images"
+      directory="resources/images"
+      layer="..interfaces.ICPSkinCoreLayer" />
+
+  <!-- Browser pages used by profile - no layer allowed here -->
+  <browser:view
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="cpskin-frontpage-setup"
+      class=".pages.FrontPage"
+      permission="zope.Public"
+      />
+
+  <browser:view
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="cpskin-helppage-setup"
+      class=".pages.HelpPage"
+      permission="zope.Public"
+      />
+
+  <!-- Other browser pages -->
   <browser:page
       for="*"
       name="sendtomanager_form"
       class=".sendtomanager.SendToManagerForm"
       permission="zope.Public"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      name="folderview"
+      class=".folderview.FolderView"
+      permission="zope.Public"
+      template="templates/folderview.pt"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:menuItem
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      menu="plone_displayviews"
+      title="Vue index avec collections"
+      action="folderview"
+      description="Vue index avec collections"
+      layer="..interfaces.ICPSkinCoreLayer"
       />
 
   <browser:page
       name="cpskin-controlpanel"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       class=".controlpanel.CPSkinControlPanel"
-      permission="cmf.ManagePortal"
+      permission="cpskin.siteadministrator"
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
