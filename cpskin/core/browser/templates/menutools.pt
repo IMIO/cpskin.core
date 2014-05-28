@@ -1,4 +1,4 @@
-<div class="menutools menutools-viewlet" tal:condition="viewlet/hasTabs">
+<div class="menutools menutools-viewlet" >
     <ul id="toolsbar">
         <li class="faceted-menutools">
             <a>faceted</a>

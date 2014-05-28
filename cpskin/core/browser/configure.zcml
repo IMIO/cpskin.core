@@ -62,7 +62,7 @@
 
   <browser:viewlet
       name="menutools-viewlet"
-      manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
       template="templates/menutools.pt"
       layer="..interfaces.ICPSkinCoreLayer"
       permission="zope.Public"
