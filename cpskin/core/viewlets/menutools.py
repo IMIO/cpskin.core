@@ -11,13 +11,15 @@ class MenuToolsViewlet(common.ViewletBase):
     def get_faceted(self):
         view = {}
         page = api.content.get('/naviguer-par-facettes')
-        view['href'] = page.absolute_url()
-        view['title'] = page.title
+        if page:
+            view['href'] = page.absolute_url()
+            view['title'] = page.title
         return view
 
     def get_toolbox(self):
         view = {}
         page = api.content.get('/boite-a-outils/boite-a-outils')
-        view['href'] = page.absolute_url()
-        view['title'] = page.title
+        if page:
+            view['href'] = page.absolute_url()
+            view['title'] = page.title
         return view
