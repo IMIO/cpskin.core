@@ -24,6 +24,8 @@ class FolderView(BrowserView):
 
     def getFrontPageText(self):
         frontPage = getattr(self.context, 'front-page')
+        if frontPage.Language() == self.context.Language():
+            return frontPage.getText()
         if hasattr(frontPage, 'getTranslation'):
             lang = self.context.REQUEST.get('LANGUAGE', 'fr')
             frontPage = frontPage.getTranslation(lang)

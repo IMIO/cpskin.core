@@ -60,4 +60,12 @@
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
+  <browser:viewlet
+      name="menutools-viewlet"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+      template="templates/menutools.pt"
+      layer="..interfaces.ICPSkinCoreLayer"
+      permission="zope.Public"
+      />
+
 </configure>

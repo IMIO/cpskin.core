@@ -1,0 +1,10 @@
+<div class="menutools menutools-viewlet" tal:condition="viewlet/hasTabs">
+    <ul id="toolsbar">
+        <li class="faceted-menutools">
+            <a>faceted</a>
+        </li>
+        <li class="toolbox-menutools">
+            <a>tool box</a>
+        </li>
+    </ul>
+</div>
