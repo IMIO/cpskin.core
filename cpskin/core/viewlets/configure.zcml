@@ -11,4 +11,13 @@
         layer="..interfaces.ICPSkinCoreLayer"
         />
 
+    <browser:viewlet
+        name="cpskin.menutools_viewlet"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".menutools.MenuToolsViewlet"
+        layer="..interfaces.ICPSkinCoreLayer"
+        permission="zope.Public"
+        />
+
+
 </configure>
