@@ -19,5 +19,10 @@
         permission="zope.Public"
         />
 
+    <browser:resource
+        file="js/menutools.js"
+        name="cpskins.core.menutools.js"
+        layer="..interfaces.ICPSkinCoreLayer" />
+
 
 </configure>

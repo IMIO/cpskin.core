@@ -7,7 +7,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 class MenuToolsViewlet(common.ViewletBase):
 
-    index = ViewPageTemplateFile('templates/menutools.pt')
+    index = ViewPageTemplateFile('menutools.pt')
     def get_faceted(self):
         view = {}
         view['href'] = 'naviguer-par-facettes'
@@ -21,5 +21,5 @@ class MenuToolsViewlet(common.ViewletBase):
         return view
 
     def get_overlay(self):
-        page = api.content.get('boite-a-outils')
+        page = api.content.get('/boite-a-outils/boite-a-outils')
         return page.getText()

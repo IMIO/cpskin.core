@@ -12,5 +12,4 @@
         </li>
     </ul>
 
-    <div tal:content="view/get_overlay"></div>
 </div>
