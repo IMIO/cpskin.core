@@ -6,6 +6,7 @@ from plone import api
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.utils import bodyfinder
 from plone.app.controlpanel.security import ISecuritySchema
+
 logger = logging.getLogger('cpskin.core')
 
 
@@ -33,8 +34,6 @@ def installCore(context):
     portal.manage_permission('Portlets: Manage portlets',
                              ('Editor', 'Manager', 'Site Administrator'),
                              acquire=1)
-
-    addMenuToolsViewlet(portal)
 
 
 def configureMembers(context):
