@@ -2,14 +2,10 @@
 import logging
 from zope.component import getAdapter
 from zope.component import queryMultiAdapter
-from zope.interface import alsoProvides
 from plone import api
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.utils import bodyfinder
 from plone.app.controlpanel.security import ISecuritySchema
-from cpskin.core.viewlets.interfaces import (IViewletMenuToolsFaceted,
-                                             IViewletMenuToolsBox)
-
 logger = logging.getLogger('cpskin.core')
 
 
@@ -156,27 +152,3 @@ def ChangeCollectionsIds(portal):
         if events.hasObject('aggregator'):
             api.content.rename(obj=events['aggregator'], new_id='index')
         api.content.rename(obj=events, new_id='evenements')
-
-
-def addMenuToolsViewlet(portal):
-    menu_tools_faceted = {'id':'naviguer-par-facettes', 'title':u'Naviguer par facettes'}
-    menu_tools_box = {'id':'boite-a-outils', 'title':u'Boite à outils '}
-
-    folder = portal.get(menu_tools_faceted['id'])
-    if not folder:
-        folder = api.content.create(container=portal, type='Folder',
-                                      id=menu_tools_faceted['id'],
-                                      title=menu_tools_faceted['title'])
-
-    alsoProvides(folder, IViewletMenuToolsFaceted)
-    folder.reindexObject()
-
-    folder = portal.get(menu_tools_box['id'])
-    if not folder:
-        folder = api.content.create(container=portal, type='Folder',
-                                      id=menu_tools_box['id'],
-                                      title=menu_tools_box['title'])
-
-    alsoProvides(folder, IViewletMenuToolsBox)
-    folder.reindexObject()
-
