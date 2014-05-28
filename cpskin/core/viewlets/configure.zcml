@@ -24,5 +24,7 @@
         name="cpskins.core.menutools.js"
         layer="..interfaces.ICPSkinCoreLayer" />
 
+    <interface interface=".interfaces.IViewletMenuToolsFaceted" />
+    <interface interface=".interfaces.IViewletMenuToolsBox" />
 
 </configure>
