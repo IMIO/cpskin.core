@@ -3,26 +3,36 @@
       lang="en"
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
-  <!-- limitNumber est le nombre d'elements a afficher dans la page-->
+
   <body>
     <div metal:fill-slot="main"
          tal:define="limitNumberActus python: 7;
-                                            limitNumberEvents python: 7;
-                                            member context/@@plone_portal_state/member;
-                                            navigation_root_path context/@@plone_portal_state/navigation_root_path;
-                                            news_collection python: view.getNews(navigation_root_path);
-                                            events_collection python: view.getEvents(navigation_root_path);
-    ">
+                     limitNumberEvents python: 7;
+                     member context/@@plone_portal_state/member;
+                     navigation_root_path context/@@plone_portal_state/navigation_root_path;
+                     news_collection python: view.getNews(navigation_root_path);
+                     events_collection python: view.getEvents(navigation_root_path);">
       <metal:main-macro define-macro="main">
         <div id="accueil">
           <table>
-            <tr tal:condition="python: hasattr(context,'front-page')">
+            <tr id="flex" tal:define="brains view/getSliderContent"
+                          tal:condition= "python: view.hasFlexSlider() and brains">
+              <td colspan="3">
+                <div class="flex-container"
+                     tal:define="context nocall:context/a-la-une;
+                                 here nocall:context/a-la-une">
+                   <metal:block use-macro="context/@@slider_view/macros/content-core" />
+                </div>
+              </td>
+            </tr>
+            <tr tal:define="text view/getFrontPageText"
+                tal:condition="text">
               <td colspan="5"
                   id="blocune">
                 <p tal:condition="python: member.has_role('Manager')">
                   <a href="front-page/edit" i18n:translate="modifier_zone_statique">[Modifier la zone statique]</a>
                 </p>
-                <p tal:replace="structure view/getFrontPageText" />
+                <p tal:replace="structure text" />
               </td>
             </tr>
             <tr>
