@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <atcttool xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <topic_indexes i18n:domain="plone">
-  <index name="hiddenTags"
+  <index name="HiddenTags"
      description="The hidden tags configured by the webmaster" enabled="True"
      friendlyName="Hidden Tags"
      i18n:attributes="description; friendlyName">

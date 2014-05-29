@@ -18,7 +18,7 @@ class HiddenTagsVocabulary(object):
         self.catalog = getToolByName(site, "portal_catalog", None)
         if self.catalog is None:
             return SimpleVocabulary([])
-        index = self.catalog._catalog.getIndex('hiddenTags')
+        index = self.catalog._catalog.getIndex('HiddenTags')
 
         def safe_encode(term):
             if isinstance(term, unicode):
