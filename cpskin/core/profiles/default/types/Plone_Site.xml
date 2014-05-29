@@ -4,6 +4,5 @@
         i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
   <property name="view_methods" purge="False">
     <element value="folderview" />
-    <element value="folder_view" />
   </property>
 </object>
