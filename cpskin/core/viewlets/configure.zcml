@@ -11,4 +11,20 @@
         layer="..interfaces.ICPSkinCoreLayer"
         />
 
+    <browser:viewlet
+        name="cpskin.menutools_viewlet"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".menutools.MenuToolsViewlet"
+        layer="..interfaces.ICPSkinCoreLayer"
+        permission="zope.Public"
+        />
+
+    <browser:resource
+        file="js/menutools.js"
+        name="cpskins.core.menutools.js"
+        layer="..interfaces.ICPSkinCoreLayer" />
+
+    <interface interface=".interfaces.IViewletMenuToolsFaceted" />
+    <interface interface=".interfaces.IViewletMenuToolsBox" />
+
 </configure>

@@ -41,6 +41,7 @@ setup(name='cpskin.core',
           'Plone',
           'archetypes.schemaextender',
           'collective.ckeditor',
+          'collective.contentleadimage',
           'collective.monkeypatcher',
           'cpskin.locales'
           # -*- Extra requirements: -*-

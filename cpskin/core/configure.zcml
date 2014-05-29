@@ -2,9 +2,10 @@
 
     <!-- Dependencies -->
     <include package="archetypes.schemaextender" />
+    <include package="collective.ckeditor" />
+    <include package="collective.contentleadimage" />
     <include package="cpskin.locales" />
 
-    <include package="collective.ckeditor" />
     <include file="permissions.zcml" />
     <include file="profiles.zcml" />
     <include file="monkey.zcml" />

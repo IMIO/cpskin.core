@@ -2,7 +2,7 @@
 <portlets xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="plone">
 
- <!-- Restore Plone portlets -->
+ <!-- Restore Plone portlets with their default values -->
 
  <assignment
      manager="plone.rightcolumn"
@@ -19,6 +19,15 @@
      type="portlets.Events"
      name="events"
      />
+
+ <assignment
+     manager="plone.leftcolumn"
+     category="context"
+     key="/"
+     type="portlets.Navigation"
+     name="navigation">
+  <property name="topLevel">1</property>
+ </assignment>
 
 
  <!-- Remove portlets added by cpskin -->
