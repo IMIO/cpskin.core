@@ -36,6 +36,15 @@
       />
 
   <browser:page
+      for="*"
+      name="banner_activation"
+      class=".banner.BannerActivationView"
+      permission="zope.Public"
+      allowed_interface=".interfaces.IBannerActivationView"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
       name="folderview"
       class=".folderview.FolderView"

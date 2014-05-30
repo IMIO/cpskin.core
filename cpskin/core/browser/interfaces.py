@@ -25,3 +25,24 @@ class ISendToManagerForm(Interface):
                       default=u'Report an error or missing information.'),
         required=False
     )
+
+
+class IBannerActivationView(Interface):
+    """ Banner activation """
+
+    can_enable_banner = schema.Bool(
+        u'Can enable banner',
+        readonly=True
+    )
+    can_disable_banner = schema.Bool(
+        u'Can disable banner',
+        readonly=True
+    )
+
+    def enable_banner():
+        """ Enable banner
+        """
+
+    def disable_banner():
+        """ Disable banner
+        """
