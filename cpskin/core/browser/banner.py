@@ -65,7 +65,7 @@ class BannerActivationView(BrowserView):
         alsoProvides(context, IBannerActivated)
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
-        self._redirect(_(u'Banner activated on content and sub-contents'))
+        self._redirect(_(u'Banner enabled on content and sub-contents'))
 
     def disable_banner(self):
         """ Disable the banner """
