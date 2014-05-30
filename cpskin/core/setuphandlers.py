@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import logging
 from zope.component import getAdapter
 from zope.component import queryMultiAdapter
@@ -29,6 +30,9 @@ def installCore(context):
     # Edit front page
     frontPage = getattr(portal, 'front-page', None)
     setPageText(portal, frontPage, 'cpskin-frontpage-setup')
+
+    # Create default banner image
+    createBannerImage(portal)
 
     # Add the Editor role to the Manage portlet permission
     portal.manage_permission('Portlets: Manage portlets',
@@ -84,6 +88,18 @@ def configureMembers(context):
         members.setConstrainTypesMode(1)
         members.setLocallyAllowedTypes(['Event'])
         members.setImmediatelyAddableTypes(['Event'])
+
+
+def uninstallCore(context):
+    if context.readDataFile('cpskin.core-uninstall.txt') is None:
+        return
+
+    logger.info('Uninstalling')
+    portal = context.getSite()
+
+    # Remove banner image
+    if portal.hasObject('banner.jpg'):
+        api.content.delete(obj=portal['banner.jpg'])
 
 
 def setPageText(portal, page, viewName):
@@ -151,3 +167,15 @@ def ChangeCollectionsIds(portal):
         if events.hasObject('aggregator'):
             api.content.rename(obj=events['aggregator'], new_id='index')
         api.content.rename(obj=events, new_id='evenements')
+
+
+def createBannerImage(portal):
+    dataPath = os.path.join(os.path.dirname(__file__), 'data')
+    bannerPath = os.path.join(dataPath, 'banner.jpg')
+    bannerFd = open(bannerPath, 'rb')
+    if not portal.hasObject('banner.jpg'):
+        api.content.create(type='Image',
+                           title='banner.jpg',
+                           container=portal,
+                           file=bannerFd)
+    bannerFd.close()

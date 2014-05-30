@@ -4,6 +4,14 @@
     i18n_domain="cpskin">
 
     <browser:viewlet
+        name="cpskin.banner"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".banner.CPSkinBannerViewlet"
+        permission="zope2.View"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:viewlet
         name="cpskin.footer_sitemap"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
         class=".footer.CPSkinFooterSitemapViewlet"
@@ -20,9 +28,16 @@
         />
 
     <browser:resource
+        file="css/banner.css"
+        name="cpskin.core.banner.css"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:resource
         file="js/menutools.js"
-        name="cpskins.core.menutools.js"
-        layer="..interfaces.ICPSkinCoreLayer" />
+        name="cpskin.core.menutools.js"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
 
     <interface interface=".interfaces.IViewletMenuToolsFaceted" />
     <interface interface=".interfaces.IViewletMenuToolsBox" />

@@ -13,6 +13,12 @@ class ICPSkinCoreWithMembersLayer(Interface):
     """
 
 
+class IBannerActivated(Interface):
+    """
+    Marker interface to enable / disable banner viewlet
+    """
+
+
 class ICPSkinSettings(Interface):
     """
     Settings for CPSkin

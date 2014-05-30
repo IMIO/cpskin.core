@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <object name="portal_actions" meta_type="Plone Actions Tool"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-    <object name="document_actions" meta_type="CMF Action Category">
 
+    <object name="document_actions" meta_type="CMF Action Category">
         <object name="sendtomanager" meta_type="CMF Action" i18n:domain="cpskin">
             <property name="title" i18n:translate="">Indicate an error</property>
             <property name="description" i18n:translate=""></property>
@@ -14,12 +14,38 @@
             </property>
             <property name="visible">True</property>
         </object>
-
     </object>
+
     <object name="user" meta_type="CMF Action Category">
         <property name="title"></property>
         <object name="undo" meta_type="CMF Action" i18n:domain="cpskin">
          <property name="visible">True</property>
         </object>
     </object>
+
+    <object name="object_buttons" meta_type="CMF Action Category">
+        <object name="enable_banner" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Show banner</property>
+            <property name="description"></property>
+            <property name="url_expr">string:${context/absolute_url}/@@banner_activation/enable_banner</property>
+            <property name="link_target"></property>
+            <property name="available_expr">context/@@banner_activation/can_enable_banner</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
+        <object name="disable_banner" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Hide banner</property>
+            <property name="description"></property>
+            <property name="url_expr">string:${context/absolute_url}/@@banner_activation/disable_banner</property>
+            <property name="link_target"></property>
+            <property name="available_expr">context/@@banner_activation/can_disable_banner</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
+    </object>
+
 </object>

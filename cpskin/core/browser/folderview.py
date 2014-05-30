@@ -23,10 +23,32 @@ class FolderView(BrowserView):
         return collections and collections[0] or None
 
     def getFrontPageText(self):
-        frontPage = getattr(self.context, 'front-page')
+        frontPage = getattr(self.context, 'front-page', None)
+        if frontPage is None:
+            return
         if frontPage.Language() == self.context.Language():
             return frontPage.getText()
         if hasattr(frontPage, 'getTranslation'):
             lang = self.context.REQUEST.get('LANGUAGE', 'fr')
             frontPage = frontPage.getTranslation(lang)
         return frontPage.getText()
+
+    def hasFlexSlider(self):
+        """
+        Check if flexslider is available and installed
+        """
+        try:
+            from cpskin.slider.interfaces import ICPSkinSliderLayer
+        except ImportError:
+            return False
+        else:
+            request = getattr(self.context, "REQUEST", None)
+            if ICPSkinSliderLayer.providedBy(request):
+                return True
+            return False
+
+    def getSliderContent(self):
+        container = getattr(self.context, 'a-la-une', None)
+        if container is None:
+            return []
+        return container.queryCatalog()

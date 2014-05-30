@@ -1,0 +1,8 @@
+<div id="cpskin-banner"
+     tal:condition="view/available"
+     i18n:domain="cpskin">
+     <img src=""
+          alt="Banner"
+          tal:attributes="src string:${context/absolute_url}/banner.jpg"
+          i18n:attributes="alt" />
+</div>

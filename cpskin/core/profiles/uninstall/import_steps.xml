@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="cpskin.core.uninstall"
+               handler="cpskin.core.setuphandlers.uninstallCore"
+               title="cpskin.core: uninstall import step">
+  </import-step>
+</import-steps>
