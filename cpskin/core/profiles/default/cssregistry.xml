@@ -8,4 +8,11 @@
     enabled="1" expression="context/@@banner_activation/is_enabled"
     insert-after="ploneCustom.css" />
 
+ <stylesheet title="CPSkin hidden tags basic style"
+    id="++resource++cpskin.core.hiddentags.css"
+    media="screen" rel="stylesheet" rendering="import"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression="not: portal/portal_membership/isAnonymousUser"
+    insert-after="++resource++cpskin.core.banner.css" />
+
 </object>

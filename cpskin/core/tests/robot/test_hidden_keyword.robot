@@ -32,6 +32,7 @@ a document '${title}' with hidden tag '${keyword}'
     Click Link  Categorization
     Input Text  hiddenTags_keywords  ${keyword}
     Click Button  Save
+    Element Should Contain  id=hidden-tags  ${keyword}
 
 
 a collection

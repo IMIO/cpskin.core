@@ -1,0 +1,13 @@
+#hidden-tags {
+    color: #666666;
+    font-size: 75%;
+    margin-bottom: 1em;
+    text-align: right;
+}
+
+#hidden-tags a.link-category {
+    background: none repeat scroll 0 0 #DDDDDD;
+    border-radius: 0.5em;
+    color: #000000;
+    padding: 0.25em 0.5em;
+}
