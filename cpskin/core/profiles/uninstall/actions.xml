@@ -10,4 +10,9 @@
         <object name="mystuff" remove="True" />
     </object>
 
+    <object name="object_buttons" meta_type="CMF Action Category">
+        <object name="enable_banner" remove="True" />
+        <object name="disable_banner" remove="True" />
+    </object>
+
 </object>
