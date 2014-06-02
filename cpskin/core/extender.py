@@ -29,7 +29,7 @@ class ExtensionHiddenTagsField(ExtensionField, atapi.LinesField):
         instance.HiddenTags = tuple(value)
 
     def get(self, instance, **kw):
-        if instance.hiddenTags is None:
+        if getattr(instance, 'hiddenTags', None) is None:
             return ()
         return tuple(safe_utf8(s) for s in instance.hiddenTags)
 
