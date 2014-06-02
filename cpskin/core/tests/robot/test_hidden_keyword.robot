@@ -6,9 +6,6 @@ Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
 
 
-*** Variables ***
-
-
 *** Test cases ***
 
 Scenario: Test collection hidden tags criteria
