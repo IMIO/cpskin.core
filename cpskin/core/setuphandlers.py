@@ -34,10 +34,10 @@ def installCore(context):
     setPageText(portal, frontPage, 'cpskin-frontpage-setup')
 
     # Create default banner image
-    createBannerImage(portal)
+    addImageFromFile(portal, 'banner.jpg')
 
     # Create default visuel image
-    createVisuelImage(portal)
+    addImageFromFile(portal, 'visuel.jpg')
 
     # Add the Editor role to the Manage portlet permission
     portal.manage_permission('Portlets: Manage portlets',
@@ -183,25 +183,15 @@ def ChangeCollectionsIds(portal):
         api.content.rename(obj=events, new_id='evenements')
 
 
-def createBannerImage(portal):
+def addImageFromFile(portal, fileName):
     dataPath = os.path.join(os.path.dirname(__file__), 'data')
-    bannerPath = os.path.join(dataPath, 'banner.jpg')
-    bannerFd = open(bannerPath, 'rb')
-    if not portal.hasObject('banner.jpg'):
-        api.content.create(type='Image',
-                           title='banner.jpg',
-                           container=portal,
-                           file=bannerFd)
-    bannerFd.close()
-
-
-def createVisuelImage(portal):
-    dataPath = os.path.join(os.path.dirname(__file__), 'data')
-    visuelPath = os.path.join(dataPath, 'visuel.jpg')
-    visuelFd = open(visuelPath, 'rb')
-    if not portal.hasObject('visuel.jpg'):
-        api.content.create(type='Image',
-                           title='visuel.jpg',
-                           container=portal,
-                           file=visuelFd)
-    visuelFd.close()
+    filePath = os.path.join(dataPath, fileName)
+    fd = open(filePath, 'rb')
+    if not portal.hasObject(fileName):
+        image = api.content.create(type='Image',
+                                   title=fileName,
+                                   container=portal,
+                                   file=fd)
+        image.setTitle(fileName)
+        image.reindexObject()
+    fd.close()
