@@ -114,6 +114,10 @@ def uninstallCore(context):
     if portal.hasObject('visuel.jpg'):
         api.content.delete(obj=portal['visuel.jpg'])
 
+    # Remove default logo
+    if portal.hasObject('cpskinlogo.jpg'):
+        api.content.delete(obj=portal['cpskinlogo.jpg'])
+
 
 def setPageText(portal, page, viewName):
     """
