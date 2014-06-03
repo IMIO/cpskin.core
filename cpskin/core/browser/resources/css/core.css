@@ -1,0 +1,25 @@
+#bloc-actu {
+    float: left;
+    width: 50%;
+}
+
+#bloc-actu-title {
+    float: left;
+}
+
+#bloc-actu-rss {
+    float: right;
+}
+
+#bloc-event {
+    float: left;
+    width: 50%;
+}
+
+#bloc-event-title {
+    float: left;
+}
+
+#bloc-event-rss {
+    float: right;
+}
