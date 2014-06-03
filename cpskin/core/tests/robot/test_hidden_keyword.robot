@@ -6,9 +6,6 @@ Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
 
 
-*** Variables ***
-
-
 *** Test cases ***
 
 Scenario: Test collection hidden tags criteria
@@ -32,6 +29,7 @@ a document '${title}' with hidden tag '${keyword}'
     Click Link  Categorization
     Input Text  hiddenTags_keywords  ${keyword}
     Click Button  Save
+    Element Should Contain  id=hidden-tags  ${keyword}
 
 
 a collection
