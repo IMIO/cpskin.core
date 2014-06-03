@@ -11,6 +11,11 @@
       directory="resources/images"
       layer="..interfaces.ICPSkinCoreLayer" />
 
+  <browser:resourceDirectory
+      name="cpskin.core.css"
+      directory="resources/css"
+      layer="..interfaces.ICPSkinCoreLayer" />
+
   <!-- Browser pages used by profile - no layer allowed here -->
   <browser:view
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
