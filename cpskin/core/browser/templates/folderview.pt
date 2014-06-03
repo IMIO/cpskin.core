@@ -32,7 +32,7 @@
             </div>
           </div>
           <div id="bloc-actu"
-               tal:define="batch python: news_collection.getObject().results(batch=False)[:limitNumberActus]"
+               tal:define="batch python: news_collection and news_collection.getObject().results(batch=False)[:limitNumberActus] or None"
                tal:condition="batch">
             <div id="bloc-actu-title">
               <a href="actualites"
@@ -67,7 +67,7 @@
             </div>
           </div>
           <div id="bloc-event"
-               tal:define="batch python: events_collection.getObject().results(batch=False)[:limitNumberEvents]"
+               tal:define="batch python: events_collection and events_collection.getObject().results(batch=False)[:limitNumberEvents] or None"
                tal:condition="batch">
             <div id="bloc-event-title">
               <a href="evenements"

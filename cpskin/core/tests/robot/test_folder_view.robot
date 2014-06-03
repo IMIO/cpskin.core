@@ -13,7 +13,7 @@ Scenario: Test folder view with collection
      When I go to homepage
       And I open display menu
       And click folder view with collection
-     Then the collections should be visible
+     Then the view has changed
 
 
 Scenario: Test no folder view in non root
@@ -43,9 +43,8 @@ click folder view with collection
     Click Link  css=#plone-contentmenu-display-folderview
 
 
-the collections should be visible
-    Page Should Contain Link  css=a[href=actualites]
-    Page Should Contain Link  css=a[href=evenements]
+the view has changed
+    Page Should Contain  View changed.
 
 
 a folder '${title}'
