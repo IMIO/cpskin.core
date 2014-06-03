@@ -38,22 +38,19 @@
  <!-- Add new portlets -->
 
  <assignment
-     manager="plone.rightcolumn"
+     manager="plone.leftcolumn"
      category="context"
      key="/"
-     type="portlets.Classic"
-     name="firefox-portlet">
-  <property name="template">portlet_firefox</property>
-  <property name="macro">portlet</property>
- </assignment>
+     type="cpskin.portlets.Photo"
+     name="Photo"
+     />
 
  <assignment
      manager="plone.rightcolumn"
      category="context"
      key="/"
-     type="portlets.Classic"
-     name="photo-portlet">
-  <property name="template">portlet_photo</property>
- </assignment>
+     type="cpskin.portlets.Firefox"
+     name="Firefox"
+     />
 
 </portlets>

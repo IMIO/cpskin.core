@@ -33,25 +33,22 @@
  <!-- Remove portlets added by cpskin -->
 
  <assignment
-     manager="plone.rightcolumn"
+     manager="plone.leftcolumn"
      category="context"
      key="/"
-     type="portlets.Classic"
-     name="firefox-portlet"
-     remove="True">
-  <property name="template">portlet_firefox</property>
-  <property name="macro">portlet</property>
- </assignment>
+     type="cpskin.portlets.Photo"
+     name="Photo"
+     remove="True"
+     />
 
  <assignment
      manager="plone.rightcolumn"
      category="context"
      key="/"
-     type="portlets.Classic"
-     name="photo-portlet"
-     remove="True">
-  <property name="template">portlet_photo</property>
- </assignment>
+     type="cpskin.portlets.Firefox"
+     name="Firefox"
+     remove="True"
+     />
 
  <assignment
      manager="plone.rightcolumn"
@@ -59,6 +56,7 @@
      key="/"
      type="portlets.Review"
      name="review"
-     remove="True" />
+     remove="True"
+     />
 
 </portlets>

@@ -1,13 +1,12 @@
-<div metal:define-macro="portlet" tal:condition="python: 'Firefox' not in context.REQUEST.get('HTTP_USER_AGENT', None)" i18n:domain="cpskin">
-    <dl class="portlet" id="portlet-firefox">
-        <dd class="portletItem odd">
-            <span i18n:translate="site_optimise_pour_firefox">Ce site est optimisé pour le navigateur Firefox.</span><br />
-            <br />
-            <span i18n:translate="firefox_download_sentence">Sécurisé, fiable et rapide, <a href="http://www.getfirefox.com" i18n:name="Firefox">Firefox</a> est gratuit et simple à installer.</span><br />
-            <br />
-            <a href="http://www.getfirefox.com">
-                <img src=""
-                     tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++cpskin.portlets.firefox.png" /></a>
-        </dd>
-    </dl>
-</div>
+<dl class="portlet" id="portlet-firefox"
+    i18n:domain="cpskin">
+    <dd class="portletItem odd">
+        <span i18n:translate="site_optimise_pour_firefox">Ce site est optimisé pour le navigateur Firefox.</span><br />
+        <br />
+        <span i18n:translate="firefox_download_sentence">Sécurisé, fiable et rapide, <a href="http://www.getfirefox.com" i18n:name="Firefox">Firefox</a> est gratuit et simple à installer.</span><br />
+        <br />
+        <a href="http://www.getfirefox.com">
+            <img src=""
+                 tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++cpskin.portlets.firefox.png" /></a>
+    </dd>
+</dl>

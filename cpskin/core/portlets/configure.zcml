@@ -4,10 +4,28 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="cpskin">
 
-  <browser:resource
-      name="cpskin.portlets.firefox.png"
-      file="firefox.png"
+  <include package="plone.app.portlets"  />
+
+  <plone:portletRenderer
+      portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
+      template="navigation.pt"
       layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <plone:portlet
+      name="cpskin.portlets.Firefox"
+      interface=".firefox.IFirefoxPortlet"
+      assignment=".firefox.Assignment"
+      renderer=".firefox.Renderer"
+      addview=".firefox.AddForm"
+      />
+
+  <plone:portlet
+      name="cpskin.portlets.Photo"
+      interface=".photo.IPhotoPortlet"
+      assignment=".photo.Assignment"
+      renderer=".photo.Renderer"
+      addview=".photo.AddForm"
       />
 
   <browser:page
@@ -26,11 +44,9 @@
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
-  <include package="plone.app.portlets"  />
-
-  <plone:portletRenderer
-      portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
-      template="navigation.pt"
+  <browser:resource
+      name="cpskin.portlets.firefox.png"
+      file="firefox.png"
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
