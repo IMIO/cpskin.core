@@ -10,7 +10,7 @@ class CPSkinLogoViewlet(LogoViewlet):
         logoTitle = self.portal_state.portal_title()
         try:
             logo_custom = self.context.restrictedTraverse(logoName)
-        except AttributeError:
+        except (AttributeError, KeyError):
             #If not custom logo
             pass
         else:
