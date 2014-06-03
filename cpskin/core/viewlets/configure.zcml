@@ -36,7 +36,6 @@
         layer="..interfaces.ICPSkinCoreLayer"
         />
 
-    <!-- The logo -->
     <browser:viewlet
         name="plone.logo"
         manager="plone.app.layout.viewlets.interfaces.IPortalHeader"

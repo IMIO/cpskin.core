@@ -39,6 +39,9 @@ def installCore(context):
     # Create default visuel image
     addImageFromFile(portal, 'visuel.jpg')
 
+    # Create default logo
+    addImageFromFile(portal, 'cpskinlogo.jpg')
+
     # Add the Editor role to the Manage portlet permission
     portal.manage_permission('Portlets: Manage portlets',
                              ('Editor', 'Manager', 'Site Administrator'),
