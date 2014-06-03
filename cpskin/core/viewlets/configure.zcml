@@ -45,6 +45,14 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="cpskin.social_viewlet"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".social.SocialViewlet"
+        permission="zope.Public"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
     <browser:resource
         file="css/banner.css"
         name="cpskin.core.banner.css"
