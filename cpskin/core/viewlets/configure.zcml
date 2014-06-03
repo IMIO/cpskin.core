@@ -27,6 +27,15 @@
         permission="zope.Public"
         />
 
+    <!-- The logo -->
+    <browser:viewlet
+        name="plone.logo"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".logo.CPSkinLogoViewlet"
+        layer="..interfaces.ICPSkinCoreLayer"
+        permission="zope2.View"
+        />
+
     <browser:resource
         file="css/banner.css"
         name="cpskin.core.banner.css"
