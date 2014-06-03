@@ -47,4 +47,13 @@
   <property name="macro">portlet</property>
  </assignment>
 
+ <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="portlets.Classic"
+     name="photo-portlet">
+  <property name="template">portlet_photo</property>
+ </assignment>
+
 </portlets>

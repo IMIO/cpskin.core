@@ -36,6 +36,9 @@ def installCore(context):
     # Create default banner image
     createBannerImage(portal)
 
+    # Create default visuel image
+    createVisuelImage(portal)
+
     # Add the Editor role to the Manage portlet permission
     portal.manage_permission('Portlets: Manage portlets',
                              ('Editor', 'Manager', 'Site Administrator'),
@@ -103,6 +106,10 @@ def uninstallCore(context):
     # Remove banner image
     if portal.hasObject('banner.jpg'):
         api.content.delete(obj=portal['banner.jpg'])
+
+    # Remove visuel image
+    if portal.hasObject('visuel.jpg'):
+        api.content.delete(obj=portal['visuel.jpg'])
 
 
 def setPageText(portal, page, viewName):
@@ -186,3 +193,15 @@ def createBannerImage(portal):
                            container=portal,
                            file=bannerFd)
     bannerFd.close()
+
+
+def createVisuelImage(portal):
+    dataPath = os.path.join(os.path.dirname(__file__), 'data')
+    visuelPath = os.path.join(dataPath, 'visuel.jpg')
+    visuelFd = open(visuelPath, 'rb')
+    if not portal.hasObject('visuel.jpg'):
+        api.content.create(type='Image',
+                           title='visuel.jpg',
+                           container=portal,
+                           file=visuelFd)
+    visuelFd.close()

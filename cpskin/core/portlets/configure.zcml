@@ -18,6 +18,14 @@
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
+  <browser:page
+      name="portlet_photo"
+      for="*"
+      template="photo.pt"
+      permission="zope.Public"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
   <include package="plone.app.portlets"  />
 
   <plone:portletRenderer

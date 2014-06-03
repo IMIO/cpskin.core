@@ -1,0 +1,11 @@
+<div metal:define-macro="portlet"
+    tal:define="our_url context/@@plone_context_state/canonical_object_url;
+                home_url context/@@plone_portal_state/portal_url;"
+    tal:condition="python:our_url != home_url" i18n:domain="cpskin">
+    <dl class="portlet" id="portlet-photo">
+        <dd class="portletItem odd">
+        <img src=""
+             tal:attributes="src string:${context/absolute_url}/visuel.jpg" />
+        </dd>
+    </dl>
+</div>
