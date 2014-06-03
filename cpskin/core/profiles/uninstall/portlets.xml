@@ -47,6 +47,16 @@
      manager="plone.rightcolumn"
      category="context"
      key="/"
+     type="portlets.Classic"
+     name="photo-portlet"
+     remove="True">
+  <property name="template">portlet_photo</property>
+ </assignment>
+
+ <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
      type="portlets.Review"
      name="review"
      remove="True" />
