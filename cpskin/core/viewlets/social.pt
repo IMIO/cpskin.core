@@ -1,3 +1,11 @@
-<div class="social-viewlet" >
-<span>SOCIAL VIEWLET</span>
+<div class="social-viewlet">
+  <span>SOCIAL VIEWLET</span>
+  <br /><br />
+  <span tal:repeat="link view/getSocialLinks">Ordre: 
+  <span tal:replace="python: link[0]" />
+  <br />Caractere: 
+  <span tal:replace="python: link[1]" />
+  <br />Lien: 
+  <span tal:replace="python: link[2]" />
+  <br /><br / ></span>
 </div>
