@@ -5,4 +5,6 @@
 
     <records interface="plone.app.querystring.interfaces.IQueryField" remove="True"/>
 
+    <record name="cpskin.core.socialviewlet" remove="true" />
+
 </registry>

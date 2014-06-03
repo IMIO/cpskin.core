@@ -17,4 +17,35 @@
        <value key="group" i18n:translate="">Text</value>
     </records>
 
+    <record name="cpskin.core.socialviewlet">
+        <field type="plone.registry.field.Dict">
+            <title i18n:translate="">Links in social viewlet</title>
+            <key_type type="plone.registry.field.TextLine" />
+            <value_type type="plone.registry.field.List">
+                <value_type type="plone.registry.field.TextLine" />
+            </value_type>
+        </field>
+        <value>
+            <element key="facebook">
+                <element>1</element>
+                <element>fa-facebook-square</element>
+                <element>https://www.facebook.com/</element>
+            </element>
+            <element key="twitter">
+                <element>2</element>
+                <element>fa-twitter-square</element>
+                <element>https://twitter.com/</element>
+            </element>
+            <element key="rss">
+                <element>3</element>
+                <element>fa-rss-square</element>
+                <element>http://fr.wikipedia.org/wiki/RSS</element>
+            </element>
+            <element key="vimeo">
+                <element>4</element>
+                <element>fa-vimeo-square</element>
+                <element>https://vimeo.com/</element>
+            </element>
+        </value>
+    </record>
 </registry>
