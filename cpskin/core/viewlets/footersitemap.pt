@@ -1,14 +1,12 @@
-<div id="footer-sitemap"
-     tal:define="sitemap view/createSiteMap;
-                 context_absolute_url python:context.absolute_url()+'/'">
-    <tal:for tal:repeat="elt sitemap">
-     <a href="#" tal:define="theme elt/theme" tal:attributes="href theme/getPath; title theme/Description" tal:content="theme/Title" ><tal:comment replace="nothing">First level element</tal:comment></a>
-     <ul>
-      <tal:loop repeat="child python:elt['children']">
+<ul id="footer-sitemap"
+    tal:define="sitemap view/createSiteMap;
+                context_absolute_url python:context.absolute_url()+'/'">
+  <li tal:repeat="elt sitemap">
+    <a href="#" tal:define="theme elt/theme" tal:attributes="href theme/getPath; title theme/Description" tal:content="theme/Title" ><tal:comment replace="nothing">First level element</tal:comment></a>
+    <ul tal:repeat="child python:elt['children']">
       <li tal:define="childURL child/getURL; childURL2 python: childURL+'/';" tal:attributes="class python:context_absolute_url.startswith(childURL2) and 'selected' or ''">
-       <a href="" tal:attributes="href childURL; title child/Description" tal:content="child/Title"><tal:comment replace="nothing">Seconde level element</tal:comment></a>
+        <a href="" tal:attributes="href childURL; title child/Description" tal:content="child/Title"><tal:comment replace="nothing">Seconde level element</tal:comment></a>
       </li>
-      </tal:loop>
-     </ul>
-    </tal:for>
-</div>
+    </ul>
+  </li>
+</ul>
