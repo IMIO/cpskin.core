@@ -36,15 +36,15 @@
                 <element>icon-twitter</element>
                 <element>https://twitter.com/</element>
             </element>
-            <element key="rss">
-                <element>3</element>
-                <element>icon-feed2</element>
-                <element>http://fr.wikipedia.org/wiki/RSS</element>
-            </element>
             <element key="vimeo">
-                <element>4</element>
+                <element>3</element>
                 <element>icon-vimeo</element>
                 <element>https://vimeo.com/</element>
+            </element>
+            <element key="rss">
+                <element>4</element>
+                <element>icon-feed2</element>
+                <element>http://fr.wikipedia.org/wiki/RSS</element>
             </element>
         </value>
     </record>
