@@ -3,7 +3,7 @@
   <dd class="portletItem odd">
     <img src=""
          alt="Visuel"
-         tal:attributes="src string:${context/absolute_url}/visuel.jpg"
+         tal:attributes="src string:${context/absolute_url}/visuel.png"
          i18n:attributes="alt" />
   </dd>
 </dl>

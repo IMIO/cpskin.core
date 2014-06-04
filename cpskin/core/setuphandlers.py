@@ -37,7 +37,7 @@ def installCore(context):
     addImageFromFile(portal, 'banner.jpg')
 
     # Create default visuel image
-    addImageFromFile(portal, 'visuel.jpg')
+    addImageFromFile(portal, 'visuel.png')
 
     # Create default logo
     addImageFromFile(portal, 'cpskinlogo.png')
@@ -111,8 +111,8 @@ def uninstallCore(context):
         api.content.delete(obj=portal['banner.jpg'])
 
     # Remove visuel image
-    if portal.hasObject('visuel.jpg'):
-        api.content.delete(obj=portal['visuel.jpg'])
+    if portal.hasObject('visuel.png'):
+        api.content.delete(obj=portal['visuel.png'])
 
     # Remove default logo
     if portal.hasObject('cpskinlogo.png'):
