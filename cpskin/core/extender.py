@@ -10,13 +10,18 @@ from Products.CMFCore import permissions as zope_permissions
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.interfaces import IBrowserLayerAwareExtender
+try:
+    from plone.dexterity.utils import safe_unicode
+    from plone.dexterity.utils import safe_utf8
+except ImportError:
+    # Compatibility with Plone 4.3.2 / plone.dexterity 2.1.3
+    from cpskin.core.utils import safe_unicode
+    from cpskin.core.utils import safe_utf8
 
 from cpskin.locales import CPSkinMessageFactory as _
 
 import permissions
 from cpskin.core.interfaces import ICPSkinCoreLayer
-from cpskin.core.utils import safe_unicode
-from cpskin.core.utils import safe_utf8
 
 
 class ExtensionHiddenTagsField(ExtensionField, atapi.LinesField):
