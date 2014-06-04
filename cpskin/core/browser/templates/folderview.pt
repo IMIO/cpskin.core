@@ -35,8 +35,8 @@
                tal:define="batch python: news_collection and news_collection.getObject().results(batch=False)[:limitNumberActus] or None"
                tal:condition="batch">
             <div id="bloc-actu-title">
-              <a href="actualites"
-                 i18n:translate="">News</a>
+              <h2><a href="actualites"
+                     i18n:translate="">News</a></h2>
             </div>
             <div id="bloc-actu-rss"
                  class="imagebloc1"
@@ -46,32 +46,32 @@
                    alt="Flux RSS des dernières actualités"
                    i18n:attributes="alt flux_rss_dernieres_actualites" />
             </a>&#160;</div>
-            <div id="bloc-actu-items">
+            <ul id="bloc-actu-items">
               <tal:loop repeat="item batch">
-                <div class="bloc-actu-item"
+                <li class="bloc-actu-item"
                      colspan="2"
                      tal:define="object item/getObject">
                   <br />
-                  <a href=""
+                  <h3><a href=""
                      tal:attributes="href python: object.absolute_url()">
                     <div tal:replace="structure python: object.tag(scale='tile', css_class=imageClass)"
                          tal:define="oddRow repeat/item/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
                          tal:condition="object/getImage" />
                     <span tal:content="python: object.Title()" />
-                  </a>
+                  </a></h3>
                   <br />
                   <span tal:content="python: object.Description()" />
                   <br />
-                </div>
+                </li>
               </tal:loop>
-            </div>
+            </ul>
           </div>
           <div id="bloc-event"
                tal:define="batch python: events_collection and events_collection.getObject().results(batch=False)[:limitNumberEvents] or None"
                tal:condition="batch">
             <div id="bloc-event-title">
-              <a href="evenements"
-                 i18n:translate="">Events</a>
+              <h2><a href="evenements"
+                     i18n:translate="">Events</a></h2>
             </div>
             <div id="bloc-event-rss"
                  class="imagebloc2"
@@ -81,17 +81,17 @@
                    alt="Flux RSS des derniers évènements"
                    i18n:attributes="alt flux_rss_derniers_evenements" />
             </a>&#160;</div>
-            <div id="bloc-event-items">
+            <ul id="bloc-event-items">
               <tal:loop repeat="item batch">
-                <div class="bloc-event-item"
+                <li class="bloc-event-item"
                      colspan="2"
                      tal:define="object item/getObject">
-                  <a href=""
-                     tal:attributes="href python: object.absolute_url()">
+                  <h3><a href=""
+                         tal:attributes="href python: object.absolute_url()">
                     <br />
                     <span class="link-event"
                           tal:content="python: object.Title()" />
-                  </a>
+                  </a></h3>
                   <br />
                   <span class="documentByLine">
                     <tal:one_day condition="python: here.toLocalizedTime(object.start(), long_format=0) == here.toLocalizedTime(object.end(), long_format=0)">
@@ -113,13 +113,14 @@
                     <img class="myimageleft"
                          tal:condition="item/hasContentLeadImage"
                          src="#"
+                         alt=""
                          tal:attributes="title item/Description; src python: item.getURL() + '/leadImage_thumb'" />
                   </tal:contentImage>
                   <span tal:content="python: object.Description()" />
                   <br />
-                </div>
+                </li>
               </tal:loop>
-            </div>
+            </ul>
           </div>
         </div>
       </metal:main-macro>
