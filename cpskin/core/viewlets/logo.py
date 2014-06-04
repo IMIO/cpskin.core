@@ -7,7 +7,7 @@ class CPSkinLogoViewlet(LogoViewlet):
 
     def update(self):
         super(CPSkinLogoViewlet, self).update()
-        logoName = 'cpskinlogo.jpg'
+        logoName = 'cpskinlogo.png'
         logoTitle = self.portal_state.portal_title()
         try:
             logo_custom = self.context.restrictedTraverse(logoName)
