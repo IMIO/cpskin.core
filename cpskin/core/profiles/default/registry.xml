@@ -28,22 +28,22 @@
         <value>
             <element key="facebook">
                 <element>1</element>
-                <element>fa-facebook-square</element>
+                <element>icon-facebook</element>
                 <element>https://www.facebook.com/</element>
             </element>
             <element key="twitter">
                 <element>2</element>
-                <element>fa-twitter-square</element>
+                <element>icon-twitter</element>
                 <element>https://twitter.com/</element>
             </element>
             <element key="rss">
                 <element>3</element>
-                <element>fa-rss-square</element>
+                <element>icon-feed2</element>
                 <element>http://fr.wikipedia.org/wiki/RSS</element>
             </element>
             <element key="vimeo">
                 <element>4</element>
-                <element>fa-vimeo-square</element>
+                <element>icon-vimeo</element>
                 <element>https://vimeo.com/</element>
             </element>
         </value>
