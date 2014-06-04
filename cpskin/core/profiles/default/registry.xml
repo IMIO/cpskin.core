@@ -43,7 +43,7 @@
             </element>
             <element key="rss">
                 <element>4</element>
-                <element>icon-feed2</element>
+                <element>icon-rss</element>
                 <element>http://fr.wikipedia.org/wiki/RSS</element>
             </element>
         </value>
