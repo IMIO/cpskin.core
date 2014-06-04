@@ -1,6 +1,18 @@
 from plone import api
 
 
+def safe_utf8(s):
+    if isinstance(s, unicode):
+        s = s.encode('utf8')
+    return s
+
+
+def safe_unicode(s):
+    if isinstance(s, str):
+        s = s.decode('utf8')
+    return s
+
+
 def reactivateTopic():
     """Reactivate old Topic content type"""
     portal = api.portal.get()
