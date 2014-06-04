@@ -40,7 +40,7 @@ def installCore(context):
     addImageFromFile(portal, 'visuel.jpg')
 
     # Create default logo
-    addImageFromFile(portal, 'cpskinlogo.jpg')
+    addImageFromFile(portal, 'cpskinlogo.png')
 
     # Add the Editor role to the Manage portlet permission
     portal.manage_permission('Portlets: Manage portlets',
@@ -115,8 +115,8 @@ def uninstallCore(context):
         api.content.delete(obj=portal['visuel.jpg'])
 
     # Remove default logo
-    if portal.hasObject('cpskinlogo.jpg'):
-        api.content.delete(obj=portal['cpskinlogo.jpg'])
+    if portal.hasObject('cpskinlogo.png'):
+        api.content.delete(obj=portal['cpskinlogo.png'])
 
 
 def setPageText(portal, page, viewName):
