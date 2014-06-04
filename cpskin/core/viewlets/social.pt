@@ -1,4 +1,4 @@
-<div class="social-viewlet">
+<div id="social-viewlet">
   <ul class="social-list">
     <li class="social"
         tal:repeat="link view/getSocialLinks">
