@@ -54,9 +54,9 @@
                   <br />
                   <h3><a href=""
                      tal:attributes="href python: object.absolute_url()">
-                    <div tal:replace="structure python: object.tag(scale='tile', css_class=imageClass)"
-                         tal:define="oddRow repeat/item/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
-                         tal:condition="object/getImage" />
+                    <span tal:replace="structure python: object.tag(scale='tile', css_class=imageClass)"
+                          tal:define="oddRow repeat/item/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
+                          tal:condition="object/getImage" />
                     <span tal:content="python: object.Title()" />
                   </a></h3>
                   <br />
