@@ -55,6 +55,7 @@ class LayoutPolicy(base.LayoutPolicy):
                    or actual_url_path[brainPathLen:brainPathLen + 1] == '/':
                     inTheme = True
                     body_class += ' section-theme%s' % index
+            index += 1
 
         if not inTheme:
             body_class += ' section-notheme'
