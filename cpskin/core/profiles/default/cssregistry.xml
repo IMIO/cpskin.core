@@ -1,25 +1,25 @@
 <?xml version="1.0"?>
 <object name="portal_css">
 
- <stylesheet title="CPSkin banner basic style"
+ <stylesheet title="CPSkin banner basic styles"
     id="++resource++cpskin.core.banner.css"
     media="screen" rel="stylesheet" rendering="import"
     cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="context/@@banner_activation/is_enabled"
-    insert-after="ploneCustom.css" />
+    insert-before="ploneCustom.css" />
 
- <stylesheet title="CPSkin hidden tags basic style"
+ <stylesheet title="CPSkin hidden tags basic styles"
     id="++resource++cpskin.core.hiddentags.css"
     media="screen" rel="stylesheet" rendering="import"
     cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="not: portal/portal_membership/isAnonymousUser"
-    insert-after="++resource++cpskin.core.banner.css" />
+    insert-before="++resource++cpskin.core.banner.css" />
 
-  <stylesheet title=""
-      id="++resource++cpskin.core.css/core.css"
-      media="screen" rel="stylesheet" rendering="import"
-      cacheable="True" compression="safe" cookable="True"
-      enabled="1" expression=""
-      />
+ <stylesheet title="CPSkin index view basic styles"
+    id="++resource++cpskin.core.css/core.css"
+    media="screen" rel="stylesheet" rendering="import"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""
+    insert-before="++resource++cpskin.core.hiddentags.css" />
 
 </object>
