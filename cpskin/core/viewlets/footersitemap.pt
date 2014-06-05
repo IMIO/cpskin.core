@@ -1,7 +1,7 @@
 <div id="footer-sitemap"
      tal:define="sitemap view/createSiteMap;
                  context_absolute_url python:context.absolute_url()+'/'">
-  <div tal:repeat="elt sitemap">
+  <div class="footer-sitemap-item" tal:repeat="elt sitemap">
     <a href="#" tal:define="theme elt/theme" tal:attributes="href theme/getPath; title theme/Description" tal:content="theme/Title" ><tal:comment replace="nothing">First level element</tal:comment></a>
     <ul>
       <tal:blc tal:repeat="child python:elt['children']">

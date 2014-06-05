@@ -31,96 +31,89 @@
               <metal:block use-macro="context/@@slider_view/macros/content-core" />
             </div>
           </div>
-          <div id="bloc-actu"
-               tal:define="batch python: news_collection and news_collection.getObject().results(batch=False)[:limitNumberActus] or None"
-               tal:condition="batch">
-            <div id="bloc-actu-title">
-              <h2><a href="actualites"
-                     i18n:translate="">News</a></h2>
+          <div id="media">
+            <div id="bloc-actu"
+                 tal:define="batch python: news_collection and news_collection.getObject().results(batch=False)[:limitNumberActus] or None"
+                 tal:condition="batch">
+              <a href="actualites"
+                 i18n:translate="">
+                <h2>News</h2>
+              </a>
+              <a id="bloc-actu-rss"
+                 href="actualites/index/RSS">
+                <img src="++resource++cpskin.core.images/rss-accueil.gif"
+                     alt="Flux RSS des dernières actualités"
+                     i18n:attributes="alt flux_rss_dernieres_actualites" />
+              </a>
+              <ul id="bloc-actu-items">
+                <tal:loop repeat="item batch">
+                  <li class="bloc-actu-item"
+                      colspan="2"
+                      tal:define="object item/getObject">
+                    <a href=""
+                       tal:attributes="href python: object.absolute_url()">
+                      <span tal:replace="structure python: object.tag(scale='tile', css_class=imageClass)"
+                            tal:define="oddRow repeat/item/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
+                            tal:condition="object/getImage" />
+                      <h3 tal:content="python: object.Title()"></h3>
+                    </a>
+                    <p tal:content="python: object.Description()"></p>
+                  </li>
+                </tal:loop>
+              </ul>
             </div>
-            <div id="bloc-actu-rss"
-                 class="imagebloc1"
-                 align="right">
-            <a href="actualites/index/RSS">
-              <img src="++resource++cpskin.core.images/rss-accueil.gif"
-                   alt="Flux RSS des dernières actualités"
-                   i18n:attributes="alt flux_rss_dernieres_actualites" />
-            </a>&#160;</div>
-            <ul id="bloc-actu-items">
-              <tal:loop repeat="item batch">
-                <li class="bloc-actu-item"
-                     colspan="2"
-                     tal:define="object item/getObject">
-                  <br />
-                  <h3><a href=""
-                     tal:attributes="href python: object.absolute_url()">
-                    <span tal:replace="structure python: object.tag(scale='tile', css_class=imageClass)"
-                          tal:define="oddRow repeat/item/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
-                          tal:condition="object/getImage" />
-                    <span tal:content="python: object.Title()" />
-                  </a></h3>
-                  <br />
-                  <span tal:content="python: object.Description()" />
-                  <br />
-                </li>
-              </tal:loop>
-            </ul>
-          </div>
-          <div id="bloc-event"
-               tal:define="batch python: events_collection and events_collection.getObject().results(batch=False)[:limitNumberEvents] or None"
-               tal:condition="batch">
-            <div id="bloc-event-title">
-              <h2><a href="evenements"
-                     i18n:translate="">Events</a></h2>
-            </div>
-            <div id="bloc-event-rss"
-                 class="imagebloc2"
-                 align="right">
-            <a href="evenements/index/RSS">
-              <img src="++resource++cpskin.core.images/rss-accueil.gif"
-                   alt="Flux RSS des derniers évènements"
-                   i18n:attributes="alt flux_rss_derniers_evenements" />
-            </a>&#160;</div>
-            <ul id="bloc-event-items">
-              <tal:loop repeat="item batch">
-                <li class="bloc-event-item"
-                     colspan="2"
-                     tal:define="object item/getObject">
-                  <h3><a href=""
-                         tal:attributes="href python: object.absolute_url()">
+            <div id="bloc-event"
+                 tal:define="batch python: events_collection and events_collection.getObject().results(batch=False)[:limitNumberEvents] or None"
+                 tal:condition="batch">
+              <a href="evenements"
+                 i18n:translate="">
+                <h2>Events</h2>
+              </a>
+              <a id="bloc-event-rss"
+                 href="evenements/index/RSS">
+                <img src="++resource++cpskin.core.images/rss-accueil.gif"
+                     alt="Flux RSS des derniers évènements"
+                     i18n:attributes="alt flux_rss_derniers_evenements" />
+              </a>
+              <ul id="bloc-event-items">
+                <tal:loop repeat="item batch">
+                  <li class="bloc-event-item"
+                      colspan="2"
+                      tal:define="object item/getObject">
+                    <a href=""
+                       tal:attributes="href python: object.absolute_url()">
+                      <tal:contentImage tal:condition="nocall:item/hasContentLeadImage|nothing">
+                        <img class="myimageleft"
+                             tal:condition="item/hasContentLeadImage"
+                             src="#"
+                             alt=""
+                             tal:attributes="title item/Description; src python: item.getURL() + '/leadImage_thumb'" />
+                      </tal:contentImage>
+                      <h3 class="link-event"
+                          tal:content="python: object.Title()"></h3>
+                    </a>
+                    <span class="documentByLine">
+                      <tal:one_day condition="python: here.toLocalizedTime(object.start(), long_format=0) == here.toLocalizedTime(object.end(), long_format=0)">
+                      le 
+                      <span tal:content="python: here.toLocalizedTime(object.start(), long_format=0)" />
+                      <tal:withHours condition="python: here.toLocalizedTime(object.start(), long_format=1)[11:] != '00:00' or here.toLocalizedTime(object.end(), long_format=1)[11:] != '00:00'">
+                      de 
+                      <span tal:content="python: here.toLocalizedTime(object.start(), long_format=1)[11:]" />à
+                      
+                      <span tal:content="python: here.toLocalizedTime(object.end(), long_format=1)[11:]" /></tal:withHours></tal:one_day>
+                      <tal:more_days condition="python: here.toLocalizedTime(object.start(), long_format=0) != here.toLocalizedTime(object.end(), long_format=0)">
+                      du 
+                      <span tal:content="python: here.toLocalizedTime(object.start(), long_format=0)" />au
+                      
+                      <span tal:content="python: here.toLocalizedTime(object.end(), long_format=0)" /></tal:more_days>
+                    </span>
+                    <p tal:content="python: object.Description()"></p>
                     <br />
-                    <span class="link-event"
-                          tal:content="python: object.Title()" />
-                  </a></h3>
-                  <br />
-                  <span class="documentByLine">
-                    <tal:one_day condition="python: here.toLocalizedTime(object.start(), long_format=0) == here.toLocalizedTime(object.end(), long_format=0)">
-                    le 
-                    <span tal:content="python: here.toLocalizedTime(object.start(), long_format=0)" />
-                    <tal:withHours condition="python: here.toLocalizedTime(object.start(), long_format=1)[11:] != '00:00' or here.toLocalizedTime(object.end(), long_format=1)[11:] != '00:00'">
-                    de 
-                    <span tal:content="python: here.toLocalizedTime(object.start(), long_format=1)[11:]" />à
-                    
-                    <span tal:content="python: here.toLocalizedTime(object.end(), long_format=1)[11:]" /></tal:withHours></tal:one_day>
-                    <tal:more_days condition="python: here.toLocalizedTime(object.start(), long_format=0) != here.toLocalizedTime(object.end(), long_format=0)">
-                    du 
-                    <span tal:content="python: here.toLocalizedTime(object.start(), long_format=0)" />au
-                    
-                    <span tal:content="python: here.toLocalizedTime(object.end(), long_format=0)" /></tal:more_days>
-                  </span>
-                  <br />
-                  <tal:contentImage tal:condition="nocall:item/hasContentLeadImage|nothing">
-                    <img class="myimageleft"
-                         tal:condition="item/hasContentLeadImage"
-                         src="#"
-                         alt=""
-                         tal:attributes="title item/Description; src python: item.getURL() + '/leadImage_thumb'" />
-                  </tal:contentImage>
-                  <span tal:content="python: object.Description()" />
-                  <br />
-                </li>
-              </tal:loop>
-            </ul>
+                  </li>
+                </tal:loop>
+              </ul>
+            </div>
+            <div class="visualClear"></div>
           </div>
         </div>
       </metal:main-macro>
