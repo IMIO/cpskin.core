@@ -32,6 +32,15 @@
       />
 
   <!-- Other browser pages -->
+
+  <browser:page
+      for="*"
+      name="plone_layout"
+      class=".layout.LayoutPolicy"
+      permission="zope.Public"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
   <browser:page
       for="*"
       name="sendtomanager_form"
