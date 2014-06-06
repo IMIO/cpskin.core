@@ -43,7 +43,8 @@ setup(name='cpskin.core',
           'collective.ckeditor',
           'collective.contentleadimage',
           'collective.monkeypatcher',
-          'cpskin.locales'
+          'cpskin.locales',
+          'imio.media'
           # -*- Extra requirements: -*-
       ],
       extras_require={
