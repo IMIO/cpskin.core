@@ -52,6 +52,15 @@
         layer="..interfaces.ICPSkinCoreLayer"
         />
 
+    <browser:viewlet
+        name="cpskin.media"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".media.MediaViewlet"
+        permission="zope.Public"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+
     <browser:resource
         file="css/banner.css"
         name="cpskin.core.banner.css"
