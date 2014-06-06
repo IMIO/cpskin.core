@@ -1,25 +1,61 @@
 # -*- coding: utf-8 -*-
 from plone.app.layout.viewlets import common
 from plone import api
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.plonetruegallery.utils import getGalleryAdapter
+from imio.media.browser import utils
 
 
 class MediaViewlet(common.ViewletBase):
 
     index = ViewPageTemplateFile('media.pt')
 
-
     @property
     def portal_catalog(self):
         return api.portal.get_tool(name='portal_catalog')
 
     def get_videos(self):
-        pass
+        videos = []
+        video_brains = media_catalog_request('media_link',
+                                             self.portal_catalog,
+                                             2)
+        for video_brain in video_brains:
+            video = video_brain.getObject()
+            videos.append(utils.embed(video, self.request))
+        return videos
 
     def get_albums(self):
-        utils = getToolByName(self.context, 'plone_utils')
-        utils.browserDefault(self.context)
-        self.adapter = getGalleryAdapter(self.context, self.request)
+        galleries = []
+        gallery_brains = media_catalog_request('Folder',
+                                               self.portal_catalog,
+                                               5,
+                                               hidden_tags=True)
 
+        for gallery_brain in gallery_brains:
+            gallery = gallery_brain.getObject()
+
+            imagescale = self.context.unrestrictedTraverse(
+                gallery.getPhysicalPath() + ('@@images',))
+            html = "<a href='{}'>".format(gallery.absolute_url())
+            html += imagescale.scale('leadImage', width=300, height=300).tag()
+            html += '</a>'
+
+            galleries.append(html)
+
+        return galleries
+
+
+def media_catalog_request(portal_type, portal_catalog, number, hidden_tags=False, view_name=None):
+    hidden_keyword = api.portal.get_registry_record('cpskin.core.mediaviewlet')
+    queryDict = {}
+    queryDict['portal_type'] = portal_type
+    queryDict['sort_on'] = 'created'
+    if hidden_tags:
+        queryDict['HiddenTags'] = hidden_keyword
+    if view_name:
+        # XXX create view_name index into plonetruegallery
+        queryDict['view_name'] = view_name
+    brains = portal_catalog(queryDict)[:number]
+    if len(brains) > number:
+        return brains[:number]
+    return brains

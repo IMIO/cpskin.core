@@ -15,6 +15,7 @@
     <viewlet name="plone.path_bar" />
   </order>
   <order manager="plone.portalfooter" skinname="Plone Default">
+    <viewlet name="cpskin.media" />
     <viewlet name="cpskin.footer_sitemap" />
     <viewlet name="plone.footer" />
     <viewlet name="plone.colophon" />

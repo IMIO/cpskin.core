@@ -3,7 +3,7 @@
 
  <stylesheet id="++resource++cpskin.core.banner.css" remove="True" />
  <stylesheet id="++resource++cpskin.core.hiddentags.css" remove="True" />
-
+ <stylesheet id="++resource++cpskin.core.mediaviewlet.css" remove="True" />
  <stylesheet id="++resource++cpskin.core.css/core.css" remove="True" />
 
 </object>

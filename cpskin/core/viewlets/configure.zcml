@@ -74,6 +74,13 @@
         />
 
     <browser:resource
+        file="css/mediaviewlet.css"
+        name="cpskin.core.mediaviewlet.css"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+
+    <browser:resource
         file="js/menutools.js"
         name="cpskin.core.menutools.js"
         layer="..interfaces.ICPSkinCoreLayer"

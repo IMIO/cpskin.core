@@ -1,5 +1,23 @@
-<div class="media">
-    <ul tal:repeat='ablum view/get_albums'>
-        <li></li>
+<div class="mediaviewlet">
+    <ul>
+        <li class="left limediaviewlet">
+            <ul class="albums"> 
+                <li tal:repeat='album view/get_albums'>
+                    <div class="lead-image-wrapper" >
+                        <img tal:replace="structure album" />
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="right limediaviewlet">
+            <ul class="videos">
+                <li tal:repeat='video view/get_videos'>
+                    <div class="iframe-responsive-wrapper">
+                        <img class="iframe-ratio"  src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7"/>
+                        <div tal:content="structure video"></div>
+                    </div>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>
