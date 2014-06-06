@@ -44,7 +44,8 @@ setup(name='cpskin.core',
           'collective.contentleadimage',
           'collective.monkeypatcher',
           'cpskin.locales',
-          'imio.media'
+          'imio.media',
+          'collective.plonetruegallery'
           # -*- Extra requirements: -*-
       ],
       extras_require={
