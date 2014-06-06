@@ -48,4 +48,12 @@
             </element>
         </value>
     </record>
+
+    <record name="cpskin.core.mediaviewlet">
+        <field type="plone.registry.field.TextLine">
+            <title>Media viewlet keyword</title>
+        </field>
+        <value>a-la-une</value>
+    </record>
+
 </registry>

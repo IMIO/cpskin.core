@@ -10,4 +10,8 @@
     <record name="cpskin.core.socialviewlet"
             remove="True" />
 
+    <record name="cpskin.core.mediaviewlet"
+            remove="True" />
+
+
 </registry>
