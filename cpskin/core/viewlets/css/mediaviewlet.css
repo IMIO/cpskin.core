@@ -1,0 +1,15 @@
+.mediaviewlet {
+    width: 95%;
+    height: 200px;
+}
+.mediaviewlet li.limediaviewlet {
+    display: block;
+    float: left;
+}
+
+.mediaviewlet li.left {
+    width: 67%
+}
+.mediaviewlet li.right {
+    width: 33%
+}
