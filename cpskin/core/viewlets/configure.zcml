@@ -3,9 +3,30 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="cpskin">
 
+    <!-- Plone viewlets -->
+
+    <browser:viewlet
+        name="plone.logo"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".logo.CPSkinLogoViewlet"
+        layer="..interfaces.ICPSkinCoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:viewlet
+        name="plone.path_bar"
+        manager="plone.app.layout.viewlets.interfaces.IPortalTop"
+        class="plone.app.layout.viewlets.common.PathBarViewlet"
+        layer="..interfaces.ICPSkinCoreLayer"
+        permission="zope2.View"
+        />
+
+
+    <!-- CPSkin viewlets -->
+
     <browser:viewlet
         name="cpskin.banner"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        manager="plone.app.layout.viewlets.interfaces.IPortalTop"
         class=".banner.CPSkinBannerViewlet"
         permission="zope2.View"
         layer="..interfaces.ICPSkinCoreLayer"
@@ -34,14 +55,6 @@
         permission="cmf.ManagePortal"
         template="hiddentags.pt"
         layer="..interfaces.ICPSkinCoreLayer"
-        />
-
-    <browser:viewlet
-        name="plone.logo"
-        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        class=".logo.CPSkinLogoViewlet"
-        layer="..interfaces.ICPSkinCoreLayer"
-        permission="zope2.View"
         />
 
     <browser:viewlet

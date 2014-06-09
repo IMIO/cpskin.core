@@ -10,9 +10,10 @@
     <viewlet name="cpskin.menutools_viewlet" />
     <viewlet name="plone.global_sections" />
   </order>
-  <order manager="plone.abovecontent" skinname="Plone Default">
-    <viewlet name="cpskin.banner" />
+  <order manager="plone.portaltop" skinname="Plone Default">
+    <viewlet name="plone.header" />
     <viewlet name="plone.path_bar" />
+    <viewlet name="cpskin.banner" />
   </order>
   <order manager="plone.portalfooter" skinname="Plone Default">
     <viewlet name="cpskin.media" />
@@ -23,5 +24,8 @@
   </order>
   <hidden manager="plone.portalfooter" skinname="Plone Default">
     <viewlet name="plone.colophon" />
+  </hidden>
+  <hidden manager="plone.abovecontent" skinname="Plone Default">
+    <viewlet name="plone.path_bar" />
   </hidden>
 </object>

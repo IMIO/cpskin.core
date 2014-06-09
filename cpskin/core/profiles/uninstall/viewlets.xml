@@ -8,8 +8,8 @@
     <viewlet name="plone.logo" />
     <viewlet name="plone.global_sections" />
   </order>
-  <order manager="plone.abovecontent" skinname="Plone Default">
-    <viewlet name="plone.path_bar" />
+  <order manager="plone.portaltop" skinname="Plone Default">
+    <viewlet name="plone.header" />
   </order>
   <order manager="plone.portalfooter" skinname="Plone Default">
     <viewlet name="plone.footer" />
@@ -18,5 +18,8 @@
   </order>
   <hidden manager="plone.portalfooter" skinname="Plone Default">
     <viewlet name="plone.colophon" remove="True" />
+  </hidden>
+  <hidden manager="plone.abovecontent" skinname="Plone Default">
+    <viewlet name="plone.path_bar" remove="True" />
   </hidden>
 </object>
