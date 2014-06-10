@@ -1,23 +1,30 @@
-<div class="mediaviewlet">
-    <ul>
-        <li class="left limediaviewlet">
-            <ul class="albums"> 
-                <li tal:repeat='album view/get_albums'>
-                    <div class="lead-image-wrapper" >
-                        <img tal:replace="structure album" />
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li class="right limediaviewlet">
-            <ul class="videos">
-                <li tal:repeat='video view/get_videos'>
-                    <div class="iframe-responsive-wrapper">
-                        <img class="iframe-ratio"  src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7"/>
-                        <div tal:content="structure video"></div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-    </ul>
+<div id="multimediaviewlet">
+    <div  class="left">
+        <ul class="albums"> 
+            <li tal:repeat='album view/get_one_album'>
+            <div class="lead-image-wrapper" >
+                <img tal:replace="structure album" />
+            </div>
+            </li>
+        </ul>
+    </div>
+    <div class="center">
+        <ul class="albums"> 
+            <li tal:repeat='album view/get_four_albums'>
+            <div class="lead-image-wrapper" >
+                <img tal:replace="structure album" />
+            </div>
+            </li>
+        </ul>
+    </div>
+    <div class="right">
+        <ul class="videos">
+            <li tal:repeat='video view/get_videos'>
+            <div class="iframe-responsive-wrapper">
+                <img class="iframe-ratio"  src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7"/>
+                <div tal:content="structure video"></div>
+            </div>
+            </li>
+        </ul>
+    </div>
 </div>

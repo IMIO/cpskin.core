@@ -49,12 +49,22 @@ class MediaViewlet(common.ViewletBase):
                 logger.info("{} has no lead image".format(gallery_brain.getURL()))
         return galleries
 
+    def get_one_album(self):
+        galleries = self.get_albums()
+        return galleries[:1]
+
+    def get_four_albums(self):
+        galleries = self.get_albums()
+        return galleries[1:5]
+
+
 
 def media_catalog_request(portal_type, portal_catalog, number, hidden_tags=False, view_name=None):
     hidden_keyword = api.portal.get_registry_record('cpskin.core.mediaviewlet')
     queryDict = {}
     queryDict['portal_type'] = portal_type
-    queryDict['sort_on'] = 'created'
+    queryDict['sort_on'] = 'effective'
+    queryDict['sort_order'] = 'reverse'
     if hidden_tags:
         queryDict['HiddenTags'] = hidden_keyword
     if view_name:
