@@ -4,6 +4,9 @@ from plone import api
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.plonetruegallery.utils import getGalleryAdapter
 from imio.media.browser import utils
+import logging
+
+logger = logging.getLogger('cpskin.core media viewlet')
 
 
 class MediaViewlet(common.ViewletBase):
@@ -32,16 +35,17 @@ class MediaViewlet(common.ViewletBase):
                                                hidden_tags=True)
 
         for gallery_brain in gallery_brains:
-            gallery = gallery_brain.getObject()
+            if getattr(gallery_brain, 'hasContentLeadImage', False):
+                gallery = gallery_brain.getObject()
+                imagescale = self.context.unrestrictedTraverse(
+                    gallery.getPhysicalPath() + ('@@images',))
+                html = "<a href='{}'>".format(gallery.absolute_url())
+                html += imagescale.scale('leadImage', width=300, height=300).tag()
+                html += '</a>'
 
-            imagescale = self.context.unrestrictedTraverse(
-                gallery.getPhysicalPath() + ('@@images',))
-            html = "<a href='{}'>".format(gallery.absolute_url())
-            html += imagescale.scale('leadImage', width=300, height=300).tag()
-            html += '</a>'
-
-            galleries.append(html)
-
+                galleries.append(html)
+            else:
+                logger.info("{} has no lead image".format(gallery_brain.getURL()))
         return galleries
 
 
