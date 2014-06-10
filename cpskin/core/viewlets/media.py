@@ -2,7 +2,6 @@
 from plone.app.layout.viewlets import common
 from plone import api
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from collective.plonetruegallery.utils import getGalleryAdapter
 from imio.media.browser import utils
 import logging
 
@@ -24,7 +23,9 @@ class MediaViewlet(common.ViewletBase):
                                              2)
         for video_brain in video_brains:
             video = video_brain.getObject()
-            videos.append(utils.embed(video, self.request))
+            state = api.content.get_state(video)
+            if state.startswith("publish"):
+                videos.append(utils.embed(video, self.request))
         return videos
 
     def get_albums(self):
