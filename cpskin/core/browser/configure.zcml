@@ -59,7 +59,7 @@
       />
 
   <browser:page
-      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      for="*"
       name="folderview"
       class=".folderview.FolderView"
       permission="zope.Public"
@@ -72,6 +72,7 @@
       menu="plone_displayviews"
       title="Vue index avec collections et slider"
       action="folderview"
+      permission="cpskin.siteadministrator"
       description="Vue index avec collections et slider"
       layer="..interfaces.ICPSkinCoreLayer"
       i18n:attributes="title; description"
