@@ -52,7 +52,7 @@
                       tal:define="object item/getObject">
                     <a href=""
                        tal:attributes="href python: object.absolute_url()">
-                      <span tal:replace="structure python: object.tag(scale='tile', css_class=imageClass)"
+                      <span tal:replace="structure python: object.tag(scale='thumb', css_class=imageClass)"
                             tal:define="oddRow repeat/item/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
                             tal:condition="object/getImage" />
                       <h3 tal:content="python: object.Title()"></h3>
