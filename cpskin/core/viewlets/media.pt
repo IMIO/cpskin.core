@@ -1,5 +1,6 @@
 <div id="multimediaviewlet">
     <div  class="left">
+        <h2 i18n:translate="Photos">Photos</h2>
         <ul class="albums"> 
             <li tal:repeat='album view/get_one_album'>
             <div class="lead-image-wrapper" >
@@ -9,6 +10,7 @@
         </ul>
     </div>
     <div class="center">
+        <h2 i18n:translate="Photos">Photos</h2>
         <ul class="albums"> 
             <li tal:repeat='album view/get_four_albums'>
             <div class="lead-image-wrapper" >
@@ -18,6 +20,7 @@
         </ul>
     </div>
     <div class="right">
+    <h2 i18n:translate="Videos">Vidéos</h2>
         <ul class="videos">
             <li tal:repeat='video view/get_videos'>
             <div class="iframe-responsive-wrapper">
