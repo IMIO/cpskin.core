@@ -16,12 +16,12 @@ Scenario: Test folder view with collection
      Then the view has changed
 
 
-Scenario: Test no folder view in non root
+Scenario: Test folder view also on non root
     Given logged as owner
       And a folder 'simple_folder'
      When I go to 'simple_folder'
       And I open display menu
-     Then the folder view with collection should not be visible
+     Then the folder view with collection should be visible
 
 
 *** Keywords ***
@@ -60,5 +60,5 @@ I open display menu
     Open Display Menu
 
 
-the folder view with collection should not be visible
-    Page Should Not Contain Link  css=#plone-contentmenu-display-folderview
+the folder view with collection should be visible
+    Page Should Contain Link  css=#plone-contentmenu-display-folderview
