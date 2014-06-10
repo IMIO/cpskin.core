@@ -19,7 +19,4 @@
   <hidden manager="plone.portalfooter" skinname="Plone Default">
     <viewlet name="plone.colophon" remove="True" />
   </hidden>
-  <hidden manager="plone.abovecontent" skinname="Plone Default">
-    <viewlet name="plone.path_bar" remove="True" />
-  </hidden>
 </object>
