@@ -35,9 +35,8 @@
             <div id="bloc-actu"
                  tal:define="batch python: news_collection and news_collection.getObject().results(batch=False)[:limitNumberActus] or None"
                  tal:condition="batch">
-              <a href="actualites"
-                 i18n:translate="">
-                <h2>News</h2>
+              <a href="actualites">
+                <h2 i18n:translate="">News</h2>
               </a>
               <a id="bloc-actu-rss"
                  href="actualites/index/RSS">
@@ -65,9 +64,8 @@
             <div id="bloc-event"
                  tal:define="batch python: events_collection and events_collection.getObject().results(batch=False)[:limitNumberEvents] or None"
                  tal:condition="batch">
-              <a href="evenements"
-                 i18n:translate="">
-                <h2>Events</h2>
+              <a href="evenements">
+                <h2 i18n:translate="">Events</h2>
               </a>
               <a id="bloc-event-rss"
                  href="evenements/index/RSS">
