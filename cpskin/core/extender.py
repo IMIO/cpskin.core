@@ -67,8 +67,16 @@ class ContentExtender(object):
         self.context = context
 
     def getOrder(self, schematas):
-        schematas['categorization'] = ['subject', 'hiddenTags',
-                                       'relatedItems', 'location', 'language']
+        """
+        Make sure that hiddenTags is just after subject in categorization
+        schemata
+        """
+        subjectFieldIndex = schematas['categorization'].index('subject')
+        hiddenTagsIndex = schematas['categorization'].index('hiddenTags')
+        schematas['categorization'].insert(
+                           subjectFieldIndex + 1,
+                           schematas['categorization'].pop(hiddenTagsIndex)
+                           )
         return schematas
 
     def getFields(self):
