@@ -71,10 +71,13 @@ class ContentExtender(object):
         Make sure that hiddenTags is just after subject in categorization
         schemata
         """
-        subjectFieldIndex = schematas['categorization'].index('subject')
+        if "subject" in schematas['categorization']:
+            insertAfterFieldIndex = schematas['categorization'].index('subject')
+        else:
+            insertAfterFieldIndex = -1
         hiddenTagsIndex = schematas['categorization'].index('hiddenTags')
         schematas['categorization'].insert(
-                           subjectFieldIndex + 1,
+                           insertAfterFieldIndex + 1,
                            schematas['categorization'].pop(hiddenTagsIndex)
                            )
         return schematas
