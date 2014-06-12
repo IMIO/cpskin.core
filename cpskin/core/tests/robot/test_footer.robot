@@ -13,23 +13,10 @@ Test Teardown  Close all browsers
 
 
 Test static footer visible
-    Page Should Contain Link   LOISIRS
-    Click Link                 LOISIRS
-    Element Should Be Visible  css=ul.navTreeLevel0 a#loisirs-art_et_culture
-    Click Element              css=ul.navTreeLevel0 a#loisirs-art_et_culture
-    Element Should Be Visible  css=ul.navTreeLevel1 a#loisirs-art_et_culture-artistes
-    Click Element              css=ul.navTreeLevel1 a#loisirs-art_et_culture-artistes
-    Element Should Be Visible  css=ul.navTreeLevel2 a#loisirs-art_et_culture-artistes-tata
-    Click Element              css=ul.navTreeLevel2 a#loisirs-art_et_culture-artistes-tata
-
-    Location Should Be  http://localhost:55001/plone/loisirs/art_et_culture/artistes/tata
+    Page Should Contain  Footer static custom content
 
 Test edit static footer
-    Page Should Contain Link  LOISIRS
-
-    Click Link          LOISIRS
-    Location Should Be  http://localhost:55001/plone/loisirs
-    Click Element       css=ul.navTreeLevel0 a#loisirs-art_et_culture
-    Location Should Be  http://localhost:55001/plone/loisirs
-    Click Element       css=ul.navTreeLevel1 a#loisirs-art_et_culture-bibliotheques
-    Location Should Be  http://localhost:55001/plone/loisirs/art_et_culture/bibliotheques
+    Log in as site owner
+    Page Should Contain Element  css=div.footer-static >p >a
+    Click element  css=div.footer-static >p >a
+    Location Should Be  http://localhost:55001/plone/footer-static/edit

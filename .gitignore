@@ -20,6 +20,6 @@ src/
 log.html
 output.xml
 report.html
-selenium-screenshot-1.png
+selenium-screenshot-*.png
 include/
 lib/
