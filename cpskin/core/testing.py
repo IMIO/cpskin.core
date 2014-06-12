@@ -7,6 +7,24 @@ from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 
 import cpskin.core
 
+from plone.app.testing import applyProfile
+
+
+class CPSkinCorePloneWithPackageLayer(PloneWithPackageLayer):
+    """
+    """
+
+    def setUpPloneSite(self, portal):
+        applyProfile(portal, 'cpskin.core:default')
+        footer_static = portal['footer-static']
+
+
+CPSKIN_CORE_FIXTURE = CPSkinCorePloneWithPackageLayer(
+    name="CPSKIN_CORE_FIXTURE",
+    zcml_filename="testing.zcml",
+    zcml_package=cpskin.core,
+    gs_profile_id="cpskin.core:testing")
+
 
 CPSKIN_CORE_FIXTURE = PloneWithPackageLayer(
     name="CPSKIN_CORE_FIXTURE",
