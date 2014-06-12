@@ -42,6 +42,14 @@ def installCore(context):
     # Create default logo
     addImageFromFile(portal, 'cpskinlogo.png')
 
+    # Create footer static page
+    footer_name = 'footer-static'
+    if not portal.hasObject(footer_name):
+        footer = api.content.create(type='Document',
+                                    title=footer_name,
+                                    container=portal)
+        footer.setTitle(footer_name)
+
     # Add the Editor role to the Manage portlet permission
     portal.manage_permission('Portlets: Manage portlets',
                              ('Editor', 'Manager', 'Site Administrator'),
@@ -117,6 +125,10 @@ def uninstallCore(context):
     # Remove default logo
     if portal.hasObject('cpskinlogo.png'):
         api.content.delete(obj=portal['cpskinlogo.png'])
+
+    # Remove footer static
+    if portal.hasObject('footer-static'):
+        api.content.delete(obj=portal['footer-static'])
 
 
 def setPageText(portal, page, viewName):

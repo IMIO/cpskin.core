@@ -1,6 +1,7 @@
 <div id="footer-sitemap"
      tal:define="sitemap view/createSiteMap;
                  context_absolute_url python:context.absolute_url()+'/'">
+
   <div class="footer-sitemap-item" tal:repeat="elt sitemap">
     <a href="#" tal:define="theme elt/theme" tal:attributes="href theme/getPath; title theme/Description" tal:content="theme/Title" ><tal:comment replace="nothing">First level element</tal:comment></a>
     <ul>
@@ -11,5 +12,18 @@
       </tal:blc>
     </ul>
   </div>
+
+  <div class="footer-static"
+       tal:define="member context/@@plone_portal_state/member;
+                   text view/getFooterText"
+       tal:condition="text">
+    <p tal:condition="python: member.has_role('Manager')">
+      <a href="footer-static/edit"
+         i18n:translate="modifier_zone_statique">[Modifier la zone statique]</a>
+    </p>
+    <p tal:replace="structure text" />
+  </div>
+
   <div class="visualClear"></div>
+
 </div>

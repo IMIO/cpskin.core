@@ -23,3 +23,11 @@
 #bloc-event-rss {
     float: right;
 }
+
+#footer-sitemap div.footer-sitemap-item {
+    float: left;
+}
+
+#footer-sitemap div.footer-static {
+    float: left;
+}

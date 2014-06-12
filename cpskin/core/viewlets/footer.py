@@ -39,3 +39,14 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
                         themeRes['children'].append(child)
                 res.append(themeRes)
         return res
+
+    def getFooterText(self):
+        footer_static = getattr(self.context, 'footer-static', None)
+        if footer_static is None:
+            return
+        if footer_static.Language() == self.context.Language():
+            return footer_static.getText()
+        if hasattr(footer_static, 'getTranslation'):
+            lang = self.context.REQUEST.get('LANGUAGE', 'fr')
+            footer_static = footer_static.getTranslation(lang)
+        return footer_static.getText()
