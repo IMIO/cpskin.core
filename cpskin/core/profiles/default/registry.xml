@@ -53,7 +53,7 @@
         <field type="plone.registry.field.TextLine">
             <title>Media viewlet hidden keyword</title>
         </field>
-        <value>a-la-une</value>
+        <value>multimedia-a-la-une</value>
     </record>
 
 </registry>
