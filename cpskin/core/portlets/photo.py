@@ -1,5 +1,5 @@
-from Acquisition import aq_inner
-from zope.component import getMultiAdapter
+# -*- coding: utf-8 -*-
+from plone import api
 from zope.interface import implements
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.portlets import base
@@ -22,12 +22,13 @@ class Renderer(base.Renderer):
     @property
     def available(self):
         """
-        Portlet should be available everywhere except on root
+        Portlet should be available from the 3 level of navigation
         """
-        context_state = getMultiAdapter((aq_inner(self.context), self.request),
-                                        name=u'plone_context_state')
-        isRoot = context_state.is_portal_root()
-        if isRoot:
+        contextPhyPath = self.context.getPhysicalPath()
+        portalPhyPath = api.portal.get().getPhysicalPath()
+        path = [elem for elem in list(contextPhyPath) if elem not in list(portalPhyPath)]
+        depth = len(path)
+        if depth < 2:
             return False
         return True
 

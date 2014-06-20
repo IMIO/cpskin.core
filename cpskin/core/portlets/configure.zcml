@@ -36,13 +36,13 @@
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
-  <browser:page
+  <!--browser:page
       name="portlet_photo"
       for="*"
       template="photo.pt"
       permission="zope.Public"
       layer="..interfaces.ICPSkinCoreLayer"
-      />
+      /-->
 
   <browser:resource
       name="cpskin.portlets.firefox.png"
