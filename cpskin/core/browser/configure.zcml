@@ -60,6 +60,15 @@
 
   <browser:page
       for="*"
+      name="folderview_configuration"
+      class=".folderview.FolderView"
+      permission="zope.Public"
+      allowed_attributes="can_configure configure"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
+      for="Products.CMFCore.interfaces.IFolderish"
       name="folderview"
       class=".folderview.FolderView"
       permission="zope.Public"
@@ -68,7 +77,7 @@
       />
 
   <browser:menuItem
-      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      for="Products.CMFCore.interfaces.IFolderish"
       menu="plone_displayviews"
       title="Vue index avec collections et slider"
       action="folderview"

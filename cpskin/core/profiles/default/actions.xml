@@ -17,9 +17,8 @@
     </object>
 
     <object name="user" meta_type="CMF Action Category">
-        <property name="title"></property>
         <object name="undo" meta_type="CMF Action" i18n:domain="cpskin">
-         <property name="visible">True</property>
+            <property name="visible">True</property>
         </object>
     </object>
 
@@ -41,6 +40,16 @@
             <property name="url_expr">string:${context/absolute_url}/@@banner_activation/disable_banner</property>
             <property name="link_target"></property>
             <property name="available_expr">context/@@banner_activation/can_disable_banner</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
+        <object name="configure_folderview" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Configure Folder View here</property>
+            <property name="description" i18n:translate=""></property>
+            <property name="url_expr">string:${context/absolute_url}/@@folderview_configuration/configure</property>
+            <property name="available_expr">context/@@folderview_configuration/can_configure</property>
             <property name="permissions">
                 <permission>CPSkin: Site administrator</permission>
             </property>

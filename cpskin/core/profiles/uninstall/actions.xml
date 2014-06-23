@@ -15,4 +15,8 @@
         <object name="disable_banner" remove="True" />
     </object>
 
+    <object name="folder_buttons" meta_type="CMF Action Category">
+        <object name="configure_folderview" remove="True" />
+    </object>
+
 </object>
