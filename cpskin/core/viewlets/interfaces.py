@@ -7,6 +7,7 @@ class IViewletMenuToolsFaceted(Interface):
     marker interface used to viewlets menutools
     """
 
+
 class IViewletMenuToolsBox(Interface):
     """
     marker interface used to viewlets menutools
