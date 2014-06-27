@@ -9,16 +9,17 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 
 
-class HiddenTagsVocabulary(object):
-    """Vocabulary factory listing all catalog keywords from hidden tags"""
+class BaseTagsVocabulary(object):
+    """Vocabulary factory listing all catalog keywords from specified tags"""
     implements(IVocabularyFactory)
+    indexName = ''
 
     def __call__(self, context, query=None):
         site = getSite()
         self.catalog = getToolByName(site, "portal_catalog", None)
         if self.catalog is None:
             return SimpleVocabulary([])
-        index = self.catalog._catalog.getIndex('HiddenTags')
+        index = self.catalog._catalog.getIndex(self.indexName)
 
         def safe_encode(term):
             if isinstance(term, unicode):
@@ -36,4 +37,22 @@ class HiddenTagsVocabulary(object):
         ]
         return SimpleVocabulary(items)
 
+
+class IAmTagsVocabulary(BaseTagsVocabulary):
+    """Vocabulary factory listing all catalog keywords from I am tags"""
+    indexName = 'IAmTags'
+
+
+class ISearchTagsVocabulary(BaseTagsVocabulary):
+    """Vocabulary factory listing all catalog keywords from I search tags"""
+    indexName = 'ISearchTags'
+
+
+class HiddenTagsVocabulary(BaseTagsVocabulary):
+    """Vocabulary factory listing all catalog keywords from hidden tags"""
+    indexName = 'HiddenTags'
+
+
+IAmTagsVocabularyFactory = IAmTagsVocabulary()
+ISearchTagsVocabularyFactory = ISearchTagsVocabulary()
 HiddenTagsVocabularyFactory = HiddenTagsVocabulary()

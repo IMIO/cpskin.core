@@ -50,6 +50,24 @@
         />
 
     <browser:viewlet
+        name="cpskin.isearchtags"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        permission="cmf.ManagePortal"
+        template="isearchtags.pt"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:viewlet
+        name="cpskin.iamtags"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        permission="cmf.ManagePortal"
+        template="iamtags.pt"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:viewlet
         name="cpskin.social_viewlet"
         manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
         class=".social.SocialViewlet"
@@ -73,8 +91,8 @@
         />
 
     <browser:resource
-        file="css/hiddentags.css"
-        name="cpskin.core.hiddentags.css"
+        file="css/tags.css"
+        name="cpskin.core.tags.css"
         layer="..interfaces.ICPSkinCoreLayer"
         />
 

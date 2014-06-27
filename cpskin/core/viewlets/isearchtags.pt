@@ -1,17 +1,17 @@
 <div i18n:domain="cpskin"
-     id="hidden-tags"
+     id="isearch-tags"
      class="documentByLine cpskin-tags"
-     tal:define="categories context/HiddenTags|nothing;
+     tal:define="categories context/ISearchTags|nothing;
                  url_quote  nocall:modules/Products.PythonScripts.standard/url_quote;"
      tal:condition="categories">
-  <tal:filedunder i18n:translate="label_filed_under_hidden_tag">Filed under hidden tag:</tal:filedunder>
+  <tal:filedunder i18n:translate="label_filed_under_isearch_tag">Filed under I search tag:</tal:filedunder>
   <span tal:repeat="category categories">
     <a href=""
        class="link-category"
        rel="tag"
        tal:content="category"
        tal:define="quotedCat python:url_quote(category)"
-       tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/@@search?HiddenTags%3Alist=${quotedCat}">
+       tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/@@search?ISearchTags%3Alist=${quotedCat}">
       Category
       </a><span class="separator" tal:condition="not: repeat/category/end">,</span>
   </span>

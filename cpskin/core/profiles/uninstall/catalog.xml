@@ -1,5 +1,13 @@
 <?xml version="1.0"?>
 <object name="portal_catalog">
+
+  <index name="IAmTags" remove="True"/>
+  <column value="IAmTags" remove="True"/>
+
+  <index name="ISearchTags" remove="True"/>
+  <column value="ISearchTags" remove="True"/>
+
   <index name="HiddenTags" remove="True"/>
   <column value="HiddenTags" remove="True"/>
+
 </object>

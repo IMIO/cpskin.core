@@ -8,8 +8,8 @@
     enabled="1" expression="context/@@banner_activation/is_enabled"
     insert-before="ploneCustom.css" />
 
- <stylesheet title="CPSkin hidden tags basic styles"
-    id="++resource++cpskin.core.hiddentags.css"
+ <stylesheet title="CPSkin tags basic styles"
+    id="++resource++cpskin.core.tags.css"
     media="screen" rel="stylesheet" rendering="import"
     cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="not: portal/portal_membership/isAnonymousUser"
@@ -20,7 +20,7 @@
     media="screen" rel="stylesheet" rendering="import"
     cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="not: portal/portal_membership/isAnonymousUser"
-    insert-before="++resource++cpskin.core.hiddentags.css" />
+    insert-before="++resource++cpskin.core.tags.css" />
 
 
  <stylesheet title="CPSkin index view basic styles"

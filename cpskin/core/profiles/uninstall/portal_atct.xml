@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <atcttool>
  <topic_indexes>
+  <index name="IAmTags" remove="True"/>
+  <index name="ISearchTags" remove="True"/>
   <index name="HiddenTags" remove="True"/>
  </topic_indexes>
 </atcttool>

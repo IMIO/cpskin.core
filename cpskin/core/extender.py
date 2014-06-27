@@ -24,6 +24,36 @@ import permissions
 from cpskin.core.interfaces import ICPSkinCoreLayer
 
 
+class ExtensionIAmTagsField(ExtensionField, atapi.LinesField):
+    """Derivate from Archetypes basic LinesField"""
+
+    def set(self, instance, value, **kw):
+        if isinstance(value, basestring):
+            value = [value]
+        instance.iamTags = tuple(safe_unicode(s.strip()) for s in value)
+        instance.IAmTags = tuple(value)
+
+    def get(self, instance, **kw):
+        if getattr(instance, 'iamTags', None) is None:
+            return ()
+        return tuple(safe_utf8(s) for s in instance.iamTags)
+
+
+class ExtensionISearchTagsField(ExtensionField, atapi.LinesField):
+    """Derivate from Archetypes basic LinesField"""
+
+    def set(self, instance, value, **kw):
+        if isinstance(value, basestring):
+            value = [value]
+        instance.isearchTags = tuple(safe_unicode(s.strip()) for s in value)
+        instance.ISearchTags = tuple(value)
+
+    def get(self, instance, **kw):
+        if getattr(instance, 'isearchTags', None) is None:
+            return ()
+        return tuple(safe_utf8(s) for s in instance.isearchTags)
+
+
 class ExtensionHiddenTagsField(ExtensionField, atapi.LinesField):
     """Derivate from Archetypes basic LinesField"""
 
@@ -45,6 +75,38 @@ class ContentExtender(object):
     layer = ICPSkinCoreLayer
 
     fields = [
+        ExtensionIAmTagsField(
+            'iamTags',
+            multiValued=1,
+            searchable=False,
+            accessor='IAmTags',
+            schemata="categorization",
+            languageIndependent=True,
+            widget=atapi.KeywordWidget(
+                label=_(u'label_iam_tags', default=u'I Am Tags'),
+                description=_(u'help_iam_tags',
+                              default=u'I Am Tags are used for webmaster '
+                                      u'organization of content.'),
+            ),
+            read_permission=zope_permissions.View,
+            write_permission=permissions.CPSkinSiteAdministrator,
+        ),
+        ExtensionISearchTagsField(
+            'isearchTags',
+            multiValued=1,
+            searchable=False,
+            accessor='ISearchTags',
+            schemata="categorization",
+            languageIndependent=True,
+            widget=atapi.KeywordWidget(
+                label=_(u'label_isearch_tags', default=u'I Search Tags'),
+                description=_(u'help_isearch_tags',
+                              default=u'I Search Tags are used for webmaster '
+                                      u'organization of content.'),
+            ),
+            read_permission=zope_permissions.View,
+            write_permission=permissions.CPSkinSiteAdministrator,
+        ),
         ExtensionHiddenTagsField(
             'hiddenTags',
             multiValued=1,
@@ -68,16 +130,25 @@ class ContentExtender(object):
 
     def getOrder(self, schematas):
         """
-        Make sure that hiddenTags is just after subject in categorization
-        schemata
+        Make sure that tags are just after subject in categorization schemata
         """
         if "subject" in schematas['categorization']:
             insertAfterFieldIndex = schematas['categorization'].index('subject')
         else:
             insertAfterFieldIndex = -1
-        hiddenTagsIndex = schematas['categorization'].index('hiddenTags')
+        iAmTagsIndex = schematas['categorization'].index('iamTags')
         schematas['categorization'].insert(
                            insertAfterFieldIndex + 1,
+                           schematas['categorization'].pop(iAmTagsIndex)
+                           )
+        iSearchTagsIndex = schematas['categorization'].index('isearchTags')
+        schematas['categorization'].insert(
+                           insertAfterFieldIndex + 2,
+                           schematas['categorization'].pop(iSearchTagsIndex)
+                           )
+        hiddenTagsIndex = schematas['categorization'].index('hiddenTags')
+        schematas['categorization'].insert(
+                           insertAfterFieldIndex + 3,
                            schematas['categorization'].pop(hiddenTagsIndex)
                            )
         return schematas

@@ -5,6 +5,32 @@
     <records interface="cpskin.core.interfaces.ICPSkinSettings" />
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.IAmTags">
+        <value key="title" i18n:translate="">I Am Tag</value>
+        <value key="description" i18n:translate="">I Am Tags are used for webmaster organization of content</value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.is</element>
+        </value>
+       <value key="vocabulary">cpskin.core.vocabularies.iamTags</value>
+       <value key="group" i18n:translate="">Text</value>
+    </records>
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.ISearchTags">
+        <value key="title" i18n:translate="">I Search Tag</value>
+        <value key="description" i18n:translate="">I Search Tags are used for webmaster organization of content</value>
+        <value key="enabled">True</value>
+        <value key="sortable">False</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.is</element>
+        </value>
+       <value key="vocabulary">cpskin.core.vocabularies.isearchTags</value>
+       <value key="group" i18n:translate="">Text</value>
+    </records>
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
              prefix="plone.app.querystring.field.HiddenTags">
         <value key="title" i18n:translate="">Hidden Tag</value>
         <value key="description" i18n:translate="">Hidden Tags are used for webmaster organization of content</value>
