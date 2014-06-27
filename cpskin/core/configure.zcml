@@ -4,6 +4,7 @@
     <include package="archetypes.schemaextender" />
     <include package="collective.ckeditor" />
     <include package="collective.contentleadimage" />
+    <include package="collective.geo.bundle" />
     <include package="cpskin.locales" />
 
     <include file="permissions.zcml" />
