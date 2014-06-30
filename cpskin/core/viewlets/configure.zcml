@@ -44,7 +44,7 @@
         name="cpskin.hiddentags"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         view="plone.app.layout.globals.interfaces.IViewView"
-        permission="cmf.ManagePortal"
+        permission="cpskin.siteadministrator"
         template="hiddentags.pt"
         layer="..interfaces.ICPSkinCoreLayer"
         />
@@ -53,7 +53,7 @@
         name="cpskin.isearchtags"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         view="plone.app.layout.globals.interfaces.IViewView"
-        permission="cmf.ManagePortal"
+        permission="cpskin.siteadministrator"
         template="isearchtags.pt"
         layer="..interfaces.ICPSkinCoreLayer"
         />
@@ -62,7 +62,7 @@
         name="cpskin.iamtags"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         view="plone.app.layout.globals.interfaces.IViewView"
-        permission="cmf.ManagePortal"
+        permission="cpskin.siteadministrator"
         template="iamtags.pt"
         layer="..interfaces.ICPSkinCoreLayer"
         />
