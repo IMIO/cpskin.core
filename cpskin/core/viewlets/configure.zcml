@@ -77,7 +77,7 @@
 
     <browser:viewlet
         name="cpskin.media"
-        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         class=".media.MediaViewlet"
         permission="zope.Public"
         layer="..interfaces.ICPSkinCoreLayer"
