@@ -137,12 +137,19 @@ def uninstallCore(context):
 def unregisterProvidesInterfaces(portal):
     from cpskin.core.viewlets.interfaces import (IViewletMenuToolsFaceted,
                                                  IViewletMenuToolsBox)
+    from cpskin.core.interfaces import (
+        IBannerActivated,
+        IMediaActivated,
+        IAlbumCollection,
+        IVideoCollection
+    )
 
-    from cpskin.core.interfaces import (IBannerActivated, IMediaActivated)
     interfaces = [IViewletMenuToolsFaceted,
                   IViewletMenuToolsBox,
                   IBannerActivated,
-                  IMediaActivated]
+                  IMediaActivated,
+                  IAlbumCollection,
+                  IVideoCollection]
     for interface in interfaces:
         catalog = getToolByName(portal, 'portal_catalog')
         brains = catalog({

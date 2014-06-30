@@ -10,7 +10,9 @@ from zope.interface import noLongerProvides
 
 from cpskin.locales import CPSkinMessageFactory as _
 
-from cpskin.core.interfaces import IMediaActivated
+from cpskin.core.interfaces import (IMediaActivated,
+                                    IAlbumCollection,
+                                    IVideoCollection)
 from cpskin.core.browser.interfaces import IMediaActivationView
 
 
@@ -61,6 +63,7 @@ class MediaActivationView(BrowserView):
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
         self._redirect(_(u'Mutliamedia viewlet enabled on content'))
+        self.create_collections()
 
     def disable_media(self):
         """ Disable the banner """
@@ -69,3 +72,42 @@ class MediaActivationView(BrowserView):
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
         self._redirect(_(u'Mutliamedia viewlet disabled for content'))
+
+    def create_collections(self):
+        """ create videos and albums collections if not exists """
+        catalog = api.portal.get_tool('portal_catalog')
+        queryDict = {}
+        queryDict['object_provides'] = IVideoCollection.__identifier__
+        queryDict['path'] = {
+            'query': '/'.join(self.context.getPhysicalPath()),
+            'depth': 1
+        }
+        if not catalog(queryDict):
+            video_folder = api.content.create(container=self.context,
+                                              type='Folder',
+                                              title=u"Vidéos")
+
+            alsoProvides(video_folder, IVideoCollection)
+            video_folder.reindexObject()
+            video_collection = api.content.create(container=video_folder,
+                                                  type='Collection',
+                                                  id='index')
+            query = [{
+                'i': 'portal_type',
+                'o': 'plone.app.querystring.operation.selection.is',
+                'v': ['media_link']
+            }, ]
+            video_collection.query = query
+            video_collection.sort_on = u'effective'
+            video_collection.sort_reversed = True
+            video_collection.setLayout('collection_oembed_view')
+
+            video_folder.setDefaultPage('index')
+
+        queryDict['object_provides'] = IAlbumCollection.__identifier__
+        if not catalog(queryDict):
+            album_folder = api.content.create(container=self.context,
+                                              type='Folder',
+                                              title=u"Albums")
+            alsoProvides(album_folder, IAlbumCollection)
+            album_folder.reindexObject()

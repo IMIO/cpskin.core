@@ -30,3 +30,15 @@ class ICPSkinSettings(Interface):
     """
     Settings for CPSkin
     """
+
+
+class IVideoCollection(Interface):
+    """
+    Marker interface for video collection used to viewlet multimedia
+    """
+
+
+class IAlbumCollection(Interface):
+    """
+    Marker interface for album collection used to viewlet multimedia
+    """
