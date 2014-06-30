@@ -3,6 +3,7 @@ import os
 import logging
 from zope.component import getAdapter
 from zope.component import queryMultiAdapter
+from zope.interface import noLongerProvides
 from plone import api
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.utils import bodyfinder
@@ -129,6 +130,28 @@ def uninstallCore(context):
     # Remove footer static
     if portal.hasObject('footer-static'):
         api.content.delete(obj=portal['footer-static'])
+
+    unregisterProvidesInterfaces(portal)
+
+
+def unregisterProvidesInterfaces(portal):
+    from cpskin.core.viewlets.interfaces import (IViewletMenuToolsFaceted,
+                                                 IViewletMenuToolsBox)
+
+    from cpskin.core.interfaces import (IBannerActivated, IMediaActivated)
+    interfaces = [IViewletMenuToolsFaceted,
+                  IViewletMenuToolsBox,
+                  IBannerActivated,
+                  IMediaActivated]
+    for interface in interfaces:
+        catalog = getToolByName(portal, 'portal_catalog')
+        brains = catalog({
+            "object_provides": interface.__identifier__,
+        })
+        for brain in brains:
+            obj = brain.getObject()
+            noLongerProvides(obj, interface)
+            obj.reindexObject()
 
 
 def setPageText(portal, page, viewName):
