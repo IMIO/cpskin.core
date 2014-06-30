@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from plone.app.layout.viewlets import common
-from plone import api
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from imio.media.browser import utils
-import logging
+from plone import api
+from plone.app.layout.viewlets import common
+from zope.component import getMultiAdapter
 
+import logging
 logger = logging.getLogger('cpskin.core media viewlet')
 
 
@@ -12,6 +13,11 @@ class MediaViewlet(common.ViewletBase):
 
     index = ViewPageTemplateFile('media.pt')
 
+    def available(self):
+        context = self.context
+        media_view = getMultiAdapter((context, self.request),
+                                      name="media_activation")
+        return media_view.is_enabled
     @property
     def portal_catalog(self):
         return api.portal.get_tool(name='portal_catalog')
@@ -19,6 +25,7 @@ class MediaViewlet(common.ViewletBase):
     def get_videos(self):
         videos = []
         video_brains = media_catalog_request('media_link',
+                                             self.context,
                                              self.portal_catalog,
                                              2)
         for video_brain in video_brains:
@@ -31,6 +38,7 @@ class MediaViewlet(common.ViewletBase):
     def get_albums(self):
         galleries = []
         gallery_brains = media_catalog_request('Folder',
+                                               self.context,
                                                self.portal_catalog,
                                                5,
                                                hidden_tags=True)
@@ -58,13 +66,20 @@ class MediaViewlet(common.ViewletBase):
         return galleries[1:5]
 
 
-
-def media_catalog_request(portal_type, portal_catalog, number, hidden_tags=False, view_name=None):
+def media_catalog_request(
+        portal_type,
+        context,
+        portal_catalog,
+        number,
+        hidden_tags=False,
+        view_name=None):
     hidden_keyword = api.portal.get_registry_record('cpskin.core.mediaviewlet')
     queryDict = {}
     queryDict['portal_type'] = portal_type
     queryDict['sort_on'] = 'effective'
     queryDict['sort_order'] = 'reverse'
+    queryDict['path'] = {'query': '/'.join(context.getPhysicalPath()),
+                         'depth': 5}
     if hidden_tags:
         queryDict['HiddenTags'] = hidden_keyword
     if view_name:

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.interface import Interface
 
 
@@ -16,6 +17,12 @@ class ICPSkinCoreWithMembersLayer(Interface):
 class IBannerActivated(Interface):
     """
     Marker interface to enable / disable banner viewlet
+    """
+
+
+class IMediaActivated(Interface):
+    """
+    Marker interface to enable / disable (multi)media viewlet
     """
 
 

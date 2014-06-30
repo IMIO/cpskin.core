@@ -1,4 +1,4 @@
-<div id="multimediaviewlet">
+<div id="multimediaviewlet" tal:condition="view/available">
     <div  class="left">
         <h2 i18n:translate="Photos">Photos</h2>
         <ul class="albums"> 

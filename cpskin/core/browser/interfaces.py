@@ -46,3 +46,24 @@ class IBannerActivationView(Interface):
     def disable_banner():
         """ Disable banner
         """
+
+
+class IMediaActivationView(Interface):
+    """ media activation """
+
+    can_enable_media = schema.Bool(
+        u'Can enable multimedia viewlet',
+        readonly=True
+    )
+    can_disable_media = schema.Bool(
+        u'Can disable multimedia viewlet',
+        readonly=True
+    )
+
+    def enable_media():
+        """ Enable multimedia viewlet
+        """
+
+    def disable_media():
+        """ Disable multimedia viewlet
+        """

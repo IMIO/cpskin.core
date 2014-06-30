@@ -60,6 +60,15 @@
 
   <browser:page
       for="*"
+      name="media_activation"
+      class=".media.MediaActivationView"
+      permission="zope.Public"
+      allowed_interface=".interfaces.IMediaActivationView"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
+      for="*"
       name="folderview_configuration"
       class=".folderview.FolderView"
       permission="zope.Public"

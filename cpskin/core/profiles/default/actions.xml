@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_actions" meta_type="Plone Actions Tool"
-        xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <object name="document_actions" meta_type="CMF Action Category">
         <object name="sendtomanager" meta_type="CMF Action" i18n:domain="cpskin">
@@ -45,6 +45,30 @@
             </property>
             <property name="visible">True</property>
         </object>
+
+        <object name="enable_media" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Show media</property>
+            <property name="description"></property>
+            <property name="url_expr">string:${context/absolute_url}/@@media_activation/enable_media</property>
+            <property name="link_target"></property>
+            <property name="available_expr">context/@@media_activation/can_enable_media</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
+        <object name="disable_media" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Hide media</property>
+            <property name="description"></property>
+            <property name="url_expr">string:${context/absolute_url}/@@media_activation/disable_media</property>
+            <property name="link_target"></property>
+            <property name="available_expr">context/@@media_activation/can_disable_media</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
+
         <object name="configure_folderview" meta_type="CMF Action" i18n:domain="cpskin">
             <property name="title" i18n:translate="">Configure Folder View here</property>
             <property name="description" i18n:translate=""></property>
