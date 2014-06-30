@@ -60,9 +60,7 @@ class MediaActivationView(BrowserView):
         alsoProvides(context, IMediaActivated)
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
-        self._redirect(_(
-            u'Mutliamedia viewlet enabled on content and sub-contents'
-        ))
+        self._redirect(_(u'Mutliamedia viewlet enabled on content'))
 
     def disable_media(self):
         """ Disable the banner """
@@ -70,5 +68,4 @@ class MediaActivationView(BrowserView):
         noLongerProvides(context, IMediaActivated)
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
-        self._redirect(_(
-            u'Mutliamedia viewlet disabled for content and sub-contents'))
+        self._redirect(_(u'Mutliamedia viewlet disabled for content'))
