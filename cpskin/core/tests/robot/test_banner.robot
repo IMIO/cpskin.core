@@ -13,11 +13,15 @@ Test enabling / disabling banner on Plone site and sub folder
     Go to  ${PLONE_URL}
     Add folder  Subfolder
     Go to  ${PLONE_URL}/subfolder
+    Add folder  SubSubfolder
+    Go to  ${PLONE_URL}/subfolder
     Click Action by id  enable_banner
     Page Should Contain Element  css=#cpskin-banner
     Open Action Menu
     Element Should not be visible  css=#plone-contentmenu-actions-enable_banner
     Element Should be visible  css=#plone-contentmenu-actions-disable_banner
+    Go to  ${PLONE_URL}/subfolder/subsubfolder
+    Page Should Contain Element  css=#cpskin-banner
     Go to  ${PLONE_URL}
     Page Should Not Contain Element  css=#cpskin-banner
     Open Action Menu

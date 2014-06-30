@@ -43,7 +43,7 @@ class BannerActivationView(BrowserView):
         portal = api.portal.get()
         obj = context
         while obj != portal:
-            if IBannerActivated.providedBy(context):
+            if IBannerActivated.providedBy(obj):
                 return True
             obj = aq_parent(obj)
         if IBannerActivated.providedBy(obj):
