@@ -1,7 +1,7 @@
 <div id="multimediaviewlet" tal:condition="view/available">
     <div class="albums-container">
+        <h2 i18n:translate="Photos">Photos</h2>
         <div class="left">
-            <h2 i18n:translate="Photos">Photos</h2>
             <ul class="albums"> 
                 <li tal:repeat='album view/get_one_album'
                     class="album-0">
@@ -12,7 +12,6 @@
             </ul>
         </div>
         <div class="center">
-            <h2 i18n:translate="Photos">Photos</h2>
             <ul class="albums"> 
                 <li tal:repeat='album view/get_four_albums' 
                     tal:attributes="class string:album-${repeat/album/number}">
@@ -28,9 +27,9 @@
             Lien vers tous les albums
         </a>
     </div>
-    <div class="video-container">
-        <div class="right">
+    <div class="videos-container">
         <h2 i18n:translate="Videos">Vidéos</h2>
+        <div class="right">
             <ul class="videos">
                 <li tal:repeat='video view/get_videos'>
                 <div class="iframe-responsive-wrapper">
