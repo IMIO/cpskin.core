@@ -1,36 +1,51 @@
 <div id="multimediaviewlet" tal:condition="view/available">
-    <div  class="left">
-        <h2 i18n:translate="Photos">Photos</h2>
-        <ul class="albums"> 
-            <li tal:repeat='album view/get_one_album'
-                class="album-0">
-            <div class="lead-image-wrapper" >
-                <img tal:replace="structure album" />
-            </div>
-            </li>
-        </ul>
-    </div>
-    <div class="center">
-        <h2 i18n:translate="Photos">Photos</h2>
-        <ul class="albums"> 
-            <li tal:repeat='album view/get_four_albums' 
-                tal:attributes="class string:album-${repeat/album/number}">
+    <div class="albums-container">
+        <div class="left">
+            <h2 i18n:translate="Photos">Photos</h2>
+            <ul class="albums"> 
+                <li tal:repeat='album view/get_one_album'
+                    class="album-0">
                 <div class="lead-image-wrapper" >
                     <img tal:replace="structure album" />
                 </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="center">
+            <h2 i18n:translate="Photos">Photos</h2>
+            <ul class="albums"> 
+                <li tal:repeat='album view/get_four_albums' 
+                    tal:attributes="class string:album-${repeat/album/number}">
+                    <div class="lead-image-wrapper" >
+                        <img tal:replace="structure album" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <a class="link-all" 
+            tal:attributes="href python:view.get_albums_collection().absolute_url()"
+            i18n:translate='link-to-all-albums'>
+            Lien vers tous les albums
+        </a>
     </div>
-    <div class="right">
-    <h2 i18n:translate="Videos">Vidéos</h2>
-        <ul class="videos">
-            <li tal:repeat='video view/get_videos'>
-            <div class="iframe-responsive-wrapper">
-                <img class="iframe-ratio"  src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7"/>
-                <div tal:content="structure video"></div>
-            </div>
-            </li>
-        </ul>
+    <div class="video-container">
+        <div class="right">
+        <h2 i18n:translate="Videos">Vidéos</h2>
+            <ul class="videos">
+                <li tal:repeat='video view/get_videos'>
+                <div class="iframe-responsive-wrapper">
+                    <img class="iframe-ratio"  src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7"/>
+                    <div tal:content="structure video"></div>
+                </div>
+                </li>
+            </ul>
+        </div>
+        <a href=""
+            tal:attributes="href python:view.get_videos_collection().absolute_url()"
+            class="link-all" i18n:translate='link-to-all-videos'>
+            Lien vers toutes les vidéos
+        </a>
+
     </div>
     <div class="visualClear"></div>
 </div>

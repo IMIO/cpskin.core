@@ -25,17 +25,23 @@ class MediaViewlet(common.ViewletBase):
     def portal_catalog(self):
         return api.portal.get_tool(name='portal_catalog')
 
+    def get_videos_collection(self):
+        return self.get_collection(IVideoCollection)
+
     def get_videos(self):
         videos = []
-        collection = self.get_collection(IVideoCollection)
+        collection = self.get_videos_collection()
         for brain in collection.queryCatalog():
             video = brain.getObject()
             videos.append(utils.embed(video, self.request))
         return videos
 
+    def get_albums_collection(self):
+        return self.get_collection(IAlbumCollection)
+
     def get_albums(self):
         albums = []
-        collection = self.get_collection(IAlbumCollection)
+        collection = self.get_albums_collection()
         for gallery_brain in collection.queryCatalog():
             if getattr(gallery_brain, 'hasContentLeadImage', False):
                 gallery = gallery_brain.getObject()
