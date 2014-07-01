@@ -75,11 +75,6 @@
         </value>
     </record>
 
-    <record name="cpskin.core.mediaviewlet">
-        <field type="plone.registry.field.TextLine">
-            <title>Media viewlet hidden keyword</title>
-        </field>
-        <value>multimedia-a-la-une</value>
-    </record>
-
+    <record name="cpskin.core.mediaviewlet" 
+            remove="True" />
 </registry>
