@@ -2,7 +2,8 @@
     <div  class="left">
         <h2 i18n:translate="Photos">Photos</h2>
         <ul class="albums"> 
-            <li tal:repeat='album view/get_one_album'>
+            <li tal:repeat='album view/get_one_album'
+                class="album-0">
             <div class="lead-image-wrapper" >
                 <img tal:replace="structure album" />
             </div>
@@ -12,10 +13,11 @@
     <div class="center">
         <h2 i18n:translate="Photos">Photos</h2>
         <ul class="albums"> 
-            <li tal:repeat='album view/get_four_albums'>
-            <div class="lead-image-wrapper" >
-                <img tal:replace="structure album" />
-            </div>
+            <li tal:repeat='album view/get_four_albums' 
+                tal:attributes="class string:album-${repeat/album/number}">
+                <div class="lead-image-wrapper" >
+                    <img tal:replace="structure album" />
+                </div>
             </li>
         </ul>
     </div>

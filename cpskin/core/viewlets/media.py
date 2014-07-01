@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from imio.media.browser import utils
 from plone import api
 from plone.app.layout.viewlets import common
 from zope.component import getMultiAdapter
+from cpskin.core.interfaces import IAlbumCollection
+from cpskin.core.interfaces import IVideoCollection
+from imio.media.browser import utils
 
 import logging
 logger = logging.getLogger('cpskin.core media viewlet')
@@ -16,34 +18,25 @@ class MediaViewlet(common.ViewletBase):
     def available(self):
         context = self.context
         media_view = getMultiAdapter((context, self.request),
-                                      name="media_activation")
+                                     name="media_activation")
         return media_view.is_enabled
+
     @property
     def portal_catalog(self):
         return api.portal.get_tool(name='portal_catalog')
 
     def get_videos(self):
         videos = []
-        video_brains = media_catalog_request('media_link',
-                                             self.context,
-                                             self.portal_catalog,
-                                             2)
-        for video_brain in video_brains:
-            video = video_brain.getObject()
-            state = api.content.get_state(video)
-            if state.startswith("publish"):
-                videos.append(utils.embed(video, self.request))
+        collection = self.get_collection(IVideoCollection)
+        for brain in collection.queryCatalog():
+            video = brain.getObject()
+            videos.append(utils.embed(video, self.request))
         return videos
 
     def get_albums(self):
-        galleries = []
-        gallery_brains = media_catalog_request('Folder',
-                                               self.context,
-                                               self.portal_catalog,
-                                               5,
-                                               hidden_tags=True)
-
-        for gallery_brain in gallery_brains:
+        albums = []
+        collection = self.get_collection(IAlbumCollection)
+        for gallery_brain in collection.queryCatalog():
             if getattr(gallery_brain, 'hasContentLeadImage', False):
                 gallery = gallery_brain.getObject()
                 imagescale = self.context.unrestrictedTraverse(
@@ -51,11 +44,28 @@ class MediaViewlet(common.ViewletBase):
                 html = "<a href='{}'>".format(gallery.absolute_url())
                 html += imagescale.scale('leadImage', width=300, height=300).tag()
                 html += '</a>'
-
-                galleries.append(html)
+                albums.append(html)
             else:
                 logger.info("{} has no lead image".format(gallery_brain.getURL()))
-        return galleries
+        return albums
+
+    def get_collection(self, object_provide):
+        queryDict = {}
+        queryDict['object_provides'] = object_provide.__identifier__
+        queryDict['path'] = {
+            'query': '/'.join(self.context.getPhysicalPath()),
+            'depth': 1
+        }
+        queryDict['sort_limit'] = 1
+        brains = self.portal_catalog(queryDict)
+        if len(brains) == 0:
+            return []
+        brain = brains[0]
+        folder = brain.getObject()
+        collection = getattr(folder, 'index', None)
+        if not collection:
+            return []
+        return collection
 
     def get_one_album(self):
         galleries = self.get_albums()
@@ -64,28 +74,3 @@ class MediaViewlet(common.ViewletBase):
     def get_four_albums(self):
         galleries = self.get_albums()
         return galleries[1:5]
-
-
-def media_catalog_request(
-        portal_type,
-        context,
-        portal_catalog,
-        number,
-        hidden_tags=False,
-        view_name=None):
-    hidden_keyword = api.portal.get_registry_record('cpskin.core.mediaviewlet')
-    queryDict = {}
-    queryDict['portal_type'] = portal_type
-    queryDict['sort_on'] = 'effective'
-    queryDict['sort_order'] = 'reverse'
-    queryDict['path'] = {'query': '/'.join(context.getPhysicalPath()),
-                         'depth': 5}
-    if hidden_tags:
-        queryDict['HiddenTags'] = hidden_keyword
-    if view_name:
-        # XXX create view_name index into plonetruegallery
-        queryDict['view_name'] = view_name
-    brains = portal_catalog(queryDict)[:number]
-    if len(brains) > number:
-        return brains[:number]
-    return brains
