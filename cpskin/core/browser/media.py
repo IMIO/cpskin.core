@@ -62,16 +62,16 @@ class MediaActivationView(BrowserView):
         alsoProvides(context, IMediaActivated)
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
-        self._redirect(_(u'Mutliamedia viewlet enabled on content'))
+        self._redirect(_(u'Multimedia viewlet enabled on content'))
         self.create_collections()
 
     def disable_media(self):
-        """ Disable the banner """
+        """ Disable the media """
         context = self._get_real_context()
         noLongerProvides(context, IMediaActivated)
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
-        self._redirect(_(u'Mutliamedia viewlet disabled for content'))
+        self._redirect(_(u'Multimedia viewlet disabled for content'))
 
     def create_collections(self):
         """ create videos and albums collections if not exists """
