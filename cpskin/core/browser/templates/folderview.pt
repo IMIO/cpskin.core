@@ -8,9 +8,8 @@
          tal:define="limitNumberActus python: 7;
                      limitNumberEvents python: 7;
                      member context/@@plone_portal_state/member;
-                     navigation_root_path context/@@plone_portal_state/navigation_root_path;
-                     news_collection python: view.getNews(navigation_root_path);
-                     events_collection python: view.getEvents(navigation_root_path);">
+                     news_collection python: view.getNews();
+                     events_collection python: view.getEvents();">
       <metal:main-macro define-macro="main">
         <div id="accueil">
           <div id="blocune"

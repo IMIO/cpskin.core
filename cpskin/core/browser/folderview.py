@@ -29,7 +29,7 @@ class FolderView(BrowserView):
         context = self.context
         existingIds = context.objectIds()
         portalPath = api.portal.get().getPhysicalPath()
-        contextPath = '/'.join(context.getPhysicalPath()[len(portalPath)])
+        contextPath = '/'.join(context.getPhysicalPath()[len(portalPath):])
         if 'a-la-une' not in existingIds:
             folder = api.content.create(container=context,
                                         type='Folder',
@@ -98,12 +98,14 @@ class FolderView(BrowserView):
         self.request.response.redirect(context.absolute_url())
         return ''
 
-    def getNews(self, navigation_root_path):
-        path = '/'.join([navigation_root_path, 'actualites'])
+    def getNews(self):
+        path = self.context.getPhysicalPath() + ('actualites',)
+        path = '/'.join(path)
         return self.searchCollection(path)
 
-    def getEvents(self, navigation_root_path):
-        path = '/'.join([navigation_root_path, 'evenements'])
+    def getEvents(self):
+        path = self.context.getPhysicalPath() + ('evenements',)
+        path = '/'.join(path)
         return self.searchCollection(path)
 
     def searchCollection(self, path):
