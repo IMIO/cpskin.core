@@ -59,6 +59,8 @@
                   </li>
                 </tal:loop>
               </ul>
+              <a href="actualites"
+                 i18n:translate="">Show all</a>
             </div>
             <div id="bloc-event"
                  tal:define="batch python: events_collection and events_collection.getObject().results(batch=False)[:limitNumberEvents] or None"
@@ -109,6 +111,8 @@
                   </li>
                 </tal:loop>
               </ul>
+              <a href="evenements"
+                 i18n:translate="">Show all</a>
             </div>
             <div class="visualClear"></div>
           </div>
