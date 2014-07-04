@@ -27,7 +27,7 @@
                tal:condition="python: view.hasFlexSlider() and brains">
             <div class="flex-container"
                  tal:define="context nocall:context/a-la-une;
-                                 here nocall:context/a-la-une">
+                             here nocall:context/a-la-une">
               <metal:block use-macro="context/@@slider_view/macros/content-core" />
             </div>
           </div>
@@ -96,13 +96,13 @@
                       <span tal:content="python: here.toLocalizedTime(object.start(), long_format=0)" />
                       <tal:withHours condition="python: here.toLocalizedTime(object.start(), long_format=1)[11:] != '00:00' or here.toLocalizedTime(object.end(), long_format=1)[11:] != '00:00'">
                       de 
-                      <span tal:content="python: here.toLocalizedTime(object.start(), long_format=1)[11:]" />à
-                      
+                      <span tal:content="python: here.toLocalizedTime(object.start(), long_format=1)[11:]" />
+                      à
                       <span tal:content="python: here.toLocalizedTime(object.end(), long_format=1)[11:]" /></tal:withHours></tal:one_day>
                       <tal:more_days condition="python: here.toLocalizedTime(object.start(), long_format=0) != here.toLocalizedTime(object.end(), long_format=0)">
                       du 
-                      <span tal:content="python: here.toLocalizedTime(object.start(), long_format=0)" />au
-                      
+                      <span tal:content="python: here.toLocalizedTime(object.start(), long_format=0)" />
+                      au
                       <span tal:content="python: here.toLocalizedTime(object.end(), long_format=0)" /></tal:more_days>
                     </span>
                     <p tal:content="python: object.Description()"></p>
