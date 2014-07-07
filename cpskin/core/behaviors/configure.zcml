@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="imio.media">
+
+  <plone:behavior
+    title="HiddenTags"
+    description="Adds hidden keywords."
+    provides=".metadata.IHiddenTags"
+    factory='.metadata.HiddenTags'
+    for="plone.dexterity.interfaces.IDexterityContent"
+    />
+
+</configure>

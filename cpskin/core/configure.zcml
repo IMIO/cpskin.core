@@ -11,6 +11,7 @@
     <include file="profiles.zcml" />
     <include file="monkey.zcml" />
 
+    <include package=".behaviors" />
     <include package=".browser" />
     <include package=".portlets" />
     <include package=".viewlets" />
