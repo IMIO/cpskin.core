@@ -30,4 +30,13 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <genericsetup:upgradeStep
+        title="CPSKIN Policy: upgrade to v2"
+        description="Upgrade step for CPSKIN Policy to v2"
+        handler=".upgradehandlers.upgrade_to_two"
+        source="1"
+        destination="2"
+        profile="cpskin.policy:default"
+        />
+
 </configure>
