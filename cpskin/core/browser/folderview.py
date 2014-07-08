@@ -98,15 +98,26 @@ class FolderView(BrowserView):
         self.request.response.redirect(context.absolute_url())
         return ''
 
-    def getNews(self):
-        path = self.context.getPhysicalPath() + ('actualites',)
-        path = '/'.join(path)
-        return self.searchCollection(path)
+    def getNews(self, limit=None):
+        return self.getCollectionResults('actualites', limit=limit)
 
-    def getEvents(self):
-        path = self.context.getPhysicalPath() + ('evenements',)
+    def getEvents(self, limit=None):
+        return self.getCollectionResults('evenements', limit=limit)
+
+    def getALaUne(self, limit=None):
+        return self.getCollectionResults('a-la-une', limit=limit)
+
+    def getCollectionResults(self, containerId, limit=None):
+        path = self.context.getPhysicalPath() + (containerId,)
         path = '/'.join(path)
-        return self.searchCollection(path)
+        collectionBrain = self.searchCollection(path)
+        if not collectionBrain:
+            return None
+        collection = collectionBrain.getObject()
+        if limit is not None:
+            return collection.results(batch=False)[:limit]
+        else:
+            return collection.results(batch=False)
 
     def searchCollection(self, path):
         portal_catalog = getToolByName(self.context, 'portal_catalog')
@@ -141,9 +152,3 @@ class FolderView(BrowserView):
             if ICPSkinSliderLayer.providedBy(request):
                 return True
             return False
-
-    def getSliderContent(self):
-        if not self.context.hasObject('a-la-une'):
-            return []
-        container = self.context['a-la-une']
-        return container.queryCatalog()

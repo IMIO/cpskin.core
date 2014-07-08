@@ -3,13 +3,25 @@
       lang="en"
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
+
+  <metal:javascript_head_slot fill-slot="javascript_head_slot"
+                              tal:define="hasFlexSlider view/hasFlexSlider;
+                                          alaune view/getALaUne;"
+                              tal:condition="python: hasFlexSlider and alaune">
+      <script type="text/javascript"
+              charset="utf-8"
+              src=""
+              tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++jquery.flexslider/javascript/jquery.flexslider-min.js"></script>
+  </metal:javascript_head_slot>
+
   <body>
     <div metal:fill-slot="main"
          tal:define="limitNumberActus python: 7;
                      limitNumberEvents python: 7;
                      member context/@@plone_portal_state/member;
-                     news_collection python: view.getNews();
-                     events_collection python: view.getEvents();">
+                     alaune view/getALaUne;
+                     news python: view.getNews(limitNumberActus);
+                     events python: view.getEvents(limitNumberEvents);">
       <metal:main-macro define-macro="main">
         <div id="accueil">
           <div id="blocune"
@@ -22,18 +34,16 @@
             <p tal:replace="structure text" />
           </div>
           <div id="flex"
-               tal:define="brains view/getSliderContent"
-               tal:condition="python: view.hasFlexSlider() and brains">
+               tal:condition="python: view.hasFlexSlider() and alaune">
             <div class="flex-container"
-                 tal:define="context nocall:context/a-la-une;
-                             here nocall:context/a-la-une">
+                 tal:define="context nocall:context/a-la-une/a-la-une;
+                             here nocall:context/a-la-une/a-la-une">
               <metal:block use-macro="context/@@slider_view/macros/content-core" />
             </div>
           </div>
           <div id="media">
             <div id="bloc-actu"
-                 tal:define="batch python: news_collection and news_collection.getObject().results(batch=False)[:limitNumberActus] or None"
-                 tal:condition="batch">
+                 tal:condition="news">
               <a href="actualites">
                 <h2 i18n:translate="">News</h2>
               </a>
@@ -44,7 +54,7 @@
                      i18n:attributes="alt flux_rss_dernieres_actualites" />
               </a>
               <ul id="bloc-actu-items">
-                <tal:loop repeat="item batch">
+                <tal:loop repeat="item news">
                   <li class="bloc-actu-item"
                       colspan="2"
                       tal:define="object item/getObject">
@@ -63,8 +73,7 @@
                  i18n:translate="">Show all</a>
             </div>
             <div id="bloc-event"
-                 tal:define="batch python: events_collection and events_collection.getObject().results(batch=False)[:limitNumberEvents] or None"
-                 tal:condition="batch">
+                 tal:condition="events">
               <a href="evenements">
                 <h2 i18n:translate="">Events</h2>
               </a>
@@ -75,7 +84,7 @@
                      i18n:attributes="alt flux_rss_derniers_evenements" />
               </a>
               <ul id="bloc-event-items">
-                <tal:loop repeat="item batch">
+                <tal:loop repeat="item events">
                   <li class="bloc-event-item"
                       colspan="2"
                       tal:define="object item/getObject">
