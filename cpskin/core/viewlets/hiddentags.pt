@@ -1,7 +1,7 @@
 <div i18n:domain="cpskin"
      id="hidden-tags"
      class="documentByLine cpskin-tags"
-     tal:define="categories context/HiddenTags|nothing;
+     tal:define="categories context/hiddenTags|nothing;
                  url_quote  nocall:modules/Products.PythonScripts.standard/url_quote;"
      tal:condition="categories">
   <tal:filedunder i18n:translate="label_filed_under_hidden_tag">Filed under hidden tag:</tal:filedunder>

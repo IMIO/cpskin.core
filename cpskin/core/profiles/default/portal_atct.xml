@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <atcttool xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <topic_indexes i18n:domain="plone">
-  <index name="IAmTags"
+  <index name="iamTags"
      description="The I am tags configured by the webmaster" enabled="True"
      friendlyName="I Am Tags"
      i18n:attributes="description; friendlyName">
@@ -9,7 +9,7 @@
     <criteria>ATSimpleStringCriterion</criteria>
     <criteria>ATListCriterion</criteria>
   </index>
-  <index name="ISearchTags"
+  <index name="isearchTags"
      description="The I search tags configured by the webmaster" enabled="True"
      friendlyName="I Search Tags"
      i18n:attributes="description; friendlyName">
@@ -17,7 +17,7 @@
     <criteria>ATSimpleStringCriterion</criteria>
     <criteria>ATListCriterion</criteria>
   </index>
-  <index name="HiddenTags"
+  <index name="hiddenTags"
      description="The hidden tags configured by the webmaster" enabled="True"
      friendlyName="Hidden Tags"
      i18n:attributes="description; friendlyName">

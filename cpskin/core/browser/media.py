@@ -150,7 +150,7 @@ class MediaActivationView(BrowserView):
 
             query = [
                 {
-                    'i': 'HiddenTags',
+                    'i': 'hiddenTags',
                     'o': 'plone.app.querystring.operation.selection.is',
                     'v': ['multimedia-a-la-une']
                 }, {

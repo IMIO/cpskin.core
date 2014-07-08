@@ -38,6 +38,7 @@ setup(name='cpskin.core',
       install_requires=[
           'setuptools',
           'plone.api',
+          'plone.app.contenttypes',
           'Plone',
           'archetypes.schemaextender',
           'collective.ckeditor',

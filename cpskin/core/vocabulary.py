@@ -40,17 +40,17 @@ class BaseTagsVocabulary(object):
 
 class IAmTagsVocabulary(BaseTagsVocabulary):
     """Vocabulary factory listing all catalog keywords from I am tags"""
-    indexName = 'IAmTags'
+    indexName = 'iamTags'
 
 
 class ISearchTagsVocabulary(BaseTagsVocabulary):
     """Vocabulary factory listing all catalog keywords from I search tags"""
-    indexName = 'ISearchTags'
+    indexName = 'isearchTags'
 
 
 class HiddenTagsVocabulary(BaseTagsVocabulary):
     """Vocabulary factory listing all catalog keywords from hidden tags"""
-    indexName = 'HiddenTags'
+    indexName = 'hiddenTags'
 
 
 IAmTagsVocabularyFactory = IAmTagsVocabulary()

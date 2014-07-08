@@ -39,7 +39,7 @@ class FolderView(BrowserView):
                                             type='Collection',
                                             id='a-la-une',
                                             title="À la une")
-            query = [{'i': 'HiddenTags',
+            query = [{'i': 'hiddenTags',
                       'o': 'plone.app.querystring.operation.selection.is',
                       'v': 'a-la-une'},
                       {'i': 'path',
