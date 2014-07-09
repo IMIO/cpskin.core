@@ -47,7 +47,8 @@ setup(name='cpskin.core',
           'cpskin.locales',
           'imio.media',
           'collective.plonetruegallery',
-          'collective.geo.bundle'
+          'collective.geo.bundle',
+          'plone.behavior',
           # -*- Extra requirements: -*-
       ],
       extras_require={
