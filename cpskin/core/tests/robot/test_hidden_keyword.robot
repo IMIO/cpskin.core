@@ -41,7 +41,7 @@ a collection
 I set to the collection '${collection_title}' the search terms hidden tag '${keyword}'
     Go to  ${PLONE_URL}/${collection_title}
     Click Edit In Edit bar
-    Select From List By Value  name=addindex  HiddenTags
+    Select From List By Value  name=addindex  hiddenTags
     Select Checkbox  css=.querywidget.queryvalue.multipleSelectionWidget input[value=${keyword}]
     Click Button  Save
 
