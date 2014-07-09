@@ -28,12 +28,6 @@ def installCore(context):
     # Add catalog indexes
     addCatalogIndexes(portal)
 
-    # Edit front page
-    frontPage = getattr(portal, 'front-page', None)
-    if frontPage is not None:
-        frontPage.setExcludeFromNav(True)
-    setPageText(portal, frontPage, 'cpskin-frontpage-setup')
-
     # Create default banner image
     addImageFromFile(portal, 'banner.jpg')
 

@@ -39,4 +39,13 @@
         profile="cpskin.policy:default"
         />
 
+    <genericsetup:upgradeStep
+        title="CPSKIN core: Install front-page"
+        description="Upgrade step for CPSKIN core install front-page"
+        handler=".upgradehandlers.upgrade_front_page"
+        source="*"
+        destination="*"
+        profile="cpskin.policy:default"
+        />
+
 </configure>
