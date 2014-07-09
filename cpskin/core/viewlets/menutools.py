@@ -22,11 +22,17 @@ class MenuToolsViewlet(common.ViewletBase):
             object_provides=IViewletMenuToolsFaceted.__identifier__,
             sort_on='getObjPositionInParent',
             review_state='published_and_hidden')
+        i = 1
         if len(brains) > 0:
             for brain in brains:
                 view = {}
                 view['href'] = brain.getURL()
                 view['title'] = brain.Title
+                if self.context.absolute_url() == view['href']:
+                    view['class'] = 'menutools-{} selected'.format(i)
+                else:
+                    view['class'] = 'menutools-{}'.format(i)
+                i += 1
                 menutools.append(view)
             return menutools
         else:
