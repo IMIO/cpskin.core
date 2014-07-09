@@ -4,7 +4,7 @@
   <dependencies>
     <dependency>profile-plone.resource:default</dependency>
     <dependency>profile-plone.app.registry:default</dependency>
-    <dependency>profile-collective.ckeditor:default</dependency>
+    <dependency>profile-imio.ckeditortemplates:default</dependency>
     <dependency>profile-collective.contentleadimage:default</dependency>
     <dependency>profile-collective.geo.bundle:default</dependency>
   </dependencies>
