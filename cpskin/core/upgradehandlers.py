@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-
 from Products.CMFCore.utils import getToolByName
+import logging
+logger = logging.getLogger('cpskin.core')
 
 
 def upgrade_to_two(context):
@@ -17,4 +18,7 @@ def upgrade_to_two(context):
         obj = brain.getObject()
         for attr in attrs:
             if hasattr(obj, attr):
-                delattr(obj, attr)
+                try:
+                    delattr(obj, attr)
+                except AttributeError:
+                    logger.info("No {} on: {}".format(attr, obj))
