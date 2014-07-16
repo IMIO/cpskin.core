@@ -1,8 +1,24 @@
 <div id="cpskin-banner"
      tal:condition="view/available"
      i18n:domain="cpskin">
-     <img src=""
-          alt="Banner"
-          tal:attributes="src string:${context/absolute_url}/banner.jpg"
-          i18n:attributes="alt" />
+
+    <div id="minisite-logo"
+          tal:condition="exists: context/logo-minisite.png">
+        <a href=""
+           target="_blank"
+           tal:omit-tag="not: view/isInMinisite"
+           tal:attributes="href view/homeUrl">
+            <img src=""
+                 alt="Logo"
+                 tal:attributes="src string:${context/absolute_url}/logo-minisite.png"
+                 i18n:attributes="alt" />
+        </a>
+    </div>
+
+    <img src=""
+         alt="Banner"
+         class="banner"
+         tal:attributes="src string:${context/absolute_url}/banner.jpg"
+         i18n:attributes="alt" />
+
 </div>

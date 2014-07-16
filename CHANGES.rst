@@ -4,6 +4,7 @@ Changelog
 0.2 (unreleased)
 ----------------
 
+- Banner improvements (affinitic #5851)
 - Index view improvements (affinitic #5843)
 
 
