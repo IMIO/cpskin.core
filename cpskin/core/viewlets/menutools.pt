@@ -1,5 +1,10 @@
 <div class="menutools menutools-viewlet" >
     <ul id="toolsbar">
+        <tal:block tal:repeat="faceted view/get_faceted"  tal:condition="view/get_faceted">
+            <li tal:attributes="class faceted/class">
+                <a tal:attributes="href faceted/href" tal:content="faceted/title">faceted</a>
+            </li>
+        </tal:block>
          <li class="toolbox-menutools" tal:define="toolbox view/get_toolbox" 
                                           tal:condition="view/get_toolbox">
                 <a class="link-overlay" id="menutoolsbox" 
