@@ -5,6 +5,15 @@
              remove="True" />
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.iamTags"
+             remove="True" />
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.isearchTags"
+             remove="True" />
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.hiddenTags"
              remove="True" />
 
     <record name="cpskin.core.socialviewlet"
