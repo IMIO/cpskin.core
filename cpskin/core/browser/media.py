@@ -162,6 +162,7 @@ class MediaActivationView(BrowserView):
             ]
             # path = '/'.join(album_folder.getPhysicalPath())
             album_collection.query = query
+            album_collection.limit = 3
             album_collection.sort_on = u'effective'
             album_collection.sort_reversed = True
 

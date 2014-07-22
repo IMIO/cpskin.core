@@ -34,7 +34,7 @@ class MediaViewlet(common.ViewletBase):
         for brain in collection.queryCatalog():
             video = brain.getObject()
             videos.append(utils.embed(video, self.request))
-        return videos
+        return videos[:collection.getLimit()]
 
     def get_albums_collection(self):
         return self.get_collection(IAlbumCollection)
@@ -56,7 +56,7 @@ class MediaViewlet(common.ViewletBase):
                 albums.append(html)
             else:
                 logger.info("{} has no lead image".format(gallery_brain.getURL()))
-        return albums
+        return albums[:collection.getLimit()]
 
     def get_collection(self, object_provide):
         queryDict = {}
