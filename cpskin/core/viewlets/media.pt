@@ -1,5 +1,5 @@
 <div id="multimediaviewlet" tal:condition="view/available">
-    <div class="albums-container">
+    <div class="albums-container" tal:condition="view/get_one_album">
         <h2 i18n:translate="Photos">Photos</h2>
         <div class="left">
             <ul class="albums"> 
@@ -28,7 +28,7 @@
         </div>
         
     </div>
-    <div class="videos-container">
+    <div class="videos-container" tal:condition="view/get_videos">
         <h2 i18n:translate="Videos">Vidéos</h2>
         <div class="right">
             <ul class="videos">

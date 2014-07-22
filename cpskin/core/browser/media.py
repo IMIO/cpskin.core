@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_base
 from Acquisition import aq_inner
 from Acquisition import aq_parent
 from Products.Five.browser import BrowserView
@@ -85,7 +86,7 @@ class MediaActivationView(BrowserView):
 
         # --- Videos ---
         if not catalog(queryDict):
-            video_folder = getattr(self.context, 'videos', None)
+            video_folder = getattr(aq_base(self.context), 'videos', None)
             if not video_folder:
                 video_folder = api.content.create(
                     container=self.context,
@@ -97,7 +98,7 @@ class MediaActivationView(BrowserView):
             alsoProvides(video_folder, IVideoCollection)
             video_folder.reindexObject()
 
-            video_collection = getattr(video_folder, 'index', None)
+            video_collection = getattr(aq_base(video_folder), 'index', None)
             if not video_collection:
                 video_collection = api.content.create(
                     container=video_folder,
@@ -132,7 +133,7 @@ class MediaActivationView(BrowserView):
         # --- Albums ---
         queryDict['object_provides'] = IAlbumCollection.__identifier__
         if not catalog(queryDict):
-            album_folder = getattr(self.context, 'albums', None)
+            album_folder = getattr(aq_base(self.context), 'albums', None)
             if not album_folder:
                 album_folder = api.content.create(container=self.context,
                                                   type='Folder',
@@ -140,7 +141,7 @@ class MediaActivationView(BrowserView):
             alsoProvides(album_folder, IAlbumCollection)
             album_folder.reindexObject()
 
-            album_collection = getattr(album_folder, 'index', None)
+            album_collection = getattr(aq_base(album_folder), 'index', None)
             if not album_collection:
                 album_collection = api.content.create(
                     container=album_folder,

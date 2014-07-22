@@ -42,6 +42,9 @@ class MediaViewlet(common.ViewletBase):
     def get_albums(self):
         albums = []
         collection = self.get_albums_collection()
+        if not collection:
+            logger.info("{} has no album collection".format(self.context))
+            return ""
         for gallery_brain in collection.queryCatalog():
             if getattr(gallery_brain, 'hasContentLeadImage', False):
                 gallery = gallery_brain.getObject()
@@ -65,12 +68,12 @@ class MediaViewlet(common.ViewletBase):
         queryDict['sort_limit'] = 1
         brains = self.portal_catalog(queryDict)
         if len(brains) == 0:
-            return []
+            return None
         brain = brains[0]
         folder = brain.getObject()
         collection = getattr(folder, 'index', None)
         if not collection:
-            return []
+            return None
         return collection
 
     def get_one_album(self):
