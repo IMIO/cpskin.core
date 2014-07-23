@@ -126,46 +126,20 @@ class FolderView(BrowserView):
         self.request.response.redirect(context.absolute_url())
         return ''
 
-    def getNews(self, limit=None):
-        return self.getCollectionResults('actualites', limit=limit)
+    def getContents(self):
+        brains = self.searchSelectedContent()
+        return [brain.getObject() for brain in brains]
 
-    def getEvents(self, limit=None):
-        return self.getCollectionResults('evenements', limit=limit)
-
-    def getALaUne(self, limit=None):
-        return self.getCollectionResults('a-la-une', limit=limit)
-
-    def getCollectionResults(self, containerId, limit=None):
-        path = self.context.getPhysicalPath() + (containerId,)
-        path = '/'.join(path)
-        collectionBrain = self.searchCollection(path)
-        if not collectionBrain:
-            return None
-        collection = collectionBrain.getObject()
-        if limit is not None:
-            return collection.results(batch=False)[:limit]
-        else:
-            return collection.results(batch=False)
-
-    def searchCollection(self, path):
+    def searchSelectedContent(self):
+        path = '/'.join(self.context.getPhysicalPath())
         portal_catalog = getToolByName(self.context, 'portal_catalog')
         queryDict = {}
-        queryDict['path'] = {'query': path, 'depth': 1}
-        queryDict['portal_type'] = 'Collection'
-        queryDict['sort_limit'] = 1
-        collections = portal_catalog.searchResults(queryDict)
-        return collections and collections[0] or None
-
-    def getFrontPageText(self):
-        if not self.context.hasObject('front-page'):
-            return
-        frontPage = self.context['front-page']
-        if frontPage.Language() == self.context.Language():
-            return frontPage.getText()
-        if hasattr(frontPage, 'getTranslation'):
-            lang = self.context.REQUEST.get('LANGUAGE', 'fr')
-            frontPage = frontPage.getTranslation(lang)
-        return frontPage.getText()
+        queryDict['path'] = {'query': path, 'depth': 2}
+        queryDict['portal_type'] = ['Document', 'Collection']
+        queryDict['object_provides'] = IFolderViewSelectedContent.__identifier__
+        queryDict['sort_on'] = 'getObjPositionInParent'
+        results = portal_catalog.searchResults(queryDict)
+        return results
 
     def hasFlexSlider(self):
         """
@@ -205,7 +179,8 @@ class FolderView(BrowserView):
         if self.context.portal_type not in ADDABLE_TYPES:
             return False
         parent = aq_parent(self.context)
-        if not self.isFolderViewActivated(parent):
+        if not self.isFolderViewActivated(parent) \
+           and not self.isFolderViewActivated(aq_parent(parent)):
             return False
         return True
 

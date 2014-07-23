@@ -6,7 +6,7 @@
 
   <metal:javascript_head_slot fill-slot="javascript_head_slot"
                               tal:define="hasFlexSlider view/hasFlexSlider;
-                                          alaune view/getALaUne;"
+                                          alaune exists: context/a-la-une"
                               tal:condition="python: hasFlexSlider and alaune">
       <script type="text/javascript"
               charset="utf-8"
@@ -16,115 +16,103 @@
 
   <body>
     <div metal:fill-slot="main"
-         tal:define="limitNumberActus python: 7;
-                     limitNumberEvents python: 7;
-                     member context/@@plone_portal_state/member;
-                     alaune view/getALaUne;
-                     news python: view.getNews(limitNumberActus);
-                     events python: view.getEvents(limitNumberEvents);">
+         tal:define="member context/@@plone_portal_state/member;
+                     contents view/getContents">
       <metal:main-macro define-macro="main">
         <div id="accueil">
-          <div id="blocune"
-               tal:define="text view/getFrontPageText"
-               tal:condition="text">
-            <p tal:condition="python: member.has_role('Manager')">
-              <a href="front-page/edit"
-                 i18n:translate="modifier_zone_statique">[Modifier la zone statique]</a>
-            </p>
-            <p tal:replace="structure text" />
-          </div>
-          <div id="flex"
-               tal:condition="python: view.hasFlexSlider() and alaune">
-            <div class="flex-container"
-                 tal:define="context nocall:context/a-la-une/a-la-une;
-                             here nocall:context/a-la-une/a-la-une">
-              <metal:block use-macro="context/@@slider_view/macros/content-core" />
-            </div>
-          </div>
-          <div id="media">
-            <div id="bloc-actu"
-                 tal:condition="news">
-              <a href="actualites">
-                <h2 i18n:translate="">News</h2>
-              </a>
-              <a id="bloc-actu-rss"
-                 href="actualites/index/RSS">
-                <img src="++resource++cpskin.core.images/rss-accueil.gif"
-                     alt="Flux RSS des dernières actualités"
-                     i18n:attributes="alt flux_rss_dernieres_actualites" />
-              </a>
-              <ul id="bloc-actu-items">
-                <tal:loop repeat="item news">
-                  <li class="bloc-actu-item"
-                      colspan="2"
-                      tal:define="object item/getObject">
+
+            <tal:bcl tal:repeat="content contents">
+
+                <div id="flex"
+                     tal:condition="python: content.id == 'a-la-une' and view.hasFlexSlider()">
+
+                    <div class="flex-container"
+                         tal:define="context nocall:context/a-la-une/a-la-une;
+                                     here nocall:context/a-la-une/a-la-une">
+                      <metal:block use-macro="context/@@slider_view/macros/content-core" />
+                    </div>
+
+                </div>
+
+                <div class=""
+                     tal:condition="python: content.portal_type == 'Collection' and content.id != 'a-la-une'"
+                     tal:attributes="class string:bloc-${repeat/content/number} bloc-collection">
                     <a href=""
-                       tal:attributes="href python: object.absolute_url()">
-                      <span tal:replace="structure python: object.tag(scale='thumb', css_class=imageClass)"
-                            tal:define="oddRow repeat/item/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
-                            tal:condition="object/getImage" />
-                      <h3 tal:content="python: object.Title()"></h3>
+                       tal:attributes="href string:${content/absolute_url}">
+                      <h2 tal:content="content/Title"></h2>
                     </a>
-                    <p tal:content="python: object.Description()"></p>
-                  </li>
-                </tal:loop>
-              </ul>
-              <a href="actualites"
-                 i18n:translate="">Show all</a>
-            </div>
-            <div id="bloc-event"
-                 tal:condition="events">
-              <a href="evenements">
-                <h2 i18n:translate="">Events</h2>
-              </a>
-              <a id="bloc-event-rss"
-                 href="evenements/index/RSS">
-                <img src="++resource++cpskin.core.images/rss-accueil.gif"
-                     alt="Flux RSS des derniers évènements"
-                     i18n:attributes="alt flux_rss_derniers_evenements" />
-              </a>
-              <ul id="bloc-event-items">
-                <tal:loop repeat="item events">
-                  <li class="bloc-event-item"
-                      colspan="2"
-                      tal:define="object item/getObject">
+                    <a class="bloc-rss"
+                       href=""
+                       tal:attributes="href string:${content/absolute_url}/RSS">
+                      <img src="++resource++cpskin.core.images/rss-accueil.gif"
+                           alt=""
+                           tal:attributes="alt string: Flux RSS des ${content/Title}" />
+                    </a>
+                    <ul class="bloc-items">
+                      <li tal:repeat="result content/results"
+                          class="bloc-item"
+                          colspan="2">
+                        <a href=""
+                           tal:attributes="href result/absolute_url">
+
+                          <tal:leadImage tal:condition="nocall:item/hasContentLeadImage|nothing">
+                            <img class="myimageleft"
+                                 tal:condition="item/hasContentLeadImage"
+                                 src="#"
+                                 alt=""
+                                 tal:attributes="title item/Description; src python: item.getURL() + '/leadImage_thumb'" />
+                          </tal:leadImage>
+
+                          <tal:contentImage tal:condition="nocall:item/getImage|nothing">
+                            <span tal:replace="structure python: result.tag(scale='thumb', css_class=imageClass)"
+                                  tal:define="oddRow repeat/item/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
+                                  tal:condition="result/getImage" />
+                          </tal:contentImage>
+
+                          <h3 tal:content="result/Title"></h3>
+                        </a>
+
+                        <span class="documentByLine"
+                              tal:condition="python: result.portal_type == 'Event'">
+                          <tal:one_day condition="python: here.toLocalizedTime(result.start, long_format=0) == here.toLocalizedTime(result.end, long_format=0)">
+                          le
+                          <span tal:content="python: here.toLocalizedTime(result.start, long_format=0)" />
+                          <tal:withHours condition="python: here.toLocalizedTime(result.start, long_format=1)[11:] != '00:00' or here.toLocalizedTime(result.end, long_format=1)[11:] != '00:00'">
+                          de
+                          <span tal:content="python: here.toLocalizedTime(result.start, long_format=1)[11:]" />
+                          à
+                          <span tal:content="python: here.toLocalizedTime(result.end, long_format=1)[11:]" /></tal:withHours></tal:one_day>
+                          <tal:more_days condition="python: here.toLocalizedTime(result.start, long_format=0) != here.toLocalizedTime(result.end, long_format=0)">
+                          du
+                          <span tal:content="python: here.toLocalizedTime(result.start, long_format=0)" />
+                          au
+                          <span tal:content="python: here.toLocalizedTime(result.end, long_format=0)" /></tal:more_days>
+                        </span>
+
+                        <p tal:content="result/Description"></p>
+                      </li>
+                    </ul>
                     <a href=""
-                       tal:attributes="href python: object.absolute_url()">
-                      <tal:contentImage tal:condition="nocall:item/hasContentLeadImage|nothing">
-                        <img class="myimageleft"
-                             tal:condition="item/hasContentLeadImage"
-                             src="#"
-                             alt=""
-                             tal:attributes="title item/Description; src python: item.getURL() + '/leadImage_thumb'" />
-                      </tal:contentImage>
-                      <h3 class="link-event"
-                          tal:content="python: object.Title()"></h3>
-                    </a>
-                    <span class="documentByLine">
-                      <tal:one_day condition="python: here.toLocalizedTime(object.start(), long_format=0) == here.toLocalizedTime(object.end(), long_format=0)">
-                      le 
-                      <span tal:content="python: here.toLocalizedTime(object.start(), long_format=0)" />
-                      <tal:withHours condition="python: here.toLocalizedTime(object.start(), long_format=1)[11:] != '00:00' or here.toLocalizedTime(object.end(), long_format=1)[11:] != '00:00'">
-                      de 
-                      <span tal:content="python: here.toLocalizedTime(object.start(), long_format=1)[11:]" />
-                      à
-                      <span tal:content="python: here.toLocalizedTime(object.end(), long_format=1)[11:]" /></tal:withHours></tal:one_day>
-                      <tal:more_days condition="python: here.toLocalizedTime(object.start(), long_format=0) != here.toLocalizedTime(object.end(), long_format=0)">
-                      du 
-                      <span tal:content="python: here.toLocalizedTime(object.start(), long_format=0)" />
-                      au
-                      <span tal:content="python: here.toLocalizedTime(object.end(), long_format=0)" /></tal:more_days>
-                    </span>
-                    <p tal:content="python: object.Description()"></p>
-                    <br />
-                  </li>
-                </tal:loop>
-              </ul>
-              <a href="evenements"
-                 i18n:translate="">Show all</a>
-            </div>
+                       tal:attributes="href string:${content/absolute_url}"
+                       i18n:translate="">Show all</a>
+                </div>
+
+                <div class=""
+                     tal:condition="python: content.portal_type == 'Document'"
+                     tal:attributes="class string:bloc-${repeat/content/number} bloc-document">
+
+                    <p tal:condition="python: member.has_role('Manager')">
+                      <a href=""
+                         tal:attributes="href string:${content/absolute_url}/edit"
+                         i18n:translate="modifier_zone_statique">[Modifier la zone statique]</a>
+                    </p>
+                    <p tal:replace="structure content/getText" />
+
+                </div>
+
+            </tal:bcl>
+
             <div class="visualClear"></div>
-          </div>
         </div>
       </metal:main-macro>
     </div>
