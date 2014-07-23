@@ -79,6 +79,26 @@
             </property>
             <property name="visible">True</property>
         </object>
+        <object name="add_to_folderview" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Make this content appear in folder view</property>
+            <property name="description" i18n:translate=""></property>
+            <property name="url_expr">string:${context/absolute_url}/@@folderview_configuration/addContent</property>
+            <property name="available_expr">context/@@folderview_configuration/canAddContent</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
+        <object name="remove_from_folderview" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Remove this content from folder view</property>
+            <property name="description" i18n:translate=""></property>
+            <property name="url_expr">string:${context/absolute_url}/@@folderview_configuration/removeContent</property>
+            <property name="available_expr">context/@@folderview_configuration/canRemoveContent</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
     </object>
 
 </object>

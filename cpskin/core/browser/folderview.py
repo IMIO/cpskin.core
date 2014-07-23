@@ -1,14 +1,41 @@
 # -*- coding: utf-8 -*-
 
+from Acquisition import aq_parent
+from zope.interface import alsoProvides
+from zope.interface import noLongerProvides
 from plone import api
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.interfaces import IFolderish
 
+from cpskin.core.interfaces import IFolderViewSelectedContent
+
 from cpskin.locales import CPSkinMessageFactory as _
+
+ADDABLE_TYPES = ['Collection', 'Document']
 
 
 class FolderView(BrowserView):
+
+    def _redirect(self, msg=''):
+        if self.request:
+            if msg:
+                api.portal.show_message(message=msg,
+                                        request=self.request,
+                                        type='info')
+            self.request.response.redirect(self.context.absolute_url())
+        return msg
+
+    def isFolderViewActivated(self, context=None):
+        """
+        Check if folderview is activated on context
+        """
+        if context is None:
+            context = self.context
+        layout = context.getLayout()
+        if layout == 'folderview':
+            return True
+        return False
 
     def can_configure(self):
         """
@@ -17,10 +44,8 @@ class FolderView(BrowserView):
         context = self.context
         if not IFolderish.providedBy(context):
             return False
-        layout = context.getLayout()
-        if layout != 'folderview':
-            return True
-        return False
+        alreadyActivated = self.isFolderViewActivated()
+        return (not alreadyActivated)
 
     def configure(self):
         """
@@ -152,3 +177,45 @@ class FolderView(BrowserView):
             if ICPSkinSliderLayer.providedBy(request):
                 return True
             return False
+
+    def addContent(self):
+        """
+        Mark content to add it to folder view
+        """
+        context = self.context
+        alsoProvides(context, IFolderViewSelectedContent)
+        catalog = api.portal.get_tool('portal_catalog')
+        catalog.reindexObject(context)
+        self._redirect(_(u'Contenu ajouté à la vue index.'))
+
+    def removeContent(self):
+        """
+        Unmark content to remove it from folder view
+        """
+        context = self.context
+        noLongerProvides(context, IFolderViewSelectedContent)
+        catalog = api.portal.get_tool('portal_catalog')
+        catalog.reindexObject(context)
+        self._redirect(_(u'Contenu retiré de la vue index.'))
+
+    def isEligibleContent(self):
+        if self.context.portal_type not in ADDABLE_TYPES:
+            return False
+        parent = aq_parent(self.context)
+        if not self.isFolderViewActivated(parent):
+            return False
+        return True
+
+    def canAddContent(self):
+        if not self.isEligibleContent():
+            return False
+        if IFolderViewSelectedContent.providedBy(self.context):
+            return False
+        return True
+
+    def canRemoveContent(self):
+        if not self.isEligibleContent():
+            return False
+        if not IFolderViewSelectedContent.providedBy(self.context):
+            return False
+        return True

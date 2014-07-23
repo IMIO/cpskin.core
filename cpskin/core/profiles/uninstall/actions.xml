@@ -13,10 +13,11 @@
     <object name="object_buttons" meta_type="CMF Action Category">
         <object name="enable_banner" remove="True" />
         <object name="disable_banner" remove="True" />
-    </object>
-
-    <object name="folder_buttons" meta_type="CMF Action Category">
+        <object name="enable_media" remove="True" />
+        <object name="disable_media" remove="True" />
         <object name="configure_folderview" remove="True" />
+        <object name="add_to_folderview" remove="True" />
+        <object name="remove_from_folderview" remove="True" />
     </object>
 
 </object>

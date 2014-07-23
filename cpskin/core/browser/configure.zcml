@@ -72,7 +72,7 @@
       name="folderview_configuration"
       class=".folderview.FolderView"
       permission="zope.Public"
-      allowed_attributes="can_configure configure"
+      allowed_attributes="can_configure configure addContent removeContent canAddContent canRemoveContent"
       layer="..interfaces.ICPSkinCoreLayer"
       />
 

@@ -26,6 +26,12 @@ class IMediaActivated(Interface):
     """
 
 
+class IFolderViewSelectedContent(Interface):
+    """
+    Marker interface to add / remove content to / from folder view
+    """
+
+
 class ICPSkinSettings(Interface):
     """
     Settings for CPSkin
