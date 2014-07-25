@@ -36,7 +36,7 @@
 
                 <div class=""
                      tal:condition="python: content.portal_type == 'Collection' and content.id != 'a-la-une'"
-                     tal:attributes="class string:bloc-${repeat/content/number} bloc-collection">
+                     tal:attributes="class string:bloc-${repeat/content/number} bloc-collection ${content/id}">
                     <a href=""
                        class="titre"
                        tal:attributes="href string:${content/absolute_url}">
@@ -110,7 +110,7 @@
 
                 <div class=""
                      tal:condition="python: content.portal_type == 'Document'"
-                     tal:attributes="class string:bloc-${repeat/content/number} bloc-document">
+                     tal:attributes="class string:bloc-${repeat/content/number} bloc-document ${content/id}">
 
                     <p tal:condition="python: member.has_role('Manager')">
                       <a href=""
