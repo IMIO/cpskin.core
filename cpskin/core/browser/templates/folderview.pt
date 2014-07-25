@@ -2,7 +2,7 @@
       xml:lang="en"
       lang="en"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="cpskin">
 
   <metal:javascript_head_slot fill-slot="javascript_head_slot"
                               tal:define="hasFlexSlider view/hasFlexSlider;
@@ -38,6 +38,7 @@
                      tal:condition="python: content.portal_type == 'Collection' and content.id != 'a-la-une'"
                      tal:attributes="class string:bloc-${repeat/content/number} bloc-collection">
                     <a href=""
+                       class="titre"
                        tal:attributes="href string:${content/absolute_url}">
                       <h2 tal:content="content/Title"></h2>
                     </a>
@@ -45,8 +46,8 @@
                        href=""
                        tal:attributes="href string:${content/absolute_url}/RSS">
                       <img src="++resource++cpskin.core.images/rss-accueil.gif"
-                           alt=""
-                           tal:attributes="alt string: Flux RSS des ${content/Title}" />
+                           alt="Flux RSS"
+                           i18n:attributes="alt flux_rss" />
                     </a>
                     <ul class="bloc-items">
                       <li tal:repeat="result content/results"
@@ -75,26 +76,36 @@
                         <span class="documentByLine"
                               tal:condition="python: result.portal_type == 'Event'">
                           <tal:one_day condition="python: here.toLocalizedTime(result.start, long_format=0) == here.toLocalizedTime(result.end, long_format=0)">
-                          le
+                          <span i18n:translate="evenement_le">le</span>
                           <span tal:content="python: here.toLocalizedTime(result.start, long_format=0)" />
                           <tal:withHours condition="python: here.toLocalizedTime(result.start, long_format=1)[11:] != '00:00' or here.toLocalizedTime(result.end, long_format=1)[11:] != '00:00'">
-                          de
+                          <span i18n:translate="evenement_de">de</span>
                           <span tal:content="python: here.toLocalizedTime(result.start, long_format=1)[11:]" />
-                          à
+                          <span i18n:translate="evenement_a">à</span>
                           <span tal:content="python: here.toLocalizedTime(result.end, long_format=1)[11:]" /></tal:withHours></tal:one_day>
                           <tal:more_days condition="python: here.toLocalizedTime(result.start, long_format=0) != here.toLocalizedTime(result.end, long_format=0)">
-                          du
+                          <span i18n:translate="evenement_du">du</span>
                           <span tal:content="python: here.toLocalizedTime(result.start, long_format=0)" />
-                          au
+                          <span i18n:translate="evenement_au">au</span>
                           <span tal:content="python: here.toLocalizedTime(result.end, long_format=0)" /></tal:more_days>
+                        </span>
+
+                        <span class="documentByLine"
+                              tal:condition="python: result.portal_type != 'Event' and view.hasEffectiveDate(result)">
+                          <span i18n:translate="evenement_le">le</span>
+                          <span tal:content="python: here.toLocalizedTime(result.effective, long_format=0)" />
+                          <span i18n:translate="evenement_a">à</span>
+                          <span tal:content="python: here.toLocalizedTime(result.effective, long_format=1)[11:]" />
                         </span>
 
                         <p tal:content="result/Description"></p>
                       </li>
                     </ul>
                     <a href=""
-                       tal:attributes="href string:${content/absolute_url}"
-                       i18n:translate="">Show all</a>
+                       class="voir-tout"
+                       tal:attributes="href string:${content/absolute_url}">
+                       <span i18n:translate="voir_lensemble_des">Voir l'ensemble des </span> <span tal:replace="content/Title" />
+                    </a>
                 </div>
 
                 <div class=""

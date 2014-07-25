@@ -36,6 +36,16 @@ class FolderView(BrowserView):
         context = aq_inner(context)
         return context
 
+    def hasEffectiveDate(self, obj):
+        """
+        Check if object has a correct effective date
+        If None, you get 01/01/1000 and strftime cannot convert it
+        """
+        effective = obj.effective
+        if effective.year() < 1900:
+            return False
+        return True
+
     def isFolderViewActivated(self, context=None):
         """
         Check if folderview is activated on context
