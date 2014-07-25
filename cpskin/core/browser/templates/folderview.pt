@@ -35,7 +35,7 @@
                 </div>
 
                 <div class=""
-                     tal:condition="python: content.portal_type == 'Collection' and content.id != 'a-la-une'"
+                     tal:condition="python: content.portal_type == 'Collection' and content.results() and content.id != 'a-la-une'"
                      tal:attributes="class string:bloc-${repeat/content/number} bloc-collection ${content/id}">
                     <a href=""
                        class="titre"
@@ -54,20 +54,24 @@
                           class="bloc-item"
                           colspan="2">
                         <a href=""
-                           tal:attributes="href result/absolute_url">
+                           tal:attributes="href result/getURL">
 
-                          <tal:leadImage tal:condition="nocall:item/hasContentLeadImage|nothing">
-                            <img class="myimageleft"
-                                 tal:condition="item/hasContentLeadImage"
+                          <tal:leadImage tal:condition="result/hasContentLeadImage|nothing">
+                            <img class=""
+                                 tal:define="oddRow repeat/result/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
                                  src="#"
                                  alt=""
-                                 tal:attributes="title item/Description; src python: item.getURL() + '/leadImage_thumb'" />
+                                 tal:attributes="title result/Description;
+                                                 src python: result.getURL() + '/leadImage_thumb'" />
                           </tal:leadImage>
 
-                          <tal:contentImage tal:condition="nocall:item/getImage|nothing">
-                            <span tal:replace="structure python: result.tag(scale='thumb', css_class=imageClass)"
-                                  tal:define="oddRow repeat/item/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
-                                  tal:condition="result/getImage" />
+                          <tal:contentImage tal:condition="result/getImage|nothing">
+                            <img class=""
+                                 tal:define="oddRow repeat/result/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
+                                 src="#"
+                                 alt=""
+                                 tal:attributes="title result/Description;
+                                                 src python: result.getURL() + '/image_thumb'" />
                           </tal:contentImage>
 
                           <h3 tal:content="result/Title"></h3>
@@ -92,13 +96,10 @@
 
                         <span class="documentByLine"
                               tal:condition="python: result.portal_type != 'Event' and view.hasEffectiveDate(result)">
-                          <span i18n:translate="evenement_le">le</span>
+                          <span i18n:translate="publie_le">Publié le</span>
                           <span tal:content="python: here.toLocalizedTime(result.effective, long_format=0)" />
-                          <span i18n:translate="evenement_a">à</span>
-                          <span tal:content="python: here.toLocalizedTime(result.effective, long_format=1)[11:]" />
                         </span>
 
-                        <p tal:content="result/Description"></p>
                       </li>
                     </ul>
                     <a href=""
