@@ -70,6 +70,7 @@ class FolderView(BrowserView):
                                         type='Folder',
                                         id='a-la-une',
                                         title="À la une")
+            alsoProvides(folder, IFolderViewSelectedContent)
             collection = api.content.create(container=folder,
                                             type='Collection',
                                             id='a-la-une',
@@ -84,13 +85,13 @@ class FolderView(BrowserView):
             collection.setSort_on('effective')
             collection.setSort_reversed(True)
             collection.setLayout('folder_summary_view')
-            alsoProvides(collection, IFolderViewSelectedContent)
             folder.setDefaultPage('a-la-une')
         if 'actualites' not in existingIds:
             folder = api.content.create(container=context,
                                         type='Folder',
                                         id='actualites',
                                         title="Actualités")
+            alsoProvides(folder, IFolderViewSelectedContent)
             collection = api.content.create(container=folder,
                                             type='Collection',
                                             id='actualites',
@@ -105,13 +106,13 @@ class FolderView(BrowserView):
             collection.setSort_on('effective')
             collection.setSort_reversed(True)
             collection.setLayout('folder_summary_view')
-            alsoProvides(collection, IFolderViewSelectedContent)
             folder.setDefaultPage('actualites')
         if 'evenements' not in existingIds:
             folder = api.content.create(container=context,
                                         type='Folder',
                                         id='evenements',
                                         title="Événements")
+            alsoProvides(folder, IFolderViewSelectedContent)
             collection = api.content.create(container=folder,
                                             type='Collection',
                                             id='evenements',
@@ -126,7 +127,6 @@ class FolderView(BrowserView):
             collection.setSort_on('effective')
             collection.setSort_reversed(True)
             collection.setLayout('folder_summary_view')
-            alsoProvides(collection, IFolderViewSelectedContent)
             folder.setDefaultPage('evenements')
 
         context.setLayout('folderview')
