@@ -37,18 +37,20 @@
                 <div class=""
                      tal:condition="python: content.portal_type == 'Collection' and content.results() and content.id != 'a-la-une'"
                      tal:attributes="class string:bloc-${repeat/content/number} bloc-collection ${content/id}">
-                    <a href=""
-                       class="titre"
-                       tal:attributes="href string:${content/absolute_url}">
-                      <h2 tal:content="content/Title"></h2>
-                    </a>
-                    <a class="bloc-rss"
-                       href=""
-                       tal:attributes="href string:${content/absolute_url}/RSS">
-                      <img src="++resource++cpskin.core.images/rss-accueil.gif"
-                           alt="Flux RSS"
-                           i18n:attributes="alt flux_rss" />
-                    </a>
+                    <div class="titre-rss">
+                        <a href=""
+                           class="titre"
+                           tal:attributes="href string:${content/absolute_url}">
+                          <h2 tal:content="content/Title"></h2>
+                        </a>
+                        <a class="bloc-rss"
+                           href=""
+                           tal:attributes="href string:${content/absolute_url}/RSS">
+                          <img src="++resource++cpskin.core.images/rss-accueil.gif"
+                               alt="Flux RSS"
+                               i18n:attributes="alt flux_rss" />
+                        </a>
+                    </div>
                     <ul class="bloc-items">
                       <li tal:repeat="result content/results"
                           class="bloc-item"
