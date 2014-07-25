@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from Acquisition import aq_parent
+from Acquisition import aq_inner
+from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 from plone import api
@@ -12,7 +14,7 @@ from cpskin.core.interfaces import IFolderViewSelectedContent
 
 from cpskin.locales import CPSkinMessageFactory as _
 
-ADDABLE_TYPES = ['Collection', 'Document']
+ADDABLE_TYPES = ['Collection', 'Document', 'Folder']
 
 
 class FolderView(BrowserView):
@@ -25,6 +27,14 @@ class FolderView(BrowserView):
                                         type='info')
             self.request.response.redirect(self.context.absolute_url())
         return msg
+
+    def _get_real_context(self):
+        context = self.context
+        plone_view = getMultiAdapter((context, self.request), name="plone")
+        if plone_view.isDefaultPageInFolder():
+            context = aq_parent(context)
+        context = aq_inner(context)
+        return context
 
     def isFolderViewActivated(self, context=None):
         """
@@ -128,14 +138,25 @@ class FolderView(BrowserView):
 
     def getContents(self):
         brains = self.searchSelectedContent()
-        return [brain.getObject() for brain in brains]
+        objects = [brain.getObject() for brain in brains]
+        realObjects = []
+        for obj in objects:
+            if obj.portal_type == 'Folder':
+                if obj.getDefaultPage() is not None:
+                    realObject = getattr(obj, obj.getDefaultPage())
+                    realObjects.append(realObject)
+                else:
+                    continue
+            else:
+                realObjects.append(obj)
+        return realObjects
 
     def searchSelectedContent(self):
         path = '/'.join(self.context.getPhysicalPath())
         portal_catalog = getToolByName(self.context, 'portal_catalog')
         queryDict = {}
-        queryDict['path'] = {'query': path, 'depth': 2}
-        queryDict['portal_type'] = ['Document', 'Collection']
+        queryDict['path'] = {'query': path, 'depth': 1}
+        queryDict['portal_type'] = ADDABLE_TYPES
         queryDict['object_provides'] = IFolderViewSelectedContent.__identifier__
         queryDict['sort_on'] = 'getObjPositionInParent'
         results = portal_catalog.searchResults(queryDict)
@@ -159,7 +180,7 @@ class FolderView(BrowserView):
         """
         Mark content to add it to folder view
         """
-        context = self.context
+        context = self._get_real_context()
         alsoProvides(context, IFolderViewSelectedContent)
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
@@ -169,31 +190,33 @@ class FolderView(BrowserView):
         """
         Unmark content to remove it from folder view
         """
-        context = self.context
+        context = self._get_real_context()
         noLongerProvides(context, IFolderViewSelectedContent)
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
         self._redirect(_(u'Contenu retiré de la vue index.'))
 
     def isEligibleContent(self):
-        if self.context.portal_type not in ADDABLE_TYPES:
+        context = self._get_real_context()
+        if context.portal_type not in ADDABLE_TYPES:
             return False
-        parent = aq_parent(self.context)
-        if not self.isFolderViewActivated(parent) \
-           and not self.isFolderViewActivated(aq_parent(parent)):
+        parent = aq_parent(context)
+        if not self.isFolderViewActivated(parent):
             return False
         return True
 
     def canAddContent(self):
         if not self.isEligibleContent():
             return False
-        if IFolderViewSelectedContent.providedBy(self.context):
+        context = self._get_real_context()
+        if IFolderViewSelectedContent.providedBy(context):
             return False
         return True
 
     def canRemoveContent(self):
         if not self.isEligibleContent():
             return False
-        if not IFolderViewSelectedContent.providedBy(self.context):
+        context = self._get_real_context()
+        if not IFolderViewSelectedContent.providedBy(context):
             return False
         return True
