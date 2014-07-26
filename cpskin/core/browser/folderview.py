@@ -146,6 +146,18 @@ class FolderView(BrowserView):
         self.request.response.redirect(context.absolute_url())
         return ''
 
+    def getResults(self, content):
+        portal_catalog = api.portal.get_tool(name='portal_catalog')
+        brains = content.results()
+        results = {'sticky-results': [],
+                   'standard-results': []}
+        for brain in brains:
+            if portal_catalog.getIndexDataForRID(brain.getRID())['is_sticky']:
+                results['sticky-results'].append(brain)
+            else:
+                results['standard-results'].append(brain)
+        return results
+
     def getContents(self):
         brains = self.searchSelectedContent()
         objects = [brain.getObject() for brain in brains]

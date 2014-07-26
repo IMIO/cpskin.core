@@ -49,6 +49,7 @@ setup(name='cpskin.core',
           'collective.plonetruegallery',
           'collective.geo.bundle',
           'plone.behavior',
+          'collective.sticky',
           # -*- Extra requirements: -*-
       ],
       extras_require={

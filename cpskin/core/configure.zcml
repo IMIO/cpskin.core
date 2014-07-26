@@ -5,6 +5,7 @@
     <include package="imio.ckeditortemplates" />
     <include package="collective.contentleadimage" />
     <include package="collective.geo.bundle" />
+    <include package="collective.sticky" />
     <include package="cpskin.locales" />
 
     <include file="permissions.zcml" />

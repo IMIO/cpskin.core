@@ -51,59 +51,67 @@
                                i18n:attributes="alt flux_rss" />
                         </a>
                     </div>
-                    <ul class="bloc-items">
-                      <li tal:repeat="result content/results"
-                          class="bloc-item"
-                          colspan="2">
-                        <a href=""
-                           tal:attributes="href result/getURL">
-
-                          <tal:leadImage tal:condition="result/hasContentLeadImage|nothing">
-                            <img class=""
-                                 tal:define="oddRow repeat/result/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
-                                 src="#"
-                                 alt=""
-                                 tal:attributes="title result/Description;
-                                                 src python: result.getURL() + '/leadImage_thumb'" />
-                          </tal:leadImage>
-
-                          <tal:contentImage tal:condition="result/getImage|nothing">
-                            <img class=""
-                                 tal:define="oddRow repeat/result/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
-                                 src="#"
-                                 alt=""
-                                 tal:attributes="title result/Description;
-                                                 src python: result.getURL() + '/image_thumb'" />
-                          </tal:contentImage>
-
-                          <h3 tal:content="result/Title"></h3>
-                        </a>
-
-                        <span class="documentByLine"
-                              tal:condition="python: result.portal_type == 'Event'">
-                          <tal:one_day condition="python: here.toLocalizedTime(result.start, long_format=0) == here.toLocalizedTime(result.end, long_format=0)">
-                          <span i18n:translate="evenement_le">le</span>
-                          <span tal:content="python: here.toLocalizedTime(result.start, long_format=0)" />
-                          <tal:withHours condition="python: here.toLocalizedTime(result.start, long_format=1)[11:] != '00:00' or here.toLocalizedTime(result.end, long_format=1)[11:] != '00:00'">
-                          <span i18n:translate="evenement_de">de</span>
-                          <span tal:content="python: here.toLocalizedTime(result.start, long_format=1)[11:]" />
-                          <span i18n:translate="evenement_a">à</span>
-                          <span tal:content="python: here.toLocalizedTime(result.end, long_format=1)[11:]" /></tal:withHours></tal:one_day>
-                          <tal:more_days condition="python: here.toLocalizedTime(result.start, long_format=0) != here.toLocalizedTime(result.end, long_format=0)">
-                          <span i18n:translate="evenement_du">du</span>
-                          <span tal:content="python: here.toLocalizedTime(result.start, long_format=0)" />
-                          <span i18n:translate="evenement_au">au</span>
-                          <span tal:content="python: here.toLocalizedTime(result.end, long_format=0)" /></tal:more_days>
-                        </span>
-
-                        <span class="documentByLine"
-                              tal:condition="python: result.portal_type != 'Event' and view.hasEffectiveDate(result)">
-                          <span i18n:translate="publie_le">Publié le</span>
-                          <span tal:content="python: here.toLocalizedTime(result.effective, long_format=0)" />
-                        </span>
-
-                      </li>
-                    </ul>
+                    <div class="results"
+                         tal:define="allresults python: view.getResults(content);
+                                     resultTypes python: ['sticky-results', 'standard-results']">
+                      <tal:bcl tal:repeat="resultType resultTypes">
+                        <ul class=""
+                            tal:define="results python: allresults[resultType]"
+                            tal:attributes="class string: ${resultType}">
+                          <li tal:repeat="result results"
+                              class="bloc-item"
+                              colspan="2">
+                            <a href=""
+                               tal:attributes="href result/getURL">
+    
+                              <tal:leadImage tal:condition="result/hasContentLeadImage|nothing">
+                                <img class=""
+                                     tal:define="oddRow repeat/result/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
+                                     src="#"
+                                     alt=""
+                                     tal:attributes="title result/Description;
+                                                     src python: result.getURL() + '/leadImage_thumb'" />
+                              </tal:leadImage>
+    
+                              <tal:contentImage tal:condition="result/getImage|nothing">
+                                <img class=""
+                                     tal:define="oddRow repeat/result/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
+                                     src="#"
+                                     alt=""
+                                     tal:attributes="title result/Description;
+                                                     src python: result.getURL() + '/image_thumb'" />
+                              </tal:contentImage>
+    
+                              <h3 tal:content="result/Title"></h3>
+                            </a>
+    
+                            <span class="documentByLine"
+                                  tal:condition="python: result.portal_type == 'Event'">
+                              <tal:one_day condition="python: here.toLocalizedTime(result.start, long_format=0) == here.toLocalizedTime(result.end, long_format=0)">
+                              <span i18n:translate="evenement_le">le</span>
+                              <span tal:content="python: here.toLocalizedTime(result.start, long_format=0)" />
+                              <tal:withHours condition="python: here.toLocalizedTime(result.start, long_format=1)[11:] != '00:00' or here.toLocalizedTime(result.end, long_format=1)[11:] != '00:00'">
+                              <span i18n:translate="evenement_de">de</span>
+                              <span tal:content="python: here.toLocalizedTime(result.start, long_format=1)[11:]" />
+                              <span i18n:translate="evenement_a">à</span>
+                              <span tal:content="python: here.toLocalizedTime(result.end, long_format=1)[11:]" /></tal:withHours></tal:one_day>
+                              <tal:more_days condition="python: here.toLocalizedTime(result.start, long_format=0) != here.toLocalizedTime(result.end, long_format=0)">
+                              <span i18n:translate="evenement_du">du</span>
+                              <span tal:content="python: here.toLocalizedTime(result.start, long_format=0)" />
+                              <span i18n:translate="evenement_au">au</span>
+                              <span tal:content="python: here.toLocalizedTime(result.end, long_format=0)" /></tal:more_days>
+                            </span>
+    
+                            <span class="documentByLine"
+                                  tal:condition="python: result.portal_type != 'Event' and view.hasEffectiveDate(result)">
+                              <span i18n:translate="publie_le">Publié le</span>
+                              <span tal:content="python: here.toLocalizedTime(result.effective, long_format=0)" />
+                            </span>
+    
+                          </li>
+                        </ul>
+                      </tal:bcl>
+                    </div>
                     <a href=""
                        class="voir-tout"
                        tal:attributes="href string:${content/absolute_url}">
