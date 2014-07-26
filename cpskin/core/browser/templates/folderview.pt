@@ -53,10 +53,12 @@
                     </div>
                     <div class="results"
                          tal:define="allresults python: view.getResults(content);
-                                     resultTypes python: ['sticky-results', 'standard-results']">
+                                     resultTypes python: ['sticky-results', 'standard-results']"
+                         tal:condition="allresults">
                       <tal:bcl tal:repeat="resultType resultTypes">
                         <ul class=""
                             tal:define="results python: allresults[resultType]"
+                            tal:condition="results"
                             tal:attributes="class string: ${resultType}">
                           <li tal:repeat="result results"
                               class="bloc-item"

@@ -156,6 +156,8 @@ class FolderView(BrowserView):
                 results['sticky-results'].append(brain)
             else:
                 results['standard-results'].append(brain)
+        if not results['sticky-results'] and not results['standard-results']:
+            return None
         return results
 
     def getContents(self):
