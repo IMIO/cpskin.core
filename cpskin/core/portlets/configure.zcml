@@ -8,7 +8,7 @@
 
   <plone:portletRenderer
       portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
-      template="navigation.pt"
+      class=".navigation.CPSkinRenderer"
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
@@ -41,5 +41,8 @@
       file="firefox.png"
       layer="..interfaces.ICPSkinCoreLayer"
       />
+
+  <adapter factory=".navigation.CPSkinQueryBuilder" />
+  <adapter factory=".navigation.CPSkinNavtreeStrategy" />
 
 </configure>
