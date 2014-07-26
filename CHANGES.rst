@@ -4,8 +4,9 @@ Changelog
 0.2 (unreleased)
 ----------------
 
-- Banner improvements (affinitic #5851)
-- Index view improvements (affinitic #5843)
+- Navigation takes care of 4th level (affinitic #5785)
+- Banner improvements with logo, link, ... (affinitic #5851)
+- Index view complete rewrite with content choosing/ordering (affinitic #5843)
 
 
 0.1 (2014-07-02)
