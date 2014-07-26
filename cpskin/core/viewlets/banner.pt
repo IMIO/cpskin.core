@@ -3,10 +3,9 @@
      i18n:domain="cpskin">
 
     <div id="minisite-logo"
-          tal:condition="exists: context/logo-minisite.png">
+         tal:condition="exists: context/logo-minisite.png">
         <a href=""
            target="_blank"
-           tal:omit-tag="not: view/isInMinisite"
            tal:attributes="href view/homeUrl">
             <img src=""
                  alt="Logo"

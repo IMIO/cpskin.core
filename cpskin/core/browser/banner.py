@@ -39,17 +39,20 @@ class BannerActivationView(BrowserView):
 
     @property
     def is_enabled(self):
-        # LATER : add caching here
+        return self.banner_root is not None
+
+    @property
+    def banner_root(self):
         context = self._get_real_context()
         portal = api.portal.get()
         obj = context
         while obj != portal:
             if IBannerActivated.providedBy(obj):
-                return True
+                return obj
             obj = aq_parent(obj)
         if IBannerActivated.providedBy(obj):
-            return True
-        return False
+            return obj
+        return None
 
     @property
     def can_enable_banner(self):

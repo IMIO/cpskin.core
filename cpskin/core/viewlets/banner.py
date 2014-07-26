@@ -27,13 +27,22 @@ class CPSkinBannerViewlet(ViewletBase):
         return (self.isInMinisiteMode() or self.isInPortalMode())
 
     def homeUrl(self):
-        if not HAS_MINISITE:
-            return None
+        """
+        Returns URL of :
+         - object where banner was activated if not in a minisite
+         - minisite root object if in a minisite
+        """
+        context = self.context
         request = self.request
-        portal = api.portal.get()
-        minisite = request.get('cpskin_minisite', None)
-        minisiteRoot = portal.unrestrictedTraverse(minisite.search_path)
-        return minisiteRoot.absolute_url()
+        if not HAS_MINISITE or not self.isInMinisite():
+            banner_view = getMultiAdapter((context, request),
+                                          name="banner_activation")
+            return banner_view.banner_root.absolute_url()
+        else:
+            portal = api.portal.get()
+            minisite = request.get('cpskin_minisite', None)
+            minisiteRoot = portal.unrestrictedTraverse(minisite.search_path)
+            return minisiteRoot.absolute_url()
 
     def isInMinisiteMode(self):
         if not HAS_MINISITE:
