@@ -6,6 +6,8 @@
 
   <include package="plone.app.portlets"  />
 
+  <includeOverrides file="overrides.zcml" />
+
   <plone:portletRenderer
       portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
       class=".navigation.CPSkinRenderer"
@@ -41,8 +43,5 @@
       file="firefox.png"
       layer="..interfaces.ICPSkinCoreLayer"
       />
-
-  <adapter factory=".navigation.CPSkinQueryBuilder" />
-  <adapter factory=".navigation.CPSkinNavtreeStrategy" />
 
 </configure>
