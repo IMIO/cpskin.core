@@ -23,6 +23,9 @@
     <viewlet name="plone.colophon" />
     <viewlet name="plone.site_actions" />
   </order>
+  <hidden manager="plone.belowcontent" skinname="Plone Default">
+    <viewlet name="plone.belowcontenttitle.keywords" />
+  </hidden>
   <hidden manager="plone.portalfooter" skinname="Plone Default">
     <viewlet name="plone.colophon" />
   </hidden>
