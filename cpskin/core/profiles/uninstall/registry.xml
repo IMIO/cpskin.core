@@ -5,6 +5,10 @@
              remove="True" />
 
     <records interface="plone.app.querystring.interfaces.IQueryField"
+             prefix="plone.app.querystring.field.standardTags"
+             remove="True" />
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
              prefix="plone.app.querystring.field.iamTags"
              remove="True" />
 

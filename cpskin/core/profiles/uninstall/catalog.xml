@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <object name="portal_catalog">
 
+  <index name="standardTags" remove="True"/>
+  <column value="standardTags" remove="True"/>
+
   <index name="iamTags" remove="True"/>
   <column value="iamTags" remove="True"/>
 

@@ -4,6 +4,7 @@ Changelog
 0.2 (unreleased)
 ----------------
 
+- Add standard tag to replace Plone's Subject tag (affinitic #5873)
 - Navigation takes care of 4th level (affinitic #5785)
 - Banner improvements with logo, link, ... (affinitic #5851)
 - Index view complete rewrite with content choosing/ordering (affinitic #5843)

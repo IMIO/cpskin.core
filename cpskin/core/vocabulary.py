@@ -38,6 +38,11 @@ class BaseTagsVocabulary(object):
         return SimpleVocabulary(items)
 
 
+class IStandardTagsVocabulary(BaseTagsVocabulary):
+    """Vocabulary factory listing all catalog keywords from standard tags"""
+    indexName = 'standardTags'
+
+
 class IAmTagsVocabulary(BaseTagsVocabulary):
     """Vocabulary factory listing all catalog keywords from I am tags"""
     indexName = 'iamTags'
@@ -53,6 +58,7 @@ class HiddenTagsVocabulary(BaseTagsVocabulary):
     indexName = 'hiddenTags'
 
 
+IStandardTagsVocabularyFactory = IStandardTagsVocabulary()
 IAmTagsVocabularyFactory = IAmTagsVocabulary()
 ISearchTagsVocabularyFactory = ISearchTagsVocabulary()
 HiddenTagsVocabularyFactory = HiddenTagsVocabulary()

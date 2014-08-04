@@ -17,6 +17,9 @@
     <include package=".portlets" />
     <include package=".viewlets" />
 
+    <utility component=".vocabulary.IStandardTagsVocabularyFactory"
+             name="cpskin.core.vocabularies.standardTags" />
+
     <utility component=".vocabulary.IAmTagsVocabularyFactory"
              name="cpskin.core.vocabularies.iamTags" />
 
