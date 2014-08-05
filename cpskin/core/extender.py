@@ -17,6 +17,10 @@ import permissions
 from cpskin.core.interfaces import ICPSkinCoreLayer
 
 
+class ExtensionStandardTagsField(ExtensionField, atapi.LinesField):
+    """Derivate from Archetypes basic LinesField"""
+
+
 class ExtensionIAmTagsField(ExtensionField, atapi.LinesField):
     """Derivate from Archetypes basic LinesField"""
 
@@ -35,6 +39,21 @@ class ContentExtender(object):
     layer = ICPSkinCoreLayer
 
     fields = [
+        ExtensionStandardTagsField(
+            'standardTags',
+            multiValued=1,
+            searchable=False,
+            schemata="categorization",
+            languageIndependent=True,
+            widget=atapi.KeywordWidget(
+                label=_(u'label_standard_tags', default=u'Standard Tags'),
+                description=_(u'help_standard_tags',
+                              default=u'Standard Tags are used for webmaster '
+                                      u'organization of content.'),
+            ),
+            read_permission=zope_permissions.View,
+            write_permission=permissions.CPSkinSiteAdministrator,
+        ),
         ExtensionIAmTagsField(
             'iamTags',
             multiValued=1,
@@ -93,19 +112,25 @@ class ContentExtender(object):
             insertAfterFieldIndex = schematas['categorization'].index('subject')
         else:
             insertAfterFieldIndex = -1
-        iAmTagsIndex = schematas['categorization'].index('iamTags')
+
+        standardTagsIndex = schematas['categorization'].index('standardTags')
         schematas['categorization'].insert(
                            insertAfterFieldIndex + 1,
+                           schematas['categorization'].pop(standardTagsIndex)
+                           )
+        iAmTagsIndex = schematas['categorization'].index('iamTags')
+        schematas['categorization'].insert(
+                           insertAfterFieldIndex + 2,
                            schematas['categorization'].pop(iAmTagsIndex)
                            )
         iSearchTagsIndex = schematas['categorization'].index('isearchTags')
         schematas['categorization'].insert(
-                           insertAfterFieldIndex + 2,
+                           insertAfterFieldIndex + 3,
                            schematas['categorization'].pop(iSearchTagsIndex)
                            )
         hiddenTagsIndex = schematas['categorization'].index('hiddenTags')
         schematas['categorization'].insert(
-                           insertAfterFieldIndex + 3,
+                           insertAfterFieldIndex + 4,
                            schematas['categorization'].pop(hiddenTagsIndex)
                            )
         return schematas

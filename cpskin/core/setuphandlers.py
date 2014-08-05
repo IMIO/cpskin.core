@@ -196,7 +196,8 @@ def addCatalogIndexes(portal):
     """
     catalog = getToolByName(portal, 'portal_catalog')
     indexes = catalog.indexes()
-    wanted = (('iamTags', 'KeywordIndex'),
+    wanted = (('standardTags', 'KeywordIndex'),
+              ('iamTags', 'KeywordIndex'),
               ('isearchTags', 'KeywordIndex'),
               ('hiddenTags', 'KeywordIndex'))
     indexables = []

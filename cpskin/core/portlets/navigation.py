@@ -23,6 +23,7 @@ except ImportError:
 
 def calculateTopLevel(context, portlet):
     """Calculate top level of navigation menu to take care of 4th level menu
+    NB : IFourthLevelNavigation is activated on the third level folder
     """
     if portlet.topLevel != 3 or not HAS_MENU:
         return portlet.topLevel
@@ -31,14 +32,14 @@ def calculateTopLevel(context, portlet):
     portalPhyPath = portal.getPhysicalPath()
     path = [elem for elem in list(contextPhyPath) if elem not in list(portalPhyPath)]
     depth = len(path)
-    if depth >= 4:
-        subLevels = depth - 4
+    if depth >= 3:
+        subLevels = depth - 3
         if subLevels:
-            fourthLevelPath = '/'.join(contextPhyPath[:-subLevels])
+            thirdLevelPath = '/'.join(contextPhyPath[:-subLevels])
         else:
-            fourthLevelPath = '/'.join(contextPhyPath)
-        fourthLevelFolder = portal.unrestrictedTraverse(fourthLevelPath)
-        if IFourthLevelNavigation.providedBy(fourthLevelFolder):
+            thirdLevelPath = '/'.join(contextPhyPath)
+        thirdLevelFolder = portal.unrestrictedTraverse(thirdLevelPath)
+        if IFourthLevelNavigation.providedBy(thirdLevelFolder):
             return 4
     return portlet.topLevel
 

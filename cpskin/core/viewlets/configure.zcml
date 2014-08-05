@@ -41,6 +41,15 @@
         />
 
     <browser:viewlet
+        name="cpskin.standardtags"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        permission="cpskin.siteadministrator"
+        template="standardtags.pt"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:viewlet
         name="cpskin.hiddentags"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         view="plone.app.layout.globals.interfaces.IViewView"
