@@ -30,7 +30,8 @@
              name="cpskin.core.vocabularies.hiddenTags" />
 
     <adapter factory=".extender.ContentExtender"
-             provides="archetypes.schemaextender.interfaces.ISchemaExtender" />
+             provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+             name="cpskin.core.extender" />
 
     <subscriber for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
                 handler=".events.user_logged_in" />
