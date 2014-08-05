@@ -250,3 +250,5 @@ def configCollectiveQucikupload(portal):
     qu_props = ptool.get('quickupload_properties')
     if not qu_props.hasProperty('show_upload_action'):
         qu_props._setProperty('show_upload_action', True, 'boolean')
+    else:
+        qu_props.show_upload_action = True
