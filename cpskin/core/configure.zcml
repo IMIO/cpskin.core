@@ -6,6 +6,7 @@
     <include package="collective.contentleadimage" />
     <include package="collective.geo.bundle" />
     <include package="collective.sticky" />
+    <include package="collective.quickupload" />
     <include package="cpskin.locales" />
 
     <include file="permissions.zcml" />

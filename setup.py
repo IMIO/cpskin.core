@@ -50,6 +50,7 @@ setup(name='cpskin.core',
           'collective.geo.bundle',
           'plone.behavior',
           'collective.sticky',
+          'collective.quickupload',
           # -*- Extra requirements: -*-
       ],
       extras_require={

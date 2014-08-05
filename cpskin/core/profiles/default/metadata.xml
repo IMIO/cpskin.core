@@ -8,5 +8,6 @@
     <dependency>profile-collective.contentleadimage:default</dependency>
     <dependency>profile-collective.geo.bundle:default</dependency>
     <dependency>profile-collective.sticky:default</dependency>
+    <dependency>profile-collective.quickupload:default</dependency>
   </dependencies>
 </metadata>

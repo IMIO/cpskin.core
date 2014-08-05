@@ -50,6 +50,8 @@ def installCore(context):
                              ('Editor', 'Manager', 'Site Administrator'),
                              acquire=1)
 
+    configCollectiveQucikupload(portal)
+
 
 def configureMembers(context):
     if context.readDataFile('cpskin.core-membersconfig.txt') is None:
@@ -240,3 +242,10 @@ def addImageFromFile(portal, fileName):
         image.setTitle(fileName)
         image.reindexObject()
     fd.close()
+
+
+def configCollectiveQucikupload(portal):
+    ptool = getToolByName(portal, 'portal_properties')
+    qu_props = ptool.get('quickupload_properties')
+    if not qu_props.hasProperty('show_upload_action'):
+        qu_props._setProperty('show_upload_action', True, 'boolean')
