@@ -9,5 +9,6 @@
     <dependency>profile-collective.geo.bundle:default</dependency>
     <dependency>profile-collective.sticky:default</dependency>
     <dependency>profile-collective.quickupload:default</dependency>
+    <dependency>profile-wildcard.foldercontents:default</dependency>
   </dependencies>
 </metadata>

@@ -51,6 +51,7 @@ setup(name='cpskin.core',
           'plone.behavior',
           'collective.sticky',
           'collective.quickupload',
+          'wildcard.foldercontents',
           # -*- Extra requirements: -*-
       ],
       extras_require={
