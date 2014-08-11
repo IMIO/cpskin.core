@@ -1,7 +1,7 @@
 <div i18n:domain="cpskin"
      id="iam-tags"
      class="documentByLine cpskin-tags"
-     tal:define="categories context/IAmTags|nothing;
+     tal:define="categories context/iamTags|nothing;
                  url_quote  nocall:modules/Products.PythonScripts.standard/url_quote;"
      tal:condition="categories">
   <tal:filedunder i18n:translate="label_filed_under_iam_tag">Filed under I am tag:</tal:filedunder>

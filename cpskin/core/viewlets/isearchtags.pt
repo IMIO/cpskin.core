@@ -1,7 +1,7 @@
 <div i18n:domain="cpskin"
      id="isearch-tags"
      class="documentByLine cpskin-tags"
-     tal:define="categories context/ISearchTags|nothing;
+     tal:define="categories context/isearchTags|nothing;
                  url_quote  nocall:modules/Products.PythonScripts.standard/url_quote;"
      tal:condition="categories">
   <tal:filedunder i18n:translate="label_filed_under_isearch_tag">Filed under I search tag:</tal:filedunder>
