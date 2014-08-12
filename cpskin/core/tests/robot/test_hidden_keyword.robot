@@ -10,9 +10,9 @@ Test Teardown  Close all browsers
 
 Scenario: Test collection hidden tags criteria
     Given logged as owner
-      And a document 'simple_document' with hidden tag 'sample_keyword'
+      And a document 'simple_document' with hidden tag 'sample_keyword_accentué'
       And a collection  simple_collection
-     When I set to the collection 'simple_collection' the search terms hidden tag 'sample_keyword'
+     When I set to the collection 'simple_collection' the search terms hidden tag 'sample_keyword_accentué'
      Then the collection 'simple_collection' should contain 'simple_document'
 
 
