@@ -7,7 +7,7 @@
             <property name="title" i18n:translate="">Indicate an error</property>
             <property name="description" i18n:translate=""></property>
             <property name="url_expr">string:$object_url/sendtomanager_form</property>
-            <property name="icon_expr">string:$portal_url/++resource++cpskin.core.images/indicate_erro.png</property>
+            <property name="icon_expr">string:$portal_url/++resource++cpskin.core.images/indicate-error.png</property>
             <property name="available_expr"></property>
             <property name="permissions">
                 <element value="View"/>
