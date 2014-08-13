@@ -52,6 +52,7 @@ setup(name='cpskin.core',
           'collective.sticky',
           'collective.quickupload',
           'wildcard.foldercontents',
+          'collective.iconifieddocumentactions',
           # -*- Extra requirements: -*-
       ],
       extras_require={

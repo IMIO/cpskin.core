@@ -10,5 +10,6 @@
     <dependency>profile-collective.sticky:default</dependency>
     <dependency>profile-collective.quickupload:default</dependency>
     <dependency>profile-wildcard.foldercontents:default</dependency>
+    <dependency>profile-collective.iconifieddocumentactions:default</dependency>
   </dependencies>
 </metadata>
