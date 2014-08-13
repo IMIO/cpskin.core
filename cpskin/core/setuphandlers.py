@@ -2,9 +2,11 @@
 import os
 import logging
 from zope.component import getAdapter
+from zope.component import getUtility
 from zope.component import queryMultiAdapter
 from zope.interface import noLongerProvides
 from plone import api
+from plone.dexterity.interfaces import IDexterityFTI
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.utils import bodyfinder
 from plone.app.controlpanel.security import ISecuritySchema
@@ -36,6 +38,11 @@ def installCore(context):
 
     # Create default logo
     addImageFromFile(portal, 'cpskinlogo.png')
+
+    # Add HiddenTags behavior to collective.directory types
+    addHiddenTagsBehavior(portal, 'collective.directory.directory')
+    addHiddenTagsBehavior(portal, 'collective.directory.category')
+    addHiddenTagsBehavior(portal, 'collective.directory.card')
 
     # Create footer static page
     footer_name = 'footer-static'
@@ -126,6 +133,11 @@ def uninstallCore(context):
     # Remove footer static
     if portal.hasObject('footer-static'):
         api.content.delete(obj=portal['footer-static'])
+
+    # Remove dexterity behaviors
+    removeHiddenTagsBehavior(portal, 'collective.directory.directory')
+    removeHiddenTagsBehavior(portal, 'collective.directory.category')
+    removeHiddenTagsBehavior(portal, 'collective.directory.card')
 
     unregisterProvidesInterfaces(portal)
 
@@ -243,6 +255,34 @@ def addImageFromFile(portal, fileName):
         image.setTitle(fileName)
         image.reindexObject()
     fd.close()
+
+
+def addHiddenTagsBehavior(portal, name):
+    """
+    Add HiddenTags behavior to dexterity named type
+    """
+    fti = getUtility(IDexterityFTI, name=name)
+
+    behavior = 'cpskin.core.behaviors.metadata.IHiddenTags'
+    behaviors = list(fti.behaviors)
+
+    if behavior not in behaviors:
+        behaviors.append(behavior)
+        fti.behaviors = behaviors
+
+
+def removeHiddenTagsBehavior(portal, name):
+    """
+    Remove HiddenTags behavior dexterity named type
+    """
+    fti = getUtility(IDexterityFTI, name=name)
+
+    behavior = 'cpskin.core.behaviors.metadata.IHiddenTags'
+    behaviors = list(fti.behaviors)
+
+    if behavior in behaviors:
+        behaviors.remove(behavior)
+        fti.behaviors = behaviors
 
 
 def configCollectiveQucikupload(portal):
