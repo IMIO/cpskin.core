@@ -75,7 +75,9 @@
                                                      src python: result.getURL() + '/leadImage_thumb'" />
                               </tal:leadImage>
     
-                              <tal:contentImage tal:condition="result/getImage|nothing">
+                              <tal:contentImage tal:define="hasImage result/getImage|nothing;
+                                                            isFile python: result.portal_type == 'File'"
+                                                tal:condition="python: hasImage and not isFile">
                                 <img class=""
                                      tal:define="oddRow repeat/result/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
                                      src="#"
