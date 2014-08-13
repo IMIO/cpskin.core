@@ -15,8 +15,8 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 HAS_MENU = False
 try:
-    HAS_MENU = True
     from cpskin.menu.interfaces import IFourthLevelNavigation
+    HAS_MENU = True
 except ImportError:
     pass
 
