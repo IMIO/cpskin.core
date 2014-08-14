@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from plone.testing import z2
+from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneWithPackageLayer
 from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 
 import cpskin.core
-
-from plone.app.testing import applyProfile
 
 
 class CPSkinCorePloneWithPackageLayer(PloneWithPackageLayer):
