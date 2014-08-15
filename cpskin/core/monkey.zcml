@@ -10,4 +10,11 @@
         replacement=".monkeypatches.afterMemberAdd"
         />
 
+    <monkey:patch
+        description="Patch the KeywordIndex for eea.facetednavigation queries"
+        class="Products.PluginIndexes.KeywordIndex.KeywordIndex.KeywordIndex"
+        original="_apply_index"
+        replacement=".monkeypatches.keyword_apply_index"
+        />
+
 </configure>
