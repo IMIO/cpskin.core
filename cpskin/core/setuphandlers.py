@@ -40,9 +40,23 @@ def installCore(context):
     addImageFromFile(portal, 'cpskinlogo.png')
 
     # Add HiddenTags behavior to collective.directory types
-    addHiddenTagsBehavior(portal, 'collective.directory.directory')
-    addHiddenTagsBehavior(portal, 'collective.directory.category')
-    addHiddenTagsBehavior(portal, 'collective.directory.card')
+    addBehavior(
+        portal,
+        'cpskin.core.behaviors.metadata.IHiddenTags',
+        'collective.directory.directory')
+    addBehavior(
+        portal,
+        'cpskin.core.behaviors.metadata.IISearchTags',
+        'collective.directory.directory')
+
+    addBehavior(
+        portal,
+        'cpskin.core.behaviors.metadata.IHiddenTags',
+        'collective.directory.category')
+    addBehavior(
+        portal,
+        'cpskin.core.behaviors.metadata.IHiddenTags',
+        'collective.directory.card')
 
     # Create footer static page
     footer_name = 'footer-static'
@@ -135,9 +149,23 @@ def uninstallCore(context):
         api.content.delete(obj=portal['footer-static'])
 
     # Remove dexterity behaviors
-    removeHiddenTagsBehavior(portal, 'collective.directory.directory')
-    removeHiddenTagsBehavior(portal, 'collective.directory.category')
-    removeHiddenTagsBehavior(portal, 'collective.directory.card')
+    removeBehavior(
+        portal,
+        'cpskin.core.behaviors.metadata.IHiddenTags',
+        'collective.directory.directory')
+    removeBehavior(
+        portal,
+        'cpskin.core.behaviors.metadata.IISearchTags',
+        'collective.directory.directory')
+
+    removeBehavior(
+        portal,
+        'cpskin.core.behaviors.metadata.IHiddenTags',
+        'collective.directory.category')
+    removeBehavior(
+        portal,
+        'cpskin.core.behaviors.metadata.IHiddenTags',
+        'collective.directory.card')
 
     unregisterProvidesInterfaces(portal)
 
@@ -257,13 +285,12 @@ def addImageFromFile(portal, fileName):
     fd.close()
 
 
-def addHiddenTagsBehavior(portal, name):
+def addBehavior(portal, behavior, name):
     """
     Add HiddenTags behavior to dexterity named type
     """
     fti = getUtility(IDexterityFTI, name=name)
 
-    behavior = 'cpskin.core.behaviors.metadata.IHiddenTags'
     behaviors = list(fti.behaviors)
 
     if behavior not in behaviors:
@@ -271,13 +298,12 @@ def addHiddenTagsBehavior(portal, name):
         fti.behaviors = behaviors
 
 
-def removeHiddenTagsBehavior(portal, name):
+def removeBehavior(portal, behavior, name):
     """
     Remove HiddenTags behavior dexterity named type
     """
     fti = getUtility(IDexterityFTI, name=name)
 
-    behavior = 'cpskin.core.behaviors.metadata.IHiddenTags'
     behaviors = list(fti.behaviors)
 
     if behavior in behaviors:
