@@ -57,6 +57,11 @@ def installCore(context):
         portal,
         'cpskin.core.behaviors.metadata.IHiddenTags',
         'collective.directory.card')
+    addBehavior(
+        portal,
+        'cpskin.core.behaviors.metadata.IISearchTags',
+        'collective.directory.card')
+
 
     # Create footer static page
     footer_name = 'footer-static'
@@ -166,6 +171,11 @@ def uninstallCore(context):
         portal,
         'cpskin.core.behaviors.metadata.IHiddenTags',
         'collective.directory.card')
+    removeBehavior(
+        portal,
+        'cpskin.core.behaviors.metadata.IISearchTags',
+        'collective.directory.card')
+
 
     unregisterProvidesInterfaces(portal)
 
