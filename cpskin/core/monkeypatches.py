@@ -16,7 +16,9 @@ def afterMemberAdd(self, member, id, password, properties):
 def keyword_apply_index(self, request, resultset=None):
     indexes = ('standardTags', 'iamTags', 'isearchTags', 'hiddenTags')
     for key in [k for k in indexes if k in request and self.id == k]:
-        query_value = request[key]['query']
-        if isinstance(query_value, unicode):
-            request[key]['query'] = query_value.encode('utf8')
+        request_key = request.get(key, {})
+        if hasattr(request_key, 'query'):
+            query_value = request_key.get('query')
+            if isinstance(query_value, unicode):
+                request[key]['query'] = query_value.encode('utf8')
     return super(KeywordIndex, self)._apply_index(request, resultset)
