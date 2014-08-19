@@ -10,11 +10,20 @@
   <grok:grok package=".metadata" />
 
   <plone:behavior
-    title="HiddenTags"
+    title="hiddenTags"
     description="Adds hidden keywords."
     provides=".metadata.IHiddenTags"
     factory='.metadata.HiddenTags'
     for="plone.dexterity.interfaces.IDexterityContent"
     />
+
+  <plone:behavior
+    title="isearchTags"
+    description="Adds I search keywords."
+    provides=".metadata.IISearchTags"
+    factory='.metadata.ISearchTags'
+    for="plone.dexterity.interfaces.IDexterityContent"
+    />
+
 
 </configure>
