@@ -21,4 +21,7 @@ def keyword_apply_index(self, request, resultset=None):
             query_value = request_key.get('query')
             if isinstance(query_value, unicode):
                 request[key]['query'] = query_value.encode('utf8')
+        else:
+            if isinstance(request_key, unicode):
+                request[key] = request_key.encode('utf8')
     return super(KeywordIndex, self)._apply_index(request, resultset)
