@@ -5,7 +5,8 @@
       <a tal:define="klass python: link[1]"
          tal:attributes="class string: ${klass};
                          href python: link[2];
-                         title python: link[2];"></a>
+                         title python: link[2];"
+                         target="_blank" ></a>
     </li>
   </ul>
 </div>
