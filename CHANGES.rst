@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2 (unreleased)
+0.2 (2014-08-21)
 ----------------
 
 - Add standard tag to replace Plone's Subject tag (affinitic #5873)
