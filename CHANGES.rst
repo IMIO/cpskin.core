@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.4 (unreleased)
+0.4 (2014-08-21)
 ----------------
 
 - Remove target blank from minisite logo link
