@@ -4,13 +4,8 @@ Changelog
 0.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
-
-0.3 (2014-08-21)
-----------------
-
-- Nothing changed yet.
+- Remove target blank from minisite logo link
+  [bsuttor]
 
 
 0.2 (2014-08-21)
