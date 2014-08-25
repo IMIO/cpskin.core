@@ -7,6 +7,11 @@ from cpskin.core.interfaces import IAlbumCollection
 from cpskin.core.interfaces import IVideoCollection
 from imio.media.browser import utils
 
+from zope.component import getUtility
+
+from plone.portlets.interfaces import IPortletManager
+from plone.portlets.interfaces import IPortletRetriever
+
 import logging
 logger = logging.getLogger('cpskin.core media viewlet')
 
@@ -34,7 +39,9 @@ class MediaViewlet(common.ViewletBase):
         for brain in collection.queryCatalog():
             video = brain.getObject()
             videos.append(utils.embed(video, self.request))
-        return videos[:collection.getLimit()]
+        # limit = collection.getLimit()
+        limit = 2
+        return videos[:limit]
 
     def get_albums_collection(self):
         return self.get_collection(IAlbumCollection)
@@ -56,7 +63,10 @@ class MediaViewlet(common.ViewletBase):
                 albums.append(html)
             else:
                 logger.info("{} has no lead image".format(gallery_brain.getURL()))
-        return albums[:collection.getLimit()]
+        limit = 5
+        if 'visible_albums' in self.context.propertyIds():
+            limit = self.context.getProperty('visible_albums')
+        return albums[:limit]
 
     def get_collection(self, object_provide):
         queryDict = {}
