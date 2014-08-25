@@ -88,6 +88,11 @@
         </value>
     </record>
 
-    <record name="cpskin.core.mediaviewlet" 
-            remove="True" />
+    <record name="cpskin.core.default_visible_albums">
+        <field type="plone.registry.field.Int">
+            <title>Default visible albums on media viewlet</title>
+            <min>1</min>
+        </field>
+        <value purge="false">5</value>
+    </record>
 </registry>
