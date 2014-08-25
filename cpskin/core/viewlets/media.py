@@ -66,6 +66,8 @@ class MediaViewlet(common.ViewletBase):
         limit = 5
         if 'visible_albums' in self.context.propertyIds():
             limit = self.context.getProperty('visible_albums')
+        else:
+            limit = api.portal.get_registry_record('cpskin.core.default_visible_albums')
         return albums[:limit]
 
     def get_collection(self, object_provide):
