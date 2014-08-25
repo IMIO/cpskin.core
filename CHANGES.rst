@@ -4,8 +4,9 @@ Changelog
 0.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Add a regisrty and implements a property field for getting number of 
+  albums visible on media viewlet.
+  [bsuttor]
 
 0.4 (2014-08-21)
 ----------------
