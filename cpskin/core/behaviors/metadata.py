@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
+
+from zope.interface import alsoProvides
+from zope import schema
+
+from collective.z3cform.keywordwidget.field import Keywords
 from plone.supermodel import model
 from plone.app.dexterity.behaviors.metadata import MetadataBase
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.directives import form
+
 from cpskin.locales import CPSkinMessageFactory as _
-from zope.interface import alsoProvides
-from zope import schema
 
 
 class IHiddenTags(model.Schema):
@@ -14,16 +19,17 @@ class IHiddenTags(model.Schema):
         fields=('hiddenTags',),
     )
 
-    hiddenTags = schema.Tuple(
+    form.widget(hiddenTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
+    hiddenTags = Keywords(
         title=_(u'label_hidden_tags', default=u'Hidden tags'),
         description=_(
             u'help_hidden_tags',
             default=u'Tags are commonly used for ad-hoc organization of ' +
                     u'content.'
         ),
-        value_type=schema.TextLine(),
         required=False,
-        missing_value=(),
+        # Automatically get the index in catalog by name
+        index_name="hiddenTags",
     )
 
 

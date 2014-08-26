@@ -54,6 +54,7 @@ setup(name='cpskin.core',
           'collective.quickupload',
           'wildcard.foldercontents',
           'collective.iconifieddocumentactions',
+          'collective.z3cform.keywordwidget',
           # -*- Extra requirements: -*-
       ],
       extras_require={
