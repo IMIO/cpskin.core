@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from zope.interface import alsoProvides
-from zope import schema
 
 from collective.z3cform.keywordwidget.field import Keywords
 from plone.supermodel import model
@@ -40,51 +39,18 @@ class IISearchTags(model.Schema):
         fields=('isearchTags',),
     )
 
-    isearchTags = schema.Tuple(
+    form.widget(isearchTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
+    isearchTags = Keywords(
         title=_(u'label_isearch_tags',  default=u'I Search Tags'),
         description=_(
             u'help_isearch_tags',
             default=u'I Search Tags are used for webmaster '
                     u'organization of content.'
         ),
-        value_type=schema.TextLine(),
         required=False,
-        missing_value=(),
+        index_name="isearchTags",
     )
+
 
 alsoProvides(IHiddenTags, IFormFieldProvider)
 alsoProvides(IISearchTags, IFormFieldProvider)
-
-
-class HiddenTags(MetadataBase):
-
-    @property
-    def hiddenTags(self):
-        return self.context.hiddenTags
-
-    @hiddenTags.setter
-    def hiddenTags(self, value):
-        values = []
-        for index in value:
-            if isinstance(index, unicode):
-                values.append(index.encode('utf8'))
-            else:
-                values.append(index)
-        self.context.hiddenTags = tuple(values)
-
-
-class ISearchTags(MetadataBase):
-
-    @property
-    def isearchTags(self):
-        return self.context.isearchTags
-
-    @isearchTags.setter
-    def isearchTags(self, value):
-        values = []
-        for index in value:
-            if isinstance(index, unicode):
-                values.append(index.encode('utf8'))
-            else:
-                values.append(index)
-        self.context.isearchTags = tuple(values)

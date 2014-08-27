@@ -13,7 +13,6 @@
     title="hiddenTags"
     description="Adds hidden keywords."
     provides=".metadata.IHiddenTags"
-    factory='.metadata.HiddenTags'
     for="plone.dexterity.interfaces.IDexterityContent"
     />
 
@@ -21,7 +20,6 @@
     title="isearchTags"
     description="Adds I search keywords."
     provides=".metadata.IISearchTags"
-    factory='.metadata.ISearchTags'
     for="plone.dexterity.interfaces.IDexterityContent"
     />
 
