@@ -7,11 +7,6 @@ from cpskin.core.interfaces import IAlbumCollection
 from cpskin.core.interfaces import IVideoCollection
 from imio.media.browser import utils
 
-from zope.component import getUtility
-
-from plone.portlets.interfaces import IPortletManager
-from plone.portlets.interfaces import IPortletRetriever
-
 import logging
 logger = logging.getLogger('cpskin.core media viewlet')
 
