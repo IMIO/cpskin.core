@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="eea">
+
+<body>
+  <metal:content-core fill-slot="content-core">
+    <metal:block define-macro="content-core">
+      <div>
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+        <div class="eea-preview-items">
+          <tal:entries repeat="brain python:context.queryCatalog()">
+
+            <div class="photoAlbumEntry"
+                tal:define="
+                    portal_type context/portal_type;">
+                 <a tal:define="item_has_leadimage brain/hasContentLeadImage;
+                                item_object brain/getObject;
+                                description item_object/Description|string:;
+                                title item_object/pretty_title_or_id|string:;
+                                desc_or_title python:description or title;"
+                    tal:attributes="href brain/getURL; title description">
+
+                    <div class="title" tal:content="title"></div>
+
+                    <img tal:condition="exists:item_has_leadimage"
+                         tal:define="scale item_object/@@images; 
+                                     img python:scale.scale('leadImage', width=280, height=280)"
+                         tal:replace="structure python: img.tag() if img else None" />
+
+                </a>
+            </div>
+    
+
+
+          </tal:entries>
+        </div>
+
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+      </div>
+
+    </metal:block>
+  </metal:content-core>
+</body>
+</html>
