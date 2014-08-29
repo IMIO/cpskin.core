@@ -8,6 +8,9 @@ Changelog
   albums visible on media viewlet.
   [bsuttor]
 
+- Add faceted-preview-leadimage for collection.
+  [bsuttor]
+
 0.4 (2014-08-21)
 ----------------
 
