@@ -105,6 +105,7 @@
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
+  <include package="eea.facetednavigation" file="meta.zcml" />
   <faceted:view
       name="faceted-preview-leadimage"
       template="templates/faceted-preview-leadimage.pt"

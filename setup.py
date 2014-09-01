@@ -53,9 +53,11 @@ setup(name='cpskin.core',
           'collective.sticky',
           'collective.quickupload',
           'wildcard.foldercontents',
+          'eea.facetednavigation',
           'collective.iconifieddocumentactions',
           'collective.z3cform.keywordwidget',
           # -*- Extra requirements: -*-
+          'httpagentparser',
       ],
       extras_require={
           'test': [
