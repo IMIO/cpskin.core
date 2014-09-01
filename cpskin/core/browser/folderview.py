@@ -13,6 +13,7 @@ from Products.CMFCore.interfaces import IFolderish
 from cpskin.core.interfaces import IFolderViewSelectedContent
 
 from cpskin.locales import CPSkinMessageFactory as _
+import httpagentparser
 
 ADDABLE_TYPES = ['Collection', 'Document', 'Folder']
 
@@ -199,6 +200,15 @@ class FolderView(BrowserView):
             if ICPSkinSliderLayer.providedBy(request):
                 return True
             return False
+
+    def is_browser_compatible(self):
+        results = True
+        request = getattr(self.context, "REQUEST", None)
+        http_user_agent = request.getHeader('HTTP_USER_AGENT')
+        browser = httpagentparser.detect(http_user_agent).get('browser')
+        if browser.get('name') == 'Internet Explorer':
+            results = browser['version'].split('.')[:1] >= 10
+        return results
 
     def addContent(self):
         """
