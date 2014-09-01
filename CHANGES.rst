@@ -11,6 +11,13 @@ Changelog
 - Add faceted-preview-leadimage for collection.
   [bsuttor]
 
+- Use a macros for homepage collection view.
+  [bsuttor]
+
+- Check if slider is compatible with browser (not compatible with IE < 10).
+  If not compatible use homepage collection macros instead of slider.
+  [bsuttor]
+
 0.4 (2014-08-21)
 ----------------
 
