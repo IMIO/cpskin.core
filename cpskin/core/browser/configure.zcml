@@ -114,4 +114,10 @@
       permission="zope2.View"
       />
 
+  <browser:page
+     name="cpskincore-macros"
+     for="*"
+     template="templates/cpskincore_macros.pt"
+     permission="zope2.View"
+     />
 </configure>
