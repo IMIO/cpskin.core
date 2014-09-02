@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.1 (unreleased)
+0.5.1 (2014-09-02)
 ------------------
 
 - Fix error if httpagentparser do not works.
