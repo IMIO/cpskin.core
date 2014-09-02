@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5 (unreleased)
+0.5 (2014-09-02)
 ----------------
 
 - Add a regisrty and implements a property field for getting number of 
