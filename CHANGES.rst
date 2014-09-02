@@ -4,7 +4,8 @@ Changelog
 0.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix error if httpagentparser do not works.
+  [bsuttor]
 
 
 0.5 (2014-09-02)
