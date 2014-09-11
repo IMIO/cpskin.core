@@ -209,8 +209,8 @@ class FolderView(BrowserView):
         if browser_user_agent:
             browser = browser_user_agent.get('browser')
             if browser:
-                if browser.get('name') == 'Internet Explorer':
-                    results = browser['version'].split('.')[:1] >= 10
+                if 'Internet Explorer' in browser.get('name'):
+                    results = int(browser['version'].split('.')[0]) >= 10
         return results
 
     def addContent(self):
