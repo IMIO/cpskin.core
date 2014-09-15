@@ -4,7 +4,7 @@ Changelog
 0.5.2 (unreleased)
 ------------------
 
-- Improve collection view icons  (affinitic #5964)
+- Improve collection view thumbnails  (affinitic #5964)
   [laulaz]
 
 
