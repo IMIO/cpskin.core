@@ -4,7 +4,8 @@ Changelog
 0.5.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Improve collection view icons  (affinitic #5964)
+  [laulaz]
 
 
 0.5.1 (2014-09-02)

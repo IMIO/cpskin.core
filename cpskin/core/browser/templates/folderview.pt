@@ -43,7 +43,7 @@
 
                     <metal:use use-macro="context/@@cpskincore-macros/homepage-collection" />
 
-               </div>
+                </div>
 
                 <div class=""
                      tal:condition="python: content.portal_type == 'Document'"

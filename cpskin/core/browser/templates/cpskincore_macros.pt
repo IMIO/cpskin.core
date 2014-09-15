@@ -37,25 +37,31 @@
                     <li tal:repeat="result results"
                         class="bloc-item"
                         colspan="2">
-                        <a href="" tal:attributes="href result/getURL">
+                        <a href=""
+                           tal:define="number repeat/result/number"
+                           tal:attributes="href result/getURL">
                            <tal:leadImage tal:condition="result/hasContentLeadImage|nothing">
                                 <img class=""
-                                     tal:define="oddRow repeat/result/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
+                                     tal:define="oddRow repeat/result/odd;
+                                                 imageClass python: oddRow and 'myimageleft' or 'myimageleft';
+                                                 thumbsize python: number < 5 and 'leadImage_preview' or 'leadImage_thumb'"
                                      src="#"
                                      alt=""
                                      tal:attributes="title result/Description;
-                                                     src python: result.getURL() + '/leadImage_thumb'" />
+                                                     src python: result.getURL() + '/' + thumbsize" />
                               </tal:leadImage>
     
                               <tal:contentImage tal:define="hasImage result/getImage|nothing;
                                                             isFile python: result.portal_type == 'File'"
                                                 tal:condition="python: hasImage and not isFile">
                                 <img class=""
-                                     tal:define="oddRow repeat/result/odd; imageClass python: oddRow and 'myimageleft' or 'myimageleft'"
+                                     tal:define="oddRow repeat/result/odd;
+                                                 imageClass python: oddRow and 'myimageleft' or 'myimageleft';
+                                                 thumbsize python: number < 5 and 'image_preview' or 'image_thumb'"
                                      src="#"
                                      alt=""
                                      tal:attributes="title result/Description;
-                                                     src python: result.getURL() + '/image_thumb'" />
+                                                     src python: result.getURL() + '/' + thumbsize" />
                               </tal:contentImage>
     
                               <h3 tal:content="result/Title"></h3>
@@ -93,6 +99,7 @@
                        tal:attributes="href string:${content/absolute_url}">
                        <span i18n:translate="voir_lensemble_des">Voir l'ensemble des </span> <span tal:replace="content/Title" />
                     </a>
+
     </metal:homepage-collection>
 
 </body>
