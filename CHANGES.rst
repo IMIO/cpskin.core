@@ -4,7 +4,8 @@ Changelog
 0.5.2 (unreleased)
 ------------------
 
-- Improve collection view thumbnails  (affinitic #5964)
+- Add configuration action and ability to have big thumbnails in folder view
+  (affinitic #5964).
   [laulaz]
 
 
