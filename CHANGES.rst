@@ -7,6 +7,8 @@ Changelog
 - Add configuration action and ability to have big thumbnails in folder view
   (affinitic #5964).
   [laulaz]
+- Minor folder view changes (affinitic #5967)
+  [laulaz]
 
 
 0.5.1 (2014-09-02)
