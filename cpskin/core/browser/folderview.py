@@ -10,7 +10,8 @@ from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.interfaces import IFolderish
 
-from cpskin.core.interfaces import IFolderViewSelectedContent
+from cpskin.core.interfaces import IFolderViewSelectedContent, \
+                                   IFolderViewWithBigImages
 
 from cpskin.locales import CPSkinMessageFactory as _
 import httpagentparser
@@ -176,6 +177,15 @@ class FolderView(BrowserView):
                 realObjects.append(obj)
         return realObjects
 
+    def getThumbSize(self, number, obj):
+        prefix = 'image'
+        thumbSize = 'thumb'
+        if getattr(obj, 'hasContentLeadImage', None):
+            prefix = 'leadImage'
+        if self.bigImagesAreUsed() and number < 5:
+            thumbSize = 'preview'
+        return '%s_%s' % (prefix, thumbSize)
+
     def searchSelectedContent(self):
         path = '/'.join(self.context.getPhysicalPath())
         portal_catalog = getToolByName(self.context, 'portal_catalog')
@@ -257,3 +267,44 @@ class FolderView(BrowserView):
         if not IFolderViewSelectedContent.providedBy(context):
             return False
         return True
+
+    def canUseBigImages(self):
+        """
+        Check if big images can be used on folder view
+        """
+        if not self.isFolderViewActivated():
+            return False
+        context = self._get_real_context()
+        return (not IFolderViewWithBigImages.providedBy(context))
+
+    def bigImagesAreUsed(self):
+        context = self._get_real_context()
+        return IFolderViewWithBigImages.providedBy(context)
+
+    def canStopBigImagesUse(self):
+        """
+        Check if big images are used on folder view
+        """
+        if not self.isFolderViewActivated():
+            return False
+        return (self.bigImagesAreUsed())
+
+    def useBigImages(self):
+        """
+        Use big images for first elements on folder view
+        """
+        context = self._get_real_context()
+        alsoProvides(context, IFolderViewWithBigImages)
+        catalog = api.portal.get_tool('portal_catalog')
+        catalog.reindexObject(context)
+        self._redirect(_(u'Big images are now used on this folder view.'))
+
+    def stopBigImagesUse(self):
+        """
+        Use using big images for first elements on folder view
+        """
+        context = self._get_real_context()
+        noLongerProvides(context, IFolderViewWithBigImages)
+        catalog = api.portal.get_tool('portal_catalog')
+        catalog.reindexObject(context)
+        self._redirect(_(u'Big images are not used anymore on this folder view.'))

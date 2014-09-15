@@ -32,6 +32,12 @@ class IFolderViewSelectedContent(Interface):
     """
 
 
+class IFolderViewWithBigImages(Interface):
+    """
+    Marker interface to use big images on folder view
+    """
+
+
 class ICPSkinSettings(Interface):
     """
     Settings for CPSkin

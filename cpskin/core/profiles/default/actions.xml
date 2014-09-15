@@ -82,6 +82,26 @@
             </property>
             <property name="visible">True</property>
         </object>
+        <object name="use_big_images_in_folderview" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Use big images</property>
+            <property name="description" i18n:translate=""></property>
+            <property name="url_expr">string:${context/absolute_url}/@@folderview_configuration/useBigImages</property>
+            <property name="available_expr">context/@@folderview_configuration/canUseBigImages</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
+        <object name="stop_big_images_use_in_folderview" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Stop using big images</property>
+            <property name="description" i18n:translate=""></property>
+            <property name="url_expr">string:${context/absolute_url}/@@folderview_configuration/stopBigImagesUse</property>
+            <property name="available_expr">context/@@folderview_configuration/canStopBigImagesUse</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
         <object name="add_to_folderview" meta_type="CMF Action" i18n:domain="cpskin">
             <property name="title" i18n:translate="">Make this content appear in folder view</property>
             <property name="description" i18n:translate=""></property>
