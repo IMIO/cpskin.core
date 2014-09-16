@@ -4,10 +4,13 @@ Changelog
 0.5.2 (unreleased)
 ------------------
 
+- Add 'Portlets Manager' role to manage portlets and add role to local sharing
+  tab (affinitic #5857).
+  [laulaz]
 - Add configuration action and ability to have big thumbnails in folder view
   (affinitic #5964).
   [laulaz]
-- Minor folder view changes (affinitic #5967)
+- Minor folder view changes (affinitic #5967).
   [laulaz]
 
 
