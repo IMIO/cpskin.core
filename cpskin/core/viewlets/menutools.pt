@@ -5,7 +5,7 @@
                 <a tal:attributes="href faceted/href" tal:content="faceted/title">faceted</a>
             </li>
         </tal:block>
-         <li class="toolbox-menutools" tal:define="toolbox view/get_toolbox" 
+         <li class="menutools-item toolbox-menutools" tal:define="toolbox view/get_toolbox" 
                                           tal:condition="view/get_toolbox">
                 <a class="link-overlay" id="menutoolsbox" 
                     tal:attributes="href toolbox/href" tal:content="toolbox/title">
