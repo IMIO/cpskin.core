@@ -6,6 +6,15 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def upgrade_to_three(context):
+    context.runImportStepFromProfile('profile-cpskin.core:default', 'rolemap')
+    context.runImportStepFromProfile('profile-cpskin.core:default', 'sharing')
+    portal = api.portal.get()
+    portal.manage_permission('Portlets: Manage portlets',
+                             roles=['Editor', 'Portlets Manager', 'Manager', 'Site Administrator'],
+                             acquire=True)
+
+
 def upgrade_to_two(context):
     context.runAllImportStepsFromProfile('profile-cpskin.policy:default')
     portal_catalog = getToolByName(context, 'portal_catalog')

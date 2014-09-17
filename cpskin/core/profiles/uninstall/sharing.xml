@@ -1,0 +1,5 @@
+<sharing>
+
+  <role id="Portlets Manager" remove="True" />
+
+</sharing>

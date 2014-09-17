@@ -62,7 +62,6 @@ def installCore(context):
         'cpskin.core.behaviors.metadata.IISearchTags',
         'collective.directory.card')
 
-
     # Create footer static page
     footer_name = 'footer-static'
     if not portal.hasObject(footer_name):
@@ -70,11 +69,6 @@ def installCore(context):
                                     title=footer_name,
                                     container=portal)
         footer.setTitle(footer_name)
-
-    # Add the Editor role to the Manage portlet permission
-    portal.manage_permission('Portlets: Manage portlets',
-                             ('Editor', 'Manager', 'Site Administrator'),
-                             acquire=1)
 
     configCollectiveQucikupload(portal)
 
@@ -175,7 +169,6 @@ def uninstallCore(context):
         portal,
         'cpskin.core.behaviors.metadata.IISearchTags',
         'collective.directory.card')
-
 
     unregisterProvidesInterfaces(portal)
 

@@ -31,21 +31,30 @@
         />
 
     <genericsetup:upgradeStep
-        title="CPSKIN Policy: upgrade to v2"
-        description="Upgrade step for CPSKIN Policy to v2"
-        handler=".upgradehandlers.upgrade_to_two"
-        source="1"
-        destination="2"
-        profile="cpskin.policy:default"
+        title="CPSKIN Core: upgrade to v3"
+        description="Upgrade step for CPSKIN Core to v3"
+        handler=".upgradehandlers.upgrade_to_three"
+        source="2"
+        destination="3"
+        profile="cpskin.core:default"
         />
 
     <genericsetup:upgradeStep
-        title="CPSKIN core: Install front-page"
-        description="Upgrade step for CPSKIN core install front-page"
+        title="CPSKIN Core: upgrade to v2"
+        description="Upgrade step for CPSKIN Core to v2"
+        handler=".upgradehandlers.upgrade_to_two"
+        source="1"
+        destination="2"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
+        title="CPSKIN Core: Install front-page"
+        description="Upgrade step for CPSKIN Core install front-page"
         handler=".upgradehandlers.upgrade_front_page"
         source="*"
         destination="*"
-        profile="cpskin.policy:default"
+        profile="cpskin.core:default"
         />
 
 </configure>
