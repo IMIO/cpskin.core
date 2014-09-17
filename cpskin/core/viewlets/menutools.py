@@ -29,9 +29,9 @@ class MenuToolsViewlet(common.ViewletBase):
                 view['href'] = brain.getURL()
                 view['title'] = brain.Title
                 if self.context.absolute_url() == view['href']:
-                    view['class'] = 'menutools-{} selected'.format(i)
+                    view['class'] = 'menutools menutools-{} selected'.format(i)
                 else:
-                    view['class'] = 'menutools-{}'.format(i)
+                    view['class'] = 'menutools menutools-{}'.format(i)
                 i += 1
                 menutools.append(view)
             return menutools
