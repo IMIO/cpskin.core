@@ -49,6 +49,29 @@
             <property name="visible">True</property>
         </object>
 
+        <object name="enable_local_banner" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Show local banner</property>
+            <property name="description"></property>
+            <property name="url_expr">string:${context/absolute_url}/@@banner_activation/enable_local_banner</property>
+            <property name="link_target"></property>
+            <property name="available_expr">context/@@banner_activation/can_enable_local_banner</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
+        <object name="disable_local_banner" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Hide local banner</property>
+            <property name="description"></property>
+            <property name="url_expr">string:${context/absolute_url}/@@banner_activation/disable_local_banner</property>
+            <property name="link_target"></property>
+            <property name="available_expr">context/@@banner_activation/can_disable_local_banner</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
+
         <object name="enable_media" meta_type="CMF Action" i18n:domain="cpskin">
             <property name="title" i18n:translate="">Show media</property>
             <property name="description"></property>

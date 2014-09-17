@@ -10,7 +10,8 @@ from zope.interface import noLongerProvides
 
 from cpskin.locales import CPSkinMessageFactory as _
 
-from cpskin.core.interfaces import IBannerActivated
+from cpskin.core.interfaces import (IBannerActivated,
+                                    ILocalBannerActivated)
 from cpskin.core.browser.interfaces import IBannerActivationView
 
 
@@ -39,7 +40,8 @@ class BannerActivationView(BrowserView):
 
     @property
     def is_enabled(self):
-        return self.banner_root is not None
+        context = self._get_real_context()
+        return self.banner_root is not None or ILocalBannerActivated.providedBy(context)
 
     @property
     def banner_root(self):
@@ -78,3 +80,28 @@ class BannerActivationView(BrowserView):
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
         self._redirect(_(u'Banner disabled for content and sub-contents'))
+
+    @property
+    def can_enable_local_banner(self):
+        return not self.can_disable_local_banner
+
+    @property
+    def can_disable_local_banner(self):
+        context = self._get_real_context()
+        return(ILocalBannerActivated.providedBy(context))
+
+    def enable_local_banner(self):
+        """ Enable the banner """
+        context = self._get_real_context()
+        alsoProvides(context, ILocalBannerActivated)
+        catalog = api.portal.get_tool('portal_catalog')
+        catalog.reindexObject(context)
+        self._redirect(_(u'Banner enabled on content'))
+
+    def disable_local_banner(self):
+        """ Disable the banner """
+        context = self._get_real_context()
+        noLongerProvides(context, ILocalBannerActivated)
+        catalog = api.portal.get_tool('portal_catalog')
+        catalog.reindexObject(context)
+        self._redirect(_(u'Banner disabled for content'))

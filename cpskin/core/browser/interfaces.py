@@ -47,6 +47,23 @@ class IBannerActivationView(Interface):
         """ Disable banner
         """
 
+    can_enable_local_banner = schema.Bool(
+        u'Can enable local banner',
+        readonly=True
+    )
+    can_disable_local_banner = schema.Bool(
+        u'Can disable local banner',
+        readonly=True
+    )
+
+    def enable_local_banner():
+        """ Enable local banner
+        """
+
+    def disable_local_banner():
+        """ Disable local banner
+        """
+
 
 class IMediaActivationView(Interface):
     """ media activation """

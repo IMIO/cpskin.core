@@ -13,6 +13,8 @@
     <object name="object_buttons" meta_type="CMF Action Category">
         <object name="enable_banner" remove="True" />
         <object name="disable_banner" remove="True" />
+        <object name="enable_local_banner" remove="True" />
+        <object name="disable_local_banner" remove="True" />
         <object name="enable_media" remove="True" />
         <object name="disable_media" remove="True" />
         <object name="configure_folderview" remove="True" />

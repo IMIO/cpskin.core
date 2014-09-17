@@ -12,6 +12,8 @@ Changelog
   [laulaz]
 - Minor folder view changes (affinitic #5967).
   [laulaz]
+- Add local banner CMF Action (affinitic #5776).
+  [FBruynbroeck]
 
 
 0.5.1 (2014-09-02)

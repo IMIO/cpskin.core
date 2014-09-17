@@ -20,6 +20,12 @@ class IBannerActivated(Interface):
     """
 
 
+class ILocalBannerActivated(Interface):
+    """
+    Marker interface to enable / disable banner viewlet
+    """
+
+
 class IMediaActivated(Interface):
     """
     Marker interface to enable / disable (multi)media viewlet
