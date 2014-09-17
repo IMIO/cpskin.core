@@ -7,6 +7,7 @@ logger = logging.getLogger('cpskin.core')
 
 
 def upgrade_to_three(context):
+    context.runImportStepFromProfile('profile-cpskin.core:default', 'actions')
     context.runImportStepFromProfile('profile-cpskin.core:default', 'rolemap')
     context.runImportStepFromProfile('profile-cpskin.core:default', 'sharing')
     portal = api.portal.get()
