@@ -35,8 +35,7 @@
                     tal:attributes="class string: ${resultType}">
 
                     <li tal:repeat="result results"
-                        class="bloc-item"
-                        colspan="2">
+                        class="bloc-item">
                         <a href=""
                            tal:define="number repeat/result/number"
                            tal:attributes="href result/getURL">
