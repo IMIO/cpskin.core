@@ -5,6 +5,8 @@
     xmlns:faceted="http://namespaces.zope.org/faceted"
     i18n_domain="cpskin">
 
+  <adapter factory=".controlpanel.CPSkinControlPanelAdapter" />
+
   <include package="plone.app.contentmenu" />
 
   <browser:resourceDirectory

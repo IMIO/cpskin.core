@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+from zope import schema
 from zope.interface import Interface
+
+from cpskin.locales import CPSkinMessageFactory as _
 
 
 class ICPSkinCoreLayer(Interface):
@@ -48,6 +51,12 @@ class ICPSkinSettings(Interface):
     """
     Settings for CPSkin
     """
+    load_page_menu = schema.Bool(
+        title=_(u"Load page menu"),
+        description=_(u"Is level 1 menu load page at click?"),
+        required=False,
+        default=False
+    )
 
 
 class IVideoCollection(Interface):

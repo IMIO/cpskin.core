@@ -23,6 +23,15 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         registry = getUtility(IRegistry)
         self.settings = registry.forInterface(ICPSkinSettings, False)
 
+    def getLoadPageMenu(self):
+        return self.settings.load_page_menu
+
+    def setLoadPageMenu(self, value):
+        self.settings.load_page_menu = value
+
+    load_page_menu = property(getLoadPageMenu,
+                              setLoadPageMenu)
+
 
 class CPSkinControlPanel(ControlPanelForm):
 
