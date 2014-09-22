@@ -34,16 +34,19 @@
                     tal:condition="results"
                     tal:attributes="class string: ${resultType}">
 
-                    <li tal:repeat="result results"
-                        class="bloc-item">
+                  <tal:bcl tal:repeat="result results">
+
+                    <li tal:define="number repeat/result/number;
+                                    isBigImage python: view.isBigImage(number, allresults, resultType)"
+                        class=""
+                        tal:attributes="class python: isBigImage and 'bigimage bloc-item' or 'bloc-item'">
                         <a href=""
-                           tal:define="number repeat/result/number"
                            tal:attributes="href result/getURL">
 
                               <img class=""
                                    tal:define="oddRow repeat/result/odd;
                                                imageClass python: oddRow and 'myimageleft' or 'myimageleft';
-                                               thumbsize python: view.getThumbSize(number, result)"
+                                               thumbsize python: view.getThumbSize(result, isBigImage)"
                                    src="#"
                                    alt=""
                                    tal:attributes="title result/Description;
@@ -75,6 +78,7 @@
                             </span>
     
                           </li>
+                         </tal:bcl>
                         </ul>
                       </tal:bcl>
                     </div>

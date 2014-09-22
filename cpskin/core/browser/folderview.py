@@ -177,12 +177,26 @@ class FolderView(BrowserView):
                 realObjects.append(obj)
         return realObjects
 
-    def getThumbSize(self, number, obj):
+    def isBigImage(self, number, results, resultType):
+        """
+        Check if image should be big depending on position and result type
+        (sticky / non-sticky)
+        """
+        if not self.bigImagesAreUsed():
+            return False
+        if resultType == 'sticky-results' and number < 5:
+            return True
+        elif resultType == 'standard-results' and \
+             number < 5 - len(results['sticky-results']):
+            return True
+        return False
+
+    def getThumbSize(self, obj, isBigImage=False):
         prefix = 'image'
         thumbSize = 'thumb'
         if getattr(obj, 'hasContentLeadImage', None):
             prefix = 'leadImage'
-        if self.bigImagesAreUsed() and number < 5:
+        if isBigImage:
             thumbSize = 'preview'
         return '%s_%s' % (prefix, thumbSize)
 
