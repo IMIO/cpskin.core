@@ -7,9 +7,13 @@ from zope.component import queryMultiAdapter
 from zope.interface import noLongerProvides
 from plone import api
 from plone.dexterity.interfaces import IDexterityFTI
+from plone.registry import field, Record
+from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.utils import bodyfinder
 from plone.app.controlpanel.security import ISecuritySchema
+
+from cpskin.locales import CPSkinMessageFactory as _
 
 logger = logging.getLogger('cpskin.core')
 
@@ -71,6 +75,8 @@ def installCore(context):
         footer.setTitle(footer_name)
 
     configCollectiveQucikupload(portal)
+
+    addLoadPageMenuToRegistry()
 
 
 def configureMembers(context):
@@ -321,3 +327,16 @@ def configCollectiveQucikupload(portal):
         qu_props._setProperty('show_upload_action', True, 'boolean')
     else:
         qu_props.show_upload_action = True
+
+
+def addLoadPageMenuToRegistry():
+    registry = getUtility(IRegistry)
+
+    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.load_page_menu to registry")
+    record = Record(field.Bool(title=_(u"Load page menu"),
+                               description=_(u"Is level 1 menu load page at click?"),
+                               required=False,
+                               default=False),
+                    value=False)
+
+    registry.records['cpskin.core.interfaces.ICPSkinSettings.load_page_menu'] = record

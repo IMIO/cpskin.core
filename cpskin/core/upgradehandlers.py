@@ -1,29 +1,16 @@
 # -*- coding: utf-8 -*-
-from zope.component import queryUtility
 from Products.CMFCore.utils import getToolByName
 
 from plone import api
-from plone.registry.interfaces import IRegistry
-from plone.registry import field, Record
 
-from cpskin.core.setuphandlers import setPageText
-from cpskin.locales import CPSkinMessageFactory as _
+from cpskin.core.setuphandlers import setPageText, addLoadPageMenuToRegistry
 
 import logging
 logger = logging.getLogger('cpskin.core')
 
 
 def upgrade_to_four(context):
-    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.load_page_menu to registry")
-    registry = queryUtility(IRegistry)
-
-    record = Record(field.Bool(title=_(u"Load page menu"),
-                               description=_(u"Is level 1 menu load page at click?"),
-                               required=False,
-                               default=False),
-                    value=False)
-
-    registry.records['cpskin.core.interfaces.ICPSkinSettings.load_page_menu'] = record
+    addLoadPageMenuToRegistry()
 
 
 def upgrade_to_three(context):
