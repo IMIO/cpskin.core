@@ -197,7 +197,7 @@ class FolderView(BrowserView):
         if getattr(obj, 'hasContentLeadImage', None):
             prefix = 'leadImage'
         if isBigImage:
-            thumbSize = 'preview'
+            thumbSize = 'mini'
         return '%s_%s' % (prefix, thumbSize)
 
     def searchSelectedContent(self):
