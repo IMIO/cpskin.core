@@ -33,14 +33,6 @@
         />
 
     <browser:viewlet
-        name="cpskin.menutools_viewlet"
-        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        class=".menutools.MenuToolsViewlet"
-        permission="zope.Public"
-        layer="..interfaces.ICPSkinCoreLayer"
-        />
-
-    <browser:viewlet
         name="cpskin.standardtags"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         view="plone.app.layout.globals.interfaces.IViewView"
@@ -110,15 +102,5 @@
         name="cpskin.core.mediaviewlet.css"
         layer="..interfaces.ICPSkinCoreLayer"
         />
-
-
-    <browser:resource
-        file="js/menutools.js"
-        name="cpskin.core.menutools.js"
-        layer="..interfaces.ICPSkinCoreLayer"
-        />
-
-    <interface interface=".interfaces.IViewletMenuToolsFaceted" />
-    <interface interface=".interfaces.IViewletMenuToolsBox" />
 
 </configure>
