@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.2 (unreleased)
+0.5.2 (2014-10-07)
 ------------------
 
 - Remove MenuTools viewlet and add upgrade step (affinitic #6023)
