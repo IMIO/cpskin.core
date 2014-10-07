@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.3 (unreleased)
+0.5.3 (2014-10-07)
 ------------------
 
 - Readd marker interfaces for migration step (Menu tools viewlet)
