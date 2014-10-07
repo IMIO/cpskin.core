@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from zope.interface import directlyProvides, directlyProvidedBy
 from Products.CMFCore.utils import getToolByName
 
 from plone import api
@@ -7,6 +8,23 @@ from cpskin.core.setuphandlers import setPageText, addLoadPageMenuToRegistry
 
 import logging
 logger = logging.getLogger('cpskin.core')
+
+
+def upgrade_to_five(context):
+    interfaces = ['cpskin.core.viewlets.interfaces.IViewletMenuToolsBox',
+                  'cpskin.core.viewlets.interfaces.IViewletMenuToolsFaceted']
+    catalog = api.portal.get_tool('portal_catalog')
+    for interface in interfaces:
+        brains = catalog({"object_provides": interface})
+        for brain in brains:
+            obj = brain.getObject()
+            provided = directlyProvidedBy(obj)
+            cleanedProvided = [i for i in provided if i.__identifier__ != interface]
+            directlyProvides(obj, cleanedProvided)
+            obj.reindexObject()
+
+    portal_javascripts = api.portal.get_tool('portal_javascripts')
+    portal_javascripts.unregisterResource('++resource++cpskin.core.menutools.js')
 
 
 def upgrade_to_four(context):

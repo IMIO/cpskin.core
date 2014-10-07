@@ -4,6 +4,8 @@ Changelog
 0.5.2 (unreleased)
 ------------------
 
+- Remove MenuTools viewlet and add upgrade step (affinitic #6023)
+  [laulaz]
 - Add 'Portlets Manager' role to manage portlets and add role to local sharing
   tab (affinitic #5857).
   [laulaz]

@@ -180,8 +180,6 @@ def uninstallCore(context):
 
 
 def unregisterProvidesInterfaces(portal):
-    from cpskin.core.viewlets.interfaces import (IViewletMenuToolsFaceted,
-                                                 IViewletMenuToolsBox)
     from cpskin.core.interfaces import (
         IBannerActivated,
         IMediaActivated,
@@ -189,9 +187,7 @@ def unregisterProvidesInterfaces(portal):
         IVideoCollection
     )
 
-    interfaces = [IViewletMenuToolsFaceted,
-                  IViewletMenuToolsBox,
-                  IBannerActivated,
+    interfaces = [IBannerActivated,
                   IMediaActivated,
                   IAlbumCollection,
                   IVideoCollection]
