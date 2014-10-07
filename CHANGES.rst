@@ -4,7 +4,8 @@ Changelog
 0.5.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Readd marker interfaces for migration step (Menu tools viewlet)
+  [bsuttor]
 
 
 0.5.2 (2014-10-07)
