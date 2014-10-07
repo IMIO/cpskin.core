@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-
 from zope.interface import alsoProvides
 
 from collective.z3cform.keywordwidget.field import Keywords
 from plone.supermodel import model
-from plone.app.dexterity.behaviors.metadata import MetadataBase
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.directives import form
 

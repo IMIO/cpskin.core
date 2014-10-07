@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 from plone.indexer.interfaces import IIndexer
-from Products.Archetypes.interfaces import IBaseContent
+from OFS.interfaces import IItem
 from Products.ZCatalog.interfaces import IZCatalog
 
 try:
@@ -16,7 +17,7 @@ class BaseTagIndexer(object):
     """Index the specified tag
     """
     implements(IIndexer)
-    adapts(IBaseContent, IZCatalog)
+    adapts(IItem, IZCatalog)
 
     def __init__(self, context, catalog):
         self.context = context
@@ -24,6 +25,8 @@ class BaseTagIndexer(object):
 
     def _getFieldContent(self, field):
         tags = getattr(self.context, field)
+        if not tags:
+            return ""
         encodedTags = tuple(safe_utf8(s) for s in tags)
         return encodedTags
 
