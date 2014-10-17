@@ -20,13 +20,12 @@
                     </div>
                 </li>
             </ul>
-            <a class="link-all" 
+        </div>
+        <a class="link-all" 
                 tal:attributes="href python:view.get_albums_collection().absolute_url()"
                 i18n:translate='link-to-all-albums'>
                 Voir tous les albums
-            </a>
-        </div>
-        
+        </a>
     </div>
     <div class="videos-container" tal:condition="view/get_videos">
         <h2 i18n:translate="Videos">Vidéos</h2>
