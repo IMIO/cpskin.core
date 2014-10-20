@@ -31,12 +31,13 @@ class MediaViewlet(common.ViewletBase):
     def get_videos(self):
         videos = []
         collection = self.get_videos_collection()
-        for brain in collection.queryCatalog():
-            video = brain.getObject()
-            videos.append(utils.embed(video, self.request))
         # limit = collection.getLimit()
         limit = 2
-        return videos[:limit]
+        brains = [b for b in collection.queryCatalog()][:limit]
+        for brain in brains:
+            video = brain.getObject()
+            videos.append(utils.embed(video, self.request))
+        return videos
 
     def get_albums_collection(self):
         return self.get_collection(IAlbumCollection)

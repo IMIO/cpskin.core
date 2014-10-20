@@ -4,7 +4,8 @@ Changelog
 0.5.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Performance improvements (affinitic #6008)
+  [laulaz]
 
 
 0.5.3 (2014-10-07)

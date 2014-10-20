@@ -27,11 +27,13 @@
                 Voir tous les albums
         </a>
     </div>
-    <div class="videos-container" tal:condition="view/get_videos">
+    <div class="videos-container"
+         tal:define="videos view/get_videos"
+         tal:condition="videos">
         <h2 i18n:translate="Videos">Vidéos</h2>
         <div class="right">
             <ul class="videos">
-                <li tal:repeat='video view/get_videos'>
+                <li tal:repeat='video videos'>
                 <div class="iframe-responsive-wrapper">
                     <img class="iframe-ratio"  src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACH5BAEAAAAALAAAAAAQAAkAAAIKhI+py+0Po5yUFQA7"/>
                     <div tal:content="structure video"></div>
