@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.5 (unreleased)
+0.5.5 (2014-11-14)
 ------------------
 
 - Move * to * upgrade step to a specific profile. With collective.upgrade, 
