@@ -66,13 +66,23 @@
         profile="cpskin.core:default"
         />
 
+    <genericsetup:registerProfile
+        name="init"
+        title="cpskin.core"
+        directory="profiles/init"
+        description="Installs CPSkin core"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+
     <genericsetup:upgradeStep
         title="CPSKIN Core: Install front-page"
         description="Upgrade step for CPSKIN Core install front-page"
         handler=".upgradehandlers.upgrade_front_page"
         source="*"
         destination="*"
-        profile="cpskin.core:default"
+        profile="cpskin.core:init"
         />
 
 </configure>

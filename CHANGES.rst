@@ -4,7 +4,9 @@ Changelog
 0.5.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Move * to * upgrade step to a specific profile. With collective.upgrade, 
+  we do not want start this kind of upgrade step.
+  [bsuttor]
 
 
 0.5.4 (2014-10-22)
