@@ -68,7 +68,7 @@
 
     <genericsetup:registerProfile
         name="init"
-        title="cpskin.core"
+        title="cpskin.core: init"
         directory="profiles/init"
         description="Installs CPSkin core"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
