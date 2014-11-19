@@ -18,11 +18,11 @@ class IHiddenTags(model.Schema):
 
     form.widget(hiddenTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
     hiddenTags = Keywords(
-        title=_(u'label_hidden_tags', default=u'Hidden tags'),
+        title=_(u'label_hidden_tags', default=u'Hidden Tags'),
         description=_(
             u'help_hidden_tags',
-            default=u'Tags are commonly used for ad-hoc organization of ' +
-                    u'content.'
+            default=u'Hidden Tags are used for webmaster '
+                    u'organization of content.',
         ),
         required=False,
         # Automatically get the index in catalog by name

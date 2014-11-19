@@ -4,7 +4,8 @@ Changelog
 0.5.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix translations with different defaults (see extender.py)
+  [laulaz]
 
 
 0.5.5 (2014-11-14)
