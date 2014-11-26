@@ -8,4 +8,10 @@
     description=""
     />
 
+  <permission
+    id="cpskin.editkeywords"
+    title="CPSkin: Edit keywords"
+    description=""
+    />
+
 </configure>

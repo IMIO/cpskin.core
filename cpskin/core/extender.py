@@ -52,7 +52,7 @@ class ContentExtender(object):
                                       u'organization of content.'),
             ),
             read_permission=zope_permissions.View,
-            write_permission=permissions.CPSkinSiteAdministrator,
+            write_permission=permissions.CPSkinEditKeywords,
         ),
         ExtensionIAmTagsField(
             'iamTags',
@@ -67,7 +67,7 @@ class ContentExtender(object):
                                       u'organization of content.'),
             ),
             read_permission=zope_permissions.View,
-            write_permission=permissions.CPSkinSiteAdministrator,
+            write_permission=permissions.CPSkinEditKeywords,
         ),
         ExtensionISearchTagsField(
             'isearchTags',
@@ -82,7 +82,7 @@ class ContentExtender(object):
                                       u'organization of content.'),
             ),
             read_permission=zope_permissions.View,
-            write_permission=permissions.CPSkinSiteAdministrator,
+            write_permission=permissions.CPSkinEditKeywords,
         ),
         ExtensionHiddenTagsField(
             'hiddenTags',
@@ -97,7 +97,7 @@ class ContentExtender(object):
                                       u'organization of content.'),
             ),
             read_permission=zope_permissions.View,
-            write_permission=permissions.CPSkinSiteAdministrator,
+            write_permission=permissions.CPSkinEditKeywords,
         ),
     ]
 

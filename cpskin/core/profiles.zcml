@@ -31,6 +31,15 @@
         />
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v6"
+        description="Upgrade step for CPSKIN Core to v6"
+        handler=".upgradehandlers.upgrade_to_six"
+        source="5"
+        destination="6"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v5"
         description="Upgrade step for CPSKIN Core to v5"
         handler=".upgradehandlers.upgrade_to_five"

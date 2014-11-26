@@ -8,3 +8,7 @@ security = ModuleSecurityInfo('cpskin.core.permissions')
 security.declarePublic('CPSkinSiteAdministrator')
 CPSkinSiteAdministrator = 'CPSkin: Site administrator'
 setDefaultRoles(CPSkinSiteAdministrator, ('Site Administrator', 'Manager'))
+
+security.declarePublic('CPSkinEditKeywords')
+CPSkinEditKeywords = 'CPSkin: Edit keywords'
+setDefaultRoles(CPSkinEditKeywords, ('Site Administrator', 'Manager'))

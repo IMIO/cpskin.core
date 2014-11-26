@@ -4,6 +4,8 @@ Changelog
 0.5.6 (unreleased)
 ------------------
 
+- Allow keywords edition locally (affinitic #6068)
+  [laulaz]
 - Fix translations with different defaults (see extender.py)
   [laulaz]
 

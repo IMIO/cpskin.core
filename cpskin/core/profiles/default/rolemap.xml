@@ -11,6 +11,12 @@
       <role name="Manager"/>
     </permission>
 
+    <permission name="CPSkin: Edit keywords" acquire="True">
+      <role name="Site Administrator"/>
+      <role name="Manager"/>
+      <role name="Portlets Manager"/>
+    </permission>
+
     <permission name="Portlets: Manage portlets" acquire="True">
       <role name="Editor"/>
       <role name="Portlets Manager"/>

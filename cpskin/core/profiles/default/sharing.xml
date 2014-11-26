@@ -2,7 +2,7 @@
          i18n:domain="plone">
 
   <role id="Portlets Manager"
-        title="Can manage portlets"
+        title="Can manage portlets and keywords"
         i18n:attributes="title"
         />
 
