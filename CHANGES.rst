@@ -8,7 +8,10 @@ Changelog
   [laulaz]
 - Fix translations with different defaults (see extender.py)
   [laulaz]
-
+- Split configure_folderviews to allow external package to use it
+  [schminitz]
+- Always allow to filter collection on a-la-une hidden tag
+  [schminitz]
 
 0.5.5 (2014-11-14)
 ------------------
