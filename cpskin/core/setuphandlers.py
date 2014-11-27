@@ -337,4 +337,4 @@ def addLoadPageMenuToRegistry():
                                required=False,
                                default=False),
                     value=False)
-    registry.records['cpskin.core.interfaces.ICPSkinSettings.load_page_menu'] = record
+    records['cpskin.core.interfaces.ICPSkinSettings.load_page_menu'] = record
