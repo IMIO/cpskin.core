@@ -327,6 +327,9 @@ def configCollectiveQucikupload(portal):
 
 def addLoadPageMenuToRegistry():
     registry = getUtility(IRegistry)
+    records = registry.records
+    if 'cpskin.core.interfaces.ICPSkinSettings.load_page_menu' in records:
+        return
 
     logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.load_page_menu to registry")
     record = Record(field.Bool(title=_(u"Load page menu"),
@@ -334,5 +337,4 @@ def addLoadPageMenuToRegistry():
                                required=False,
                                default=False),
                     value=False)
-
     registry.records['cpskin.core.interfaces.ICPSkinSettings.load_page_menu'] = record

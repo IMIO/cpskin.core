@@ -4,6 +4,8 @@ Changelog
 0.5.6 (unreleased)
 ------------------
 
+- Avoid resetting load_page_menu on (re)install / upgrade
+  [laulaz]
 - Fix translations with different defaults (see extender.py)
   [laulaz]
 
