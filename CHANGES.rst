@@ -12,8 +12,6 @@ Changelog
   [schminitz]
 - Always allow to filter collection on a-la-une hidden tag
   [schminitz]
-- Try to directly publish collections
-  [schminitz]
 
 
 0.5.5 (2014-11-14)
