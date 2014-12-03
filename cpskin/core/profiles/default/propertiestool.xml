@@ -7,6 +7,11 @@
    <element value="CKeditor"/>
   </property>
   <property name="default_editor" type="string">CKeditor</property>
+  <property name="allowRolesToAddKeywords" type="lines" purge="True">
+   <element value="Manager"/>
+   <element value="Site Administrator"/>
+   <element value="Portlets Manager"/>
+  </property>
  </object>
 
  <object name="cli_properties" meta_type="Plone Property Sheet">
