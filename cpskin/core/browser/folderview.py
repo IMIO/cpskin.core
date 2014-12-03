@@ -74,74 +74,7 @@ class FolderView(BrowserView):
         Configure folders and collections for folderview
         """
         context = self.context
-        existingIds = context.objectIds()
-        portalPath = api.portal.get().getPhysicalPath()
-        contextPath = '/'.join(context.getPhysicalPath()[len(portalPath):])
-        if 'a-la-une' not in existingIds:
-            folder = api.content.create(container=context,
-                                        type='Folder',
-                                        id='a-la-une',
-                                        title="À la une")
-            alsoProvides(folder, IFolderViewSelectedContent)
-            collection = api.content.create(container=folder,
-                                            type='Collection',
-                                            id='a-la-une',
-                                            title="À la une")
-            query = [{'i': 'hiddenTags',
-                      'o': 'plone.app.querystring.operation.selection.is',
-                      'v': 'a-la-une'},
-                      {'i': 'path',
-                      'o': 'plone.app.querystring.operation.string.path',
-                      'v': '/%s' % contextPath}]
-            collection.setQuery(query)
-            collection.setSort_on('effective')
-            collection.setSort_reversed(True)
-            collection.setLayout('folder_summary_view')
-            folder.setDefaultPage('a-la-une')
-        if 'actualites' not in existingIds:
-            folder = api.content.create(container=context,
-                                        type='Folder',
-                                        id='actualites',
-                                        title="Actualités")
-            alsoProvides(folder, IFolderViewSelectedContent)
-            collection = api.content.create(container=folder,
-                                            type='Collection',
-                                            id='actualites',
-                                            title="Actualités")
-            query = [{'i': 'portal_type',
-                      'o': 'plone.app.querystring.operation.selection.is',
-                      'v': ['News Item']},
-                      {'i': 'path',
-                      'o': 'plone.app.querystring.operation.string.path',
-                      'v': '/%s' % contextPath}]
-            collection.setQuery(query)
-            collection.setSort_on('effective')
-            collection.setSort_reversed(True)
-            collection.setLayout('folder_summary_view')
-            folder.setDefaultPage('actualites')
-        if 'evenements' not in existingIds:
-            folder = api.content.create(container=context,
-                                        type='Folder',
-                                        id='evenements',
-                                        title="Événements")
-            alsoProvides(folder, IFolderViewSelectedContent)
-            collection = api.content.create(container=folder,
-                                            type='Collection',
-                                            id='evenements',
-                                            title="Événements")
-            query = [{'i': 'portal_type',
-                      'o': 'plone.app.querystring.operation.selection.is',
-                      'v': ['Event']},
-                      {'i': 'path',
-                      'o': 'plone.app.querystring.operation.string.path',
-                      'v': '/%s' % contextPath}]
-            collection.setQuery(query)
-            collection.setSort_on('effective')
-            collection.setSort_reversed(True)
-            collection.setLayout('folder_summary_view')
-            folder.setDefaultPage('evenements')
-
-        context.setLayout('folderview')
+        configure_folderviews(context)
         api.portal.show_message(message=_(u"Vue index avec collections configurée."),
                                 request=self.request,
                                 type='info')
@@ -322,3 +255,76 @@ class FolderView(BrowserView):
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
         self._redirect(_(u'Big images are not used anymore on this folder view.'))
+
+
+def configure_folderviews(context):
+    """
+    """
+    existingIds = context.objectIds()
+    portalPath = api.portal.get().getPhysicalPath()
+    contextPath = '/'.join(context.getPhysicalPath()[len(portalPath):])
+    if 'a-la-une' not in existingIds:
+        folder = api.content.create(container=context,
+                                    type='Folder',
+                                    id='a-la-une',
+                                    title="À la une")
+        alsoProvides(folder, IFolderViewSelectedContent)
+        collection = api.content.create(container=folder,
+                                        type='Collection',
+                                        id='a-la-une',
+                                        title="À la une")
+        query = [{'i': 'hiddenTags',
+                  'o': 'plone.app.querystring.operation.selection.is',
+                  'v': 'a-la-une'},
+                  {'i': 'path',
+                  'o': 'plone.app.querystring.operation.string.path',
+                  'v': '/%s' % contextPath}]
+        collection.setQuery(query)
+        collection.setSort_on('effective')
+        collection.setSort_reversed(True)
+        collection.setLayout('folder_summary_view')
+        folder.setDefaultPage('a-la-une')
+    if 'actualites' not in existingIds:
+        folder = api.content.create(container=context,
+                                    type='Folder',
+                                    id='actualites',
+                                    title="Actualités")
+        alsoProvides(folder, IFolderViewSelectedContent)
+        collection = api.content.create(container=folder,
+                                        type='Collection',
+                                        id='actualites',
+                                        title="Actualités")
+        query = [{'i': 'portal_type',
+                  'o': 'plone.app.querystring.operation.selection.is',
+                  'v': ['News Item']},
+                  {'i': 'path',
+                  'o': 'plone.app.querystring.operation.string.path',
+                  'v': '/%s' % contextPath}]
+        collection.setQuery(query)
+        collection.setSort_on('effective')
+        collection.setSort_reversed(True)
+        collection.setLayout('folder_summary_view')
+        folder.setDefaultPage('actualites')
+    if 'evenements' not in existingIds:
+        folder = api.content.create(container=context,
+                                    type='Folder',
+                                    id='evenements',
+                                    title="Événements")
+        alsoProvides(folder, IFolderViewSelectedContent)
+        collection = api.content.create(container=folder,
+                                        type='Collection',
+                                        id='evenements',
+                                        title="Événements")
+        query = [{'i': 'portal_type',
+                  'o': 'plone.app.querystring.operation.selection.is',
+                  'v': ['Event']},
+                  {'i': 'path',
+                  'o': 'plone.app.querystring.operation.string.path',
+                  'v': '/%s' % contextPath}]
+        collection.setQuery(query)
+        collection.setSort_on('effective')
+        collection.setSort_reversed(True)
+        collection.setLayout('folder_summary_view')
+        folder.setDefaultPage('evenements')
+
+    context.setLayout('folderview')

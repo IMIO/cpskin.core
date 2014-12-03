@@ -57,6 +57,15 @@ class HiddenTagsVocabulary(BaseTagsVocabulary):
     """Vocabulary factory listing all catalog keywords from hidden tags"""
     indexName = 'hiddenTags'
 
+    def __call__(self, context, query=None):
+        voc = super(HiddenTagsVocabulary, self).__call__(context, query)
+        # Add a-la-une term if it does not already exist, aka still not used for any document
+        if u'a-la-une' not in voc.by_token:
+            simpleTerms = [term for term in voc]
+            simpleTerms.append(SimpleTerm(u'a-la-une', title=u'A la une'))
+            voc = SimpleVocabulary(simpleTerms)
+        return voc
+
 
 IStandardTagsVocabularyFactory = IStandardTagsVocabulary()
 IAmTagsVocabularyFactory = IAmTagsVocabulary()
