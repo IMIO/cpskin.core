@@ -10,6 +10,19 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def upgrade_to_six(context):
+    context.runImportStepFromProfile('profile-cpskin.core:default', 'rolemap')
+    context.runImportStepFromProfile('profile-cpskin.core:default', 'sharing')
+    portal = api.portal.get()
+    portal.manage_permission('CPSkin: Edit keywords',
+                             roles=['Portlets Manager', 'Manager', 'Site Administrator'],
+                             acquire=True)
+    site_properties = api.portal.get_tool('portal_properties').site_properties
+    site_properties.allowRolesToAddKeywords = ("Manager",
+                                               "Site Administrator",
+                                               "Portlets Manager")
+
+
 def upgrade_to_five(context):
     interfaces = ['cpskin.core.viewlets.interfaces.IViewletMenuToolsBox',
                   'cpskin.core.viewlets.interfaces.IViewletMenuToolsFaceted']
