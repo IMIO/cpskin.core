@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.6 (unreleased)
+0.5.6 (2014-12-04)
 ------------------
 
 - Allow keywords edition locally (affinitic #6068)
