@@ -11,7 +11,7 @@ script: bin/test
 notifications:
   email:
     recipients:
-      - support@lists.affinitic.be
+      - devel@lists.affinitic.be
       - devs@imio.be
     on_success: change
     on_failure: change
