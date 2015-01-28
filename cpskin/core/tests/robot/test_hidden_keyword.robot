@@ -23,6 +23,7 @@ Scenario: Test collection hidden tags criteria
 
 logged as owner
     Enable autologin as  Site Administrator
+    Go to  ${PLONE_URL}
 
 
 a document '${title}' with hidden tag '${keyword}'

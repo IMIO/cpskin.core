@@ -31,7 +31,7 @@ class BaseTagsVocabulary(object):
         # Vocabulary term tokens *must* be 7 bit values, titles *must* be
         # unicode
         items = [
-            SimpleTerm(i, b2a_qp(safe_encode(i)), safe_unicode(i))
+            SimpleTerm(safe_unicode(i), b2a_qp(safe_encode(i)), safe_unicode(i))
             for i in index._index
             if query is None or safe_encode(query) in safe_encode(i)
         ]
