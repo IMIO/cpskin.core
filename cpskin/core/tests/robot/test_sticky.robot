@@ -2,6 +2,8 @@
 
 Resource  plone/app/robotframework/keywords.robot
 
+Library  Remote  ${PLONE_URL}/RobotRemote
+
 Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
 
@@ -9,7 +11,7 @@ Test Teardown  Close all browsers
 *** Test cases ***
 
 Test that sticky field is present
-    Log in as site owner
+    Enable autologin as  Site Administrator
     Go to  ${PLONE_URL}
     Add news item  actu
     Go to  ${PLONE_URL}/actu

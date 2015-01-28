@@ -2,6 +2,10 @@
 
 Resource  plone/app/robotframework/keywords.robot
 
+
+Library  Remote  ${PLONE_URL}/RobotRemote
+
+
 Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
 
@@ -36,7 +40,7 @@ Scenario: Test folder view configuration
 *** Keywords ***
 
 logged as owner
-    Log in as site owner
+    Enable autologin as  Site Administrator
 
 
 I go to homepage

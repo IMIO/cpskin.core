@@ -1,6 +1,9 @@
 *** Settings ***
 
 Resource  plone/app/robotframework/keywords.robot
+Resource  plone/app/robotframework/selenium.robot
+
+Library  Remote  ${PLONE_URL}/RobotRemote
 
 Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
@@ -9,7 +12,7 @@ Test Teardown  Close all browsers
 *** Test cases ***
 
 Test enabling / disabling banner on Plone site and sub folder
-    Log in as site owner
+    Enable autologin as  Site Administrator
     Go to  ${PLONE_URL}
     Add folder  Subfolder
     Go to  ${PLONE_URL}/subfolder
@@ -32,7 +35,7 @@ Test enabling / disabling banner on Plone site and sub folder
     Page Should Not Contain Element  css=#cpskin-banner
 
 Test enabling / disabling local banner on Plone site
-    Log in as site owner
+    Enable autologin as  Site Administrator
     Go to  ${PLONE_URL}
     Add folder  Subfolder
     Go to  ${PLONE_URL}/subfolder

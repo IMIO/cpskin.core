@@ -2,6 +2,9 @@
 
 Resource  plone/app/robotframework/keywords.robot
 
+
+Library  Remote  ${PLONE_URL}/RobotRemote
+
 Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
 
@@ -19,7 +22,7 @@ Scenario: Test collection hidden tags criteria
 *** Keywords ***
 
 logged as owner
-    Log in as site owner
+    Enable autologin as  Site Administrator
 
 
 a document '${title}' with hidden tag '${keyword}'
