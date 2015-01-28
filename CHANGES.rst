@@ -4,7 +4,8 @@ Changelog
 0.5.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use `Enable autologin as  Site Administrator` into robot tests.
+  [bsuttor]
 
 
 0.5.6 (2014-12-04)
