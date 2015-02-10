@@ -5,9 +5,16 @@ from Products.CMFCore.utils import getToolByName
 from plone import api
 
 from cpskin.core.setuphandlers import setPageText, addLoadPageMenuToRegistry
+from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
+from cpskin.core.setuphandlers import addSliderTimerToRegistry
 
 import logging
 logger = logging.getLogger('cpskin.core')
+
+
+def upgrade_to_seven(context):
+    addAutoPlaySliderToRegistry()
+    addSliderTimerToRegistry()
 
 
 def upgrade_to_six(context):

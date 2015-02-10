@@ -58,6 +58,20 @@ class ICPSkinSettings(Interface):
         default=False
     )
 
+    auto_play_slider = schema.Bool(
+        title=_(u"Auto play slider"),
+        description=_(u"Is the front page slider automatically play?"),
+        required=False,
+        default=True
+    )
+
+    slider_timer = schema.Int(
+        title=_(u"Slider timer"),
+        description=_(u"Number of milliseconds between each transition."),
+        required=False,
+        default=3000
+    )
+
 
 class IVideoCollection(Interface):
     """

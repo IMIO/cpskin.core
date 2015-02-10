@@ -256,6 +256,42 @@ class FolderView(BrowserView):
         catalog.reindexObject(context)
         self._redirect(_(u'Big images are not used anymore on this folder view.'))
 
+    @property
+    def slider_config(self):
+        portal_registry = getToolByName(self.context, 'portal_registry')
+        slider_timer = portal_registry['cpskin.core.interfaces.ICPSkinSettings.slider_timer']
+        auto_play_slider = portal_registry['cpskin.core.interfaces.ICPSkinSettings.auto_play_slider']
+        config = """
+        (function($) {
+             "use strict";
+             var animation = "slide";
+             // IE 9 does not support 'slide' animation
+             if (navigator.sayswho === 'MSIE 9' || navigator.sayswho === 'IE 9')
+             {
+                animation = "fade";
+             }
+             $('#carousel').flexslider({
+               animation: animation,
+               controlNav: false,
+               animationLoop: false,
+               slideshow: false,
+               itemWidth: 210,
+               itemMargin: 5,
+               asNavFor: '#slider'
+             });
+             $('#slider').flexslider({
+               animation: animation,
+               controlNav: false,
+               animationLoop: true,
+               slideshow: %(auto_play_slider)s,
+               slideshowSpeed: %(slider_timer)s,
+               sync: "#carousel"
+             });
+         })(jQuery);
+        """ % {'auto_play_slider': auto_play_slider and 'true' or 'false',
+               'slider_timer': slider_timer}
+        return config
+
 
 def configure_folderviews(context):
     """

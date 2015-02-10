@@ -77,6 +77,8 @@ def installCore(context):
     configCollectiveQucikupload(portal)
 
     addLoadPageMenuToRegistry()
+    addAutoPlaySliderToRegistry()
+    addSliderTimerToRegistry()
 
 
 def configureMembers(context):
@@ -338,3 +340,33 @@ def addLoadPageMenuToRegistry():
                                default=False),
                     value=False)
     records['cpskin.core.interfaces.ICPSkinSettings.load_page_menu'] = record
+
+
+def addAutoPlaySliderToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+    if 'cpskin.core.interfaces.ICPSkinSettings.auto_play_slider' in records:
+        return
+
+    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.auto_play_slider to registry")
+    record = Record(field.Bool(title=_(u"Auto play slider"),
+                               description=_(u"Is the front page slider automatically play?"),
+                               required=False,
+                               default=True),
+                    value=True)
+    records['cpskin.core.interfaces.ICPSkinSettings.auto_play_slider'] = record
+
+
+def addSliderTimerToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+    if 'cpskin.core.interfaces.ICPSkinSettings.slider_timer' in records:
+        return
+
+    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.slider_timer to registry")
+    record = Record(field.Bool(title=_(u"Slider timer"),
+                               description=_(u"Number of seconds between each transition."),
+                               required=False,
+                               default=3000),
+                    value=3000)
+    records['cpskin.core.interfaces.ICPSkinSettings.slider_timer'] = record

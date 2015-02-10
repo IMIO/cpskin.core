@@ -32,6 +32,24 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
     load_page_menu = property(getLoadPageMenu,
                               setLoadPageMenu)
 
+    def getAutoPlaySlider(self):
+        return self.settings.auto_play_slider
+
+    def setAutoPlaySlider(self, value):
+        self.settings.auto_play_slider = value
+
+    auto_play_slider = property(getAutoPlaySlider,
+                                setAutoPlaySlider)
+
+    def getSliderTimer(self):
+        return self.settings.slider_timer
+
+    def setSliderTimer(self, value):
+        self.settings.slider_timer = value
+
+    slider_timer = property(getSliderTimer,
+                            setSliderTimer)
+
 
 class CPSkinControlPanel(ControlPanelForm):
 

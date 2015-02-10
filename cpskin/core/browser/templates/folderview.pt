@@ -32,7 +32,8 @@
 
                     <div class="flex-container"
                          tal:define="context nocall:context/a-la-une/a-la-une;
-                                     here nocall:context/a-la-une/a-la-une">
+                                     here nocall:context/a-la-une/a-la-une;
+                                     slider_config view/slider_config">
                       <metal:block use-macro="context/@@slider_view/macros/content-core" />
                     </div>
 
