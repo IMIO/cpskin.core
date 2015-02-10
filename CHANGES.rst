@@ -7,6 +7,9 @@ Changelog
 - Use `Enable autologin as  Site Administrator` into robot tests.
   [bsuttor]
 
+- Add possibility to choose flexslider parameters (imio #9515)
+  [schminitz]
+
 
 0.5.6 (2014-12-04)
 ------------------
