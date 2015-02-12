@@ -80,6 +80,15 @@
       />
 
   <browser:page
+      for="*"
+      name="slider_config_view"
+      class=".folderview.FolderView"
+      permission="zope.Public"
+      attribute="slider_config"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
       for="Products.CMFCore.interfaces.IFolderish"
       name="folderview"
       class=".folderview.FolderView"

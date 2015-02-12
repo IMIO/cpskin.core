@@ -256,7 +256,6 @@ class FolderView(BrowserView):
         catalog.reindexObject(context)
         self._redirect(_(u'Big images are not used anymore on this folder view.'))
 
-    @property
     def slider_config(self):
         portal_registry = getToolByName(self.context, 'portal_registry')
         slider_timer = portal_registry['cpskin.core.interfaces.ICPSkinSettings.slider_timer']
