@@ -325,6 +325,10 @@ def configCollectiveQucikupload(portal):
         qu_props._setProperty('show_upload_action', True, 'boolean')
     else:
         qu_props.show_upload_action = True
+    if not qu_props.hasProperty('sim_upload_limit'):
+        qu_props._setProperty('sim_upload_limit', 1, 'int')
+    else:   
+        qu_props.sim_upload_limit = 1
 
 
 def addLoadPageMenuToRegistry():
