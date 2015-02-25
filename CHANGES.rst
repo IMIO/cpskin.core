@@ -9,6 +9,9 @@ Changelog
 
 - Add possibility to choose flexslider parameters (imio #9515)
   [schminitz]
+  
+- Set quickupload 'sim_upload_limit' to 1.
+  [bsuttor]
 
 
 0.5.6 (2014-12-04)
