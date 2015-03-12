@@ -16,7 +16,7 @@
             </a>
             <a class="bloc-rss"
                 href=""
-                tal:attributes="href string:${content/absolute_url}/RSS">
+                tal:attributes="href content/@@syndication-util/rss_url"">
                 <img src="++resource++cpskin.core.images/rss.png"
                      alt="Flux RSS"
                      i18n:attributes="alt flux_rss" />
