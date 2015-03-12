@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.7 (unreleased)
+0.5.7 (2015-03-12)
 ------------------
 
 - Use `Enable autologin as  Site Administrator` into robot tests.
