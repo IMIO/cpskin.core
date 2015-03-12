@@ -13,6 +13,9 @@ Changelog
 - Set quickupload 'sim_upload_limit' to 1.
   [bsuttor]
 
+- Make good way to get RSS link for homepage (content/@@syndication-util/rss_url)
+  [bsuttor]
+
 
 0.5.6 (2014-12-04)
 ------------------
