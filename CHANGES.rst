@@ -1,7 +1,13 @@
 Changelog
 =========
 
-0.5.7 (unreleased)
+0.5.8 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
+0.5.7 (2015-03-12)
 ------------------
 
 - Use `Enable autologin as  Site Administrator` into robot tests.
@@ -11,6 +17,9 @@ Changelog
   [schminitz]
   
 - Set quickupload 'sim_upload_limit' to 1.
+  [bsuttor]
+
+- Make good way to get RSS link for homepage (content/@@syndication-util/rss_url)
   [bsuttor]
 
 
