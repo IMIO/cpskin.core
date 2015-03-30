@@ -7,6 +7,8 @@ from plone.app.layout.viewlets.common import ViewletBase
 
 from Products.CMFCore.utils import getToolByName
 
+from plone import api
+
 
 class CPSkinFooterSitemapViewlet(ViewletBase):
     render = ViewPageTemplateFile('footersitemap.pt')
@@ -18,7 +20,8 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
         navtreeProps = getToolByName(context, 'portal_properties').navtree_properties
         portal = getToolByName(context, 'portal_url').getPortalObject()
         queryDict = {}
-        queryDict['path'] = {'query': '/'.join(portal.getPhysicalPath()), 'depth': 1}
+        navigation_root = api.portal.get_navigation_root(context)
+        queryDict['path'] = {'query': '/'.join(navigation_root.getPhysicalPath()), 'depth': 1}
         if navtreeProps.enable_wf_state_filtering:
             queryDict['review_state'] = navtreeProps.wf_states_to_show
         queryDict['sort_on'] = 'getObjPositionInParent'
