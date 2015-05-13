@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.8 (unreleased)
+0.5.8 (2015-05-13)
 ------------------
 
 - Add static portlet permissions to Portlets Manager role.
