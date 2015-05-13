@@ -4,7 +4,11 @@ Changelog
 0.5.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add static portlet permissions to Portlets Manager role.
+  [bsuttor]
+
+- Upgrade step for adding static portlet permissions to Portlets Manager role.
+  [bsuttor]
 
 
 0.5.7 (2015-03-12)
