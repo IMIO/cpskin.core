@@ -12,6 +12,10 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def upgrade_to_eight(context):
+    context.runImportStepFromProfile('profile-cpskin.core:default', 'rolemap')
+
+
 def upgrade_to_seven(context):
     addAutoPlaySliderToRegistry()
     addSliderTimerToRegistry()
