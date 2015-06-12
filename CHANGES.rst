@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.9 (unreleased)
+0.5.9 (2015-06-12)
 ------------------
 
 - Make default slider timer to 5000 instead of 3000
