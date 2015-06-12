@@ -327,7 +327,7 @@ def configCollectiveQucikupload(portal):
         qu_props.show_upload_action = True
     if not qu_props.hasProperty('sim_upload_limit'):
         qu_props._setProperty('sim_upload_limit', 1, 'int')
-    else:   
+    else:
         qu_props.sim_upload_limit = 1
 
 
@@ -371,6 +371,6 @@ def addSliderTimerToRegistry():
     record = Record(field.Bool(title=_(u"Slider timer"),
                                description=_(u"Number of seconds between each transition."),
                                required=False,
-                               default=3000),
-                    value=3000)
+                               default=5000),
+                    value=5000)
     records['cpskin.core.interfaces.ICPSkinSettings.slider_timer'] = record
