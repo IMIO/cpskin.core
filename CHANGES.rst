@@ -4,7 +4,8 @@ Changelog
 0.5.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Make default slider timer to 5000 instead of 3000
+  [bsuttor]
 
 
 0.5.8 (2015-05-13)
