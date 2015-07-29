@@ -8,11 +8,16 @@
 <body>
   <metal:content-core fill-slot="content-core">
     <metal:block define-macro="content-core">
-      <div>
+       <div tal:define="
+            folderContents folderContents | python:context.getFolderContents();
+            Batch python:modules['Products.CMFPlone'].Batch;
+            b_start python:request.get('b_start', 0);
+            batch python:isinstance(folderContents, Batch) and folderContents or Batch(folderContents, 100, int(b_start), orphan=2);">
+
         <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         <div class="eea-preview-items">
-          <tal:entries repeat="brain python:context.queryCatalog()">
+          <tal:entries repeat="brain batch">
 
             <div class="photoAlbumEntry"
                 tal:define="
@@ -27,13 +32,13 @@
                     <div class="title" tal:content="title"></div>
 
                     <img tal:condition="exists:item_has_leadimage"
-                         tal:define="scale item_object/@@images; 
+                         tal:define="scale item_object/@@images;
                                      img python:scale.scale('leadImage', width=280, height=280)"
                          tal:replace="structure python: img.tag() if img else None" />
 
                 </a>
             </div>
-    
+
 
 
           </tal:entries>
