@@ -4,7 +4,8 @@ Changelog
 0.5.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix batch error on eea faceted leadimage view
+  [bsuttor]
 
 
 0.5.9 (2015-06-12)
