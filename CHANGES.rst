@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.10 (unreleased)
+0.5.10 (2015-07-29)
 -------------------
 
 - Fix batch error on eea faceted leadimage view
