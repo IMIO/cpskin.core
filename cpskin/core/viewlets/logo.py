@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-
 from plone.app.layout.viewlets.common import LogoViewlet
+from zExceptions import NotFound
 
 
 class CPSkinLogoViewlet(LogoViewlet):
@@ -11,7 +11,7 @@ class CPSkinLogoViewlet(LogoViewlet):
         logoTitle = self.portal_state.portal_title()
         try:
             logo_custom = self.context.restrictedTraverse(logoName)
-        except (AttributeError, KeyError):
+        except (AttributeError, KeyError, NotFound):
             # If no custom logo found, super() will handle default one
             pass
         else:
