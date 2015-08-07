@@ -31,6 +31,15 @@
         />
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v9"
+        description="Upgrade step for update footer with imio template"
+        handler=".upgradehandlers.upgrade_footer_viewlet"
+        source="8"
+        destination="9"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v8"
         description="Upgrade step for CPSKIN Core to v8"
         handler=".upgradehandlers.upgrade_to_eight"
