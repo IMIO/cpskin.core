@@ -4,6 +4,9 @@ Changelog
 0.5.11 (unreleased)
 -------------------
 
+- Add upgrade step which add footer viewlets
+  [bsuttor]
+
 - Add imio footer
   [bsuttor]
 
