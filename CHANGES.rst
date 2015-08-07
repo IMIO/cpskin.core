@@ -4,7 +4,8 @@ Changelog
 0.5.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add imio footer
+  [bsuttor]
 
 
 0.5.10 (2015-07-29)
