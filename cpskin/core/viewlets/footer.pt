@@ -1,0 +1,6 @@
+ <div i18n:domain="plone" id="portal-footer">
+
+    <p> Site réalisé en collaboration avec <a href="http://www.imio.be" target="_blank">IMIO</a> sous licence <a href="​http://fr.wikipedia.org/wiki/Free_Software_Foundation" target="_blank">libre</a> - &copy; <abbr tal:content="view/year" />
+    </p>
+
+</div>
