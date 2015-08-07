@@ -4,6 +4,9 @@ Changelog
 0.5.11 (unreleased)
 -------------------
 
+- Add css for hidding breathcrumb on homepage
+  [bsuttor]
+
 - Add not found exception for cpskinlogo search.
   [bsuttor]
 
