@@ -4,6 +4,9 @@ Changelog
 0.5.11 (unreleased)
 -------------------
 
+- Add not found exception for cpskinlogo search.
+  [bsuttor]
+
 - Add upgrade step which add footer viewlets
   [bsuttor]
 
