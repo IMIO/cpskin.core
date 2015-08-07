@@ -4,6 +4,14 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="cpskin">
 
+  <metal:styleslot fill-slot="style_slot" >
+        <style>
+        .section-notheme #portal-breadcrumbs {
+            display: none;
+        }
+        </style>
+  </metal:styleslot>
+
   <metal:javascript_head_slot fill-slot="javascript_head_slot"
                               tal:define="hasFlexSlider view/hasFlexSlider;
                                           alaune exists: context/a-la-une"
@@ -38,7 +46,7 @@
 
                 </div>
                 <div id="no-flex" tal:condition="python: content.id == 'a-la-une' and not view.is_browser_compatible()">
-                    <metal:use use-macro="context/@@cpskincore-macros/homepage-collection" /> 
+                    <metal:use use-macro="context/@@cpskincore-macros/homepage-collection" />
                 </div>
 
                 <div class=""
