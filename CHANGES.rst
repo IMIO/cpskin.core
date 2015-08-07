@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.5.11 (unreleased)
--------------------
+0.6.0 (2015-08-07)
+------------------
 
 - Add css for hidding breathcrumb on homepage
   [bsuttor]
