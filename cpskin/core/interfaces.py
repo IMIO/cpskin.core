@@ -72,6 +72,13 @@ class ICPSkinSettings(Interface):
         default=3000
     )
 
+    city_name = schema.TextLine(
+        title=_(u"City name"),
+        description=_(u"Name of city is used in some templates."),
+        required=True,
+        default=u'City name'
+    )
+
 
 class IVideoCollection(Interface):
     """

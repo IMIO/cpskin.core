@@ -29,8 +29,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
     def setLoadPageMenu(self, value):
         self.settings.load_page_menu = value
 
-    load_page_menu = property(getLoadPageMenu,
-                              setLoadPageMenu)
+    load_page_menu = property(getLoadPageMenu, setLoadPageMenu)
 
     def getAutoPlaySlider(self):
         return self.settings.auto_play_slider
@@ -38,8 +37,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
     def setAutoPlaySlider(self, value):
         self.settings.auto_play_slider = value
 
-    auto_play_slider = property(getAutoPlaySlider,
-                                setAutoPlaySlider)
+    auto_play_slider = property(getAutoPlaySlider, setAutoPlaySlider)
 
     def getSliderTimer(self):
         return self.settings.slider_timer
@@ -47,8 +45,15 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
     def setSliderTimer(self, value):
         self.settings.slider_timer = value
 
-    slider_timer = property(getSliderTimer,
-                            setSliderTimer)
+    slider_timer = property(getSliderTimer, setSliderTimer)
+
+    def getCityName(self):
+        return self.settings.city_name
+
+    def setCityName(self, value):
+        self.settings.city_name = value
+
+    city_name = property(getCityName, setCityName)
 
 
 class CPSkinControlPanel(ControlPanelForm):
