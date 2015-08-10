@@ -31,6 +31,15 @@
         />
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v10"
+        description="Upgrade step for adding city name param."
+        handler=".upgradehandlers.upgrade_city_name"
+        source="9"
+        destination="10"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v9"
         description="Upgrade step for update footer with imio template"
         handler=".upgradehandlers.upgrade_footer_viewlet"

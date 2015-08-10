@@ -7,9 +7,14 @@ from plone import api
 from cpskin.core.setuphandlers import setPageText, addLoadPageMenuToRegistry
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addSliderTimerToRegistry
+from cpskin.core.setuphandlers import addCityNameToRegistry
 
 import logging
 logger = logging.getLogger('cpskin.core')
+
+
+def upgrade_city_name(context):
+    addCityNameToRegistry()
 
 
 def upgrade_footer_viewlet(context):
