@@ -79,6 +79,7 @@ def installCore(context):
     addLoadPageMenuToRegistry()
     addAutoPlaySliderToRegistry()
     addSliderTimerToRegistry()
+    addCityNameToRegistry()
 
 
 def configureMembers(context):
@@ -374,3 +375,26 @@ def addSliderTimerToRegistry():
                                default=5000),
                     value=5000)
     records['cpskin.core.interfaces.ICPSkinSettings.slider_timer'] = record
+
+
+def addCityNameToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+    if 'cpskin.core.interfaces.ICPSkinSettings.city_name' in records:
+        return
+
+    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.city_name to registry")
+    portal = api.portal.get()
+    site_id = portal.getId()
+    city_name = unicode(site_id.capitalize())
+    record = Record(
+        field.TextLine(
+            title=_(u"City name"),
+            description=_(u"City name variable used in some template."),
+            required=True,
+            default=u'City name'),
+        value=city_name)
+    records['cpskin.core.interfaces.ICPSkinSettings.city_name'] = record
+
+
+
