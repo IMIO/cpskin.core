@@ -4,7 +4,8 @@ Changelog
 0.6.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add new param for cpkin: city_name.
+  [bsuttor]
 
 
 0.6.0 (2015-08-07)
