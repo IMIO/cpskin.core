@@ -4,6 +4,9 @@ Changelog
 0.6.1 (unreleased)
 ------------------
 
+- Add date if it's a Event on faceted-preview view
+  [bsuttor]
+
 - Add new param for cpkin: city_name.
   [bsuttor]
 
