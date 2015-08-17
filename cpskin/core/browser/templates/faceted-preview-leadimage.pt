@@ -3,7 +3,7 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   metal:use-macro="context/main_template/macros/master"
-  i18n:domain="eea">
+  i18n:domain="cpskin.locales">
 
 <body>
   <metal:content-core fill-slot="content-core">
@@ -16,7 +16,7 @@
 
         <div metal:use-macro="context/batch_macros/macros/navigation" />
 
-        <div class="eea-preview-items">
+        <div class="eea-preview-items" tal:define="portal context/portal_url/getPortalObject;">
           <tal:entries repeat="brain batch">
 
             <div class="photoAlbumEntry"
@@ -37,6 +37,24 @@
                          tal:replace="structure python: img.tag() if img else None" />
 
                 </a>
+                         <span class="documentByLine"
+                                  tal:condition="python: brain.portal_type == 'Event'">
+                              <tal:one_day condition="python: portal.toLocalizedTime(brain.start, long_format=0) == brain.toLocalizedTime(brain.end, long_format=0)">
+                              <span i18n:translate="evenement_le">le</span>
+                              <span tal:content="python: portal.toLocalizedTime(brain.start, long_format=0)" />
+                              <tal:withHours condition="python: portal.toLocalizedTime(brain.start, long_format=1)[11:] != '00:00' or portal.toLocalizedTime(brain.end, long_format=1)[11:] != '00:00'">
+                              <span i18n:translate="evenement_de">de</span>
+                              <span tal:content="python: portal.toLocalizedTime(brain.start, long_format=1)[11:]" />
+                              <span i18n:translate="evenement_a">à</span>
+                              <span tal:content="python: portal.toLocalizedTime(brain.end, long_format=1)[11:]" /></tal:withHours></tal:one_day>
+
+                              <tal:more_days condition="python: portal.toLocalizedTime(brain.start, long_format=0) != portal.toLocalizedTime(brain.end, long_format=0)">
+                              <span i18n:translate="evenement_du">du</span>
+                              <span tal:content="python: portal.toLocalizedTime(brain.start, long_format=0)" />
+                              <span i18n:translate="evenement_au">au</span>
+                              <span tal:content="python: portal.toLocalizedTime(brain.end, long_format=0)" /></tal:more_days>
+                            </span>
+
             </div>
 
 
