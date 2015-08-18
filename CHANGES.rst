@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.1 (unreleased)
+0.6.1 (2015-08-18)
 ------------------
 
 - Add date if it's a Event on faceted-preview view
