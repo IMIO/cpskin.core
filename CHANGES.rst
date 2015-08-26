@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.2 (unreleased)
+0.6.2 (2015-08-26)
 ------------------
 
 - Fix bad encoded cpskin.core.socialviewlet registry
