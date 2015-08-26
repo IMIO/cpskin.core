@@ -17,4 +17,6 @@ class SocialViewlet(common.ViewletBase):
         registry = getUtility(IRegistry)
         links_dict = registry['cpskin.core.socialviewlet']
         links_ordered = sorted(links_dict.itervalues(), key=operator.itemgetter(0))
+        # Fix bad encoded cpskin.core.socialviewlet registry :
+        links_ordered = [li for li in links_ordered if len(li) == 3]
         return links_ordered
