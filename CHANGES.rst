@@ -4,7 +4,8 @@ Changelog
 0.6.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix bad encoded cpskin.core.socialviewlet registry
+  [bsuttor]
 
 
 0.6.1 (2015-08-18)
