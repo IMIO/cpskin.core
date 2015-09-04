@@ -15,8 +15,3 @@ notifications:
       - devs@imio.be
     on_success: change
     on_failure: change
-  irc:
-    channels:
-      - "irc.freenode.org#imio"
-    on_success: change
-    on_failure: always
