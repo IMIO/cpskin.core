@@ -31,6 +31,15 @@
         />
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v11"
+        description="Upgrade step for adding sub menu persistance option."
+        handler=".upgradehandlers.upgrade_to_eleven"
+        source="10"
+        destination="11"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v10"
         description="Upgrade step for adding city name param."
         handler=".upgradehandlers.upgrade_city_name"

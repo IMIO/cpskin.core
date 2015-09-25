@@ -58,6 +58,13 @@ class ICPSkinSettings(Interface):
         default=False
     )
 
+    sub_menu_persistance = schema.Bool(
+        title=_(u"Sub menu persistance"),
+        description=_(u"Is level 2 menu persist?"),
+        required=False,
+        default=True
+    )
+
     auto_play_slider = schema.Bool(
         title=_(u"Auto play slider"),
         description=_(u"Is the front page slider automatically play?"),
