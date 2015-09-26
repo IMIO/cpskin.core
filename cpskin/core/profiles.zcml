@@ -32,7 +32,7 @@
 
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v11"
-        description="Upgrade step for adding sub menu persistance option."
+        description="Upgrade step for adding sub menu persistence option."
         handler=".upgradehandlers.upgrade_to_eleven"
         source="10"
         destination="11"

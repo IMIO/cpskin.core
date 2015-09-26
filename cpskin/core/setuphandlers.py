@@ -80,7 +80,7 @@ def installCore(context):
     addAutoPlaySliderToRegistry()
     addSliderTimerToRegistry()
     addCityNameToRegistry()
-    addSubMenuPersistanceToRegistry()
+    addSubMenuPersistenceToRegistry()
 
 
 def configureMembers(context):
@@ -348,19 +348,19 @@ def addLoadPageMenuToRegistry():
     records['cpskin.core.interfaces.ICPSkinSettings.load_page_menu'] = record
 
 
-def addSubMenuPersistanceToRegistry():
+def addSubMenuPersistenceToRegistry():
     registry = getUtility(IRegistry)
     records = registry.records
-    if 'cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistance' in records:
+    if 'cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence' in records:
         return
 
-    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistance to registry")
-    record = Record(field.Bool(title=_(u"Sub menu persistance"),
+    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence to registry")
+    record = Record(field.Bool(title=_(u"Sub menu persistence"),
                                description=_(u"Is level 2 menu persist?"),
                                required=False,
                                default=True),
                     value=True)
-    records['cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistance'] = record
+    records['cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence'] = record
 
 
 def addAutoPlaySliderToRegistry():

@@ -58,8 +58,8 @@ class ICPSkinSettings(Interface):
         default=False
     )
 
-    sub_menu_persistance = schema.Bool(
-        title=_(u"Sub menu persistance"),
+    sub_menu_persistence = schema.Bool(
+        title=_(u"Sub menu persistence"),
         description=_(u"Is level 2 menu persist?"),
         required=False,
         default=True

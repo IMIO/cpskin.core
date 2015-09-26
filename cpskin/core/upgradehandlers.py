@@ -4,7 +4,7 @@ from Products.CMFCore.utils import getToolByName
 
 from plone import api
 
-from cpskin.core.setuphandlers import setPageText, addLoadPageMenuToRegistry, addSubMenuPersistanceToRegistry
+from cpskin.core.setuphandlers import setPageText, addLoadPageMenuToRegistry, addSubMenuPersistenceToRegistry
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addSliderTimerToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
@@ -22,7 +22,7 @@ def upgrade_footer_viewlet(context):
 
 
 def upgrade_to_eleven(context):
-    addSubMenuPersistanceToRegistry()
+    addSubMenuPersistenceToRegistry()
 
 
 def upgrade_to_eight(context):

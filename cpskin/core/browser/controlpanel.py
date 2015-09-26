@@ -31,13 +31,13 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
     load_page_menu = property(getLoadPageMenu, setLoadPageMenu)
 
-    def getSubMenuPersistance(self):
-        return self.settings.sub_menu_persistance
+    def getSubMenuPersistence(self):
+        return self.settings.sub_menu_persistence
 
-    def setSubMenuPersistance(self, value):
-        self.settings.sub_menu_persistance = value
+    def setSubMenuPersistence(self, value):
+        self.settings.sub_menu_persistence = value
 
-    sub_menu_persistance = property(getSubMenuPersistance, setSubMenuPersistance)
+    sub_menu_persistence = property(getSubMenuPersistence, setSubMenuPersistence)
 
     def getAutoPlaySlider(self):
         return self.settings.auto_play_slider
