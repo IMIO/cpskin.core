@@ -4,7 +4,8 @@ Changelog
 0.6.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Portlet navigation is no visible on minisite homepage.
+  [bsuttor]
 
 
 0.6.2 (2015-08-26)
