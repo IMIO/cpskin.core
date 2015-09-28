@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.3 (unreleased)
+0.6.3 (2015-09-28)
 ------------------
 
 - Portlet navigation is no visible on minisite homepage.
