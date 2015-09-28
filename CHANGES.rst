@@ -7,6 +7,9 @@ Changelog
 - Portlet navigation is no visible on minisite homepage.
   [bsuttor]
 
+- Add sub menu persistance option.
+  [schminitz]
+  
 
 0.6.2 (2015-08-26)
 ------------------
