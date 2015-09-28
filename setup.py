@@ -58,6 +58,7 @@ setup(name='cpskin.core',
           'collective.z3cform.keywordwidget',
           # -*- Extra requirements: -*-
           'httpagentparser',
+          'cpskin.minisite'
       ],
       extras_require={
           'test': [

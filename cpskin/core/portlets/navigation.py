@@ -12,7 +12,7 @@ from plone.app.portlets.portlets.navigation import Renderer
 from plone.app.portlets.portlets.navigation import getRootPath
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
+from cpskin.minisite.interfaces import IInMinisiteBase
 HAS_MENU = False
 try:
     from cpskin.menu.interfaces import IFourthLevelNavigation
@@ -21,7 +21,7 @@ except ImportError:
     pass
 
 
-def calculateTopLevel(context, portlet):
+def calculateTopLevel(context, portlet, request=None):
     """Calculate top level of navigation menu to take care of 4th level menu
     NB : IFourthLevelNavigation is activated on the third level folder
     """
@@ -41,6 +41,9 @@ def calculateTopLevel(context, portlet):
         thirdLevelFolder = portal.unrestrictedTraverse(thirdLevelPath)
         if IFourthLevelNavigation.providedBy(thirdLevelFolder):
             return 4
+        if request and IInMinisiteBase.providedBy(request):
+            # should be depth_of_minisite + 1
+            return depth + 1
     return portlet.topLevel
 
 
@@ -49,6 +52,7 @@ class CPSkinQueryBuilder(QueryBuilder):
     adapts(Interface, INavigationPortlet)
 
     def __call__(self):
+        import ipdb; ipdb.set_trace()
         topLevel = calculateTopLevel(self.context, self.portlet)
         self.query['path']['navtree_start'] = topLevel + 1
         return self.query
@@ -65,6 +69,7 @@ class CPSkinNavtreeStrategy(NavtreeStrategy):
         currentFolderOnly = portlet.currentFolderOnly or \
             navtree_properties.getProperty('currentFolderOnlyInNavtree', False)
         topLevel = calculateTopLevel(context, portlet)
+
         self.rootPath = getRootPath(context, currentFolderOnly, topLevel, portlet.root)
 
 
@@ -76,7 +81,7 @@ class CPSkinRenderer(Renderer):
         currentFolderOnly = self.data.currentFolderOnly or \
                             self.properties.getProperty('currentFolderOnlyInNavtree', False)
 
-        topLevel = calculateTopLevel(self.context, self.data)
+        topLevel = calculateTopLevel(self.context, self.data, self.request)
         root = self.data.root
         if isinstance(root, unicode):
             root = str(root)
