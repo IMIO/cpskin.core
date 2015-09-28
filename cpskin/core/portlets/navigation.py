@@ -13,6 +13,10 @@ from plone.app.portlets.portlets.navigation import getRootPath
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from cpskin.minisite.interfaces import IInMinisiteBase
+from cpskin.minisite.browser.interfaces import IHNavigationActivated
+from cpskin.minisite.utils import (
+    get_minisite_navigation_level,
+    get_minisite_object)
 HAS_MENU = False
 try:
     from cpskin.menu.interfaces import IFourthLevelNavigation
@@ -41,9 +45,11 @@ def calculateTopLevel(context, portlet, request=None):
         thirdLevelFolder = portal.unrestrictedTraverse(thirdLevelPath)
         if IFourthLevelNavigation.providedBy(thirdLevelFolder):
             return 4
-        if request and IInMinisiteBase.providedBy(request):
-            # should be depth_of_minisite + 1
-            return depth + 1
+        if request:
+            if IInMinisiteBase.providedBy(request):
+                minisite_obj = get_minisite_object(request)
+                if minisite_obj and IHNavigationActivated.providedBy(minisite_obj):
+                    return get_minisite_navigation_level(minisite_obj) + 1
     return portlet.topLevel
 
 
@@ -52,7 +58,6 @@ class CPSkinQueryBuilder(QueryBuilder):
     adapts(Interface, INavigationPortlet)
 
     def __call__(self):
-        import ipdb; ipdb.set_trace()
         topLevel = calculateTopLevel(self.context, self.portlet)
         self.query['path']['navtree_start'] = topLevel + 1
         return self.query
