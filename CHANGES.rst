@@ -4,7 +4,8 @@ Changelog
 0.6.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix portlet visible level for minisite objects.
+  [bsuttor]
 
 
 0.6.4 (2015-09-28)
