@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.5 (unreleased)
+0.6.5 (2015-09-29)
 ------------------
 
 - Fix portlet visible level for minisite objects.
