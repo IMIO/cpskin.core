@@ -73,7 +73,7 @@ class CPSkinNavtreeStrategy(NavtreeStrategy):
         navtree_properties = getattr(portal_properties, 'navtree_properties')
         currentFolderOnly = portlet.currentFolderOnly or \
             navtree_properties.getProperty('currentFolderOnlyInNavtree', False)
-        topLevel = calculateTopLevel(context, portlet)
+        topLevel = calculateTopLevel(context, portlet, context.REQUEST)
 
         self.rootPath = getRootPath(context, currentFolderOnly, topLevel, portlet.root)
 
@@ -84,7 +84,7 @@ class CPSkinRenderer(Renderer):
     @memoize
     def getNavRootPath(self):
         currentFolderOnly = self.data.currentFolderOnly or \
-                            self.properties.getProperty('currentFolderOnlyInNavtree', False)
+            self.properties.getProperty('currentFolderOnlyInNavtree', False)
 
         topLevel = calculateTopLevel(self.context, self.data, self.request)
         root = self.data.root
