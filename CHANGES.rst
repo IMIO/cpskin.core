@@ -4,7 +4,8 @@ Changelog
 0.6.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add minisite menu viewlet.
+  [bsuttor]
 
 
 0.6.5 (2015-09-29)
