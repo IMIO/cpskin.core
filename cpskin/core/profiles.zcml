@@ -31,6 +31,15 @@
         />
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v12"
+        description="Upgrade step for adding minisite viewlet menu."
+        handler=".upgradehandlers.upgrade_minisite_menu"
+        source="11"
+        destination="12"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v11"
         description="Upgrade step for adding sub menu persistence option."
         handler=".upgradehandlers.upgrade_to_eleven"

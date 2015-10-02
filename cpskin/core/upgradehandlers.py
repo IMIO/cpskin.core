@@ -13,6 +13,13 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def upgrade_minisite_menu(context):
+    # add new viewlet cpskin.minisite
+    context.runImportStepFromProfile('profile-cpskin.core:default', 'viewlets')
+    context.runImportStepFromProfile('profile-cpskin.menu:default', 'jsregistry')
+    context.runImportStepFromProfile('profile-cpskin.minisite:default', 'actions')
+
+
 def upgrade_city_name(context):
     addCityNameToRegistry()
 
