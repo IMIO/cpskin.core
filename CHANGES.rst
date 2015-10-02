@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.6 (unreleased)
+0.6.6 (2015-10-02)
 ------------------
 
 - Add minisite menu viewlet.
