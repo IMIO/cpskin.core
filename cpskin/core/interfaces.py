@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from zope import schema
 from zope.interface import Interface
-
 from cpskin.locales import CPSkinMessageFactory as _
 
 
@@ -84,6 +83,14 @@ class ICPSkinSettings(Interface):
         description=_(u"Name of city is used in some templates."),
         required=True,
         default=u'City name'
+    )
+
+    slider_type = schema.Choice(
+        title=_(u"Slider type"),
+        description=_(u"Slider type (slider_view / slider_view_vertical)."),
+        required=True,
+        values=[_(u'slider_view'), _(u'slider_view_vertical')],
+        default=u'slider_view'
     )
 
 

@@ -81,6 +81,7 @@ def installCore(context):
     addSliderTimerToRegistry()
     addCityNameToRegistry()
     addSubMenuPersistenceToRegistry()
+    addSliderTypeToRegistry()
 
 
 def configureMembers(context):
@@ -412,5 +413,19 @@ def addCityNameToRegistry():
         value=city_name)
     records['cpskin.core.interfaces.ICPSkinSettings.city_name'] = record
 
+
+def addSliderTypeToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+    if 'cpskin.core.interfaces.ICPSkinSettings.slider_type' in records:
+        return
+
+    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.slider_type to registry")
+    record = Record(field.TextLine(title=_(u"Slider type"),
+                               description=_(u"Choose an horizontal or vertical slider."),
+                               required=True,
+                               default=u'slider_view'),
+                    value=u'slider_view')
+    records['cpskin.core.interfaces.ICPSkinSettings.slider_type'] = record
 
 

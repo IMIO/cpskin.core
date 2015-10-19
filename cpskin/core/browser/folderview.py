@@ -144,6 +144,10 @@ class FolderView(BrowserView):
         results = portal_catalog.searchResults(queryDict)
         return results
 
+    def getSliderType(self):
+        portal_registry = getToolByName(self.context, 'portal_registry')
+        return portal_registry['cpskin.core.interfaces.ICPSkinSettings.slider_type']
+
     def hasFlexSlider(self):
         """
         Check if flexslider is available and installed
@@ -361,5 +365,4 @@ def configure_folderviews(context):
         collection.setSort_reversed(True)
         collection.setLayout('folder_summary_view')
         folder.setDefaultPage('evenements')
-
     context.setLayout('folderview')

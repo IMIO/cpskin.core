@@ -63,6 +63,14 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
     city_name = property(getCityName, setCityName)
 
+    def getSliderType(self):
+        return self.settings.slider_type
+
+    def setSliderType(self, value):
+        self.settings.slider_type = value
+
+    slider_type = property(getSliderType, setSliderType)
+
 
 class CPSkinControlPanel(ControlPanelForm):
 

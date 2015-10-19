@@ -41,7 +41,12 @@
                     <div class="flex-container"
                          tal:define="context nocall:context/a-la-une/a-la-une;
                                      here nocall:context/a-la-une/a-la-une;">
-                      <metal:block use-macro="context/@@slider_view/macros/content-core" />
+                        <tal:cond condition="python:view.getSliderType() == 'slider_view_vertical'">
+                              <metal:block use-macro="context/@@slider_view_vertical/macros/content-core" />
+                        </tal:cond>
+                        <tal:cond condition="python:view.getSliderType() != 'slider_view_vertical'">
+                              <metal:block use-macro="context/@@slider_view/macros/content-core" />
+                        </tal:cond>
                     </div>
 
                 </div>
