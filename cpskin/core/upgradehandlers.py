@@ -8,6 +8,7 @@ from cpskin.core.setuphandlers import setPageText, addLoadPageMenuToRegistry, ad
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addSliderTimerToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
+from cpskin.core.setuphandlers import addSliderTypeToRegistry
 
 import logging
 logger = logging.getLogger('cpskin.core')
@@ -22,6 +23,10 @@ def upgrade_minisite_menu(context):
 
 def upgrade_city_name(context):
     addCityNameToRegistry()
+
+
+def upgrade_slider_type(context):
+    addSliderTypeToRegistry()
 
 
 def upgrade_footer_viewlet(context):
