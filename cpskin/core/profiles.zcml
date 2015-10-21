@@ -56,6 +56,15 @@
         destination="10"
         profile="cpskin.core:default"
         />
+    
+    <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v13"
+        description="Upgrade step for adding slider type param."
+        handler=".upgradehandlers.upgrade_slider_type"
+        source="12"
+        destination="13"
+        profile="cpskin.core:default"
+        />    
 
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v9"
