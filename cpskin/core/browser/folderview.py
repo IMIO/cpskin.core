@@ -10,8 +10,8 @@ from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.interfaces import IFolderish
 
-from cpskin.core.interfaces import IFolderViewSelectedContent, \
-                                   IFolderViewWithBigImages
+from cpskin.core.interfaces import (IFolderViewSelectedContent,
+                                    IFolderViewWithBigImages)
 
 from cpskin.locales import CPSkinMessageFactory as _
 import httpagentparser
@@ -120,7 +120,7 @@ class FolderView(BrowserView):
         if resultType == 'sticky-results' and number < 5:
             return True
         elif resultType == 'standard-results' and \
-             number < 5 - len(results['sticky-results']):
+                number < 5 - len(results['sticky-results']):
             return True
         return False
 
@@ -315,7 +315,7 @@ def configure_folderviews(context):
         query = [{'i': 'hiddenTags',
                   'o': 'plone.app.querystring.operation.selection.is',
                   'v': 'a-la-une'},
-                  {'i': 'path',
+                 {'i': 'path',
                   'o': 'plone.app.querystring.operation.string.path',
                   'v': '/%s' % contextPath}]
         collection.setQuery(query)
@@ -336,7 +336,7 @@ def configure_folderviews(context):
         query = [{'i': 'portal_type',
                   'o': 'plone.app.querystring.operation.selection.is',
                   'v': ['News Item']},
-                  {'i': 'path',
+                 {'i': 'path',
                   'o': 'plone.app.querystring.operation.string.path',
                   'v': '/%s' % contextPath}]
         collection.setQuery(query)
@@ -357,7 +357,7 @@ def configure_folderviews(context):
         query = [{'i': 'portal_type',
                   'o': 'plone.app.querystring.operation.selection.is',
                   'v': ['Event']},
-                  {'i': 'path',
+                 {'i': 'path',
                   'o': 'plone.app.querystring.operation.string.path',
                   'v': '/%s' % contextPath}]
         collection.setQuery(query)
