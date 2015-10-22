@@ -4,7 +4,8 @@ Changelog
 0.6.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Check 'Modify portal content' permission for viewing [Modifier la zone statique]
+  [bsuttor]
 
 
 0.6.6 (2015-10-02)
