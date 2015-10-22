@@ -2,7 +2,6 @@
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
   <include file="configure.zcml" />
-  <include package="cpskin.minisite" />
   <include package="jarn.jsi18n" />
 
   <genericsetup:registerProfile
