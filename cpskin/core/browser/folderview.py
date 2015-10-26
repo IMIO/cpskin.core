@@ -32,7 +32,7 @@ class FolderView(BrowserView):
 
     def _get_real_context(self):
         context = self.context
-        plone_view = getMultiAdapter((context, self.request), name="plone")
+        plone_view = getMultiAdapter((context, self.request), name='plone')
         if plone_view.isDefaultPageInFolder():
             context = aq_parent(context)
         context = aq_inner(context)
@@ -66,8 +66,8 @@ class FolderView(BrowserView):
         context = self.context
         if not IFolderish.providedBy(context):
             return False
-        alreadyActivated = self.isFolderViewActivated()
-        return (not alreadyActivated)
+        already_activated = self.isFolderViewActivated()
+        return (not already_activated)
 
     def configure(self):
         """
@@ -75,7 +75,7 @@ class FolderView(BrowserView):
         """
         context = self.context
         configure_folderviews(context)
-        api.portal.show_message(message=_(u"Vue index avec collections configurée."),
+        api.portal.show_message(message=_(u'Vue index avec collections configurée.'),
                                 request=self.request,
                                 type='info')
         self.request.response.redirect(context.absolute_url())
@@ -157,14 +157,14 @@ class FolderView(BrowserView):
         except ImportError:
             return False
         else:
-            request = getattr(self.context, "REQUEST", None)
+            request = getattr(self.context, 'REQUEST', None)
             if ICPSkinSliderLayer.providedBy(request):
                 return True
             return False
 
     def is_browser_compatible(self):
         results = True
-        request = getattr(self.context, "REQUEST", None)
+        request = getattr(self.context, 'REQUEST', None)
         http_user_agent = request.getHeader('HTTP_USER_AGENT')
         browser_user_agent = httpagentparser.detect(http_user_agent)
         if browser_user_agent:
@@ -306,12 +306,12 @@ def configure_folderviews(context):
         folder = api.content.create(container=context,
                                     type='Folder',
                                     id='a-la-une',
-                                    title="À la une")
+                                    title='À la une')
         alsoProvides(folder, IFolderViewSelectedContent)
         collection = api.content.create(container=folder,
                                         type='Collection',
                                         id='a-la-une',
-                                        title="À la une")
+                                        title='À la une')
         query = [{'i': 'hiddenTags',
                   'o': 'plone.app.querystring.operation.selection.is',
                   'v': 'a-la-une'},
@@ -327,12 +327,12 @@ def configure_folderviews(context):
         folder = api.content.create(container=context,
                                     type='Folder',
                                     id='actualites',
-                                    title="Actualités")
+                                    title='Actualités')
         alsoProvides(folder, IFolderViewSelectedContent)
         collection = api.content.create(container=folder,
                                         type='Collection',
                                         id='actualites',
-                                        title="Actualités")
+                                        title='Actualités')
         query = [{'i': 'portal_type',
                   'o': 'plone.app.querystring.operation.selection.is',
                   'v': ['News Item']},
@@ -348,12 +348,12 @@ def configure_folderviews(context):
         folder = api.content.create(container=context,
                                     type='Folder',
                                     id='evenements',
-                                    title="Événements")
+                                    title='Événements')
         alsoProvides(folder, IFolderViewSelectedContent)
         collection = api.content.create(container=folder,
                                         type='Collection',
                                         id='evenements',
-                                        title="Événements")
+                                        title='Événements')
         query = [{'i': 'portal_type',
                   'o': 'plone.app.querystring.operation.selection.is',
                   'v': ['Event']},
