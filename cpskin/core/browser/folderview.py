@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 
-from Acquisition import aq_parent
 from Acquisition import aq_inner
-from zope.component import getMultiAdapter
-from zope.interface import alsoProvides
-from zope.interface import noLongerProvides
-from plone import api
-from Products.Five import BrowserView
-from Products.CMFCore.utils import getToolByName
+from Acquisition import aq_parent
 from Products.CMFCore.interfaces import IFolderish
+from Products.CMFCore.utils import getToolByName
+from Products.Five import BrowserView
 
 from cpskin.core.interfaces import (IFolderViewSelectedContent,
                                     IFolderViewWithBigImages)
-
 from cpskin.locales import CPSkinMessageFactory as _
+from plone import api
+from zope.component import getMultiAdapter
+from zope.interface import alsoProvides
+from zope.interface import noLongerProvides
+
 import httpagentparser
 
 ADDABLE_TYPES = ['Collection', 'Document', 'Folder']
