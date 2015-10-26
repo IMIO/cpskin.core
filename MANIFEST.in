@@ -3,6 +3,7 @@ include *.rst
 exclude *.cfg
 exclude .travis.yml
 exclude bootstrap.py
+exclude Makefile
 graft cpskin 
 recursive-include docs LICENSE.*
 global-exclude *.pyc
