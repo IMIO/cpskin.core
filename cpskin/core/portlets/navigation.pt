@@ -1,5 +1,5 @@
 <tal:block i18n:domain="plone">
-<dl class="portlet portletNavigationTree"  
+<dl class="portlet portletNavigationTree"
     tal:define="root view/navigation_root;">
 
     <dt class="portletHeader">
@@ -10,7 +10,7 @@
            tal:content="root/Title"><tal:comment replace="nothing">Navigation</tal:comment></a>
         <span class="portletTopRight"></span>
     </dt>
-    
+
     <dd class="portletItem lastItem">
         <ul class="navTree navTreeLevel0">
             <li class="navTreeItem"

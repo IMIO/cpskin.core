@@ -2,7 +2,7 @@
     <div class="albums-container" tal:condition="view/get_one_album">
         <h2 i18n:translate="Photos">Photos</h2>
         <div class="left">
-            <ul class="albums"> 
+            <ul class="albums">
                 <li tal:repeat='album view/get_one_album'
                     class="album-0">
                 <div class="lead-image-wrapper" >
@@ -12,8 +12,8 @@
             </ul>
         </div>
         <div class="center">
-            <ul class="albums"> 
-                <li tal:repeat='album view/get_four_albums' 
+            <ul class="albums">
+                <li tal:repeat='album view/get_four_albums'
                     tal:attributes="class string:album-${repeat/album/number}">
                     <div class="lead-image-wrapper" >
                         <img tal:replace="structure album" />
@@ -21,7 +21,7 @@
                 </li>
             </ul>
         </div>
-        <a class="link-all" 
+        <a class="link-all"
                 tal:attributes="href python:view.get_albums_collection().absolute_url()"
                 i18n:translate='link-to-all-albums'>
                 Voir tous les albums
@@ -46,7 +46,7 @@
                 Voir toutes les vidéos
             </a>
         </div>
-        
+
     </div>
     <div class="visualClear"></div>
 </div>
