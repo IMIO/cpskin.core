@@ -14,6 +14,11 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+# def upgrade_to_dexterity(context):
+#     # Use to testing plone.app.contenttypes :
+#     context.runAllImportStepsFromProfile('profile-cpskin.core:dx')
+
+
 def upgrade_minisite_menu(context):
     # add new viewlet cpskin.minisite
     context.runImportStepFromProfile('profile-cpskin.core:default', 'viewlets')

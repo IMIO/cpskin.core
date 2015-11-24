@@ -31,6 +31,8 @@ class MediaViewlet(common.ViewletBase):
     def get_videos(self):
         videos = []
         collection = self.get_videos_collection()
+        if not collection:
+            return None
         # limit = collection.getLimit()
         limit = 2
         brains = [b for b in collection.queryCatalog()][:limit]

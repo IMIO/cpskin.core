@@ -4,6 +4,10 @@ Changelog
 0.6.7 (unreleased)
 ------------------
 
+- Add dx profile.
+  [bsuttor]
+
+
 - Check 'Modify portal content' permission for viewing [Modifier la zone statique]
   [bsuttor]
 
