@@ -6,7 +6,6 @@
     <!-- <dependency>profile-plone.app.collection:default</dependency> -->
     <dependency>profile-plone.app.registry:default</dependency>
     <dependency>profile-imio.ckeditortemplates:default</dependency>
-    <dependency>profile-collective.contentleadimage:default</dependency>
     <dependency>profile-collective.directory:default</dependency>
     <dependency>profile-collective.geo.leaflet:default</dependency>
     <dependency>profile-collective.sticky:default</dependency>

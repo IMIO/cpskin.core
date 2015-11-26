@@ -3,7 +3,6 @@
     <!-- Dependencies -->
     <include package="archetypes.schemaextender" />
     <include package="imio.ckeditortemplates" />
-    <include package="collective.contentleadimage" />
     <include package="collective.directory" />
     <include package="collective.geo.leaflet" />
     <include package="collective.sticky" />

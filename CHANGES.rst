@@ -4,6 +4,9 @@ Changelog
 0.6.8 (unreleased)
 ------------------
 
+- Remove dependency on collective.contentleadimage, it's now a behiavior for Dexterity. I leave dependency on setup.py for backward compatibility.
+[bsuttor]
+
 - Improve comptability with Dexterity during setup.
   [bsuttor]
 
