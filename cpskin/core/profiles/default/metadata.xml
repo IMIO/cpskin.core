@@ -3,7 +3,7 @@
   <version>13</version>
   <dependencies>
     <dependency>profile-plone.resource:default</dependency>
-    <dependency>profile-plone.app.collection:default</dependency>
+    <!-- <dependency>profile-plone.app.collection:default</dependency> -->
     <dependency>profile-plone.app.registry:default</dependency>
     <dependency>profile-imio.ckeditortemplates:default</dependency>
     <dependency>profile-collective.contentleadimage:default</dependency>
