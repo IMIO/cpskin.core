@@ -45,6 +45,7 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
 
     def getFooterText(self):
         footer_static = getattr(self.context, 'footer-static', None)
+        text = ''
         if footer_static is None:
             return
         if footer_static.Language() == self.context.Language():
@@ -52,7 +53,8 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
                 text = footer_static.getText()
             except:
                 # new way to get text from textrich with dexterity
-                text = footer_static.text.raw
+                if footer_static.text:
+                    text = footer_static.text.raw
             return text
         if hasattr(footer_static, 'getTranslation'):
             lang = self.context.REQUEST.get('LANGUAGE', 'fr')
@@ -61,5 +63,6 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
             text = footer_static.getText()
         except:
             # new way to get text from textrich with dexterity
-            text = footer_static.text.raw
+            if footer_static.text:
+                text = footer_static.text.raw
         return text
