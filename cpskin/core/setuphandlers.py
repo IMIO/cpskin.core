@@ -284,15 +284,29 @@ def ChangeCollectionsIds(portal):
 def addImageFromFile(portal, fileName):
     dataPath = os.path.join(os.path.dirname(__file__), 'data')
     filePath = os.path.join(dataPath, fileName)
-    fd = open(filePath, 'rb')
     if not portal.hasObject(fileName):
-        image = api.content.create(type='Image',
-                                   title=fileName,
-                                   container=portal,
-                                   file=fd)
+        portal_types = api.portal.get_tool('portal_types')
+        if portal_types.get('Image').meta_type != "Dexterity FTI":
+            fd = open(filePath, 'rb')
+            image = api.content.create(type='Image',
+                                       title=fileName,
+                                       container=portal,
+                                       file=fd)
+            fd.close()
+        else:
+            # with deterity image
+            from plone.namedfile.file import NamedBlobImage
+            namedblobimage = NamedBlobImage(
+                data=open(filePath, 'r').read(),
+                filename=unicode(fileName)
+            )
+            image = api.content.create(type='Image',
+                                       title=fileName,
+                                       image=namedblobimage,
+                                       container=portal,
+                                       language='fr')
         image.setTitle(fileName)
         image.reindexObject()
-    fd.close()
 
 
 def addBehavior(portal, behavior, name):
