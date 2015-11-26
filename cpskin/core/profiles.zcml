@@ -30,15 +30,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <genericsetup:registerProfile
-        name="dx"
-        title="cpskin.core: dexterity installation"
-        directory="profiles/dx"
-        description="Updates CPSkin core to dexterity"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
-
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v13"
         description="Upgrade step for adding slider type param."
