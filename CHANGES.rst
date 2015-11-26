@@ -4,7 +4,11 @@ Changelog
 0.6.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Improve comptability with Dexterity during setup.
+  [bsuttor]
+
+- Remove plone.app.collection installation, we use plone.app.contenttypes now ...
+  [bsuttor]
 
 
 0.6.7 (2015-11-24)
