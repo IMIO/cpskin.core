@@ -14,12 +14,14 @@ from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 
+from plone.app.contenttypes.browser.folder import FolderView as FV
+
 import httpagentparser
 
 ADDABLE_TYPES = ['Collection', 'Document', 'Folder']
 
 
-class FolderView(BrowserView):
+class FolderView(FV):
 
     def _redirect(self, msg=''):
         if self.request:
