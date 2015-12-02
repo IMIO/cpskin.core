@@ -3,8 +3,8 @@
 
  <object name="site_properties">
   <property name="icon_visibility" type="string">authenticated</property>
-  <property name="available_editors" type="lines" purge="True">
-   <element value="CKeditor"/>
+  <property name="available_editors" type="lines" purge="False">
+   <element value="CKeditor" />
   </property>
   <property name="default_editor" type="string">CKeditor</property>
   <property name="allowRolesToAddKeywords" type="lines" purge="True">
