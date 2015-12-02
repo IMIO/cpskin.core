@@ -435,11 +435,11 @@ def addSliderTypeToRegistry():
         return
 
     logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.slider_type to registry")
-    record = Record(field.TextLine(title=_(u"Slider type"),
-                               description=_(u"Choose an horizontal or vertical slider."),
-                               required=True,
-                               default=u'slider_view'),
-                    value=u'slider_view')
+    record = Record(
+        field.TextLine(
+            title=_(u"Slider type"),
+            description=_(u"Choose an horizontal or vertical slider."),
+            required=True,
+            default=u'slider_view'),
+        value=u'slider_view')
     records['cpskin.core.interfaces.ICPSkinSettings.slider_type'] = record
-
-
