@@ -50,7 +50,7 @@ class IISearchTags(model.Schema):
     )
 
 
-class IAmTags(model.Schema):
+class IIAmTags(model.Schema):
     model.fieldset(
         'categorization',
         label=_(u'label_schema_categorization', default=u'Categorization'),
@@ -72,4 +72,4 @@ class IAmTags(model.Schema):
 
 alsoProvides(IHiddenTags, IFormFieldProvider)
 alsoProvides(IISearchTags, IFormFieldProvider)
-alsoProvides(IAmTags, IFormFieldProvider)
+alsoProvides(IIAmTags, IFormFieldProvider)
