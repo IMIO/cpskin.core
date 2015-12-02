@@ -4,8 +4,15 @@ Changelog
 0.6.8 (unreleased)
 ------------------
 
+- Do not hid other editor than ckeditor on installation.
+  [bsuttor]
+
+
+- Add folderview (index) for LRF content type
+  [bsuttor]
+
 - Remove dependency on collective.contentleadimage, it's now a behiavior for Dexterity. I leave dependency on setup.py for backward compatibility.
-[bsuttor]
+  [bsuttor]
 
 - Improve comptability with Dexterity during setup.
   [bsuttor]
