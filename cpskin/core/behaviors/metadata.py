@@ -54,7 +54,7 @@ class IIAmTags(model.Schema):
     model.fieldset(
         'categorization',
         label=_(u'label_schema_categorization', default=u'Categorization'),
-        fields=('iamtags',),
+        fields=('iamTags',),
     )
 
     form.widget(iamTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
