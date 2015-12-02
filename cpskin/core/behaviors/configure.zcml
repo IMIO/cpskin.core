@@ -23,5 +23,12 @@
     for="plone.dexterity.interfaces.IDexterityContent"
     />
 
+  <plone:behavior
+    title="iamTags"
+    description="Adds I am keywords."
+    provides=".metadata.IIAmTags"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    />
+
 
 </configure>

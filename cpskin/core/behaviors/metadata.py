@@ -39,7 +39,7 @@ class IISearchTags(model.Schema):
 
     form.widget(isearchTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
     isearchTags = Keywords(
-        title=_(u'label_isearch_tags',  default=u'I Search Tags'),
+        title=_(u'label_isearch_tags', default=u'I Search Tags'),
         description=_(
             u'help_isearch_tags',
             default=u'I Search Tags are used for webmaster '
@@ -50,5 +50,26 @@ class IISearchTags(model.Schema):
     )
 
 
+class IAmTags(model.Schema):
+    model.fieldset(
+        'categorization',
+        label=_(u'label_schema_categorization', default=u'Categorization'),
+        fields=('iamtags',),
+    )
+
+    form.widget(iamTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
+    iamTags = Keywords(
+        title=_(u'label_iam_tags', default=u'I am Tags'),
+        description=_(
+            u'help_iam_tags',
+            default=u'I am Tags are used for webmaster '
+                    u'organization of content.',
+        ),
+        required=False,
+        # Automatically get the index in catalog by name
+        index_name="iamTags",
+    )
+
 alsoProvides(IHiddenTags, IFormFieldProvider)
 alsoProvides(IISearchTags, IFormFieldProvider)
+alsoProvides(IAmTags, IFormFieldProvider)
