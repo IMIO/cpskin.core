@@ -330,7 +330,7 @@ def configure_folderviews(context):
         collection.setQuery(query)
         collection.setSort_on('effective')
         collection.setSort_reversed(True)
-        collection.setLayout('standard_view')
+        collection.setLayout('summary_view')
         folder.setDefaultPage('a-la-une')
     if 'actualites' not in existingIds:
         folder = api.content.create(container=context,
@@ -351,7 +351,7 @@ def configure_folderviews(context):
         collection.setQuery(query)
         collection.setSort_on('effective')
         collection.setSort_reversed(True)
-        collection.setLayout('standard_view')
+        collection.setLayout('summary_view')
         folder.setDefaultPage('actualites')
     if 'evenements' not in existingIds:
         folder = api.content.create(container=context,
@@ -372,6 +372,6 @@ def configure_folderviews(context):
         collection.setQuery(query)
         collection.setSort_on('effective')
         collection.setSort_reversed(True)
-        collection.setLayout('standard_view')
+        collection.setLayout('summary_view')
         folder.setDefaultPage('evenements')
     context.setLayout('folderview')
