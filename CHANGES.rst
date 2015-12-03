@@ -4,9 +4,17 @@ Changelog
 0.6.8 (unreleased)
 ------------------
 
-- Do not hid other editor than ckeditor on installation.
+- Index view can now take lead image from plone.app.contenttypes Images for News and Events collection
   [bsuttor]
 
+- Folder view inherits plone app contenttypes FolderView instead of BrowserView.
+  [bsuttor]
+
+- Add behavior for I am tag.
+  [bsuttor]
+
+- Do not hid other editor than ckeditor on installation.
+  [bsuttor]
 
 - Add folderview (index) for LRF content type
   [bsuttor]
