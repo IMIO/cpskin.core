@@ -297,6 +297,13 @@ class FolderView(FV):
                'slider_timer': slider_timer}
         return config
 
+    def is_dexterity(self):
+        portal_types = api.portal.get_tool('portal_types')
+        if portal_types.get('Image').meta_type == "Dexterity FTI":
+            return True
+        else:
+            return False
+
 
 def configure_folderviews(context):
     """
@@ -323,7 +330,7 @@ def configure_folderviews(context):
         collection.setQuery(query)
         collection.setSort_on('effective')
         collection.setSort_reversed(True)
-        collection.setLayout('folder_summary_view')
+        collection.setLayout('standard_view')
         folder.setDefaultPage('a-la-une')
     if 'actualites' not in existingIds:
         folder = api.content.create(container=context,
@@ -344,7 +351,7 @@ def configure_folderviews(context):
         collection.setQuery(query)
         collection.setSort_on('effective')
         collection.setSort_reversed(True)
-        collection.setLayout('folder_summary_view')
+        collection.setLayout('standard_view')
         folder.setDefaultPage('actualites')
     if 'evenements' not in existingIds:
         folder = api.content.create(container=context,
@@ -365,6 +372,6 @@ def configure_folderviews(context):
         collection.setQuery(query)
         collection.setSort_on('effective')
         collection.setSort_reversed(True)
-        collection.setLayout('folder_summary_view')
+        collection.setLayout('standard_view')
         folder.setDefaultPage('evenements')
     context.setLayout('folderview')

@@ -37,13 +37,15 @@
                   <tal:bcl tal:repeat="result results">
 
                     <li tal:define="number repeat/result/number;
-                                    isBigImage python: view.isBigImage(number, allresults, resultType)"
+                                    isBigImage python: view.isBigImage(number, allresults, resultType);
+                                    obj python: result.getObject()"
                         class=""
                         tal:attributes="class python: isBigImage and 'bigimage bloc-item' or 'bloc-item'">
                         <a href=""
                            tal:attributes="href result/getURL">
+                               <tal:block tal:condition="not: view/is_dexterity">
 
-                              <img class=""
+                                <img class=""
                                    tal:define="oddRow repeat/result/odd;
                                                imageClass python: oddRow and 'myimageleft' or 'myimageleft';
                                                thumbsize python: view.getThumbSize(result, isBigImage)"
@@ -51,6 +53,26 @@
                                    alt=""
                                    tal:attributes="title result/Description;
                                                    src python: result.getURL() + '/' + thumbsize" />
+                                </tal:block>
+                                <tal:block tal:condition="view/is_dexterity">
+                                <div class="leadImage"
+                                     tal:define="scale_func obj/@@images;
+                                                 scaled_image python: getattr(obj, 'image', False) and scale_func.scale('image', scale='mini')">
+
+                                  <figure class="newsImageContainer" tal:condition="python: scaled_image">
+                                    <a tal:define="here_url result/@@plone_context_state/object_url;
+                                                   large_image python: scale_func.scale('image', scale='large');"
+                                        class="pat-plone-modal" data-pat-plone-modal="image: true"
+                                        tal:attributes="href large_image/url">
+                                      <img tal:replace="structure python: scaled_image.tag(css_class='newsImage')" />
+                                      <figcaption tal:condition="context/image_caption|nothing"
+                                          tal:content="structure context/image_caption">
+                                      </figcaption>
+                                    </a>
+                                  </figure>
+
+                                </div>
+                                </tal:block>
 
                               <h3 tal:content="result/Title"></h3>
                             </a>
