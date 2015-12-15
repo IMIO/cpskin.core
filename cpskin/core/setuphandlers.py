@@ -94,9 +94,10 @@ def configureMembers(context):
     pm = getToolByName(portal, 'portal_membership')
     if not pm.getMemberareaCreationFlag():
         pm.setMemberareaCreationFlag()
+        # pm.createMemberArea('root')
 
     # Add a citizen group
-    api.group.create('citizens', title='Citizens')
+    api.group.create(groupname='citizens', title='Citizens')
 
     security = getAdapter(portal, ISecuritySchema)
     # Activate Members folders
@@ -105,34 +106,35 @@ def configureMembers(context):
     security.set_enable_self_reg(True)
 
     # Clean user interface
-    members = portal['Members']
-    members.manage_permission('Sharing page: Delegate roles',
-                              ('Manager', 'Site Administrator', 'Reviewer'),
-                              acquire=0)
-    members.manage_permission('Modify view template',
-                              ('Manager', 'Site Administrator', 'Reviewer'),
-                              acquire=0)
-    members.manage_permission('Review portal content',
-                              ('Manager', 'Site Administrator', 'Reviewer'),
-                              acquire=0)
-    members.manage_permission('Modify constrain types',
-                              ('Manager', 'Site Administrator', 'Reviewer'),
-                              acquire=0)
+    members = portal.get('Members', None)
+    if members:
+        members.manage_permission('Sharing page: Delegate roles',
+                                  ('Manager', 'Site Administrator', 'Reviewer'),
+                                  acquire=0)
+        members.manage_permission('Modify view template',
+                                  ('Manager', 'Site Administrator', 'Reviewer'),
+                                  acquire=0)
+        members.manage_permission('Review portal content',
+                                  ('Manager', 'Site Administrator', 'Reviewer'),
+                                  acquire=0)
+        members.manage_permission('Modify constrain types',
+                                  ('Manager', 'Site Administrator', 'Reviewer'),
+                                  acquire=0)
 
-    if not members.hasObject('help-page'):
-        # add Members help page
-        helpPage = api.content.create(container=members, type='Document',
-                                      id='help-page',
-                                      title="Bienvenue dans l'espace citoyen")
-        # needed because of https://github.com/plone/plone.api/issues/99
-        helpPage.setTitle("Bienvenue dans l'espace citoyen")
-        setPageText(portal, helpPage, 'cpskin-helppage-setup')
-        members.setDefaultPage('help-page')
-        members.setExcludeFromNav(True)
-        # we set locally allowed types at the first configuration
-        members.setConstrainTypesMode(1)
-        members.setLocallyAllowedTypes(['Event'])
-        members.setImmediatelyAddableTypes(['Event'])
+        if not members.hasObject('help-page'):
+            # add Members help page
+            helpPage = api.content.create(container=members, type='Document',
+                                          id='help-page',
+                                          title="Bienvenue dans l'espace citoyen")
+            # needed because of https://github.com/plone/plone.api/issues/99
+            helpPage.setTitle("Bienvenue dans l'espace citoyen")
+            setPageText(portal, helpPage, 'cpskin-helppage-setup')
+            members.setDefaultPage('help-page')
+            members.setExcludeFromNav(True)
+            # we set locally allowed types at the first configuration
+            members.setConstrainTypesMode(1)
+            members.setLocallyAllowedTypes(['Event'])
+            members.setImmediatelyAddableTypes(['Event'])
 
 
 def uninstallCore(context):
