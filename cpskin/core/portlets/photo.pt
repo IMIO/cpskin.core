@@ -1,9 +1,10 @@
 <dl class="portlet" id="portlet-photo"
     i18n:domain="cpskin">
-  <dd class="portletItem odd">
+  <dd class="portletItem odd" >
     <img src=""
          alt="Visuel"
+         style="max-width: 100%;"
          tal:attributes="src string:${context/absolute_url}/visuel.png"
-         i18n:attributes="alt" />
+         i18n:attributes="alt visuel" />
   </dd>
 </dl>
