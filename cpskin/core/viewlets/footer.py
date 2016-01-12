@@ -54,7 +54,10 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
             except:
                 # new way to get text from textrich with dexterity
                 if hasattr(footer_static, 'text'):
-                    text = footer_static.text.raw
+                    try:
+                        text = footer_static.text.raw
+                    except:
+                        text = ''
             return text
         if hasattr(footer_static, 'getTranslation'):
             lang = self.context.REQUEST.get('LANGUAGE', 'fr')
@@ -64,5 +67,8 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
         except:
             # new way to get text from textrich with dexterity
             if hasattr(footer_static, 'text'):
-                text = footer_static.text.raw
+                try:
+                    text = footer_static.text.raw
+                except:
+                    text = ''
         return text
