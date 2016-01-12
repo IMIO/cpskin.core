@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.1 (unreleased)
+0.7.1 (2016-01-12)
 ------------------
 
 - Fix footer link to "libre".
