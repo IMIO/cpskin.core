@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.8 (unreleased)
+0.7.0 (2016-01-12)
 ------------------
 
 - Index view can now take lead image from plone.app.contenttypes Images for News and Events collection
