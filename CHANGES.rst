@@ -4,7 +4,8 @@ Changelog
 0.7.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix footer link to "libre".
+  [bsuttor]
 
 
 0.7.0 (2016-01-12)
