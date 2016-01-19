@@ -4,7 +4,8 @@ Changelog
 0.7.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix default value of slider_value to 5000 milliseconds.
+  [bsuttor]
 
 
 0.7.1 (2016-01-12)
