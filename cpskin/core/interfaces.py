@@ -75,7 +75,7 @@ class ICPSkinSettings(Interface):
         title=_(u"Slider timer"),
         description=_(u"Number of milliseconds between each transition."),
         required=False,
-        default=3000
+        default=5000
     )
 
     city_name = schema.TextLine(
