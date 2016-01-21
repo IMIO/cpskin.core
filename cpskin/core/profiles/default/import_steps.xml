@@ -4,5 +4,6 @@
                handler="cpskin.core.setuphandlers.installCore"
                title="cpskin.core: install import step">
     <dependency step="catalog" />
+    <dependency step="typeinfo" />
   </import-step>
 </import-steps>
