@@ -270,17 +270,25 @@ def ChangeCollectionsIds(portal):
     if portal.hasObject('news'):
         news = portal['news']
         if news.hasObject('aggregator'):
-            news['aggregator'].setExcludeFromNav(True)
+            set_exclude_from_nav(news['aggregator'])
             api.content.rename(obj=news['aggregator'], new_id='index')
-        news.setExcludeFromNav(True)
+        set_exclude_from_nav(news)
         api.content.rename(obj=news, new_id='actualites')
     if portal.hasObject('events'):
         events = portal['events']
         if events.hasObject('aggregator'):
-            events['aggregator'].setExcludeFromNav(True)
+            set_exclude_from_nav(events['aggregator'])
             api.content.rename(obj=events['aggregator'], new_id='index')
-        events.setExcludeFromNav(True)
+        set_exclude_from_nav(events)
         api.content.rename(obj=events, new_id='evenements')
+
+
+def set_exclude_from_nav(obj):
+    if hasattr(obj, 'setExcludeFromNav'):
+        obj.setExcludeFromNav(True)
+    else:
+        # dexterity with exludefromnav behavior
+        obj.exclude_from_nav = True
 
 
 def addImageFromFile(portal, fileName):
