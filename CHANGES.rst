@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.2 (unreleased)
+0.7.2 (2016-01-21)
 ------------------
  
 - Add translation for events, a-la-une and new folder.
