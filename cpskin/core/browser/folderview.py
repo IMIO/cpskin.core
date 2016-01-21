@@ -4,7 +4,6 @@ from Acquisition import aq_inner
 from Acquisition import aq_parent
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
-from Products.Five import BrowserView
 
 from cpskin.core.interfaces import (IFolderViewSelectedContent,
                                     IFolderViewWithBigImages)
@@ -14,14 +13,14 @@ from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 
-from plone.app.contenttypes.browser.folder import FolderView as FV
+from plone.app.contenttypes.browser.folder import FolderView as FoldV
 
 import httpagentparser
 
 ADDABLE_TYPES = ['Collection', 'Document', 'Folder']
 
 
-class FolderView(FV):
+class FolderView(FoldV):
 
     def _redirect(self, msg=''):
         if self.request:
@@ -315,12 +314,12 @@ def configure_folderviews(context):
         folder = api.content.create(container=context,
                                     type='Folder',
                                     id='a-la-une',
-                                    title='À la une')
+                                    title=_(u'À la une'))
         alsoProvides(folder, IFolderViewSelectedContent)
         collection = api.content.create(container=folder,
                                         type='Collection',
                                         id='a-la-une',
-                                        title='À la une')
+                                        title=_(u'À la une'))
         query = [{'i': 'hiddenTags',
                   'o': 'plone.app.querystring.operation.selection.is',
                   'v': 'a-la-une'},
@@ -336,12 +335,11 @@ def configure_folderviews(context):
         folder = api.content.create(container=context,
                                     type='Folder',
                                     id='actualites',
-                                    title='Actualités')
-        alsoProvides(folder, IFolderViewSelectedContent)
+                                    title=_(u'Actualités'))
         collection = api.content.create(container=folder,
                                         type='Collection',
                                         id='actualites',
-                                        title='Actualités')
+                                        title=_(u'Actualités'))
         query = [{'i': 'portal_type',
                   'o': 'plone.app.querystring.operation.selection.is',
                   'v': ['News Item']},
@@ -353,16 +351,19 @@ def configure_folderviews(context):
         collection.setSort_reversed(True)
         collection.setLayout('summary_view')
         folder.setDefaultPage('actualites')
+    else:
+        folder = context['actualites']
+    alsoProvides(folder, IFolderViewSelectedContent)
+
     if 'evenements' not in existingIds:
         folder = api.content.create(container=context,
                                     type='Folder',
                                     id='evenements',
-                                    title='Événements')
-        alsoProvides(folder, IFolderViewSelectedContent)
+                                    title=_(u'Événements'))
         collection = api.content.create(container=folder,
                                         type='Collection',
                                         id='evenements',
-                                        title='Événements')
+                                        title=_(u'Événements'))
         query = [{'i': 'portal_type',
                   'o': 'plone.app.querystring.operation.selection.is',
                   'v': ['Event']},
@@ -374,4 +375,7 @@ def configure_folderviews(context):
         collection.setSort_reversed(True)
         collection.setLayout('summary_view')
         folder.setDefaultPage('evenements')
+    else:
+        folder = context['evenements']
+    alsoProvides(folder, IFolderViewSelectedContent)
     context.setLayout('folderview')
