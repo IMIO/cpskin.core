@@ -3,6 +3,12 @@ Changelog
 
 0.7.2 (unreleased)
 ------------------
+ 
+- Add translation for events, a-la-une and new folder.
+  [bsuttor]
+
+- Use new way to excliude from nav which work with dx and at
+  [bsuttor]
 
 - Fix default value of slider_value to 5000 milliseconds.
   [bsuttor]
