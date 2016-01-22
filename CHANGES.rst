@@ -4,7 +4,8 @@ Changelog
 0.7.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove bad <a> tag on folder_view for leadimage.
+  [bsuttor]
 
 
 0.7.2 (2016-01-21)
