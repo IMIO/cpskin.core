@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.3 (unreleased)
+0.7.3 (2016-01-22)
 ------------------
 
 - Remove bad <a> tag on folder_view for leadimage.
