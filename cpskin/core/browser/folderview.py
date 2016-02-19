@@ -8,7 +8,7 @@ from cpskin.core.interfaces import (IFolderViewSelectedContent,
                                     IFolderViewWithBigImages)
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
-from profilehooks import profile
+# from profilehooks import profile
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
