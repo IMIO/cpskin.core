@@ -4,7 +4,8 @@ Changelog
 0.7.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- View only published objects on homepage.
+  [bsuttor]
 
 
 0.7.3 (2016-01-22)
