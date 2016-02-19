@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from Acquisition import aq_inner
 from Acquisition import aq_parent
 from Products.CMFCore.interfaces import IFolderish
@@ -9,6 +8,7 @@ from cpskin.core.interfaces import (IFolderViewSelectedContent,
                                     IFolderViewWithBigImages)
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
+from profilehooks import profile
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
@@ -16,6 +16,7 @@ from zope.interface import noLongerProvides
 from plone.app.contenttypes.browser.folder import FolderView as FoldV
 
 import httpagentparser
+
 
 ADDABLE_TYPES = ['Collection', 'Document', 'Folder']
 
@@ -142,6 +143,11 @@ class FolderView(FoldV):
         queryDict['portal_type'] = ADDABLE_TYPES
         queryDict['object_provides'] = IFolderViewSelectedContent.__identifier__
         queryDict['sort_on'] = 'getObjPositionInParent'
+        queryDict['review_state'] = (
+            'published_and_hidden',
+            'published_and_shown',
+            'published'
+        )
         results = portal_catalog.searchResults(queryDict)
         return results
 
