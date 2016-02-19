@@ -4,7 +4,8 @@ Changelog
 0.7.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove bad import.
+  [bsuttor]
 
 
 0.7.4 (2016-02-19)
