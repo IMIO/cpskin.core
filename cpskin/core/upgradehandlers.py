@@ -19,10 +19,6 @@ logger = logging.getLogger('cpskin.core')
 #     context.runAllImportStepsFromProfile('profile-cpskin.core:dx')
 
 
-def install_image_cropping(context):
-    context.runAllImportStepsFromProfile('profile-plone.app.imagecropping:default')
-
-
 def upgrade_minisite_menu(context):
     # add new viewlet cpskin.minisite
     context.runImportStepFromProfile('profile-cpskin.core:default', 'viewlets')

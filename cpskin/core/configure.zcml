@@ -13,7 +13,6 @@
     <include package="collective.z3cform.keywordwidget" />
 
     <include file="permissions.zcml" />
-    <include file="cropping.zcml" />
     <include file="profiles.zcml" />
     <include file="monkey.zcml" />
 

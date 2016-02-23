@@ -31,15 +31,6 @@
         />
 
     <genericsetup:upgradeStep
-        title="CPSKIN Core: upgrade to v14"
-        description="Upgrade step to install Image Cropping"
-        handler=".upgradehandlers.install_image_cropping"
-        source="13"
-        destination="14"
-        profile="cpskin.core:default"
-        />
-
-    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v13"
         description="Upgrade step for adding slider type param."
         handler=".upgradehandlers.upgrade_slider_type"
