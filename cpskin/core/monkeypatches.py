@@ -21,6 +21,16 @@ def keyword_apply_index(self, request, resultset=None):
             query_value = request_key.get('query')
             if isinstance(query_value, unicode):
                 request[key]['query'] = query_value.encode('utf8')
+        elif getattr(request_key, 'get', None):
+            query_value = request_key.get('query')
+            if isinstance(query_value, (list, tuple)):
+                values = []
+                for value in query_value:
+                    if isinstance(value, unicode):
+                        values.append(value.encode('utf8'))
+                    else:
+                        values.append(value)
+                request[key]['query'] = values
         else:
             if isinstance(request_key, unicode):
                 request[key] = request_key.encode('utf8')
