@@ -10,6 +10,13 @@
   <grok:grok package=".metadata" />
 
   <plone:behavior
+    title="standardTags"
+    description="Adds standard keywords."
+    provides=".metadata.IStandardTags"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    />
+
+  <plone:behavior
     title="hiddenTags"
     description="Adds hidden keywords."
     provides=".metadata.IHiddenTags"

@@ -9,6 +9,27 @@ from plone.directives import form
 from cpskin.locales import CPSkinMessageFactory as _
 
 
+class IStandardTags(model.Schema):
+    model.fieldset(
+        'categorization',
+        label=_(u'label_schema_categorization', default=u'Categorization'),
+        fields=('standardTags',),
+    )
+
+    form.widget(standardTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
+    standardTags = Keywords(
+        title=_(u'label_standardTags', default=u'Standard Tags'),
+        description=_(
+            u'help_standard_tags',
+            default=u'Standard Tags are used for webmaster '
+                    u'organization of content.',
+        ),
+        required=False,
+        # Automatically get the index in catalog by name
+        index_name="standardTags",
+    )
+
+
 class IHiddenTags(model.Schema):
     model.fieldset(
         'categorization',
@@ -70,6 +91,7 @@ class IIAmTags(model.Schema):
         index_name="iamTags",
     )
 
+alsoProvides(IStandardTags, IFormFieldProvider)
 alsoProvides(IHiddenTags, IFormFieldProvider)
 alsoProvides(IISearchTags, IFormFieldProvider)
 alsoProvides(IIAmTags, IFormFieldProvider)
