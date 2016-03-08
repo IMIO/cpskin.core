@@ -4,7 +4,8 @@ Changelog
 0.7.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add collective.z3cform.widgets for plone subjects.
+  [bsuttor]
 
 
 0.7.5 (2016-02-19)
