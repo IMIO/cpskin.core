@@ -4,7 +4,8 @@ Changelog
 0.7.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove collective.z3cform.widgets.
+  [bsuttor]
 
 
 0.7.6 (2016-03-08)
