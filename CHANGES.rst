@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.7 (unreleased)
+0.7.7 (2016-03-08)
 ------------------
 
 - Remove collective.z3cform.widgets.
