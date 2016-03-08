@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.6 (unreleased)
+0.7.6 (2016-03-08)
 ------------------
 
 - Add collective.z3cform.widgets for plone subjects.
