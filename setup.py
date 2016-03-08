@@ -59,7 +59,6 @@ setup(name='cpskin.core',
           # -*- Extra requirements: -*-
           'httpagentparser',
           'cpskin.minisite',
-          'collective.z3cform.widgets'
       ],
       extras_require={
           'test': [
