@@ -37,5 +37,6 @@
     for="plone.dexterity.interfaces.IDexterityContent"
     />
 
+  <adapter factory=".metadata.SubjectsFieldWidget" />
 
 </configure>
