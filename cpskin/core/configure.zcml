@@ -51,4 +51,7 @@
     <subscriber for="Products.PlonePAS.interfaces.events.IUserInitialLoginInEvent"
                 handler=".events.user_initial_logged_in" />
 
+
+
+
 </configure>
