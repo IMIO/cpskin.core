@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.8 (unreleased)
+0.7.8 (2016-03-22)
 ------------------
 
 - Add override of registryreader for cpskin tags
