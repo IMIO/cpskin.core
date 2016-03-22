@@ -4,7 +4,8 @@ Changelog
 0.7.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add override of registryreader for cpskin tags
+  [bsuttor]
 
 
 0.7.7 (2016-03-08)
