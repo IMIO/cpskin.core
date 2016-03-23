@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<object name="MailHost" meta_type="Mail Host" smtp_host="frontend1.imio.be"
-   smtp_port="25" smtp_pwd="" smtp_queue="True" smtp_queue_directory="/tmp"
-   smtp_uid=""/>
