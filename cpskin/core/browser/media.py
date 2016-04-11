@@ -100,7 +100,7 @@ class MediaActivationView(BrowserView):
                 video_folder = api.content.create(
                     container=self.context,
                     type='Folder',
-                    id='video',
+                    id='videos',
                     title=u"Vidéos"
                 )
 
