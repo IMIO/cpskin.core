@@ -4,7 +4,8 @@ Changelog
 0.7.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix typo error on videos folder id.
+  [bsuttor]
 
 
 0.7.8 (2016-03-22)
