@@ -337,6 +337,7 @@ def configure_folderviews(context):
         collection.setSort_reversed(True)
         collection.setLayout('summary_view')
         folder.setDefaultPage('a-la-une')
+        folder.reindexObject()
     if 'actualites' not in existingIds:
         folder = api.content.create(container=context,
                                     type='Folder',
@@ -360,6 +361,7 @@ def configure_folderviews(context):
     else:
         folder = context['actualites']
     alsoProvides(folder, IFolderViewSelectedContent)
+    folder.reindexObject()
 
     if 'evenements' not in existingIds:
         folder = api.content.create(container=context,
@@ -384,4 +386,5 @@ def configure_folderviews(context):
     else:
         folder = context['evenements']
     alsoProvides(folder, IFolderViewSelectedContent)
+    folder.reindexObject()
     context.setLayout('folderview')

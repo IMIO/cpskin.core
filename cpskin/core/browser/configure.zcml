@@ -34,6 +34,13 @@
       permission="zope.Public"
       />
 
+  <browser:view
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="opendata"
+      class=".pages.OpenData"
+      permission="zope.Public"
+      />
+
   <!-- Other browser pages -->
 
   <browser:page

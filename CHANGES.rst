@@ -4,6 +4,9 @@ Changelog
 0.7.9 (unreleased)
 ------------------
 
+- Add opendata view
+  [bsuttor]
+
 - Fix typo error on videos folder id.
   [bsuttor]
 
