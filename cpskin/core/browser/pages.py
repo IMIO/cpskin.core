@@ -3,6 +3,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 from cpskin.core.interfaces import IFolderViewSelectedContent as IFVSC
 
+
 class FrontPage(BrowserView):
 
     index = ViewPageTemplateFile('templates/frontpage.pt')
