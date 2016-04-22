@@ -41,8 +41,8 @@ class FolderView(FoldV):
         return context
 
     def hasEffectiveDate(self, obj):
-        """
-        Check if object has a correct effective date
+        """Check if object has a correct effective date.
+
         If None, you get 01/01/1000 and strftime cannot convert it
         """
         effective = obj.effective
@@ -51,9 +51,7 @@ class FolderView(FoldV):
         return True
 
     def isFolderViewActivated(self, context=None):
-        """
-        Check if folderview is activated on context
-        """
+        """Check if folderview is activated on context"""
         if context is None:
             context = self.context
         layout = context.getLayout()
@@ -62,9 +60,7 @@ class FolderView(FoldV):
         return False
 
     def can_configure(self):
-        """
-        Check if folderview can be configured on context
-        """
+        """Check if folderview can be configured on context"""
         context = self.context
         if not IFolderish.providedBy(context):
             return False
@@ -72,9 +68,7 @@ class FolderView(FoldV):
         return (not already_activated)
 
     def configure(self):
-        """
-        Configure folders and collections for folderview
-        """
+        """Configure folders and collections for folderview"""
         context = self.context
         configure_folderviews(context)
         api.portal.show_message(message=_(u'Vue index avec collections configurée.'),
@@ -156,9 +150,7 @@ class FolderView(FoldV):
         return portal_registry['cpskin.core.interfaces.ICPSkinSettings.slider_type']
 
     def hasFlexSlider(self):
-        """
-        Check if flexslider is available and installed
-        """
+        """Check if flexslider is available and installed"""
         try:
             from cpskin.slider.interfaces import ICPSkinSliderLayer
         except ImportError:
@@ -182,9 +174,7 @@ class FolderView(FoldV):
         return results
 
     def addContent(self):
-        """
-        Mark content to add it to folder view
-        """
+        """Mark content to add it to folder view"""
         context = self._get_real_context()
         alsoProvides(context, IFolderViewSelectedContent)
         catalog = api.portal.get_tool('portal_catalog')
@@ -192,9 +182,7 @@ class FolderView(FoldV):
         self._redirect(_(u'Contenu ajouté à la vue index.'))
 
     def removeContent(self):
-        """
-        Unmark content to remove it from folder view
-        """
+        """Unmark content to remove it from folder view"""
         context = self._get_real_context()
         noLongerProvides(context, IFolderViewSelectedContent)
         catalog = api.portal.get_tool('portal_catalog')
@@ -227,9 +215,7 @@ class FolderView(FoldV):
         return True
 
     def canUseBigImages(self):
-        """
-        Check if big images can be used on folder view
-        """
+        """Check if big images can be used on folder view"""
         if not self.isFolderViewActivated():
             return False
         context = self._get_real_context()
@@ -240,17 +226,13 @@ class FolderView(FoldV):
         return IFolderViewWithBigImages.providedBy(context)
 
     def canStopBigImagesUse(self):
-        """
-        Check if big images are used on folder view
-        """
+        """Check if big images are used on folder view"""
         if not self.isFolderViewActivated():
             return False
         return (self.bigImagesAreUsed())
 
     def useBigImages(self):
-        """
-        Use big images for first elements on folder view
-        """
+        """Use big images for first elements on folder view"""
         context = self._get_real_context()
         alsoProvides(context, IFolderViewWithBigImages)
         catalog = api.portal.get_tool('portal_catalog')
@@ -258,9 +240,7 @@ class FolderView(FoldV):
         self._redirect(_(u'Big images are now used on this folder view.'))
 
     def stopBigImagesUse(self):
-        """
-        Use using big images for first elements on folder view
-        """
+        """Use using big images for first elements on folder view"""
         context = self._get_real_context()
         noLongerProvides(context, IFolderViewWithBigImages)
         catalog = api.portal.get_tool('portal_catalog')
