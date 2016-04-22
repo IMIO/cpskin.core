@@ -51,14 +51,22 @@ class MediaViewlet(common.ViewletBase):
             logger.info("{} has no album collection".format(self.context))
             return ""
         for gallery_brain in collection.queryCatalog():
+            gallery = gallery_brain.getObject()
+            imagescale = self.context.unrestrictedTraverse(
+                gallery.getPhysicalPath() + ('@@images',))
+            # AT
             if getattr(gallery_brain, 'hasContentLeadImage', False):
-                gallery = gallery_brain.getObject()
-                imagescale = self.context.unrestrictedTraverse(
-                    gallery.getPhysicalPath() + ('@@images',))
                 html = "<a href='{}'>".format(gallery.absolute_url())
                 html += imagescale.scale('leadImage', width=300, height=300).tag()
                 html += '</a>'
                 albums.append(html)
+            # DX
+            elif imagescale and not getattr(gallery_brain, 'hasContentLeadImage', False):
+                html = "<a href='{}'>".format(gallery.absolute_url())
+                html += imagescale.scale('image', width=300, height=300).tag()
+                html += '</a>'
+                albums.append(html)
+
             else:
                 logger.info("{} has no lead image".format(gallery_brain.getURL()))
         limit = 5
