@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.9 (unreleased)
+0.7.9 (2016-04-25)
 ------------------
 
 - Add keyword homepage behavior.
