@@ -4,7 +4,8 @@ Changelog
 0.7.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix media viewlet for AT.
+  [bsuttor]
 
 
 0.7.9 (2016-04-25)
