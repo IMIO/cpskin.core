@@ -1,7 +1,7 @@
+from cpskin.core.interfaces import IFolderViewSelectedContent as IFVSC
 from zope.publisher.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
-from cpskin.core.interfaces import IFolderViewSelectedContent as IFVSC
 
 
 class FrontPage(BrowserView):
@@ -15,7 +15,7 @@ class HelpPage(BrowserView):
 
 
 class OpenData(BrowserView):
-    """ Get data news, events rss feed and collective.directory csv files."""
+    """Get data news, events rss feed and collective.directory csv files."""
 
     index = ViewPageTemplateFile('templates/opendata.pt')
 
@@ -29,28 +29,31 @@ class OpenData(BrowserView):
         query_dict['portal_type'] = ['Folder']
         query_dict['object_provides'] = IFVSC.__identifier__
         query_dict['sort_on'] = 'getObjPositionInParent'
-        # query_dict['review_state'] = (
-        #     'published_and_hidden',
-        #     'published_and_shown',
-        #     'published'
-        # )
         brains = portal_catalog(query_dict)
         for brain in brains:
             folder = brain.getObject()
-            default_page = folder.default_page
-            default_obj = folder[default_page]
-            rsslink = "{}/atom.xml".format(default_obj.absolute_url())
-            links.append(rsslink)
+            if getattr(folder, "default_page", None):
+                default_page = folder.default_page
+                default_obj = folder[default_page]
+                rsslink = "{}/atom.xml".format(default_obj.absolute_url())
+                links.append(rsslink)
 
         query_dict = {}
         query_dict['portal_type'] = ['collective.directory.directory']
         brains = portal_catalog(query_dict)
         for brain in brains:
             directory = brain.getObject()
-            csvlink = "{}/collective_directory_export_view".format(
-                directory.absolute_url()
-            )
-            links.append(csvlink)
+            catalog = api.portal.get_tool('portal_catalog')
+            query_dict = {}
+            query_dict['portal_type'] = 'collective.directory.card'
+            query_dict['path'] = {'query': "/".join(directory.getPhysicalPath()), 'depth': 3}
+            size = len(catalog(query_dict))
+            if size > 3:
+                csvlink = "{}/collective_directory_export_view".format(
+                    directory.absolute_url()
+                )
+                links.append(csvlink)
 
         return links
+
 
