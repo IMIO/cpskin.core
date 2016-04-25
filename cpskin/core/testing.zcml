@@ -3,8 +3,9 @@
 
   <include file="configure.zcml" />
   <include package="jarn.jsi18n" />
+  <include package="plone.app.contenttypes" />
   <include package="plone.app.event" />
-  
+
   <genericsetup:registerProfile
       name="testing"
       title="cpskin.core: testing"

@@ -14,10 +14,24 @@ class CPSkinCorePloneWithPackageLayer(PloneWithPackageLayer):
     """
     """
 
+    def setUpZope(self, app, configurationContext):
+        super(CPSkinCorePloneWithPackageLayer, self).setUpZope(app, configurationContext)
+        z2.installProduct(app, 'Products.DateRecurringIndex')
+        # import plone.app.contenttypes
+        # self.loadZCML(package=plone.app.contenttypes)
+        # import plone.app.event
+        # self.loadZCML(package=plone.app.event)
+
+    def tearDownZope(self, app):
+        # Uninstall products installed above
+        z2.uninstallProduct(app, 'Products.DateRecurringIndex')
+
     def setUpPloneSite(self, portal):
+        portal.portal_workflow.setDefaultChain('simple_publication_workflow')
+        # applyProfile(portal, 'plone.app.contenttypes:plone-content')
         applyProfile(portal, 'cpskin.core:testing')
-        footer_static = portal['footer-static']
-        footer_static.setText('Footer static custom content')
+        # footer_static = portal['footer-static']
+        # footer_static.setText('Footer static custom content')
 
 
 CPSKIN_CORE_FIXTURE = CPSkinCorePloneWithPackageLayer(

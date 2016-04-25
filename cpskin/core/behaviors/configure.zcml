@@ -10,30 +10,38 @@
   <grok:grok package=".metadata" />
 
   <plone:behavior
-    title="standardTags"
+    title="Standard Tags"
     description="Adds standard keywords."
     provides=".metadata.IStandardTags"
     for="plone.dexterity.interfaces.IDexterityContent"
     />
 
   <plone:behavior
-    title="hiddenTags"
+    title="Hidden Tags"
     description="Adds hidden keywords."
     provides=".metadata.IHiddenTags"
     for="plone.dexterity.interfaces.IDexterityContent"
     />
 
   <plone:behavior
-    title="isearchTags"
+    title="I Search Tags"
     description="Adds I search keywords."
     provides=".metadata.IISearchTags"
     for="plone.dexterity.interfaces.IDexterityContent"
     />
 
   <plone:behavior
-    title="iamTags"
+    title="I Am Tags"
     description="Adds I am keywords."
     provides=".metadata.IIAmTags"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    />
+
+
+  <plone:behavior
+    title="Use keyword homepage"
+    description="Adds keyword for homepage."
+    provides=".metadata.IUseKeywordHomepage"
     for="plone.dexterity.interfaces.IDexterityContent"
     />
 
