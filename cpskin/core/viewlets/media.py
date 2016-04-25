@@ -2,11 +2,11 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 from plone.app.layout.viewlets import common
+from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import getMultiAdapter
 from cpskin.core.interfaces import IAlbumCollection
 from cpskin.core.interfaces import IVideoCollection
 from imio.media.browser import utils
-
 import logging
 logger = logging.getLogger('cpskin.core media viewlet')
 
@@ -61,12 +61,11 @@ class MediaViewlet(common.ViewletBase):
                 html += '</a>'
                 albums.append(html)
             # DX
-            elif imagescale and not getattr(gallery_brain, 'hasContentLeadImage', False):
+            elif IDexterityFTI.providedBy(collection) and imagescale:
                 html = "<a href='{}'>".format(gallery.absolute_url())
                 html += imagescale.scale('image', width=300, height=300).tag()
                 html += '</a>'
                 albums.append(html)
-
             else:
                 logger.info("{} has no lead image".format(gallery_brain.getURL()))
         limit = 5
