@@ -4,6 +4,12 @@ Changelog
 0.7.9 (unreleased)
 ------------------
 
+- Add keyword homepage behavior.
+  [bsuttor]
+
+- Get leadimage for media viewlet album for DX.
+  [bsuttor]
+
 - Add opendata view
   [bsuttor]
 
