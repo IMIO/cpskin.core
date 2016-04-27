@@ -13,7 +13,7 @@ Test Teardown  Close all browsers
 Test that sticky field is present
     Enable autologin as  Site Administrator
     Go to  ${PLONE_URL}
-    Add news item  actu
+    Create content  type=News Item  id=$actu  title=actu
     Go to  ${PLONE_URL}/actu
     Click Link  Edit
     Click Link  Categorization

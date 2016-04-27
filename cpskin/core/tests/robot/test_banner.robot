@@ -1,7 +1,31 @@
+
+# ============================================================================
+# DEXTERITY ROBOT TESTS
+# ============================================================================
+#
+# Run this robot test stand-alone:
+#
+#  $ bin/test -s cpskin.core -t test_banner.robot --all
+#
+# Run this robot test with robot server (which is faster):
+#
+# 1) Start robot server:
+#
+# $ bin/robot-server --reload-path src cpskin.core.testing.CPSKIN_CORE_ROBOT_TESTING
+#
+# 2) Run robot tests:
+#
+# $ bin/robot cpskin/core/tests/robot/test_banner.robot
+#
+# See the http://docs.plone.org for further details (search for robot
+# framework).
+#
+# ============================================================================
+
 *** Settings ***
 
-Resource  plone/app/robotframework/keywords.robot
 Resource  plone/app/robotframework/selenium.robot
+Resource  plone/app/robotframework/keywords.robot
 
 Library  Remote  ${PLONE_URL}/RobotRemote
 
@@ -14,9 +38,9 @@ Test Teardown  Close all browsers
 Test enabling / disabling banner on Plone site and sub folder
     Enable autologin as  Site Administrator
     Go to  ${PLONE_URL}
-    Add folder  Subfolder
+    ${folder_uid}  Create content  type=Folder  title=Subfolder
     Go to  ${PLONE_URL}/subfolder
-    Add folder  SubSubfolder
+    Create content  type=Folder  container=${folder_uid}  title=SubSubfolder
     Go to  ${PLONE_URL}/subfolder
     Click Action by id  enable_banner
     Page Should Contain Element  css=#cpskin-banner
@@ -37,9 +61,9 @@ Test enabling / disabling banner on Plone site and sub folder
 Test enabling / disabling local banner on Plone site
     Enable autologin as  Site Administrator
     Go to  ${PLONE_URL}
-    Add folder  Subfolder
+    ${folder_uid}  Create content  type=Folder  id=subfolder  title=Subfolder
     Go to  ${PLONE_URL}/subfolder
-    Add folder  SubSubfolder
+    Create content  type=Folder  container=${folder_uid}  id=subSubfolder  title=SubSubfolder
     Go to  ${PLONE_URL}/subfolder
     Click Action by id  enable_local_banner
     Page Should Contain Element  css=#cpskin-banner

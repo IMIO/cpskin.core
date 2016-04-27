@@ -6,6 +6,7 @@ from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneWithPackageLayer
 from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
+from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 
 import cpskin.core
 
@@ -45,6 +46,6 @@ CPSKIN_CORE_INTEGRATION_TESTING = IntegrationTesting(
     name="cpskin.core:Integration")
 
 CPSKIN_CORE_ROBOT_TESTING = FunctionalTesting(
-    bases=(CPSKIN_CORE_FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE,
+    bases=(CPSKIN_CORE_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE,
            z2.ZSERVER_FIXTURE),
     name="cpskin.core:Robot")

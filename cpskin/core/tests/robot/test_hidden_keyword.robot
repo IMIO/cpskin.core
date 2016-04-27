@@ -28,7 +28,7 @@ logged as owner
 
 a document '${title}' with hidden tag '${keyword}'
     Go to  ${PLONE_URL}
-    Add document  ${title}
+    Create content  type=Document  title=${title}
     Click Edit In Edit bar
     Click Link  Categorization
     Input Text  hiddenTags_keywords  ${keyword}
@@ -39,7 +39,7 @@ a document '${title}' with hidden tag '${keyword}'
 a collection
     [Arguments]  ${title}
     Go to  ${PLONE_URL}
-    Add content  collection  ${title}
+    Create content  type=Document  title=${title}
 
 
 I set to the collection '${collection_title}' the search terms hidden tag '${keyword}'

@@ -74,7 +74,7 @@ the view is configured
 
 a folder '${title}'
     Go to  ${PLONE_URL}
-    Add folder  ${title}
+    Create content  type=Folder  id=subfolder  title=${title}
 
 
 I go to '${document_title}'

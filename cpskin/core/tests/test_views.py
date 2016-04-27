@@ -1,7 +1,5 @@
 import unittest
 
-from plone.app.testing import applyProfile
-
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.browser.folderview import configure_folderviews
 from plone.app.testing import TEST_USER_ID, setRoles
@@ -20,4 +18,4 @@ class TestViews(unittest.TestCase):
     def test_opendata_view(self):
         view = self.portal.restrictedTraverse('opendata')
         links = view.get_links()
-        self.assertEqual(len(links), 4)
+        self.assertEqual(len(links), 3)
