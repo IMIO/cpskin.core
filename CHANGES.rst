@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.10 (unreleased)
+0.7.10 (2016-04-27)
 -------------------
 
 - Fix media viewlet for AT.
