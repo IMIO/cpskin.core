@@ -2,10 +2,10 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 from plone.app.layout.viewlets import common
-from plone.dexterity.interfaces import IDexterityFTI
 from zope.component import getMultiAdapter
 from cpskin.core.interfaces import IAlbumCollection
 from cpskin.core.interfaces import IVideoCollection
+from plone.app.contenttypes.interfaces import ICollection
 from imio.media.browser import utils
 import logging
 logger = logging.getLogger('cpskin.core media viewlet')
@@ -48,7 +48,7 @@ class MediaViewlet(common.ViewletBase):
         albums = []
         collection = self.get_albums_collection()
         if not collection:
-            logger.info("{} has no album collection".format(self.context))
+            logger.debug("{} has no album collection".format(self.context))
             return ""
         for gallery_brain in collection.queryCatalog():
             gallery = gallery_brain.getObject()
@@ -61,13 +61,17 @@ class MediaViewlet(common.ViewletBase):
                 html += '</a>'
                 albums.append(html)
             # DX
-            elif IDexterityFTI.providedBy(collection) and imagescale:
-                html = "<a href='{}'>".format(gallery.absolute_url())
-                html += imagescale.scale('image', width=300, height=300).tag()
-                html += '</a>'
-                albums.append(html)
+            elif ICollection.providedBy(collection) and imagescale:
+                scale = imagescale.scale('image', width=300, height=300)
+                if not scale:
+                    logger.debug("{} has no album collection".format(self.context))
+                else:
+                    html = "<a href='{}'>".format(gallery.absolute_url())
+                    html += scale.tag()
+                    html += '</a>'
+                    albums.append(html)
             else:
-                logger.info("{} has no lead image".format(gallery_brain.getURL()))
+                logger.debug("{} has no lead image".format(gallery_brain.getURL()))
         limit = 5
         if 'visible_albums' in self.context.propertyIds():
             limit = self.context.getProperty('visible_albums')

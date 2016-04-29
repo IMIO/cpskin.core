@@ -130,11 +130,11 @@ def configureMembers(context):
             helpPage.setTitle("Bienvenue dans l'espace citoyen")
             setPageText(portal, helpPage, 'cpskin-helppage-setup')
             members.setDefaultPage('help-page')
-            members.setExcludeFromNav(True)
+            set_exclude_from_nav(members)
             # we set locally allowed types at the first configuration
-            members.setConstrainTypesMode(1)
-            members.setLocallyAllowedTypes(['Event'])
-            members.setImmediatelyAddableTypes(['Event'])
+            # members.setConstrainTypesMode(1)
+            # members.setLocallyAllowedTypes(['Event'])
+            # members.setImmediatelyAddableTypes(['Event'])
 
 
 def uninstallCore(context):
@@ -221,7 +221,12 @@ def setPageText(portal, page, viewName):
         view = queryMultiAdapter((portal, request), name=viewName)
         if view is not None:
             text = bodyfinder(view.index()).strip()
-            page.setText(text, mimetype='text/html')
+            try:
+                page.setText(text, mimetype='text/html')
+            except:
+                from plone.app.textfield.value import RichTextValue
+                rtv = RichTextValue(text)
+                page.text = rtv
             page.reindexObject()
 
 

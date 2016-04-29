@@ -55,5 +55,3 @@ class OpenData(BrowserView):
                 links.append(csvlink)
 
         return links
-
-

@@ -101,7 +101,7 @@ alsoProvides(IIAmTags, IFormFieldProvider)
 
 @provider(IFormFieldProvider)
 class IUseKeywordHomepage(model.Schema):
-    model.fieldset(
+    directives.fieldset(
         'categorization',
         label=_(u'label_schema_categorization', default=u'Categorization'),
         fields=('useKeywordHomepage',),
