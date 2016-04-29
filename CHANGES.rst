@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.11 (unreleased)
+0.7.11 (2016-04-29)
 -------------------
 
 - Improve way to get albums for DX content types.
