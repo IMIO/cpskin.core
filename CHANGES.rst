@@ -4,7 +4,8 @@ Changelog
 0.7.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improve way to get albums for DX content types.
+  [bsuttor]
 
 
 0.7.10 (2016-04-27)
