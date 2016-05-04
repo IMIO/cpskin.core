@@ -30,6 +30,17 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <!-- Upgrade steps -->
+
+    <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v14"
+        description="Upgrade step for adding homepage keywords."
+        handler=".upgradehandlers.upgrade_homepage_keywords"
+        source="13"
+        destination="14"
+        profile="cpskin.core:default"
+        />
+
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v13"
         description="Upgrade step for adding slider type param."

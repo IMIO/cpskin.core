@@ -7,11 +7,13 @@ from zope.component import queryMultiAdapter
 from zope.interface import noLongerProvides
 from plone import api
 from plone.dexterity.interfaces import IDexterityFTI
-from plone.registry import field, Record
+from plone.registry import field
+from plone.registry import Record
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.utils import bodyfinder
 from plone.app.controlpanel.security import ISecuritySchema
+from cpskin.core.utils import add_behavior
 
 from cpskin.locales import CPSkinMessageFactory as _
 
@@ -82,6 +84,7 @@ def installCore(context):
     addCityNameToRegistry()
     addSubMenuPersistenceToRegistry()
     addSliderTypeToRegistry()
+    add_homepage_keywords()
 
 
 def configureMembers(context):
@@ -458,3 +461,20 @@ def addSliderTypeToRegistry():
             default=u'slider_view'),
         value=u'slider_view')
     records['cpskin.core.interfaces.ICPSkinSettings.slider_type'] = record
+
+
+def add_homepage_keywords():
+    registry = getUtility(IRegistry)
+    records = registry.records
+    if 'cpskin.core.interfaces.ICPSkinSettings.homepage_keywords' in records:
+        return
+
+    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.homepage_keywords to registry")
+    record = Record(
+        field.TextLine(
+            title=_(u"Homepage keywords"),
+            description=_(u'Please select which hidden keywords is use by collections for homepage.'),
+            required=True,
+            default=u'homepage'),
+        value=u'homepage')
+    records['cpskin.core.interfaces.ICPSkinSettings.homepage_keywords'] = record

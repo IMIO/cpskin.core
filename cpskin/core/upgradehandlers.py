@@ -9,14 +9,22 @@ from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addSliderTimerToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
 from cpskin.core.setuphandlers import addSliderTypeToRegistry
+from cpskin.core.setuphandlers import add_homepage_keywords
+# from cpskin.core.utils import add_behavior
 
 import logging
 logger = logging.getLogger('cpskin.core')
 
 
 # def upgrade_to_dexterity(context):
-#     # Use to testing plone.app.contenttypes :
-#     context.runAllImportStepsFromProfile('profile-cpskin.core:dx')
+#     # Wait until all sites are migrated to DX
+#     add_behavior(
+#         'Collection',
+#         'cpskin.core.behaviors.metadata.IUseKeywordHomepage')
+
+
+def upgrade_homepage_keywords(context):
+    add_homepage_keywords()
 
 
 def upgrade_minisite_menu(context):
