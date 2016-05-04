@@ -37,12 +37,11 @@
     for="plone.dexterity.interfaces.IDexterityContent"
     />
 
-
   <plone:behavior
     title="Use keyword homepage"
     description="Adds keyword for homepage."
     provides=".metadata.IUseKeywordHomepage"
-    for="plone.dexterity.interfaces.IDexterityContent"
+    for="plone.app.contenttypes.interfaces.ICollection"
     />
 
 </configure>
