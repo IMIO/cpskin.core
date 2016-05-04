@@ -64,6 +64,10 @@ class HiddenTagsVocabulary(BaseTagsVocabulary):
             simpleTerms = [term for term in voc]
             simpleTerms.append(SimpleTerm(u'a-la-une', title=u'A la une'))
             voc = SimpleVocabulary(simpleTerms)
+        if u'homepage' not in voc.by_token:
+            simpleTerms = [term for term in voc]
+            simpleTerms.append(SimpleTerm(u'homepage', title=u'homepage'))
+            voc = SimpleVocabulary(simpleTerms)
         return voc
 
 
