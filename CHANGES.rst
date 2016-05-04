@@ -4,7 +4,8 @@ Changelog
 0.7.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add media viewlet tests.
+  [bsuttor]
 
 
 0.7.11 (2016-04-29)

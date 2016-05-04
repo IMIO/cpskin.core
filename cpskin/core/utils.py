@@ -1,13 +1,20 @@
 from plone import api
+from plone.dexterity.interfaces import IDexterityFTI
+from plone.namedfile.file import NamedBlobImage
+from zope.component import queryUtility
+
+import os
 
 
 def safe_utf8(s):
+    """Transform unicode to utf8"""
     if isinstance(s, unicode):
         s = s.encode('utf8')
     return s
 
 
 def safe_unicode(s):
+    """Decode from utf8"""
     if isinstance(s, str):
         s = s.decode('utf8')
     return s
@@ -40,3 +47,56 @@ def convertCollection(collection):
     container.setLocallyAllowedTypes(allowed_types)
     container.setDefaultPage(default_page)
     return old_collection
+
+
+def publish_content(content):
+    """Publish an object and hide it for cpskin."""
+    wftool = api.portal.get_tool('portal_workflow')
+    if wftool.getInfoFor(content, 'review_state') != 'published':
+        actions = [a.get('id') for a in wftool.listActions(object=content)]
+        if api.content.get_state(obj=content) != 'published_and_hidden':
+            # we need to handle both workflows
+            if 'publish_and_hide' in actions:
+                wftool.doActionFor(content, 'publish_and_hide')
+            elif 'publish' in actions:
+                wftool.doActionFor(content, 'publish')
+
+
+def add_keyword(obj, tag_id='hiddenTags', tag_value=[]):
+    """Add a keyword to a object."""
+    old_value = getattr(obj, tag_id)
+    if not old_value:
+        values = tag_value
+    else:
+        values = old_value + tag_value
+    setattr(obj, tag_id, values)
+    obj.reindexObject()
+
+
+def add_behavior(type_name, behavior_name):
+    """Add a behavior to a type"""
+    fti = queryUtility(IDexterityFTI, name=type_name)
+    behaviors = list(fti.behaviors)
+    if behavior_name not in behaviors:
+        behaviors.append(behavior_name)
+        fti._updateProperty('behaviors', tuple(behaviors))
+
+
+def add_leadimage_from_file(container, file_name, folder_name='data'):
+    """Add leadimage from a file from a folder"""
+    if not container:
+        container = api.portal.get()
+    data_path = os.path.join(os.path.dirname(__file__), folder_name)
+    file_path = os.path.join(data_path, file_name)
+    if not container.hasObject(file_name):
+        namedblobimage = NamedBlobImage(
+            data=open(file_path, 'r').read(),
+            filename=unicode(file_name)
+        )
+        image = api.content.create(type='Image',
+                                   title=file_name,
+                                   image=namedblobimage,
+                                   container=container)
+        image.setTitle(file_name)
+        image.reindexObject()
+        setattr(container, 'image', namedblobimage)

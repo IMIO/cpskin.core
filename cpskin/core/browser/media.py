@@ -15,12 +15,11 @@ from cpskin.core.interfaces import (IMediaActivated,
                                     IAlbumCollection,
                                     IVideoCollection)
 from cpskin.core.browser.interfaces import IMediaActivationView
+from cpskin.core.utils import publish_content
 
 
 class MediaActivationView(BrowserView):
-    """
-    Media activation helper view
-    """
+    """Media activation helper view"""
     implements(IMediaActivationView)
 
     def _redirect(self, msg=''):
@@ -58,7 +57,7 @@ class MediaActivationView(BrowserView):
         return(IMediaActivated.providedBy(context))
 
     def enable_media(self):
-        """ Enable the media """
+        """Enable the media"""
         context = self._get_real_context()
         alsoProvides(context, IMediaActivated)
         catalog = api.portal.get_tool('portal_catalog')
@@ -74,7 +73,7 @@ class MediaActivationView(BrowserView):
                 'int')
 
     def disable_media(self):
-        """ Disable the media """
+        """Disable the media"""
         context = self._get_real_context()
         noLongerProvides(context, IMediaActivated)
         catalog = api.portal.get_tool('portal_catalog')
@@ -84,7 +83,7 @@ class MediaActivationView(BrowserView):
         self._redirect(_(u'Multimedia viewlet disabled for content'))
 
     def create_collections(self):
-        """ create videos and albums collections if not exists """
+        """Create videos and albums collections if not exists."""
         catalog = api.portal.get_tool('portal_catalog')
         queryDict = {}
         queryDict['object_provides'] = IVideoCollection.__identifier__
@@ -131,11 +130,8 @@ class MediaActivationView(BrowserView):
             video_collection.sort_reversed = True
             video_collection.setLayout('collection_oembed_view')
 
-            if api.content.get_state(obj=video_folder) != 'published_and_hidden':
-                api.content.transition(obj=video_folder, transition='publish_and_hide')
-
-            if api.content.get_state(obj=video_collection) != 'published_and_hidden':
-                api.content.transition(obj=video_collection, transition='publish_and_hide')
+            publish_content(video_folder)
+            publish_content(video_collection)
 
             video_folder.setDefaultPage('index')
 
@@ -174,10 +170,7 @@ class MediaActivationView(BrowserView):
             album_collection.sort_on = u'effective'
             album_collection.sort_reversed = True
 
-            if api.content.get_state(obj=album_folder) != 'published_and_hidden':
-                api.content.transition(obj=album_folder, transition='publish_and_hide')
-
-            if api.content.get_state(obj=album_collection) != 'published_and_hidden':
-                api.content.transition(obj=album_collection, transition='publish_and_hide')
+            publish_content(album_folder)
+            publish_content(album_collection)
 
             album_folder.setDefaultPage('index')
