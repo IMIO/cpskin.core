@@ -19,6 +19,8 @@ class BaseTagsVocabulary(object):
         self.catalog = getToolByName(site, "portal_catalog", None)
         if self.catalog is None:
             return SimpleVocabulary([])
+        if not self.indexName in self.catalog._catalog.indexes.keys():
+            return SimpleVocabulary([])
         index = self.catalog._catalog.getIndex(self.indexName)
 
         def safe_encode(term):

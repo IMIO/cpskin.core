@@ -475,6 +475,6 @@ def add_homepage_keywords():
             title=_(u"Homepage keywords"),
             description=_(u'Please select which hidden keywords is use by collections for homepage.'),
             required=True,
-            default=u'homepage'),
+            default=u('homepage',)),
         value=u'homepage')
     records['cpskin.core.interfaces.ICPSkinSettings.homepage_keywords'] = record
