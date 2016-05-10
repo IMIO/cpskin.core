@@ -471,10 +471,12 @@ def add_homepage_keywords():
 
     logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.homepage_keywords to registry")
     record = Record(
-        field.TextLine(
+        field.Tuple(
             title=_(u"Homepage keywords"),
             description=_(u'Please select which hidden keywords is use by collections for homepage.'),
-            required=True,
-            default=u('homepage',)),
-        value=u'homepage')
+            value_type=field.Choice(
+                vocabulary=u"cpskin.core.vocabularies.hiddenTags"
+            )
+        ),
+        value=(u'homepage',))
     records['cpskin.core.interfaces.ICPSkinSettings.homepage_keywords'] = record
