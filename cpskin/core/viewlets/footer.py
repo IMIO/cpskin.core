@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from plone.app.layout.viewlets.common import ViewletBase
-
-from Products.CMFCore.utils import getToolByName
-
 from plone import api
+from plone.app.layout.viewlets.common import ViewletBase
+from Products.CMFCore.utils import getToolByName
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class CPSkinFooterSitemapViewlet(ViewletBase):
@@ -18,7 +14,6 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
         # take the 2 first levels of the site that respect the navigation strategy
         portal_catalog = getToolByName(context, 'portal_catalog')
         navtreeProps = getToolByName(context, 'portal_properties').navtree_properties
-        portal = getToolByName(context, 'portal_url').getPortalObject()
         queryDict = {}
         navigation_root = api.portal.get_navigation_root(context)
         queryDict['path'] = {'query': '/'.join(navigation_root.getPhysicalPath()), 'depth': 1}
