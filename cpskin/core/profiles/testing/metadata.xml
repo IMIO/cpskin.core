@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <metadata>
   <dependencies>
-   <dependency>profile-plone.app.contenttypes:plone-content</dependency>
+   <dependency>profile-plone.app.contenttypes:default</dependency>
    <dependency>profile-cpskin.core:default</dependency>
   </dependencies>
 </metadata>
