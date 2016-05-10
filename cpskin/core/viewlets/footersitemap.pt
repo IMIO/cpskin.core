@@ -15,13 +15,12 @@
 
   <div class="footer-static"
        tal:define="member context/@@plone_portal_state/member;
-                   text view/getFooterText"
-       tal:condition="text">
+                   text view/getFooterText">
     <p tal:condition="python: member.has_role('Manager')">
       <a href="footer-static/edit"
          i18n:translate="modifier_zone_statique">[Modifier la zone statique]</a>
     </p>
-    <p tal:replace="structure text" />
+    <p tal:condition="text" tal:replace="structure text" />
   </div>
 
   <div class="visualClear"></div>
