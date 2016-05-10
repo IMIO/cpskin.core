@@ -4,6 +4,9 @@ Changelog
 0.7.12 (unreleased)
 -------------------
 
+- Update tests for using DX.
+  [bsuttor]
+
 - Add media viewlet tests.
   [bsuttor]
 
