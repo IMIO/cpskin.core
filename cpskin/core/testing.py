@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
+from cpskin.core.utils import add_behavior
 from plone.testing import z2
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneWithPackageLayer
-from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
-
+from plone.app.textfield.value import RichTextValue
 import cpskin.core
 
 
@@ -31,8 +31,15 @@ class CPSkinCorePloneWithPackageLayer(PloneWithPackageLayer):
         portal.portal_workflow.setDefaultChain('simple_publication_workflow')
         # applyProfile(portal, 'plone.app.contenttypes:plone-content')
         applyProfile(portal, 'cpskin.core:testing')
-        # footer_static = portal['footer-static']
-        # footer_static.setText('Footer static custom content')
+        richtextvalue = RichTextValue(
+            u"Footer static custom content",
+            'text/plain',
+            'text/html'
+        )
+        footer_static = portal['footer-static']
+        footer_static.text = richtextvalue
+        add_behavior('Document', 'cpskin.core.behaviors.metadata.IHiddenTags')
+        add_behavior('News Item', 'collective.sticky.behavior.ISticky')
 
 
 CPSKIN_CORE_FIXTURE = CPSkinCorePloneWithPackageLayer(
