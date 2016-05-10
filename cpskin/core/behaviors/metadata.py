@@ -82,10 +82,10 @@ class IIAmTags(model.Schema):
 
     form.widget(iamTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
     iamTags = Keywords(
-        title=_(u'label_iam_tags', default=u'I am Tags'),
+        title=_(u'label_iam_tags', default=u'I Am Tags'),
         description=_(
             u'help_iam_tags',
-            default=u'I am Tags are used for webmaster '
+            default=u'I Am Tags are used for webmaster '
                     u'organization of content.',
         ),
         required=False,
