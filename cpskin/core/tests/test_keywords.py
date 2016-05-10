@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from cpskin.core.browser.folderview import configure_folderviews
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import add_keyword
@@ -17,6 +18,7 @@ class TestKeywords(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        configure_folderviews(self.portal)
 
     def test_keyword_homepage_behavior(self):
         add_behavior(
@@ -35,9 +37,9 @@ class TestKeywords(unittest.TestCase):
             'Collection',
             'cpskin.core.behaviors.metadata.IUseKeywordHomepage')
         add_behavior('News Item', 'cpskin.core.behaviors.metadata.IHiddenTags')
-        self.assertFalse(self.portal.actualites.index.useKeywordHomepage)
+        self.assertFalse(self.portal.actualites.actualites.useKeywordHomepage)
         view = getMultiAdapter((self.portal, self.request), name="folderview")
-        result = view.getResults(self.portal.actualites.index)
+        result = view.getResults(self.portal.actualites.actualites)
         self.assertTrue(result is None)
 
         # Adding content for fill collection
@@ -46,13 +48,13 @@ class TestKeywords(unittest.TestCase):
             type='News Item',
             id='testnewsitem')
         api.content.transition(obj=news, transition='publish')
-        result = view.getResults(self.portal.actualites.index)
+        result = view.getResults(self.portal.actualites.actualites)
         self.assertEqual(len(result.get('standard-results', 0)), 1)
 
         add_keyword(news, 'hiddenTags', ['homepage'])
         add_keyword(news, 'hiddenTags', ['non-homepage'])
 
-        result = view.getResults(self.portal.actualites.index)
+        result = view.getResults(self.portal.actualites.actualites)
         self.assertEqual(len(result.get('standard-results', 0)), 1)
 
     def test_folderview_with_keyword_homepage(self):
@@ -60,21 +62,21 @@ class TestKeywords(unittest.TestCase):
             'Collection',
             'cpskin.core.behaviors.metadata.IUseKeywordHomepage')
         add_behavior('News Item', 'cpskin.core.behaviors.metadata.IHiddenTags')
-        self.portal.actualites.index.useKeywordHomepage = True
-        self.assertTrue(self.portal.actualites.index.useKeywordHomepage)
+        self.portal.actualites.actualites.useKeywordHomepage = True
+        self.assertTrue(self.portal.actualites.actualites.useKeywordHomepage)
         view = getMultiAdapter((self.portal, self.request), name="folderview")
         news = api.content.create(
             container=self.portal,
             type='News Item',
             id='testnewsitem')
         api.content.transition(obj=news, transition='publish')
-        result = view.getResults(self.portal.actualites.index)
+        result = view.getResults(self.portal.actualites.actualites)
         self.assertTrue(result is None)
 
         add_keyword(news, 'hiddenTags', ['non-homepage'])
-        result = view.getResults(self.portal.actualites.index)
+        result = view.getResults(self.portal.actualites.actualites)
         self.assertTrue(result is None)
 
         add_keyword(news, 'hiddenTags', ['homepage'])
-        result = view.getResults(self.portal.actualites.index)
+        result = view.getResults(self.portal.actualites.actualites)
         self.assertEqual(len(result.get('standard-results', 0)), 1)

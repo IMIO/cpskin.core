@@ -1,8 +1,9 @@
-import unittest
-
-from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
+# -*- coding: utf-8 -*-
 from cpskin.core.browser.folderview import configure_folderviews
+from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from plone.app.testing import TEST_USER_ID, setRoles
+
+import unittest
 
 
 class TestViews(unittest.TestCase):

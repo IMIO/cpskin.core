@@ -1,10 +1,9 @@
 *** Settings ***
 
+Resource  plone/app/robotframework/selenium.robot
 Resource  plone/app/robotframework/keywords.robot
 
-
 Library  Remote  ${PLONE_URL}/RobotRemote
-
 
 Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
@@ -13,53 +12,30 @@ Test Teardown  Close all browsers
 *** Test cases ***
 
 Scenario: Test folder view with collection
-    Given logged as owner
-     When I go to homepage
-      And I open display menu
-      And click folder view with collection
-     Then the view has changed
-
-
-Scenario: Test folder view also on non root
-    Given logged as owner
-      And a folder 'simple_folder'
-     When I go to 'simple_folder'
-      And I open display menu
-     Then the folder view with collection should be visible
-
-
-Scenario: Test folder view configuration
-    Given logged as owner
-      And a folder 'index'
-     When I go to 'index'
-      And I open action menu
-      And click folder view configuration
-     Then the view is configured
-
-
-*** Keywords ***
-
-logged as owner
     Enable autologin as  Site Administrator
-
-
-I go to homepage
     Go to  ${PLONE_URL}
-
-
-click folder view with collection
+    ${folder_uid}  Create content  type=Folder  id=simple_folder  title=simple_folder
+    Open Display Menu
     Click Link  css=#plone-contentmenu-display-folderview
-
-
-click folder view configuration
-    Click Link  css=#plone-contentmenu-actions-configure_folderview
-
-
-the view has changed
     Page Should Contain  View changed.
 
 
-the view is configured
+Scenario: Test folder view also on non root
+    Enable autologin as  Site Administrator
+    Go to  ${PLONE_URL}
+    ${folder_uid}  Create content  type=Folder  id=simple_folder  title=simple_folder
+    Go to  ${PLONE_URL}/simple_folder
+    Open Display Menu
+    Page Should Contain Link  css=#plone-contentmenu-display-folderview
+
+
+Scenario: Test folder view configuration
+    Enable autologin as  Site Administrator
+    Go to  ${PLONE_URL}
+    ${folder_uid}  Create content  type=Folder  id=index  title=index
+    Go to  ${PLONE_URL}/index
+    Open Action Menu
+    Click Link  css=#plone-contentmenu-actions-configure_folderview
     Page Should Contain  Vue index avec collections configurée.
     Page Should Contain Link  css=#plone-contentmenu-display-folderview.actionMenuSelected
     Click Link  Contents
@@ -70,24 +46,3 @@ the view is configured
     Click Link  View
     Page Should Contain Link  css=#plone-contentmenu-actions-remove_from_folderview
     Page Should Not Contain Link  css=#plone-contentmenu-actions-add_to_folderview
-
-
-a folder '${title}'
-    Go to  ${PLONE_URL}
-    Create content  type=Folder  id=subfolder  title=${title}
-
-
-I go to '${document_title}'
-    Go to  ${PLONE_URL}/${document_title}
-
-
-I open display menu
-    Open Display Menu
-
-
-I open action menu
-    Open Action Menu
-
-
-the folder view with collection should be visible
-    Page Should Contain Link  css=#plone-contentmenu-display-folderview

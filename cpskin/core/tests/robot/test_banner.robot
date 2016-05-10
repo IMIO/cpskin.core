@@ -11,7 +11,7 @@
 #
 # 1) Start robot server:
 #
-# $ bin/robot-server --reload-path src cpskin.core.testing.CPSKIN_CORE_ROBOT_TESTING
+# $ bin/robot-server --reload-path cpskin cpskin.core.testing.CPSKIN_CORE_ROBOT_TESTING
 #
 # 2) Run robot tests:
 #

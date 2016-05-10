@@ -17,4 +17,4 @@ Test that sticky field is present
     Go to  ${PLONE_URL}/actu
     Click Link  Edit
     Click Link  Categorization
-    Element Should be visible  css=#archetypes-fieldname-sticky
+    Element Should be visible  css=#form-widgets-ISticky-sticky
