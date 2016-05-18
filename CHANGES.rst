@@ -4,6 +4,9 @@ Changelog
 0.7.12 (unreleased)
 -------------------
 
+- Hid new Dexterity leadimage.
+  [bsuttor]
+
 - Update tests for using DX.
   [bsuttor]
 
