@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.12 (unreleased)
+0.7.12 (2016-05-18)
 -------------------
 
 - Hid new Dexterity leadimage.
