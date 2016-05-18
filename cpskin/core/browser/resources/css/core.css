@@ -31,3 +31,7 @@
 #footer-sitemap div.footer-static {
     float: left;
 }
+
+#content div.newsImageContainer {
+    display: none;
+}
