@@ -4,7 +4,8 @@ Changelog
 0.7.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Rename homepage leadimage container class.
+  [bsuttor]
 
 
 0.7.12 (2016-05-18)
