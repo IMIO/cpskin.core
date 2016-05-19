@@ -35,3 +35,7 @@
 #content div.newsImageContainer {
     display: none;
 }
+
+#content div.leadImage {
+    display: none;
+}

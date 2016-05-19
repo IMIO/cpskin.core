@@ -55,7 +55,7 @@
                                                    src python: result.getURL() + '/' + thumbsize" />
                                 </tal:block>
                                 <tal:block tal:condition="view/is_dexterity">
-                                <div class="leadImage"
+                                <div class="homepageleadImage"
                                      tal:define="scale_func obj/@@images;
                                                  scaled_image python: getattr(obj, 'image', False) and scale_func.scale('image', scale='mini')">
 
