@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.13 (unreleased)
+0.7.13 (2016-05-19)
 -------------------
 
 - Rename homepage leadimage container class.
