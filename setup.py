@@ -30,7 +30,7 @@ setup(name='cpskin.core',
       keywords='',
       author='IMIO',
       author_email='support@imio.be',
-      url='https://github.com/imio/',
+      url='https://github.com/imio/cpskin.core',
       license='gpl',
       packages=find_packages(),
       include_package_data=True,
@@ -56,9 +56,9 @@ setup(name='cpskin.core',
           'eea.facetednavigation',
           'collective.iconifieddocumentactions',
           'collective.z3cform.keywordwidget',
-          # -*- Extra requirements: -*-
           'httpagentparser',
           'cpskin.minisite',
+          'collective.contact.core'
       ],
       extras_require={
           'test': [

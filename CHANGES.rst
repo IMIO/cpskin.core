@@ -1,10 +1,11 @@
 Changelog
 =========
 
-[6~ (unreleased)
+0.7.14 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Add Related contacts behavior.
+  [bsuttor]
 
 
 0.7.13 (2016-05-19)
@@ -101,7 +102,7 @@ Changelog
 
 0.7.2 (2016-01-21)
 ------------------
- 
+
 - Add translation for events, a-la-une and new folder.
   [bsuttor]
 
@@ -251,7 +252,7 @@ Changelog
 
 - Add possibility to choose flexslider parameters (imio #9515)
   [schminitz]
-  
+
 - Set quickupload 'sim_upload_limit' to 1.
   [bsuttor]
 
@@ -277,7 +278,7 @@ Changelog
 0.5.5 (2014-11-14)
 ------------------
 
-- Move * to * upgrade step to a specific profile. With collective.upgrade, 
+- Move * to * upgrade step to a specific profile. With collective.upgrade,
   we do not want start this kind of upgrade step.
   [bsuttor]
 
@@ -328,7 +329,7 @@ Changelog
 0.5 (2014-09-02)
 ----------------
 
-- Add a regisrty and implements a property field for getting number of 
+- Add a regisrty and implements a property field for getting number of
   albums visible on media viewlet.
   [bsuttor]
 

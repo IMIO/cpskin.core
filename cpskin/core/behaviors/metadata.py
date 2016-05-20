@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
+from collective.contact.core.interfaces import IContactable
 from collective.z3cform.keywordwidget.field import Keywords
 from cpskin.locales import CPSkinMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.directives import form
 from plone.supermodel import directives
 from plone.supermodel import model
 from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
+from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
 from zope.interface import alsoProvides
 from zope.interface import provider
@@ -111,6 +114,54 @@ class IUseKeywordHomepage(model.Schema):
     useKeywordHomepage = schema.Bool(
         title=_(u'Use keyword for homepage'),
         description=_(u'Use keyword(s) define in CPSkin settings.'),
+        required=False,
+        default=False,
+    )
+
+@provider(IFormFieldProvider)
+class IRelatedContacts(model.Schema):
+    directives.fieldset(
+        'categorization',
+        label=_(u'label_schema_categorization', default=u'Categorization'),
+        fields=('aboveContentContact', 'aboveSeeTitle', 'belowContentContact', 'belowSeeCoord'),
+    )
+
+    aboveContentContact = RelationList(
+        title=u"Above content related contact",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Related"),
+            source=ObjPathSourceBinder(
+                portal_type=('person', 'organization')
+            )
+        ),
+        required=False,
+    )
+
+    # form.widget('aboveSeeTitle', SingleCheckBoxFieldWidget)
+    aboveSeeTitle = schema.Bool(
+        title=_(u'See also title for above contacts'),
+        description=_(u'By default, you see only description for related contacts located above content.'),
+        required=False,
+        default=False,
+    )
+
+    belowContentContact = RelationList(
+        title=u"Below content related contact",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Related"),
+            source=ObjPathSourceBinder(
+                portal_type=('person', 'organization')
+            )
+        ),
+        required=False,
+    )
+
+    # form.widget('belowSeeCoord', SingleCheckBoxFieldWidget)
+    belowSeeCoord = schema.Bool(
+        title=_(u'See also coordinates for below contacts'),
+        description=_(u'By default, you see only title for related contacts located below content.'),
         required=False,
         default=False,
     )
