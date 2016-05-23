@@ -31,7 +31,7 @@ class IStandardTags(model.Schema):
         ),
         required=False,
         # Automatically get the index in catalog by name
-        index_name='standardTag',
+        index_name='standardTags',
     )
 
 
