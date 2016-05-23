@@ -21,7 +21,8 @@ class IStandardTags(model.Schema):
         fields=('standardTags',),
     )
 
-    form.widget(standardTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
+    form.widget(
+        standardTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
     standardTags = Keywords(
         title=_(u'label_standardTags', default=u'Standard Tags'),
         description=_(
@@ -42,7 +43,8 @@ class IHiddenTags(model.Schema):
         fields=('hiddenTags',),
     )
 
-    form.widget(hiddenTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
+    form.widget(
+        hiddenTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
     hiddenTags = Keywords(
         title=_(u'label_hidden_tags', default=u'Hidden Tags'),
         description=_(
@@ -63,7 +65,8 @@ class IISearchTags(model.Schema):
         fields=('isearchTags',),
     )
 
-    form.widget(isearchTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
+    form.widget(
+        isearchTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
     isearchTags = Keywords(
         title=_(u'label_isearch_tags', default=u'I Search Tags'),
         description=_(
@@ -83,7 +86,8 @@ class IIAmTags(model.Schema):
         fields=('iamTags',),
     )
 
-    form.widget(iamTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
+    form.widget(
+        iamTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
     iamTags = Keywords(
         title=_(u'label_iam_tags', default=u'I Am Tags'),
         description=_(
@@ -118,12 +122,14 @@ class IUseKeywordHomepage(model.Schema):
         default=False,
     )
 
+
 @provider(IFormFieldProvider)
 class IRelatedContacts(model.Schema):
     directives.fieldset(
         'categorization',
         label=_(u'label_schema_categorization', default=u'Categorization'),
-        fields=('aboveContentContact', 'aboveSeeTitle', 'belowContentContact', 'belowSeeCoord'),
+        fields=('aboveContentContact', 'aboveSeeTitle',
+                'belowContentContact', 'belowSeeCoord'),
     )
 
     aboveContentContact = RelationList(
@@ -141,7 +147,8 @@ class IRelatedContacts(model.Schema):
     # form.widget('aboveSeeTitle', SingleCheckBoxFieldWidget)
     aboveSeeTitle = schema.Bool(
         title=_(u'See also title for above contacts'),
-        description=_(u'By default, you see only description for related contacts located above content.'),
+        description=_(
+            u'By default, you see only description for related contacts located above content.'),
         required=False,
         default=False,
     )
@@ -161,7 +168,8 @@ class IRelatedContacts(model.Schema):
     # form.widget('belowSeeCoord', SingleCheckBoxFieldWidget)
     belowSeeCoord = schema.Bool(
         title=_(u'See also coordinates for below contacts'),
-        description=_(u'By default, you see only title for related contacts located below content.'),
+        description=_(
+            u'By default, you see only title for related contacts located below content.'),
         required=False,
         default=False,
     )
