@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.7.14 (unreleased)
------------------
+0.7.14 (2016-05-23)
+-------------------
 
 - Add related contacts viewlets (above and below).
   [bsuttor]
