@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from collective.contact.core.interfaces import IContactable
 from collective.z3cform.keywordwidget.field import Keywords
 from cpskin.locales import CPSkinMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
@@ -22,7 +21,7 @@ class IStandardTags(model.Schema):
     )
 
     form.widget(
-        standardTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
+        standardTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')  # noqa
     standardTags = Keywords(
         title=_(u'label_standardTags', default=u'Standard Tags'),
         description=_(
@@ -32,7 +31,7 @@ class IStandardTags(model.Schema):
         ),
         required=False,
         # Automatically get the index in catalog by name
-        index_name="standardTags",
+        index_name='standardTag',
     )
 
 
@@ -44,7 +43,7 @@ class IHiddenTags(model.Schema):
     )
 
     form.widget(
-        hiddenTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
+        hiddenTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')  # noqa
     hiddenTags = Keywords(
         title=_(u'label_hidden_tags', default=u'Hidden Tags'),
         description=_(
@@ -54,7 +53,7 @@ class IHiddenTags(model.Schema):
         ),
         required=False,
         # Automatically get the index in catalog by name
-        index_name="hiddenTags",
+        index_name='hiddenTags',
     )
 
 
@@ -66,7 +65,7 @@ class IISearchTags(model.Schema):
     )
 
     form.widget(
-        isearchTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')
+        isearchTags='collective.z3cform.keywordwidget.widget.KeywordFieldWidget')  # noqa
     isearchTags = Keywords(
         title=_(u'label_isearch_tags', default=u'I Search Tags'),
         description=_(
@@ -75,7 +74,7 @@ class IISearchTags(model.Schema):
                     u'organization of content.'
         ),
         required=False,
-        index_name="isearchTags",
+        index_name='isearchTags',
     )
 
 
@@ -148,7 +147,7 @@ class IRelatedContacts(model.Schema):
     aboveSeeTitle = schema.Bool(
         title=_(u'See also title for above contacts'),
         description=_(
-            u'By default, you see only description for related contacts located above content.'),
+            u'By default, you see only description for related contacts located above content.'),  # noqa
         required=False,
         default=False,
     )
@@ -169,7 +168,7 @@ class IRelatedContacts(model.Schema):
     belowSeeCoord = schema.Bool(
         title=_(u'See also coordinates for below contacts'),
         description=_(
-            u'By default, you see only title for related contacts located below content.'),
+            u'By default, you see only title for related contacts located below content.'),  # noqa
         required=False,
         default=False,
     )
