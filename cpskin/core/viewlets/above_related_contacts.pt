@@ -1,0 +1,25 @@
+<div i18n:domain="cpskin" id="above-related-contacts" tal:condition="view/available">
+    <ul id="ul-above-related-contacts">
+        <li tal:repeat="contact view/get_contacts" class="related-contact">
+            <tal:block
+                tal:define="title contact/title;
+                            street contact/street;
+                            number contact/number;
+                            zip_code contact/zip_code;
+                            city contact/city">
+                <h4 tal:condition="context/aboveSeeTitle" tal:content="title" />
+                <div class="coordinates">
+                    <div class="street">
+                        <span class="streetname" tal:condition="street" tal:content="street" />
+                        <span class="streetname" tal:condition="street">, </span>
+                        <span class="streetnumber" tal:condition="number" tal:content="number" />
+                    </div>
+                    <div class="city">
+                        <span class="zipcode" tal:condition="zip_code" tal:content="zip_code" />
+                        <span class="cityname" tal:condition="city" tal:content="city" />
+                    </div>
+                </div>
+            </tal:block>
+        </li>
+    </ul>
+</div>
