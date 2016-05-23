@@ -94,6 +94,21 @@
         layer="..interfaces.ICPSkinCoreLayer"
         />
 
+    <browser:viewlet
+        name="cpskin.above_related_contacts"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class=".related_contacts.AboveRelatedContactsViewlet"
+        permission="zope.Public"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:viewlet
+        name="cpskin.below_related_contacts"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class=".related_contacts.BelowRelatedContactsViewlet"
+        permission="zope.Public"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
 
     <browser:resource
         file="css/banner.css"

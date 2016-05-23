@@ -4,7 +4,10 @@ Changelog
 0.7.14 (unreleased)
 -----------------
 
-- Add Related contacts behavior.
+- Add related contacts viewlets (above and below).
+  [bsuttor]
+
+- Add related contacts behavior.
   [bsuttor]
 
 

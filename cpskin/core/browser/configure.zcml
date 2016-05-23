@@ -138,4 +138,5 @@
      template="templates/cpskincore_macros.pt"
      permission="zope2.View"
      />
+
 </configure>
