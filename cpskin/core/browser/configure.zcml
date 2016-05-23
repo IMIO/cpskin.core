@@ -39,6 +39,7 @@
       name="opendata"
       class=".pages.OpenData"
       permission="zope.Public"
+      layer="..interfaces.ICPSkinCoreLayer"
       />
 
   <!-- Other browser pages -->
