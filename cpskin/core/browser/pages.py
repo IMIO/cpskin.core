@@ -35,7 +35,7 @@ class OpenData(BrowserView):
             if getattr(folder, "default_page", None):
                 default_page = folder.default_page
                 default_obj = folder[default_page]
-                rsslink = "{}/atom.xml".format(default_obj.absolute_url())
+                rsslink = "{0}/atom.xml".format(default_obj.absolute_url())
                 links.append(rsslink)
 
         query_dict = {}
@@ -46,10 +46,11 @@ class OpenData(BrowserView):
             catalog = api.portal.get_tool('portal_catalog')
             query_dict = {}
             query_dict['portal_type'] = 'collective.directory.card'
-            query_dict['path'] = {'query': "/".join(directory.getPhysicalPath()), 'depth': 3}
+            query_dict['path'] = {
+                'query': "/".join(directory.getPhysicalPath()), 'depth': 3}
             size = len(catalog(query_dict))
             if size > 3:
-                csvlink = "{}/collective_directory_export_view".format(
+                csvlink = "{0}/collective_directory_export_view".format(
                     directory.absolute_url()
                 )
                 links.append(csvlink)

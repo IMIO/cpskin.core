@@ -57,26 +57,30 @@ class MediaViewlet(common.ViewletBase):
             # AT
             if getattr(gallery_brain, 'hasContentLeadImage', False):
                 html = "<a href='{}'>".format(gallery.absolute_url())
-                html += imagescale.scale('leadImage', width=300, height=300).tag()
+                html += imagescale.scale('leadImage',
+                                         width=300, height=300).tag()
                 html += '</a>'
                 albums.append(html)
             # DX
             elif ICollection.providedBy(collection) and imagescale:
                 scale = imagescale.scale('image', width=300, height=300)
                 if not scale:
-                    logger.debug("{} has no album collection".format(self.context))
+                    logger.debug(
+                        "{} has no album collection".format(self.context))
                 else:
                     html = "<a href='{}'>".format(gallery.absolute_url())
                     html += scale.tag()
                     html += '</a>'
                     albums.append(html)
             else:
-                logger.debug("{} has no lead image".format(gallery_brain.getURL()))
+                logger.debug("{} has no lead image".format(
+                    gallery_brain.getURL()))
         limit = 5
         if 'visible_albums' in self.context.propertyIds():
             limit = self.context.getProperty('visible_albums')
         else:
-            limit = api.portal.get_registry_record('cpskin.core.default_visible_albums')
+            limit = api.portal.get_registry_record(
+                'cpskin.core.default_visible_albums')
         return albums[:limit]
 
     def get_collection(self, object_provide):
