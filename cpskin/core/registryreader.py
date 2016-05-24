@@ -7,13 +7,17 @@ class CpskinQuerystringRegistryReader(QuerystringRegistryReader):
 
     def getVocabularyValues(self, values):
         """Get all vocabulary values if a vocabulary is defined"""
-        values = super(CpskinQuerystringRegistryReader, self).getVocabularyValues(values)
-        cpskin_indexes = ['hiddenTags', 'isearchTags', 'iamTags', 'standardTags']
+        values = super(CpskinQuerystringRegistryReader,
+                       self).getVocabularyValues(values)
+        cpskin_indexes = ['hiddenTags',
+                          'isearchTags', 'iamTags', 'standardTags']
         values.get(self.prefix + '.field')
         for cpskin_index in cpskin_indexes:
             index = values.get(self.prefix + '.field').get(cpskin_index, None)
             for value in index.values():
                 if isinstance(value, dict):
-                    i18n_value = dict((k.encode('utf8'), v) for k, v in value.items())
-                    values.get(self.prefix + '.field').get(cpskin_index)['values'] = i18n_value
+                    i18n_value = dict((k.encode('utf8'), v)
+                                      for k, v in value.items())
+                    values.get(
+                        self.prefix + '.field').get(cpskin_index)['values'] = i18n_value
         return values
