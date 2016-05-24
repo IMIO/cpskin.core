@@ -39,3 +39,7 @@
 #content div.leadImage {
     display: none;
 }
+
+div#formfield-form-widgets-IDublinCore-subjects  {
+    display: none;
+}
