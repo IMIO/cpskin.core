@@ -4,7 +4,8 @@ Changelog
 0.7.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Hid Plone subject (categorization) with css.
+  [bsuttor]
 
 
 0.7.14 (2016-05-23)
