@@ -14,7 +14,9 @@ This package is tested using Travis CI. The current status is :
 .. image:: https://travis-ci.org/IMIO/cpskin.core.png
     :target: http://travis-ci.org/IMIO/cpskin.core
 
-
+.. image:: https://coveralls.io/repos/IMIO/cpskin.core/badge.png?branch=master
+   :target: https://coveralls.io/r/IMIO/cpskin.core?branch=master
+   
 Robot tests
 ===========
 
