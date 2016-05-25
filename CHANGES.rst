@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.15 (unreleased)
+0.7.15 (2016-05-25)
 -------------------
 
 - Hid Plone subject (categorization) with css.
