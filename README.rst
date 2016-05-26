@@ -14,12 +14,10 @@ This package is tested using Travis CI. The current status is :
 .. image:: https://travis-ci.org/IMIO/cpskin.core.png
     :target: http://travis-ci.org/IMIO/cpskin.core
 
-.. image:: https://coveralls.io/repos/IMIO/cpskin.core/badge.png?branch=master
-   :target: https://coveralls.io/r/IMIO/cpskin.core?branch=master
-   
-Robot tests
-===========
-
+.. image:: https://coveralls.io/repos/github/IMIO/cpskin.core/badge.svg?branch=master :target: https://coveralls.io/github/IMIO/cpskin.core?branch=master 
+  
+Tests
+=====
 
 Run all tests
 -------------
@@ -27,7 +25,7 @@ Run all tests
 bin/test
 
 
-Run specific tests
+Run specific robot tests
 ------------------
 
 You can launch the robot server with the command:
