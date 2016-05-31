@@ -82,6 +82,15 @@ def add_behavior(type_name, behavior_name):
         fti._updateProperty('behaviors', tuple(behaviors))
 
 
+def remove_behavior(type_name, behavior_name):
+    """Add a behavior to a type"""
+    fti = queryUtility(IDexterityFTI, name=type_name)
+    behaviors = list(fti.behaviors)
+    if behavior_name in behaviors:
+        behaviors.remove(behavior_name)
+        fti._updateProperty('behaviors', tuple(behaviors))
+
+
 def add_leadimage_from_file(container, file_name, folder_name='data'):
     """Add leadimage from a file from a folder"""
     if not container:
