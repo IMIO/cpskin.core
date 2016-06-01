@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.16 (unreleased)
+0.7.16 (2016-06-01)
 -------------------
 
 - Add remove_behavior.
