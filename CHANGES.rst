@@ -4,7 +4,8 @@ Changelog
 0.7.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add remove_behavior.
+  [bsuttor]
 
 
 0.7.15 (2016-05-25)
