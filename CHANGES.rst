@@ -4,7 +4,9 @@ Changelog
 0.7.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add monkey patches for DatetimeWidget and DateWidget to use min and max
+  values from zope schema field
+  [mpeeters]
 
 
 0.7.16 (2016-06-01)

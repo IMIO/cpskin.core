@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+
 from Products.PluginIndexes.KeywordIndex.KeywordIndex import KeywordIndex
+from datetime import datetime
 from plone import api
+from plone.formwidget.datetime.z3cform.widget import DateWidget
+from plone.formwidget.datetime.z3cform.widget import DatetimeWidget
 
 
 def afterMemberAdd(self, member, id, password, properties):
@@ -35,3 +39,27 @@ def keyword_apply_index(self, request, resultset=None):
             if isinstance(request_key, unicode):
                 request[key] = request_key.encode('utf8')
     return super(KeywordIndex, self)._apply_index(request, resultset)
+
+
+def date_widget_update(self):
+    now = datetime.now()
+    min_value = -10
+    max_value = 10
+    if self.field.min:
+        min_value = self.field.min.year - now.year
+    if self.field.max:
+        max_value = self.field.max.year - now.year + 1
+    self.years_range = (min_value, max_value)
+    super(DateWidget, self).update()
+
+
+def datetime_widget_update(self):
+    now = datetime.now()
+    min_value = -10
+    max_value = 10
+    if self.field.min:
+        min_value = self.field.min.year - now.year
+    if self.field.max:
+        max_value = self.field.max.year - now.year + 1
+    self.years_range = (min_value, max_value)
+    super(DatetimeWidget, self).update()

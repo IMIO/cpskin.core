@@ -17,4 +17,18 @@
         replacement=".monkeypatches.keyword_apply_index"
         />
 
+    <monkey:patch
+      description="Fix the year range for date widget"
+      class="plone.formwidget.datetime.z3cform.widget.DateWidget"
+      original="update"
+      replacement=".monkeypatches.date_widget_update"
+      />
+
+    <monkey:patch
+      description="Fix the year range for datetime widget"
+      class="plone.formwidget.datetime.z3cform.widget.DatetimeWidget"
+      original="update"
+      replacement=".monkeypatches.datetime_widget_update"
+      />
+
 </configure>
