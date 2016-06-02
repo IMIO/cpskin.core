@@ -124,11 +124,11 @@ class IUseKeywordHomepage(model.Schema):
 
 @provider(IFormFieldProvider)
 class IRelatedContacts(model.Schema):
-    directives.fieldset(
-        'categorization',
-        label=_(u'label_schema_categorization', default=u'Categorization'),
-        fields=('aboveContentContact', 'aboveSeeTitle',
-                'belowContentContact', 'belowSeeCoord'),
+    model.fieldset(
+        'related_contacts',
+        label=_(u"Related contacts"),
+        fields=('aboveContentContact', 'aboveVisbileFields',
+                'belowContentContact', 'belowVisbileFields'),
     )
 
     aboveContentContact = RelationList(
@@ -143,13 +143,14 @@ class IRelatedContacts(model.Schema):
         required=False,
     )
 
-    # form.widget('aboveSeeTitle', SingleCheckBoxFieldWidget)
-    aboveSeeTitle = schema.Bool(
-        title=_(u'See also title for above contacts'),
-        description=_(
-            u'By default, you see only description for related contacts located above content.'),  # noqa
+    aboveVisbileFields = schema.Tuple(
+        title=_(u"Visible fields for above viewlet"),
+        description=_(u'Please select which fields should be visible.'),
         required=False,
-        default=False,
+        default=('street', 'number', 'zip_code', 'city'),
+        value_type=schema.Choice(
+            vocabulary=u"cpskin.core.vocabularies.contact_fields"
+        )
     )
 
     belowContentContact = RelationList(
@@ -164,11 +165,12 @@ class IRelatedContacts(model.Schema):
         required=False,
     )
 
-    # form.widget('belowSeeCoord', SingleCheckBoxFieldWidget)
-    belowSeeCoord = schema.Bool(
-        title=_(u'See also coordinates for below contacts'),
-        description=_(
-            u'By default, you see only title for related contacts located below content.'),  # noqa
+    belowVisbileFields = schema.Tuple(
+        title=_(u"Visible fields for below viewlet"),
+        description=_(u'Please select which fields should be visible.'),
         required=False,
-        default=False,
+        default=('title',),
+        value_type=schema.Choice(
+            vocabulary=u"cpskin.core.vocabularies.contact_fields"
+        )
     )

@@ -13,6 +13,7 @@ from zope.component import queryMultiAdapter
 from zope.intid.interfaces import IIntIds
 from zope.viewlet.interfaces import IViewletManager
 from z3c.relationfield.relation import RelationValue
+
 import unittest
 
 
@@ -156,9 +157,12 @@ class TestViewlets(unittest.TestCase):
         self.assertIn('Mornimont', above_viewlet.render())
         self.assertNotIn('Foo Bar', above_viewlet.render())
 
-        event.aboveSeeTitle = True
+        event.aboveVisbileFields = ('street', 'number', 'zip_code', 'city')
+        self.assertIn('5190', above_viewlet.render())
         self.assertIn('Mornimont', above_viewlet.render())
-        self.assertIn('Foo Bar', above_viewlet.render())
+
+        event.aboveVisbileFields = ('firstname',)
+        self.assertIn('Foo', above_viewlet.render())
 
     def test_below_related_contacts_viewlet(self):
         add_behavior(
@@ -216,6 +220,6 @@ class TestViewlets(unittest.TestCase):
         self.assertNotIn('Mornimont', below_viewlet.render())
         self.assertIn('Foo Bar', below_viewlet.render())
 
-        event.belowSeeCoord = True
-        self.assertIn('Mornimont', below_viewlet.render())
-        self.assertIn('Foo Bar', below_viewlet.render())
+        event.belowVisbileFields = ('zip_code',)
+        self.assertNotIn('5190', below_viewlet.render())
+        self.assertNotIn('Foo', below_viewlet.render())

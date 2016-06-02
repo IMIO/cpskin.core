@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from binascii import b2a_qp
+from zope.component import getUtility
 from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
@@ -7,6 +8,10 @@ from zope.site.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
+from plone import api
+from zope.component.interface import nameToInterface
+from plone.dexterity.interfaces import IDexterityFTI
+from zope.schema import getFieldsInOrder
 
 
 class BaseTagsVocabulary(object):
@@ -33,7 +38,8 @@ class BaseTagsVocabulary(object):
         # Vocabulary term tokens *must* be 7 bit values, titles *must* be
         # unicode
         items = [
-            SimpleTerm(safe_unicode(i), b2a_qp(safe_encode(i)), safe_unicode(i))
+            SimpleTerm(safe_unicode(i), b2a_qp(
+                safe_encode(i)), safe_unicode(i))
             for i in index._index
             if query is None or safe_encode(query) in safe_encode(i)
         ]
@@ -61,7 +67,8 @@ class HiddenTagsVocabulary(BaseTagsVocabulary):
 
     def __call__(self, context, query=None):
         voc = super(HiddenTagsVocabulary, self).__call__(context, query)
-        # Add a-la-une term if it does not already exist, aka still not used for any document
+        # Add a-la-une term if it does not already exist, aka still not used
+        # for any document
         if u'a-la-une' not in voc.by_token:
             simpleTerms = [term for term in voc]
             simpleTerms.append(SimpleTerm(u'a-la-une', title=u'A la une'))
@@ -77,3 +84,39 @@ IStandardTagsVocabularyFactory = IStandardTagsVocabulary()
 IAmTagsVocabularyFactory = IAmTagsVocabulary()
 ISearchTagsVocabularyFactory = ISearchTagsVocabulary()
 HiddenTagsVocabularyFactory = HiddenTagsVocabulary()
+
+
+class ContactFieldsFactory(object):
+    """Vocabulary factory listing all fields from contacts"""
+    implements(IVocabularyFactory)
+    indexName = ''
+
+    def __call__(self, context, query=None):
+        results = []
+        exclude = ['im_handle', 'use_parent_address', 'country', 'region']
+        exclude_behaviors = ['plone.app.content.interfaces.INameFromTitle']
+
+        schema = getUtility(IDexterityFTI, name='person').lookupSchema()
+        for name, field in getFieldsInOrder(schema):
+            if name not in exclude:
+                results.append((name, field.title))
+        portal_types = api.portal.get_tool('portal_types')
+        behaviors = portal_types.person.behaviors
+        behaviors += portal_types.organization.behaviors
+        behaviors = list(set(behaviors))
+        for behavior in behaviors:
+            if behavior not in exclude_behaviors:
+                try:
+                    interface = nameToInterface(context, behavior)
+                    for name, field in getFieldsInOrder(interface):
+                        if name not in exclude:
+                            results.append((name, field.title))
+                except:
+                    pass
+        items = [
+            SimpleTerm(i, i, i)
+            for i, j in results if j
+        ]
+        return SimpleVocabulary(items)
+
+ContactFieldsVocabularyFactory = ContactFieldsFactory()

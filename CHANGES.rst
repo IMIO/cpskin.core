@@ -4,6 +4,9 @@ Changelog
 0.7.17 (unreleased)
 -------------------
 
+- Add related contacts fields vocabulary and use it.
+  [bsuttor]
+
 - Add monkey patches for DatetimeWidget and DateWidget to use min and max
   values from zope schema field
   [mpeeters]

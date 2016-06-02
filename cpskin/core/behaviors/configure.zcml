@@ -48,7 +48,7 @@
     title="Related contacts"
     description="Adds related Contacts from collective.contact suite."
     provides=".metadata.IRelatedContacts"
-    for="plone.dexterity.interfaces.IDexterityContent"
+    for="plone.app.contenttypes.interfaces.IDocument"
     />
 
 </configure>

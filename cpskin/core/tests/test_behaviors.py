@@ -13,7 +13,7 @@ from zope.interface import alsoProvides
 import unittest
 
 
-class TestBeahviors(unittest.TestCase):
+class TestBehaviors(unittest.TestCase):
 
     layer = CPSKIN_CORE_INTEGRATION_TESTING
 
