@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.17 (unreleased)
+0.7.17 (2016-06-02)
 -------------------
 
 - Add related contacts fields vocabulary and use it.
