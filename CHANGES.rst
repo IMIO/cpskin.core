@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.19 (unreleased)
+0.7.19 (2016-06-03)
 -------------------
 
 - Fix related_contatcs vocabulary.
