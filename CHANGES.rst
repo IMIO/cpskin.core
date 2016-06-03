@@ -4,7 +4,8 @@ Changelog
 0.7.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add homepage behavior for collection.
+  [bsuttor]
 
 
 0.7.17 (2016-06-02)
