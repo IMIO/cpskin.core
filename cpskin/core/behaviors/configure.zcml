@@ -38,17 +38,17 @@
     />
 
   <plone:behavior
-    title="Use keyword homepage"
-    description="Adds keyword for homepage."
-    provides=".metadata.IUseKeywordHomepage"
-    for="plone.app.contenttypes.interfaces.ICollection"
-    />
-
-  <plone:behavior
     title="Related contacts"
     description="Adds related Contacts from collective.contact suite."
     provides=".metadata.IRelatedContacts"
     for="plone.app.contenttypes.interfaces.IDocument"
+    />
+
+  <plone:behavior
+    title="Cpskin homepage"
+    description="Adds some configuration for cpskin homepage."
+    provides=".homepage.ICpskinHomepage"
+    for="plone.app.contenttypes.interfaces.ICollection"
     />
 
 </configure>

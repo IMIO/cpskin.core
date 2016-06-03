@@ -79,7 +79,7 @@ class FolderView(FoldV):
 
     def getResults(self, content):
         """Content is a Collection"""
-        if getattr(content, 'useKeywordHomepage', False):
+        if getattr(content, 'use_keyword_homepage', False):
             homepage_keywords = api.portal.get_registry_record(
                 'cpskin.core.interfaces.ICPSkinSettings.homepage_keywords')
             content.query.append({
@@ -254,12 +254,15 @@ class FolderView(FoldV):
         noLongerProvides(context, IFolderViewWithBigImages)
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
-        self._redirect(_(u'Big images are not used anymore on this folder view.'))
+        self._redirect(
+            _(u'Big images are not used anymore on this folder view.'))
 
     def slider_config(self):
         portal_registry = getToolByName(self.context, 'portal_registry')
-        slider_timer = portal_registry['cpskin.core.interfaces.ICPSkinSettings.slider_timer']
-        auto_play_slider = portal_registry['cpskin.core.interfaces.ICPSkinSettings.auto_play_slider']
+        slider_timer = portal_registry[
+            'cpskin.core.interfaces.ICPSkinSettings.slider_timer']
+        auto_play_slider = portal_registry[
+            'cpskin.core.interfaces.ICPSkinSettings.auto_play_slider']
         config = """
         (function($) {
              "use strict";

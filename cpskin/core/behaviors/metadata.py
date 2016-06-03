@@ -4,9 +4,7 @@ from cpskin.locales import CPSkinMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.directives import form
-from plone.supermodel import directives
 from plone.supermodel import model
-from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
 from zope.interface import alsoProvides
@@ -103,23 +101,6 @@ alsoProvides(IStandardTags, IFormFieldProvider)
 alsoProvides(IHiddenTags, IFormFieldProvider)
 alsoProvides(IISearchTags, IFormFieldProvider)
 alsoProvides(IIAmTags, IFormFieldProvider)
-
-
-@provider(IFormFieldProvider)
-class IUseKeywordHomepage(model.Schema):
-    directives.fieldset(
-        'categorization',
-        label=_(u'label_schema_categorization', default=u'Categorization'),
-        fields=('useKeywordHomepage',),
-    )
-
-    form.widget('useKeywordHomepage', SingleCheckBoxFieldWidget)
-    useKeywordHomepage = schema.Bool(
-        title=_(u'Use keyword for homepage'),
-        description=_(u'Use keyword(s) define in CPSkin settings.'),
-        required=False,
-        default=False,
-    )
 
 
 @provider(IFormFieldProvider)

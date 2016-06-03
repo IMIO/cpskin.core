@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.behaviors.metadata import IHiddenTags
 from cpskin.core.behaviors.metadata import IRelatedContacts
-from cpskin.core.behaviors.metadata import IUseKeywordHomepage
+from cpskin.core.behaviors.homepage import ICpskinHomepage
 from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
@@ -26,11 +26,28 @@ class TestBehaviors(unittest.TestCase):
         self.folder = self.portal.folder
         self.portal.invokeFactory('Document', 'document')
         self.document = self.portal.document
+        self.portal.invokeFactory('Collection', 'collection')
+        self.collection = self.portal.collection
+
+    def test_use_slider_image_scale(self):
+        add_behavior('Collection', ICpskinHomepage.__identifier__)
+        slider_image_scale = getattr(self.collection, 'slider_image_scale')
+        self.assertEqual(slider_image_scale, 'slider')
+
+    def test_use_carousel_image_scale(self):
+        add_behavior('Collection', ICpskinHomepage.__identifier__)
+        carousel_image_scale = getattr(self.collection, 'carousel_image_scale')
+        self.assertEqual(carousel_image_scale, 'carousel')
+
+    def test_use_link_text(self):
+        add_behavior('Collection', ICpskinHomepage.__identifier__)
+        link_text = getattr(self.collection, 'link_text')
+        self.assertEqual(link_text, "Voir l'ensemble des")
 
     def test_use_keyword_homepage(self):
-        add_behavior('Folder', IUseKeywordHomepage.__identifier__)
-        useKeywordHomepage = getattr(self.folder, 'useKeywordHomepage')
-        self.assertFalse(useKeywordHomepage)
+        add_behavior('Collection', ICpskinHomepage.__identifier__)
+        use_keyword_homepage = getattr(self.collection, 'use_keyword_homepage')
+        self.assertFalse(use_keyword_homepage)
 
     def test_related_contacts(self):
         add_behavior('Document', IRelatedContacts.__identifier__)
