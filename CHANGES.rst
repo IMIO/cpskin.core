@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.18 (unreleased)
+0.7.18 (2016-06-03)
 -------------------
 
 - Add homepage behavior for collection.
