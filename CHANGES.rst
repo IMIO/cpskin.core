@@ -4,7 +4,8 @@ Changelog
 0.7.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix related_contatcs vocabulary.
+  [bsuttor]
 
 
 0.7.18 (2016-06-03)
