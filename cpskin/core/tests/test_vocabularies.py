@@ -16,7 +16,7 @@ class TestVocabularies(unittest.TestCase):
 
     def test_contact_fields_vocabulary(self):
         applyProfile(self.portal, 'collective.contact.core:default')
-        name = 'cpskin.core.vocabularies.contactFields'
+        name = 'cpskin.core.vocabularies.contact_fields'
         factory = getUtility(IVocabularyFactory, name)
         vocabulary = factory(self.portal)
         keys = vocabulary.by_value.keys()
