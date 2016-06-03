@@ -35,7 +35,7 @@
              name="cpskin.core.vocabularies.hiddenTags" />
 
     <utility component=".vocabulary.ContactFieldsVocabularyFactory"
-         name="cpskin.core.vocabularies.contactFields" />
+         name="cpskin.core.vocabularies.contact_fields" />
 
     <adapter factory=".extender.ContentExtender"
              provides="archetypes.schemaextender.interfaces.ISchemaExtender"
