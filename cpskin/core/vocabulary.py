@@ -101,9 +101,8 @@ class ContactFieldsFactory(object):
             if name not in exclude:
                 results.append((name, field.title))
         portal_types = api.portal.get_tool('portal_types')
-        behaviors = portal_types.person.behaviors
-        behaviors += portal_types.organization.behaviors
-        behaviors = list(set(behaviors))
+        behaviors = list(set(portal_types.person.behaviors))
+        behaviors += list(set(portal_types.organization.behaviors))
         for behavior in behaviors:
             if behavior not in exclude_behaviors:
                 try:
