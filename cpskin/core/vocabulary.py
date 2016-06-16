@@ -103,6 +103,7 @@ class ContactFieldsFactory(object):
         portal_types = api.portal.get_tool('portal_types')
         behaviors = list(set(portal_types.person.behaviors))
         behaviors += list(set(portal_types.organization.behaviors))
+        behaviors = set(behaviors)
         for behavior in behaviors:
             if behavior not in exclude_behaviors:
                 try:
