@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.20 (unreleased)
+0.7.20 (2016-06-22)
 -------------------
 
 - Use navigation root instead of context for getting footer viewlet static file.
