@@ -4,6 +4,9 @@ Changelog
 0.7.20 (unreleased)
 -------------------
 
+- Use navigation root instead of context for getting footer viewlet static file.
+  [bsuttor]
+
 - Update field selectionnable for related contacts.
   [bsuttor]
 

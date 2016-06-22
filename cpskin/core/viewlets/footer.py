@@ -11,12 +11,15 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
 
     def createSiteMap(self):
         context = aq_inner(self.context)
-        # take the 2 first levels of the site that respect the navigation strategy
+        # take the 2 first levels of the site that respect the navigation
+        # strategy
         portal_catalog = getToolByName(context, 'portal_catalog')
-        navtreeProps = getToolByName(context, 'portal_properties').navtree_properties
+        navtreeProps = getToolByName(
+            context, 'portal_properties').navtree_properties
         queryDict = {}
         navigation_root = api.portal.get_navigation_root(context)
-        queryDict['path'] = {'query': '/'.join(navigation_root.getPhysicalPath()), 'depth': 1}
+        queryDict['path'] = {
+            'query': '/'.join(navigation_root.getPhysicalPath()), 'depth': 1}
         if navtreeProps.enable_wf_state_filtering:
             queryDict['review_state'] = navtreeProps.wf_states_to_show
         queryDict['sort_on'] = 'getObjPositionInParent'
@@ -39,7 +42,8 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
         return res
 
     def getFooterText(self):
-        footer_static = getattr(self.context, 'footer-static', None)
+        navigation_root = api.portal.get_navigation_root(self.context)
+        footer_static = getattr(navigation_root, 'footer-static', None)
         text = ''
         if footer_static is None:
             return
