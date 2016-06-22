@@ -8,7 +8,8 @@ logger = logging.getLogger('cpskin.core related contacts viewlet')
 class RelatedContactsViewlet(common.ViewletBase):
 
     index = ViewPageTemplateFile('related_contacts.pt')
-    address_fields = ('street', 'number', 'zip_code', 'city', 'title')
+    address_fields = ('street', 'number', 'zip_code', 'city')
+    ignore_fields = ('title', )
 
     def available(self):
         contacts = getattr(self.context, self.field, None)
@@ -51,7 +52,8 @@ class RelatedContactsViewlet(common.ViewletBase):
     def fields_without_address(self):
         fields = []
         for selected_field in self.selected_fields:
-            if selected_field not in self.address_fields:
+            if selected_field not in self.address_fields and \
+                    selected_field not in self.ignore_fields:
                 fields.append(selected_field)
         return fields
 
