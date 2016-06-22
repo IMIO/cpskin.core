@@ -4,7 +4,11 @@ Changelog
 0.7.20 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Update field selectionnable for related contacts.
+  [bsuttor]
+
+- Fix tuples list bug.
+  [boulch, gbastien]
 
 
 0.7.19 (2016-06-03)

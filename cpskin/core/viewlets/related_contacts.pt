@@ -3,7 +3,8 @@
         <li tal:repeat="contact view/get_contacts" class="related-contact">
 
             <h4 tal:condition="python: view.in_fields('title')" tal:content="contact/title" />
-            <div class="coordinates" tal:condition="view/has_address"
+            <div class="coordinates"
+                tal:condition="view/has_address"
                 tal:define="street contact/street;
                             number contact/number;
                             zip_code contact/zip_code;
@@ -20,7 +21,11 @@
             </div>
             <div class="selected-fields">
                 <tal:block tal:repeat="field view/fields_without_address">
-                    <span tal:content="python:view.get_field(contact, field)" />
+                    <tal:define tal:define="data python:view.get_field(contact, field)">
+                        <span tal:condition="data" class="selected-field">
+                             <span tal:replace="structure data" />
+                         </span>
+                    </tal:define>
                 </tal:block>
             </div>
 

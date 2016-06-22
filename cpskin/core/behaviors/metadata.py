@@ -128,7 +128,8 @@ class IRelatedContacts(model.Schema):
         title=_(u"Visible fields for above viewlet"),
         description=_(u'Please select which fields should be visible.'),
         required=False,
-        default=('street', 'number', 'zip_code', 'city'),
+        default=('street', 'number', 'zip_code', 'city', 'phone', 'cell_phone',
+                 'fax', 'email', 'website'),
         value_type=schema.Choice(
             vocabulary=u"cpskin.core.vocabularies.contact_fields"
         )

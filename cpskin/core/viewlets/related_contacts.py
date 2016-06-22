@@ -8,7 +8,7 @@ logger = logging.getLogger('cpskin.core related contacts viewlet')
 class RelatedContactsViewlet(common.ViewletBase):
 
     index = ViewPageTemplateFile('related_contacts.pt')
-    address_fields = ('street', 'number', 'zip_code', 'city')
+    address_fields = ('street', 'number', 'zip_code', 'city', 'title')
 
     def available(self):
         contacts = getattr(self.context, self.field, None)
@@ -29,7 +29,17 @@ class RelatedContactsViewlet(common.ViewletBase):
         return field in self.selected_fields
 
     def get_field(self, contact, field):
-        return getattr(contact, field)
+        # XXX find way to check if field is richetext or image or simple field
+        if field == "activity":
+            if getattr(contact, field, ''):
+                text = getattr(contact, field).raw
+                return text if text else ''
+        if field in ['logo', 'photo']:
+            if getattr(contact, field, ''):
+                img = contact.restrictedTraverse('@@images')
+                logo = img.scale(field)
+                return logo.tag() if logo.tag() else ''
+        return getattr(contact, field, '')
 
     def has_address(self):
         i = 0

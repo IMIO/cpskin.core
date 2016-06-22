@@ -93,16 +93,21 @@ class ContactFieldsFactory(object):
 
     def __call__(self, context, query=None):
         results = []
-        exclude = ['im_handle', 'use_parent_address', 'country', 'region']
+        exclude = ['im_handle', 'use_parent_address']
         exclude_behaviors = ['plone.app.content.interfaces.INameFromTitle']
 
-        schema = getUtility(IDexterityFTI, name='person').lookupSchema()
-        for name, field in getFieldsInOrder(schema):
-            if name not in exclude:
-                results.append((name, field.title))
         portal_types = api.portal.get_tool('portal_types')
-        behaviors = list(set(portal_types.person.behaviors))
-        behaviors += list(set(portal_types.organization.behaviors))
+        contact_portal_types = ['person', 'organization']
+        for contact_portal_types in contact_portal_types:
+            schema = getUtility(
+                IDexterityFTI, name=contact_portal_types).lookupSchema()
+            for name, field in getFieldsInOrder(schema):
+                if name not in exclude:
+                    results.append((name, field.title))
+
+            portal_type = getattr(portal_types, contact_portal_types)
+            behaviors = list(set(portal_type.behaviors))
+
         behaviors = set(behaviors)
         for behavior in behaviors:
             if behavior not in exclude_behaviors:
@@ -114,7 +119,7 @@ class ContactFieldsFactory(object):
                 except:
                     pass
         items = [
-            SimpleTerm(i, i, i)
+            SimpleTerm(i, i, j)
             for i, j in results if j
         ]
         return SimpleVocabulary(items)
