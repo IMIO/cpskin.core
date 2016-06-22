@@ -4,7 +4,7 @@
     <img src=""
          alt="Visuel"
          style="max-width: 100%;"
-         tal:attributes="src string:${context/absolute_url}/visuel.png"
+         tal:attributes="src string:${view/get_visuel}"
          i18n:attributes="alt visuel" />
   </dd>
 </dl>

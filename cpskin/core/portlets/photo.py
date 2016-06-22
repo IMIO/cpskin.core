@@ -32,6 +32,13 @@ class Renderer(base.Renderer):
             return False
         return True
 
+    def get_visuel(self):
+        visuel = getattr(self.context, 'visuel.png', None)
+        if visuel is not None:
+            visuel = visuel.aq_inner
+            return visuel.absolute_url()
+        return ''
+
 
 class AddForm(base.NullAddForm):
 
