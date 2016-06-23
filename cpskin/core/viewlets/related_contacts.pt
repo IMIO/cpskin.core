@@ -18,13 +18,12 @@
                     <span class="zipcode" tal:condition="zip_code" tal:content="zip_code" />
                     <span class="cityname" tal:condition="city" tal:content="city" />
                 </div>
-            </div>
-            <div class="selected-fields">
+
                 <tal:block tal:repeat="field view/fields_without_address">
                     <tal:define tal:define="data python:view.get_field(contact, field)">
-                        <span tal:condition="data" class="selected-field">
-                             <span tal:replace="structure data" />
-                         </span>
+                        <div tal:condition="data" tal:attributes="class string:${field}">
+                             <div tal:replace="structure data" />
+                         </div>
                     </tal:define>
                 </tal:block>
             </div>
