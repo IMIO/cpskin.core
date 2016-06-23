@@ -4,7 +4,8 @@ Changelog
 0.7.21 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use the same url to the image in the portlet.
+  [jfroche]
 
 
 0.7.20 (2016-06-22)
