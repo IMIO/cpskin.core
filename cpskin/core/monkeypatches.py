@@ -18,7 +18,7 @@ def afterMemberAdd(self, member, id, password, properties):
     if group_id not in groups_tool.getGroupIds():
         groups_tool.addGroup(group_id)
     if api.user.is_anonymous():
-        api.group.add_user(groupname='citizens', user=member)
+        api.group.add_user(groupname=group_id, user=member)
 
 
 def keyword_apply_index(self, request, resultset=None):

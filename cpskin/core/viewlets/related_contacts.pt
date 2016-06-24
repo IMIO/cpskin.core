@@ -4,20 +4,21 @@
 
             <h4 tal:condition="python: view.in_fields('title')" tal:content="contact/title" />
             <div class="coordinates"
-                tal:condition="view/has_address"
                 tal:define="street contact/street;
                             number contact/number;
                             zip_code contact/zip_code;
                             city contact/city">
-                <div class="street">
-                    <span class="streetname" tal:condition="street" tal:content="street" />
-                    <span class="streetcomma" tal:condition="street">, </span>
-                    <span class="streetnumber" tal:condition="number" tal:content="number" />
-                </div>
-                <div class="city">
-                    <span class="zipcode" tal:condition="zip_code" tal:content="zip_code" />
-                    <span class="cityname" tal:condition="city" tal:content="city" />
-                </div>
+                <tal:cond tal:condition="view/has_address">
+                    <div class="street">
+                        <span class="streetname" tal:condition="street" tal:content="street" />
+                        <span class="streetcomma" tal:condition="street">, </span>
+                        <span class="streetnumber" tal:condition="number" tal:content="number" />
+                    </div>
+                    <div class="city">
+                        <span class="zipcode" tal:condition="zip_code" tal:content="zip_code" />
+                        <span class="cityname" tal:condition="city" tal:content="city" />
+                    </div>
+                </tal:cond>
 
                 <tal:block tal:repeat="field view/fields_without_address">
                     <tal:define tal:define="data python:view.get_field(contact, field)">
