@@ -13,6 +13,10 @@ def afterMemberAdd(self, member, id, password, properties):
     has been added successfully
     """
     # if this is an auto registration, not an administrator action
+    groups_tool = api.portal.get_tool('portal_groups')
+    group_id = 'citizens'
+    if group_id not in groups_tool.getGroupIds():
+        groups_tool.addGroup(group_id)
     if api.user.is_anonymous():
         api.group.add_user(groupname='citizens', user=member)
 
