@@ -2,7 +2,6 @@
 from zope import schema
 from zope.interface import Interface
 from cpskin.locales import CPSkinMessageFactory as _
-from plone.autoform import directives
 
 
 class ICPSkinCoreLayer(Interface):
@@ -92,16 +91,6 @@ class ICPSkinSettings(Interface):
         required=True,
         values=[_(u'slider_view'), _(u'slider_view_vertical')],
         default=u'slider_view'
-    )
-
-    homepage_keywords = schema.Tuple(
-        title=_(u"Homepage keywords"),
-        description=_(u'Please select which hidden keywords is use by collections for homepage.'),
-        required=True,
-        default=('homepage',),
-        value_type=schema.Choice(
-            vocabulary=u"cpskin.core.vocabularies.hiddenTags"
-        )
     )
 
 

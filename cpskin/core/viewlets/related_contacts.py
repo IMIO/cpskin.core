@@ -57,6 +57,9 @@ class RelatedContactsViewlet(common.ViewletBase):
                 fields.append(selected_field)
         return fields
 
+    def use_parent_address(self):
+        pass
+
 
 class AboveRelatedContactsViewlet(RelatedContactsViewlet):
 

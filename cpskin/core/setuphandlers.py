@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-import os
-import logging
-from zope.component import getAdapter
-from zope.component import getUtility
-from zope.component import queryMultiAdapter
-from zope.interface import noLongerProvides
+from cpskin.core.utils import add_behavior
+from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
+from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.registry import field
@@ -13,9 +10,13 @@ from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.utils import bodyfinder
 from plone.app.controlpanel.security import ISecuritySchema
-from cpskin.core.utils import add_behavior
+from zope.component import getAdapter
+from zope.component import getUtility
+from zope.component import queryMultiAdapter
+from zope.interface import noLongerProvides
 
-from cpskin.locales import CPSkinMessageFactory as _
+import logging
+import os
 
 logger = logging.getLogger('cpskin.core')
 
@@ -68,6 +69,8 @@ def installCore(context):
         'cpskin.core.behaviors.metadata.IISearchTags',
         'collective.directory.card')
 
+    add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
+
     # Create footer static page
     footer_name = 'footer-static'
     if not portal.hasObject(footer_name):
@@ -84,7 +87,6 @@ def installCore(context):
     addCityNameToRegistry()
     addSubMenuPersistenceToRegistry()
     addSliderTypeToRegistry()
-    add_homepage_keywords()
 
 
 def configureMembers(context):
@@ -242,7 +244,8 @@ def addMaildropHost(self):
     portal = getToolByName(self, 'portal_url').getPortalObject()
     if not hasattr(portal, "MaildropHost"):
         try:
-            portal.manage_addProduct['MaildropHost'].manage_addMaildropHost('MaildropHost', title='MaildropHost')
+            portal.manage_addProduct['MaildropHost'].manage_addMaildropHost(
+                'MaildropHost', title='MaildropHost')
         except AttributeError:
             # if MaildropHost is not available, we pass...
             pass
@@ -372,9 +375,11 @@ def addLoadPageMenuToRegistry():
     if 'cpskin.core.interfaces.ICPSkinSettings.load_page_menu' in records:
         return
 
-    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.load_page_menu to registry")
+    logger.info(
+        "Adding cpskin.core.interfaces.ICPSkinSettings.load_page_menu to registry")
     record = Record(field.Bool(title=_(u"Load page menu"),
-                               description=_(u"Is level 1 menu load page at click?"),
+                               description=_(
+                                   u"Is level 1 menu load page at click?"),
                                required=False,
                                default=False),
                     value=False)
@@ -387,7 +392,8 @@ def addSubMenuPersistenceToRegistry():
     if 'cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence' in records:
         return
 
-    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence to registry")
+    logger.info(
+        "Adding cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence to registry")
     record = Record(field.Bool(title=_(u"Sub menu persistence"),
                                description=_(u"Is level 2 menu persist?"),
                                required=False,
@@ -402,9 +408,11 @@ def addAutoPlaySliderToRegistry():
     if 'cpskin.core.interfaces.ICPSkinSettings.auto_play_slider' in records:
         return
 
-    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.auto_play_slider to registry")
+    logger.info(
+        "Adding cpskin.core.interfaces.ICPSkinSettings.auto_play_slider to registry")
     record = Record(field.Bool(title=_(u"Auto play slider"),
-                               description=_(u"Is the front page slider automatically play?"),
+                               description=_(
+                                   u"Is the front page slider automatically play?"),
                                required=False,
                                default=True),
                     value=True)
@@ -417,9 +425,11 @@ def addSliderTimerToRegistry():
     if 'cpskin.core.interfaces.ICPSkinSettings.slider_timer' in records:
         return
 
-    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.slider_timer to registry")
+    logger.info(
+        "Adding cpskin.core.interfaces.ICPSkinSettings.slider_timer to registry")
     record = Record(field.Bool(title=_(u"Slider timer"),
-                               description=_(u"Number of seconds between each transition."),
+                               description=_(
+                                   u"Number of seconds between each transition."),
                                required=False,
                                default=5000),
                     value=5000)
@@ -432,7 +442,8 @@ def addCityNameToRegistry():
     if 'cpskin.core.interfaces.ICPSkinSettings.city_name' in records:
         return
 
-    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.city_name to registry")
+    logger.info(
+        "Adding cpskin.core.interfaces.ICPSkinSettings.city_name to registry")
     portal = api.portal.get()
     site_id = portal.getId()
     city_name = unicode(site_id.capitalize())
@@ -452,7 +463,8 @@ def addSliderTypeToRegistry():
     if 'cpskin.core.interfaces.ICPSkinSettings.slider_type' in records:
         return
 
-    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.slider_type to registry")
+    logger.info(
+        "Adding cpskin.core.interfaces.ICPSkinSettings.slider_type to registry")
     record = Record(
         field.TextLine(
             title=_(u"Slider type"),
@@ -464,16 +476,19 @@ def addSliderTypeToRegistry():
 
 
 def add_homepage_keywords():
+    # TO BE DELETED, no more used
     registry = getUtility(IRegistry)
     records = registry.records
     if 'cpskin.core.interfaces.ICPSkinSettings.homepage_keywords' in records:
         return
 
-    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.homepage_keywords to registry")
+    logger.info(
+        "Adding cpskin.core.interfaces.ICPSkinSettings.homepage_keywords to registry")
     record = Record(
         field.Tuple(
             title=_(u"Homepage keywords"),
-            description=_(u'Please select which hidden keywords is use by collections for homepage.'),
+            description=_(
+                u'Please select which hidden keywords is use by collections for homepage.'),
             value_type=field.Choice(
                 vocabulary=u"cpskin.core.vocabularies.hiddenTags"
             )

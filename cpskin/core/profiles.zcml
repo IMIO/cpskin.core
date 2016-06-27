@@ -33,6 +33,15 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v15"
+        description="Upgrade step for adding index view behavior."
+        handler=".upgradehandlers.add_index_view_behavior"
+        source="14"
+        destination="15"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v14"
         description="Upgrade step for adding homepage keywords."
         handler=".upgradehandlers.upgrade_homepage_keywords"

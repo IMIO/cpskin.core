@@ -1,26 +1,29 @@
 # -*- coding: utf-8 -*-
-from zope.interface import directlyProvides, directlyProvidedBy
-from Products.CMFCore.utils import getToolByName
-
-from plone import api
-
-from cpskin.core.setuphandlers import setPageText, addLoadPageMenuToRegistry, addSubMenuPersistenceToRegistry
-from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
-from cpskin.core.setuphandlers import addSliderTimerToRegistry
-from cpskin.core.setuphandlers import addCityNameToRegistry
-from cpskin.core.setuphandlers import addSliderTypeToRegistry
+from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.setuphandlers import add_homepage_keywords
-# from cpskin.core.utils import add_behavior
+from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
+from cpskin.core.setuphandlers import addCityNameToRegistry
+from cpskin.core.setuphandlers import addLoadPageMenuToRegistry
+from cpskin.core.setuphandlers import addSliderTimerToRegistry
+from cpskin.core.setuphandlers import addSliderTypeToRegistry
+from cpskin.core.setuphandlers import addSubMenuPersistenceToRegistry
+from cpskin.core.setuphandlers import setPageText
+from cpskin.core.utils import add_behavior
+from plone import api
+from plone.registry.interfaces import IRegistry
+from Products.CMFCore.utils import getToolByName
+from zope.component import getUtility
+from zope.interface import directlyProvides, directlyProvidedBy
 
 import logging
 logger = logging.getLogger('cpskin.core')
 
 
-# def upgrade_to_dexterity(context):
-#     # Wait until all sites are migrated to DX
-#     add_behavior(
-#         'Collection',
-#         'cpskin.core.behaviors.metadata.IUseKeywordHomepage')
+def add_index_view_behavior(context):
+    registry = getUtility(IRegistry)
+    del registry.records[
+        'cpskin.core.interfaces.ICPSkinSettings.homepage_keywords']
+    add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
 
 
 def upgrade_homepage_keywords(context):
@@ -30,8 +33,10 @@ def upgrade_homepage_keywords(context):
 def upgrade_minisite_menu(context):
     # add new viewlet cpskin.minisite
     context.runImportStepFromProfile('profile-cpskin.core:default', 'viewlets')
-    context.runImportStepFromProfile('profile-cpskin.menu:default', 'jsregistry')
-    context.runImportStepFromProfile('profile-cpskin.minisite:default', 'actions')
+    context.runImportStepFromProfile(
+        'profile-cpskin.menu:default', 'jsregistry')
+    context.runImportStepFromProfile(
+        'profile-cpskin.minisite:default', 'actions')
 
 
 def upgrade_city_name(context):
@@ -64,7 +69,8 @@ def upgrade_to_six(context):
     context.runImportStepFromProfile('profile-cpskin.core:default', 'sharing')
     portal = api.portal.get()
     portal.manage_permission('CPSkin: Edit keywords',
-                             roles=['Portlets Manager', 'Manager', 'Site Administrator'],
+                             roles=['Portlets Manager',
+                                    'Manager', 'Site Administrator'],
                              acquire=True)
     site_properties = api.portal.get_tool('portal_properties').site_properties
     site_properties.allowRolesToAddKeywords = ("Manager",
@@ -81,12 +87,14 @@ def upgrade_to_five(context):
         for brain in brains:
             obj = brain.getObject()
             provided = directlyProvidedBy(obj)
-            cleanedProvided = [i for i in provided if i.__identifier__ != interface]
+            cleanedProvided = [
+                i for i in provided if i.__identifier__ != interface]
             directlyProvides(obj, cleanedProvided)
             obj.reindexObject()
 
     portal_javascripts = api.portal.get_tool('portal_javascripts')
-    portal_javascripts.unregisterResource('++resource++cpskin.core.menutools.js')
+    portal_javascripts.unregisterResource(
+        '++resource++cpskin.core.menutools.js')
 
 
 def upgrade_to_four(context):
@@ -99,7 +107,8 @@ def upgrade_to_three(context):
     context.runImportStepFromProfile('profile-cpskin.core:default', 'sharing')
     portal = api.portal.get()
     portal.manage_permission('Portlets: Manage portlets',
-                             roles=['Editor', 'Portlets Manager', 'Manager', 'Site Administrator'],
+                             roles=['Editor', 'Portlets Manager',
+                                    'Manager', 'Site Administrator'],
                              acquire=True)
 
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.behaviors.metadata import IHiddenTags
 from cpskin.core.behaviors.metadata import IRelatedContacts
-from cpskin.core.behaviors.homepage import ICpskinHomepage
+from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
@@ -30,24 +30,25 @@ class TestBehaviors(unittest.TestCase):
         self.collection = self.portal.collection
 
     def test_use_slider_image_scale(self):
-        add_behavior('Collection', ICpskinHomepage.__identifier__)
+        add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
         slider_image_scale = getattr(self.collection, 'slider_image_scale')
         self.assertEqual(slider_image_scale, 'slider')
 
     def test_use_carousel_image_scale(self):
-        add_behavior('Collection', ICpskinHomepage.__identifier__)
+        add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
         carousel_image_scale = getattr(self.collection, 'carousel_image_scale')
         self.assertEqual(carousel_image_scale, 'carousel')
 
     def test_use_link_text(self):
-        add_behavior('Collection', ICpskinHomepage.__identifier__)
+        add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
         link_text = getattr(self.collection, 'link_text')
         self.assertEqual(link_text, "Voir l'ensemble des")
 
     def test_use_keyword_homepage(self):
-        add_behavior('Collection', ICpskinHomepage.__identifier__)
-        use_keyword_homepage = getattr(self.collection, 'use_keyword_homepage')
-        self.assertFalse(use_keyword_homepage)
+        add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
+        index_view_keywords = getattr(self.collection, 'index_view_keywords')
+        self.assertEqual(index_view_keywords, None,
+                         'Index view keyword is empty by default')
 
     def test_related_contacts(self):
         add_behavior('Document', IRelatedContacts.__identifier__)

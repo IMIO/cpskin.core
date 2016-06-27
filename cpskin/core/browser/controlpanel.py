@@ -8,8 +8,6 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 
 from plone.registry.interfaces import IRegistry
 from plone.app.controlpanel.form import ControlPanelForm
-from plone.app.controlpanel.widgets import MultiCheckBoxThreeColumnWidget
-from plone.app.form.widgets import TupleSequenceWidget
 from cpskin.core.interfaces import ICPSkinSettings
 from cpskin.locales import CPSkinMessageFactory as _
 
@@ -38,7 +36,8 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
     def setSubMenuPersistence(self, value):
         self.settings.sub_menu_persistence = value
 
-    sub_menu_persistence = property(getSubMenuPersistence, setSubMenuPersistence)
+    sub_menu_persistence = property(
+        getSubMenuPersistence, setSubMenuPersistence)
 
     def getAutoPlaySlider(self):
         return self.settings.auto_play_slider
@@ -72,18 +71,9 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
     slider_type = property(getSliderType, setSliderType)
 
-    def getHomepageKeywords(self):
-        return self.settings.homepage_keywords
-
-    def setHomepageKeywords(self, value):
-        self.settings.homepage_keywords = value
-
-    homepage_keywords = property(getHomepageKeywords, setHomepageKeywords)
-
 
 class CPSkinControlPanel(ControlPanelForm):
 
     label = _("CPSkin settings")
     description = _("Lets you change the settings of CPSkin")
     form_fields = form.FormFields(ICPSkinSettings)
-    form_fields['homepage_keywords'].custom_widget = MultiCheckBoxThreeColumnWidget

@@ -223,3 +223,64 @@ class TestViewlets(unittest.TestCase):
         event.belowVisbileFields = ('zip_code',)
         self.assertNotIn('5190', below_viewlet.render())
         self.assertNotIn('Foo', below_viewlet.render())
+
+    def test_use_parent_address(self):
+        add_behavior(
+            'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
+        event = api.content.create(
+            container=self.portal,
+            type="Event",
+            id="myevent"
+        )
+
+        # getting viewlet
+        view = BrowserView(event, self.request)
+        manager_name = 'plone.belowcontentbody'
+        manager = queryMultiAdapter(
+            (event, self.request, view),
+            IViewletManager,
+            manager_name,
+            default=None)
+        self.assertIsNotNone(manager)
+        manager.update()
+
+        my_viewlet = [
+            v for v in manager.viewlets if v.__name__ == 'cpskin.below_related_contacts']
+        self.assertEqual(len(my_viewlet), 1)
+        below_viewlet = my_viewlet[0]
+
+        contacts = below_viewlet.get_contacts()
+        self.assertEqual(contacts, [])
+        self.assertFalse(below_viewlet.available())
+
+        # add some contacts
+        applyProfile(self.portal, 'collective.contact.core:default')
+        directory = api.content.create(
+            container=self.portal, type='directory', id='directory')
+        person = api.content.create(
+            container=directory, type='person', id='person')
+        person.firstname = u'Foo'
+        person.lastname = u'Bar'
+        person.gender = u'F'
+        person.street = u'Zoning Industriel'
+        person.number = u'34'
+        person.zip_code = u'5190'
+        person.city = u'Mornimont'
+        person.use_parent_address = True
+
+        # set related contact
+        intids = getUtility(IIntIds)
+        to_id = intids.getId(person)
+        rv = RelationValue(to_id)
+        event.belowContentContact = event.belowContentContact + [rv]
+        self.assertTrue(below_viewlet.available())
+        contacts = below_viewlet.get_contacts()
+        self.assertEqual(len(contacts), 1)
+        self.assertEqual(contacts[0], person)
+
+        self.assertNotIn('Mornimont', below_viewlet.render())
+        self.assertIn('Foo Bar', below_viewlet.render())
+
+        event.belowVisbileFields = ('zip_code',)
+        self.assertNotIn('5190', below_viewlet.render())
+        self.assertNotIn('Foo', below_viewlet.render())

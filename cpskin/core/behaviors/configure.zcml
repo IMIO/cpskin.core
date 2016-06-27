@@ -45,9 +45,9 @@
     />
 
   <plone:behavior
-    title="Cpskin homepage"
-    description="Adds some configuration for cpskin homepage."
-    provides=".homepage.ICpskinHomepage"
+    title="Cpskin index view settings"
+    description="Adds some configuration for cpskin index view."
+    provides=".indexview.ICpskinIndexViewSettings"
     for="plone.app.contenttypes.interfaces.ICollection"
     />
 
