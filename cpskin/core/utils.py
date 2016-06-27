@@ -109,3 +109,9 @@ def add_leadimage_from_file(container, file_name, folder_name='data'):
         image.setTitle(file_name)
         image.reindexObject()
         setattr(container, 'image', namedblobimage)
+
+
+def image_scale(obj, css_class, default_scale):
+    images = obj.restrictedTraverse('@@images')
+    image = images.scale('image', scale=default_scale)
+    return image.tag(css_class=css_class) if image.tag() else ''

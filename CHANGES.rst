@@ -4,6 +4,9 @@ Changelog
 0.7.21 (unreleased)
 -------------------
 
+- Use dynamic collection image scale. 
+  [bsuttor]
+
 - Add missing space in copyright sentence
   [laulaz]
 

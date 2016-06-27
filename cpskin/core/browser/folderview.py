@@ -6,6 +6,7 @@ from Products.CMFCore.utils import getToolByName
 
 from cpskin.core.interfaces import (IFolderViewSelectedContent,
                                     IFolderViewWithBigImages)
+from cpskin.core.utils import image_scale
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 # from profilehooks import profile
@@ -300,6 +301,10 @@ class FolderView(FoldV):
             return True
         else:
             return False
+
+    def collection_image_scale(self, collection, obj):
+        scale = getattr(collection, 'collection_image_scale', 'mini')
+        return image_scale(obj, 'newsImage', scale)
 
 
 def configure_folderviews(context):
