@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.21 (unreleased)
+0.7.21 (2016-06-27)
 -------------------
 
 - Use dynamic collection image scale. 
