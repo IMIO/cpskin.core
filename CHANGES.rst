@@ -4,6 +4,9 @@ Changelog
 0.7.21 (unreleased)
 -------------------
 
+- Add missing space in copyright sentence
+  [laulaz]
+
 - Use the same url to the image in the portlet.
   [jfroche]
 
