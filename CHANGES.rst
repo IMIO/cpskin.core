@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.22 (unreleased)
+0.7.22 (2016-06-27)
 -------------------
 
 - Add index_view_keywords option.
