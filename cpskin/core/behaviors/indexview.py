@@ -5,22 +5,20 @@ from plone.supermodel import model
 from zope import schema
 from zope.interface import provider
 from plone.directives import form
-from plone.supermodel import directives
-from plone.supermodel import model
-from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 
 @provider(IFormFieldProvider)
-class ICpskinHomepage(model.Schema):
+class ICpskinIndexViewSettings(model.Schema):
     model.fieldset(
-        'homepage',
+        'indexview',
         label=_(
-            u"Homepage, these settings are use only if this collection is marked has homepage content"),
+            u"Index view"),
         fields=(
             'slider_image_scale',
             'carousel_image_scale',
             'link_text',
-            'use_keyword_homepage'
+            'index_view_keywords'
         ),
     )
 
@@ -42,15 +40,19 @@ class ICpskinHomepage(model.Schema):
 
     link_text = schema.TextLine(
         title=_(u'Text for link to collection'),
-        description=_(u'This text will be visible on homepage'),
+        description=_(
+            u'This text will be visible on index view for link to this collection'),
         default=_(u"Voir l'ensemble des"),
         required=True
     )
 
-    form.widget('use_keyword_homepage', SingleCheckBoxFieldWidget)
-    use_keyword_homepage = schema.Bool(
-        title=_(u'Use keyword for homepage'),
-        description=_(u'Use keyword(s) define in CPSkin settings.'),
+    form.widget('index_view_keywords', CheckBoxFieldWidget)
+    index_view_keywords = schema.Tuple(
+        title=_(u'Hidden keywords'),
+        description=_(
+            u'Please select which hidden keywords is use by collections for index view.'),
         required=False,
-        default=False,
+        value_type=schema.Choice(
+            vocabulary=u'cpskin.core.vocabularies.hiddenTags'
+        )
     )
