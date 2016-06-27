@@ -4,7 +4,8 @@ Changelog
 0.7.22 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add index_view_keywords option.
+  [bsuttor]
 
 
 0.7.21 (2016-06-27)

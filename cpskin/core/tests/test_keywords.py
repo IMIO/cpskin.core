@@ -20,25 +20,21 @@ class TestKeywords(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         configure_folderviews(self.portal)
 
-    def test_keyword_homepage_behavior(self):
+    def test_keyword_indexview_behavior(self):
         add_behavior(
             'Collection',
-            'cpskin.core.behaviors.homepage.ICpskinHomepage')
+            'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
         collection = api.content.create(
             container=self.portal,
             type='Collection',
             id='testcollection')
-        self.assertFalse(getattr(collection, 'use_keyword_homepage'))
-        collection.use_keyword_homepage = True
-        self.assertTrue(getattr(collection, 'use_keyword_homepage'))
+        self.assertEqual(getattr(collection, 'index_view_keywords'), None)
+        collection.index_view_keywords = (u'homepage',)
+        self.assertEqual(
+            getattr(collection, 'index_view_keywords'), (u'homepage',))
 
     def test_folderview_without_keyword_homepage(self):
-        add_behavior(
-            'Collection',
-            'cpskin.core.behaviors.homepage.ICpskinHomepage')
         add_behavior('News Item', 'cpskin.core.behaviors.metadata.IHiddenTags')
-        self.assertFalse(
-            self.portal.actualites.actualites.use_keyword_homepage)
         view = getMultiAdapter((self.portal, self.request), name="folderview")
         result = view.getResults(self.portal.actualites.actualites)
         self.assertTrue(result is None)
@@ -61,10 +57,9 @@ class TestKeywords(unittest.TestCase):
     def test_folderview_with_keyword_homepage(self):
         add_behavior(
             'Collection',
-            'cpskin.core.behaviors.homepage.ICpskinHomepage')
+            'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
         add_behavior('News Item', 'cpskin.core.behaviors.metadata.IHiddenTags')
-        self.portal.actualites.actualites.use_keyword_homepage = True
-        self.assertTrue(self.portal.actualites.actualites.use_keyword_homepage)
+        self.portal.actualites.actualites.index_view_keywords = (u'homepage',)
         view = getMultiAdapter((self.portal, self.request), name="folderview")
         news = api.content.create(
             container=self.portal,

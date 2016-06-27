@@ -59,7 +59,8 @@ class ICpskinIndexViewSettings(model.Schema):
     index_view_keywords = schema.Tuple(
         title=_(u'Hidden keywords'),
         description=_(
-            u'Please select which hidden keywords is use by collections for index view.'),
+            u'Please select which hidden keywords is use by collections for \
+            index view.'),
         required=False,
         value_type=schema.Choice(
             vocabulary=u'cpskin.core.vocabularies.hiddenTags'

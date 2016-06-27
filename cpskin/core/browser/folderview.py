@@ -80,9 +80,8 @@ class FolderView(FoldV):
 
     def getResults(self, content):
         """Content is a Collection"""
-        if getattr(content, 'use_keyword_homepage', False):
-            homepage_keywords = api.portal.get_registry_record(
-                'cpskin.core.interfaces.ICPSkinSettings.homepage_keywords')
+        if getattr(content, 'index_view_keywords', None):
+            homepage_keywords = content.index_view_keywords
             content.query.append({
                 'i': 'hiddenTags',
                 'o': 'plone.app.querystring.operation.selection.is',
