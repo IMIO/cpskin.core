@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.23 (unreleased)
+0.7.23 (2016-06-28)
 -------------------
 
 - Use link_text into folderview and add tests
