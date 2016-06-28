@@ -3,6 +3,7 @@ from cpskin.core.browser.folderview import configure_folderviews
 from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
+from cpskin.core.utils import add_leadimage_from_file
 from plone import api
 from plone.app.testing import TEST_USER_ID, setRoles
 from zope.component import getMultiAdapter
@@ -52,3 +53,29 @@ class TestViews(unittest.TestCase):
         self.assertEqual(voir_lensemble_des,
                          "Voir toutes les actualit\xc3\xa9s")
         # self.assertTrue("Voir toutes les actualit" in view.index())
+
+    def test_folderiew_setting_image_scale(self):
+        add_behavior(
+            'Collection',
+            'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
+        configure_folderviews(self.portal)
+        news = api.content.create(
+            container=self.portal,
+            type='News Item',
+            id='testnewsitem')
+        api.content.transition(obj=news, transition='publish')
+        collection = self.portal.actualites.actualites
+        view = getMultiAdapter(
+            (self.portal, self.request), name="folderview")
+        self.assertEqual(collection.collection_image_scale, 'mini')
+        self.assertEqual(collection.slider_image_scale, 'slider')
+        self.assertEqual(collection.carousel_image_scale, 'carousel')
+        scale = view.collection_image_scale(collection, news)
+        self.assertFalse(scale)
+        add_leadimage_from_file(news, 'visuel.png')
+        scale = view.collection_image_scale(collection, news)
+        self.assertTrue('height="200"' in scale)
+
+        collection.collection_image_scale = 'thumb'
+        scale = view.collection_image_scale(collection, news)
+        self.assertTrue('height="128"' in scale)

@@ -1,6 +1,10 @@
+# -*- coding: utf-8 -*-
+from Acquisition import aq_base
 from plone import api
+from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.namedfile.file import NamedBlobImage
+from Products.CMFCore.interfaces import ISiteRoot
 from zope.component import queryUtility
 
 import os
@@ -97,15 +101,19 @@ def add_leadimage_from_file(container, file_name, folder_name='data'):
         container = api.portal.get()
     data_path = os.path.join(os.path.dirname(__file__), folder_name)
     file_path = os.path.join(data_path, file_name)
-    if not container.hasObject(file_name):
+    if not getattr(aq_base(container), file_name, False):
         namedblobimage = NamedBlobImage(
             data=open(file_path, 'r').read(),
             filename=unicode(file_name)
         )
+        image_container = container
+        if not INavigationRoot.providedBy(container) and not ISiteRoot.providedBy(container):
+            image_container = container.aq_parent
+
         image = api.content.create(type='Image',
                                    title=file_name,
                                    image=namedblobimage,
-                                   container=container)
+                                   container=image_container)
         image.setTitle(file_name)
         image.reindexObject()
         setattr(container, 'image', namedblobimage)
@@ -114,4 +122,6 @@ def add_leadimage_from_file(container, file_name, folder_name='data'):
 def image_scale(obj, css_class, default_scale):
     images = obj.restrictedTraverse('@@images')
     image = images.scale('image', scale=default_scale)
+    if not image:
+        return False
     return image.tag(css_class=css_class) if image.tag() else ''

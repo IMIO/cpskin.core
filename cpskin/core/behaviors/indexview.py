@@ -23,6 +23,14 @@ class ICpskinIndexViewSettings(model.Schema):
         ),
     )
 
+    collection_image_scale = schema.Choice(
+        title=_(u"Which image scale use for collections of index view"),
+        description=_(u'Please select which fields should be visible.'),
+        required=False,
+        default='mini',
+        vocabulary=u'plone.app.vocabularies.ImagesScales'
+    )
+
     slider_image_scale = schema.Choice(
         title=_(u"Which image scale use for slider"),
         description=_(u''),
@@ -36,14 +44,6 @@ class ICpskinIndexViewSettings(model.Schema):
         description=_(u'Please select which fields should be visible.'),
         required=True,
         default='carousel',
-        vocabulary=u'plone.app.vocabularies.ImagesScales'
-    )
-
-    collection_image_scale = schema.Choice(
-        title=_(u"Which image scale use for collections of index view"),
-        description=_(u'Please select which fields should be visible.'),
-        required=False,
-        default='mini',
         vocabulary=u'plone.app.vocabularies.ImagesScales'
     )
 
