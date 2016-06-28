@@ -7,9 +7,10 @@ install:
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-script: bin/test
-after_success:
+script: 
+  - bin/test
   - bin/coverage run bin/test
+after_success:
   - pip install -q coveralls==0.5
   - coveralls
 notifications:
