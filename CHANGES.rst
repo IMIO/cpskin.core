@@ -4,7 +4,8 @@ Changelog
 0.7.24 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix folder view if no lead image on collection.
+  [bsuttor]
 
 
 0.7.23 (2016-06-28)
