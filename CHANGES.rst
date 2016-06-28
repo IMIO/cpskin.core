@@ -4,7 +4,8 @@ Changelog
 0.7.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use link_text into folderview and add tests
+  [bsuttor]
 
 
 0.7.22 (2016-06-27)

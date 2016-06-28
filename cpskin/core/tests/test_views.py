@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
-from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.browser.folderview import configure_folderviews
+from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
+from cpskin.core.utils import add_behavior
+from plone import api
 from plone.app.testing import TEST_USER_ID, setRoles
+from zope.component import getMultiAdapter
 from zope.interface import directlyProvides
 
 import unittest
@@ -16,12 +19,36 @@ class TestViews(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        directlyProvides(self.request, ICPSkinCoreLayer)
 
     def test_opendata_view(self):
+        directlyProvides(self.request, ICPSkinCoreLayer)
         configure_folderviews(self.portal)
         self.portal.invokeFactory(
             'collective.directory.directory', 'directory1')
         view = self.portal.restrictedTraverse('opendata')
         links = view.get_links()
         self.assertEqual(len(links), 3)
+
+    def test_folderiew_setting_named_link(self):
+        add_behavior(
+            'Collection',
+            'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
+        configure_folderviews(self.portal)
+        news = api.content.create(
+            container=self.portal,
+            type='News Item',
+            id='testnewsitem')
+        api.content.transition(obj=news, transition='publish')
+        collection = self.portal.actualites.actualites
+        link_text = getattr(collection, 'link_text')
+        self.assertEqual(link_text, "Voir l'ensemble des")
+        view = getMultiAdapter((self.portal, self.request), name="folderview")
+        voir_lensemble_des = view.see_all(collection)
+        self.assertEqual(voir_lensemble_des,
+                         "Voir l'ensemble des actualit\xc3\xa9s")
+
+        collection.link_text = "Voir toutes les"
+        voir_lensemble_des = view.see_all(collection)
+        self.assertEqual(voir_lensemble_des,
+                         "Voir toutes les actualit\xc3\xa9s")
+        # self.assertTrue("Voir toutes les actualit" in view.index())

@@ -305,6 +305,12 @@ class FolderView(FoldV):
         scale = getattr(collection, 'collection_image_scale', 'mini')
         return image_scale(obj, 'newsImage', scale)
 
+    def see_all(self, collection):
+        translated = _(u'voir_lensemble_des')
+        if getattr(collection, 'link_text', False):
+            translated = collection.link_text
+        return "{0} {1}".format(translated, collection.Title().lower())
+
 
 def configure_folderviews(context):
     """

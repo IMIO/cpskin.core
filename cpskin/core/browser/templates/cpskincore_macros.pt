@@ -101,8 +101,8 @@
                     <a href=""
                        class="voir-tout"
                        tal:attributes="href string:${content/absolute_url}">
-                       <span i18n:translate="voir_lensemble_des">Voir l'ensemble des </span> <span tal:replace="content/Title" />
-                    </a>
+                       <span tal:replace='python: view.see_all(content)' />
+                   </a>
 
     </metal:homepage-collection>
 
