@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.24 (unreleased)
+0.7.24 (2016-06-28)
 -------------------
 
 - Fix folder view if no lead image on collection.
