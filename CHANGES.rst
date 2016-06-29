@@ -4,7 +4,8 @@ Changelog
 0.7.25 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Check if FTI exist before getting its behaviors.
+  [bsuttor]
 
 
 0.7.24 (2016-06-28)
