@@ -80,6 +80,8 @@ def add_keyword(obj, tag_id='hiddenTags', tag_value=[]):
 def add_behavior(type_name, behavior_name):
     """Add a behavior to a type"""
     fti = queryUtility(IDexterityFTI, name=type_name)
+    if not fti:
+        return
     behaviors = list(fti.behaviors)
     if behavior_name not in behaviors:
         behaviors.append(behavior_name)
