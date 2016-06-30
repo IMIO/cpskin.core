@@ -5,6 +5,7 @@ from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
+from cpskin.core.utils import remove_behavior
 from plone import api
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
@@ -33,6 +34,7 @@ class TestBehaviors(unittest.TestCase):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
         slider_image_scale = getattr(self.collection, 'slider_image_scale')
         self.assertEqual(slider_image_scale, 'slider')
+        remove_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
 
     def test_use_carousel_image_scale(self):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
@@ -56,6 +58,7 @@ class TestBehaviors(unittest.TestCase):
         self.assertEqual(aboveContentContact, [])
         belowContentContact = getattr(self.document, 'belowContentContact')
         self.assertFalse(belowContentContact)
+        remove_behavior('Document', IRelatedContacts.__identifier__)
 
     def test_hidden_tags(self):
         add_behavior('Document', IHiddenTags.__identifier__)
