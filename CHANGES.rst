@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.25 (unreleased)
+0.7.25 (2016-06-30)
 -------------------
 
 - Improve vocabulary field naming for related contacts behaviors.
