@@ -95,17 +95,21 @@ class ContactFieldsFactory(object):
         results = []
         exclude = ['im_handle', 'use_parent_address']
         exclude_behaviors = ['plone.app.content.interfaces.INameFromTitle']
-
+        from plone.supermodel.interfaces import FIELDSETS_KEY
+        from plone.supermodel.utils import mergedTaggedValueList
         portal_types = api.portal.get_tool('portal_types')
         contact_portal_types = ['person', 'organization']
-        for contact_portal_types in contact_portal_types:
+        for contact_portal_type in contact_portal_types:
             schema = getUtility(
-                IDexterityFTI, name=contact_portal_types).lookupSchema()
+                IDexterityFTI, name=contact_portal_type).lookupSchema()
+            fieldsets = mergedTaggedValueList(schema, FIELDSETS_KEY)
             for name, field in getFieldsInOrder(schema):
                 if name not in exclude:
-                    results.append((name, field.title))
+                    visible_name = "{0}: {1}".format(
+                        contact_portal_type, field.title)
+                    results.append((name, visible_name))
 
-            portal_type = getattr(portal_types, contact_portal_types)
+            portal_type = getattr(portal_types, contact_portal_type)
             behaviors = list(set(portal_type.behaviors))
 
         behaviors = set(behaviors)
@@ -113,9 +117,17 @@ class ContactFieldsFactory(object):
             if behavior not in exclude_behaviors:
                 try:
                     interface = nameToInterface(context, behavior)
+                    fieldsets = mergedTaggedValueList(interface, FIELDSETS_KEY)
                     for name, field in getFieldsInOrder(interface):
                         if name not in exclude:
-                            results.append((name, field.title))
+                            if not fieldsets:
+                                visible_name = field.title
+                            else:
+                                fieldset = [
+                                    fieldset for fieldset in fieldsets if name in fieldset.fields][0]
+                                visible_name = "{0}: {1}".format(
+                                    fieldset.label, field.title)
+                            results.append((name, visible_name))
                 except:
                     pass
         items = [

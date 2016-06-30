@@ -4,6 +4,9 @@ Changelog
 0.7.25 (unreleased)
 -------------------
 
+- Improve vocabulary field naming for related contacts behaviors.
+  [bsuttor]
+
 - Check if FTI exist before getting its behaviors.
   [bsuttor]
 
