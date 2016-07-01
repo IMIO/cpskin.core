@@ -306,7 +306,7 @@ class FolderView(FoldV):
         return image_scale(obj, 'newsImage', scale)
 
     def see_all(self, collection):
-        translated = _(u'voir_lensemble_des')
+        translated = _(u"Voir l'ensemble des")
         if getattr(collection, 'link_text', False):
             translated = collection.link_text
         return "{0} {1}".format(translated, collection.Title().lower())
