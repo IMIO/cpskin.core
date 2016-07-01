@@ -4,12 +4,6 @@ Changelog
 0.7.27 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
-
-0.7.26 (2016-07-01)
--------------------
-
 - Fix translations.
   [bsuttor]
 

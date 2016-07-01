@@ -11,6 +11,7 @@ from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 # from profilehooks import profile
 from zope.component import getMultiAdapter
+from zope.i18n import translate
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 
@@ -306,10 +307,12 @@ class FolderView(FoldV):
         return image_scale(obj, 'newsImage', scale)
 
     def see_all(self, collection):
-        translated = _(u"Voir l'ensemble des")
+        voirlensemble = _(u"Voir l'ensemble des")
+        trans = translate(
+            voirlensemble, domain=voirlensemble.domain, context=self.request)
         if getattr(collection, 'link_text', False):
-            translated = collection.link_text
-        return "{0} {1}".format(translated, collection.Title().lower())
+            trans = collection.link_text
+        return "{0} {1}".format(trans, collection.Title().lower())
 
 
 def configure_folderviews(context):
