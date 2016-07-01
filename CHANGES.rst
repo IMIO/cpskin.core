@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.27 (unreleased)
+0.7.27 (2016-07-01)
 -------------------
 
 - Fix translations.
