@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 from binascii import b2a_qp
+from plone import api
+from plone.dexterity.interfaces import IDexterityFTI
+from plone.supermodel.interfaces import FIELDSETS_KEY
+from plone.supermodel.utils import mergedTaggedValueList
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 from zope.component import getUtility
+from zope.component.interface import nameToInterface
 from zope.interface import implements
+from zope.schema import getFieldsInOrder
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from zope.site.hooks import getSite
-
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
-from plone import api
-from zope.component.interface import nameToInterface
-from plone.dexterity.interfaces import IDexterityFTI
-from zope.schema import getFieldsInOrder
 
 
 class BaseTagsVocabulary(object):
@@ -21,7 +22,7 @@ class BaseTagsVocabulary(object):
 
     def __call__(self, context, query=None):
         site = getSite()
-        self.catalog = getToolByName(site, "portal_catalog", None)
+        self.catalog = getToolByName(site, 'portal_catalog', None)
         if self.catalog is None:
             return SimpleVocabulary([])
         if not self.indexName in self.catalog._catalog.indexes.keys():
@@ -95,8 +96,6 @@ class ContactFieldsFactory(object):
         results = []
         exclude = ['im_handle', 'use_parent_address']
         exclude_behaviors = ['plone.app.content.interfaces.INameFromTitle']
-        from plone.supermodel.interfaces import FIELDSETS_KEY
-        from plone.supermodel.utils import mergedTaggedValueList
         portal_types = api.portal.get_tool('portal_types')
         contact_portal_types = ['person', 'organization']
         for contact_portal_type in contact_portal_types:
@@ -105,7 +104,7 @@ class ContactFieldsFactory(object):
             fieldsets = mergedTaggedValueList(schema, FIELDSETS_KEY)
             for name, field in getFieldsInOrder(schema):
                 if name not in exclude:
-                    visible_name = "{0}: {1}".format(
+                    visible_name = u"{0}: {1}".format(
                         contact_portal_type, field.title)
                     results.append((name, visible_name))
 
@@ -125,7 +124,7 @@ class ContactFieldsFactory(object):
                             else:
                                 fieldset = [
                                     fieldset for fieldset in fieldsets if name in fieldset.fields][0]
-                                visible_name = "{0}: {1}".format(
+                                visible_name = u"{0}: {1}".format(
                                     fieldset.label, field.title)
                             results.append((name, visible_name))
                 except:

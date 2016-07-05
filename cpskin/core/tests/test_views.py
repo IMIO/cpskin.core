@@ -97,3 +97,15 @@ class TestViews(unittest.TestCase):
         view.addContent()
         self.assertTrue(view.canRemoveContent())
         self.assertFalse(view.canAddContent())
+
+    def test_folderiew_render(self):
+        configure_folderviews(self.portal)
+        request = self.portal.actualites.REQUEST
+        news = api.content.create(
+            container=self.portal,
+            type='News Item',
+            id='testnewsitem')
+        view = getMultiAdapter(
+            (self.portal.actualites, request), name="folderview")
+        self.assertIn(
+            '<a href="http://nohost/plone/actualites">View</a>', view.index())

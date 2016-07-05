@@ -29,7 +29,10 @@ class TestVocabularies(unittest.TestCase):
         self.assertIn('number', keys)
         self.assertIn('zip_code', keys)
         self.assertIn('city', keys)
+        self.assertIn('activity', keys)
         self.assertIn('title', keys)
+        titles = [val.title for val in vocabulary.by_value.values()]
+        self.assertIn(u'Contact details: Email', titles)
 
     def test_hidden_tags_vocabulary(self):
         name = 'cpskin.core.vocabularies.hiddenTags'
