@@ -4,7 +4,11 @@ Changelog
 0.7.28 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix ascii error on contact field vocabulary.
+  [bsuttor]
+
+- Improve tests.
+  [bsuttor]
 
 
 0.7.27 (2016-07-01)
