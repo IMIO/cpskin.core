@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.28 (unreleased)
+0.7.28 (2016-07-05)
 -------------------
 
 - Fix ascii error on contact field vocabulary.
