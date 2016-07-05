@@ -79,3 +79,21 @@ class TestViews(unittest.TestCase):
         collection.collection_image_scale = 'thumb'
         scale = view.collection_image_scale(collection, news)
         self.assertTrue('height="128"' in scale)
+
+    def test_folderiew_add_remove_content(self):
+        configure_folderviews(self.portal)
+        request = self.portal.actualites.REQUEST
+        news = api.content.create(
+            container=self.portal,
+            type='News Item',
+            id='testnewsitem')
+        view = getMultiAdapter(
+            (self.portal.actualites, request), name="folderview")
+        self.assertTrue(view.canRemoveContent())
+        self.assertFalse(view.canAddContent())
+        view.removeContent()
+        self.assertFalse(view.canRemoveContent())
+        self.assertTrue(view.canAddContent())
+        view.addContent()
+        self.assertTrue(view.canRemoveContent())
+        self.assertFalse(view.canAddContent())
