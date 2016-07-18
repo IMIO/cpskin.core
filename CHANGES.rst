@@ -4,7 +4,8 @@ Changelog
 0.7.29 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Force OrderedSelectFieldWidget for related contact fields.
+  [bsuttor]
 
 
 0.7.28 (2016-07-05)
