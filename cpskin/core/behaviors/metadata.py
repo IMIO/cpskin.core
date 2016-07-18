@@ -5,6 +5,7 @@ from plone.autoform.interfaces import IFormFieldProvider
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.directives import form
 from plone.supermodel import model
+from z3c.form.browser.orderedselect import OrderedSelectFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
 from zope.interface import alsoProvides
@@ -124,6 +125,7 @@ class IRelatedContacts(model.Schema):
         required=False,
     )
 
+    form.widget(aboveVisbileFields=OrderedSelectFieldWidget)
     aboveVisbileFields = schema.Tuple(
         title=_(u"Visible fields for above viewlet"),
         description=_(u'Please select which fields should be visible.'),
@@ -147,6 +149,7 @@ class IRelatedContacts(model.Schema):
         required=False,
     )
 
+    form.widget(belowVisbileFields=OrderedSelectFieldWidget)
     belowVisbileFields = schema.Tuple(
         title=_(u"Visible fields for below viewlet"),
         description=_(u'Please select which fields should be visible.'),
