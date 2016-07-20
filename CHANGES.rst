@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.29 (unreleased)
+0.7.29 (2016-07-20)
 -------------------
 
 - Force OrderedSelectFieldWidget for related contact fields.
