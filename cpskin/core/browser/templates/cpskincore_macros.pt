@@ -41,6 +41,11 @@
                                     obj python: result.getObject()"
                         class=""
                         tal:attributes="class python: isBigImage and 'bigimage bloc-item' or 'bloc-item'">
+                        <tal:block tal:condition="python: view.see_categories(content)">
+                        <tal:loop tal:define="categories python: view.get_categories(content, obj)" tal:condition="categories">
+                                <div class="indexview-categories" tal:content="categories" />
+                        </tal:loop>
+                        </tal:block>
                         <a href=""
                            tal:attributes="href result/getURL">
                                <tal:block tal:condition="not: view/is_dexterity">

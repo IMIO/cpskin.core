@@ -19,7 +19,8 @@ class ICpskinIndexViewSettings(model.Schema):
             'slider_image_scale',
             'carousel_image_scale',
             'link_text',
-            'index_view_keywords'
+            'index_view_keywords',
+            'taxonomy_category'
         ),
     )
 
@@ -65,4 +66,11 @@ class ICpskinIndexViewSettings(model.Schema):
         value_type=schema.Choice(
             vocabulary=u'cpskin.core.vocabularies.hiddenTags'
         )
+    )
+
+    taxonomy_category = schema.TextLine(
+        title=_(u"Which taxonomy id should be use to display category"),
+        description=_(u'Please write which taxonomy id should be used.'),
+        default=u'',
+        required=False,
     )

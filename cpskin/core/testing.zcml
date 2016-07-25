@@ -6,6 +6,7 @@
   <include package="plone.app.contenttypes" />
   <include package="plone.app.event" />
   <include package="collective.contact.core" />
+  <include package="collective.taxonomy" />
 
   <genericsetup:registerProfile
       name="testing"

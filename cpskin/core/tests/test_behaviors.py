@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.core.behaviors.metadata import IHiddenTags
 from cpskin.core.behaviors.metadata import IRelatedContacts
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
@@ -7,8 +8,10 @@ from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
 from plone import api
-from plone.app.testing import TEST_USER_ID
+from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from zope.component import queryUtility
 from zope.interface import alsoProvides
 
 import unittest
@@ -73,3 +76,9 @@ class TestBehaviors(unittest.TestCase):
         brains = catalog(query)
         self.assertEqual(len(brains), 1)
         self.assertEqual(brains[0].getObject(), self.document)
+
+    def test_taxonomy_category(self):
+        applyProfile(self.portal, 'collective.taxonomy:default')
+        add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
+        test_taxonomy_category = getattr(self.collection, 'taxonomy_category')
+        self.assertEqual(test_taxonomy_category, '')

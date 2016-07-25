@@ -4,7 +4,8 @@ Changelog
 0.7.30 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add category on indexview.
+  [bsuttor]
 
 
 0.7.29 (2016-07-20)

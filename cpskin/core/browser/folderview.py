@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from Acquisition import aq_parent
-from Products.CMFCore.interfaces import IFolderish
-from Products.CMFCore.utils import getToolByName
-
-from cpskin.core.interfaces import (IFolderViewSelectedContent,
-                                    IFolderViewWithBigImages)
+from cpskin.core.interfaces import IFolderViewSelectedContent
+from cpskin.core.interfaces import IFolderViewWithBigImages
 from cpskin.core.utils import image_scale
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
-# from profilehooks import profile
+from plone.app.contenttypes.browser.folder import FolderView as FoldV
+from plone.dexterity.interfaces import IDexterityFTI
+from Products.CMFCore.interfaces import IFolderish
+from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.i18n import translate
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
-
-from plone.app.contenttypes.browser.folder import FolderView as FoldV
+from zope.schema import getFields
+from zope.schema.interfaces import IVocabularyFactory
 
 import httpagentparser
 
@@ -313,6 +314,35 @@ class FolderView(FoldV):
         if getattr(collection, 'link_text', False):
             trans = collection.link_text
         return "{0} {1}".format(trans, collection.Title().lower())
+
+    def see_categories(self, collection):
+        result = True
+        taxonomy_field = getattr(collection, 'taxonomy_category', '')
+        if not taxonomy_field:
+            result = False
+        return result
+
+    def get_categories(self, collection, obj):
+        portal_type = obj.portal_type
+        schema = getUtility(IDexterityFTI, name=portal_type).lookupSchema()
+        fields = getFields(schema)
+        taxonomy_field = getattr(collection, 'taxonomy_category', '')
+        if taxonomy_field not in fields.keys():
+            return ''
+
+        field = fields[taxonomy_field]
+        vocabulary_name = field.value_type.vocabularyName
+        factory = getUtility(IVocabularyFactory, vocabulary_name)
+        vocabulary = factory(api.portal.get())
+        tokens = getattr(obj, taxonomy_field, '')
+        if not tokens:
+            return ''
+        categories = []
+        for token in tokens:
+            cat = vocabulary.inv_data.get(token)
+            categories.append(cat[1:])
+        categories.sort()
+        return ", ".join(categories)
 
 
 def configure_folderviews(context):

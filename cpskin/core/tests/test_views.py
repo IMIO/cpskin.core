@@ -1,13 +1,23 @@
 # -*- coding: utf-8 -*-
+from collective.taxonomy.interfaces import ITaxonomy
+from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.browser.folderview import configure_folderviews
 from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import add_leadimage_from_file
 from plone import api
-from plone.app.testing import TEST_USER_ID, setRoles
+from plone.app.testing import applyProfile
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.schemaeditor.utils import FieldAddedEvent
+from plone.schemaeditor.utils import IEditableSchema
+from zope import schema
 from zope.component import getMultiAdapter
+from zope.component import queryUtility
 from zope.interface import directlyProvides
+from zope.event import notify
+from zope.lifecycleevent import ObjectAddedEvent
 
 import unittest
 
@@ -83,7 +93,7 @@ class TestViews(unittest.TestCase):
     def test_folderiew_add_remove_content(self):
         configure_folderviews(self.portal)
         request = self.portal.actualites.REQUEST
-        news = api.content.create(
+        api.content.create(
             container=self.portal,
             type='News Item',
             id='testnewsitem')
@@ -101,7 +111,7 @@ class TestViews(unittest.TestCase):
     def test_folderiew_render(self):
         configure_folderviews(self.portal)
         request = self.portal.actualites.REQUEST
-        news = api.content.create(
+        api.content.create(
             container=self.portal,
             type='News Item',
             id='testnewsitem')
@@ -109,3 +119,40 @@ class TestViews(unittest.TestCase):
             (self.portal.actualites, request), name="folderview")
         self.assertIn(
             '<a href="http://nohost/plone/actualites">View</a>', view.index())
+
+    def test_folderiew_event_category(self):
+        applyProfile(self.portal, 'collective.taxonomy:default')
+        add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
+
+        utility = queryUtility(ITaxonomy, name='collective.taxonomy.test')
+        collection = api.content.create(container=self.portal,
+                                        type='Collection',
+                                        id='collection')
+        collection.taxonomy_category = 'taxonomy_test'
+        collection.reindexObject()
+        taxonomy_test = schema.Set(
+            title=u"taxonomy_test",
+            description=u"taxonomy description schema",
+            required=False,
+            value_type=schema.Choice(
+                vocabulary=u"collective.taxonomy.taxonomies"),
+        )
+        portal_types = api.portal.get_tool('portal_types')
+        fti = portal_types.get('Event')
+        event_schema = fti.lookupSchema()
+        schemaeditor = IEditableSchema(event_schema)
+        schemaeditor.addField(taxonomy_test, name='taxonomy_test')
+        notify(ObjectAddedEvent(taxonomy_test, event_schema))
+        notify(FieldAddedEvent(fti, taxonomy_test))
+        event = api.content.create(
+            container=self.portal,
+            type='Event',
+            id='testevent')
+        simple_tax = [val for val in utility.data['en'].values()]
+        event.taxonomy_test = set(simple_tax[0])
+
+        view = getMultiAdapter(
+            (self.portal, self.portal.REQUEST), name="folderview")
+
+        categories = view.get_categories(collection, event)
+        self.assertEqual(categories, ['/Information Science'])

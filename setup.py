@@ -63,7 +63,8 @@ setup(name='cpskin.core',
       extras_require={
           'test': [
               'plone.app.robotframework',
+              'collective.taxonomy'
           ]
       },
       entry_points={},
-)
+      )
