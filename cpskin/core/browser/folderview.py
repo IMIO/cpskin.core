@@ -312,7 +312,7 @@ class FolderView(FoldV):
         trans = translate(
             voirlensemble, domain=voirlensemble.domain, context=self.request)
         if getattr(collection, 'link_text', False):
-            trans = collection.link_text
+            trans = collection.link_text.encode('utf-8')
         return "{0} {1}".format(trans, collection.Title().lower())
 
     def see_categories(self, collection):

@@ -4,6 +4,9 @@ Changelog
 0.7.30 (unreleased)
 -------------------
 
+- Fix ascii error on see_all method.
+  [bsuttor]
+
 - Get address form related_contacts with way collective.contact.core work.
   [bsuttor]
   
