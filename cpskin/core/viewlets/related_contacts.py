@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from collective.contact.core.interfaces import IContactable
 from plone.app.layout.viewlets import common
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 import logging
 logger = logging.getLogger('cpskin.core related contacts viewlet')
 
@@ -30,6 +31,10 @@ class RelatedContactsViewlet(common.ViewletBase):
         return field in self.selected_fields
 
     def get_field(self, contact, field):
+        if field in self.address_fields:
+            contactable = IContactable(contact)
+            details = contactable.get_contact_details()
+            return details['address'].get(field)
         # XXX find way to check if field is richetext or image or simple field
         if field == "activity":
             if getattr(contact, field, ''):

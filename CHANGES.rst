@@ -4,6 +4,9 @@ Changelog
 0.7.30 (unreleased)
 -------------------
 
+- Get address form related_contacts with way collective.contact.core work.
+  [bsuttor]
+  
 - Add category on indexview.
   [bsuttor]
 
@@ -66,7 +69,7 @@ Changelog
 0.7.21 (2016-06-27)
 -------------------
 
-- Use dynamic collection image scale. 
+- Use dynamic collection image scale.
   [bsuttor]
 
 - Add missing space in copyright sentence

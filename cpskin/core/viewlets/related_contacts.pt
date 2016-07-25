@@ -4,14 +4,14 @@
 
             <h4 tal:condition="python: view.in_fields('title')" tal:content="contact/title" />
             <div class="coordinates"
-                tal:define="street contact/street;
-                            number contact/number;
-                            zip_code contact/zip_code;
-                            city contact/city">
+                tal:define="street python: view.get_field(contact, 'street');
+                            number python: view.get_field(contact, 'number');
+                            zip_code python: view.get_field(contact, 'zip_code');
+                            city python: view.get_field(contact, 'city')">
                 <tal:cond tal:condition="view/has_address">
                     <div class="street">
                         <span class="streetname" tal:condition="street" tal:content="street" />
-                        <span class="streetcomma" tal:condition="street">, </span>
+                        <span class="streetcomma" tal:condition="number">, </span>
                         <span class="streetnumber" tal:condition="number" tal:content="number" />
                     </div>
                     <div class="city">
