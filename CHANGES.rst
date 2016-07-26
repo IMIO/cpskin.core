@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.31 (unreleased)
+0.7.31 (2016-07-26)
 -------------------
 
 - Fix error on homepage with ATEvent.
