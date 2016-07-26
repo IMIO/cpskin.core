@@ -58,12 +58,12 @@ setup(name='cpskin.core',
           'collective.z3cform.keywordwidget',
           'httpagentparser',
           'cpskin.minisite',
-          'collective.contact.core'
+          'collective.contact.core',
+          'collective.taxonomy'
       ],
       extras_require={
           'test': [
               'plone.app.robotframework',
-              'collective.taxonomy'
           ]
       },
       entry_points={},
