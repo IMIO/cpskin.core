@@ -4,7 +4,8 @@ Changelog
 0.7.31 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix error on homepage with ATEvent.
+  [bsuttor]
 
 
 0.7.30 (2016-07-26)
