@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.30 (unreleased)
+0.7.30 (2016-07-26)
 -------------------
 
 - First step for not seeing old event in homepage with occurence events.
