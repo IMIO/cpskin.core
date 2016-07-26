@@ -78,24 +78,27 @@
 
                             <span class="documentByLine"
                                   tal:condition="python: result.portal_type == 'Event'">
-                              <tal:one_day condition="python: here.toLocalizedTime(result.start, long_format=0) == here.toLocalizedTime(result.end, long_format=0)">
+                              <tal:one_day condition="python: view.is_one_day(result)">
                               <span i18n:translate="evenement_le">le</span>
-                              <span tal:content="python: here.toLocalizedTime(result.start, long_format=0)" />
-                              <tal:withHours condition="python: here.toLocalizedTime(result.start, long_format=1)[11:] != '00:00' or here.toLocalizedTime(result.end, long_format=1)[11:] != '00:00'">
-                              <span i18n:translate="evenement_de">de</span>
-                              <span tal:content="python: here.toLocalizedTime(result.start, long_format=1)[11:]" />
-                              <span i18n:translate="evenement_a">à</span>
-                              <span tal:content="python: here.toLocalizedTime(result.end, long_format=1)[11:]" /></tal:withHours></tal:one_day>
+                              <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
+                                <tal:withHours condition="python: view.is_with_hours(result)">
+                                  <span i18n:translate="evenement_de">de</span>
+                                  <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
+                                  <span i18n:translate="evenement_a">à</span>
+                                  <span tal:content="python: view.toLocalizedTime(result.end, long_format=1, event=result, startend='end')[11:]" />
+                                </tal:withHours>
+                              </tal:one_day>
                               <tal:more_days condition="python: here.toLocalizedTime(result.start, long_format=0) != here.toLocalizedTime(result.end, long_format=0)">
-                              <span i18n:translate="evenement_du">du</span>
-                              <span tal:content="python: here.toLocalizedTime(result.start, long_format=0)" />
-                              <span i18n:translate="evenement_au">au</span>
-                              <span tal:content="python: here.toLocalizedTime(result.end, long_format=0)" /></tal:more_days>
+                                <span i18n:translate="evenement_du">du</span>
+                                <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
+                                <span i18n:translate="evenement_au">au</span>
+                                <span tal:content="python: view.toLocalizedTime(result.end, long_format=0, event=result, startend='end')" />
+                              </tal:more_days>
                             </span>
 
                             <span class="documentByLine"
                                   tal:condition="python: result.portal_type != 'Event' and view.hasEffectiveDate(result)">
-                              <span tal:content="python: here.toLocalizedTime(result.effective, long_format=0)" />
+                              <span tal:content="python: view.toLocalizedTime(result.effective, long_format=0)" />
                             </span>
 
                           </li>

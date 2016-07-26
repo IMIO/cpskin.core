@@ -4,6 +4,9 @@ Changelog
 0.7.30 (unreleased)
 -------------------
 
+- First step for not seeing old event in homepage with occurence events.
+  [bsuttor]
+
 - Fix ascii error on see_all method.
   [bsuttor]
 

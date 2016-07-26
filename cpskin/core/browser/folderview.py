@@ -5,8 +5,11 @@ from cpskin.core.interfaces import IFolderViewSelectedContent
 from cpskin.core.interfaces import IFolderViewWithBigImages
 from cpskin.core.utils import image_scale
 from cpskin.locales import CPSkinMessageFactory as _
+from datetime import datetime
 from plone import api
 from plone.app.contenttypes.browser.folder import FolderView as FoldV
+from plone.app.contenttypes.content import Event
+from plone.app.event.recurrence import RecurrenceSupport
 from plone.dexterity.interfaces import IDexterityFTI
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
@@ -17,7 +20,6 @@ from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 from zope.schema import getFields
 from zope.schema.interfaces import IVocabularyFactory
-
 import httpagentparser
 
 
@@ -343,6 +345,27 @@ class FolderView(FoldV):
             categories.append(cat[1:])
         categories.sort()
         return ", ".join(categories)
+
+    def toLocalizedTime(self, time=None, long_format=None, time_only=None, event=None, startend='start'):
+        if event:
+
+            if not isinstance(event, Event):
+                event = event.getObject()
+            rs = RecurrenceSupport(event)
+            occurences = [occ for occ in rs.occurrences(datetime.today())]
+            if len(occurences) >= 1:
+                # do not get object which started past
+                time = getattr(occurences[0], startend)
+        return self.context.restrictedTraverse('@@plone').toLocalizedTime(
+            time, long_format, time_only)
+
+    def is_one_day(self, event):
+        return self.toLocalizedTime(event.start, long_format=0) == self.toLocalizedTime(
+            event.end, long_format=0)
+
+    def is_with_hours(self, event):
+        return self.toLocalizedTime(event.start, long_format=1)[11:] != '00:00' \
+            or self.toLocalizedTime(event.end, long_format=1)[11:] != '00:00'
 
 
 def configure_folderviews(context):
