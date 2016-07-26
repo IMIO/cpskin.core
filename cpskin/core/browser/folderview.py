@@ -10,6 +10,7 @@ from plone import api
 from plone.app.contenttypes.browser.folder import FolderView as FoldV
 from plone.app.contenttypes.content import Event
 from plone.app.event.recurrence import RecurrenceSupport
+from plone.dexterity.interfaces import IDexterityContent
 from plone.dexterity.interfaces import IDexterityFTI
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
@@ -300,7 +301,7 @@ class FolderView(FoldV):
 
     def is_dexterity(self):
         portal_types = api.portal.get_tool('portal_types')
-        if portal_types.get('Image').meta_type == "Dexterity FTI":
+        if portal_types.get('Image').meta_type == 'Dexterity FTI':
             return True
         else:
             return False
@@ -348,14 +349,14 @@ class FolderView(FoldV):
 
     def toLocalizedTime(self, time=None, long_format=None, time_only=None, event=None, startend='start'):
         if event:
-
             if not isinstance(event, Event):
                 event = event.getObject()
-            rs = RecurrenceSupport(event)
-            occurences = [occ for occ in rs.occurrences(datetime.today())]
-            if len(occurences) >= 1:
-                # do not get object which started past
-                time = getattr(occurences[0], startend)
+            if IDexterityContent.providedBy(event):
+                rs = RecurrenceSupport(event)
+                occurences = [occ for occ in rs.occurrences(datetime.today())]
+                if len(occurences) >= 1:
+                    # do not get object which started past
+                    time = getattr(occurences[0], startend)
         return self.context.restrictedTraverse('@@plone').toLocalizedTime(
             time, long_format, time_only)
 
