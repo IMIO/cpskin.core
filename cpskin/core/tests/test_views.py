@@ -53,7 +53,7 @@ class TestViews(unittest.TestCase):
         collection = self.portal.actualites.actualites
         link_text = getattr(collection, 'link_text')
         self.assertEqual(link_text, "Voir l'ensemble des")
-        view = getMultiAdapter((self.portal, self.request), name="folderview")
+        view = getMultiAdapter((self.portal, self.request), name='folderview')
         voir_lensemble_des = view.see_all(collection)
         self.assertEqual(voir_lensemble_des,
                          "Voir l'ensemble des actualit\xc3\xa9s")
@@ -61,7 +61,7 @@ class TestViews(unittest.TestCase):
         collection.link_text = "Voir toutes les"
         voir_lensemble_des = view.see_all(collection)
         self.assertEqual(voir_lensemble_des,
-                         "Voir toutes les actualit\xc3\xa9s")
+                         'Voir toutes les actualit\xc3\xa9s')
         # self.assertTrue("Voir toutes les actualit" in view.index())
 
     def test_folderiew_setting_image_scale(self):
@@ -98,7 +98,7 @@ class TestViews(unittest.TestCase):
             type='News Item',
             id='testnewsitem')
         view = getMultiAdapter(
-            (self.portal.actualites, request), name="folderview")
+            (self.portal.actualites, request), name='folderview')
         self.assertTrue(view.canRemoveContent())
         self.assertFalse(view.canAddContent())
         view.removeContent()
@@ -116,7 +116,7 @@ class TestViews(unittest.TestCase):
             type='News Item',
             id='testnewsitem')
         view = getMultiAdapter(
-            (self.portal.actualites, request), name="folderview")
+            (self.portal.actualites, request), name='folderview')
         self.assertIn(
             '<a href="http://nohost/plone/actualites">View</a>', view.index())
 
@@ -153,7 +153,7 @@ class TestViews(unittest.TestCase):
         event.taxonomy_test = set(simple_tax[0])
 
         view = getMultiAdapter(
-            (self.portal, self.portal.REQUEST), name="folderview")
+            (self.portal, self.portal.REQUEST), name='folderview')
 
         see_categories = view.see_categories(collection)
         self.assertTrue(see_categories)
@@ -178,7 +178,7 @@ class TestViews(unittest.TestCase):
         event.start = now
         event.end = now
         view = getMultiAdapter(
-            (self.portal, self.portal.REQUEST), name="folderview")
+            (self.portal, self.portal.REQUEST), name='folderview')
 
         oneday = view.is_one_day(event)
         self.assertTrue(oneday)
