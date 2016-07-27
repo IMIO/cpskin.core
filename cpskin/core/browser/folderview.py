@@ -355,7 +355,7 @@ class FolderView(FoldV):
                 rs = RecurrenceSupport(event)
                 occurences = [occ for occ in rs.occurrences(datetime.today())]
                 if len(occurences) >= 1:
-                    # do not get object which started past
+                    # do not get object which started in the past
                     time = getattr(occurences[0], startend)
         return self.context.restrictedTraverse('@@plone').toLocalizedTime(
             time, long_format, time_only)
