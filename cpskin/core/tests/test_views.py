@@ -158,6 +158,7 @@ class TestViews(unittest.TestCase):
         see_categories = view.see_categories(collection)
         self.assertTrue(see_categories)
         collection.taxonomy_category = ''
+        see_categories = view.see_categories(collection)
         self.assertFalse(see_categories)
         collection.taxonomy_category = 'taxonomy_test'
 
