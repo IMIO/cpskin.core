@@ -84,3 +84,24 @@ class IMediaActivationView(Interface):
     def disable_media():
         """ Disable multimedia viewlet
         """
+
+
+class INavigationToggleView(Interface):
+    """ navigation toggle activation """
+
+    can_enable_navigation_toggle = schema.Bool(
+        u'Can enable navigation toggle on folder',
+        readonly=True
+    )
+    can_disable_navigation_toggle = schema.Bool(
+        u'Can disable navigation toggle on folder',
+        readonly=True
+    )
+
+    def enable_navigation_toggle():
+        """ Enable navigation toggle on folder
+        """
+
+    def disable_navigation_toggle():
+        """ Disable navigation toggle on folder
+        """

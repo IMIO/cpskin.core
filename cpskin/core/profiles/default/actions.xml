@@ -145,6 +145,29 @@
             </property>
             <property name="visible">True</property>
         </object>
+
+        <object name="enable_navigation_toggle" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Enable navigation toggle</property>
+            <property name="description"></property>
+            <property name="url_expr">string:${context/absolute_url}/@@navigation_toggle_activation/enable_navigation_toggle</property>
+            <property name="link_target"></property>
+            <property name="available_expr">context/@@navigation_toggle_activation/can_enable_navigation_toggle</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
+        <object name="disable_navigation_toggle" meta_type="CMF Action" i18n:domain="cpskin">
+            <property name="title" i18n:translate="">Disable navigation toggle</property>
+            <property name="description"></property>
+            <property name="url_expr">string:${context/absolute_url}/@@navigation_toggle_activation/disable_navigation_toggle</property>
+            <property name="link_target"></property>
+            <property name="available_expr">context/@@navigation_toggle_activation/can_disable_navigation_toggle</property>
+            <property name="permissions">
+                <permission>CPSkin: Site administrator</permission>
+            </property>
+            <property name="visible">True</property>
+        </object>
     </object>
 
 </object>

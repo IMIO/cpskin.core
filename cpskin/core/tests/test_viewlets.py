@@ -26,6 +26,29 @@ class TestViewlets(unittest.TestCase):
         self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
+    def test_navigation_toggle_viewlet(self):
+        folder = api.content.create(
+            container=self.portal, type="Folder", id="folder1")
+        view = getMultiAdapter(
+            (folder, self.request), name="navigation_toggle_activation")
+        navtogglesettings = view.settings
+        self.assertEqual(navtogglesettings.selectors, ())
+        self.assertFalse(view.is_enabled)
+        self.assertTrue(view.can_enable_navigation_toggle)
+        self.assertFalse(view.can_disable_navigation_toggle)
+
+        view.enable_navigation_toggle()
+        self.assertTrue(view.is_enabled)
+        self.assertFalse(view.can_enable_navigation_toggle)
+        self.assertTrue(view.can_disable_navigation_toggle)
+        self.assertEqual(navtogglesettings.selectors, (u'/folder1', ))
+
+        view.disable_navigation_toggle()
+        self.assertFalse(view.is_enabled)
+        self.assertTrue(view.can_enable_navigation_toggle)
+        self.assertFalse(view.can_disable_navigation_toggle)
+        self.assertEqual(navtogglesettings.selectors, ())
+
     def test_set_media_viewlet(self):
         view = getMultiAdapter(
             (self.portal, self.request), name="media_activation")

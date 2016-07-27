@@ -19,6 +19,10 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def add_navigation_toggle_action(context):
+    context.runImportStepFromProfile('profile-cpskin.core:default', 'actions')
+
+
 def add_index_view_behavior(context):
     registry = getUtility(IRegistry)
     del registry.records[

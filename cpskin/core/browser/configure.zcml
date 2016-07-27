@@ -80,6 +80,15 @@
 
   <browser:page
       for="*"
+      name="navigation_toggle_activation"
+      class=".navigation.NavigationToggleView"
+      permission="zope.Public"
+      allowed_interface=".interfaces.INavigationToggleView"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
+      for="*"
       name="folderview_configuration"
       class=".folderview.FolderView"
       permission="zope.Public"

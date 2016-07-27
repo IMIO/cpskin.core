@@ -4,7 +4,9 @@ Changelog
 0.7.32 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add new action to enable / disable navigation toggle on folders
+  Works with collective.navigationtoggle
+  [laulaz]
 
 
 0.7.31 (2016-07-26)

@@ -59,7 +59,8 @@ setup(name='cpskin.core',
           'httpagentparser',
           'cpskin.minisite',
           'collective.contact.core',
-          'collective.taxonomy'
+          'collective.taxonomy',
+          'collective.navigationtoggle',
       ],
       extras_require={
           'test': [

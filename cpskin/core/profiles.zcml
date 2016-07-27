@@ -33,6 +33,15 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v16"
+        description="Upgrade step for adding navigation toggle action"
+        handler=".upgradehandlers.add_navigation_toggle_action"
+        source="15"
+        destination="16"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v15"
         description="Upgrade step for adding index view behavior."
         handler=".upgradehandlers.add_index_view_behavior"
