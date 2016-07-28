@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.32 (unreleased)
+0.7.32 (2016-07-28)
 -------------------
 
 - Add new action to enable / disable navigation toggle on folders
