@@ -39,7 +39,7 @@ class NavigationToggleView(BrowserView):
 
     def relative_path(self, obj):
         portal_url = api.portal.get().absolute_url()
-        relative_path = obj.absolute_url().lstrip(portal_url)
+        relative_path = obj.absolute_url().replace(portal_url, '')
         if not relative_path.startswith('/'):
             relative_path = '/%s' % relative_path
         return unicode(relative_path)

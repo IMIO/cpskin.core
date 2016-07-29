@@ -4,7 +4,8 @@ Changelog
 0.7.33 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix relative URL calculation for navigation toggle on folders
+  [laulaz]
 
 
 0.7.32 (2016-07-28)
