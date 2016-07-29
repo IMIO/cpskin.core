@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.33 (unreleased)
+0.7.33 (2016-07-29)
 -------------------
 
 - Fix relative URL calculation for navigation toggle on folders
