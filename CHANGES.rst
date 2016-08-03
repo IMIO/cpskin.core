@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.34 (unreleased)
+0.7.34 (2016-08-03)
 -------------------
 
 - We need to invalidate JS cache when defining navigation toggle
