@@ -4,7 +4,8 @@ Changelog
 0.7.34 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- We need to invalidate JS cache when defining navigation toggle
+  [laulaz]
 
 
 0.7.33 (2016-07-29)

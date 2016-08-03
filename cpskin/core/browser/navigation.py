@@ -76,6 +76,8 @@ class NavigationToggleView(BrowserView):
         current_paths_list = list(current_paths)
         current_paths_list.append(self.relative_path(context))
         self.settings.selectors = tuple(current_paths_list)
+        portal_js = api.portal.get_tool('portal_javascripts')
+        portal_js.cookResources()
         self._redirect(_(u'Navigation toggle enabled for folder'))
 
     def disable_navigation_toggle(self):
@@ -85,4 +87,6 @@ class NavigationToggleView(BrowserView):
         current_paths_list = list(current_paths)
         current_paths_list.remove(self.relative_path(context))
         self.settings.selectors = tuple(current_paths_list)
+        portal_js = api.portal.get_tool('portal_javascripts')
+        portal_js.cookResources()
         self._redirect(_(u'Navigation toggle disabled for folder'))
