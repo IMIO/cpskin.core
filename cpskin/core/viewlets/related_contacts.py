@@ -27,6 +27,12 @@ class RelatedContactsViewlet(common.ViewletBase):
             contacts.append(related_contact.to_object)
         return contacts
 
+    def get_title(self, contact):
+        if self.in_fields('title'):
+            return u'<h4>{0}</h4>'.format(contact.title)
+        else:
+            return False
+
     def in_fields(self, field):
         return field in self.selected_fields
 
@@ -62,9 +68,6 @@ class RelatedContactsViewlet(common.ViewletBase):
                 fields.append(selected_field)
         return fields
 
-    def use_parent_address(self):
-        pass
-
 
 class AboveRelatedContactsViewlet(RelatedContactsViewlet):
 
@@ -76,3 +79,11 @@ class BelowRelatedContactsViewlet(RelatedContactsViewlet):
 
     field = 'belowContentContact'
     selected = 'belowVisbileFields'
+
+    def get_title(self, contact):
+        if self.in_fields('title'):
+            return u'<a href="{0}" target="_blank"><h4>{1}</h4></a>'.format(
+                contact.absolute_url(),
+                contact.title)
+        else:
+            return False

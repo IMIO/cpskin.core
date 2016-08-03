@@ -4,7 +4,8 @@ Changelog
 0.7.35 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Related contact below contents title is now a link to related contact.
+  [bsuttor]
 
 
 0.7.34 (2016-08-03)

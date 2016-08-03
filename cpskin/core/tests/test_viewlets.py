@@ -187,6 +187,11 @@ class TestViewlets(unittest.TestCase):
         event.aboveVisbileFields = ('firstname',)
         self.assertIn('Foo', above_viewlet.render())
 
+        # test get_title method
+        self.assertFalse(above_viewlet.get_title(person))
+        event.aboveVisbileFields = ('title')
+        self.assertEqual(above_viewlet.get_title(person), u'<h4>Foo Bar</h4>')
+
     def test_below_related_contacts_viewlet(self):
         add_behavior(
             'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
@@ -246,6 +251,12 @@ class TestViewlets(unittest.TestCase):
         event.belowVisbileFields = ('zip_code',)
         self.assertNotIn('5190', below_viewlet.render())
         self.assertNotIn('Foo', below_viewlet.render())
+
+        # test get_title method
+        self.assertFalse(below_viewlet.get_title(person))
+        event.belowVisbileFields = ('title')
+        self.assertEqual(below_viewlet.get_title(person),
+                         u'<a href="http://nohost/plone/directory/person" target="_blank"><h4>Foo Bar</h4></a>')
 
     def test_use_parent_address(self):
         add_behavior(
