@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.35 (unreleased)
+0.7.35 (2016-08-04)
 -------------------
 
 - Related contact below contents title is now a link to related contact.
