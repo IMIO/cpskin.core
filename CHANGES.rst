@@ -4,6 +4,9 @@ Changelog
 0.7.36 (unreleased)
 -------------------
 
+- Add missing actions in uninstall profile
+  [laulaz]
+
 - Improve events dates / times display : #14573
   [laulaz]
 

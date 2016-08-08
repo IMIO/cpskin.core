@@ -22,6 +22,8 @@
         <object name="stop_big_images_use_in_folderview" remove="True" />
         <object name="add_to_folderview" remove="True" />
         <object name="remove_from_folderview" remove="True" />
+        <object name="enable_navigation_toggle" remove="True" />
+        <object name="disable_navigation_toggle" remove="True" />
     </object>
 
 </object>
