@@ -1,0 +1,15 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+  <browser:menu
+    id="plone_contentmenu_cpskin_configurations"
+    title="The 'configurations' menu - allows the user to execute CPSkin actions on an object"
+    class=".menu.ConfigurationsMenu"
+    />
+
+  <adapter for="* *"
+           name="cpskin.core.configurations"
+           factory=".menu.ConfigurationsSubMenuItem"
+           provides="plone.app.contentmenu.interfaces.IContentMenuItem" />
+
+</configure>

@@ -34,8 +34,8 @@ Scenario: Test folder view configuration
     Go to  ${PLONE_URL}
     ${folder_uid}  Create content  type=Folder  id=index  title=index
     Go to  ${PLONE_URL}/index
-    Open Action Menu
-    Click Link  css=#plone-contentmenu-actions-configure_folderview
+    Open Menu  plone-contentmenu-cpskin-configurations
+    Click Link  css=#plone-contentmenu-cpskin-configurations-configure_folderview
     Page Should Contain  Vue index avec collections configurée.
     Page Should Contain Link  css=#plone-contentmenu-display-folderview.actionMenuSelected
     Click Link  Contents
@@ -44,5 +44,5 @@ Scenario: Test folder view configuration
     Page Should Contain  Événements
     Click Link  À la une
     Click Link  View
-    Page Should Contain Link  css=#plone-contentmenu-actions-remove_from_folderview
-    Page Should Not Contain Link  css=#plone-contentmenu-actions-add_to_folderview
+    Page Should Contain Link  css=#plone-contentmenu-cpskin-configurations-remove_from_folderview
+    Page Should Not Contain Link  css=#plone-contentmenu-cpskin-configurations-add_to_folderview

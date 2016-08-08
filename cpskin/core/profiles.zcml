@@ -30,7 +30,27 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <!-- Upgrade profiles -->
+
+    <genericsetup:registerProfile
+        name="to17"
+        title="cpskin.core"
+        directory="upgrades/to17"
+        description="CPSKIN Core: upgrade to v17"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
     <!-- Upgrade steps -->
+
+    <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v17"
+        description="Upgrade step for moving CPSkin actions to new menu"
+        handler=".upgradehandlers.move_cpskin_actions"
+        source="16"
+        destination="17"
+        profile="cpskin.core:default"
+        />
 
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v16"

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+    <object name="object_buttons" meta_type="CMF Action Category">
+        <object name="enable_banner" remove="True" />
+        <object name="disable_banner" remove="True" />
+        <object name="enable_local_banner" remove="True" />
+        <object name="disable_local_banner" remove="True" />
+        <object name="enable_media" remove="True" />
+        <object name="disable_media" remove="True" />
+        <object name="configure_folderview" remove="True" />
+        <object name="use_big_images_in_folderview" remove="True" />
+        <object name="stop_big_images_use_in_folderview" remove="True" />
+        <object name="add_to_folderview" remove="True" />
+        <object name="remove_from_folderview" remove="True" />
+        <object name="enable_navigation_toggle" remove="True" />
+        <object name="disable_navigation_toggle" remove="True" />
+    </object>
+
+</object>

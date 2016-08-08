@@ -19,6 +19,11 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def move_cpskin_actions(context):
+    context.runImportStepFromProfile('profile-cpskin.core:to17', 'actions')
+    context.runImportStepFromProfile('profile-cpskin.core:default', 'actions')
+
+
 def add_navigation_toggle_action(context):
     context.runImportStepFromProfile('profile-cpskin.core:default', 'actions')
 

@@ -25,7 +25,7 @@
         </object>
     </object>
 
-    <object name="object_buttons" meta_type="CMF Action Category">
+    <object name="cpskin_configurations" meta_type="CMF Action Category">
         <object name="enable_banner" meta_type="CMF Action" i18n:domain="cpskin">
             <property name="title" i18n:translate="">Show banner</property>
             <property name="description"></property>

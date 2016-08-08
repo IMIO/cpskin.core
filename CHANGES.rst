@@ -4,6 +4,9 @@ Changelog
 0.7.36 (unreleased)
 -------------------
 
+- Move CPSkin actions to a new dedicated menu
+  [laulaz]
+
 - Add missing actions in uninstall profile
   [laulaz]
 
