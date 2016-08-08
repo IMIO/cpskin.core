@@ -365,8 +365,11 @@ class FolderView(FoldV):
             event.end, long_format=0)
 
     def is_with_hours(self, event):
-        return self.toLocalizedTime(event.start, long_format=1)[11:] != '00:00' \
-            or self.toLocalizedTime(event.end, long_format=1)[11:] != '00:00'
+        if hasattr(event, 'whole_day'):
+            return not(event.whole_day)
+        else:
+            return self.toLocalizedTime(event.start, long_format=1)[11:] != '00:00' \
+                or self.toLocalizedTime(event.end, long_format=1)[11:] != '00:00'
 
 
 def configure_folderviews(context):

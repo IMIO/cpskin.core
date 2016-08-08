@@ -4,7 +4,8 @@ Changelog
 0.7.36 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improve events dates / times display : #14573
+  [laulaz]
 
 
 0.7.35 (2016-08-04)

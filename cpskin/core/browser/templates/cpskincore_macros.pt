@@ -82,13 +82,19 @@
                               <span i18n:translate="evenement_le">le</span>
                               <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
                                 <tal:withHours condition="python: view.is_with_hours(result)">
-                                  <span i18n:translate="evenement_de">de</span>
-                                  <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
-                                  <span i18n:translate="evenement_a">à</span>
-                                  <span tal:content="python: view.toLocalizedTime(result.end, long_format=1, event=result, startend='end')[11:]" />
+                                  <tal:openEnd condition="result/open_end">
+                                    <span i18n:translate="evenement_a_lheure">à</span>
+                                    <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
+                                  </tal:openEnd>
+                                  <tal:fixedEnd condition="not: result/open_end">
+                                    <span i18n:translate="evenement_de">de</span>
+                                    <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
+                                    <span i18n:translate="evenement_a">à</span>
+                                    <span tal:content="python: view.toLocalizedTime(result.end, long_format=1, event=result, startend='end')[11:]" />
+                                  </tal:fixedEnd>
                                 </tal:withHours>
                               </tal:one_day>
-                              <tal:more_days condition="python: here.toLocalizedTime(result.start, long_format=0) != here.toLocalizedTime(result.end, long_format=0)">
+                              <tal:more_days condition="python: not view.is_one_day(result)">
                                 <span i18n:translate="evenement_du">du</span>
                                 <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
                                 <span i18n:translate="evenement_au">au</span>
