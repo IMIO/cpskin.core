@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.1 (unreleased)
+0.8.1 (2016-08-09)
 ------------------
 
 - Fix open_end with no dexterity content types.
