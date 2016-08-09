@@ -86,7 +86,7 @@
                                     <span i18n:translate="evenement_a_lheure">à</span>
                                     <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
                                   </tal:openEnd>
-                                  <tal:fixedEnd condition="python: view.is_open_end(result)">
+                                  <tal:fixedEnd condition="python: not view.is_open_end(result)">
                                     <span i18n:translate="evenement_de">de</span>
                                     <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
                                     <span i18n:translate="evenement_a">à</span>
