@@ -4,6 +4,9 @@ Changelog
 0.8.2 (unreleased)
 ------------------
 
+- Use schedule render widget for schedule field.
+  [bsuttor]
+
 - Resolve uid for related contacts.
   [bsuttor]
 

@@ -43,7 +43,7 @@ class RelatedContactsViewlet(common.ViewletBase):
             details = contactable.get_contact_details()
             return details['address'].get(field)
         # XXX find way to check if field is richetext or image or simple field
-        if field == "activity":
+        if field == 'activity':
             if getattr(contact, field, ''):
                 text = getattr(contact, field).raw
                 text = text.replace('http://resolveuid/', 'resolveuid/')
@@ -55,6 +55,11 @@ class RelatedContactsViewlet(common.ViewletBase):
                 img = contact.restrictedTraverse('@@images')
                 logo = img.scale(field)
                 return logo.tag() if logo.tag() else ''
+        if field == 'schedule':
+            from plone.directives import dexterity
+            display = dexterity.DisplayForm(contact, self.request)
+            display.update()
+            return display.w.get('IScheduledContent.schedule').render()
         return getattr(contact, field, '')
 
     def has_address(self):
