@@ -4,7 +4,8 @@ Changelog
 0.8.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Resolve uid for related contacts.
+  [bsuttor]
 
 
 0.8.1 (2016-08-09)

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.contact.core.interfaces import IContactable
 from plone.app.layout.viewlets import common
+from plone.outputfilters.filters.resolveuid_and_caption import ResolveUIDAndCaptionFilter
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 import logging
 logger = logging.getLogger('cpskin.core related contacts viewlet')
@@ -45,7 +46,10 @@ class RelatedContactsViewlet(common.ViewletBase):
         if field == "activity":
             if getattr(contact, field, ''):
                 text = getattr(contact, field).raw
-                return text if text else ''
+                text = text.replace('http://resolveuid/', 'resolveuid/')
+                parser = ResolveUIDAndCaptionFilter(contact)
+                transform_text = parser(text)
+                return transform_text if transform_text else ''
         if field in ['logo', 'photo']:
             if getattr(contact, field, ''):
                 img = contact.restrictedTraverse('@@images')
