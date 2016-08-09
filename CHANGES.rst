@@ -4,7 +4,8 @@ Changelog
 0.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix open_end with no dexterity content types.
+  [bsuttor]
 
 
 0.8.0 (2016-08-08)

@@ -371,6 +371,12 @@ class FolderView(FoldV):
             return self.toLocalizedTime(event.start, long_format=1)[11:] != '00:00' \
                 or self.toLocalizedTime(event.end, long_format=1)[11:] != '00:00'
 
+    def is_open_end(self, event):
+        if not IDexterityContent.providedBy(event):
+            return False
+        else:
+            return getattr(event, 'open_end', False)
+
 
 def configure_folderviews(context):
     """
