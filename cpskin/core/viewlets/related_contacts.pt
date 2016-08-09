@@ -2,7 +2,6 @@
     <ul tal:attributes="id string:ul-${view/field}">
         <li tal:repeat="contact view/get_contacts" class="related-contact">
 
-            
             <h4 tal:define="title python: view.get_title(contact)" tal:condition="title" tal:replace="structure title" />
             <div class="coordinates"
                 tal:define="street python: view.get_field(contact, 'street');
