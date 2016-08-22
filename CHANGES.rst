@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.2 (unreleased)
+0.8.2 (2016-08-22)
 ------------------
 
 - Use schedule render widget for schedule field.
