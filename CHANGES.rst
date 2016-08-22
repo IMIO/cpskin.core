@@ -4,7 +4,8 @@ Changelog
 0.8.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Set address and coordinates into other div than other fields from related_contacts.
+  [bsuttor]
 
 
 0.8.2 (2016-08-22)

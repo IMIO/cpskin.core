@@ -6,19 +6,43 @@
             <div class="coordinates"
                 tal:define="street python: view.get_field(contact, 'street');
                             number python: view.get_field(contact, 'number');
+                            additional_address_details python: view.get_field(contact, 'additional_address_details');
                             zip_code python: view.get_field(contact, 'zip_code');
-                            city python: view.get_field(contact, 'city')">
-                <tal:cond tal:condition="view/has_address">
+                            city python: view.get_field(contact, 'city');
+                            region python: view.get_field(contact, 'region');
+                            country python: view.get_field(contact, 'country');
+                            ">
+
+                <div class="address" tal:condition="view/has_address">
                     <div class="street">
                         <span class="streetname" tal:condition="street" tal:content="street" />
                         <span class="streetcomma" tal:condition="number">, </span>
                         <span class="streetnumber" tal:condition="number" tal:content="number" />
                     </div>
+                    <div class="additional_address_details" tal:condition="additional_address_details" tal:content="additional_address_details" />
                     <div class="city">
                         <span class="zipcode" tal:condition="zip_code" tal:content="zip_code" />
                         <span class="cityname" tal:condition="city" tal:content="city" />
                     </div>
-                </tal:cond>
+                    <div class="region" tal:condition="region" tal:content="region" />
+                    <div class="country" tal:condition="country" tal:content="country" />
+                </div>
+                <div class="coordinates-tab"
+                    tal:define="phone python: view.get_field(contact, 'phone');
+                                cell_phone python: view.get_field(contact, 'cell_phone');
+                                fax python: view.get_field(contact, 'fax');
+                                email python: view.get_field(contact, 'email');
+                                im_handle python: view.get_field(contact, 'im_handle');
+                                website python: view.get_field(contact, 'website');">
+                    <div class="phone" tal:condition="phone" tal:content="phone" />
+                    <div class="cell_phone" tal:condition="cell_phone" tal:content="cell_phone" />
+                    <div class="fax" tal:condition="fax" tal:content="fax" />
+                    <div class="email"><a class="email" tal:condition="email" tal:attributes="href string:mailto:${email};" tal:content="email" /></div>
+                    <div class="im_handle" tal:condition="im_handle" tal:content="im_handle" />
+                    <div class="website">
+                        <a class="website" tal:condition="website" tal:replace="structure python: view.get_website(contact)" />
+                    </div>
+                </div>
 
                 <tal:block tal:repeat="field view/fields_without_address">
                     <tal:define tal:define="data python:view.get_field(contact, field)">

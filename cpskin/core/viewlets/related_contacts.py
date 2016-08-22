@@ -10,7 +10,10 @@ logger = logging.getLogger('cpskin.core related contacts viewlet')
 class RelatedContactsViewlet(common.ViewletBase):
 
     index = ViewPageTemplateFile('related_contacts.pt')
-    address_fields = ('street', 'number', 'zip_code', 'city')
+    address_fields = ('street', 'number', 'zip_code', 'city',
+                      'additional_address_details', 'region', 'country')
+    coordinates_fields = ('phone', 'cell_phone', 'fax', 'email', 'im_handle',
+                          'website')
     ignore_fields = ('title', )
 
     def available(self):
@@ -38,6 +41,8 @@ class RelatedContactsViewlet(common.ViewletBase):
         return field in self.selected_fields
 
     def get_field(self, contact, field):
+        if field not in self.selected_fields:
+            return ''
         if field in self.address_fields:
             contactable = IContactable(contact)
             details = contactable.get_contact_details()
@@ -67,15 +72,29 @@ class RelatedContactsViewlet(common.ViewletBase):
         for address_field in self.address_fields:
             if address_field in self.selected_fields:
                 i += 1
-        return i == len(self.address_fields)
+        return i >= 3
 
     def fields_without_address(self):
         fields = []
         for selected_field in self.selected_fields:
             if selected_field not in self.address_fields and \
-                    selected_field not in self.ignore_fields:
+                    selected_field not in self.ignore_fields and \
+                    selected_field not in self.coordinates_fields:
                 fields.append(selected_field)
         return fields
+
+    def get_website(self, contact):
+        website = self.get_field(contact, 'website')
+        if website.startswith('http'):
+            url = website
+            website_name = website.replace('http://', '')
+        else:
+            url = 'http://{0}'.format(website)
+            website_name = website
+        html = ""
+        html += '<a class="website" href="{0}" target="_blank">{1}</a>'.format(
+            url, website_name)
+        return html
 
 
 class AboveRelatedContactsViewlet(RelatedContactsViewlet):
