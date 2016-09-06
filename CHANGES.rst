@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.4 (unreleased)
+0.8.4 (2016-09-06)
 ------------------
 
 - Add wrapped-coord div for related_contacts fields view.
