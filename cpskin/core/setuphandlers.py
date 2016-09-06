@@ -87,6 +87,7 @@ def installCore(context):
     addCityNameToRegistry()
     addSubMenuPersistenceToRegistry()
     addSliderTypeToRegistry()
+    set_googleapi_key()
 
 
 def configureMembers(context):
@@ -495,3 +496,12 @@ def add_homepage_keywords():
         ),
         value=(u'homepage',))
     records['cpskin.core.interfaces.ICPSkinSettings.homepage_keywords'] = record
+
+
+def set_googleapi_key():
+    record_name = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'
+    default_value = 'AIzaSyDmbfEFrVcZ_x7Snn4Kv_WkqCmiZXn01rY'
+    value = api.portal.get_registry_record(record_name)
+    if value == default_value:
+        api.portal.set_registry_record(
+            record_name, 'ABQIAAAAaKes6QWqobpCx2AOamo-shTwM0brOpm')
