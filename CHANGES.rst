@@ -4,7 +4,8 @@ Changelog
 0.8.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add wrapped-coord div for related_contacts fields view.
+  [bsuttor]
 
 
 0.8.3 (2016-08-22)
@@ -91,7 +92,7 @@ Changelog
 
 - Get address form related_contacts with way collective.contact.core work.
   [bsuttor]
-  
+
 - Add category on indexview.
   [bsuttor]
 
