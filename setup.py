@@ -48,7 +48,7 @@ setup(name='cpskin.core',
           'cpskin.locales',
           'imio.media',
           'collective.plonetruegallery',
-          'collective.geo.leaflet',
+          'collective.geo.faceted',  # include collective.geo.leaflet
           'plone.behavior',
           'collective.sticky',
           'collective.quickupload',

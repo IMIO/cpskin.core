@@ -4,7 +4,8 @@ Changelog
 0.8.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add collective.geo.faceted dependency.
+  [bsuttor]
 
 
 0.8.4 (2016-09-06)
