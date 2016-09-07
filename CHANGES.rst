@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.5 (unreleased)
+0.8.5 (2016-09-07)
 ------------------
 
 - Add collective.geo.faceted dependency.
