@@ -5,13 +5,16 @@ from cpskin.core.interfaces import IFolderViewSelectedContent
 from cpskin.core.interfaces import IFolderViewWithBigImages
 from cpskin.core.utils import image_scale
 from cpskin.locales import CPSkinMessageFactory as _
+from DateTime import DateTime
 from datetime import datetime
 from plone import api
 from plone.app.contenttypes.browser.folder import FolderView as FoldV
 from plone.app.contenttypes.content import Event
+from plone.app.event.base import filter_and_resort
 from plone.app.event.recurrence import RecurrenceSupport
 from plone.dexterity.interfaces import IDexterityContent
 from plone.dexterity.interfaces import IDexterityFTI
+from plone.event.interfaces import IEvent
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
@@ -21,6 +24,7 @@ from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 from zope.schema import getFields
 from zope.schema.interfaces import IVocabularyFactory
+
 import httpagentparser
 
 
@@ -83,6 +87,12 @@ class FolderView(FoldV):
         self.request.response.redirect(context.absolute_url())
         return ''
 
+    def is_event_collection(self, brains):
+        if len(brains) > 0:
+            obj = brains[0].getObject()
+            return IEvent.providedBy(obj)
+        return False
+
     def getResults(self, content):
         """Content is a Collection"""
         if getattr(content, 'index_view_keywords', None):
@@ -92,8 +102,18 @@ class FolderView(FoldV):
                 'o': 'plone.app.querystring.operation.selection.is',
                 'v': homepage_keywords
             })
-        portal_catalog = api.portal.get_tool(name='portal_catalog')
+
         brains = content.results()
+        if self.is_event_collection(brains):
+            start = DateTime()
+            brains = filter_and_resort(
+                content,
+                content.results(),
+                start,
+                None,
+                content.sort_on,
+                content.sort_reversed)
+        portal_catalog = api.portal.get_tool(name='portal_catalog')
         results = {'sticky-results': [],
                    'standard-results': []}
         for brain in brains:

@@ -4,8 +4,8 @@ Changelog
 0.8.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Update way to get events, now events are sort considering recurrence.
+  [bsuttor]
 
 0.8.5 (2016-09-07)
 ------------------
