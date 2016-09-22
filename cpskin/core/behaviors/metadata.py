@@ -159,3 +159,23 @@ class IRelatedContacts(model.Schema):
             vocabulary=u"cpskin.core.vocabularies.contact_fields"
         )
     )
+
+
+""" This code below (IUseKeywordHomepage) should be deleted,
+but we need to make upgrade step for cleaning it"""
+from z3c.form.browser.checkbox import SingleCheckBoxFieldWidget
+@provider(IFormFieldProvider)
+class IUseKeywordHomepage(model.Schema):
+    model.fieldset(
+        'categorization',
+        label=_(u'label_schema_categorization', default=u'Categorization'),
+        fields=('useKeywordHomepage',),
+    )
+
+    form.widget('useKeywordHomepage', SingleCheckBoxFieldWidget)
+    useKeywordHomepage = schema.Bool(
+        title=_(u'Use keyword for homepage'),
+        description=_(u'Use keyword(s) define in CPSkin settings.'),
+        required=False,
+        default=False,
+    )
