@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.7 (unreleased)
+0.8.7 (2016-09-22)
 ------------------
 
 - Readd old code to prevent bug.
