@@ -152,6 +152,6 @@ def upgrade_front_page(context):
         )
     else:
         frontPage = getattr(portal, 'front-page', None)
-    if frontPage is not None:
-        frontPage.setExcludeFromNav(True)
+    # if frontPage is not None:
+    #     frontPage.setExcludeFromNav(True)
     setPageText(portal, frontPage, 'cpskin-frontpage-setup')
