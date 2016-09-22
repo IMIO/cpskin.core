@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.6 (unreleased)
+0.8.6 (2016-09-22)
 ------------------
 
 - Update way to get events, now events are sort considering recurrence.
