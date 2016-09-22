@@ -4,7 +4,8 @@ Changelog
 0.8.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Readd old code to prevent bug.
+  [bsuttor]
 
 
 0.8.6 (2016-09-22)
