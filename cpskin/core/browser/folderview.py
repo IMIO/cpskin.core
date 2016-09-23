@@ -106,13 +106,16 @@ class FolderView(FoldV):
         brains = content.results()
         if self.is_event_collection(brains):
             start = DateTime()
-            brains = filter_and_resort(
-                content,
-                content.results(),
-                start,
-                None,
-                content.sort_on,
-                content.sort_reversed)
+            sort_on = getattr(content, 'sort_on', 'start')
+            sort_reversed = getattr(content, 'sort_reversed', False)
+            if sort_on in ('start', 'end'):
+                brains = filter_and_resort(
+                    content,
+                    content.results(),
+                    start,
+                    None,
+                    sort_on,
+                    sort_reversed)
         portal_catalog = api.portal.get_tool(name='portal_catalog')
         results = {'sticky-results': [],
                    'standard-results': []}

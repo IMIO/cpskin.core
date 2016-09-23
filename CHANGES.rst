@@ -4,7 +4,8 @@ Changelog
 0.8.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix bug in plone.app.event.
+  [bsuttor]
 
 
 0.8.7 (2016-09-22)
