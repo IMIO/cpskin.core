@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.8 (unreleased)
+0.8.8 (2016-09-23)
 ------------------
 
 - Fix bug in plone.app.event.
