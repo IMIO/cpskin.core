@@ -1,7 +1,7 @@
  <div i18n:domain="cpskin" id="portal-footer">
 
     <p>
-        <span i18n:translate="" omit-tag="">Site r&eacute;alis&eacute; en collaboration avec</span>&nbsp;<a href="http://www.imio.be" target="_blank">IMIO</a>&nbsp;<tal:block i18n:translate="sous licence">sous licence</tal:block>&nbsp;
+        <span i18n:translate="" omit-tag="">Site r&eacute;alis&eacute; en collaboration avec</span>&nbsp;<a href="http://www.imio.be" target="_blank">IMIO</a>&nbsp;<tal:block i18n:translate="sous licence">sous licence</tal:block>
         <a href="http://fr.wikipedia.org/wiki/Free_Software_Foundation"
            target="_blank"
            i18n:attributes="href string:http://fr.wikipedia.org/wiki/Free_Software_Foundation"
