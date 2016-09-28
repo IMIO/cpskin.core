@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.10 (unreleased)
+0.8.10 (2016-09-28)
 -------------------
 
 - Fix bug in remove_behavior.
