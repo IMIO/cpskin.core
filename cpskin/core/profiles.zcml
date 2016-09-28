@@ -44,6 +44,16 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v18"
+        description="Remove old behavior IUseKeywordHomepage"
+        handler=".upgradehandlers.clean_old_keyword_homepage"
+        source="17"
+        destination="18"
+        profile="cpskin.core:default"
+        />
+
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v17"
         description="Upgrade step for moving CPSkin actions to new menu"
         handler=".upgradehandlers.move_cpskin_actions"

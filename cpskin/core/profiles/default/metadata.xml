@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <metadata>
-  <version>17</version>
+  <version>18</version>
   <dependencies>
     <dependency>profile-plone.resource:default</dependency>
-    <!-- <dependency>profile-plone.app.collection:default</dependency> -->
     <dependency>profile-plone.app.registry:default</dependency>
     <dependency>profile-imio.ckeditortemplates:default</dependency>
     <dependency>profile-collective.directory:default</dependency>

@@ -9,6 +9,7 @@ from cpskin.core.setuphandlers import addSliderTypeToRegistry
 from cpskin.core.setuphandlers import addSubMenuPersistenceToRegistry
 from cpskin.core.setuphandlers import setPageText
 from cpskin.core.utils import add_behavior
+from cpskin.core.utils import remove_behavior
 from plone import api
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
@@ -17,6 +18,13 @@ from zope.interface import directlyProvides, directlyProvidedBy
 
 import logging
 logger = logging.getLogger('cpskin.core')
+
+
+def clean_old_keyword_homepage(context):
+    behavior_name = 'cpskin.core.behaviors.metadata.IUseKeywordHomepage'
+    types = ['Folder', 'Collection', 'Document', 'Evenrt', 'News Item']
+    for type_name in types:
+        remove_behavior(type_name, behavior_name)
 
 
 def move_cpskin_actions(context):
