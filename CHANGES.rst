@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.9 (unreleased)
+0.8.9 (2016-09-28)
 ------------------
 
 - Add import step to delete cpskin.core.behaviors.metadata.IUseKeywordHomepage.
