@@ -4,7 +4,8 @@ Changelog
 0.8.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix bug in remove_behavior.
+  [bsuttor]
 
 
 0.8.9 (2016-09-28)
