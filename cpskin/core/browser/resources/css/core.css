@@ -43,3 +43,6 @@
 div#formfield-form-widgets-IDublinCore-subjects  {
     display: none;
 }
+div.table-responsive {
+    overflow-y: initial;
+}

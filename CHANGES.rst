@@ -4,7 +4,8 @@ Changelog
 0.8.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix wildcard.foldercontents overflow.
+  [bsuttor]
 
 
 0.8.10 (2016-09-28)
