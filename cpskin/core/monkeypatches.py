@@ -42,8 +42,9 @@ def keyword_apply_index(self, request, resultset=None):
         else:
             if isinstance(request_key, unicode):
                 request[key] = request_key.encode('utf8')
-        if getattr(request.get(key), 'query', '') is None:
-            request[key]['query'] = []
+        if isinstance(request.get(key), dict):
+            if 'query' in request.get(key).keys():
+                request[key]['query'] = []
     return super(KeywordIndex, self)._apply_index(request, resultset)
 
 
