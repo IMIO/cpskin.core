@@ -28,7 +28,7 @@ class BaseTagIndexer(object):
     def _getFieldContent(self, field):
         tags = getattr(self.context, field, None)
         if not tags:
-            return ""
+            raise AttributeError
         encodedTags = tuple(safe_utf8(s) for s in tags)
         return encodedTags
 
