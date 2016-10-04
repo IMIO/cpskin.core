@@ -43,7 +43,7 @@ def keyword_apply_index(self, request, resultset=None):
             if isinstance(request_key, unicode):
                 request[key] = request_key.encode('utf8')
         if isinstance(request.get(key), dict):
-            if 'query' in request.get(key).keys():
+            if request.get(key).get('query') is None:
                 request[key]['query'] = []
     return super(KeywordIndex, self)._apply_index(request, resultset)
 
