@@ -149,4 +149,12 @@
      permission="zope2.View"
      />
 
+  <browser:page
+    name="set-geo-contents-form"
+    for="Products.CMFCore.interfaces.ISiteRoot"
+    permission="cmf.ModifyPortalContent"
+    class=".form.GeoForm"
+    />
+
+
 </configure>

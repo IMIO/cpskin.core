@@ -4,6 +4,9 @@ Changelog
 0.8.11 (unreleased)
 -------------------
 
+- Add set-geo-contents-form view.
+  [bsuttor]
+
 - Fix wildcard.foldercontents overflow.
   [bsuttor]
 

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_get
 from binascii import b2a_qp
+from collective.geo.behaviour.interfaces import ICoordinates
 from plone import api
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.supermodel.interfaces import FIELDSETS_KEY
@@ -8,6 +10,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from zope.component import getUtility
 from zope.component.interface import nameToInterface
+from zope.i18n import translate
 from zope.interface import implements
 from zope.schema import getFieldsInOrder
 from zope.schema.interfaces import IVocabularyFactory
@@ -136,3 +139,27 @@ class ContactFieldsFactory(object):
         return SimpleVocabulary(items)
 
 ContactFieldsVocabularyFactory = ContactFieldsFactory()
+
+
+class GeoTypesFactory(object):
+    implements(IVocabularyFactory)
+
+    def __call__(self, context, query=None):
+        portal_types = api.portal.get_tool('portal_types')
+        request = aq_get(portal_types, 'REQUEST', None)
+        if portal_types is None:
+            return SimpleVocabulary([])
+
+        items = []
+
+        for k, v in portal_types.items():
+            behaviors = getattr(v, 'behaviors', [])
+            if ICoordinates.__identifier__ in behaviors:
+                items.append(
+                        (k, translate(v.Title(), context=request))
+                )
+        items.sort(key=lambda x: x[1])
+        items = [SimpleTerm(i[0], i[0], i[1]) for i in items]
+        return SimpleVocabulary(items)
+
+GeoTypesVocabularyFactory = GeoTypesFactory()

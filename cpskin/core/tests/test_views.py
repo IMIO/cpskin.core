@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+from collective.geo.behaviour.interfaces import ICoordinates
 from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.browser.folderview import configure_folderviews
+from cpskin.core.browser.form import GeoForm
 from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
@@ -12,13 +14,18 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.schemaeditor.utils import FieldAddedEvent
 from plone.schemaeditor.utils import IEditableSchema
+from Products.statusmessages.interfaces import IStatusMessage
+from z3c.form.interfaces import IFormLayer
 from zope import schema
 from zope.component import getMultiAdapter
 from zope.component import queryUtility
+from zope.component import provideAdapter
+from zope.interface import alsoProvides
 from zope.interface import directlyProvides
+from zope.interface import Interface
 from zope.event import notify
 from zope.lifecycleevent import ObjectAddedEvent
-
+from zope.publisher.interfaces.browser import IBrowserRequest
 import unittest
 
 
@@ -189,3 +196,80 @@ class TestViews(unittest.TestCase):
 
         withhours = view.is_with_hours(event)
         self.assertTrue(withhours)
+
+    def test_event_geo_contents_view(self):
+        add_behavior('Event', ICoordinates.__identifier__)
+        event = api.content.create(container=self.portal,
+                           type='Event', title='document')
+        event.location = 'Zoning Industriel, 34 5190 Mornimont'
+        form = getMultiAdapter(
+            (self.portal, self.portal.REQUEST), name='set-geo-contents-form')
+        form.request.form = {'form.widgets.content_types': [u'Event']}
+        form.update()
+        data, errors = form.extractData()
+        self.assertEqual(len(errors), 0)
+        coord = ICoordinates(event).coordinates
+        self.assertFalse(coord.startswith('POINT '))
+        form.handleApply(form, 'Ok')
+        coord = ICoordinates(event).coordinates
+        self.assertTrue(coord.startswith('POINT '))
+
+    def test_orga_geo_contents_view(self):
+        # add some contacts
+        applyProfile(self.portal, 'collective.contact.core:default')
+        directory = api.content.create(
+            container=self.portal, type='directory', id='directory')
+        person = api.content.create(
+            container=directory, type='person', id='person')
+        person.street = u'Zoning Industriel'
+        person.number = u'34'
+        person.zip_code = u'5190'
+        person.city = u'Mornimont'
+
+        add_behavior('person', ICoordinates.__identifier__)
+
+        form = getMultiAdapter(
+            (self.portal, self.portal.REQUEST), name='set-geo-contents-form')
+        form.request.form = {'form.widgets.content_types': [u'person']}
+        form.update()
+
+        coord = ICoordinates(person).coordinates
+        self.assertFalse(coord.startswith('POINT '))
+        form.handleApply(form, 'Ok')
+        coord = ICoordinates(person).coordinates
+        self.assertTrue(coord.startswith('POINT '))
+
+    def test_bad_orga_geo_contents_view(self):
+        # add some contacts
+        applyProfile(self.portal, 'collective.contact.core:default')
+        add_behavior('person', ICoordinates.__identifier__)
+        directory = api.content.create(
+            container=self.portal, type='directory', id='directory')
+        person = api.content.create(
+            container=directory, type='person', id='person')
+
+        form = getMultiAdapter(
+            (self.portal, self.portal.REQUEST), name='set-geo-contents-form')
+        form.request.form = {'form.widgets.content_types': [u'person']}
+        form.update()
+        form.handleApply(form, 'Ok')
+        messages = IStatusMessage(self.portal.REQUEST).showStatusMessages()
+        self.assertEqual(messages[0].message, u'No address for /plone/directory/person')
+        self.assertEqual(messages[1].message, u'0 person are updated')
+        person.street = u'Zoning Industriél'
+        person.number = u'34'
+        person.zip_code = u'5190'
+        person.city = u'Mornimônt'
+
+        form = getMultiAdapter(
+            (self.portal, self.portal.REQUEST), name='set-geo-contents-form')
+        form.request.form = {'form.widgets.content_types': [u'person']}
+        form.update()
+
+        coord = ICoordinates(person).coordinates
+        self.assertFalse(coord.startswith('POINT '))
+        form.handleApply(form, 'Ok')
+        messages = IStatusMessage(self.portal.REQUEST).showStatusMessages()
+        self.assertEqual(messages[0].message, u'1 person are updated')
+        coord = ICoordinates(person).coordinates
+        self.assertTrue(coord.startswith('POINT '))

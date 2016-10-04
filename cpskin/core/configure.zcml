@@ -38,25 +38,27 @@
     <utility component=".vocabulary.ContactFieldsVocabularyFactory"
              name="cpskin.core.vocabularies.contact_fields" />
 
-    <adapter factory=".extender.ContentExtender"
-             provides="archetypes.schemaextender.interfaces.ISchemaExtender"
-             name="cpskin.core.extender" />
 
-    <adapter factory=".indexer.StandardTagIndexer" name="standardTags" />
+   <utility component=".vocabulary.GeoTypesVocabularyFactory"
+            name="cpskin.core.vocabularies.geo_types" />
 
-    <adapter factory=".indexer.IAmTagIndexer" name="iamTags" />
+   <adapter factory=".extender.ContentExtender"
+           provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+           name="cpskin.core.extender" />
 
-    <adapter factory=".indexer.ISearchTagIndexer" name="isearchTags" />
+  <adapter factory=".indexer.StandardTagIndexer" name="standardTags" />
 
-    <adapter factory=".indexer.HiddenTagIndexer" name="hiddenTags" />
+  <adapter factory=".indexer.IAmTagIndexer" name="iamTags" />
 
-    <subscriber for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
-                handler=".events.user_logged_in" />
+  <adapter factory=".indexer.ISearchTagIndexer" name="isearchTags" />
 
-    <subscriber for="Products.PlonePAS.interfaces.events.IUserInitialLoginInEvent"
-                handler=".events.user_initial_logged_in" />
+  <adapter factory=".indexer.HiddenTagIndexer" name="hiddenTags" />
 
+  <subscriber for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
+              handler=".events.user_logged_in" />
 
+  <subscriber for="Products.PlonePAS.interfaces.events.IUserInitialLoginInEvent"
+              handler=".events.user_initial_logged_in" />
 
 
 </configure>

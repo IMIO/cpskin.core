@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+from collective.geo.behaviour.interfaces import ICoordinates
 from cpskin.core.behaviors.metadata import IHiddenTags
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
+from cpskin.core.utils import remove_behavior
 from plone import api
 from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
@@ -51,3 +53,17 @@ class TestVocabularies(unittest.TestCase):
         keys = vocabulary.by_value.keys()
         self.assertEqual(
             keys, [u'mot cl\xe9 cach\xe9', u'a-la-une', u'homepage'])
+
+    def test_geo_types_vocabulary(self):
+        name = 'cpskin.core.vocabularies.geo_types'
+        factory = getUtility(IVocabularyFactory, name)
+        vocabulary = factory(self.portal)
+        keys = vocabulary.by_value.keys()
+        self.assertEqual(len(keys), 1)
+        add_behavior('Document', ICoordinates.__identifier__)
+
+        vocabulary = factory(self.portal)
+        keys = vocabulary.by_value.keys()
+        self.assertIn(u'Document', keys)
+
+        remove_behavior('Document', ICoordinates.__identifier__)
