@@ -61,6 +61,7 @@ setup(name='cpskin.core',
           'collective.contact.core',
           'collective.taxonomy',
           'collective.navigationtoggle',
+          'geocoder',
       ],
       extras_require={
           'test': [
