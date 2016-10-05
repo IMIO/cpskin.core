@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.11 (unreleased)
+0.8.11 (2016-10-05)
 -------------------
 
 - Add adapter for collective.documentgenerator and imio.dashboard.
