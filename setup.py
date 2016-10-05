@@ -62,7 +62,7 @@ setup(name='cpskin.core',
           'collective.taxonomy',
           'collective.navigationtoggle',
           'geocoder',
-          'collective.documentgenerator',
+          'imio.dashboard',
       ],
       extras_require={
           'test': [
