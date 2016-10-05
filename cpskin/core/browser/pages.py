@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
+from collective.documentgenerator.browser.generation_view import DocumentGenerationView
 from cpskin.core.interfaces import IFolderViewSelectedContent as IFVSC
-from zope.publisher.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.publisher.browser import BrowserView
 
 
 class FrontPage(BrowserView):
@@ -56,3 +58,13 @@ class OpenData(BrowserView):
                 links.append(csvlink)
 
         return links
+
+
+class IDDocumentGenerationView(DocumentGenerationView):
+    """Override the 'get_generation_context' properly so 'get_base_generation_context'
+       is available for sub-packages that want to extend the template generation context."""
+
+    def _get_generation_context(self, helper_view):
+        view = self.context.restrictedTraverse('faceted_query')
+        brains = view.query(batch=False)
+        return {'brains': brains}

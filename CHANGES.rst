@@ -4,6 +4,9 @@ Changelog
 0.8.11 (unreleased)
 -------------------
 
+- Add adapter for collective.documentgenerator and imio.dashboard.
+  [bsuttor]
+
 - Add set-geo-contents-form view.
   [bsuttor]
 

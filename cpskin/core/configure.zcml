@@ -61,4 +61,11 @@
               handler=".events.user_initial_logged_in" />
 
 
+  <adapter
+    for="imio.dashboard.content.pod_template.IDashboardPODTemplate
+         plone.app.contenttypes.interfaces.ICollection"
+    factory=".adapter.DashboardPODTemplateCondition"
+    />
+
+
 </configure>

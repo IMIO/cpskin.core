@@ -110,6 +110,18 @@
         layer="..interfaces.ICPSkinCoreLayer"
         />
 
+    <configure package="imio.dashboard">
+        <browser:viewlet
+            for="OFS.interfaces.IItem"
+            name="dashboard-document-generation-link"
+            manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+            class="imio.dashboard.browser.overrides.IDDashboardDocumentGeneratorLinksViewlet"
+            template="browser/templates/generationlinks.pt"
+            layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+            permission="zope2.View"
+            />
+    </configure>
+
     <browser:resource
         file="css/banner.css"
         name="cpskin.core.banner.css"
