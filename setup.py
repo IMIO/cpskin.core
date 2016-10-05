@@ -62,6 +62,7 @@ setup(name='cpskin.core',
           'collective.taxonomy',
           'collective.navigationtoggle',
           'geocoder',
+          'collective.documentgenerator',
       ],
       extras_require={
           'test': [
