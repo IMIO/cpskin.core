@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.12 (unreleased)
+0.8.12 (2016-10-05)
 -------------------
 
 - Fix bad relative path.
