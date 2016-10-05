@@ -98,6 +98,7 @@ def set_lat_lng(portal_type, request):
                     message = 'lat lng of {0} updated ({1}/{2})'.format(
                         path, i, nbre)
                     logger.info(message)
+                    obj.reindexObject()
                     results.append(message)
             else:
                 message = 'No address for {0}'.format('/'.join(

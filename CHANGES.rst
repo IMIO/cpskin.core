@@ -4,7 +4,8 @@ Changelog
 0.8.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Reindex object after adding lat and lng.
+  [bsuttor]
 
 
 0.8.13 (2016-10-05)
