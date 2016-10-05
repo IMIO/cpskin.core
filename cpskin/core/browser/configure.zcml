@@ -161,7 +161,7 @@
   <browser:page
     for="eea.facetednavigation.interfaces.IFacetedNavigable"
     name="document-generation"
-    class=".adapter.IDDocumentGenerationView"
+    class=".pages.IDDocumentGenerationView"
     layer="..interfaces.ICPSkinCoreLayer"
     permission="zope2.View"
     />
