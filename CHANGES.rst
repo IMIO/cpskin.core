@@ -4,7 +4,8 @@ Changelog
 0.8.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix bad relative path.
+  [bsuttor]
 
 
 0.8.11 (2016-10-05)

@@ -162,7 +162,7 @@
     for="eea.facetednavigation.interfaces.IFacetedNavigable"
     name="document-generation"
     class=".adapter.IDDocumentGenerationView"
-    layer=".interfaces.ICPSkinCoreLayer"
+    layer="..interfaces.ICPSkinCoreLayer"
     permission="zope2.View"
     />
 
