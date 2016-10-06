@@ -149,7 +149,6 @@ def get_lat_lng_from_address(address):
         return (0, message)
     if geocode.content['status'] == u'ZERO_RESULTS':
         message = u'No result found for {0}'.format(address.decode('utf8'))
-        api.portal.show_message(message=message, request=request)
         return (2, message)
     return (1, geocode)
 
@@ -212,4 +211,3 @@ def set_coord(obj, request):
             obj.getPhysicalPath()))
         api.portal.show_message(message=message, request=request)
         logger.warn(message)
-        
