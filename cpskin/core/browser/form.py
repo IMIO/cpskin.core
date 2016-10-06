@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from collective.geo.behaviour.interfaces import ICoordinates
+from cpskin.core.utils import get_address_from_obj
+from cpskin.core.utils import get_lat_lng_from_address
+from cpskin.core.utils import has_lat_lng
+from cpskin.core.utils import set_coord
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 from plone.directives import form
@@ -67,12 +71,6 @@ class GeoForm(form.SchemaForm):
         """
 
 
-def has_lat_lng(obj):
-    if ICoordinates(obj).coordinates:
-        return True
-    return False
-
-
 def set_lat_lng(portal_type, request):
     catalog = api.portal.get_tool('portal_catalog')
     query = {}
@@ -85,62 +83,8 @@ def set_lat_lng(portal_type, request):
         obj = brain.getObject()
         i += 1
         if not has_lat_lng(obj):
-            address = get_address_from_obj(obj)
-            if address:
-                geocode = get_lat_lng_from_address(address, request)
-                if not geocode:
-                    # stop if limit is 'OVER_QUERY_LIMIT'
-                    return results
-                if geocode.lng and geocode.lat:
-                    coord = u"POINT({0} {1})".format(geocode.lng, geocode.lat)
-                    ICoordinates(obj).coordinates = coord
-                    path = '/'.join(obj.getPhysicalPath())
-                    message = 'lat lng of {0} updated ({1}/{2})'.format(
-                        path, i, nbre)
-                    logger.info(message)
-                    obj.reindexObject()
-                    results.append(message)
-            else:
-                message = 'No address for {0}'.format('/'.join(
-                    obj.getPhysicalPath()))
-                api.portal.show_message(message=message, request=request)
-                logger.warn(message)
+            message = set_coord(obj, request)
+            if message:
+                results.append(message)
+        logger.info('{0}/{1}'.format(i, nbre))
     return results
-
-
-def get_address_from_obj(obj):
-    # Event
-    loc = getattr(obj, 'location', '')
-    if loc:
-        return obj.location
-
-    # collective.contact.core
-    street = get_field(obj, 'street')
-    number = get_field(obj, 'number')
-    zip_code = get_field(obj, 'zip_code')
-    city = get_field(obj, 'city')
-    if street and city:
-        address = '{} {} {} {}'.format(
-            number, street, zip_code, city
-        )
-    else:
-        return ''
-    return address
-
-
-def get_lat_lng_from_address(address, request):
-    geocode = geocoder.google(address)
-    if geocode.content['status'] == u'OVER_QUERY_LIMIT':
-        logger.info(geocode.content['error_message'])
-        return False
-    if geocode.content['status'] == u'ZERO_RESULTS':
-        message = u'No result found for {0}'.format(address.decode('utf8'))
-        api.portal.show_message(message=message, request=request)
-        return geocode
-    return geocode
-
-def get_field(obj, field_name):
-    value = getattr(obj, field_name, '')
-    if value:
-        return value.encode('utf8')
-    return ''

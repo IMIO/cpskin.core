@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
+from collective.geo.behaviour.interfaces import ICoordinates
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.dexterity.interfaces import IDexterityFTI
@@ -8,6 +9,10 @@ from Products.CMFCore.interfaces import ISiteRoot
 from zope.component import queryUtility
 
 import os
+import geocoder
+import logging
+
+logger = logging.getLogger('cpskin.core.utils')
 
 
 def safe_utf8(s):
@@ -129,3 +134,82 @@ def image_scale(obj, css_class, default_scale):
     if not image:
         return False
     return image.tag(css_class=css_class) if image.tag() else ''
+
+
+
+# --------------- Address ---------------
+
+def get_lat_lng_from_address(address):
+    """Return tuple with status and geocoder object
+       0: error, 1: success, 2: not found"""
+    geocode = geocoder.google(address)
+    if geocode.content['status'] == u'OVER_QUERY_LIMIT':
+        message = geocode.content['error_message']
+        logger.info(message)
+        return (0, message)
+    if geocode.content['status'] == u'ZERO_RESULTS':
+        message = u'No result found for {0}'.format(address.decode('utf8'))
+        api.portal.show_message(message=message, request=request)
+        return (2, message)
+    return (1, geocode)
+
+
+def get_address_from_obj(obj):
+    # Event
+    loc = getattr(obj, 'location', '')
+    if loc:
+        return obj.location
+
+    # collective.contact.core
+    street = get_field(obj, 'street')
+    number = get_field(obj, 'number')
+    zip_code = get_field(obj, 'zip_code')
+    city = get_field(obj, 'city')
+    if street and city:
+        address = '{} {} {} {}'.format(
+            number, street, zip_code, city
+        )
+    else:
+        return ''
+    return address
+
+
+def get_field(obj, field_name):
+    value = getattr(obj, field_name, '')
+    if value:
+        return value.encode('utf8')
+    return ''
+
+
+def has_lat_lng(obj):
+    if ICoordinates(obj).coordinates:
+        return True
+    return False
+
+
+def set_coord(obj, request):
+    address = get_address_from_obj(obj)
+    if address:
+        status, geocode = get_lat_lng_from_address(address)
+        if status == 0:
+            # stop if limit is 'OVER_QUERY_LIMIT'
+            api.portal.show_message(message=geocode, request=request)
+            return geocode
+        elif status == 2:
+            # not found
+            api.portal.show_message(message=geocode, request=request)
+        else:
+            if geocode.lng and geocode.lat:
+                coord = u"POINT({0} {1})".format(geocode.lng, geocode.lat)
+                ICoordinates(obj).coordinates = coord
+                obj.reindexObject()
+                path = '/'.join(obj.getPhysicalPath())
+                message = 'lat lng of {0} updated'.format(path)
+                logger.info(message)
+                return message
+    else:
+        message = 'No address for {0}'.format('/'.join(
+            obj.getPhysicalPath()))
+        api.portal.show_message(message=message, request=request)
+        logger.warn(message)
+        

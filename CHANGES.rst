@@ -4,6 +4,9 @@ Changelog
 0.8.14 (unreleased)
 -------------------
 
+- Subscribe to creation of organization and person for creation of lat and lng.
+  [bsuttor]
+
 - Reindex object after adding lat and lng.
   [bsuttor]
 
