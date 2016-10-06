@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.14 (unreleased)
+0.8.14 (2016-10-06)
 -------------------
 
 - Subscribe to creation of organization and person for creation of lat and lng.
