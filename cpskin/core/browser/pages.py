@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from collective.documentgenerator.browser.generation_view import DocumentGenerationView
+from collective.documentgenerator.helper.dexterity import DXDocumentGenerationHelperView
+from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.core.interfaces import IFolderViewSelectedContent as IFVSC
+from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.component import getSiteManager
 from zope.publisher.browser import BrowserView
-
 
 class FrontPage(BrowserView):
 
@@ -60,11 +63,99 @@ class OpenData(BrowserView):
         return links
 
 
-class IDDocumentGenerationView(DocumentGenerationView):
+class IDocumentGenerationView(DocumentGenerationView):
     """Override the 'get_generation_context' properly so 'get_base_generation_context'
        is available for sub-packages that want to extend the template generation context."""
 
     def _get_generation_context(self, helper_view):
+        result = super(IDocumentGenerationView, self)._get_generation_context(helper_view)
         view = self.context.restrictedTraverse('faceted_query')
-        brains = view.query(batch=False)
-        return {'brains': brains}
+        result['brains'] = view.query(batch=False)
+        return result
+
+
+class EventGenerationHelperView(DXDocumentGenerationHelperView):
+
+    def is_same_month(self, start, end):
+        return start.get('month') == end.get('month')
+
+    def get_formatted_date(self):
+        from plone.app.event.base import date_speller
+        from plone.app.event.base import dates_for_display
+        date_formated = u''
+        event = self.real_context
+        dates = dates_for_display(event)
+        date_spel_start = date_speller(event, dates.get('start_iso'))
+        date_spel_end = date_speller(event, dates.get('end_iso'))
+        day_string = ''
+        # day and month
+        if dates.get('same_day'):
+            date_formated = u'{0} {1}'.format(
+                date_spel_start.get('day'),
+                date_spel_start.get('month'))
+        elif self.is_same_month(date_spel_start, date_spel_end):
+            date_formated = u'{0} au {1} {2}'.format(
+                date_spel_start.get('day'),
+                date_spel_end.get('day'),
+                date_spel_start.get('month'))
+        else:
+            date_formated += u'{0} {1} au {2} {3}'.format(
+                date_spel_start.get('day'),
+                date_spel_start.get('month'),
+                date_spel_end.get('day'),
+                date_spel_end.get('month'))
+
+        # hour
+        if not dates.get('whole_day'):
+            if dates.get('open_end'):
+                date_formated += _(u' à ')
+                date_formated += u'{0}:{1}'.format(
+                    date_spel_start.get('hour'),
+                    date_spel_start.get('minute2') )
+            else:
+                date_formated += _(u' de ')
+                date_formated += u'{0}:{1}'.format(
+                    date_spel_start.get('hour'),
+                    date_spel_start.get('minute2'))
+                date_formated += _(u' à ')
+                date_formated += u'{0}:{1}'.format(
+                    date_spel_end.get('hour'),
+                    date_spel_end.get('minute2') )
+
+        return date_formated
+
+    def get_taxonomy_value(self, field_name):
+        lang = self.real_context.language
+        taxonomy_id = self.get_value(field_name)
+        domain = 'collective.taxonomy.{0}'.format(
+            field_name.replace('taxonomy_', '').replace('_', ''))
+
+        sm = getSiteManager()
+        utility = sm.queryUtility(ITaxonomy, name=domain)
+        text = utility.translate(
+            taxonomy_id.pop(),
+            context=self.real_context,
+            target_language=lang)
+        return text
+
+    def get_relation_field(self, field_name):
+        related_obj = self.get_value(field_name)
+        return related_obj.to_object
+
+    def get_relation_value(self, field_name, value_name):
+        if isinstance(value_name, list):
+            result = []
+            for value in value_name:
+                relation_field = self.get_relation_field(field_name)
+                result.append(getattr(relation_field, value, ''))
+            return " ".join(result)
+        relation_field = self.get_relation_field(field_name)
+        return getattr(relation_field, value_name, '')
+
+    def get_phone(self):
+        obj = self.get_relation_field('contact')
+        phone = getattr(obj, 'phone', '')
+        if not phone:
+            obj = self.get_relation_field('organizer')
+            phone = etattr(obj, 'phone', '')
+        return phone

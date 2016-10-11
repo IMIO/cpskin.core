@@ -4,7 +4,8 @@ Changelog
 0.8.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add event export models.
+  [bsuttor]
 
 
 0.8.14 (2016-10-06)

@@ -161,7 +161,15 @@
   <browser:page
     for="eea.facetednavigation.interfaces.IFacetedNavigable"
     name="document-generation"
-    class=".pages.IDDocumentGenerationView"
+    class=".pages.IDocumentGenerationView"
+    layer="..interfaces.ICPSkinCoreLayer"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    for="plone.app.event.dx.interfaces.IDXEvent"
+    name="document_generation_helper_view"
+    class=".pages.EventGenerationHelperView"
     layer="..interfaces.ICPSkinCoreLayer"
     permission="zope2.View"
     />
