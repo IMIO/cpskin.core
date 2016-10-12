@@ -40,10 +40,10 @@ class OpenData(BrowserView):
         brains = portal_catalog(query_dict)
         for brain in brains:
             folder = brain.getObject()
-            if getattr(folder, "default_page", None):
+            if getattr(folder, 'default_page', None):
                 default_page = folder.default_page
                 default_obj = folder[default_page]
-                rsslink = "{0}/atom.xml".format(default_obj.absolute_url())
+                rsslink = '{0}/atom.xml'.format(default_obj.absolute_url())
                 links.append(rsslink)
 
         query_dict = {}
@@ -55,10 +55,10 @@ class OpenData(BrowserView):
             query_dict = {}
             query_dict['portal_type'] = 'collective.directory.card'
             query_dict['path'] = {
-                'query': "/".join(directory.getPhysicalPath()), 'depth': 3}
+                'query': '/'.join(directory.getPhysicalPath()), 'depth': 3}
             size = len(catalog(query_dict))
             if size > 3:
-                csvlink = "{0}/collective_directory_export_view".format(
+                csvlink = '{0}/collective_directory_export_view'.format(
                     directory.absolute_url()
                 )
                 links.append(csvlink)
@@ -88,7 +88,6 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         dates = dates_for_display(event)
         date_spel_start = date_speller(event, dates.get('start_iso'))
         date_spel_end = date_speller(event, dates.get('end_iso'))
-        day_string = ''
         # day and month
         if dates.get('same_day'):
             date_formated = u'{0} {1}'.format(
@@ -112,7 +111,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
                 date_formated += _(u' à ')
                 date_formated += u'{0}:{1}'.format(
                     date_spel_start.get('hour'),
-                    date_spel_start.get('minute2') )
+                    date_spel_start.get('minute2'))
             else:
                 date_formated += _(u' de ')
                 date_formated += u'{0}:{1}'.format(
@@ -121,7 +120,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
                 date_formated += _(u' à ')
                 date_formated += u'{0}:{1}'.format(
                     date_spel_end.get('hour'),
-                    date_spel_end.get('minute2') )
+                    date_spel_end.get('minute2'))
 
         return date_formated
 
@@ -155,7 +154,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             for value in value_name:
                 relation_field = self.get_relation_field(field_name)
                 result.append(getattr(relation_field, value, ''))
-            return " ".join(result)
+            return ' '.join(result)
         relation_field = self.get_relation_field(field_name)
         return getattr(relation_field, value_name, '')
 

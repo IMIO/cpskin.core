@@ -2,8 +2,8 @@
 from collective.z3cform.keywordwidget.field import Keywords
 from cpskin.locales import CPSkinMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.directives import form
+from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.supermodel import model
 from z3c.form.browser.orderedselect import OrderedSelectFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
@@ -114,10 +114,10 @@ class IRelatedContacts(model.Schema):
     )
 
     aboveContentContact = RelationList(
-        title=u"Above content related contact",
+        title=u'Above content related contact',
         default=[],
         value_type=RelationChoice(
-            title=_(u"Related"),
+            title=_(u'Related'),
             source=ObjPathSourceBinder(
                 portal_type=('person', 'organization')
             )
@@ -127,21 +127,21 @@ class IRelatedContacts(model.Schema):
 
     form.widget(aboveVisbileFields=OrderedSelectFieldWidget)
     aboveVisbileFields = schema.Tuple(
-        title=_(u"Visible fields for above viewlet"),
+        title=_(u'Visible fields for above viewlet'),
         description=_(u'Please select which fields should be visible.'),
         required=False,
         default=('street', 'number', 'zip_code', 'city', 'phone', 'cell_phone',
                  'fax', 'email', 'website', 'activity'),
         value_type=schema.Choice(
-            vocabulary=u"cpskin.core.vocabularies.contact_fields"
+            vocabulary=u'cpskin.core.vocabularies.contact_fields'
         )
     )
 
     belowContentContact = RelationList(
-        title=u"Below content related contact",
+        title=u'Below content related contact',
         default=[],
         value_type=RelationChoice(
-            title=_(u"Related"),
+            title=_(u'Related'),
             source=ObjPathSourceBinder(
                 portal_type=('person', 'organization')
             )
@@ -151,12 +151,11 @@ class IRelatedContacts(model.Schema):
 
     form.widget(belowVisbileFields=OrderedSelectFieldWidget)
     belowVisbileFields = schema.Tuple(
-        title=_(u"Visible fields for below viewlet"),
+        title=_(u'Visible fields for below viewlet'),
         description=_(u'Please select which fields should be visible.'),
         required=False,
         default=('title',),
         value_type=schema.Choice(
-            vocabulary=u"cpskin.core.vocabularies.contact_fields"
+            vocabulary=u'cpskin.core.vocabularies.contact_fields'
         )
     )
-
