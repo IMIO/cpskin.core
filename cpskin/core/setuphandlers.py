@@ -149,7 +149,7 @@ def unregisterProvidesInterfaces(portal):
                   IAlbumCollection,
                   IVideoCollection]
     for interface in interfaces:
-        catalog = api.portal.get_tool(portal, 'portal_catalog')
+        catalog = api.portal.get_tool('portal_catalog')
         brains = catalog({
             'object_provides': interface.__identifier__,
         })
@@ -186,8 +186,8 @@ def addMaildropHost(self):
      If MaildropHost exist, PloneGazette will use it to send mails.
      This will avoid duplicate emails send as reported by
     """
-    portal = api.portal.get_tool(self, 'portal_url').getPortalObject()
-    if not getattr(portal, 'MaildropHost'):
+    portal = api.portal.get_tool('portal_url').getPortalObject()
+    if not getattr(portal, 'MaildropHost', None):
         try:
             portal.manage_addProduct['MaildropHost'].manage_addMaildropHost(
                 'MaildropHost', title='MaildropHost')
@@ -202,7 +202,7 @@ def addCatalogIndexes(portal):
     We couldn't do it in the profile directly, see :
         http://maurits.vanrees.org/weblog/archive/2009/12/catalog
     """
-    catalog = api.portal.get_tool(portal, 'portal_catalog')
+    catalog = api.portal.get_tool('portal_catalog')
     indexes = catalog.indexes()
     wanted = (('standardTags', 'KeywordIndex'),
               ('iamTags', 'KeywordIndex'),
@@ -240,7 +240,7 @@ def ChangeCollectionsIds(portal):
 
 
 def set_exclude_from_nav(obj):
-    if getattr(obj, 'setExcludeFromNav'):
+    if getattr(obj, 'setExcludeFromNav', None):
         obj.setExcludeFromNav(True)
     else:
         # dexterity with exludefromnav behavior
@@ -302,7 +302,7 @@ def removeBehavior(portal, behavior, name):
 
 
 def configCollectiveQucikupload(portal):
-    ptool = api.portal.get_tool(portal, 'portal_properties')
+    ptool = api.portal.get_tool('portal_properties')
     qu_props = ptool.get('quickupload_properties')
     if not qu_props.hasProperty('show_upload_action'):
         qu_props._setProperty('show_upload_action', True, 'boolean')

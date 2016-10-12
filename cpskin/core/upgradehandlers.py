@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
-from cpskin.core.setuphandlers import add_homepage_keywords
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
 from cpskin.core.setuphandlers import addLoadPageMenuToRegistry
@@ -44,7 +43,8 @@ def add_index_view_behavior(context):
 
 
 def upgrade_homepage_keywords(context):
-    add_homepage_keywords()
+    # add_homepage_keywords()
+    pass
 
 
 def upgrade_minisite_menu(context):
