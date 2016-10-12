@@ -5,9 +5,12 @@ from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.core.interfaces import IFolderViewSelectedContent as IFVSC
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
+from plone.app.event.base import date_speller
+from plone.app.event.base import dates_for_display
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getSiteManager
 from zope.publisher.browser import BrowserView
+
 
 class FrontPage(BrowserView):
 
@@ -80,8 +83,6 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         return start.get('month') == end.get('month')
 
     def get_formatted_date(self):
-        from plone.app.event.base import date_speller
-        from plone.app.event.base import dates_for_display
         date_formated = u''
         event = self.real_context
         dates = dates_for_display(event)
@@ -132,14 +133,20 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
 
         sm = getSiteManager()
         utility = sm.queryUtility(ITaxonomy, name=domain)
-        text = utility.translate(
-            taxonomy_id.pop(),
-            context=self.real_context,
-            target_language=lang)
-        return text
+        taxonomy_id = list(taxonomy_id)
+        if len(taxonomy_id) > 0:
+            text = utility.translate(
+                taxonomy_id[0],
+                context=self.real_context,
+                target_language=lang)
+            return text
+        else:
+            return None
 
     def get_relation_field(self, field_name):
         related_obj = self.get_value(field_name)
+        if not related_obj:
+            return None
         return related_obj.to_object
 
     def get_relation_value(self, field_name, value_name):
@@ -152,10 +159,16 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         relation_field = self.get_relation_field(field_name)
         return getattr(relation_field, value_name, '')
 
-    def get_phone(self):
+    def get_info(self):
         obj = self.get_relation_field('contact')
-        phone = getattr(obj, 'phone', '')
+        info = []
+        phone = getattr(obj, 'phone', None)
         if not phone:
             obj = self.get_relation_field('organizer')
-            phone = etattr(obj, 'phone', '')
-        return phone
+            phone = getattr(obj, 'phone', None)
+        if phone:
+            info.append(phone)
+        website = getattr(obj, 'website', None)
+        if website:
+            info.append(website)
+        return ' - '.join(info)
