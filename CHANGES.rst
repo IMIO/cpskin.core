@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.15 (unreleased)
+0.8.15 (2016-10-12)
 -------------------
 
 - Add event export models.
