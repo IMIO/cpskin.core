@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone.testing import layered
 from cpskin.core.testing import CPSKIN_CORE_ROBOT_TESTING
+from plone.testing import layered
 
 import robotsuite
 import unittest

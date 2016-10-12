@@ -10,6 +10,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
+
 import unittest
 
 

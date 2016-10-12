@@ -1,8 +1,8 @@
-import unittest2 as unittest
-
+# -*- coding: utf-8 -*-
+from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from plone.app.testing import applyProfile
 
-from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
+import unittest
 
 
 class TestProfiles(unittest.TestCase):
