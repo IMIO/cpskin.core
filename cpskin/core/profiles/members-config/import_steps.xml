@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<import-steps>
-  <import-step id="cpskin.core.members-config"
-               handler="cpskin.core.setuphandlers.configureMembers"
-               title="cpskin.core: members configuration import step">
-  </import-step>
-</import-steps>

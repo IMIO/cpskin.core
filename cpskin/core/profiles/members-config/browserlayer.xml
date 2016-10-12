@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<layers>
-    <layer name="cpskin.core.members" interface="cpskin.core.interfaces.ICPSkinCoreWithMembersLayer" />
-</layers>

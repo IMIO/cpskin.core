@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
-from cpskin.core.utils import add_behavior
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
+from cpskin.core.utils import add_behavior
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.registry import field
 from plone.registry import Record
 from plone.registry.interfaces import IRegistry
-from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.utils import bodyfinder
-from plone.app.controlpanel.security import ISecuritySchema
-from zope.component import getAdapter
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
 from zope.interface import noLongerProvides
@@ -26,7 +23,7 @@ def installCore(context):
         return
 
     logger.info('Installing')
-    portal = context.getSite()
+    portal = api.portal.get()
 
     # Rename events and news
     ChangeCollectionsIds(portal)
@@ -90,65 +87,12 @@ def installCore(context):
     set_googleapi_key()
 
 
-def configureMembers(context):
-    if context.readDataFile('cpskin.core-membersconfig.txt') is None:
-        return
-
-    logger.info('Configuring members')
-    portal = context.getSite()
-
-    pm = getToolByName(portal, 'portal_membership')
-    if not pm.getMemberareaCreationFlag():
-        pm.setMemberareaCreationFlag()
-        # pm.createMemberArea('root')
-
-    # Add a citizen group
-    api.group.create(groupname='citizens', title='Citizens')
-
-    security = getAdapter(portal, ISecuritySchema)
-    # Activate Members folders
-    security.set_enable_user_folders(True)
-    # Activate anonymous registration
-    security.set_enable_self_reg(True)
-
-    # Clean user interface
-    members = portal.get('Members', None)
-    if members:
-        members.manage_permission('Sharing page: Delegate roles',
-                                  ('Manager', 'Site Administrator', 'Reviewer'),
-                                  acquire=0)
-        members.manage_permission('Modify view template',
-                                  ('Manager', 'Site Administrator', 'Reviewer'),
-                                  acquire=0)
-        members.manage_permission('Review portal content',
-                                  ('Manager', 'Site Administrator', 'Reviewer'),
-                                  acquire=0)
-        members.manage_permission('Modify constrain types',
-                                  ('Manager', 'Site Administrator', 'Reviewer'),
-                                  acquire=0)
-
-        if not members.hasObject('help-page'):
-            # add Members help page
-            helpPage = api.content.create(container=members, type='Document',
-                                          id='help-page',
-                                          title="Bienvenue dans l'espace citoyen")
-            # needed because of https://github.com/plone/plone.api/issues/99
-            helpPage.setTitle("Bienvenue dans l'espace citoyen")
-            setPageText(portal, helpPage, 'cpskin-helppage-setup')
-            members.setDefaultPage('help-page')
-            set_exclude_from_nav(members)
-            # we set locally allowed types at the first configuration
-            # members.setConstrainTypesMode(1)
-            # members.setLocallyAllowedTypes(['Event'])
-            # members.setImmediatelyAddableTypes(['Event'])
-
-
 def uninstallCore(context):
     if context.readDataFile('cpskin.core-uninstall.txt') is None:
         return
 
     logger.info('Uninstalling')
-    portal = context.getSite()
+    portal = api.portal.get()
 
     # Remove banner image
     if portal.hasObject('banner.jpg'):
@@ -205,9 +149,9 @@ def unregisterProvidesInterfaces(portal):
                   IAlbumCollection,
                   IVideoCollection]
     for interface in interfaces:
-        catalog = getToolByName(portal, 'portal_catalog')
+        catalog = api.portal.get_tool(portal, 'portal_catalog')
         brains = catalog({
-            "object_provides": interface.__identifier__,
+            'object_provides': interface.__identifier__,
         })
         for brain in brains:
             obj = brain.getObject()
@@ -242,8 +186,8 @@ def addMaildropHost(self):
      If MaildropHost exist, PloneGazette will use it to send mails.
      This will avoid duplicate emails send as reported by
     """
-    portal = getToolByName(self, 'portal_url').getPortalObject()
-    if not hasattr(portal, "MaildropHost"):
+    portal = api.portal.get_tool(self, 'portal_url').getPortalObject()
+    if not getattr(portal, 'MaildropHost'):
         try:
             portal.manage_addProduct['MaildropHost'].manage_addMaildropHost(
                 'MaildropHost', title='MaildropHost')
@@ -258,7 +202,7 @@ def addCatalogIndexes(portal):
     We couldn't do it in the profile directly, see :
         http://maurits.vanrees.org/weblog/archive/2009/12/catalog
     """
-    catalog = getToolByName(portal, 'portal_catalog')
+    catalog = api.portal.get_tool(portal, 'portal_catalog')
     indexes = catalog.indexes()
     wanted = (('standardTags', 'KeywordIndex'),
               ('iamTags', 'KeywordIndex'),
@@ -269,9 +213,9 @@ def addCatalogIndexes(portal):
         if name not in indexes:
             catalog.addIndex(name, meta_type)
             indexables.append(name)
-            logger.info("Added %s for field %s.", meta_type, name)
+            logger.info('Added {0} for field {1}.'.format(meta_type, name))
     if len(indexables) > 0:
-        logger.info("Indexing new indexes %s.", ', '.join(indexables))
+        logger.info('Indexing new indexes {0}.'.format(', '.join(indexables)))
         catalog.manage_reindexIndex(ids=indexables)
 
 
@@ -296,7 +240,7 @@ def ChangeCollectionsIds(portal):
 
 
 def set_exclude_from_nav(obj):
-    if hasattr(obj, 'setExcludeFromNav'):
+    if getattr(obj, 'setExcludeFromNav'):
         obj.setExcludeFromNav(True)
     else:
         # dexterity with exludefromnav behavior
@@ -308,7 +252,7 @@ def addImageFromFile(portal, fileName):
     filePath = os.path.join(dataPath, fileName)
     if not portal.hasObject(fileName):
         portal_types = api.portal.get_tool('portal_types')
-        if portal_types.get('Image').meta_type != "Dexterity FTI":
+        if portal_types.get('Image').meta_type != 'Dexterity FTI':
             fd = open(filePath, 'rb')
             image = api.content.create(type='Image',
                                        title=fileName,
@@ -358,7 +302,7 @@ def removeBehavior(portal, behavior, name):
 
 
 def configCollectiveQucikupload(portal):
-    ptool = getToolByName(portal, 'portal_properties')
+    ptool = api.portal.get_tool(portal, 'portal_properties')
     qu_props = ptool.get('quickupload_properties')
     if not qu_props.hasProperty('show_upload_action'):
         qu_props._setProperty('show_upload_action', True, 'boolean')
@@ -377,10 +321,10 @@ def addLoadPageMenuToRegistry():
         return
 
     logger.info(
-        "Adding cpskin.core.interfaces.ICPSkinSettings.load_page_menu to registry")
-    record = Record(field.Bool(title=_(u"Load page menu"),
+        'Adding cpskin.core.interfaces.ICPSkinSettings.load_page_menu to registry')
+    record = Record(field.Bool(title=_(u'Load page menu'),
                                description=_(
-                                   u"Is level 1 menu load page at click?"),
+                                   u'Is level 1 menu load page at click?'),
                                required=False,
                                default=False),
                     value=False)
@@ -394,9 +338,9 @@ def addSubMenuPersistenceToRegistry():
         return
 
     logger.info(
-        "Adding cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence to registry")
-    record = Record(field.Bool(title=_(u"Sub menu persistence"),
-                               description=_(u"Is level 2 menu persist?"),
+        'Adding cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence to registry')
+    record = Record(field.Bool(title=_(u'Sub menu persistence'),
+                               description=_(u'Is level 2 menu persist?'),
                                required=False,
                                default=True),
                     value=True)
@@ -410,10 +354,10 @@ def addAutoPlaySliderToRegistry():
         return
 
     logger.info(
-        "Adding cpskin.core.interfaces.ICPSkinSettings.auto_play_slider to registry")
-    record = Record(field.Bool(title=_(u"Auto play slider"),
+        'Adding cpskin.core.interfaces.ICPSkinSettings.auto_play_slider to registry')
+    record = Record(field.Bool(title=_(u'Auto play slider'),
                                description=_(
-                                   u"Is the front page slider automatically play?"),
+                                   u'Is the front page slider automatically play?'),
                                required=False,
                                default=True),
                     value=True)
@@ -427,10 +371,10 @@ def addSliderTimerToRegistry():
         return
 
     logger.info(
-        "Adding cpskin.core.interfaces.ICPSkinSettings.slider_timer to registry")
-    record = Record(field.Bool(title=_(u"Slider timer"),
+        'Adding cpskin.core.interfaces.ICPSkinSettings.slider_timer to registry')
+    record = Record(field.Bool(title=_(u'Slider timer'),
                                description=_(
-                                   u"Number of seconds between each transition."),
+                                   u'Number of seconds between each transition.'),
                                required=False,
                                default=5000),
                     value=5000)
@@ -444,14 +388,14 @@ def addCityNameToRegistry():
         return
 
     logger.info(
-        "Adding cpskin.core.interfaces.ICPSkinSettings.city_name to registry")
+        'Adding cpskin.core.interfaces.ICPSkinSettings.city_name to registry')
     portal = api.portal.get()
     site_id = portal.getId()
     city_name = unicode(site_id.capitalize())
     record = Record(
         field.TextLine(
-            title=_(u"City name"),
-            description=_(u"City name variable used in some template."),
+            title=_(u'City name'),
+            description=_(u'City name variable used in some template.'),
             required=True,
             default=u'City name'),
         value=city_name)
@@ -465,37 +409,37 @@ def addSliderTypeToRegistry():
         return
 
     logger.info(
-        "Adding cpskin.core.interfaces.ICPSkinSettings.slider_type to registry")
+        'Adding cpskin.core.interfaces.ICPSkinSettings.slider_type to registry')
     record = Record(
         field.TextLine(
-            title=_(u"Slider type"),
-            description=_(u"Choose an horizontal or vertical slider."),
+            title=_(u'Slider type'),
+            description=_(u'Choose an horizontal or vertical slider.'),
             required=True,
             default=u'slider_view'),
         value=u'slider_view')
     records['cpskin.core.interfaces.ICPSkinSettings.slider_type'] = record
 
 
-def add_homepage_keywords():
-    # TO BE DELETED, no more used
-    registry = getUtility(IRegistry)
-    records = registry.records
-    if 'cpskin.core.interfaces.ICPSkinSettings.homepage_keywords' in records:
-        return
-
-    logger.info(
-        "Adding cpskin.core.interfaces.ICPSkinSettings.homepage_keywords to registry")
-    record = Record(
-        field.Tuple(
-            title=_(u"Homepage keywords"),
-            description=_(
-                u'Please select which hidden keywords is use by collections for homepage.'),
-            value_type=field.Choice(
-                vocabulary=u"cpskin.core.vocabularies.hiddenTags"
-            )
-        ),
-        value=(u'homepage',))
-    records['cpskin.core.interfaces.ICPSkinSettings.homepage_keywords'] = record
+# def add_homepage_keywords():
+#     # TO BE DELETED, no more used
+#     registry = getUtility(IRegistry)
+#     records = registry.records
+#     if 'cpskin.core.interfaces.ICPSkinSettings.homepage_keywords' in records:
+#         return
+#
+#     logger.info(
+#         'Adding cpskin.core.interfaces.ICPSkinSettings.homepage_keywords to registry')
+#     record = Record(
+#         field.Tuple(
+#             title=_(u'Homepage keywords'),
+#             description=_(
+#                 u'Please select which hidden keywords is use by collections for homepage.'),
+#             value_type=field.Choice(
+#                 vocabulary=u'cpskin.core.vocabularies.hiddenTags'
+#             )
+#         ),
+#         value=(u'homepage',))
+#     records['cpskin.core.interfaces.ICPSkinSettings.homepage_keywords'] = record
 
 
 def set_googleapi_key():
