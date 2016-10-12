@@ -8,6 +8,7 @@ from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import add_leadimage_from_file
+from datetime import datetime
 from plone import api
 from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
@@ -26,6 +27,8 @@ from zope.interface import Interface
 from zope.event import notify
 from zope.lifecycleevent import ObjectAddedEvent
 from zope.publisher.interfaces.browser import IBrowserRequest
+
+import pytz
 import unittest
 
 
@@ -273,3 +276,32 @@ class TestViews(unittest.TestCase):
         self.assertEqual(messages[0].message, u'1 person are updated')
         coord = ICoordinates(person).coordinates
         self.assertTrue(coord.startswith('POINT '))
+
+    def test_date_event_gneration_helper_view(self):
+        applyProfile(self.portal, 'collective.documentgenerator:default')
+        utc = pytz.utc
+        start = datetime(2001, 1, 1, 10, 0, tzinfo=utc)
+        end = datetime(2001, 1, 1, 11, 0, tzinfo=utc)
+        event = api.content.create(container=self.portal,
+                                   type='Event', title='my_event',
+                                   start=start, end=end, timezone='UTC')
+        view =  getMultiAdapter(
+            (event, self.portal.REQUEST), name='document_generation_helper_view')
+        view.real_context = event
+
+        self.assertEqual(
+            view.get_formatted_date(), u'1 January de 10:00 \xe0 11:00')
+
+        event.end = datetime(2001, 1, 3, 11, 0, tzinfo=utc)
+        self.assertEqual(
+            view.get_formatted_date(), u'1 au 3 January de 10:00 \xe0 11:00')
+
+        event.end = datetime(2001, 2, 1, 11, 0, tzinfo=utc)
+        self.assertEqual(
+            view.get_formatted_date(),
+            u'1 January au 1 February de 10:00 \xe0 11:00')
+
+        event.end = datetime(2001, 1, 1, 11, 0, tzinfo=utc)
+        event.open_end = True
+        self.assertEqual(
+            view.get_formatted_date(), u'1 January \xe0 10:00')

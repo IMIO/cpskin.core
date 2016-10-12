@@ -8,6 +8,7 @@
   <include package="collective.contact.core" />
   <include package="collective.taxonomy" />
   <include package="collective.navigationtoggle" />
+  <include package="collective.documentgenerator" />
 
 
   <genericsetup:registerProfile
