@@ -4,7 +4,8 @@ Changelog
 0.8.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Set item_count to higher value to sort with all events.
+  [bsuttor]
 
 
 0.8.15 (2016-10-12)
