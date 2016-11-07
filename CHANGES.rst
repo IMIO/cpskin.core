@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.16 (unreleased)
+0.8.16 (2016-11-07)
 -------------------
 
 - Set item_count to higher value to sort with all events.
