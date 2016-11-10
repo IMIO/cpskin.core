@@ -4,7 +4,8 @@ Changelog
 0.8.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add a new behavior for directory contact details
+  [mpeeters]
 
 
 0.8.16 (2016-11-07)
