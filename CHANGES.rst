@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.17 (unreleased)
+0.8.17 (2016-11-10)
 -------------------
 
 - Add a new behavior for directory contact details
