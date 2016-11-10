@@ -51,4 +51,10 @@
     for="plone.app.contenttypes.interfaces.ICollection"
     />
 
+  <plone:behavior
+    title="Contact details for directory"
+    description="Contact details (phone numbers, address, email, ...)."
+    provides=".directorycontact.IDirectoryContactDetails"
+    />
+
 </configure>

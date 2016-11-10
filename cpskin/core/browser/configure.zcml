@@ -174,4 +174,18 @@
     permission="zope2.View"
     />
 
+  <!-- directory contact details -->
+  <browser:page
+    for="collective.contact.widget.interfaces.IContactContent"
+    name="contactdetails"
+    class=".contactdetails.ContactDetailsView"
+    template="templates/directorycontactdetails.pt"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+    permission="zope2.View"
+    />
+
+  <!-- widget -->
+  <adapter factory=".widget.MultiLineDataConverter" />
+
+
 </configure>
