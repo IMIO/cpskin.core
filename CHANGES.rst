@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.18 (unreleased)
+0.8.18 (2016-11-16)
 -------------------
 
 - Set default item_count value to 30.
