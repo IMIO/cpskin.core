@@ -4,7 +4,8 @@ Changelog
 0.8.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add fields from IDirectoryContactDetails into ContactFieldsFactory vocabulary in a sad way.
+  [bsuttor]
 
 
 0.8.18 (2016-11-16)

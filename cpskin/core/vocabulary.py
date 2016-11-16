@@ -118,7 +118,14 @@ class ContactFieldsFactory(object):
         for behavior in behaviors:
             if behavior not in exclude_behaviors:
                 try:
-                    interface = nameToInterface(context, behavior)
+                    # not able to get fields from IDirectoryContactDetails
+                    # with nameToInterface(context, behavior)
+                    if behavior == 'cpskin.core.behaviors.directorycontact.IDirectoryContactDetails':  # noqa
+                        from cpskin.core.behaviors.directorycontact import (
+                            IDirectoryContactDetails)
+                        interface = IDirectoryContactDetails
+                    else:
+                        interface = nameToInterface(context, behavior)
                     fieldsets = mergedTaggedValueList(interface, FIELDSETS_KEY)
                     for name, field in getFieldsInOrder(interface):
                         if name not in exclude:
@@ -126,7 +133,8 @@ class ContactFieldsFactory(object):
                                 visible_name = field.title
                             else:
                                 fieldset = [
-                                    fieldset for fieldset in fieldsets if name in fieldset.fields][0]
+                                    fieldset for fieldset in fieldsets if name in fieldset.fields
+                                ][0]
                                 visible_name = u"{0}: {1}".format(
                                     fieldset.label, field.title)
                             results.append((name, visible_name))
