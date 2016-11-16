@@ -110,7 +110,8 @@ class FolderView(FoldV):
             sort_reversed = getattr(content, 'sort_reversed', False)
             if sort_on in ('start', 'end'):
                 # set item_count to higher value to sort with all events
-                item_count = content.item_count
+                item_count = getattr(content, 'item_count', 30)
+                # item_count = content.item_count
                 content.item_count = 1000
                 brains = filter_and_resort(
                     content,

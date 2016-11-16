@@ -4,7 +4,8 @@ Changelog
 0.8.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Set default item_count value to 30.
+  [bsuttor]
 
 
 0.8.17 (2016-11-10)
