@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.21 (unreleased)
+0.8.21 (2016-11-17)
 -------------------
 
 - Add the faceted layout widget : #14994
