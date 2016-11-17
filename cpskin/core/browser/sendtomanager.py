@@ -101,4 +101,5 @@ class SendToManagerForm(form.Form):
             type=u'info'
         )
 
+
 send_to_form = layout.wrap_form(SendToManagerForm)

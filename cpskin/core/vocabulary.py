@@ -14,8 +14,8 @@ from zope.i18n import translate
 from zope.interface import implements
 from zope.schema import getFieldsInOrder
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
-from zope.site.hooks import getSite
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 class BaseTagsVocabulary(object):
@@ -24,11 +24,11 @@ class BaseTagsVocabulary(object):
     indexName = ''
 
     def __call__(self, context, query=None):
-        site = getSite()
+        site = api.portal.get()
         self.catalog = getToolByName(site, 'portal_catalog', None)
         if self.catalog is None:
             return SimpleVocabulary([])
-        if not self.indexName in self.catalog._catalog.indexes.keys():
+        if self.indexName not in self.catalog._catalog.indexes.keys():
             return SimpleVocabulary([])
         index = self.catalog._catalog.getIndex(self.indexName)
 
@@ -133,7 +133,7 @@ class ContactFieldsFactory(object):
                                 visible_name = field.title
                             else:
                                 fieldset = [
-                                    fieldset for fieldset in fieldsets if name in fieldset.fields
+                                    fieldset for fieldset in fieldsets if name in fieldset.fields  # noqa
                                 ][0]
                                 visible_name = u"{0}: {1}".format(
                                     fieldset.label, field.title)
@@ -145,6 +145,7 @@ class ContactFieldsFactory(object):
             for i, j in results if j
         ]
         return SimpleVocabulary(items)
+
 
 ContactFieldsVocabularyFactory = ContactFieldsFactory()
 
@@ -169,5 +170,6 @@ class GeoTypesFactory(object):
         items.sort(key=lambda x: x[1])
         items = [SimpleTerm(i[0], i[0], i[1]) for i in items]
         return SimpleVocabulary(items)
+
 
 GeoTypesVocabularyFactory = GeoTypesFactory()

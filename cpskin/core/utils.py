@@ -8,9 +8,10 @@ from plone.namedfile.file import NamedBlobImage
 from Products.CMFCore.interfaces import ISiteRoot
 from zope.component import queryUtility
 
-import os
 import geocoder
 import logging
+import os
+
 
 logger = logging.getLogger('cpskin.core.utils')
 
@@ -136,8 +137,8 @@ def image_scale(obj, css_class, default_scale):
     return image.tag(css_class=css_class) if image.tag() else ''
 
 
-
 # --------------- Address ---------------
+
 
 def get_lat_lng_from_address(address):
     """Return tuple with status and geocoder object

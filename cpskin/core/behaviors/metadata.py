@@ -98,6 +98,7 @@ class IIAmTags(model.Schema):
         index_name="iamTags",
     )
 
+
 alsoProvides(IStandardTags, IFormFieldProvider)
 alsoProvides(IHiddenTags, IFormFieldProvider)
 alsoProvides(IISearchTags, IFormFieldProvider)

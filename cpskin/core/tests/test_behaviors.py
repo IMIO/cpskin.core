@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from collective.taxonomy.interfaces import ITaxonomy
+from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.metadata import IHiddenTags
 from cpskin.core.behaviors.metadata import IRelatedContacts
-from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
@@ -11,7 +10,6 @@ from plone import api
 from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from zope.component import queryUtility
 from zope.interface import alsoProvides
 
 import unittest

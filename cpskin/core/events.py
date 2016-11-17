@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.interfaces import ICPSkinCoreWithMembersLayer
 from cpskin.core.utils import get_address_from_obj
-from cpskin.core.utils import get_lat_lng_from_address
 from cpskin.core.utils import has_lat_lng
 from cpskin.core.utils import set_coord
 from plone import api

@@ -1,20 +1,13 @@
 # -*- coding: utf-8 -*-
-from collective.geo.behaviour.interfaces import ICoordinates
-from cpskin.core.utils import get_address_from_obj
-from cpskin.core.utils import get_lat_lng_from_address
 from cpskin.core.utils import has_lat_lng
 from cpskin.core.utils import set_coord
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 from plone.directives import form
-from Products.CMFCore.interfaces import ISiteRoot
-from Products.statusmessages.interfaces import IStatusMessage
 from z3c.form import button
 from zope import schema
 
-
 import logging
-import geocoder
 
 logger = logging.getLogger('cpskin.core.encode_lat_lng')
 
@@ -51,8 +44,8 @@ class GeoForm(form.SchemaForm):
             return
         # Do something with valid data here
 
-        # Set status on this form page
-        # (this status message is not bind to the session and does not go thru redirects)
+        # Set status on this form page (this status message
+        # is not bind to the session and does not go thru redirects)
         results = []
         if 'content_types' not in data.keys():
             pass
