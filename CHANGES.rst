@@ -4,7 +4,8 @@ Changelog
 0.8.21 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add the faceted layout widget : #14994
+  [mpeeters]
 
 
 0.8.20 (2016-11-17)
