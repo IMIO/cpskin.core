@@ -1,0 +1,29 @@
+<configure
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:faceted="http://namespaces.zope.org/faceted"
+  i18n_domain="cpskin">
+
+  <!-- layout widget -->
+  <faceted:widget factory=".layout.Widget" />
+
+  <browser:resource
+    name="cpskin.faceted.widgets.layout.view.js"
+    file="./layout-view.js"
+   />
+
+  <browser:resource
+    name="cpskin.faceted.widgets.layout.edit.js"
+    file="./layout-edit.js"
+   />
+
+  <browser:resource
+    name="cpskin.faceted.widgets.layout.view.css"
+    file="./layout-view.css"
+   />
+
+  <browser:resource
+    name="cpskin.faceted.widgets.layout.edit.css"
+    file="./layout-edit.css"
+   />
+
+</configure>

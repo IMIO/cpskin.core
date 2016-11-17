@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:faceted="http://namespaces.zope.org/faceted"
+    i18n_domain="cpskin">
+
+  <include package=".widgets" />
+
+  <utility
+    component=".vocabularies.FacetedLayoutVocabulary"
+    name="cpskin.vocabularies.faceted_layout"
+    provides="zope.schema.interfaces.IVocabularyFactory"
+    />
+
+  <adapter
+    factory=".faceted.FacetedMultipleLayout"
+    for="eea.facetednavigation.subtypes.interfaces.IFacetedNavigable"
+    />
+
+</configure>
