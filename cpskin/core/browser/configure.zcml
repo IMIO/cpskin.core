@@ -184,8 +184,42 @@
     permission="zope2.View"
     />
 
-  <!-- widget -->
-  <adapter factory=".widget.MultiLineDataConverter" />
+<!-- widget -->
+<adapter factory=".widget.MultiLineDataConverter" />
+
+
+<!-- adapt collective.contact.core views to prevent JS error which arrive
+     when collective.geo.behaviour is enabled -->
+<configure package="collective.contact.core.browser">
+    <browser:page
+        name="view"
+        for="collective.contact.core.content.organization.IOrganization"
+        class="cpskin.core.browser.collective_contact_view.OrganizationView"
+        template="templates/organization.pt"
+        layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="view"
+        for="collective.contact.core.content.position.IPosition"
+        class="cpskin.core.browser.collective_contact_view.PositionView"
+        template="templates/position.pt"
+        layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="view"
+        for="collective.contact.core.content.person.IPerson"
+        class="cpskin.core.browser.collective_contact_view.PersonView"
+        template="templates/person.pt"
+        layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+        permission="zope2.View"
+        />
+</configure>
+
+
 
 
 </configure>

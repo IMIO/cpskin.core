@@ -4,7 +4,9 @@ Changelog
 0.8.20 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Adapt collective.contact.core views to prevent JS error which arrive
+  when collective.geo.behaviour is enabled.
+  [bsuttor]
 
 
 0.8.19 (2016-11-16)
