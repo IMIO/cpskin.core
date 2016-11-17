@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_base
 from plone.indexer.interfaces import IIndexer
 from OFS.interfaces import IItem
 from Products.ZCatalog.interfaces import IZCatalog
@@ -26,7 +27,7 @@ class BaseTagIndexer(object):
         self.catalog = catalog
 
     def _getFieldContent(self, field):
-        tags = getattr(self.context, field, None)
+        tags = getattr(aq_base(self.context), field, None)
         if not tags:
             raise AttributeError
         encodedTags = tuple(safe_utf8(s) for s in tags)

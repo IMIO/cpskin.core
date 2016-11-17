@@ -4,7 +4,9 @@ Changelog
 0.8.22 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix acquisition problem with tags indexing for objects that don't have
+  the related behavior : #15327
+  [laulaz]
 
 
 0.8.21 (2016-11-17)
