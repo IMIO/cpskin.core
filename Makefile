@@ -21,6 +21,5 @@ test: buildout
 instance: buildout
 	./bin/instance fg
 
-
-cleanall: 
+cleanall:
 	rm -rf bin develop-eggs downloads include lib parts .installed.cfg .mr.developer.cfg bootstrap.py parts/omelette
