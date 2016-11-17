@@ -3,6 +3,7 @@ from collective.contact.core.browser.organization import Organization
 from collective.contact.core.browser.position import Position
 from collective.contact.core.browser.person import Person
 
+
 class OrganizationView(Organization):
 
     def _update(self):
