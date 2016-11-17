@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.20 (unreleased)
+0.8.20 (2016-11-17)
 -------------------
 
 - Adapt collective.contact.core views to prevent JS error which arrive
