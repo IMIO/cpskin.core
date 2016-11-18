@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.22 (unreleased)
+0.8.22 (2016-11-18)
 -------------------
 
 - Update way to view phone of it have mutliple phone numbers.
