@@ -1,6 +1,7 @@
 include setup.py
 include *.rst
 exclude *.cfg
+exclude .editorconfig
 exclude .travis.yml
 exclude .coveragerc
 exclude bootstrap.py
