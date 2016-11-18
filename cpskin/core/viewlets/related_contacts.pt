@@ -40,14 +40,27 @@
           </div>
           <div
             class="coordinates-tab"
-            tal:define="phone python: view.get_field(contact, 'phone');
-                        cell_phone python: view.get_field(contact, 'cell_phone');
+            tal:define="phones python: view.get_field(contact, 'phone');
+                        cell_phones python: view.get_field(contact, 'cell_phone');
                         fax python: view.get_field(contact, 'fax');
                         email python: view.get_field(contact, 'email');
                         im_handle python: view.get_field(contact, 'im_handle');
                         website python: view.get_field(contact, 'website');">
-            <div class="phone" tal:condition="phone" tal:content="phone"/>
-            <div class="cell_phone" tal:condition="cell_phone" tal:content="cell_phone"/>
+            <div class="phone" tal:condition="phones">
+                <tal:loop repeat="phone phones">
+                <a href="" tal:attributes="href string:tel:${phone}" >
+                    <div tal:content="phone" />
+                </a>
+                </tal:loop>
+            </div>
+            <div class="cell_phone" tal:condition="cell_phones">
+                <tal:loop repeat="cell_phone cell_phones">
+                <a href="" tal:attributes="href string:tel:${cell_phone}" >
+                    <div tal:content="cell_phone" />
+                </a>
+                </tal:loop>
+            </div>
+
             <div class="fax" tal:condition="fax" tal:content="fax"/>
             <div class="email"><a
               class="email"

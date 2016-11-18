@@ -4,6 +4,12 @@ Changelog
 0.8.22 (unreleased)
 -------------------
 
+- Update way to view phone of it have mutliple phone numbers.
+  [bsuttor]
+
+- Add mobile click on phone numbers.
+  [bsuttor]
+
 - Fix acquisition problem with tags indexing for objects that don't have
   the related behavior : #15327
   [laulaz]

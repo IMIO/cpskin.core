@@ -65,7 +65,12 @@ class RelatedContactsViewlet(common.ViewletBase):
             display = dexterity.DisplayForm(contact, self.request)
             display.update()
             return display.w.get('IScheduledContent.schedule').render()
+        if field in ['phone', 'cell_phone']:
+            if not isinstance(getattr(contact, field), list):
+                return [getattr(contact, field)]
+
         return getattr(contact, field, '')
+
 
     def has_address(self):
         i = 0
