@@ -4,7 +4,9 @@ Changelog
 0.8.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix a problem with the new layout adapter when the order of interfaces
+  implemented on the object varies
+  [mpeeters]
 
 
 0.8.22 (2016-11-18)
