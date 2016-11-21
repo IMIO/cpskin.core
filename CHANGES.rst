@@ -4,7 +4,8 @@ Changelog
 0.8.25 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix error avec le viewlet related_contacts #15520. Now we check if there is a schedule before render it.
+  [bsuttor]
 
 
 0.8.24 (2016-11-21)

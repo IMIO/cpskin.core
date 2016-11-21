@@ -64,7 +64,10 @@ class RelatedContactsViewlet(common.ViewletBase):
             from plone.directives import dexterity
             display = dexterity.DisplayForm(contact, self.request)
             display.update()
-            return display.w.get('IScheduledContent.schedule').render()
+            if display.w.get('IScheduledContent.schedule', None):
+                return display.w.get('IScheduledContent.schedule').render()
+            else:
+                return ''
         if field in ['phone', 'cell_phone']:
             if not isinstance(getattr(contact, field), list):
                 return [getattr(contact, field)]
