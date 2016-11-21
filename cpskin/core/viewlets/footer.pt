@@ -1,5 +1,10 @@
- <div i18n:domain="cpskin" id="portal-footer">
-
+<script type="text/javascript">
+// Sorry for this but I am waiting for this: https://github.com/plone/Products.CMFPlone/issues/1674
+if (ploneFormTabbing) {
+  ploneFormTabbing.max_tabs = 10;
+}
+</script>
+<div i18n:domain="cpskin" id="portal-footer">
     <p>
         <span i18n:translate="" omit-tag="">Site r&eacute;alis&eacute; en collaboration avec</span>&nbsp;<a href="http://www.imio.be" target="_blank">IMIO</a>&nbsp;<tal:block i18n:translate="sous licence">sous licence</tal:block>
         <a href="http://fr.wikipedia.org/wiki/Free_Software_Foundation"
