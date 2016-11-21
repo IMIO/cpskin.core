@@ -4,6 +4,9 @@ Changelog
 0.8.25 (unreleased)
 -------------------
 
+- Set ploneFormTabbing.max_tabs to 10 into footer.
+  [bsuttor]
+
 - Fix error avec le viewlet related_contacts #15520. Now we check if there is a schedule before render it.
   [bsuttor]
 
