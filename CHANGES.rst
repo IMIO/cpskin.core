@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.24 (unreleased)
+0.8.24 (2016-11-21)
 -------------------
 
 - Add and use item_count_homepage field.
