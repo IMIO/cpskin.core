@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.23 (unreleased)
+0.8.23 (2016-11-21)
 -------------------
 
 - Fix a problem with the new layout adapter when the order of interfaces
