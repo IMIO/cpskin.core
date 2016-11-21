@@ -57,7 +57,7 @@ class ICpskinIndexViewSettings(model.Schema):
     )
 
     form.widget('index_view_keywords', CheckBoxFieldWidget)
-    index_view_keywords = schema.Tuple(
+    index_view_keywords = schema.List(
         title=_(u'Hidden keywords'),
         description=_(
             u'Please select which hidden keywords is use by collections for \

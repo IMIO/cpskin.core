@@ -4,7 +4,8 @@ Changelog
 0.8.24 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use list instead of tuple to store index_view_keywords : #15306
+  [laulaz]
 
 
 0.8.23 (2016-11-21)
