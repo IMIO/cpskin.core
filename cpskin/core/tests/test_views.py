@@ -169,6 +169,46 @@ class TestViews(unittest.TestCase):
         # categories = view.get_categories(collection, event)
         # self.assertEqual(categories, ['Information Science'])
 
+    # def test_folderiew_event_item_count_homepage(self):
+    #     add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
+    #
+    #     collection = api.content.create(container=self.portal,
+    #                                     type='Collection',
+    #                                     id='collection')
+    #
+    #     collection.setQuery(
+    #         [{u'i': u'portal_type',
+    #           u'o': u'plone.app.querystring.operation.selection.is',
+    #           u'v': [u'Event']}, ]
+    #     )
+    #     collection.item_count_homepage = 1
+    #     event = api.content.create(
+    #         container=self.portal,
+    #         type='Event',
+    #         id='testevent')
+    #     event2 = api.content.create(
+    #         container=self.portal,
+    #         type='Event',
+    #         id='testevent2')
+    #
+    #     from datetime import datetime
+    #     import pytz
+    #     now = datetime.now(pytz.utc)
+    #     tomorrow = datetime(now.year, now.month, now.day + 1)
+    #     tomorrow.replace(tzinfo=pytz.utc)
+    #
+    #     event.start = now
+    #     event.end = now
+    #     event.reindexObject()
+    #
+    #     event2.start = now
+    #     event2.end = tomorrow
+    #     event2.reindexObject()
+    #     view = getMultiAdapter(
+    #         (self.portal, self.portal.REQUEST), name='folderview')
+    #
+    #     result = view.getResults(collection)
+
     def test_folderiew_event_localizedtime(self):
         event = api.content.create(
             container=self.portal,
@@ -272,7 +312,7 @@ class TestViews(unittest.TestCase):
         coord = ICoordinates(person).coordinates
         self.assertTrue(coord.startswith('POINT '))
 
-    def test_date_event_gneration_helper_view(self):
+    def test_date_event_generation_helper_view(self):
         applyProfile(self.portal, 'collective.documentgenerator:default')
         utc = pytz.utc
         start = datetime(2001, 1, 1, 10, 0, tzinfo=utc)

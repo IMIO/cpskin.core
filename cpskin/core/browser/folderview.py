@@ -111,6 +111,7 @@ class FolderView(FoldV):
             if sort_on in ('start', 'end'):
                 # set item_count to higher value to sort with all events
                 item_count = getattr(content, 'item_count', 30)
+                item_count_homepage = getattr(content, 'item_count_homepage', 30)
                 # item_count = content.item_count
                 content.item_count = 1000
                 brains = filter_and_resort(
@@ -120,7 +121,7 @@ class FolderView(FoldV):
                     None,
                     sort_on,
                     sort_reversed)
-                brains = brains[:item_count]
+                brains = brains[:item_count_homepage]
                 content.item_count = item_count
         portal_catalog = api.portal.get_tool(name='portal_catalog')
         results = {'sticky-results': [],

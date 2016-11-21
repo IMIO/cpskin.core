@@ -4,6 +4,9 @@ Changelog
 0.8.24 (unreleased)
 -------------------
 
+- Add and use item_count_homepage field.
+  [bsuttor]
+
 - Use list instead of tuple to store index_view_keywords : #15306
   [laulaz]
 

@@ -20,7 +20,8 @@ class ICpskinIndexViewSettings(model.Schema):
             'carousel_image_scale',
             'link_text',
             'index_view_keywords',
-            'taxonomy_category'
+            'taxonomy_category',
+            'item_count_homepage'
         ),
     )
 
@@ -73,4 +74,12 @@ class ICpskinIndexViewSettings(model.Schema):
         description=_(u'Please write which taxonomy id should be used.'),
         default=u'',
         required=False,
+    )
+
+    item_count_homepage = schema.Int(
+        title=_(u'label_item_count_homepage', default=u'Item count for homepage'),
+        description=_(u'Number of items that will show up in one homepage.'),
+        required=False,
+        default=30,
+        min=1,
     )
