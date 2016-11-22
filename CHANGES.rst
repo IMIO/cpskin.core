@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.25 (unreleased)
+0.8.25 (2016-11-22)
 -------------------
 
 - Set ploneFormTabbing.max_tabs to 10 into footer.
