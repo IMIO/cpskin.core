@@ -4,7 +4,8 @@ Changelog
 0.8.26 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add tuple error view.
+  [bsuttor]
 
 
 0.8.25 (2016-11-22)

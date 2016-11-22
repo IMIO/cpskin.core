@@ -171,3 +171,14 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         if website:
             info.append(website)
         return ' - '.join(info)
+
+
+class TupleErrorPage(BrowserView):
+    def __call__(self):
+        event_col = self.context
+        queries = []
+        for query in event_col.query:
+            if not isinstance(query.get('v'), tuple):
+                queries.append(query)
+        event_col.query = queries
+        return 'End of tuple error'

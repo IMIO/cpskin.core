@@ -190,7 +190,7 @@
 
 <!-- adapt collective.contact.core views to prevent JS error which arrive
      when collective.geo.behaviour is enabled -->
-<configure package="collective.contact.core.browser">
+  <configure package="collective.contact.core.browser">
     <browser:page
         name="view"
         for="collective.contact.core.content.organization.IOrganization"
@@ -217,9 +217,14 @@
         layer="cpskin.core.interfaces.ICPSkinCoreLayer"
         permission="zope2.View"
         />
-</configure>
+  </configure>
 
-
-
+  <browser:page
+    for="*"
+    name="tuple-error"
+    class=".pages.TupleErrorPage"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+    permission="zope2.View"
+    />
 
 </configure>
