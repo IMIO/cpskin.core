@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.26 (unreleased)
+0.8.26 (2016-11-22)
 -------------------
 
 - Add tuple error view.
