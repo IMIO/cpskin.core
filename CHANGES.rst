@@ -4,7 +4,8 @@ Changelog
 0.8.28 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Field item_count_homepage now works on all collections.
+  [bsuttor]
 
 
 0.8.27 (2016-11-23)
