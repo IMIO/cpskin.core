@@ -4,7 +4,8 @@ Changelog
 0.8.27 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix tuple and new query line when index_view_keywords is used.
+  [bsuttor]
 
 
 0.8.26 (2016-11-22)

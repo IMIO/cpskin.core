@@ -12,6 +12,7 @@ from plone.app.contenttypes.browser.folder import FolderView as FoldV
 from plone.app.contenttypes.content import Event
 from plone.app.event.base import filter_and_resort
 from plone.app.event.recurrence import RecurrenceSupport
+from plone.app.querystring import queryparser
 from plone.dexterity.interfaces import IDexterityContent
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.event.interfaces import IEvent
@@ -95,34 +96,36 @@ class FolderView(FoldV):
 
     def getResults(self, content):
         """Content is a Collection"""
-        if getattr(content, 'index_view_keywords', None):
+        # Make a copy of the query to avoid modifying it
+        query = list(content.query)
+        index_view_keywords = getattr(content, 'index_view_keywords', False)
+        # set query for homepage
+        if index_view_keywords:
             homepage_keywords = content.index_view_keywords
-            content.query.append({
+            query.append({
                 'i': 'hiddenTags',
                 'o': 'plone.app.querystring.operation.selection.is',
                 'v': homepage_keywords
             })
-
-        brains = content.results()
+        sort_on = getattr(content, 'sort_on', None)
+        sort_order = 'reverse' if getattr(content, 'sort_reversed', False) else 'ascending'
+        sort_reversed = getattr(content, 'sort_reversed', False)
+        parsedquery = queryparser.parseFormquery( content, query, sort_on, sort_order)
+        portal_catalog = api.portal.get_tool('portal_catalog')
+        brains = portal_catalog(parsedquery)
         if self.is_event_collection(brains):
             start = DateTime()
             sort_on = getattr(content, 'sort_on', 'start')
-            sort_reversed = getattr(content, 'sort_reversed', False)
             if sort_on in ('start', 'end'):
                 # set item_count to higher value to sort with all events
                 item_count = getattr(content, 'item_count', 30)
                 item_count_homepage = getattr(content, 'item_count_homepage', 30)
                 # item_count = content.item_count
                 content.item_count = 1000
-                brains = filter_and_resort(
-                    content,
-                    content.results(),
-                    start,
-                    None,
-                    sort_on,
-                    sort_reversed)
-                brains = brains[:item_count_homepage]
+                filter_and_resort_brains = filter_and_resort(content, brains, start, None, sort_on, sort_reversed)
+                brains = filter_and_resort_brains[:item_count_homepage]
                 content.item_count = item_count
+
         portal_catalog = api.portal.get_tool(name='portal_catalog')
         results = {'sticky-results': [],
                    'standard-results': []}
