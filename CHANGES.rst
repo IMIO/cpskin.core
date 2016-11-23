@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.27 (unreleased)
+0.8.27 (2016-11-23)
 -------------------
 
 - Fix tuple and new query line when index_view_keywords is used.
