@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.28 (unreleased)
+0.8.28 (2016-11-23)
 -------------------
 
 - Field item_count_homepage now works on all collections.
