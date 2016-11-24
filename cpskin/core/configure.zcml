@@ -55,12 +55,6 @@
 
   <adapter factory=".indexer.HiddenTagIndexer" name="hiddenTags" />
 
-  <subscriber for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
-              handler=".events.user_logged_in" />
-
-  <subscriber for="Products.PlonePAS.interfaces.events.IUserInitialLoginInEvent"
-              handler=".events.user_initial_logged_in" />
-
   <subscriber for="collective.contact.core.content.organization.IOrganization
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
               handler=".events.set_lat_lng" />
