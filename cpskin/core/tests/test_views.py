@@ -114,15 +114,15 @@ class TestViews(unittest.TestCase):
 
     def test_folderiew_render(self):
         configure_folderviews(self.portal)
-        request = self.portal.actualites.REQUEST
+        request = self.portal.REQUEST
         api.content.create(
             container=self.portal,
             type='News Item',
             id='testnewsitem')
-        view = getMultiAdapter(
-            (self.portal.actualites, request), name='folderview')
+        view = getMultiAdapter((self.portal, request), name='folderview')
         self.assertIn(
-            '<a href="http://nohost/plone/actualites">View</a>', view.index())
+            u'<a href="http://nohost/plone/actualites" title="">Actualit\xe9s',
+            view.index())
 
     def test_folderiew_event_category(self):
         applyProfile(self.portal, 'collective.taxonomy:default')
@@ -140,7 +140,7 @@ class TestViews(unittest.TestCase):
             description=u"taxonomy description schema",
             required=False,
             value_type=schema.Choice(
-                vocabulary=u"collective.taxonomy.taxonomies"),
+                vocabulary=u"collective.taxonomy.test"),
         )
         portal_types = api.portal.get_tool('portal_types')
         fti = portal_types.get('Event')
@@ -165,9 +165,16 @@ class TestViews(unittest.TestCase):
         see_categories = view.see_categories(collection)
         self.assertFalse(see_categories)
         collection.taxonomy_category = 'taxonomy_test'
+        categories = view.get_categories(collection, event)
+        self.assertEqual(categories, 'Information Science')
 
-        # categories = view.get_categories(collection, event)
-        # self.assertEqual(categories, ['Information Science'])
+        event.taxonomy_test = set(simple_tax[0:2])
+        categories = view.get_categories(collection, event)
+        self.assertEqual(categories, 'Information Science, Information Science/Book Collecting')
+
+        event.taxonomy_test = set()
+        categories = view.get_categories(collection, event)
+        self.assertEqual(categories, '')
 
     def test_folderiew_event_item_count_homepage(self):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
