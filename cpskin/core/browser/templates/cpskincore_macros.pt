@@ -30,7 +30,8 @@
 
             <tal:bcl tal:repeat="resultType resultTypes">
                 <ul class=""
-                    tal:define="results python: allresults[resultType]"
+                    tal:define="results python: allresults[resultType];
+                                has_category python: view.see_categories(content);"
                     tal:condition="results"
                     tal:attributes="class string: ${resultType}">
 
@@ -41,7 +42,7 @@
                                     obj python: result.getObject()"
                         class=""
                         tal:attributes="class python: isBigImage and 'bigimage bloc-item' or 'bloc-item'">
-                        <tal:block tal:condition="python: view.see_categories(content)">
+                        <tal:block tal:condition="has_category">
                         <tal:loop tal:define="categories python: view.get_categories(content, obj)" tal:condition="categories">
                                 <div class="indexview-categories" tal:content="categories" />
                         </tal:loop>
