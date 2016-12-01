@@ -113,13 +113,13 @@ class FolderView(FoldV):
         parsedquery = queryparser.parseFormquery( content, query, sort_on, sort_order)
         portal_catalog = api.portal.get_tool('portal_catalog')
         brains = portal_catalog(parsedquery)
-        item_count_homepage = getattr(content, 'item_count_homepage', 30)
+        item_count_homepage = getattr(content, 'item_count_homepage', 8)
         if self.is_event_collection(brains):
             start = DateTime()
             sort_on = getattr(content, 'sort_on', 'start')
             if sort_on in ('start', 'end'):
                 # set item_count to higher value to sort with all events
-                item_count = getattr(content, 'item_count', 30)
+                item_count = getattr(content, 'item_count', 8)
                 # item_count = content.item_count
                 content.item_count = 1000
                 filter_and_resort_brains = filter_and_resort(content, brains, start, None, sort_on, sort_reversed)
