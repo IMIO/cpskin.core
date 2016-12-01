@@ -4,7 +4,8 @@ Changelog
 0.8.29 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Set max to item_count_homepage to 30 and default to 8.
+  [bsuttor]
 
 
 0.8.28 (2016-11-23)

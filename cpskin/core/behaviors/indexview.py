@@ -80,6 +80,7 @@ class ICpskinIndexViewSettings(model.Schema):
         title=_(u'label_item_count_homepage', default=u'Item count for homepage'),
         description=_(u'Number of items that will show up in one homepage.'),
         required=False,
-        default=30,
+        default=8,
         min=1,
+        max=30,
     )
