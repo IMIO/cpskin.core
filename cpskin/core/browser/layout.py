@@ -28,7 +28,6 @@ class LayoutPolicy(base.LayoutPolicy):
         navtreeProps = api.portal.get_tool(name='portal_properties').navtree_properties
         navigation_root = api.portal.get_navigation_root(context)
         queryDict = {}
-        # LATER : queryPath = getNavigationRoot(context) ?
         queryDict['path'] = {'query': '/'.join(navigation_root.getPhysicalPath()), 'depth': 1}
         if navtreeProps.enable_wf_state_filtering:
             queryDict['review_state'] = navtreeProps.wf_states_to_show

@@ -166,11 +166,42 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             obj = self.get_relation_field('organizer')
             phone = getattr(obj, 'phone', None)
         if phone:
-            info.append(phone)
+            if isinstance(phone, list):
+                info.append(' '.join(phone))
+            else:
+                info.append(phone)
         website = getattr(obj, 'website', None)
         if website:
             info.append(website)
-        return ' - '.join(info)
+        if len(info) >= 1:
+            infomsg = _(u'Info : ')
+            return '{0} {1}'.format(infomsg, ' - '.join(info))
+        else:
+            return ''
+
+    def get_address(self):
+        address = []
+        address.append(_(u'Où ?'))
+        title = self.get_relation_value('location', 'title')
+        if title:
+            address.append(title)
+        street = self.get_relation_value('location', 'street')
+        number = self.get_relation_value('location', 'number')
+        if street:
+            street_with_number = street
+            if number:
+                street_with_number = u'{0}, {1}'.format(street, str(number))
+            address.append(street_with_number)
+        zip_code = self.get_relation_value('location', 'zip_code')
+        city = self.get_relation_value('location', 'city')
+        if city and zip_code:
+            address.append(u'{0} {1}'.format(zip_code, city))
+        if len(address) > 1:
+            return '<br />'.join(address)
+        else:
+            return ''
+
+
 
 
 class TupleErrorPage(BrowserView):
