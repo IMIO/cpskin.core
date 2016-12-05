@@ -4,6 +4,9 @@ Changelog
 0.8.29 (unreleased)
 -------------------
 
+- Use navigation_root for notheme section.
+  [bsuttor]
+
 - Set max to item_count_homepage to 30 and default to 8.
   [bsuttor]
 
