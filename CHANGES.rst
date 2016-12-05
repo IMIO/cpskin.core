@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.29 (unreleased)
+0.8.29 (2016-12-05)
 -------------------
 
 - Add get_address for event export.
