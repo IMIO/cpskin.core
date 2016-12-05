@@ -4,6 +4,9 @@ Changelog
 0.8.29 (unreleased)
 -------------------
 
+- Add get_address for event export.
+  [bsuttor]
+
 - Use navigation_root for notheme section.
   [bsuttor]
 
