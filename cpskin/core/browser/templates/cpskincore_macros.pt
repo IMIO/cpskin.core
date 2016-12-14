@@ -7,8 +7,7 @@
 <body>
 
     <metal:homepage-collection define-macro="homepage-collection">
-
-        <div class="titre-rss">
+        <div class="titre-rss" tal:condition="python: not view.hide_title(content)">
             <a href=""
                 class="titre"
                 tal:attributes="href string:${content/absolute_url}">
@@ -22,7 +21,6 @@
                      i18n:attributes="alt flux_rss" />
              </a>
         </div>
-
         <div class="results"
             tal:define="allresults python: view.getResults(content);
                         resultTypes python: ['sticky-results', 'standard-results']"
@@ -78,7 +76,7 @@
                             </a>
 
                             <span class="documentByLine"
-                                  tal:condition="python: result.portal_type == 'Event'">
+                                  tal:condition="python: view.see_start_end_date(result, content)">
                               <tal:one_day condition="python: view.is_one_day(result)">
                               <span i18n:translate="evenement_le">le</span>
                               <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
@@ -104,7 +102,7 @@
                             </span>
 
                             <span class="documentByLine"
-                                  tal:condition="python: result.portal_type != 'Event' and view.hasEffectiveDate(result)">
+                                  tal:condition="python: view.hide_date(result, content)">
                               <span tal:content="python: view.toLocalizedTime(result.effective, long_format=0)" />
                             </span>
 
@@ -113,11 +111,12 @@
                         </ul>
                       </tal:bcl>
                     </div>
-                    <a href=""
+                    <a tal:condition='python: not view.hide_see_all_link(content)'
+                       href=""
                        class="voir-tout"
                        tal:attributes="href string:${content/absolute_url}">
                        <span tal:replace='python: view.see_all(content)' />
-                   </a>
+                    </a>
 
     </metal:homepage-collection>
 

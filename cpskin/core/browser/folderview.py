@@ -51,16 +51,6 @@ class FolderView(FoldV):
         context = aq_inner(context)
         return context
 
-    def hasEffectiveDate(self, obj):
-        """Check if object has a correct effective date.
-
-        If None, you get 01/01/1000 and strftime cannot convert it
-        """
-        effective = obj.effective
-        if effective.year() < 1900:
-            return False
-        return True
-
     def isFolderViewActivated(self, context=None):
         """Check if folderview is activated on context"""
         if context is None:
@@ -179,7 +169,7 @@ class FolderView(FoldV):
 
     def searchSelectedContent(self):
         path = '/'.join(self.context.getPhysicalPath())
-        portal_catalog = getToolByName(self.context, 'portal_catalog')
+        portal_catalog = api.portal.get_tool('portal_catalog')
         queryDict = {}
         queryDict['path'] = {'query': path, 'depth': 1}
         queryDict['portal_type'] = ADDABLE_TYPES
@@ -399,7 +389,7 @@ class FolderView(FoldV):
             event.end, long_format=0)
 
     def is_with_hours(self, event):
-        if hasattr(event, 'whole_day'):
+        if getattr(event, 'whole_day', False):
             return not(event.whole_day)
         else:
             return self.toLocalizedTime(event.start, long_format=1)[11:] != '00:00' \
@@ -411,6 +401,34 @@ class FolderView(FoldV):
         else:
             return getattr(event, 'open_end', False)
 
+    def see_start_end_date(self, brain, collection):
+        if getattr(brain, 'start', False) and getattr(brain, 'end', False):
+            if not getattr(collection, 'hide_date', False):
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    def hide_title(self, collection):
+        return getattr(collection, 'hide_title', False)
+
+    def hide_see_all_link(self, collection):
+        return getattr(collection, 'hide_see_all_link', False)
+
+    def hide_date(self, brain, collection):
+        """Check if object has a correct effective date.
+        If None, you get 01/01/1000 and strftime cannot convert it.
+        Also check if collection is checked to see publication date.
+        """
+        if not getattr(brain, 'start', None) and not getattr(brain, 'end', None):
+            if getattr(collection, 'hide_date', False):
+                effective = getattr(brain, 'effective', None)
+                if effective:
+                    if effective.year() < 1900:
+                        return False
+                    return True
+        return False
 
 def configure_folderviews(context):
     """

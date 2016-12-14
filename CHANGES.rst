@@ -4,7 +4,14 @@ Changelog
 0.8.30 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add checkbox to hide title.
+  [bsuttor]
+
+- Add checkbox to hide see_all_link.
+  [bsuttor]
+
+- Add checkbox to hide date on index view.
+  [bsuttor]
 
 
 0.8.29 (2016-12-05)

@@ -21,7 +21,10 @@ class ICpskinIndexViewSettings(model.Schema):
             'link_text',
             'index_view_keywords',
             'taxonomy_category',
-            'item_count_homepage'
+            'item_count_homepage',
+            'hide_title',
+            'hide_see_all_link',
+            'hide_date'
         ),
     )
 
@@ -83,4 +86,25 @@ class ICpskinIndexViewSettings(model.Schema):
         default=8,
         min=1,
         max=30,
+    )
+
+    hide_title = schema.Bool(
+        title=_(u"Hide title"),
+        description=_(u"Do you want to hide title on index view ?"),
+        required=False,
+        default=False
+    )
+
+    hide_see_all_link = schema.Bool(
+        title=_(u"Hide see all link"),
+        description=_(u"Do you want to hide see all link on index view ?"),
+        required=False,
+        default=False
+    )
+
+    hide_date = schema.Bool(
+        title=_(u"Hide date"),
+        description=_(u"Do you want to hide date on index view ?"),
+        required=False,
+        default=False
     )
