@@ -63,7 +63,7 @@ class MediaActivationView(BrowserView):
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
         self._redirect(_(u'Multimedia viewlet enabled on content'))
-        self.create_collections()
+        create_collections()
         if 'visible_albums' not in self.context.propertyIds():
             default_visible_albums = api.portal.get_registry_record(
                 'cpskin.core.default_visible_albums')
@@ -82,95 +82,96 @@ class MediaActivationView(BrowserView):
             self.context.manage_delProperties([u'visible_albums'])
         self._redirect(_(u'Multimedia viewlet disabled for content'))
 
-    def create_collections(self):
-        """Create videos and albums collections if not exists."""
-        catalog = api.portal.get_tool('portal_catalog')
-        queryDict = {}
-        queryDict['object_provides'] = IVideoCollection.__identifier__
-        queryDict['path'] = {
-            'query': '/'.join(self.context.getPhysicalPath()),
-            'depth': 1
-        }
 
-        # --- Videos ---
-        if not catalog(queryDict):
-            video_folder = getattr(aq_base(self.context), 'videos', None)
-            if not video_folder:
-                video_folder = api.content.create(
-                    container=self.context,
-                    type='Folder',
-                    id='videos',
-                    title=u"Vidéos"
-                )
+def create_collections(context):
+    """Create videos and albums collections if not exists."""
+    catalog = api.portal.get_tool('portal_catalog')
+    queryDict = {}
+    queryDict['object_provides'] = IVideoCollection.__identifier__
+    queryDict['path'] = {
+        'query': '/'.join(context.getPhysicalPath()),
+        'depth': 1
+    }
 
-            alsoProvides(video_folder, IVideoCollection)
-            video_folder.reindexObject()
+    # --- Videos ---
+    if not catalog(queryDict):
+        video_folder = getattr(aq_base(context), 'videos', None)
+        if not video_folder:
+            video_folder = api.content.create(
+                container=context,
+                type='Folder',
+                id='videos',
+                title=u"Vidéos"
+            )
 
-            video_collection = getattr(aq_base(video_folder), 'index', None)
-            if not video_collection:
-                video_collection = api.content.create(
-                    container=video_folder,
-                    type='Collection',
-                    id='index'
-                )
+        alsoProvides(video_folder, IVideoCollection)
+        video_folder.reindexObject()
 
-            query = [
-                {
-                    'i': 'portal_type',
-                    'o': 'plone.app.querystring.operation.selection.is',
-                    'v': ['media_link']
-                }, {
-                    'i': 'review_state',
-                    'o': 'plone.app.querystring.operation.selection.is',
-                    'v': ['published_and_hidden', 'published_and_shown']
-                }
-            ]
-            video_collection.query = query
-            video_collection.sort_on = u'effective'
-            video_collection.sort_reversed = True
-            video_collection.setLayout('collection_oembed_view')
+        video_collection = getattr(aq_base(video_folder), 'index', None)
+        if not video_collection:
+            video_collection = api.content.create(
+                container=video_folder,
+                type='Collection',
+                id='index'
+            )
 
-            publish_content(video_folder)
-            publish_content(video_collection)
+        query = [
+            {
+                'i': 'portal_type',
+                'o': 'plone.app.querystring.operation.selection.is',
+                'v': ['media_link']
+            }, {
+                'i': 'review_state',
+                'o': 'plone.app.querystring.operation.selection.is',
+                'v': ['published_and_hidden', 'published_and_shown']
+            }
+        ]
+        video_collection.query = query
+        video_collection.sort_on = u'effective'
+        video_collection.sort_reversed = True
+        video_collection.setLayout('collection_oembed_view')
 
-            video_folder.setDefaultPage('index')
+        publish_content(video_folder)
+        publish_content(video_collection)
 
-        # --- Albums ---
-        queryDict['object_provides'] = IAlbumCollection.__identifier__
-        if not catalog(queryDict):
-            album_folder = getattr(aq_base(self.context), 'albums', None)
-            if not album_folder:
-                album_folder = api.content.create(container=self.context,
-                                                  type='Folder',
-                                                  title=u"Albums")
-            alsoProvides(album_folder, IAlbumCollection)
-            album_folder.reindexObject()
+        video_folder.setDefaultPage('index')
 
-            album_collection = getattr(aq_base(album_folder), 'index', None)
-            if not album_collection:
-                album_collection = api.content.create(
-                    container=album_folder,
-                    type='Collection',
-                    id='index'
-                )
+    # --- Albums ---
+    queryDict['object_provides'] = IAlbumCollection.__identifier__
+    if not catalog(queryDict):
+        album_folder = getattr(aq_base(context), 'albums', None)
+        if not album_folder:
+            album_folder = api.content.create(container=context,
+                                              type='Folder',
+                                              title=u"Albums")
+        alsoProvides(album_folder, IAlbumCollection)
+        album_folder.reindexObject()
 
-            query = [
-                {
-                    'i': 'hiddenTags',
-                    'o': 'plone.app.querystring.operation.selection.is',
-                    'v': ['multimedia-a-la-une']
-                }, {
-                    'i': 'review_state',
-                    'o': 'plone.app.querystring.operation.selection.is',
-                    'v': ['published_and_hidden', 'published_and_shown']
-                }
-            ]
-            # path = '/'.join(album_folder.getPhysicalPath())
-            album_collection.query = query
-            album_collection.sort_on = u'effective'
-            album_collection.sort_reversed = True
+        album_collection = getattr(aq_base(album_folder), 'index', None)
+        if not album_collection:
+            album_collection = api.content.create(
+                container=album_folder,
+                type='Collection',
+                id='index'
+            )
 
-            publish_content(album_folder)
-            publish_content(album_collection)
+        query = [
+            {
+                'i': 'hiddenTags',
+                'o': 'plone.app.querystring.operation.selection.is',
+                'v': ['multimedia-a-la-une']
+            }, {
+                'i': 'review_state',
+                'o': 'plone.app.querystring.operation.selection.is',
+                'v': ['published_and_hidden', 'published_and_shown']
+            }
+        ]
+        # path = '/'.join(album_folder.getPhysicalPath())
+        album_collection.query = query
+        album_collection.sort_on = u'effective'
+        album_collection.sort_reversed = True
 
-            album_folder.setDefaultPage('index')
+        publish_content(album_folder)
+        publish_content(album_collection)
+
+        album_folder.setDefaultPage('index')
