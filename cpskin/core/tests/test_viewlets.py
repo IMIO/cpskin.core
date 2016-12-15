@@ -94,7 +94,7 @@ class TestViewlets(unittest.TestCase):
 
         album_collection.query = query
         album = api.content.create(
-            container=self.portal, type="Folder", id="testalbum")
+            container=self.portal, type='Folder', id='testalbum')
 
         # getting viewlet
         view = BrowserView(self.portal, self.request)
