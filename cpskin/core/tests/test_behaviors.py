@@ -80,3 +80,8 @@ class TestBehaviors(unittest.TestCase):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
         test_taxonomy_category = getattr(self.collection, 'taxonomy_category')
         self.assertEqual(test_taxonomy_category, '')
+
+    def test_indexview_hide_title(self):
+        add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
+        hide_title = getattr(self.collection, 'hide_title')
+        self.assertEqual(hide_title, False)

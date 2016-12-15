@@ -1,8 +1,33 @@
 Changelog
 =========
 
-0.8.29 (unreleased)
+0.8.31 (unreleased)
 -------------------
+
+- Nothing changed yet.
+
+
+0.8.30 (2016-12-15)
+-------------------
+
+- Add checkbox to hide title.
+  [bsuttor]
+
+- Add checkbox to hide see_all_link.
+  [bsuttor]
+
+- Add checkbox to hide date on index view.
+  [bsuttor]
+
+
+0.8.29 (2016-12-05)
+-------------------
+
+- Add get_address for event export.
+  [bsuttor]
+
+- Use navigation_root for notheme section.
+  [bsuttor]
 
 - Set max to item_count_homepage to 30 and default to 8.
   [bsuttor]

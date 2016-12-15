@@ -26,10 +26,9 @@ class LayoutPolicy(base.LayoutPolicy):
         # Get 1st level folders appearing in navigation
         portal_catalog = api.portal.get_tool(name='portal_catalog')
         navtreeProps = api.portal.get_tool(name='portal_properties').navtree_properties
-        portal = api.portal.get()
+        navigation_root = api.portal.get_navigation_root(context)
         queryDict = {}
-        # LATER : queryPath = getNavigationRoot(context) ?
-        queryDict['path'] = {'query': '/'.join(portal.getPhysicalPath()), 'depth': 1}
+        queryDict['path'] = {'query': '/'.join(navigation_root.getPhysicalPath()), 'depth': 1}
         if navtreeProps.enable_wf_state_filtering:
             queryDict['review_state'] = navtreeProps.wf_states_to_show
         queryDict['sort_on'] = 'getObjPositionInParent'
