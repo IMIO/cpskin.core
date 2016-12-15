@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:faceted="http://namespaces.zope.org/faceted"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="cpskin">
+
+    <!-- The actual magic view -->
+    <browser:page
+        for="*"
+        name="get_item"
+        class=".jsonify.GetItem"
+        permission="zope2.AccessContentsInformation"
+        />
+
+    <browser:page
+        for="*"
+        name="get_children"
+        class=".jsonify.GetChildren"
+        permission="zope2.AccessContentsInformation"
+        />
+
+    <browser:page
+        for="*"
+        name="get_catalog_results"
+        class=".jsonify.GetCatalogResults"
+        permission="zope2.AccessContentsInformation"
+        />
+
+</configure>
