@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.30 (unreleased)
+0.8.30 (2016-12-15)
 -------------------
 
 - Add checkbox to hide title.
