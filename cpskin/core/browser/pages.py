@@ -10,6 +10,7 @@ from plone.app.event.base import dates_for_display
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getSiteManager
 from zope.publisher.browser import BrowserView
+import json
 
 
 class FrontPage(BrowserView):
@@ -182,3 +183,22 @@ class TupleErrorPage(BrowserView):
                 queries.append(query)
         event_col.query = queries
         return 'End of tuple error'
+
+
+class TransmoExport(BrowserView):
+    def __call__(self):
+        objects = {}
+        # get all file in custom folder
+        portal_skins = api.portal.get_tool('portal_skins')
+        objects['custom'] = []
+        for obj_id, item in portal_skins.custom.items():
+            objects['custom'].append({
+                'obj_id': obj_id,
+                'meta_type': item.meta_type,
+                'raw': item.raw
+            })
+        # get list of installed profile
+        portal_quickinstaller = api.portal.get_tool('portal_quickinstaller')
+        product_ids = [product['id'] for product in portal_quickinstaller.listInstalledProducts()]
+        objects['products'] = product_ids
+        return json.dumps(objects)
