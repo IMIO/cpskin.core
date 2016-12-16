@@ -63,6 +63,7 @@ setup(name='cpskin.core',
           'collective.navigationtoggle',
           'geocoder',
           'imio.dashboard',
+          'collective.jsonify',
       ],
       extras_require={
           'test': [
