@@ -13,15 +13,6 @@
         />
 
     <genericsetup:registerProfile
-        name="members-configuration"
-        title="cpskin.core: members configuration"
-        directory="profiles/members-config"
-        description="Installs CPSkin core with members configuration"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
-
-    <genericsetup:registerProfile
         name="uninstall"
         title="cpskin.core: uninstall"
         directory="profiles/uninstall"

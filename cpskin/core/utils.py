@@ -182,12 +182,17 @@ def get_field(obj, field_name):
 
 
 def has_lat_lng(obj):
-    if ICoordinates(obj).coordinates:
-        return True
+    try:
+        if ICoordinates(obj).coordinates:
+            return True
+    except:
+        return False
     return False
 
 
 def set_coord(obj, request):
+    if not ICoordinates.providedBy(obj):
+        return
     address = get_address_from_obj(obj)
     if address:
         status, geocode = get_lat_lng_from_address(address)
