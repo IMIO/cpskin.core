@@ -1,11 +1,24 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
+from collective.geo.behaviour.behaviour import Coordinates
+from collective.geo.geographer.interfaces import IGeoreferenceable
+from collective.geo.geographer.interfaces import IWriteGeoreferenced
 from collective.jsonify.wrapper import Wrapper
 from Products.CMFCore.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
+from zope.component import queryMultiAdapter
 from zope.interface import Interface
 import os
 import DateTime
+import pickle
+from xml.dom import minidom
+from plone.portlets.interfaces import ILocalPortletAssignable, IPortletManager, IPortletAssignmentMapping, IPortletAssignment, ILocalPortletAssignmentManager
+from plone.portlets.constants import USER_CATEGORY, GROUP_CATEGORY, CONTENT_TYPE_CATEGORY, CONTEXT_CATEGORY
+from plone.app.portlets.interfaces import IPortletTypeInterface
+from plone.app.portlets.exportimport.interfaces import IPortletAssignmentExportImportHandler
+from plone.app.portlets.exportimport.portlets import PropertyPortletAssignmentExportImportHandler
+from zope.component import getUtilitiesFor
+from zope.interface import providedBy
 
 
 class ISerializer(Interface):
@@ -231,7 +244,186 @@ class Wrapper(Wrapper):
         self['faceted_interfaces'] = inter
         if IFacetedNavigable.providedBy(self.context):
             criteria = Criteria(self.context)
-            import ipdb; ipdb.set_trace()
-            import pickle
             serializer = pickle.dumps(criteria.criteria)
             self['faceted_criteria'] = serializer
+
+    def get_dexterity_fields(self):
+        """If dexterity is used then extract fields.
+        """
+        try:
+            from plone.dexterity.interfaces import IDexterityContent
+            if not self.providedBy(IDexterityContent, self.context):
+                return
+            from plone.dexterity.utils import iterSchemata
+            # from plone.uuid.interfaces import IUUID
+            from zope.schema import getFieldsInOrder
+            from datetime import date
+        except:
+            return
+
+        # get all fields for this obj
+        for schemata in iterSchemata(self.context):
+            for fieldname, field in getFieldsInOrder(schemata):
+                try:
+                    value = field.get(schemata(self.context))
+                    # value = getattr(context, name).__class__.__name__
+                except AttributeError:
+                    continue
+                if value is field.missing_value:
+                    continue
+
+                field_type = field.__class__.__name__
+
+                if field_type in ('RichText',):
+                    # TODO: content_type missing
+                    try:
+                        value = unicode(value.raw)
+                    except:
+                        value = u''
+
+                elif field_type in (
+                    'NamedImage',
+                    'NamedBlobImage',
+                    'NamedFile',
+                    'NamedBlobFile'
+                ):
+                    # still to test above with NamedFile & NamedBlobFile
+                    fieldname = unicode('_datafield_' + fieldname)
+
+                    if hasattr(value, 'open'):
+                        data = value.open().read()
+                    else:
+                        data = value.data
+
+                    try:
+                        max_filesize = int(
+                            os.environ.get('JSONIFY_MAX_FILESIZE', 20000000))
+                    except ValueError:
+                        max_filesize = 20000000
+
+                    if data and len(data) > max_filesize:
+                        continue
+
+                    import base64
+                    ctype = value.contentType
+                    size = value.getSize()
+                    dvalue = {
+                        'data': base64.b64encode(data),
+                        'size': size,
+                        'filename': value.filename or '',
+                        'content_type': ctype,
+                        'encoding': 'base64'
+                    }
+                    value = dvalue
+
+                elif field_type == 'GeolocationField':
+                    # super special plone.formwidget.geolocation case
+                    self['latitude'] = getattr(value, 'latitude', 0)
+                    self['longitude'] = getattr(value, 'longitude', 0)
+                    continue
+
+                elif isinstance(value, date):
+                    value = value.isoformat()
+
+                # elif field_type in ('TextLine',):
+                else:
+                    BASIC_TYPES = (
+                        unicode, int, long, float, bool, type(None),
+                        list, tuple, dict
+                    )
+                    if type(value) in BASIC_TYPES:
+                        pass
+                    else:
+                        # E.g. DateTime or datetime are nicely representated
+                        value = unicode(value)
+
+                self[unicode(fieldname)] = value
+
+    def get_portlets(self):
+        """If there is portlets then extract its.
+        """
+
+        self.doc = minidom.Document()
+        self.portlet_schemata = dict([(iface, name,) for name, iface in getUtilitiesFor(IPortletTypeInterface)])
+        self.portlet_managers = list(getUtilitiesFor(IPortletManager))
+        if ILocalPortletAssignable.providedBy(self.context):
+            data = None
+
+            root = self.doc.createElement('portlets')
+
+            for elem in self.exportAssignments(self.context):
+                root.appendChild(elem)
+            for elem in self.exportBlacklists(self.context):
+                root.appendChild(elem)
+            if root.hasChildNodes():
+                self.doc.appendChild(root)
+                data = self.doc.toprettyxml(indent='  ', encoding='utf-8')
+                self.doc.unlink()
+
+            if data:
+                self['portlets'] = data
+
+    def exportAssignments(self, obj):
+        assignments = []
+        for manager_name, manager in self.portlet_managers:
+            mapping = queryMultiAdapter((obj, manager), IPortletAssignmentMapping)
+            if mapping is None:
+                continue
+
+            mapping = mapping.__of__(obj)
+            if len(mapping.items()) > 0:
+                for name, assignment in mapping.items():
+                    type_ = None
+                    for schema in providedBy(assignment).flattened():
+                        type_ = self.portlet_schemata.get(schema, None)
+                        if type_ is not None:
+                            break
+
+                    if type_ is not None:
+                        child = self.doc.createElement('assignment')
+                        child.setAttribute('manager', manager_name)
+                        child.setAttribute('category', CONTEXT_CATEGORY)
+                        child.setAttribute('key', '/'.join(obj.getPhysicalPath()))
+                        child.setAttribute('type', type_)
+                        child.setAttribute('name', name)
+
+                        assignment = assignment.__of__(mapping)
+                        # use existing adapter for exporting a portlet assignment
+                        handler = IPortletAssignmentExportImportHandler(assignment)
+                        handler.export_assignment(schema, self.doc, child)
+
+                        assignments.append(child)
+
+        return assignments
+
+    def exportBlacklists(self, obj):
+        assignments = []
+        for manager_name, manager in self.portlet_managers:
+            assignable = queryMultiAdapter((obj, manager), ILocalPortletAssignmentManager)
+            if assignable is None:
+                continue
+            for category in (USER_CATEGORY, GROUP_CATEGORY, CONTENT_TYPE_CATEGORY, CONTEXT_CATEGORY,):
+                child = self.doc.createElement('blacklist')
+                child.setAttribute('manager', manager_name)
+                child.setAttribute('category', category)
+
+                status = assignable.getBlacklistStatus(category)
+                if status == True:
+                    child.setAttribute('status', u'block')
+                elif status == False:
+                    child.setAttribute('status', u'show')
+                else:
+                    child.setAttribute('status', u'acquire')
+
+                assignments.append(child)
+
+        return assignments
+
+    def get_georeference(self):
+        if IGeoreferenceable.providedBy(self.context):
+            try:
+                IWriteGeoreferenced(self.context)
+                coord = Coordinates(self.context).coordinates
+                self['coordinates'] = coord
+            except:
+                pass

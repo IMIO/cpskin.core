@@ -4,12 +4,16 @@ from collective.documentgenerator.helper.dexterity import DXDocumentGenerationHe
 from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.core.interfaces import IFolderViewSelectedContent as IFVSC
 from cpskin.locales import CPSkinMessageFactory as _
+from DateTime import DateTime
 from plone import api
 from plone.app.event.base import date_speller
 from plone.app.event.base import dates_for_display
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getSiteManager
 from zope.publisher.browser import BrowserView
+from Products.MailHost.interfaces import IMailHost
+from zope.component import getUtility
+from zope.component.interfaces import ComponentLookupError
 import json
 
 
@@ -232,4 +236,62 @@ class TransmoExport(BrowserView):
         portal_quickinstaller = api.portal.get_tool('portal_quickinstaller')
         product_ids = [product['id'] for product in portal_quickinstaller.listInstalledProducts()]
         objects['products'] = product_ids
+        #groups
+        groups = []
+        for site_group in api.group.get_groups():
+            group = {}
+            group['id'] = site_group.getId()
+            group['title'] = site_group.title
+            group['description'] = site_group.description
+            group['roles'] = site_group.getRoles()
+            group['groups'] = site_group.getGroups()
+            groups.append(group)
+        objects['groups'] = groups
+        #users
+        pas = api.portal.get().acl_users
+        passwords = dict(pas.source_users._user_passwords)
+        portal_membership = api.portal.get_tool('portal_membership')
+        users = []
+        for member in portal_membership.listMembers():
+            # add email
+            user = {}
+            user['id'] = member.getId()
+            user['name'] = member.getProperty('fullname', member.getUserName())
+            user['email'] = member.getProperty('email', None)
+            user['fullname'] = member.getProperty('fullname', None)
+            login_time = member.getProperty('login_time', None)
+            if login_time == DateTime('2000/01/01'):
+                user['login_date'] = ""
+            else:
+                user['login_date'] = login_time.strftime('%d/%m/%Y')
+            last_login_time = member.getProperty(
+                'last_login_time',
+                None
+            )
+            if last_login_time == DateTime('2000/01/01'):
+                user['last_login_date'] = ""
+            else:
+                user['last_login_date'] = last_login_time.strftime('%d/%m/%Y')
+            if user['login_date'] == user['last_login_date']:
+                user['last_login_date'] = ""
+            user['roles'] = member.getRoles()
+            user['domains'] = member.getDomains()
+            user['password'] = passwords.get(user['id'])
+            users.append(user)
+        objects['users'] = users
+
+        # mail control panel
+        mailhost = {}
+        try:
+            mail_host = getUtility(IMailHost)
+        except ComponentLookupError:
+            mail_host = getattr(api.portal.get(), 'MailHost')
+        mailhost['smtp_host'] = mail_host.smtp_host
+        mailhost['smtp_port'] = mail_host.smtp_port
+        mailhost['smtp_userid'] = getattr(mail_host, 'smtp_userid', None)
+        mailhost['smtp_uid'] = getattr(mail_host, 'smtp_uid', None)
+        mailhost['smtp_pwd'] = mail_host.smtp_pwd
+        mailhost['email_from_address'] = api.portal.get().email_from_address
+        mailhost['email_from_name'] = api.portal.get().email_from_name
+        objects['mailhost'] = mailhost
         return json.dumps(objects)

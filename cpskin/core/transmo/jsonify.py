@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
 from Acquisition import aq_base
+from copy import deepcopy
+from plone import api
 from Products.Five.browser import BrowserView
 
 import base64
@@ -89,5 +92,20 @@ class GetCatalogResults(BrowserView):
                          {"__builtins__": None}, {})
         item_paths = [item.getPath() for item
                       in self.context.unrestrictedSearchResults(**query)]
+        # sometimes some content are unindexed
+        plone_path = '/'.join(api.portal.get().getPhysicalPath())
+        item_paths_with_parents = add_parent(item_paths, plone_path)
         self.request.response.setHeader('Content-Type', 'application/json')
-        return json.dumps(item_paths)
+        return json.dumps(item_paths_with_parents)
+
+
+def add_parent(item_paths, plone_path):
+    old_paths = deepcopy(item_paths)
+    paths = []
+    for item_path in item_paths:
+        parent_path = '/'.join(item_path.split('/')[:-1])
+        if parent_path not in old_paths and parent_path not in paths \
+                and parent_path is not plone_path:
+            paths.append(parent_path)
+        paths.append(item_path)
+    return paths
