@@ -244,8 +244,10 @@ class Wrapper(Wrapper):
         self['faceted_interfaces'] = inter
         if IFacetedNavigable.providedBy(self.context):
             criteria = Criteria(self.context)
-            serializer = pickle.dumps(criteria.criteria)
-            self['faceted_criteria'] = serializer
+            criterias = []
+            for crit in criteria.criteria:
+                criterias.append(crit.__dict__)
+            self['faceted_criteria'] = criterias
 
     def get_dexterity_fields(self):
         """If dexterity is used then extract fields.

@@ -294,4 +294,12 @@ class TransmoExport(BrowserView):
         mailhost['email_from_address'] = api.portal.get().email_from_address
         mailhost['email_from_name'] = api.portal.get().email_from_name
         objects['mailhost'] = mailhost
+
+        # geo
+        lat_key = 'collective.geo.settings.interfaces.IGeoSettings.latitude'
+        lng_key = 'collective.geo.settings.interfaces.IGeoSettings.longitude'
+        geo = {}
+        geo['latitude'] = str(api.portal.get_registry_record(lat_key))
+        geo['longitude'] = str(api.portal.get_registry_record(lng_key))
+        objects['geo'] = geo
         return json.dumps(objects)
