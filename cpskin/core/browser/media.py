@@ -63,7 +63,7 @@ class MediaActivationView(BrowserView):
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
         self._redirect(_(u'Multimedia viewlet enabled on content'))
-        create_collections()
+        create_collections(context)
         if 'visible_albums' not in self.context.propertyIds():
             default_visible_albums = api.portal.get_registry_record(
                 'cpskin.core.default_visible_albums')
