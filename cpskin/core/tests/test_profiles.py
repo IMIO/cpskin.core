@@ -18,7 +18,3 @@ class TestProfiles(unittest.TestCase):
     def test_reinstall(self):
         applyProfile(self.portal, 'cpskin.core:uninstall')
         applyProfile(self.portal, 'cpskin.core:default')
-
-    def test_uninstall_with_members(self):
-        applyProfile(self.portal, 'cpskin.core:members-configuration')
-        applyProfile(self.portal, 'cpskin.core:uninstall')
