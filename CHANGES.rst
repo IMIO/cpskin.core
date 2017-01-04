@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.31 (unreleased)
+0.8.31 (2017-01-04)
 -------------------
 
 - Add export template and methods to export events.
