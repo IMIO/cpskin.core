@@ -4,7 +4,8 @@ Changelog
 0.8.31 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add export template and methods to export events.
+  [bsuttor]
 
 
 0.8.30 (2016-12-15)

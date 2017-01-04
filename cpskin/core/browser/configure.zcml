@@ -157,7 +157,7 @@
     />
 
 
-  <!-- Docuement generator -->
+  <!-- Document generator -->
   <browser:page
     for="eea.facetednavigation.interfaces.IFacetedNavigable"
     name="document-generation"

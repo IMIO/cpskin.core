@@ -3,8 +3,11 @@ from collective.documentgenerator.browser.generation_view import DocumentGenerat
 from collective.documentgenerator.helper.dexterity import DXDocumentGenerationHelperView
 from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.core.interfaces import IFolderViewSelectedContent as IFVSC
+from cpskin.core.utils import safe_utf8
 from cpskin.locales import CPSkinMessageFactory as _
 from DateTime import DateTime
+from eea.facetednavigation.interfaces import IFacetedNavigable
+from imio.dashboard.utils import getDashboardQueryResult
 from plone import api
 from plone.app.event.base import date_speller
 from plone.app.event.base import dates_for_display
@@ -75,11 +78,12 @@ class IDocumentGenerationView(DocumentGenerationView):
     """Override the 'get_generation_context' properly so 'get_base_generation_context'
        is available for sub-packages that want to extend the template generation context."""
 
-    def _get_generation_context(self, helper_view):
-        result = super(IDocumentGenerationView, self)._get_generation_context(helper_view)
-        view = self.context.restrictedTraverse('faceted_query')
-        result['brains'] = view.query(batch=False)
-        return result
+    def _get_generation_context(self, helper_view, pod_template):
+        result = super(IDocumentGenerationView, self)._get_generation_context(helper_view, pod_template)
+        # if pod_template.portal_type == 'ConfigurablePODTemplate':
+        if IFacetedNavigable.providedBy(self.context):
+            result['brains'] = getDashboardQueryResult(self.context)
+            return result
 
 
 class EventGenerationHelperView(DXDocumentGenerationHelperView):
@@ -113,12 +117,12 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         # hour
         if not dates.get('whole_day'):
             if dates.get('open_end'):
-                date_formated += _(u' à ')
+                date_formated += _(u'\nà ')
                 date_formated += u'{0}:{1}'.format(
                     date_spel_start.get('hour'),
                     date_spel_start.get('minute2'))
             else:
-                date_formated += _(u' de ')
+                date_formated += _(u'\nde ')
                 date_formated += u'{0}:{1}'.format(
                     date_spel_start.get('hour'),
                     date_spel_start.get('minute2'))
@@ -129,21 +133,47 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
 
         return date_formated
 
-    def get_taxonomy_value(self, field_name):
+    def get_taxonomy_values_in_one_line(self, field_names, sep, second_sep=' '):
+        text = []
+        for field_name in field_names:
+            value = ''
+            if isinstance(field_name, dict):
+                (dict_text, dict_field_name) = field_name.items()[0]
+                value = self.get_taxonomy_value(dict_field_name, second_sep)
+                if value:
+                    text.append('{} {}'.format(dict_text, value))
+            else:
+                value = self.get_taxonomy_value(field_name, second_sep)
+                if value:
+                    text.append(value)
+        return sep.join(text)
+
+    def get_taxonomy_value(self, field_name, sep=' '):
         lang = self.real_context.language
-        taxonomy_id = self.get_value(field_name)
+        taxonomy_ids = self.get_value(field_name)
+        if not taxonomy_ids:
+            return None
+        if isinstance(taxonomy_ids, basestring):
+            taxonomy_ids = [taxonomy_ids]
         domain = 'collective.taxonomy.{0}'.format(
             field_name.replace('taxonomy_', '').replace('_', ''))
 
         sm = getSiteManager()
         utility = sm.queryUtility(ITaxonomy, name=domain)
-        taxonomy_id = list(taxonomy_id)
-        if len(taxonomy_id) > 0:
-            text = utility.translate(
-                taxonomy_id[0],
-                context=self.real_context,
-                target_language=lang)
-            return text
+        taxonomy_list = [taxonomy_id for taxonomy_id in taxonomy_ids]
+        text = []
+        if len(taxonomy_list) > 0:
+            for taxonomy_id in taxonomy_list:
+                text.append(
+                    safe_utf8(
+                        utility.translate(
+                            taxonomy_id,
+                            context=self.real_context,
+                            target_language=lang
+                        )
+                    )
+                )
+            return sep.join(text)
         else:
             return None
 
@@ -151,17 +181,31 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         related_obj = self.get_value(field_name)
         if not related_obj:
             return None
+        if isinstance(related_obj, list):
+            return [obj.to_object for obj in related_obj]
         return related_obj.to_object
 
-    def get_relation_value(self, field_name, value_name):
+    def get_relation_value(self, field_name, value_name, sep=' '):
         if isinstance(value_name, list):
             result = []
             for value in value_name:
                 relation_field = self.get_relation_field(field_name)
                 result.append(getattr(relation_field, value, ''))
-            return ' '.join(result)
+            return sep.join(result)
         relation_field = self.get_relation_field(field_name)
+        if isinstance(relation_field, list):
+            result = []
+            for rel in relation_field:
+                result.append(getattr(rel, value_name, ''))
+            return sep.join(result)
         return getattr(relation_field, value_name, '')
+
+    def get_partners(self, prefix='', sep=' '):
+        partners = self.get_relation_value('partners', 'title', sep)
+        text = partners
+        if prefix:
+            text = '{} {}'.format(prefix, partners)
+        return text
 
     def get_info(self):
         obj = self.get_relation_field('contact')
@@ -202,11 +246,9 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         if city and zip_code:
             address.append(u'{0} {1}'.format(zip_code, city))
         if len(address) > 1:
-            return '<br />'.join(address)
+            return '\n'.join(address)
         else:
             return ''
-
-
 
 
 class TupleErrorPage(BrowserView):
