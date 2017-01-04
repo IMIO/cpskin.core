@@ -83,6 +83,18 @@ def add_keyword(obj, tag_id='hiddenTags', tag_value=[]):
     obj.reindexObject()
 
 
+def has_behavior(type_name, behavior_name):
+    """Add a behavior to a type"""
+    fti = queryUtility(IDexterityFTI, name=type_name)
+    if not fti:
+        return
+    behaviors = list(fti.behaviors)
+    if behavior_name not in behaviors:
+        return False
+    else:
+        return True
+
+
 def add_behavior(type_name, behavior_name):
     """Add a behavior to a type"""
     fti = queryUtility(IDexterityFTI, name=type_name)
@@ -191,7 +203,7 @@ def has_lat_lng(obj):
 
 
 def set_coord(obj, request):
-    if not ICoordinates.providedBy(obj):
+    if not has_behavior(obj.portal_type, ICoordinates.__identifier__):
         return
     address = get_address_from_obj(obj)
     if address:
