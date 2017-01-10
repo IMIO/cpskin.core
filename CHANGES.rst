@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.32 (unreleased)
+0.8.32 (2017-01-10)
 -------------------
 
 - Improve export of custom folder.
