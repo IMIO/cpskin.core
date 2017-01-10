@@ -17,6 +17,7 @@ from zope.publisher.browser import BrowserView
 from Products.MailHost.interfaces import IMailHost
 from zope.component import getUtility
 from zope.component.interfaces import ComponentLookupError
+import base64
 import json
 
 
@@ -269,11 +270,18 @@ class TransmoExport(BrowserView):
         portal_skins = api.portal.get_tool('portal_skins')
         objects['custom'] = []
         for obj_id, item in portal_skins.custom.items():
-            objects['custom'].append({
-                'obj_id': obj_id,
-                'meta_type': item.meta_type,
-                'raw': item.raw
-            })
+            if item.meta_type in ['Image', 'File']:
+                objects['custom'].append({
+                    'obj_id': obj_id,
+                    'meta_type': item.meta_type,
+                    'data': base64.b64encode(item.data)
+                })
+            else:
+                objects['custom'].append({
+                    'obj_id': obj_id,
+                    'meta_type': item.meta_type,
+                    'raw': item.raw
+                })
         # get list of installed profile
         portal_quickinstaller = api.portal.get_tool('portal_quickinstaller')
         product_ids = [product['id'] for product in portal_quickinstaller.listInstalledProducts()]

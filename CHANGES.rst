@@ -4,7 +4,8 @@ Changelog
 0.8.32 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improve export of custom folder.
+  [bsuttor]
 
 
 0.8.31 (2017-01-04)
