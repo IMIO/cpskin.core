@@ -4,21 +4,23 @@ from collective.geo.behaviour.behaviour import Coordinates
 from collective.geo.geographer.interfaces import IGeoreferenceable
 from collective.geo.geographer.interfaces import IWriteGeoreferenced
 from collective.jsonify.wrapper import Wrapper
-from Products.CMFCore.utils import getToolByName
-from zope.annotation.interfaces import IAnnotations
-from zope.component import queryMultiAdapter
-from zope.interface import Interface
-import os
-import DateTime
-import pickle
-from xml.dom import minidom
 from plone.portlets.interfaces import ILocalPortletAssignable, IPortletManager, IPortletAssignmentMapping, IPortletAssignment, ILocalPortletAssignmentManager
 from plone.portlets.constants import USER_CATEGORY, GROUP_CATEGORY, CONTENT_TYPE_CATEGORY, CONTEXT_CATEGORY
 from plone.app.portlets.interfaces import IPortletTypeInterface
 from plone.app.portlets.exportimport.interfaces import IPortletAssignmentExportImportHandler
 from plone.app.portlets.exportimport.portlets import PropertyPortletAssignmentExportImportHandler
+from Products.CMFCore.utils import getToolByName
+from xml.dom import minidom
+from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtilitiesFor
+from zope.component import queryMultiAdapter
+from zope.interface import Interface
 from zope.interface import providedBy
+
+import base64
+import DateTime
+import os
+import pickle
 
 
 class ISerializer(Interface):
@@ -42,7 +44,7 @@ class Wrapper(Wrapper):
         except:
             return
 
-        import base64
+
         fields = self.context.Schema().fields()
         for field in fields:
             fieldname = unicode(field.__name__)
@@ -112,10 +114,12 @@ class Wrapper(Wrapper):
                 value2 = value
 
                 if not isinstance(value, str):
-                    if isinstance(value.data, str):
+                    data = getattr(value, 'data')
+                    if data is None:
+                        continue
+                    if isinstance(data, str):
                         value = base64.b64encode(value.data)
                     else:
-                        data = value.data
                         value = ''
                         while data is not None:
                             value += data.data
