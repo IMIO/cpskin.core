@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.33 (unreleased)
+0.8.33 (2017-01-11)
 -------------------
 
 - Fix if there is an empty leadimage for transmo export.
