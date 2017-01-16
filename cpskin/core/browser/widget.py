@@ -34,20 +34,20 @@ class MultiLineDataConverter(BaseDataConverter):
     def toWidgetValue(self, value):
         """See interfaces.IDataConverter"""
         if value is self.field.missing_value:
-            return u''
-        if isinstance(value, list):
-            return u'\r\n'.join([util.toUnicode(v) for v in value])
-        return util.toUnicode(value)
+            return ['']
+        if isinstance(value, six.string_types):
+            return [util.toUnicode(value)]
+        return [util.toUnicode(v) for v in value if v]
 
     def toFieldValue(self, value):
         """See interfaces.IDataConverter"""
         if self._strip_value and isinstance(value, six.string_types):
             value = value.strip()
 
-        if value == u'':
+        if value == u'' or value == []:
             return self.field.missing_value
 
-        return value.splitlines()
+        return [v for v in value if v]
 
 
 def multiline_field_widget(field, request):

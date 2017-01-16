@@ -64,6 +64,7 @@ setup(name='cpskin.core',
           'geocoder',
           'imio.dashboard',
           'collective.jsonify',
+          'phonenumbers',
       ],
       extras_require={
           'test': [

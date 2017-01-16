@@ -3,6 +3,7 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     xmlns:faceted="http://namespaces.zope.org/faceted"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="cpskin">
 
   <adapter factory=".controlpanel.CPSkinControlPanelAdapter" />
@@ -17,6 +18,11 @@
   <browser:resourceDirectory
       name="cpskin.core.css"
       directory="resources/css"
+      layer="..interfaces.ICPSkinCoreLayer" />
+
+  <browser:resourceDirectory
+      name="cpskin.core.js"
+      directory="resources/js"
       layer="..interfaces.ICPSkinCoreLayer" />
 
   <!-- Browser pages used by profile - no layer allowed here -->
@@ -184,8 +190,24 @@
     permission="zope2.View"
     />
 
-<!-- widget -->
-<adapter factory=".widget.MultiLineDataConverter" />
+  <browser:page
+    name="faceted-preview-item"
+    class=".organization.FacetedPreviewItem"
+    for="collective.contact.core.content.organization.IOrganization"
+    template="templates/preview-organization.pt"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+    permission="zope2.View"
+    />
+
+  <!-- widget -->
+  <adapter factory=".widget.MultiLineDataConverter" />
+
+  <z3c:widgetTemplate
+    mode="input"
+    widget=".widget.IMultiLineWidget"
+    template="templates/multiline_input.pt"
+    layer="z3c.form.interfaces.IFormLayer"
+    />
 
 
 <!-- adapt collective.contact.core views to prevent JS error which arrive
@@ -234,4 +256,5 @@
     layer="cpskin.core.interfaces.ICPSkinCoreLayer"
     permission="zope2.View"
     />
+
 </configure>

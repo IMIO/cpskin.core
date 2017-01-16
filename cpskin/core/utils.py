@@ -11,6 +11,7 @@ from zope.component import queryUtility
 import geocoder
 import logging
 import os
+import phonenumbers
 
 
 logger = logging.getLogger('cpskin.core.utils')
@@ -229,3 +230,22 @@ def set_coord(obj, request):
             obj.getPhysicalPath()))
         api.portal.show_message(message=message, request=request)
         logger.warn(message)
+
+
+def format_phone(value):
+    try:
+        number = phonenumbers.parse(value, 'BE')
+    except phonenumbers.NumberParseException:
+        return {'raw': value, 'formated': value}
+    formated_value = phonenumbers.format_number(
+        number,
+        phonenumbers.PhoneNumberFormat.INTERNATIONAL,
+    )
+    country_code = str(number.country_code)
+    return {
+        'raw': formated_value,
+        'formated': formated_value.replace(
+            country_code,
+            '{0} (0)'.format(country_code),
+        ),
+    }

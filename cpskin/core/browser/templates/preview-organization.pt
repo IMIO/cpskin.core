@@ -1,0 +1,49 @@
+<div class="organization-entry"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  i18n:domain="collective.contact.facetednav"
+  tal:omit-tag=""
+  tal:define="portal_type context/portal_type;
+              useViewTypes context/portal_properties/site_properties/typesUseViewActionInListings;
+              useView python:portal_type in useViewTypes;
+              macros nocall:context/@@contact-macros | nothing;
+              organization_macro macros/organization | nothing;
+              showOrganizationMacro python:organization_macro;">
+  <a tal:define="
+      title context/get_full_title|string:;
+      url context/absolute_url|string:#;
+      has_logo context/logo|nothing;"
+     tal:attributes="href url;
+                     title title">
+    <span class="organization-logo">
+      <img tal:condition="has_logo"
+           tal:replace="structure context/@@images/logo/tile|string:X" />
+    </span>
+    <span class="organization-title" tal:content="title"></span>
+  </a>
+  <div class="contact-info">
+    <span class="organization-phone"
+       tal:condition="context/phone">
+      <tal:block repeat="phone view/phones">
+      <a tal:attributes="href string:tel:${phone/raw}">
+      <span class="tel"
+            tal:content="phone/formated"
+            i18n:translate="" />
+      </a>
+      </tal:block>
+    </span>
+    <span class="organization-email"
+          tal:condition="context/email">
+      <a tal:attributes="href string:mailto:${context/email}"
+         tal:content="context/email"></a></span>
+
+    <tal:macro condition="showOrganizationMacro">
+      <div metal:use-macro="organization_macro"></div>
+    </tal:macro>
+
+  </div>
+
+  <tal:buttons content="structure provider:collective.contact.facetednav.actions" />
+
+</div>
