@@ -334,7 +334,6 @@ class TestViews(unittest.TestCase):
             name='document_generation_helper_view')
         view.real_context = event
 
-        # import ipdb; ipdb.set_trace()
         self.assertEqual(
             view.get_formatted_date(), u'1 January\nde 10:00 \xe0 11:00')
 
@@ -351,6 +350,7 @@ class TestViews(unittest.TestCase):
         event.open_end = True
         self.assertEqual(
             view.get_formatted_date(), u'1 January\n\xe0 10:00')
+        # import ipdb; ipdb.set_trace()
 
     def test_folderiew_hide_title(self):
         # directlyProvides(self.portal.REQUEST, ICPSkinCoreLayer)

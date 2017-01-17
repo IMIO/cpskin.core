@@ -4,7 +4,8 @@ Changelog
 0.8.34 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix open_day on index view do not show end date.
+  [bsuttor]
 
 
 0.8.33 (2017-01-11)

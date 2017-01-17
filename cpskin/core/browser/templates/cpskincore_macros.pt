@@ -76,12 +76,13 @@
                             </a>
 
                             <span class="documentByLine"
-                                  tal:condition="python: view.see_start_end_date(result, content)">
+                                  tal:condition="python: view.see_start_end_date(result, content)"
+                                  tal:define="event python: result.getObject()">
                               <tal:one_day condition="python: view.is_one_day(result)">
                               <span i18n:translate="evenement_le">le</span>
                               <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
-                                <tal:withHours condition="python: view.is_with_hours(result)">
-                                  <tal:openEnd condition="python: view.is_open_end(result)">
+                                <tal:withHours condition="python: view.is_with_hours(event)">
+                                  <tal:openEnd condition="python: view.is_open_end(event)">
                                     <span i18n:translate="evenement_a_lheure">à</span>
                                     <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
                                   </tal:openEnd>
