@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.34 (unreleased)
+0.8.34 (2017-01-17)
 -------------------
 
 - Add a custom widget for phone numbers and format phone numbers in display mode
