@@ -4,6 +4,9 @@ Changelog
 0.8.34 (unreleased)
 -------------------
 
+- Add a custom widget for phone numbers and format phone numbers in display mode
+  [mpeeters]
+
 - Fix open_day on index view do not show end date.
   [bsuttor]
 
