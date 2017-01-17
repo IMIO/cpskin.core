@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.35 (unreleased)
+0.8.35 (2017-01-17)
 -------------------
 
 - Fix archetypes event.
