@@ -385,10 +385,14 @@ class FolderView(FoldV):
             time, long_format, time_only)
 
     def is_one_day(self, event):
+        if not IDexterityContent.providedBy(event):
+            return False
         return self.toLocalizedTime(event.start, long_format=0) == self.toLocalizedTime(
             event.end, long_format=0)
 
     def is_with_hours(self, event):
+        if not IDexterityContent.providedBy(event):
+            return False
         if getattr(event, 'whole_day', False):
             return not(event.whole_day)
         else:

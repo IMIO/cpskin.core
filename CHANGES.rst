@@ -4,7 +4,8 @@ Changelog
 0.8.35 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix archetypes event.
+  [bsuttor]
 
 
 0.8.34 (2017-01-17)
