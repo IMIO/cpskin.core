@@ -65,6 +65,7 @@ setup(name='cpskin.core',
           'imio.dashboard',
           'collective.jsonify',
           'phonenumbers',
+          'collective.contact.facetednav',
       ],
       extras_require={
           'test': [
