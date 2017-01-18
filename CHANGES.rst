@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.36 (unreleased)
+0.8.36 (2017-01-18)
 -------------------
 
 - Also export users list.
