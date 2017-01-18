@@ -4,7 +4,8 @@ Changelog
 0.8.36 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Also export users list.
+  [bsuttor]
 
 
 0.8.35 (2017-01-17)

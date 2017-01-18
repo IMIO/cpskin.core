@@ -19,6 +19,8 @@ from zope.component import getUtility
 from zope.component.interfaces import ComponentLookupError
 import base64
 import json
+import logging
+logger = logging.getLogger('cpskin.core.browser.pages')
 
 
 class FrontPage(BrowserView):
@@ -271,17 +273,28 @@ class TransmoExport(BrowserView):
         objects['custom'] = []
         for obj_id, item in portal_skins.custom.items():
             if item.meta_type in ['Image', 'File']:
-                objects['custom'].append({
-                    'obj_id': obj_id,
-                    'meta_type': item.meta_type,
-                    'data': base64.b64encode(item.data)
-                })
+                try:
+                    data = base64.b64encode(item.data)
+                    objects['custom'].append({
+                        'obj_id': obj_id,
+                        'meta_type': item.meta_type,
+                        'data': data
+                    })
+                except:
+                    logger.info('Not able to export {}'.format(
+                        '/'.join(item.getPhysicalPath()))
+                    )
             else:
-                objects['custom'].append({
-                    'obj_id': obj_id,
-                    'meta_type': item.meta_type,
-                    'raw': item.raw
-                })
+                try:
+                    objects['custom'].append({
+                        'obj_id': obj_id,
+                        'meta_type': item.meta_type,
+                        'raw': item.raw
+                    })
+                except:
+                    logger.info('Not able to export {}'.format(
+                        '/'.join(item.getPhysicalPath()))
+                    )
         # get list of installed profile
         portal_quickinstaller = api.portal.get_tool('portal_quickinstaller')
         product_ids = [product['id'] for product in portal_quickinstaller.listInstalledProducts()]
@@ -295,6 +308,8 @@ class TransmoExport(BrowserView):
             group['description'] = site_group.description
             group['roles'] = site_group.getRoles()
             group['groups'] = site_group.getGroups()
+            users = [user.id for user in api.user.get_users(groupname=group['id'])]
+            group['users'] = users
             groups.append(group)
         objects['groups'] = groups
         #users
@@ -303,7 +318,6 @@ class TransmoExport(BrowserView):
         portal_membership = api.portal.get_tool('portal_membership')
         users = []
         for member in portal_membership.listMembers():
-            # add email
             user = {}
             user['id'] = member.getId()
             user['name'] = member.getProperty('fullname', member.getUserName())
