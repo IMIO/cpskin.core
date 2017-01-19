@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.37 (unreleased)
+0.8.37 (2017-01-19)
 -------------------
 
 - Improve visible date on index view.
