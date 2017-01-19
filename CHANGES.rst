@@ -4,13 +4,14 @@ Changelog
 0.8.37 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improve visible date on index view.
+  [bsuttor]
 
 
 0.8.36 (2017-01-18)
 -------------------
 
-- Also export users list.
+- Also export user groups list.
   [bsuttor]
 
 
