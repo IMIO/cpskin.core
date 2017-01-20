@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.40 (unreleased)
+0.8.40 (2017-01-20)
 -------------------
 
 - Improve hide date for archetypes.
