@@ -426,16 +426,11 @@ class FolderView(FoldV):
         Also check if collection is checked to see publication date.
         """
         if not getattr(brain, 'start', None) and not getattr(brain, 'end', None):
-            if getattr(collection, 'hide_date', False):
-                effective = getattr(brain, 'effective', None)
-                if effective:
-                    if effective.year() < 1900:
-                        return False
-                    return True
+            return getattr(collection, 'hide_date', True)
         else:
             # always hide effective date for events
             return True
-        return False
+
 
 def configure_folderviews(context):
     """

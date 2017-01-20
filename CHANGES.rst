@@ -4,7 +4,8 @@ Changelog
 0.8.40 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improve hide date for archetypes.
+  [bsuttor]
 
 
 0.8.39 (2017-01-20)
