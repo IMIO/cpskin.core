@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.38 (unreleased)
+0.8.38 (2017-01-20)
 -------------------
 
 - Hide effective date for date.
