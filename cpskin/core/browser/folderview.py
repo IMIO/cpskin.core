@@ -432,6 +432,9 @@ class FolderView(FoldV):
                     if effective.year() < 1900:
                         return False
                     return True
+        else:
+            # always hide effective date for events
+            return True
         return False
 
 def configure_folderviews(context):

@@ -4,7 +4,8 @@ Changelog
 0.8.38 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Hide effective date for date.
+  [bsuttor]
 
 
 0.8.37 (2017-01-19)

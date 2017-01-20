@@ -103,7 +103,7 @@
                             </span>
 
                             <span class="documentByLine"
-                                  tal:condition="python: view.hide_date(result, content)">
+                                  tal:condition="python: not view.hide_date(result, content)">
                               <span tal:content="python: view.toLocalizedTime(result.effective, long_format=0)" />
                             </span>
 
