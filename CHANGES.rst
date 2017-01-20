@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.39 (unreleased)
+0.8.39 (2017-01-20)
 -------------------
 
 - Use formatted phone for related contacts.
