@@ -48,15 +48,15 @@
                         website python: view.get_field(contact, 'website');">
             <div class="phone" tal:condition="phones">
                 <tal:loop repeat="phone phones">
-                <a href="" tal:attributes="href string:tel:${phone}" >
-                    <div tal:content="phone" />
+                <a tal:condition="phone" href="" tal:attributes="href string:tel:${phone/raw}" >
+                    <div tal:content="phone/formated" />
                 </a>
                 </tal:loop>
             </div>
             <div class="cell_phone" tal:condition="cell_phones">
-                <tal:loop repeat="cell_phone cell_phones">
-                <a href="" tal:attributes="href string:tel:${cell_phone}" >
-                    <div tal:content="cell_phone" />
+                <tal:loop repeat="cell_phone cell_phones" >
+                <a tal:condition="cell_phone" href="" tal:attributes="href string:tel:${cell_phone/raw}" >
+                    <div tal:content="cell_phone/formated" />
                 </a>
                 </tal:loop>
             </div>

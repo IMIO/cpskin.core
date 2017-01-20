@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.contact.core.interfaces import IContactable
+from cpskin.core.utils import format_phone
 from plone.app.layout.viewlets import common
 from plone.outputfilters.filters.resolveuid_and_caption import ResolveUIDAndCaptionFilter
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -69,9 +70,10 @@ class RelatedContactsViewlet(common.ViewletBase):
             else:
                 return ''
         if field in ['phone', 'cell_phone']:
-            if not isinstance(getattr(contact, field), list):
-                return [getattr(contact, field)]
-
+            phones = getattr(contact, field, '')
+            if not isinstance(phones, list):
+                phones = [getattr(contact, field)]
+            return [format_phone(phone) for phone in phones]
         return getattr(contact, field, '')
 
 

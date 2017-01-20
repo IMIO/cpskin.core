@@ -4,7 +4,8 @@ Changelog
 0.8.39 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use formatted phone for related contacts.
+  [bsuttor]
 
 
 0.8.38 (2017-01-20)
