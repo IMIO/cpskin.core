@@ -439,11 +439,11 @@ class TestViews(unittest.TestCase):
             name='folderview')
         news_brain = view.getResults(collection)['standard-results'][0]
         self.assertFalse(view.hide_date(news_brain, collection))
-        self.assertNotIn(u'Jul 26, 2016', view())
+        self.assertIn(u'Jul 26, 2016', view())
 
         collection.hide_date = True
         view = getMultiAdapter(
             (self.portal, self.portal.REQUEST),
             name='folderview')
         self.assertTrue(view.hide_date(news_brain, collection))
-        self.assertIn(u'Jul 26, 2016', view())
+        self.assertNotIn(u'Jul 26, 2016', view())
