@@ -21,12 +21,14 @@ class FacetedLayoutVocabularyFactory(object):
     def __call__(self, context):
         faceted_layout = FacetedLayout(context)
         request = getattr(context, 'REQUEST', getRequest())
+        # remove duplicates layouts:
+        layouts = list(set(faceted_layout.layouts))
         terms = [
             SimpleVocabulary.createTerm(
                 l[0],
                 l[0],
                 translate(_(l[1]), context=request),
-            ) for l in faceted_layout.layouts]
+            ) for l in layouts]
         return SimpleVocabulary(terms)
 
 

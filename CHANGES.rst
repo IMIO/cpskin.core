@@ -4,7 +4,8 @@ Changelog
 0.8.41 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Do not get duplicates layouts for faceted vocabulary layouts.
+  [bsuttor]
 
 
 0.8.40 (2017-01-20)
