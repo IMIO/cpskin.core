@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.41 (unreleased)
+0.8.41 (2017-01-25)
 -------------------
 
 - Do not get duplicates layouts for faceted vocabulary layouts.
