@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.42 (unreleased)
+0.8.42 (2017-01-30)
 -------------------
 
 - Add translation for migration.
