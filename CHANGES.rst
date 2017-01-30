@@ -4,7 +4,8 @@ Changelog
 0.8.42 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add translation for migration.
+  [bsuttor]
 
 
 0.8.41 (2017-01-25)

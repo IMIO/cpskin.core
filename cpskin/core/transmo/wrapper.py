@@ -6,6 +6,7 @@ from collective.geo.geographer.interfaces import IWriteGeoreferenced
 from collective.jsonify.wrapper import Wrapper
 from plone.portlets.interfaces import ILocalPortletAssignable, IPortletManager, IPortletAssignmentMapping, IPortletAssignment, ILocalPortletAssignmentManager
 from plone.portlets.constants import USER_CATEGORY, GROUP_CATEGORY, CONTENT_TYPE_CATEGORY, CONTEXT_CATEGORY
+from plone.app.multilingual.interfaces import ITranslationManager
 from plone.app.portlets.interfaces import IPortletTypeInterface
 from plone.app.portlets.exportimport.interfaces import IPortletAssignmentExportImportHandler
 from plone.app.portlets.exportimport.portlets import PropertyPortletAssignmentExportImportHandler
@@ -44,6 +45,13 @@ class Wrapper(Wrapper):
         except:
             return
 
+        if len(ITranslationManager(self.context).get_translations()) > 1:
+            translations = ITranslationManager(self.context).get_translations()
+            portal_level = len(self.portal.getPhysicalPath())
+            trans = {}
+            for lang, obj in translations.items():
+                trans[lang] = '/'+'/'.join(obj.getPhysicalPath()[portal_level:])
+            self['translations'] = trans
 
         fields = self.context.Schema().fields()
         for field in fields:
@@ -266,7 +274,15 @@ class Wrapper(Wrapper):
             from datetime import date
         except:
             return
+        # get translation if thereis
 
+        if len(ITranslationManager(self.context).get_translations()) > 1:
+            translations = ITranslationManager(self.context).get_translations()
+            portal_level = len(self.portal.getPhysicalPath())
+            trans = {}
+            for lang, obj in translations.items():
+                trans[lang] = '/'+'/'.join(obj.getPhysicalPath()[portal_level:])
+            self['translations'] = trans
         # get all fields for this obj
         for schemata in iterSchemata(self.context):
             for fieldname, field in getFieldsInOrder(schemata):
