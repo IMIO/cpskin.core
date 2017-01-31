@@ -70,6 +70,7 @@ setup(name='cpskin.core',
       extras_require={
           'test': [
               'plone.app.robotframework',
+              'plone.app.multilingual',
           ]
       },
       entry_points={},

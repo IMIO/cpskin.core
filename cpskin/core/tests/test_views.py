@@ -9,6 +9,7 @@ from cpskin.core.utils import add_behavior
 from cpskin.core.utils import add_leadimage_from_file
 from datetime import datetime
 from DateTime import DateTime
+from datetime import timedelta
 from plone import api
 from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
@@ -223,10 +224,9 @@ class TestViews(unittest.TestCase):
             container=self.portal,
             type='Event',
             id='testevent')
-        from datetime import datetime
         import pytz
         now = datetime.now(pytz.utc)
-        tomorrow = datetime(now.year, now.month, now.day + 1)
+        tomorrow = datetime.today() + timedelta(days=1)
         tomorrow.replace(tzinfo=pytz.utc)
         event.start = now
         event.end = now
