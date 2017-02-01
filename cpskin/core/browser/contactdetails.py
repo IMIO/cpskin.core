@@ -34,3 +34,9 @@ class ContactDetailsView(BrowserView, ContactDetails):
         if isinstance(cell_phones, six.string_types):
             cell_phones = [cell_phones]
         return [utils.format_phone(v) for v in cell_phones]
+
+    @property
+    def fax(self):
+        fax = self.contact_details.get('fax')
+        if fax:
+            return utils.format_phone(fax)

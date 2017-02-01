@@ -39,9 +39,11 @@
 
     <p id="fax" class="field" tal:condition="view/contact_details/fax">
         <label><tal:block i18n:translate="">Fax number</tal:block>:</label>
+        <tal:block define="fax view/fax">
         <span class="tel"
-              tal:content="view/contact_details/fax"
+              tal:content="fax/formated"
               i18n:translate="" />
+        </tal:block>
     </p>
 
     <p id="im_handle" class="field" tal:condition="view/contact_details/im_handle">
