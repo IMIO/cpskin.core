@@ -366,4 +366,8 @@ class TransmoExport(BrowserView):
         geo['latitude'] = str(api.portal.get_registry_record(lat_key))
         geo['longitude'] = str(api.portal.get_registry_record(lng_key))
         objects['geo'] = geo
+
+        # portal_languages
+        portal_languages = api.portal.get_tool('portal_languages')
+        objects['language'] = portal_languages.supported_langs
         return json.dumps(objects)

@@ -20,6 +20,9 @@ Changelog
   the new javascript file for the multiline phone widget
   [mpeeters]
 
+- Add languages used in portal in transmo-export view.
+  [bsuttor]
+
 
 0.8.42 (2017-01-30)
 -------------------
