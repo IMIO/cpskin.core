@@ -4,7 +4,18 @@ Changelog
 0.8.43 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Format also fax numbers
+  [mpeeters]
+
+- Add a display view for the multiline widget
+  [mpeeters]
+
+- Avoid an error if only one phone was registered
+  [mpeeters]
+
+- Add an upgrade step to add the new faceted interface for multiple layout and
+  the new javascript file for the multiline phone widget
+  [mpeeters]
 
 
 0.8.42 (2017-01-30)
