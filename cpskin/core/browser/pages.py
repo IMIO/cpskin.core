@@ -369,5 +369,5 @@ class TransmoExport(BrowserView):
 
         # portal_languages
         portal_languages = api.portal.get_tool('portal_languages')
-        objects['language'] = portal_languages.supported_langs
+        objects['languages'] = portal_languages.supported_langs
         return json.dumps(objects)
