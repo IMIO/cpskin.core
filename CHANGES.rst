@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.43 (unreleased)
+0.8.43 (2017-02-01)
 -------------------
 
 - Add an empty field if there is not values
