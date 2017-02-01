@@ -42,7 +42,7 @@ class MultiLineDataConverter(BaseDataConverter):
     def toFieldValue(self, value):
         """See interfaces.IDataConverter"""
         if self._strip_value and isinstance(value, six.string_types):
-            value = value.strip()
+            value = [value.strip()]
 
         if value == u'' or value == []:
             return self.field.missing_value
