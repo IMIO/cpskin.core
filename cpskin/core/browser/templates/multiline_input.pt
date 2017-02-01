@@ -37,6 +37,39 @@
   <input type="button" class="remove" value="Remove" i18n:attributes="value" />
 </div>
 </tal:if>
+<tal:if condition="not: view/value">
+<div class="element">
+  <input id="" name="" class="" title="" lang="" disabled=""
+         readonly="" alt="" tabindex="" accesskey="" size="" maxlength=""
+         style="" value="" type="text"
+         tal:attributes="name view/name;
+                         class view/klass;
+                         style view/style;
+                         title view/title;
+                         lang view/lang;
+                         onclick view/onclick;
+                         ondblclick view/ondblclick;
+                         onmousedown view/onmousedown;
+                         onmouseup view/onmouseup;
+                         onmouseover view/onmouseover;
+                         onmousemove view/onmousemove;
+                         onmouseout view/onmouseout;
+                         onkeypress view/onkeypress;
+                         onkeydown view/onkeydown;
+                         onkeyup view/onkeyup;
+                         disabled view/disabled;
+                         tabindex view/tabindex;
+                         onfocus view/onfocus;
+                         onblur view/onblur;
+                         onchange view/onchange;
+                         cols view/cols;
+                         rows view/rows;
+                         readonly view/readonly;
+                         accesskey view/accesskey;
+                         onselect view/onselect" />
+  <input type="button" class="remove" value="Remove" i18n:attributes="value" />
+</div>
+</tal:if>
 <input type="button" class="add" value="Add" i18n:attributes="value" />
 </div>
 </html>

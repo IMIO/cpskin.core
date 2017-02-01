@@ -4,6 +4,9 @@ Changelog
 0.8.43 (unreleased)
 -------------------
 
+- Add an empty field if there is not values
+  [mpeeters]
+
 - Format also fax numbers
   [mpeeters]
 
