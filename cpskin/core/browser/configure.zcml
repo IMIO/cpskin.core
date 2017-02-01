@@ -209,6 +209,13 @@
     layer="z3c.form.interfaces.IFormLayer"
     />
 
+  <z3c:widgetTemplate
+    mode="display"
+    widget=".widget.IMultiLineWidget"
+    template="templates/multiline_display.pt"
+    layer="z3c.form.interfaces.IFormLayer"
+    />
+
 
 <!-- adapt collective.contact.core views to prevent JS error which arrive
      when collective.geo.behaviour is enabled -->

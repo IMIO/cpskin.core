@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      tal:omit-tag=""
+      i18n:domain="cpskin">
+<div id="" class="multiline-widget" tal:attributes="id view/id">
+<tal:if condition="view/value">
+<tal:block repeat="value view/value">
+<span id="" class=""
+      tal:attributes="class view/klass;
+                      style view/style;
+                      title view/title;
+                      lang view/lang;
+                      onclick view/onclick;
+                      ondblclick view/ondblclick;
+                      onmousedown view/onmousedown;
+                      onmouseup view/onmouseup;
+                      onmouseover view/onmouseover;
+                      onmousemove view/onmousemove;
+                      onmouseout view/onmouseout;
+                      onkeypress view/onkeypress;
+                      onkeydown view/onkeydown;
+                      onkeyup view/onkeyup"
+      tal:content="value"></span>
+</tal:block>
+</tal:if>
+</div>
+</html>
