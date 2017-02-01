@@ -9,14 +9,24 @@ from cpskin.core.setuphandlers import addSubMenuPersistenceToRegistry
 from cpskin.core.setuphandlers import setPageText
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
+from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
+from eea.facetednavigation.subtypes.interfaces import IPossibleFacetedNavigable
 from plone import api
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
+from zope.interface import alsoProvides
 from zope.interface import directlyProvides, directlyProvidedBy
 
 import logging
 logger = logging.getLogger('cpskin.core')
+
+
+def upgrade_to_nineteen(context):
+    context.runImportStepFromProfile('profile-cpskin.core:to19', 'jsregistry')
+    for brain in api.content.find(object_provides=IPossibleFacetedNavigable):
+        obj = brain.getObject()
+        alsoProvides(obj, ICPSkinPossibleFacetedNavigable)
 
 
 def clean_old_keyword_homepage(context):

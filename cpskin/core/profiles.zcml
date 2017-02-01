@@ -32,7 +32,25 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <genericsetup:registerProfile
+        name="to19"
+        title="cpskin.core"
+        directory="upgrades/to19"
+        description="CPSKIN Core: upgrade to v19"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
     <!-- Upgrade steps -->
+
+    <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v19"
+        description="Add the faceted interface for multiple layout and add a new javascript"
+        handler=".upgradehandlers.upgrade_to_nineteen"
+        source="18"
+        destination="19"
+        profile="cpskin.core:default"
+        />
 
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v18"
@@ -42,7 +60,6 @@
         destination="18"
         profile="cpskin.core:default"
         />
-
 
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v17"
