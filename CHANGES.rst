@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.8.45 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
 0.8.44 (2017-02-07)
 -------------------
 - Set default value of link_text empty.
