@@ -172,5 +172,5 @@ class IAdditionalSearchableText(model.Schema):
     )
     dexteritytextindexer.searchable('additional_searchable_text')
     additional_searchable_text = schema.Text(
-        title=u'Additional searchable text',
+        title=_(u'Additional searchable text'),
         required=False)
