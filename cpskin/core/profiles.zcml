@@ -44,6 +44,16 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v20: Empty value of link_text"
+        description="Empty value of link_text"
+        handler=".upgradehandlers.empty_value_of_link_text"
+        source="19"
+        destination="20"
+        profile="cpskin.core:default"
+        />
+
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v19"
         description="Add the faceted interface for multiple layout and add a new javascript"
         handler=".upgradehandlers.upgrade_to_nineteen"

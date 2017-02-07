@@ -56,8 +56,8 @@ class ICpskinIndexViewSettings(model.Schema):
         title=_(u'Text for link to collection'),
         description=_(
             u'This text will be visible on index view for link to this collection'),
-        default=_(u"Voir l'ensemble des"),
-        required=True
+        default=_(u''),
+        required=False
     )
 
     form.widget('index_view_keywords', CheckBoxFieldWidget)

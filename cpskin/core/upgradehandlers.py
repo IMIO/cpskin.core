@@ -22,6 +22,14 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def empty_value_of_link_text(context):
+    for brain in api.content.find(portal_type='Collection'):
+        obj = brain.getObject()
+        path = '/'.join(obj.getPhysicalPath())
+        logger.info('set link_text empty for {0}'.format(path))
+        setattr(obj, 'link_text', '')
+
+
 def upgrade_to_nineteen(context):
     context.runImportStepFromProfile('profile-cpskin.core:to19', 'jsregistry')
     for brain in api.content.find(object_provides=IPossibleFacetedNavigable):
