@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.44 (unreleased)
+0.8.44 (2017-02-07)
 -------------------
 - Set default value of link_text empty.
   [bsuttor]
