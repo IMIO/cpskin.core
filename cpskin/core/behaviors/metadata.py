@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective import dexteritytextindexer
 from collective.z3cform.keywordwidget.field import Keywords
 from cpskin.locales import CPSkinMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
@@ -160,3 +161,16 @@ class IRelatedContacts(model.Schema):
             vocabulary=u'cpskin.core.vocabularies.contact_fields'
         )
     )
+
+
+@provider(IFormFieldProvider)
+class IAdditionalSearchableText(model.Schema):
+    model.fieldset(
+        'categorization',
+        label=_(u'label_schema_categorization', default=u'Categorization'),
+        fields=('additional_searchable_text',),
+    )
+    dexteritytextindexer.searchable('additional_searchable_text')
+    additional_searchable_text = schema.Text(
+        title=u'Additional searchable text',
+        required=False)

@@ -66,6 +66,7 @@ setup(name='cpskin.core',
           'collective.jsonify',
           'phonenumbers',
           'collective.contact.facetednav',
+          'collective.dexteritytextindexer',
       ],
       extras_require={
           'test': [

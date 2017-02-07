@@ -44,6 +44,14 @@
     for="plone.dexterity.interfaces.IDexterityContent"
     />
 
+
+  <plone:behavior
+    title="Additional searchable text"
+    description="Add an addtional searchable text"
+    provides=".metadata.IAdditionalSearchableText"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    />
+
   <plone:behavior
     title="Cpskin index view settings"
     description="Adds some configuration for cpskin index view."

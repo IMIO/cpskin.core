@@ -3,8 +3,11 @@ Changelog
 
 0.8.44 (unreleased)
 -------------------
+- Set default value of link_text empty.
+  [bsuttor]
 
-- Nothing changed yet.
+- Add IAdditionalSearchableText behavior.
+  [bsuttor]
 
 
 0.8.43 (2017-02-01)

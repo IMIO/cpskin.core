@@ -2,6 +2,7 @@
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.metadata import IHiddenTags
 from cpskin.core.behaviors.metadata import IRelatedContacts
+from cpskin.core.behaviors.metadata import IAdditionalSearchableText
 from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
@@ -85,3 +86,12 @@ class TestBehaviors(unittest.TestCase):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
         hide_title = getattr(self.collection, 'hide_title')
         self.assertEqual(hide_title, False)
+
+    def test_additional_searchable_text(self):
+        add_behavior('Document', IAdditionalSearchableText.__identifier__)
+        additional_searchable_text = getattr(self.document, 'additional_searchable_text')
+        self.assertEqual(additional_searchable_text, None)
+        additional_searchable_text = setattr(
+            self.document, 'additional_searchable_text', 'trash')
+        additional_searchable_text = getattr(self.document, 'additional_searchable_text')
+        self.assertEqual(additional_searchable_text, 'trash')
