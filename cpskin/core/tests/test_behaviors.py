@@ -46,7 +46,7 @@ class TestBehaviors(unittest.TestCase):
     def test_use_link_text(self):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
         link_text = getattr(self.collection, 'link_text')
-        self.assertEqual(link_text, "Voir l'ensemble des")
+        self.assertEqual(link_text, '')
 
     def test_use_keyword_homepage(self):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)

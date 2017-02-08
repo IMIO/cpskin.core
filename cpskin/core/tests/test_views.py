@@ -62,16 +62,16 @@ class TestViews(unittest.TestCase):
                                transition='publish')
         collection = self.portal.actualites.actualites
         link_text = getattr(collection, 'link_text')
-        self.assertEqual(link_text, "Voir l'ensemble des")
+        self.assertEqual(link_text, '')
         view = getMultiAdapter((self.portal, self.request), name='folderview')
         voir_lensemble_des = view.see_all(collection)
         self.assertEqual(voir_lensemble_des,
                          "Voir l'ensemble des actualit\xc3\xa9s")
 
-        collection.link_text = "Voir toutes les"
+        collection.link_text = u"Voir toutes les actualit\xc3\xa9s"
         voir_lensemble_des = view.see_all(collection)
         self.assertEqual(voir_lensemble_des,
-                         'Voir toutes les actualit\xc3\xa9s')
+                         'Voir toutes les actualit\xc3\x83\xc2\xa9s')
         self.assertTrue("Voir toutes les actualit" in view.index())
 
     def test_folderiew_setting_image_scale(self):
