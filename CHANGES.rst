@@ -4,7 +4,8 @@ Changelog
 0.8.45 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Update transmo migration: check if obj is transalatable.
+  [bsuttor]
 
 
 0.8.44 (2017-02-07)
