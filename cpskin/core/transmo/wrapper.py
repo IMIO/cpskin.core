@@ -275,7 +275,11 @@ class Wrapper(Wrapper):
         except:
             return
         # get translation if thereis
-        if ITranslationManager.providedBy(self.context) and len(ITranslationManager(self.context).get_translations()) > 1:
+        try:
+            trans = ITranslationManager(self.context).get_translations()
+        except:
+            trans = {}
+        if len(trans) > 1:
             translations = ITranslationManager(self.context).get_translations()
             portal_level = len(self.portal.getPhysicalPath())
             trans = {}
