@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.45 (unreleased)
+0.8.45 (2017-02-10)
 -------------------
 
 - Update transmo migration: check if obj is transalatable.
