@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.46 (unreleased)
+0.8.46 (2017-02-13)
 -------------------
 
 - Add tools for set ploneCustom.css latest.
