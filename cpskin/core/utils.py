@@ -85,7 +85,7 @@ def add_keyword(obj, tag_id='hiddenTags', tag_value=[]):
 
 
 def has_behavior(type_name, behavior_name):
-    """Add a behavior to a type"""
+    """Check if a behavior is on portal_type"""
     fti = queryUtility(IDexterityFTI, name=type_name)
     if not fti:
         return
@@ -130,7 +130,8 @@ def add_leadimage_from_file(container, file_name, folder_name='data'):
             filename=unicode(file_name)
         )
         image_container = container
-        if not INavigationRoot.providedBy(container) and not ISiteRoot.providedBy(container):
+        if not INavigationRoot.providedBy(container) and \
+                not ISiteRoot.providedBy(container):
             image_container = container.aq_parent
 
         image = api.content.create(type='Image',
@@ -249,3 +250,11 @@ def format_phone(value):
             '{0} (0)'.format(country_code),
         ),
     }
+
+
+def set_plonecustom_last():
+    portal_css = api.portal.get_tool('portal_css')
+    resources = list(portal_css.resources)
+    custom_id = 'ploneCustom.css'
+    if custom_id in [res.getId() for res in resources]:
+        portal_css.moveResource(custom_id, len(resources))

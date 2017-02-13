@@ -4,7 +4,8 @@ Changelog
 0.8.46 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add tools for set ploneCustom.css latest.
+  [bsuttor]
 
 
 0.8.45 (2017-02-10)
