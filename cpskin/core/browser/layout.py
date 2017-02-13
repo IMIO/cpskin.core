@@ -59,4 +59,11 @@ class LayoutPolicy(base.LayoutPolicy):
         if not inTheme:
             body_class += ' section-notheme'
 
+        minisite = self.request.get('cpskin_minisite', None)
+        if minisite:
+            if minisite.is_in_minisite_mode:
+                body_class += ' in-ministe'
+            if minisite.is_in_portal_mode:
+                body_class += ' in-ministe-in-portal'
+
         return body_class

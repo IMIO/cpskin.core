@@ -4,7 +4,8 @@ Changelog
 0.8.47 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add in-minisite and in-minisite-in-portal css class to body.
+  [bsuttor]
 
 
 0.8.46 (2017-02-13)
