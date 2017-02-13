@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.47 (unreleased)
+0.8.47 (2017-02-13)
 -------------------
 
 - Add in-minisite and in-minisite-in-portal css class to body.
