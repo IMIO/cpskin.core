@@ -62,8 +62,8 @@ class LayoutPolicy(base.LayoutPolicy):
         minisite = self.request.get('cpskin_minisite', None)
         if minisite:
             if minisite.is_in_minisite_mode:
-                body_class += ' in-ministe'
+                body_class += ' in-minisite-out-portal'
             if minisite.is_in_portal_mode:
-                body_class += ' in-ministe-in-portal'
+                body_class += ' in-minisite-in-portal'
 
         return body_class

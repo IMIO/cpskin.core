@@ -4,7 +4,8 @@ Changelog
 0.8.48 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix typo for css class.
+  [bsuttor]
 
 
 0.8.47 (2017-02-13)
