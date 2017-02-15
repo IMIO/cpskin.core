@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.48 (unreleased)
+0.8.48 (2017-02-15)
 -------------------
 
 - Fix lost cropped images scales on a content after a modification : #14901
