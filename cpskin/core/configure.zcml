@@ -64,6 +64,10 @@
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
               handler=".events.set_lat_lng" />
 
+  <subscriber for="plone.app.imagecropping.interfaces.IImageCroppingMarker
+                   zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+              handler=".events.apply_crops_after_modify" />
+
   <adapter
     for="imio.dashboard.content.pod_template.IDashboardPODTemplate
          plone.app.contenttypes.interfaces.ICollection"

@@ -67,6 +67,7 @@ setup(name='cpskin.core',
           'phonenumbers',
           'collective.contact.facetednav',
           'collective.dexteritytextindexer',
+          'plone.app.imagecropping',
       ],
       extras_require={
           'test': [

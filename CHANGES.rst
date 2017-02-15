@@ -4,6 +4,11 @@ Changelog
 0.8.48 (unreleased)
 -------------------
 
+- Fix lost cropped images scales on a content after a modification : #14901
+  This is already fixed in Plone 5 but not in Plone 4.
+  See https://github.com/collective/plone.app.imagecropping/issues/21
+  [laulaz]
+
 - Fix typo for css class.
   [bsuttor]
 
