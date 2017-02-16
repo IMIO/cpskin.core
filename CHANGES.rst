@@ -4,7 +4,8 @@ Changelog
 0.8.49 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Check if collection are not empty for folderview.
+  [bsuttor]
 
 
 0.8.48 (2017-02-15)

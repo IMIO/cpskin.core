@@ -137,7 +137,8 @@ class FolderView(FoldV):
             if obj.portal_type == 'Folder':
                 if obj.getDefaultPage() is not None:
                     realObject = getattr(obj, obj.getDefaultPage())
-                    realObjects.append(realObject)
+                    if len(realObject.results()) > 0:
+                        realObjects.append(realObject)
                 else:
                     continue
             else:
