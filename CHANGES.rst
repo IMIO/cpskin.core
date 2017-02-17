@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.49 (unreleased)
+0.8.49 (2017-02-17)
 -------------------
 
 - Add upgrade step to add theme variables.
