@@ -22,6 +22,18 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def update_theme_variables(context):
+    context.runAllImportStepsFromProfile('profile-cpskin.theme:default')
+    key = 'plone.app.theming.interfaces.IThemeSettings.parameterExpressions'
+    params = {}
+    params['globalnavsetting'] = "python: 'always'"
+    params['isinminisitemode'] = 'context/@@isInMinisiteMode'
+    params['is_homepage'] = 'context/@@is_homepage'
+    params['environment'] = 'context/@@environment'
+    params['login_message'] = 'context/@@get_login_message'
+    api.portal.set_registry_record(key, params)
+
+
 def empty_value_of_link_text(context):
     for brain in api.content.find(portal_type='Collection'):
         obj = brain.getObject()

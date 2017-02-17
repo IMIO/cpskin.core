@@ -44,6 +44,15 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v20: Update theme variables"
+        description="Update theme variables and set version of cpskin.theme profile"
+        handler=".upgradehandlers.update_theme_variables"
+        source="20"
+        destination="21"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v20: Empty value of link_text"
         description="Empty value of link_text"
         handler=".upgradehandlers.empty_value_of_link_text"
@@ -51,7 +60,6 @@
         destination="20"
         profile="cpskin.core:default"
         />
-
 
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v19"

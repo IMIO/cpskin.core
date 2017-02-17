@@ -4,6 +4,9 @@ Changelog
 0.8.49 (unreleased)
 -------------------
 
+- Add upgrade step to add theme variables.
+  [bsuttor]
+
 - Check if collection are not empty for folderview.
   [bsuttor]
 
