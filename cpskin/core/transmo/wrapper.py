@@ -28,23 +28,7 @@ from cpskin.core.interfaces import IMediaActivated
 from cpskin.core.interfaces import IVideoCollection
 from cpskin.core.viewlets.interfaces import IViewletMenuToolsBox
 from cpskin.core.viewlets.interfaces import IViewletMenuToolsFaceted
-from cpskin.menu.interfaces import IDirectAccess
-from cpskin.menu.interfaces import IFourthLevelNavigation
 
-from eea.facetednavigation.criteria.handler import Criteria
-from eea.facetednavigation.criteria.interfaces import ICriteria
-from eea.facetednavigation.indexes.language.interfaces import ILanguageWidgetAdapter
-from eea.facetednavigation.interfaces import IFacetedNavigable
-from eea.facetednavigation.settings.interfaces import IDisableSmartFacets
-from eea.facetednavigation.settings.interfaces import IHidePloneLeftColumn
-from eea.facetednavigation.settings.interfaces import IHidePloneRightColumn
-from eea.facetednavigation.subtypes.interfaces import IFacetedWrapper
-from eea.facetednavigation.views.interfaces import IViewsInfo
-from eea.facetednavigation.widgets.alphabetic.interfaces import IAlphabeticWidget
-from eea.facetednavigation.widgets.interfaces import ICriterion
-from eea.facetednavigation.widgets.interfaces import IWidget
-from eea.facetednavigation.widgets.interfaces import IWidgetsInfo
-from eea.facetednavigation.widgets.resultsfilter.interfaces import IResultsFilterWidget
 import base64
 import DateTime
 import os
@@ -219,8 +203,8 @@ class Wrapper(Wrapper):
                         '%s %s in %s' % (type_, fieldname, self.context.absolute_url()))
 
     def get_cpskin_interfaces(self):
-
-
+        from cpskin.menu.interfaces import IDirectAccess
+        from cpskin.menu.interfaces import IFourthLevelNavigation
         interfaces = [
             IAlbumCollection,
             IBannerActivated,
@@ -241,6 +225,21 @@ class Wrapper(Wrapper):
         self['cpskin_interfaces'] = inter
 
     def get_facted_criteria(self):
+        from eea.facetednavigation.criteria.handler import Criteria
+        from eea.facetednavigation.criteria.interfaces import ICriteria
+        from eea.facetednavigation.indexes.language.interfaces import ILanguageWidgetAdapter
+        from eea.facetednavigation.interfaces import IFacetedNavigable
+        from eea.facetednavigation.settings.interfaces import IDisableSmartFacets
+        from eea.facetednavigation.settings.interfaces import IHidePloneLeftColumn
+        from eea.facetednavigation.settings.interfaces import IHidePloneRightColumn
+        from eea.facetednavigation.subtypes.interfaces import IFacetedWrapper
+        from eea.facetednavigation.views.interfaces import IViewsInfo
+        from eea.facetednavigation.widgets.alphabetic.interfaces import IAlphabeticWidget
+        from eea.facetednavigation.widgets.interfaces import ICriterion
+        from eea.facetednavigation.widgets.interfaces import IWidget
+        from eea.facetednavigation.widgets.interfaces import IWidgetsInfo
+        from eea.facetednavigation.widgets.resultsfilter.interfaces import IResultsFilterWidget
+
         interfaces = [
             IFacetedNavigable,
             IDisableSmartFacets,
