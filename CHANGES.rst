@@ -4,7 +4,8 @@ Changelog
 0.8.50 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improve way to get translations during transmogrifier.
+  [bsuttor]
 
 
 0.8.49 (2017-02-17)
