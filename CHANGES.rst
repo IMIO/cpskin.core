@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.50 (unreleased)
+0.8.50 (2017-02-22)
 -------------------
 
 - Improve way to get translations during transmogrifier.
