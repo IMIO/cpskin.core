@@ -100,7 +100,7 @@ class FolderView(FoldV):
         sort_on = getattr(content, 'sort_on', None)
         sort_order = 'reverse' if getattr(content, 'sort_reversed', False) else 'ascending'
         sort_reversed = getattr(content, 'sort_reversed', False)
-        parsedquery = queryparser.parseFormquery( content, query, sort_on, sort_order)
+        parsedquery = queryparser.parseFormquery(content, query, sort_on, sort_order)
         portal_catalog = api.portal.get_tool('portal_catalog')
         brains = portal_catalog(parsedquery)
         item_count_homepage = getattr(content, 'item_count_homepage', 8)
@@ -137,8 +137,10 @@ class FolderView(FoldV):
             if obj.portal_type == 'Folder':
                 if obj.getDefaultPage() is not None:
                     realObject = getattr(obj, obj.getDefaultPage())
-                    if len(realObject.results()) > 0:
-                        realObjects.append(realObject)
+                    # check if realObject is a collection :
+                    if getattr(realObject, 'results', None):
+                        if len(realObject.results()) > 0:
+                            realObjects.append(realObject)
                 else:
                     continue
             else:

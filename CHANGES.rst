@@ -4,7 +4,8 @@ Changelog
 0.8.51 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Check if realObject is a collection on index view.
+  [bsuttor]
 
 
 0.8.50 (2017-02-22)
