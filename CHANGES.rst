@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.51 (unreleased)
+0.8.51 (2017-02-23)
 -------------------
 
 - Check if realObject is a collection on index view.
