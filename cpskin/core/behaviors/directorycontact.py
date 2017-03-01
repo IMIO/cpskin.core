@@ -15,6 +15,7 @@ from plone.autoform.interfaces import IFormFieldProvider
 from zope import schema
 from zope.interface import provider
 
+from cpskin.locales import CPSkinMessageFactory as _
 from cpskin.core.browser.widget import multiline_field_widget
 
 
@@ -29,7 +30,7 @@ class IDirectoryContactDetails(IContactDetails):
 
     form.widget(phone=multiline_field_widget)
     phone = schema.List(
-        title=CCMF(u'Phones'),
+        title=_(u'Phones'),
         required=False,
         constraint=validate_phones,
     )
