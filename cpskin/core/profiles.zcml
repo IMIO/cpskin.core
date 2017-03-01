@@ -44,7 +44,7 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
-        title="CPSKIN Core: upgrade to v20: Update theme variables"
+        title="CPSKIN Core: upgrade to v21: Update theme variables"
         description="Update theme variables and set version of cpskin.theme profile"
         handler=".upgradehandlers.update_theme_variables"
         source="20"
