@@ -15,9 +15,7 @@ class OrganizationView(Organization):
 
     def _update(self):
         super(OrganizationView, self)._update()
-        self.groups = tuple(
-            [group for group in self.groups if group.__name__ != 'coordinates']
-        )
+        self.groups = tuple()
 
 
 class PositionView(Position):
