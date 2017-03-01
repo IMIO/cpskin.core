@@ -4,7 +4,14 @@ Changelog
 0.8.52 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Hide groups for organization (already hidden in css) : #16438
+  [mpeeters]
+
+- Add plone.belowcontenttitle viewlet manager to organizations : #16438
+  [mpeeters]
+
+- Fix the message factory for phone numbers : #16438
+  [mpeeters]
 
 
 0.8.51 (2017-02-23)
