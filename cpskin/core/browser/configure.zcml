@@ -4,6 +4,7 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     xmlns:faceted="http://namespaces.zope.org/faceted"
     xmlns:z3c="http://namespaces.zope.org/z3c"
+    xmlns:grok="http://namespaces.zope.org/grok"
     i18n_domain="cpskin">
 
   <adapter factory=".controlpanel.CPSkinControlPanelAdapter" />
@@ -246,7 +247,10 @@
         layer="cpskin.core.interfaces.ICPSkinCoreLayer"
         permission="zope2.View"
         />
+
   </configure>
+
+  <grok:grok package=".collective_contact_view" />
 
   <browser:page
     for="*"
