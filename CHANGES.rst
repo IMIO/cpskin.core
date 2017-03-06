@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.52 (unreleased)
+0.8.52 (2017-03-06)
 -------------------
 
 - Fix translate text from fr-be : #16560.
