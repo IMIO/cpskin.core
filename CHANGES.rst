@@ -4,6 +4,9 @@ Changelog
 0.8.52 (unreleased)
 -------------------
 
+- Fix translate text from fr-be : #16560.
+  [bsuttor]
+
 - Hide groups for organization (already hidden in css) : #16438
   [mpeeters]
 
