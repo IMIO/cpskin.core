@@ -340,7 +340,7 @@ class FolderView(FoldV):
     def see_all(self, collection):
         voirlensemble = _(u"Voir l'ensemble des")
         coll_lang = getattr(collection, 'language')
-        lang = coll_lang if coll_lang != '' else 'fr'
+        lang = coll_lang if (coll_lang != '' and '-' not in coll_lang) else 'fr'
         trans = translate(voirlensemble, domain=voirlensemble.domain, target_language=lang)
         if getattr(collection, 'link_text', ''):
             return collection.link_text.encode('utf-8')
