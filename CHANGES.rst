@@ -4,7 +4,8 @@ Changelog
 0.8.53 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Check is_one_day event also for Archetypes.
+  [bsuttor]
 
 
 0.8.52 (2017-03-06)
