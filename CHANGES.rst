@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.53 (unreleased)
+0.8.53 (2017-03-09)
 -------------------
 
 - Check is_one_day event also for Archetypes.
