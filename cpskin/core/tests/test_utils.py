@@ -7,7 +7,7 @@ from plone import api
 import unittest
 
 
-class TestUtils(unittest.TestCase):
+class TestTools(unittest.TestCase):
 
     layer = CPSKIN_CORE_INTEGRATION_TESTING
 
