@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.54 (unreleased)
+0.8.54 (2017-03-10)
 -------------------
 
 - Fix bad formating when country_code is into phonenumbers.
