@@ -243,11 +243,12 @@ def format_phone(value):
         phonenumbers.PhoneNumberFormat.INTERNATIONAL,
     )
     country_code = str(number.country_code)
+    country_code_with_plus = '+{0}'.format(country_code)
     return {
         'raw': formated_value,
         'formated': formated_value.replace(
-            country_code,
-            '{0} (0)'.format(country_code),
+            country_code_with_plus,
+            '{0} (0)'.format(country_code_with_plus),
         ),
     }
 

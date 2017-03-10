@@ -4,7 +4,8 @@ Changelog
 0.8.54 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix bad formating when country_code is into phonenumbers.
+  [bsuttor]
 
 
 0.8.53 (2017-03-09)
