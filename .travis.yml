@@ -1,5 +1,5 @@
 language: python
-sudo: false
+sudo: true
 cache:
   directories:
     - eggs
@@ -20,9 +20,9 @@ after_success:
   - bin/createcoverage
   - pip install -q coveralls==0.5
   - coveralls
-after_script:
-  # killing background process (because dockerized build no longer does it)
-  - kill -9 $(ps aux | grep 'selenium' | awk '{print $2}')
+#after_script:
+#  # killing background process (because dockerized build no longer does it)
+#  - kill -9 $(ps aux | grep 'selenium' | awk '{print $2}')
 notifications:
   email:
     recipients:
