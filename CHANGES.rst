@@ -4,6 +4,9 @@ Changelog
 0.8.55 (unreleased)
 -------------------
 
+- Format fax for related_contacts view.
+  [bsuttor]
+
 - Format fax for faceted view.
   [bsuttor]
 
