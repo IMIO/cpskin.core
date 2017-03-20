@@ -4,7 +4,8 @@ Changelog
 0.8.55 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Format fax for faceted view.
+  [bsuttor]
 
 
 0.8.54 (2017-03-10)
