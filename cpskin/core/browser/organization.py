@@ -32,6 +32,6 @@ class FacetedPreviewItem(PreviewItem):
 
     @property
     def fax(self):
-        fax = getattr(self.context, 'fax', [])
+        fax = getattr(self.context, 'fax', None)
         if fax:
             return utils.format_phone(fax)
