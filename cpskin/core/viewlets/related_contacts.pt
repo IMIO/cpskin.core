@@ -42,7 +42,7 @@
             class="coordinates-tab"
             tal:define="phones python: view.get_field(contact, 'phone');
                         cell_phones python: view.get_field(contact, 'cell_phone');
-                        fax python: view.get_field(contact, 'fax');
+                        faxes python: view.get_field(contact, 'fax');
                         email python: view.get_field(contact, 'email');
                         im_handle python: view.get_field(contact, 'im_handle');
                         website python: view.get_field(contact, 'website');">
@@ -60,8 +60,12 @@
                 </a>
                 </tal:loop>
             </div>
+            <div class="fax" tal:condition="faxes">
+                <tal:loop repeat="fax faxes" >
+                    <div tal:content="fax/formated" tal:condition="fax" />
+                </tal:loop>
+            </div>
 
-            <div class="fax" tal:condition="fax" tal:content="fax"/>
             <div class="email"><a
               class="email"
               tal:condition="email"
