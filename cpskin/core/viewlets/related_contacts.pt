@@ -62,7 +62,7 @@
             </div>
             <div class="fax" tal:condition="faxes">
                 <tal:loop repeat="fax faxes" >
-                    <div tal:content="fax/formated" tal:condition="fax" />
+                    <div tal:replace="fax/formated" tal:condition="fax" />
                 </tal:loop>
             </div>
 
