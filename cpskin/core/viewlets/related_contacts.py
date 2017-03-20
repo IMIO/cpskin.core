@@ -69,7 +69,7 @@ class RelatedContactsViewlet(common.ViewletBase):
                 return display.w.get('IScheduledContent.schedule').render()
             else:
                 return ''
-        if field in ['phone', 'cell_phone']:
+        if field in ['phone', 'cell_phone', 'fax']:
             phones = getattr(contact, field, '')
             if not isinstance(phones, list):
                 phones = [getattr(contact, field)]
