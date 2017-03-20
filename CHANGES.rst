@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.55 (unreleased)
+0.8.55 (2017-03-20)
 -------------------
 
 - Format fax for related_contacts view.
