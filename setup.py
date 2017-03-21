@@ -73,6 +73,7 @@ setup(name='cpskin.core',
           'test': [
               'plone.app.robotframework',
               'plone.app.multilingual',
+              'Products.contentmigration',
           ]
       },
       entry_points={},
