@@ -5,8 +5,8 @@
       i18n:domain="cpskin">
   <body>
     <div metal:fill-slot="content">
-      <div id="teleservice-title"/>
-      <div id="teleservice-content"/>
+      <div id="teleservice-nav"></div>
+      <div id="teleservice-content"></div>
     </div>
   </body>
 </html>

@@ -4,7 +4,8 @@ Changelog
 0.8.57 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Empty breadcrumb for teleservice template.
+  [bsuttor]
 
 
 0.8.56 (2017-03-22)

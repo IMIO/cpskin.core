@@ -57,6 +57,15 @@
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
+  <browser:viewlet
+    view=".pages.TeleService"
+    name="plone.path_bar"
+    manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+    class=".pages.EmptyPathBarViewlet"
+    permission="zope2.View"
+    />
+
+
 
   <!-- Other browser pages -->
 

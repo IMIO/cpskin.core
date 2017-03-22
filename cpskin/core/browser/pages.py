@@ -11,12 +11,13 @@ from imio.dashboard.utils import getDashboardQueryResult
 from plone import api
 from plone.app.event.base import date_speller
 from plone.app.event.base import dates_for_display
+from plone.app.layout.viewlets.common import PathBarViewlet
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope.component import getSiteManager
-from zope.publisher.browser import BrowserView
 from Products.MailHost.interfaces import IMailHost
+from zope.component import getSiteManager
 from zope.component import getUtility
 from zope.component.interfaces import ComponentLookupError
+from zope.publisher.browser import BrowserView
 import base64
 import json
 import logging
@@ -375,3 +376,7 @@ class TransmoExport(BrowserView):
 
 class TeleService(BrowserView):
     index = ViewPageTemplateFile('templates/teleservice.pt')
+
+
+class EmptyPathBarViewlet(PathBarViewlet):
+    index = ViewPageTemplateFile('templates/empty.pt')
