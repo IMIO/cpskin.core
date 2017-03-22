@@ -447,3 +447,10 @@ class TestViews(unittest.TestCase):
             name='folderview')
         self.assertTrue(view.hide_date(news_brain, collection))
         self.assertNotIn(u'Jul 26, 2016', view())
+
+    def test_teleservice_template(self):
+        view = api.content.get_view(
+            name='teleservice-template',
+            context=self.portal,
+            request=self.request)
+        self.assertIn('id="teleservice-title"', view())

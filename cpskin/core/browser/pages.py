@@ -371,3 +371,7 @@ class TransmoExport(BrowserView):
         portal_languages = api.portal.get_tool('portal_languages')
         objects['languages'] = portal_languages.supported_langs
         return json.dumps(objects)
+
+
+class TeleService(BrowserView):
+    index = ViewPageTemplateFile('templates/teleservice.pt')

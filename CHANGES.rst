@@ -4,7 +4,8 @@ Changelog
 0.8.56 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add @@teleservice-template view.
+  [bsuttor]
 
 
 0.8.55 (2017-03-20)

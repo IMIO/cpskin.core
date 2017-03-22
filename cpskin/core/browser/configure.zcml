@@ -49,6 +49,15 @@
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
+  <browser:view
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      name="teleservice-template"
+      class=".pages.TeleService"
+      permission="zope.Public"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+
   <!-- Other browser pages -->
 
   <browser:page
