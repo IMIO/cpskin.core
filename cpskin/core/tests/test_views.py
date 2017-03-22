@@ -453,4 +453,4 @@ class TestViews(unittest.TestCase):
             name='teleservice-template',
             context=self.portal,
             request=self.request)
-        self.assertIn('id="teleservice-title"', view())
+        self.assertIn('id="teleservice-nav"', view())
