@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.56 (unreleased)
+0.8.56 (2017-03-22)
 -------------------
 
 - Add @@teleservice-template view.
