@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.57 (unreleased)
+0.8.57 (2017-03-22)
 -------------------
 
 - Empty breadcrumb for teleservice template.
