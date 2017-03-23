@@ -1,0 +1,17 @@
+<div class="faceted-list-item"
+  tal:define="portal_type context/portal_type;
+              useViewTypes context/portal_properties/site_properties/typesUseViewActionInListings;
+              useView python:portal_type in useViewTypes;">
+  <a tal:define="
+      description context/Description|string:;
+      title context/pretty_title_or_id|string:;
+      url context/getURL|string:#;
+      view_url python:(url and useView and url + '/view') or url;"
+     tal:attributes="href view_url;
+                     title description">
+
+    <div class="faceted-list-item-title" tal:content="context/pretty_title_or_id|string:">Title</div>
+    <div class="faceted-list-item-description" tal:content="description">Description</div>
+
+  </a>
+</div>

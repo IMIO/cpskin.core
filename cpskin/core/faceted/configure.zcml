@@ -6,6 +6,7 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="cpskin">
 
+  <include package=".views" />
   <include package=".widgets" />
 
   <utility

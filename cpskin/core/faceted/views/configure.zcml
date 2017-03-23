@@ -1,0 +1,20 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:faceted="http://namespaces.zope.org/faceted"
+  xmlns:browser="http://namespaces.zope.org/browser">
+
+  <faceted:view
+    name="faceted-list-items"
+    template="list-items.pt"
+    title="Faceted items list"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    name="faceted-list-item"
+    for="zope.interface.Interface"
+    template="list-item.pt"
+    permission="zope2.View"
+    />
+
+</configure>

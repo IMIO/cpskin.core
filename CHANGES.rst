@@ -4,7 +4,8 @@ Changelog
 0.8.58 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add new faceted view for listing items without images
+  [laulaz]
 
 
 0.8.57 (2017-03-22)
