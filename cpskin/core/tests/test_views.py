@@ -454,3 +454,26 @@ class TestViews(unittest.TestCase):
             context=self.portal,
             request=self.request)
         self.assertIn('id="teleservice-nav"', view())
+
+    def test_folderview_old_new_template(self):
+        add_behavior(
+            'Collection',
+            'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
+        configure_folderviews(self.portal)
+        news = api.content.create(
+            container=self.portal,
+            type='News Item',
+            id='testnewsitem')
+        api.content.transition(obj=news, transition='publish')
+        collection = self.portal.actualites.actualites
+        view = getMultiAdapter(
+            (self.portal, self.request), name="folderview")
+        self.assertEqual(collection.collection_image_scale, 'mini')
+        add_leadimage_from_file(news, 'visuel.png')
+        scale = view.collection_image_scale(collection, news)
+        self.assertTrue('height="200"' in scale)
+
+        collection.use_new_template = True
+        scale = view.collection_image_scale(collection, news)
+        self.assertEqual(scale.height, 200)
+        self.assertEqual(scale.width, 133)
