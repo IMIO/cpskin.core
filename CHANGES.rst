@@ -4,6 +4,10 @@ Changelog
 0.8.58 (unreleased)
 -------------------
 
+- Add new homepage index macro to use background images instead of <img>
+  Old index macro is kept until all the sites are migrated
+  [laulaz]
+
 - Add new faceted view for listing items without images
   [laulaz]
 

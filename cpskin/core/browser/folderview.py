@@ -333,9 +333,21 @@ class FolderView(FoldV):
         else:
             return False
 
+    def scaled_image_url(self, context, obj, isBigImage):
+        if self.is_dexterity():
+            image = self.collection_image_scale(context, obj)
+            return image and image.url or ''
+        else:
+            thumbsize = self.getThumbSize(obj, isBigImage)
+            url = '{0}/{1}'.format(obj.absolute_url(), thumbsize)
+            return url
+
     def collection_image_scale(self, collection, obj):
         scale = getattr(collection, 'collection_image_scale', 'mini')
-        return image_scale(obj, 'newsImage', scale)
+        if self.use_new_template(collection):
+            return image_scale(obj, 'newsImage', scale, generate_tag=False)
+        else:
+            return image_scale(obj, 'newsImage', scale)
 
     def see_all(self, collection):
         voirlensemble = _(u"Voir l'ensemble des")
@@ -436,6 +448,9 @@ class FolderView(FoldV):
         else:
             # always hide effective date for events
             return True
+
+    def use_new_template(self, collection):
+        return getattr(collection, 'use_new_template', False)
 
 
 def configure_folderviews(context):

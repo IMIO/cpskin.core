@@ -33,6 +33,7 @@
       <metal:main-macro define-macro="main">
         <div id="accueil">
             <tal:bcl tal:repeat="content contents">
+              <tal:def tal:define="use_new_template python: view.use_new_template(content)">
 
                 <div id="flex"
                      tal:condition="python: content.id == 'a-la-une' and view.hasFlexSlider() and view.is_browser_compatible()">
@@ -50,14 +51,26 @@
 
                 </div>
                 <div id="no-flex" tal:condition="python: content.id == 'a-la-une' and not view.is_browser_compatible()">
-                    <metal:use use-macro="context/@@cpskincore-macros/homepage-collection" />
+
+                    <tal:if tal:condition="use_new_template">
+                        <metal:use use-macro="context/@@cpskincore-macros/homepage-collection-new-template" />
+                    </tal:if>
+                    <tal:else tal:condition="not: use_new_template">
+                        <metal:use use-macro="context/@@cpskincore-macros/homepage-collection" />
+                    </tal:else>
+
                 </div>
 
                 <div class=""
                      tal:condition="python: content.portal_type == 'Collection' and content.results() and content.id != 'a-la-une'"
                      tal:attributes="class string:bloc-${repeat/content/number} bloc-collection ${content/id}">
 
-                    <metal:use use-macro="context/@@cpskincore-macros/homepage-collection" />
+                    <tal:if tal:condition="use_new_template">
+                        <metal:use use-macro="context/@@cpskincore-macros/homepage-collection-new-template" />
+                    </tal:if>
+                    <tal:else tal:condition="not: use_new_template">
+                        <metal:use use-macro="context/@@cpskincore-macros/homepage-collection" />
+                    </tal:else>
 
                 </div>
 
@@ -74,6 +87,7 @@
 
                 </div>
 
+              </tal:def>
             </tal:bcl>
 
             <div class="visualClear"></div>

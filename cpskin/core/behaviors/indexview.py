@@ -24,7 +24,8 @@ class ICpskinIndexViewSettings(model.Schema):
             'item_count_homepage',
             'hide_title',
             'hide_see_all_link',
-            'hide_date'
+            'hide_date',
+            'use_new_template',
         ),
     )
 
@@ -105,6 +106,13 @@ class ICpskinIndexViewSettings(model.Schema):
     hide_date = schema.Bool(
         title=_(u"Hide date"),
         description=_(u"Do you want to hide date on index view ?"),
+        required=False,
+        default=False
+    )
+
+    use_new_template = schema.Bool(
+        title=_(u"Use new template"),
+        description=_(u"Do you want to use the new (experimental) template ?"),
         required=False,
         default=False
     )
