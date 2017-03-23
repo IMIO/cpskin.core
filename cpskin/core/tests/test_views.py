@@ -46,7 +46,7 @@ class TestViews(unittest.TestCase):
         links = view.get_links()
         self.assertEqual(len(links), 3)
 
-    def test_folderiew_setting_named_link(self):
+    def test_folderview_setting_named_link(self):
         add_behavior(
             'Collection',
             'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
@@ -74,7 +74,7 @@ class TestViews(unittest.TestCase):
                          'Voir toutes les actualit\xc3\x83\xc2\xa9s')
         self.assertTrue("Voir toutes les actualit" in view.index())
 
-    def test_folderiew_setting_image_scale(self):
+    def test_folderview_setting_image_scale(self):
         add_behavior(
             'Collection',
             'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
@@ -100,7 +100,7 @@ class TestViews(unittest.TestCase):
         scale = view.collection_image_scale(collection, news)
         self.assertTrue('height="128"' in scale)
 
-    def test_folderiew_add_remove_content(self):
+    def test_folderview_add_remove_content(self):
         configure_folderviews(self.portal)
         request = self.portal.actualites.REQUEST
         api.content.create(
@@ -118,7 +118,7 @@ class TestViews(unittest.TestCase):
         self.assertTrue(view.canRemoveContent())
         self.assertFalse(view.canAddContent())
 
-    def test_folderiew_render(self):
+    def test_folderview_render(self):
         configure_folderviews(self.portal)
         request = self.portal.REQUEST
         testnewsitem = api.content.create(
@@ -133,7 +133,7 @@ class TestViews(unittest.TestCase):
             u'<a href="http://nohost/plone/actualites" title="">Actualit\xe9s',
             view.index())
 
-    def test_folderiew_event_category(self):
+    def test_folderview_event_category(self):
         applyProfile(self.portal, 'collective.taxonomy:default')
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
 
@@ -187,7 +187,7 @@ class TestViews(unittest.TestCase):
         categories = view.get_categories(collection, event)
         self.assertEqual(categories, '')
 
-    def test_folderiew_event_item_count_homepage(self):
+    def test_folderview_event_item_count_homepage(self):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
 
         collection = api.content.create(container=self.portal,
@@ -219,7 +219,7 @@ class TestViews(unittest.TestCase):
         result = view.getResults(collection)
         self.assertEqual(len(result['standard-results']), 2)
 
-    def test_folderiew_event_localizedtime(self):
+    def test_folderview_event_localizedtime(self):
         event = api.content.create(
             container=self.portal,
             type='Event',
@@ -352,7 +352,7 @@ class TestViews(unittest.TestCase):
             view.get_formatted_date(), u'1 January\n\xe0 10:00')
         # import ipdb; ipdb.set_trace()
 
-    def test_folderiew_hide_title(self):
+    def test_folderview_hide_title(self):
         # directlyProvides(self.portal.REQUEST, ICPSkinCoreLayer)
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
         configure_folderviews(self.portal)
@@ -386,7 +386,7 @@ class TestViews(unittest.TestCase):
         self.assertTrue(view.hide_title(collection))
         self.assertNotIn('<h2>My test collection</h2>', view())
 
-    def test_folderiew_hide_see_all_link(self):
+    def test_folderview_hide_see_all_link(self):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
         configure_folderviews(self.portal)
         collection = self.portal.actualites.actualites
@@ -415,7 +415,7 @@ class TestViews(unittest.TestCase):
         self.assertTrue(view.hide_see_all_link(collection))
         self.assertNotIn(u"Voir l\'ensemble des actualit\xe9s", view())
 
-    def test_folderiew_hide_date(self):
+    def test_folderview_hide_date(self):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
         configure_folderviews(self.portal)
         collection = self.portal.actualites.actualites
