@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.58 (unreleased)
+0.8.58 (2017-03-30)
 -------------------
 
 - Imporve clean_old_keyword_homepage scripts.
