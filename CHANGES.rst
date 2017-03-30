@@ -4,6 +4,9 @@ Changelog
 0.8.58 (unreleased)
 -------------------
 
+- Improve get_address_from_obj script, check if obj is an collective.directory.card.
+  [bsuttor]
+
 - Add new homepage index macro to use background images instead of <img>
   Old index macro is kept until all the sites are migrated
   [laulaz]

@@ -175,6 +175,15 @@ def get_address_from_obj(obj):
     loc = getattr(obj, 'location', '')
     if loc:
         return obj.location
+    # old card
+    if obj.portal_type == 'collective.directory.card':
+        street = get_field(obj, 'address')
+        zip_code = get_field(obj, 'zip_code')
+        city = get_field(obj, 'city')
+        address = '{} {} {}'.format(
+            street, zip_code, city
+        )
+        return address
 
     # collective.contact.core
     street = get_field(obj, 'street')
@@ -192,6 +201,8 @@ def get_address_from_obj(obj):
 
 def get_field(obj, field_name):
     value = getattr(obj, field_name, '')
+    if isinstance(value, int):
+        return str(value).encode('utf8')
     if value:
         return value.encode('utf8')
     return ''
@@ -229,8 +240,10 @@ def set_coord(obj, request):
                 logger.info(message)
                 return message
     else:
-        message = 'No address for {0}'.format('/'.join(
-            obj.getPhysicalPath()))
+        message = 'No address for <a href="{0}">{1}</a>'.format(
+            obj.absolute_url(),
+            obj.id
+        )
         api.portal.show_message(message=message, request=request)
         logger.warn(message)
 
