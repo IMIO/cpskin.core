@@ -4,6 +4,9 @@ Changelog
 0.8.58 (unreleased)
 -------------------
 
+- Imporve clean_old_keyword_homepage scripts.
+  [bsuttor]
+
 - Improve get_address_from_obj script, check if obj is an collective.directory.card.
   [bsuttor]
 

@@ -51,7 +51,15 @@ def upgrade_to_nineteen(context):
 
 def clean_old_keyword_homepage(context):
     behavior_name = 'cpskin.core.behaviors.metadata.IUseKeywordHomepage'
-    types = ['Folder', 'Collection', 'Document', 'Event', 'News Item']
+    types = [
+        'Folder',
+        'Collection',
+        'Document',
+        'Event',
+        'News Item',
+        'organization',
+        'person'
+    ]
     for type_name in types:
         remove_behavior(type_name, behavior_name)
 
