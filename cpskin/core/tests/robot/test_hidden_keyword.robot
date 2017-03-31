@@ -31,6 +31,7 @@ a document '${title}' with hidden tag '${keyword}'
     Create content  type=Document  title=${title}
     Go to  ${PLONE_URL}/${title}
     Click Edit In Edit bar
+    Sleep  1
     Click Link  Categorization
     Input Text  form.widgets.IHiddenTags.hiddenTags_additional  ${keyword}
     Click Button  Save
@@ -45,6 +46,7 @@ a collection
     Input Text  form-widgets-IDublinCore-title  ${title}
     Select From List By Value  name=addindex  hiddenTags
     Click Button  Save
+    Sleep  1
     Element Should Contain  css=.documentFirstHeading  ${title}
 
 
@@ -52,6 +54,7 @@ I set to the collection '${collection_title}' the search terms hidden tag '${key
     Go to  ${PLONE_URL}/${collection_title}
     Click Edit In Edit bar
     # Select From List By Value  name=addindex  hiddenTags
+    Sleep  1
     Click Element  css=.querywidget.queryvalue.multipleSelectionWidget
     Select Checkbox  css=.querywidget.queryvalue.multipleSelectionWidget input[value=${keyword}]
     Click Button  Save
