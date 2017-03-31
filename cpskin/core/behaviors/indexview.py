@@ -30,7 +30,7 @@ class ICpskinIndexViewSettings(model.Schema):
     )
 
     collection_image_scale = schema.Choice(
-        title=_(u"Which image scale use for collections of index view"),
+        title=_(u'Which image scale use for collections of index view'),
         description=_(u'Please select which fields should be visible.'),
         required=False,
         default='mini',
@@ -38,7 +38,7 @@ class ICpskinIndexViewSettings(model.Schema):
     )
 
     slider_image_scale = schema.Choice(
-        title=_(u"Which image scale use for slider"),
+        title=_(u'Which image scale use for slider'),
         description=_(u''),
         required=True,
         default='slider',
@@ -46,7 +46,7 @@ class ICpskinIndexViewSettings(model.Schema):
     )
 
     carousel_image_scale = schema.Choice(
-        title=_(u"Which image scale use for carousel"),
+        title=_(u'Which image scale use for carousel'),
         description=_(u'Please select which fields should be visible.'),
         required=True,
         default='carousel',
@@ -56,7 +56,7 @@ class ICpskinIndexViewSettings(model.Schema):
     link_text = schema.TextLine(
         title=_(u'Text for link to collection'),
         description=_(
-            u'This text will be visible on index view for link to this collection'),
+            u'This text will be visible on index view for link to this collection'),  # noqa
         default=_(u''),
         required=False
     )
@@ -74,14 +74,16 @@ class ICpskinIndexViewSettings(model.Schema):
     )
 
     taxonomy_category = schema.TextLine(
-        title=_(u"Which taxonomy id should be use to display category"),
+        title=_(u'Which taxonomy id should be use to display category'),
         description=_(u'Please write which taxonomy id should be used.'),
         default=u'',
         required=False,
     )
 
     item_count_homepage = schema.Int(
-        title=_(u'label_item_count_homepage', default=u'Item count for homepage'),
+        title=_(
+            u'label_item_count_homepage',
+            default=u'Item count for homepage'),
         description=_(u'Number of items that will show up in one homepage.'),
         required=False,
         default=8,
@@ -90,29 +92,29 @@ class ICpskinIndexViewSettings(model.Schema):
     )
 
     hide_title = schema.Bool(
-        title=_(u"Hide title"),
-        description=_(u"Do you want to hide title on index view ?"),
+        title=_(u'Hide title'),
+        description=_(u'Do you want to hide title on index view ?'),
         required=False,
         default=False
     )
 
     hide_see_all_link = schema.Bool(
-        title=_(u"Hide see all link"),
-        description=_(u"Do you want to hide see all link on index view ?"),
+        title=_(u'Hide see all link'),
+        description=_(u'Do you want to hide see all link on index view ?'),
         required=False,
         default=False
     )
 
     hide_date = schema.Bool(
-        title=_(u"Hide date"),
-        description=_(u"Do you want to hide date on index view ?"),
+        title=_(u'Hide date'),
+        description=_(u'Do you want to hide date on index view ?'),
         required=False,
         default=False
     )
 
     use_new_template = schema.Bool(
-        title=_(u"Use new template"),
-        description=_(u"Do you want to use the new (experimental) template ?"),
+        title=_(u'Use new template'),
+        description=_(u'Do you want to use the new (experimental) template ?'),
         required=False,
         default=False
     )

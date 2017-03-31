@@ -1,15 +1,14 @@
-from zope.interface import implements
+# -*- coding: utf-8 -*-
+from cpskin.core.interfaces import ICPSkinSettings
+from cpskin.locales import CPSkinMessageFactory as _
+from plone.app.controlpanel.form import ControlPanelForm
+from plone.registry.interfaces import IRegistry
+from Products.CMFDefault.formlib.schema import SchemaAdapterBase
+from Products.CMFPlone.interfaces import IPloneSiteRoot
 from zope.component import adapts
 from zope.component import getUtility
 from zope.formlib import form
-
-from Products.CMFDefault.formlib.schema import SchemaAdapterBase
-from Products.CMFPlone.interfaces import IPloneSiteRoot
-
-from plone.registry.interfaces import IRegistry
-from plone.app.controlpanel.form import ControlPanelForm
-from cpskin.core.interfaces import ICPSkinSettings
-from cpskin.locales import CPSkinMessageFactory as _
+from zope.interface import implements
 
 
 class CPSkinControlPanelAdapter(SchemaAdapterBase):
@@ -74,6 +73,6 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
 class CPSkinControlPanel(ControlPanelForm):
 
-    label = _("CPSkin settings")
-    description = _("Lets you change the settings of CPSkin")
+    label = _('CPSkin settings')
+    description = _('Lets you change the settings of CPSkin')
     form_fields = form.FormFields(ICPSkinSettings)

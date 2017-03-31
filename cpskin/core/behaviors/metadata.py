@@ -7,7 +7,8 @@ from plone.directives import form
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.supermodel import model
 from z3c.form.browser.orderedselect import OrderedSelectFieldWidget
-from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.interface import alsoProvides
 from zope.interface import provider
@@ -96,7 +97,7 @@ class IIAmTags(model.Schema):
         ),
         required=False,
         # Automatically get the index in catalog by name
-        index_name="iamTags",
+        index_name='iamTags',
     )
 
 
@@ -110,7 +111,7 @@ alsoProvides(IIAmTags, IFormFieldProvider)
 class IRelatedContacts(model.Schema):
     model.fieldset(
         'related_contacts',
-        label=_(u"Related contacts"),
+        label=_(u'Related contacts'),
         fields=('aboveContentContact', 'aboveVisbileFields',
                 'belowContentContact', 'belowVisbileFields'),
     )
