@@ -1,22 +1,24 @@
-from zope.component import adapts
-from zope.interface import implements
-from zope.interface import Interface
+# -*- coding: utf-8 -*-
+from cpskin.minisite.browser.interfaces import IHNavigationActivated
+from cpskin.minisite.interfaces import IInMinisiteBase
+from cpskin.minisite.utils import get_minisite_navigation_level
+from cpskin.minisite.utils import get_minisite_object
 from plone import api
-from plone.memoize.instance import memoize
 from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
+from plone.app.portlets.portlets.navigation import getRootPath
 from plone.app.portlets.portlets.navigation import INavigationPortlet
 from plone.app.portlets.portlets.navigation import NavtreeStrategy
 from plone.app.portlets.portlets.navigation import QueryBuilder
 from plone.app.portlets.portlets.navigation import Renderer
-from plone.app.portlets.portlets.navigation import getRootPath
+from plone.memoize.instance import memoize
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from cpskin.minisite.interfaces import IInMinisiteBase
-from cpskin.minisite.browser.interfaces import IHNavigationActivated
-from cpskin.minisite.utils import (
-    get_minisite_navigation_level,
-    get_minisite_object)
+from zope.component import adapts
+from zope.interface import implements
+from zope.interface import Interface
+
+
 HAS_MENU = False
 try:
     from cpskin.menu.interfaces import IFourthLevelNavigation
@@ -34,7 +36,7 @@ def calculateTopLevel(context, portlet, request=None):
     portal = api.portal.get()
     contextPhyPath = context.getPhysicalPath()
     portalPhyPath = portal.getPhysicalPath()
-    path = [elem for elem in list(contextPhyPath) if elem not in list(portalPhyPath)]
+    path = [elem for elem in list(contextPhyPath) if elem not in list(portalPhyPath)]  # noqa
     depth = len(path)
     if depth >= 3:
         subLevels = depth - 3
@@ -48,7 +50,7 @@ def calculateTopLevel(context, portlet, request=None):
         if request:
             if IInMinisiteBase.providedBy(request):
                 minisite_obj = get_minisite_object(request)
-                if minisite_obj and IHNavigationActivated.providedBy(minisite_obj):
+                if minisite_obj and IHNavigationActivated.providedBy(minisite_obj):  # noqa
                     return get_minisite_navigation_level(minisite_obj) + 1
     return portlet.topLevel
 
@@ -75,7 +77,11 @@ class CPSkinNavtreeStrategy(NavtreeStrategy):
             navtree_properties.getProperty('currentFolderOnlyInNavtree', False)
         topLevel = calculateTopLevel(context, portlet, context.REQUEST)
 
-        self.rootPath = getRootPath(context, currentFolderOnly, topLevel, portlet.root)
+        self.rootPath = getRootPath(
+            context,
+            currentFolderOnly,
+            topLevel,
+            portlet.root)
 
 
 class CPSkinRenderer(Renderer):

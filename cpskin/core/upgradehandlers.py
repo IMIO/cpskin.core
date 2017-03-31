@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
+from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
 from cpskin.core.setuphandlers import addLoadPageMenuToRegistry
@@ -9,16 +10,17 @@ from cpskin.core.setuphandlers import addSubMenuPersistenceToRegistry
 from cpskin.core.setuphandlers import setPageText
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
-from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
 from eea.facetednavigation.subtypes.interfaces import IPossibleFacetedNavigable
 from plone import api
 from plone.registry.interfaces import IRegistry
-from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
 from zope.interface import alsoProvides
-from zope.interface import directlyProvides, directlyProvidedBy
+from zope.interface import directlyProvidedBy
+from zope.interface import directlyProvides
 
 import logging
+
+
 logger = logging.getLogger('cpskin.core')
 
 
@@ -128,9 +130,9 @@ def upgrade_to_six(context):
                                     'Manager', 'Site Administrator'],
                              acquire=True)
     site_properties = api.portal.get_tool('portal_properties').site_properties
-    site_properties.allowRolesToAddKeywords = ("Manager",
-                                               "Site Administrator",
-                                               "Portlets Manager")
+    site_properties.allowRolesToAddKeywords = ('Manager',
+                                               'Site Administrator',
+                                               'Portlets Manager')
 
 
 def upgrade_to_five(context):
@@ -138,13 +140,13 @@ def upgrade_to_five(context):
                   'cpskin.core.viewlets.interfaces.IViewletMenuToolsFaceted']
     catalog = api.portal.get_tool('portal_catalog')
     for interface in interfaces:
-        brains = catalog({"object_provides": interface})
+        brains = catalog({'object_provides': interface})
         for brain in brains:
             obj = brain.getObject()
             provided = directlyProvidedBy(obj)
             cleanedProvided = [
                 i for i in provided if i.__identifier__ != interface]
-            directlyProvides(obj, cleanedProvided)
+            directlyProvides(obj, cleanedProvided)  # noqa
             obj.reindexObject()
 
     portal_javascripts = api.portal.get_tool('portal_javascripts')
@@ -169,22 +171,22 @@ def upgrade_to_three(context):
 
 def upgrade_to_two(context):
     context.runAllImportStepsFromProfile('profile-cpskin.policy:default')
-    portal_catalog = getToolByName(context, 'portal_catalog')
-    portal_atct = getToolByName(context, 'portal_atct')
+    portal_catalog = api.portal.get_tool('portal_catalog')
+    portal_atct = api.portal.get_tool('portal_atct')
     attrs = ('IAmTags', 'HiddenTags', 'ISearchTags')
     for attr in attrs:
         if attr in portal_catalog.indexes():
             portal_catalog.delIndex(attr)
         if attr in portal_atct.topic_indexes:
             portal_atct.removeIndex(attr)
-    for brain in portal_catalog.searchResults():
+    for brain in portal_catalog.searchResults():  # noqa
         obj = brain.getObject()
         for attr in attrs:
             if hasattr(obj, attr):
                 try:
                     delattr(obj, attr)
                 except AttributeError:
-                    logger.info("No {} on: {}".format(attr, obj))
+                    logger.info('No {0} on: {1}'.format(attr, obj))
 
 
 def upgrade_front_page(context):

@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
-
-from Products.CMFCore.utils import getToolByName
+from cpskin.core.menu.interfaces import IConfigurationsMenu
+from cpskin.core.menu.interfaces import IConfigurationsSubMenuItem
+from cpskin.locales import CPSkinMessageFactory as _
 from plone.memoize.instance import memoize
+from Products.CMFCore.utils import getToolByName
 from zope.browsermenu.menu import BrowserMenu
 from zope.browsermenu.menu import BrowserSubMenuItem
 from zope.component import getMultiAdapter
 from zope.interface import implements
-
-from cpskin.locales import CPSkinMessageFactory as _
-from cpskin.core.menu.interfaces import IConfigurationsSubMenuItem
-from cpskin.core.menu.interfaces import IConfigurationsMenu
 
 
 class ConfigurationsSubMenuItem(BrowserSubMenuItem):
     implements(IConfigurationsSubMenuItem)
 
     title = _(u'label_cpskin_configurations_menu', default=u'Configurations')
-    description = _(u'title_cpskin_actions_menu',
+    description = _(
+        u'title_cpskin_actions_menu',
         default=u'Configurations for the current content item')
     submenuId = 'plone_contentmenu_cpskin_configurations'
 
@@ -30,7 +29,8 @@ class ConfigurationsSubMenuItem(BrowserSubMenuItem):
     @memoize
     def available(self):
         actions_tool = getToolByName(self.context, 'portal_actions')
-        actions = actions_tool.listActionInfos(object=self.context,
+        actions = actions_tool.listActionInfos(
+            object=self.context,
             categories=('cpskin_configurations',), max=1)
         return len(actions) > 0
 
@@ -45,7 +45,8 @@ class ConfigurationsMenu(BrowserMenu):
         """Return menu item entries in a TAL-friendly form."""
         results = []
 
-        context_state = getMultiAdapter((context, request),
+        context_state = getMultiAdapter(
+            (context, request),
             name='plone_context_state')
         actions = context_state.actions('cpskin_configurations')
         if not actions:
@@ -60,7 +61,7 @@ class ConfigurationsMenu(BrowserMenu):
                     'action': action['url'],
                     'selected': False,
                     'icon': None,
-                    'extra': {'id': 'plone-contentmenu-cpskin-configurations-' + aid,
+                    'extra': {'id': 'plone-contentmenu-cpskin-configurations-' + aid,  # noqa
                               'separator': None,
                               'class': None},
                     'submenu': None,

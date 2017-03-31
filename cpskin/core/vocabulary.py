@@ -107,7 +107,7 @@ class ContactFieldsFactory(object):
             fieldsets = mergedTaggedValueList(schema, FIELDSETS_KEY)
             for name, field in getFieldsInOrder(schema):
                 if name not in exclude:
-                    visible_name = u"{0}: {1}".format(
+                    visible_name = u'{0}: {1}'.format(
                         contact_portal_type, field.title)
                     results.append((name, visible_name))
 
@@ -135,7 +135,7 @@ class ContactFieldsFactory(object):
                                 fieldset = [
                                     fieldset for fieldset in fieldsets if name in fieldset.fields  # noqa
                                 ][0]
-                                visible_name = u"{0}: {1}".format(
+                                visible_name = u'{0}: {1}'.format(
                                     fieldset.label, field.title)
                             results.append((name, visible_name))
                 except:

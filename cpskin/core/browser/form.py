@@ -9,6 +9,7 @@ from zope import schema
 
 import logging
 
+
 logger = logging.getLogger('cpskin.core.encode_lat_lng')
 
 
@@ -33,8 +34,8 @@ class GeoForm(form.SchemaForm):
     ignoreContext = True
 
     label = u"What's object do you want to update ?"
-    description = u"This script will update latitude and longitude for objects \
-                    selected"
+    description = u'This script will update latitude and longitude for objects \
+                    selected'
 
     @button.buttonAndHandler(u'Ok')
     def handleApply(self, action):

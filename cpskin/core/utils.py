@@ -180,7 +180,7 @@ def get_address_from_obj(obj):
         street = get_field(obj, 'address')
         zip_code = get_field(obj, 'zip_code')
         city = get_field(obj, 'city')
-        address = '{} {} {}'.format(
+        address = '{0} {1} {2}'.format(
             street, zip_code, city
         )
         return address
@@ -191,7 +191,7 @@ def get_address_from_obj(obj):
     zip_code = get_field(obj, 'zip_code')
     city = get_field(obj, 'city')
     if street and city:
-        address = '{} {} {} {}'.format(
+        address = '{0} {1} {2} {3}'.format(
             number, street, zip_code, city
         )
     else:

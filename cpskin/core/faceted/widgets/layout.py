@@ -7,20 +7,18 @@ Created by mpeeters
 :copyright: (c) 2015 by Affinitic SPRL
 :license: GPL, see LICENCE.txt for more details.
 """
-
+from cpskin.locales import CPSkinMessageFactory as _
+from eea.facetednavigation import EEAMessageFactory as EEAMF
+from eea.facetednavigation.widgets.widget import Widget as AbstractWidget
+from Products.Archetypes.public import MultiSelectionWidget
 from Products.Archetypes.public import Schema
 from Products.Archetypes.public import StringField
 from Products.Archetypes.public import StringWidget
-from Products.Archetypes.public import MultiSelectionWidget
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
-from eea.facetednavigation.widgets.widget import Widget as AbstractWidget
-from eea.facetednavigation import EEAMessageFactory as EEAMF
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 
 import logging
-
-from cpskin.locales import CPSkinMessageFactory as _
 
 
 logger = logging.getLogger('eea.facetednavigation.widgets.portlet')

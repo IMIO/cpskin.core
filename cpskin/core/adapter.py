@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from collective.documentgenerator.content.condition import ConfigurablePODTemplateCondition
-from imio.dashboard.content.pod_template import DashboardPODTemplateCondition as DPTC
+from collective.documentgenerator.content.condition import ConfigurablePODTemplateCondition  # noqa
+from imio.dashboard.content.pod_template import DashboardPODTemplateCondition as DPTC  # noqa
 
 
 class DashboardPODTemplateCondition(DPTC):
