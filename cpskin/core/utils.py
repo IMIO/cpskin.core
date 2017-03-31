@@ -52,7 +52,7 @@ def convertCollection(collection):
     api.content.delete(collection)
     allowed_types = container.getLocallyAllowedTypes()
     container.setLocallyAllowedTypes(allowed_types + ('Topic', ))
-    old_collection = api.content.create(container=container, type=u"Topic",
+    old_collection = api.content.create(container=container, type=u'Topic',
                                         id=id, title=title, safe_id=False)
     portal.portal_workflow.doActionFor(old_collection, 'publish')
     container.setLocallyAllowedTypes(allowed_types)
@@ -232,7 +232,7 @@ def set_coord(obj, request):
             api.portal.show_message(message=geocode, request=request)
         else:
             if geocode.lng and geocode.lat:
-                coord = u"POINT({0} {1})".format(geocode.lng, geocode.lat)
+                coord = u'POINT({0} {1})'.format(geocode.lng, geocode.lat)
                 ICoordinates(obj).coordinates = coord
                 obj.reindexObject()
                 path = '/'.join(obj.getPhysicalPath())

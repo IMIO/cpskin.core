@@ -4,7 +4,8 @@ from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import add_keyword
 from plone import api
-from plone.app.testing import TEST_USER_ID, setRoles
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from zope.component import getMultiAdapter
 
 import unittest
@@ -35,7 +36,7 @@ class TestKeywords(unittest.TestCase):
 
     def test_folderview_without_keyword_homepage(self):
         add_behavior('News Item', 'cpskin.core.behaviors.metadata.IHiddenTags')
-        view = getMultiAdapter((self.portal, self.request), name="folderview")
+        view = getMultiAdapter((self.portal, self.request), name='folderview')
         result = view.getResults(self.portal.actualites.actualites)
         self.assertTrue(result is None)
 
@@ -60,7 +61,7 @@ class TestKeywords(unittest.TestCase):
             'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
         add_behavior('News Item', 'cpskin.core.behaviors.metadata.IHiddenTags')
         self.portal.actualites.actualites.index_view_keywords = (u'homepage',)
-        view = getMultiAdapter((self.portal, self.request), name="folderview")
+        view = getMultiAdapter((self.portal, self.request), name='folderview')
         news = api.content.create(
             container=self.portal,
             type='News Item',

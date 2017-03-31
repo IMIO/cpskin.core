@@ -7,8 +7,8 @@ from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import add_leadimage_from_file
-from datetime import datetime
 from DateTime import DateTime
+from datetime import datetime
 from datetime import timedelta
 from plone import api
 from plone.app.testing import applyProfile
@@ -38,10 +38,10 @@ class TestViews(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
     def test_opendata_view(self):
-        directlyProvides(self.request, ICPSkinCoreLayer)
+        directlyProvides(self.request, ICPSkinCoreLayer)  # noqa
         configure_folderviews(self.portal)
-        self.portal.invokeFactory(
-            'collective.directory.directory', 'directory1')
+        api.content.create(
+            self.portal, 'collective.directory.directory', 'directory1')
         view = self.portal.restrictedTraverse('opendata')
         links = view.get_links()
         self.assertEqual(len(links), 3)
@@ -68,11 +68,11 @@ class TestViews(unittest.TestCase):
         self.assertEqual(voir_lensemble_des,
                          "Voir l'ensemble des actualit\xc3\xa9s")
 
-        collection.link_text = u"Voir toutes les actualit\xc3\xa9s"
+        collection.link_text = u'Voir toutes les actualit\xc3\xa9s'
         voir_lensemble_des = view.see_all(collection)
         self.assertEqual(voir_lensemble_des,
                          'Voir toutes les actualit\xc3\x83\xc2\xa9s')
-        self.assertTrue("Voir toutes les actualit" in view.index())
+        self.assertTrue('Voir toutes les actualit' in view.index())
 
     def test_folderview_setting_image_scale(self):
         add_behavior(
@@ -86,7 +86,7 @@ class TestViews(unittest.TestCase):
         api.content.transition(obj=news, transition='publish')
         collection = self.portal.actualites.actualites
         view = getMultiAdapter(
-            (self.portal, self.request), name="folderview")
+            (self.portal, self.request), name='folderview')
         self.assertEqual(collection.collection_image_scale, 'mini')
         self.assertEqual(collection.slider_image_scale, 'slider')
         self.assertEqual(collection.carousel_image_scale, 'carousel')
@@ -145,11 +145,11 @@ class TestViews(unittest.TestCase):
         collection.reindexObject()
 
         taxonomy_test = schema.Set(
-            title=u"taxonomy_test",
-            description=u"taxonomy description schema",
+            title=u'taxonomy_test',
+            description=u'taxonomy description schema',
             required=False,
             value_type=schema.Choice(
-                vocabulary=u"collective.taxonomy.test"),
+                vocabulary=u'collective.taxonomy.test'),
         )
         portal_types = api.portal.get_tool('portal_types')
         fti = portal_types.get('Event')
@@ -200,11 +200,11 @@ class TestViews(unittest.TestCase):
               u'v': [u'News Item']}, ]
         )
         collection.item_count_homepage = 1
-        news = api.content.create(
+        api.content.create(
             container=self.portal,
             type='News Item',
             id='testnews')
-        news2 = api.content.create(
+        api.content.create(
             container=self.portal,
             type='News Item',
             id='testnews2')
@@ -224,7 +224,6 @@ class TestViews(unittest.TestCase):
             container=self.portal,
             type='Event',
             id='testevent')
-        import pytz
         now = datetime.now(pytz.utc)
         tomorrow = datetime.today() + timedelta(days=1)
         tomorrow.replace(tzinfo=pytz.utc)
@@ -299,7 +298,7 @@ class TestViews(unittest.TestCase):
         form.request.form = {'form.widgets.content_types': [u'person']}
         form.update()
         form.handleApply(form, 'Ok')
-        messages = IStatusMessage(self.portal.REQUEST).showStatusMessages()
+        messages = IStatusMessage(self.portal.REQUEST).showStatusMessages()  # noqa
         self.assertEqual(
             messages[0].message,
             u'No address for <a href="http://nohost/plone/directory/person">person</a>')  # noqa
@@ -317,7 +316,7 @@ class TestViews(unittest.TestCase):
         coord = ICoordinates(person).coordinates
         self.assertFalse(coord.startswith('POINT '))
         form.handleApply(form, 'Ok')
-        messages = IStatusMessage(self.portal.REQUEST).showStatusMessages()
+        messages = IStatusMessage(self.portal.REQUEST).showStatusMessages()  # noqa
         self.assertEqual(messages[0].message, u'1 person are updated')
         coord = ICoordinates(person).coordinates
         self.assertTrue(coord.startswith('POINT '))
@@ -351,10 +350,9 @@ class TestViews(unittest.TestCase):
         event.open_end = True
         self.assertEqual(
             view.get_formatted_date(), u'1 January\n\xe0 10:00')
-        # import ipdb; ipdb.set_trace()
 
     def test_folderview_hide_title(self):
-        # directlyProvides(self.portal.REQUEST, ICPSkinCoreLayer)
+        # directlyProvides(self.portal.REQUEST, ICPSkinCoreLayer)  # noqa
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
         configure_folderviews(self.portal)
         collection = self.portal.actualites.actualites
@@ -396,7 +394,7 @@ class TestViews(unittest.TestCase):
               u'o': u'plone.app.querystring.operation.selection.is',
               u'v': [u'News Item']}, ]
         )
-        news = api.content.create(
+        api.content.create(
             container=self.portal,
             type='News Item',
             id='testnews')
@@ -468,7 +466,7 @@ class TestViews(unittest.TestCase):
         api.content.transition(obj=news, transition='publish')
         collection = self.portal.actualites.actualites
         view = getMultiAdapter(
-            (self.portal, self.request), name="folderview")
+            (self.portal, self.request), name='folderview')
         self.assertEqual(collection.collection_image_scale, 'mini')
         add_leadimage_from_file(news, 'visuel.png')
         scale = view.collection_image_scale(collection, news)
