@@ -301,7 +301,8 @@ class TestViews(unittest.TestCase):
         form.handleApply(form, 'Ok')
         messages = IStatusMessage(self.portal.REQUEST).showStatusMessages()
         self.assertEqual(
-            messages[0].message, u'No address for /plone/directory/person')
+            messages[0].message,
+            u'No address for <a href="http://nohost/plone/directory/person">person</a>')  # noqa
         self.assertEqual(messages[1].message, u'0 person are updated')
         person.street = u'Rue de l\'hôtel de ville'
         person.number = u'34'
