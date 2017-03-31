@@ -18,9 +18,12 @@ from zope.component import getSiteManager
 from zope.component import getUtility
 from zope.component.interfaces import ComponentLookupError
 from zope.publisher.browser import BrowserView
+
 import base64
 import json
 import logging
+
+
 logger = logging.getLogger('cpskin.core.browser.pages')
 
 

@@ -1,19 +1,16 @@
 # -*- coding: utf-8 -*-
-
 from Acquisition import aq_inner
 from Acquisition import aq_parent
-from Products.CMFCore.interfaces import IFolderish
-from Products.Five.browser import BrowserView
 from collective.navigationtoggle.interfaces import INavigationToggleSettings
+from cpskin.core.browser.interfaces import INavigationToggleView
+from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 from plone.registry.interfaces import IRegistry
+from Products.CMFCore.interfaces import IFolderish
+from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.interface import implements
-
-from cpskin.locales import CPSkinMessageFactory as _
-
-from cpskin.core.browser.interfaces import INavigationToggleView
 
 
 class NavigationToggleView(BrowserView):

@@ -8,10 +8,9 @@ Created by mpeeters
 """
 
 from collective.contact.facetednav.browser.view import PreviewItem
+from cpskin.core import utils
 
 import six
-
-from cpskin.core import utils
 
 
 class FacetedPreviewItem(PreviewItem):

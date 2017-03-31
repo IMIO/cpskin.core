@@ -12,8 +12,8 @@ from z3c.form import util
 from z3c.form.converter import BaseDataConverter
 from z3c.form.widget import FieldWidget
 from zope.component import adapts
-from zope.interface import Interface
 from zope.interface import implementer
+from zope.interface import Interface
 from zope.schema.interfaces import ISequence
 
 import six

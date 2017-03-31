@@ -7,12 +7,11 @@ Created by mpeeters
 :license: GPL, see LICENCE.txt for more details.
 """
 
-from Products.Five import BrowserView
 from collective.contact.core.browser.contactable import ContactDetails
+from cpskin.core import utils
+from Products.Five import BrowserView
 
 import six
-
-from cpskin.core import utils
 
 
 class ContactDetailsView(BrowserView, ContactDetails):

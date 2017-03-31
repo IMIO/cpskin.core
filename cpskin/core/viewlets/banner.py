@@ -1,7 +1,9 @@
-from zope.component import getMultiAdapter
+# -*- coding: utf-8 -*-
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.component import getMultiAdapter
+
 
 HAS_MINISITE = False
 try:

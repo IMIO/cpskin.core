@@ -1,7 +1,8 @@
-from zope.interface import implements
+# -*- coding: utf-8 -*-
 from plone import api
 from plone.app.layout.globals import layout as base
 from plone.app.layout.globals.interfaces import ILayoutPolicy
+from zope.interface import implements
 
 
 class LayoutPolicy(base.LayoutPolicy):

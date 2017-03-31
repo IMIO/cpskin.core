@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-import operator
-
-from zope.component import getUtility
-
 from plone.app.layout.viewlets import common
 from plone.registry.interfaces import IRegistry
-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.component import getUtility
+
+import operator
 
 
 class SocialViewlet(common.ViewletBase):

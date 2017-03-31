@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
+from cpskin.locales import CPSkinMessageFactory as _
+from Products.CMFDefault.formlib.schema import EmailLine
 from zope import schema
 from zope.interface import Interface
-
-from Products.CMFDefault.formlib.schema import EmailLine
-
-from cpskin.locales import CPSkinMessageFactory as _
 
 
 class ISendToManagerForm(Interface):
