@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from cpskin.locales import CPSkinMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.directives import form
 from plone.supermodel import model
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
-from plone.directives import form
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 
 @provider(IFormFieldProvider)
@@ -13,7 +13,7 @@ class ICpskinIndexViewSettings(model.Schema):
     model.fieldset(
         'indexview',
         label=_(
-            u"Index view"),
+            u'Index view'),
         fields=(
             'collection_image_scale',
             'slider_image_scale',
