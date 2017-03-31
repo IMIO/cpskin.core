@@ -2,20 +2,18 @@
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from Acquisition import aq_parent
-from Products.Five.browser import BrowserView
+from cpskin.core.browser.interfaces import IMediaActivationView
+from cpskin.core.interfaces import IAlbumCollection
+from cpskin.core.interfaces import IMediaActivated
+from cpskin.core.interfaces import IVideoCollection
+from cpskin.core.utils import publish_content
+from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
+from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.interface import implements
 from zope.interface import noLongerProvides
-
-from cpskin.locales import CPSkinMessageFactory as _
-
-from cpskin.core.interfaces import (IMediaActivated,
-                                    IAlbumCollection,
-                                    IVideoCollection)
-from cpskin.core.browser.interfaces import IMediaActivationView
-from cpskin.core.utils import publish_content
 
 
 class MediaActivationView(BrowserView):
@@ -33,7 +31,7 @@ class MediaActivationView(BrowserView):
 
     def _get_real_context(self):
         context = self.context
-        plone_view = getMultiAdapter((context, self.request), name="plone")
+        plone_view = getMultiAdapter((context, self.request), name='plone')
         if plone_view.isDefaultPageInFolder():
             context = aq_parent(context)
         context = aq_inner(context)
