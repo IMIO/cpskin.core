@@ -60,11 +60,12 @@ class TestVocabularies(unittest.TestCase):
         factory = getUtility(IVocabularyFactory, name)
         vocabulary = factory(self.portal)
         keys = vocabulary.by_value.keys()
-        self.assertEqual(len(keys), 1)
+        self.assertEqual(len(keys), 0)
         add_behavior('Document', ICoordinates.__identifier__)
 
         vocabulary = factory(self.portal)
         keys = vocabulary.by_value.keys()
+        self.assertEqual(len(keys), 1)
         self.assertIn(u'Document', keys)
 
         remove_behavior('Document', ICoordinates.__identifier__)
