@@ -72,9 +72,10 @@ class FolderView(FoldV):
         """Configure folders and collections for folderview"""
         context = self.context
         configure_folderviews(context)
-        api.portal.show_message(message=_(u'Vue index avec collections configurée.'),
-                                request=self.request,
-                                type='info')
+        api.portal.show_message(
+            message=_(u'Vue index avec collections configurée.'),
+            request=self.request,
+            type='info')
         self.request.response.redirect(context.absolute_url())
         return ''
 
@@ -176,7 +177,7 @@ class FolderView(FoldV):
         queryDict = {}
         queryDict['path'] = {'query': path, 'depth': 1}
         queryDict['portal_type'] = ADDABLE_TYPES
-        queryDict['object_provides'] = IFolderViewSelectedContent.__identifier__
+        queryDict['object_provides'] = IFolderViewSelectedContent.__identifier__  # noqa
         queryDict['sort_on'] = 'getObjPositionInParent'
         queryDict['review_state'] = (
             'published_and_hidden',
@@ -352,8 +353,11 @@ class FolderView(FoldV):
     def see_all(self, collection):
         voirlensemble = _(u"Voir l'ensemble des")
         coll_lang = getattr(collection, 'language')
-        lang = coll_lang if (coll_lang != '' and '-' not in coll_lang) else 'fr'
-        trans = translate(voirlensemble, domain=voirlensemble.domain, target_language=lang)
+        lang = coll_lang if (coll_lang != '' and '-' not in coll_lang) else 'fr'  # noqa
+        trans = translate(
+            voirlensemble,
+            domain=voirlensemble.domain,
+            target_language=lang)
         if getattr(collection, 'link_text', ''):
             return collection.link_text.encode('utf-8')
         return "{0} {1}".format(trans, collection.Title().lower())

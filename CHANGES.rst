@@ -4,7 +4,8 @@ Changelog
 0.8.59 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Remove collective.directory auto install.
+  [bsuttor]
 
 
 0.8.58 (2017-03-30)
