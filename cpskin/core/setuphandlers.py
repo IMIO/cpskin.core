@@ -45,27 +45,27 @@ def installCore(context):
     addImageFromFile(portal, 'cpskinlogo.png')
 
     # Add HiddenTags behavior to collective.directory types
-    addBehavior(
-        portal,
-        'cpskin.core.behaviors.metadata.IHiddenTags',
-        'collective.directory.directory')
-    addBehavior(
-        portal,
-        'cpskin.core.behaviors.metadata.IISearchTags',
-        'collective.directory.directory')
-
-    addBehavior(
-        portal,
-        'cpskin.core.behaviors.metadata.IHiddenTags',
-        'collective.directory.category')
-    addBehavior(
-        portal,
-        'cpskin.core.behaviors.metadata.IHiddenTags',
-        'collective.directory.card')
-    addBehavior(
-        portal,
-        'cpskin.core.behaviors.metadata.IISearchTags',
-        'collective.directory.card')
+    # addBehavior(
+    #     portal,
+    #     'cpskin.core.behaviors.metadata.IHiddenTags',
+    #     'collective.directory.directory')
+    # addBehavior(
+    #     portal,
+    #     'cpskin.core.behaviors.metadata.IISearchTags',
+    #     'collective.directory.directory')
+    #
+    # addBehavior(
+    #     portal,
+    #     'cpskin.core.behaviors.metadata.IHiddenTags',
+    #     'collective.directory.category')
+    # addBehavior(
+    #     portal,
+    #     'cpskin.core.behaviors.metadata.IHiddenTags',
+    #     'collective.directory.card')
+    # addBehavior(
+    #     portal,
+    #     'cpskin.core.behaviors.metadata.IISearchTags',
+    #     'collective.directory.card')
 
     add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
 
@@ -112,27 +112,27 @@ def uninstallCore(context):
         api.content.delete(obj=portal['footer-static'])
 
     # Remove dexterity behaviors
-    removeBehavior(
-        portal,
-        'cpskin.core.behaviors.metadata.IHiddenTags',
-        'collective.directory.directory')
-    removeBehavior(
-        portal,
-        'cpskin.core.behaviors.metadata.IISearchTags',
-        'collective.directory.directory')
-
-    removeBehavior(
-        portal,
-        'cpskin.core.behaviors.metadata.IHiddenTags',
-        'collective.directory.category')
-    removeBehavior(
-        portal,
-        'cpskin.core.behaviors.metadata.IHiddenTags',
-        'collective.directory.card')
-    removeBehavior(
-        portal,
-        'cpskin.core.behaviors.metadata.IISearchTags',
-        'collective.directory.card')
+    # removeBehavior(
+    #     portal,
+    #     'cpskin.core.behaviors.metadata.IHiddenTags',
+    #     'collective.directory.directory')
+    # removeBehavior(
+    #     portal,
+    #     'cpskin.core.behaviors.metadata.IISearchTags',
+    #     'collective.directory.directory')
+    #
+    # removeBehavior(
+    #     portal,
+    #     'cpskin.core.behaviors.metadata.IHiddenTags',
+    #     'collective.directory.category')
+    # removeBehavior(
+    #     portal,
+    #     'cpskin.core.behaviors.metadata.IHiddenTags',
+    #     'collective.directory.card')
+    # removeBehavior(
+    #     portal,
+    #     'cpskin.core.behaviors.metadata.IISearchTags',
+    #     'collective.directory.card')
 
     unregisterProvidesInterfaces(portal)
 

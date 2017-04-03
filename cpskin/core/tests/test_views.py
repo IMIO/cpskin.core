@@ -40,8 +40,6 @@ class TestViews(unittest.TestCase):
     def test_opendata_view(self):
         directlyProvides(self.request, ICPSkinCoreLayer)  # noqa
         configure_folderviews(self.portal)
-        api.content.create(
-            self.portal, 'collective.directory.directory', 'directory1')
         view = self.portal.restrictedTraverse('opendata')
         links = view.get_links()
         self.assertEqual(len(links), 3)

@@ -74,6 +74,7 @@ setup(name='cpskin.core',
               'plone.app.robotframework',
               'plone.app.multilingual',
               'Products.contentmigration',
+              'ipdb',
           ]
       },
       entry_points={},
