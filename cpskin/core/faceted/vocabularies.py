@@ -7,13 +7,11 @@ Created by mpeeters
 :copyright: (c) 2015 by Affinitic SPRL
 :license: GPL, see LICENCE.txt for more details.
 """
-
+from cpskin.locales import CPSkinMessageFactory as _
 from eea.facetednavigation.layout.layout import FacetedLayout
+from zope.globalrequest import getRequest
 from zope.i18n import translate
 from zope.schema.vocabulary import SimpleVocabulary
-from zope.globalrequest import getRequest
-
-from cpskin.locales import CPSkinMessageFactory as _
 
 
 class FacetedLayoutVocabularyFactory(object):

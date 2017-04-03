@@ -1,20 +1,16 @@
 # -*- coding: utf-8 -*-
-
-from zope.component import adapts
-from zope.interface import implements
-
+from archetypes.schemaextender.field import ExtensionField
+from archetypes.schemaextender.interfaces import IBrowserLayerAwareExtender
+from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
+from cpskin.core.interfaces import ICPSkinCoreLayer
+from cpskin.locales import CPSkinMessageFactory as _
 from Products.Archetypes import public as atapi
 from Products.Archetypes.interfaces import IBaseContent
 from Products.CMFCore import permissions as zope_permissions
-
-from archetypes.schemaextender.field import ExtensionField
-from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
-from archetypes.schemaextender.interfaces import IBrowserLayerAwareExtender
-
-from cpskin.locales import CPSkinMessageFactory as _
+from zope.component import adapter
+from zope.interface import implementer
 
 import permissions
-from cpskin.core.interfaces import ICPSkinCoreLayer
 
 
 class ExtensionStandardTagsField(ExtensionField, atapi.LinesField):
@@ -33,9 +29,9 @@ class ExtensionHiddenTagsField(ExtensionField, atapi.LinesField):
     """Derivate from Archetypes basic LinesField"""
 
 
+@adapter(IBaseContent)
+@implementer(IOrderableSchemaExtender, IBrowserLayerAwareExtender)
 class ContentExtender(object):
-    adapts(IBaseContent)
-    implements(IOrderableSchemaExtender, IBrowserLayerAwareExtender)
     layer = ICPSkinCoreLayer
 
     fields = [
@@ -43,7 +39,7 @@ class ContentExtender(object):
             'standardTags',
             multiValued=1,
             searchable=False,
-            schemata="categorization",
+            schemata='categorization',
             languageIndependent=True,
             widget=atapi.KeywordWidget(
                 label=_(u'label_standard_tags', default=u'Standard Tags'),
@@ -58,7 +54,7 @@ class ContentExtender(object):
             'iamTags',
             multiValued=1,
             searchable=False,
-            schemata="categorization",
+            schemata='categorization',
             languageIndependent=True,
             widget=atapi.KeywordWidget(
                 label=_(u'label_iam_tags', default=u'I Am Tags'),
@@ -73,7 +69,7 @@ class ContentExtender(object):
             'isearchTags',
             multiValued=1,
             searchable=False,
-            schemata="categorization",
+            schemata='categorization',
             languageIndependent=True,
             widget=atapi.KeywordWidget(
                 label=_(u'label_isearch_tags', default=u'I Search Tags'),
@@ -88,7 +84,7 @@ class ContentExtender(object):
             'hiddenTags',
             multiValued=1,
             searchable=False,
-            schemata="categorization",
+            schemata='categorization',
             languageIndependent=True,
             widget=atapi.KeywordWidget(
                 label=_(u'label_hidden_tags', default=u'Hidden Tags'),
@@ -108,8 +104,8 @@ class ContentExtender(object):
         """
         Make sure that tags are just after subject in categorization schemata
         """
-        if "subject" in schematas['categorization']:
-            insertAfterFieldIndex = schematas['categorization'].index('subject')
+        if 'subject' in schematas['categorization']:
+            insertAfterFieldIndex = schematas['categorization'].index('subject')  # noqa
         else:
             insertAfterFieldIndex = -1
 

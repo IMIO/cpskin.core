@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from Acquisition import aq_parent
-from Products.Five.browser import BrowserView
+from cpskin.core.browser.interfaces import IBannerActivationView
+from cpskin.core.interfaces import IBannerActivated
+from cpskin.core.interfaces import ILocalBannerActivated
+from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
+from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.interface import implements
 from zope.interface import noLongerProvides
-
-from cpskin.locales import CPSkinMessageFactory as _
-
-from cpskin.core.interfaces import (IBannerActivated,
-                                    ILocalBannerActivated)
-from cpskin.core.browser.interfaces import IBannerActivationView
 
 
 class BannerActivationView(BrowserView):

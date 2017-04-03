@@ -18,6 +18,6 @@ class CpskinQuerystringRegistryReader(QuerystringRegistryReader):
                 if isinstance(value, dict):
                     i18n_value = dict((k.encode('utf8'), v)
                                       for k, v in value.items())
-                    values.get(
-                        self.prefix + '.field').get(cpskin_index)['values'] = i18n_value
+                    values.get(self.prefix + '.field').get(
+                        cpskin_index)['values'] = i18n_value
         return values

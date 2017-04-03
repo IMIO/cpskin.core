@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-
-from Products.PluginIndexes.KeywordIndex.KeywordIndex import KeywordIndex
 from datetime import datetime
 from plone import api
-from plone.formwidget.datetime.z3cform.widget import DateWidget
 from plone.formwidget.datetime.z3cform.widget import DatetimeWidget
+from plone.formwidget.datetime.z3cform.widget import DateWidget
+from Products.PluginIndexes.KeywordIndex.KeywordIndex import KeywordIndex
 
 
 def afterMemberAdd(self, member, id, password, properties):

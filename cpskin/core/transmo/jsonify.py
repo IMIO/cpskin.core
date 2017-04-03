@@ -1,20 +1,16 @@
 # -*- coding: utf-8 -*-
+
 from Acquisition import aq_base
 from copy import deepcopy
+from cpskin.core.transmo.wrapper import Wrapper
 from plone import api
 from Products.Five.browser import BrowserView
 
 import base64
-import sys
+import json
 import pprint
+import sys
 import traceback
-
-try:
-    import simplejson as json
-except:
-    import json
-
-from cpskin.core.transmo.wrapper import Wrapper
 
 
 def _clean_dict(dct, error):
@@ -24,7 +20,7 @@ def _clean_dict(dct, error):
         if message.startswith(repr(value)):
             del new_dict[key]
             return key, new_dict
-    raise ValueError("Could not clean up object")
+    raise ValueError('Could not clean up object')
 
 
 class GetItem(BrowserView):
@@ -38,7 +34,8 @@ class GetItem(BrowserView):
 
         except Exception, e:
             tb = pprint.pformat(traceback.format_tb(sys.exc_info()[2]))
-            return 'ERROR: exception wrapping object: %s\n%s' % (str(e), tb)
+            return 'ERROR: exception wrapping object: {0}\n{1}'.format(
+                str(e), tb)
 
         passed = False
         while not passed:
@@ -46,15 +43,12 @@ class GetItem(BrowserView):
                 JSON = json.dumps(context_dict)
                 passed = True
             except Exception, error:
-                if "serializable" in str(error):
+                if 'serializable' in str(error):
                     key, context_dict = _clean_dict(context_dict, error)
-                    pprint.pprint('Not serializable member %s of %s ignored'
-                         % (key, repr(self)))
+                    pprint.pprint('Not serializable member {0} of {1} ignored'.format(key, repr(self)))  # noqa
                     passed = False
                 else:
-                    return ('ERROR: Unknown error serializing object: %s' %
-                        str(error))
-
+                    return ('ERROR: Unknown error serializing object: {0}'.format(str(error)))  # noqa
         self.request.response.setHeader('Content-Type', 'application/json')
         return JSON
 
@@ -89,7 +83,7 @@ class GetCatalogResults(BrowserView):
         query = self.request.form.get('catalog_query', None)
         if query:
             query = eval(base64.b64decode(query),
-                         {"__builtins__": None}, {})
+                         {'__builtins__': None}, {})
         item_paths = [item.getPath() for item
                       in self.context.unrestrictedSearchResults(**query)]
         # sometimes some content are unindexed

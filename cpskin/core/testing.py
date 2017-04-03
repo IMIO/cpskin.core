@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-
 from cpskin.core.utils import add_behavior
-from plone.testing import z2
+from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneWithPackageLayer
-from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.textfield.value import RichTextValue
+from plone.testing import z2
+
 import cpskin.core
 
 
@@ -16,7 +16,10 @@ class CPSkinCorePloneWithPackageLayer(PloneWithPackageLayer):
     """
 
     def setUpZope(self, app, configurationContext):
-        super(CPSkinCorePloneWithPackageLayer, self).setUpZope(app, configurationContext)
+        super(CPSkinCorePloneWithPackageLayer, self).setUpZope(
+            app,
+            configurationContext
+        )
         z2.installProduct(app, 'Products.DateRecurringIndex')
         # import plone.app.contenttypes
         # self.loadZCML(package=plone.app.contenttypes)
@@ -32,7 +35,7 @@ class CPSkinCorePloneWithPackageLayer(PloneWithPackageLayer):
         # applyProfile(portal, 'plone.app.contenttypes:plone-content')
         applyProfile(portal, 'cpskin.core:testing')
         richtextvalue = RichTextValue(
-            u"Footer static custom content",
+            u'Footer static custom content',
             'text/plain',
             'text/html'
         )
@@ -43,16 +46,16 @@ class CPSkinCorePloneWithPackageLayer(PloneWithPackageLayer):
 
 
 CPSKIN_CORE_FIXTURE = CPSkinCorePloneWithPackageLayer(
-    name="CPSKIN_CORE_FIXTURE",
-    zcml_filename="testing.zcml",
+    name='CPSKIN_CORE_FIXTURE',
+    zcml_filename='testing.zcml',
     zcml_package=cpskin.core,
-    gs_profile_id="cpskin.core:testing")
+    gs_profile_id='cpskin.core:testing')
 
 CPSKIN_CORE_INTEGRATION_TESTING = IntegrationTesting(
     bases=(CPSKIN_CORE_FIXTURE,),
-    name="cpskin.core:Integration")
+    name='cpskin.core:Integration')
 
 CPSKIN_CORE_ROBOT_TESTING = FunctionalTesting(
     bases=(CPSKIN_CORE_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE,
            z2.ZSERVER_FIXTURE),
-    name="cpskin.core:Robot")
+    name='cpskin.core:Robot')

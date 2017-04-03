@@ -56,7 +56,7 @@ Test enabling / disabling banner on Plone site and sub folder
     Element Should not be visible  css=#plone-contentmenu-cpskin-configurations-disable_banner
     Go to  ${PLONE_URL}/subfolder
     Click CPSkin Configuration by id  disable_banner
-    Page Should Not Contain Element  css=#cpskin-banner
+    Wait until keyword succeeds  3  1  Page Should Not Contain Element  css=#cpskin-banner
 
 Test enabling / disabling local banner on Plone site
     Enable autologin as  Site Administrator
@@ -79,7 +79,7 @@ Test enabling / disabling local banner on Plone site
     Element Should not be visible  css=#plone-contentmenu-cpskin-configurations-disable_local_banner
     Go to  ${PLONE_URL}/subfolder
     Click CPSkin Configuration by id  disable_local_banner
-    Page Should Not Contain Element  css=#cpskin-banner
+    Wait until keyword succeeds  3  1  Page Should Not Contain Element  css=#cpskin-banner
 
 
 *** Keywords ***

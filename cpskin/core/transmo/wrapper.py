@@ -1,24 +1,8 @@
 # -*- coding: utf-8 -*-
-from Acquisition import aq_base
 from collective.geo.behaviour.behaviour import Coordinates
 from collective.geo.geographer.interfaces import IGeoreferenceable
 from collective.geo.geographer.interfaces import IWriteGeoreferenced
 from collective.jsonify.wrapper import Wrapper
-from plone import api
-from plone.portlets.interfaces import ILocalPortletAssignable, IPortletManager, IPortletAssignmentMapping, IPortletAssignment, ILocalPortletAssignmentManager
-from plone.portlets.constants import USER_CATEGORY, GROUP_CATEGORY, CONTENT_TYPE_CATEGORY, CONTEXT_CATEGORY
-from plone.app.multilingual.interfaces import ITranslationManager
-from plone.app.portlets.interfaces import IPortletTypeInterface
-from plone.app.portlets.exportimport.interfaces import IPortletAssignmentExportImportHandler
-from plone.app.portlets.exportimport.portlets import PropertyPortletAssignmentExportImportHandler
-from Products.CMFCore.utils import getToolByName
-from xml.dom import minidom
-from zope.annotation.interfaces import IAnnotations
-from zope.component import getUtilitiesFor
-from zope.component import queryMultiAdapter
-from zope.interface import Interface
-from zope.interface import providedBy
-
 from cpskin.core.interfaces import IAlbumCollection
 from cpskin.core.interfaces import IBannerActivated
 from cpskin.core.interfaces import IFolderViewSelectedContent
@@ -28,11 +12,28 @@ from cpskin.core.interfaces import IMediaActivated
 from cpskin.core.interfaces import IVideoCollection
 from cpskin.core.viewlets.interfaces import IViewletMenuToolsBox
 from cpskin.core.viewlets.interfaces import IViewletMenuToolsFaceted
+from plone import api
+from plone.app.multilingual.interfaces import ITranslationManager
+from plone.app.portlets.exportimport.interfaces import IPortletAssignmentExportImportHandler  # noqa
+from plone.app.portlets.exportimport.portlets import PropertyPortletAssignmentExportImportHandler  # noqa
+from plone.app.portlets.interfaces import IPortletTypeInterface
+from plone.portlets.constants import CONTENT_TYPE_CATEGORY
+from plone.portlets.constants import CONTEXT_CATEGORY
+from plone.portlets.constants import GROUP_CATEGORY
+from plone.portlets.constants import USER_CATEGORY
+from plone.portlets.interfaces import ILocalPortletAssignable
+from plone.portlets.interfaces import ILocalPortletAssignmentManager
+from plone.portlets.interfaces import IPortletAssignmentMapping
+from plone.portlets.interfaces import IPortletManager
+from xml.dom import minidom
+from zope.component import getUtilitiesFor
+from zope.component import queryMultiAdapter
+from zope.interface import Interface
+from zope.interface import providedBy
 
 import base64
 import DateTime
 import os
-import pickle
 
 
 class ISerializer(Interface):
@@ -61,12 +62,13 @@ class Wrapper(Wrapper):
         except:
             return
 
-        if self.has_tg and len(ITranslationManager(self.context).get_translations()) > 1:
+        if self.has_tg and len(ITranslationManager(self.context).get_translations()) > 1:  # noqa
             translations = ITranslationManager(self.context).get_translations()
             portal_level = len(self.portal.getPhysicalPath())
             trans = {}
             for lang, obj in translations.items():
-                trans[lang] = '/'+'/'.join(obj.getPhysicalPath()[portal_level:])
+                trans[lang] = '/'+'/'.join(
+                    obj.getPhysicalPath()[portal_level:])
             self['translations'] = trans
 
         fields = self.context.Schema().fields()
@@ -131,7 +133,8 @@ class Wrapper(Wrapper):
                 'FileField',
                 'AttachmentField',
                 'ExtensionBlobField',
-                'LeadimageBlobImageField']:
+                'LeadimageBlobImageField'
+            ]:
 
                 fieldname = unicode('_datafield_' + fieldname)
                 value = self._get_at_field_value(field)
@@ -200,7 +203,7 @@ class Wrapper(Wrapper):
                 continue
             else:
                 raise TypeError('Unknown field type for ArchetypesWrapper in '
-                        '%s %s in %s' % (type_, fieldname, self.context.absolute_url()))
+                        '%s %s in %s' % (type_, fieldname, self.context.absolute_url()))  # noqa
 
     def get_cpskin_interfaces(self):
         from cpskin.menu.interfaces import IDirectAccess
@@ -227,18 +230,18 @@ class Wrapper(Wrapper):
     def get_facted_criteria(self):
         from eea.facetednavigation.criteria.handler import Criteria
         from eea.facetednavigation.criteria.interfaces import ICriteria
-        from eea.facetednavigation.indexes.language.interfaces import ILanguageWidgetAdapter
+        from eea.facetednavigation.indexes.language.interfaces import ILanguageWidgetAdapter  # noqa
         from eea.facetednavigation.interfaces import IFacetedNavigable
-        from eea.facetednavigation.settings.interfaces import IDisableSmartFacets
-        from eea.facetednavigation.settings.interfaces import IHidePloneLeftColumn
-        from eea.facetednavigation.settings.interfaces import IHidePloneRightColumn
+        from eea.facetednavigation.settings.interfaces import IDisableSmartFacets  # noqa
+        from eea.facetednavigation.settings.interfaces import IHidePloneLeftColumn  # noqa
+        from eea.facetednavigation.settings.interfaces import IHidePloneRightColumn  # noqa
         from eea.facetednavigation.subtypes.interfaces import IFacetedWrapper
         from eea.facetednavigation.views.interfaces import IViewsInfo
-        from eea.facetednavigation.widgets.alphabetic.interfaces import IAlphabeticWidget
+        from eea.facetednavigation.widgets.alphabetic.interfaces import IAlphabeticWidget  # noqa
         from eea.facetednavigation.widgets.interfaces import ICriterion
         from eea.facetednavigation.widgets.interfaces import IWidget
         from eea.facetednavigation.widgets.interfaces import IWidgetsInfo
-        from eea.facetednavigation.widgets.resultsfilter.interfaces import IResultsFilterWidget
+        from eea.facetednavigation.widgets.resultsfilter.interfaces import IResultsFilterWidget  # noqa
 
         interfaces = [
             IFacetedNavigable,
@@ -290,7 +293,8 @@ class Wrapper(Wrapper):
             portal_level = len(self.portal.getPhysicalPath())
             trans = {}
             for lang, obj in translations.items():
-                trans[lang] = '/'+'/'.join(obj.getPhysicalPath()[portal_level:])
+                trans[lang] = '/'+'/'.join(
+                    obj.getPhysicalPath()[portal_level:])
             self['translations'] = trans
         # get all fields for this obj
         for schemata in iterSchemata(self.context):
@@ -306,7 +310,7 @@ class Wrapper(Wrapper):
                 field_type = field.__class__.__name__
 
                 if field_type in ('RichText',):
-                    # TODO: content_type missing
+                    # XXX: content_type missing
                     try:
                         value = unicode(value.raw)
                     except:
@@ -375,7 +379,7 @@ class Wrapper(Wrapper):
         """
 
         self.doc = minidom.Document()
-        self.portlet_schemata = dict([(iface, name,) for name, iface in getUtilitiesFor(IPortletTypeInterface)])
+        self.portlet_schemata = dict([(iface, name,) for name, iface in getUtilitiesFor(IPortletTypeInterface)])  # noqa
         self.portlet_managers = list(getUtilitiesFor(IPortletManager))
         if ILocalPortletAssignable.providedBy(self.context):
             data = None
@@ -397,7 +401,9 @@ class Wrapper(Wrapper):
     def exportAssignments(self, obj):
         assignments = []
         for manager_name, manager in self.portlet_managers:
-            mapping = queryMultiAdapter((obj, manager), IPortletAssignmentMapping)
+            mapping = queryMultiAdapter(
+                (obj, manager),
+                IPortletAssignmentMapping)
             if mapping is None:
                 continue
 
@@ -414,13 +420,14 @@ class Wrapper(Wrapper):
                         child = self.doc.createElement('assignment')
                         child.setAttribute('manager', manager_name)
                         child.setAttribute('category', CONTEXT_CATEGORY)
-                        child.setAttribute('key', '/'.join(obj.getPhysicalPath()))
+                        child.setAttribute('key', '/'.join(
+                            obj.getPhysicalPath()))
                         child.setAttribute('type', type_)
                         child.setAttribute('name', name)
 
                         assignment = assignment.__of__(mapping)
-                        # use existing adapter for exporting a portlet assignment
-                        handler = IPortletAssignmentExportImportHandler(assignment)
+                        # use existing adapter for exporting a portlet assignment  # noqa
+                        handler = IPortletAssignmentExportImportHandler(assignment)  # noqa
                         handler.export_assignment(schema, self.doc, child)
 
                         assignments.append(child)
@@ -430,18 +437,25 @@ class Wrapper(Wrapper):
     def exportBlacklists(self, obj):
         assignments = []
         for manager_name, manager in self.portlet_managers:
-            assignable = queryMultiAdapter((obj, manager), ILocalPortletAssignmentManager)
+            assignable = queryMultiAdapter(
+                (obj, manager),
+                ILocalPortletAssignmentManager)
             if assignable is None:
                 continue
-            for category in (USER_CATEGORY, GROUP_CATEGORY, CONTENT_TYPE_CATEGORY, CONTEXT_CATEGORY,):
+            for category in (
+                USER_CATEGORY,
+                GROUP_CATEGORY,
+                CONTENT_TYPE_CATEGORY,
+                CONTEXT_CATEGORY
+            ):
                 child = self.doc.createElement('blacklist')
                 child.setAttribute('manager', manager_name)
                 child.setAttribute('category', category)
 
                 status = assignable.getBlacklistStatus(category)
-                if status == True:
+                if status is True:
                     child.setAttribute('status', u'block')
-                elif status == False:
+                elif status is False:
                     child.setAttribute('status', u'show')
                 else:
                     child.setAttribute('status', u'acquire')

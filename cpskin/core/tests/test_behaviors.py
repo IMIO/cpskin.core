@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
+from cpskin.core.behaviors.metadata import IAdditionalSearchableText
 from cpskin.core.behaviors.metadata import IHiddenTags
 from cpskin.core.behaviors.metadata import IRelatedContacts
-from cpskin.core.behaviors.metadata import IAdditionalSearchableText
 from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
@@ -25,11 +25,11 @@ class TestBehaviors(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.request, ICPSkinCoreLayer)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('Folder', 'folder')
+        api.content.create(self.portal, 'Folder', 'folder')
         self.folder = self.portal.folder
-        self.portal.invokeFactory('Document', 'document')
+        api.content.create(self.portal, 'Document', 'document')
         self.document = self.portal.document
-        self.portal.invokeFactory('Collection', 'collection')
+        api.content.create(self.portal, 'Collection', 'collection')
         self.collection = self.portal.collection
 
     def test_use_slider_image_scale(self):
@@ -89,9 +89,15 @@ class TestBehaviors(unittest.TestCase):
 
     def test_additional_searchable_text(self):
         add_behavior('Document', IAdditionalSearchableText.__identifier__)
-        additional_searchable_text = getattr(self.document, 'additional_searchable_text')
+        additional_searchable_text = getattr(
+            self.document,
+            'additional_searchable_text'
+        )
         self.assertEqual(additional_searchable_text, None)
         additional_searchable_text = setattr(
             self.document, 'additional_searchable_text', 'trash')
-        additional_searchable_text = getattr(self.document, 'additional_searchable_text')
+        additional_searchable_text = getattr(
+            self.document,
+            'additional_searchable_text'
+        )
         self.assertEqual(additional_searchable_text, 'trash')

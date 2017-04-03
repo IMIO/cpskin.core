@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
-from plone.indexer.interfaces import IIndexer
 from OFS.interfaces import IItem
+from plone.indexer.interfaces import IIndexer
 from Products.ZCatalog.interfaces import IZCatalog
+from zope.component import adapts
+from zope.interface import implements
+
+import logging
+
 
 try:
     from plone.dexterity.utils import safe_utf8
@@ -10,9 +15,6 @@ except ImportError:
     # Compatibility with Plone 4.3.2 / plone.dexterity 2.1.3
     from cpskin.core.utils import safe_utf8
 
-from zope.interface import implements
-from zope.component import adapts
-import logging
 logger = logging.getLogger('cpskin.core.indexer')
 
 

@@ -1,24 +1,20 @@
 # -*- coding: utf-8 -*-
 from cpskin.locales import CPSkinMessageFactory as _
+from interfaces import ISendToManagerForm
+from plone.z3cform import layout
 from Products.CMFPlone.utils import pretty_title_or_id
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.MailHost.interfaces import IMailHost
 from Products.statusmessages.interfaces import IStatusMessage
-
+from z3c.form import button
+from z3c.form import field
+from z3c.form import form
 from ZODB.POSException import ConflictError
-
-from plone.z3cform import layout
-
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 
-from z3c.form import form
-from z3c.form import field
-from z3c.form import button
-
-from interfaces import ISendToManagerForm
-
 import logging
+
 
 logger = logging.getLogger("Plone")
 

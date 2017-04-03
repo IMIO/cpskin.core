@@ -36,13 +36,14 @@ Scenario: Test folder view configuration
     Go to  ${PLONE_URL}/index
     Open Menu  plone-contentmenu-cpskin-configurations
     Click Link  css=#plone-contentmenu-cpskin-configurations-configure_folderview
-    Page Should Contain  Vue index avec collections configurée.
+    Wait until keyword succeeds  3  1  Page Should Contain  Vue index avec collections configurée.
     Page Should Contain Link  css=#plone-contentmenu-display-folderview.actionMenuSelected
     Click Link  Contents
     Page Should Contain  À la une
     Page Should Contain  Actualités
     Page Should Contain  Événements
     Click Link  À la une
+    Sleep  1
     Click Link  View
     Page Should Contain Link  css=#plone-contentmenu-cpskin-configurations-remove_from_folderview
     Page Should Not Contain Link  css=#plone-contentmenu-cpskin-configurations-add_to_folderview

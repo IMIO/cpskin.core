@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone import api
-from plone.app.layout.viewlets import common
-from zope.component import getMultiAdapter
 from cpskin.core.interfaces import IAlbumCollection
 from cpskin.core.interfaces import IVideoCollection
-from plone.app.contenttypes.interfaces import ICollection
 from imio.media.browser import utils
+from plone import api
+from plone.app.contenttypes.interfaces import ICollection
+from plone.app.layout.viewlets import common
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.component import getMultiAdapter
+
 import logging
+
+
 logger = logging.getLogger('cpskin.core media viewlet')
 
 

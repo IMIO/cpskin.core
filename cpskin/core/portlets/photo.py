@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from plone import api
-from zope.interface import implements
-from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.portlets import base
+from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.interface import implements
 
 
 class IPhotoPortlet(IPortletDataProvider):
@@ -26,7 +26,7 @@ class Renderer(base.Renderer):
         """
         contextPhyPath = self.context.getPhysicalPath()
         portalPhyPath = api.portal.get().getPhysicalPath()
-        path = [elem for elem in list(contextPhyPath) if elem not in list(portalPhyPath)]
+        path = [elem for elem in list(contextPhyPath) if elem not in list(portalPhyPath)]  # noqa
         depth = len(path)
         if depth < 2:
             return False

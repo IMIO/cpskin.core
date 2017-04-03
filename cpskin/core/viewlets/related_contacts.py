@@ -6,6 +6,8 @@ from plone.outputfilters.filters.resolveuid_and_caption import ResolveUIDAndCapt
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 import logging
+
+
 logger = logging.getLogger('cpskin.core related contacts viewlet')
 
 

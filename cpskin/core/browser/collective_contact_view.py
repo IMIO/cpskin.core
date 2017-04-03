@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from collective.contact.core.browser.organization import Organization
-from collective.contact.core.browser.position import Position
-from collective.contact.core.browser.person import Person
 from collective.contact.core.browser.basefields import views
+from collective.contact.core.browser.organization import Organization
+from collective.contact.core.browser.person import Person
+from collective.contact.core.browser.position import Position
 from collective.contact.core.content.organization import IOrganization
+from cpskin.core.interfaces import ICPSkinCoreLayer
 from five import grok
 
-from cpskin.core.interfaces import ICPSkinCoreLayer
 
 grok.templatedir('templates')
 

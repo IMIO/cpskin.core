@@ -52,7 +52,7 @@ def convertCollection(collection):
     api.content.delete(collection)
     allowed_types = container.getLocallyAllowedTypes()
     container.setLocallyAllowedTypes(allowed_types + ('Topic', ))
-    old_collection = api.content.create(container=container, type=u"Topic",
+    old_collection = api.content.create(container=container, type=u'Topic',
                                         id=id, title=title, safe_id=False)
     portal.portal_workflow.doActionFor(old_collection, 'publish')
     container.setLocallyAllowedTypes(allowed_types)
@@ -175,6 +175,15 @@ def get_address_from_obj(obj):
     loc = getattr(obj, 'location', '')
     if loc:
         return obj.location
+    # old card
+    if obj.portal_type == 'collective.directory.card':
+        street = get_field(obj, 'address')
+        zip_code = get_field(obj, 'zip_code')
+        city = get_field(obj, 'city')
+        address = '{0} {1} {2}'.format(
+            street, zip_code, city
+        )
+        return address
 
     # collective.contact.core
     street = get_field(obj, 'street')
@@ -182,7 +191,7 @@ def get_address_from_obj(obj):
     zip_code = get_field(obj, 'zip_code')
     city = get_field(obj, 'city')
     if street and city:
-        address = '{} {} {} {}'.format(
+        address = '{0} {1} {2} {3}'.format(
             number, street, zip_code, city
         )
     else:
@@ -192,6 +201,8 @@ def get_address_from_obj(obj):
 
 def get_field(obj, field_name):
     value = getattr(obj, field_name, '')
+    if isinstance(value, int):
+        return str(value).encode('utf8')
     if value:
         return value.encode('utf8')
     return ''
@@ -221,7 +232,7 @@ def set_coord(obj, request):
             api.portal.show_message(message=geocode, request=request)
         else:
             if geocode.lng and geocode.lat:
-                coord = u"POINT({0} {1})".format(geocode.lng, geocode.lat)
+                coord = u'POINT({0} {1})'.format(geocode.lng, geocode.lat)
                 ICoordinates(obj).coordinates = coord
                 obj.reindexObject()
                 path = '/'.join(obj.getPhysicalPath())
@@ -229,8 +240,10 @@ def set_coord(obj, request):
                 logger.info(message)
                 return message
     else:
-        message = 'No address for {0}'.format('/'.join(
-            obj.getPhysicalPath()))
+        message = 'No address for <a href="{0}">{1}</a>'.format(
+            obj.absolute_url(),
+            obj.id
+        )
         api.portal.show_message(message=message, request=request)
         logger.warn(message)
 

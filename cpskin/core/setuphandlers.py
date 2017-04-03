@@ -15,6 +15,7 @@ from zope.interface import noLongerProvides
 import logging
 import os
 
+
 logger = logging.getLogger('cpskin.core')
 
 
@@ -321,7 +322,7 @@ def addLoadPageMenuToRegistry():
         return
 
     logger.info(
-        'Adding cpskin.core.interfaces.ICPSkinSettings.load_page_menu to registry')
+        'Adding cpskin.core.interfaces.ICPSkinSettings.load_page_menu to registry')  # noqa
     record = Record(field.Bool(title=_(u'Load page menu'),
                                description=_(
                                    u'Is level 1 menu load page at click?'),
@@ -334,17 +335,17 @@ def addLoadPageMenuToRegistry():
 def addSubMenuPersistenceToRegistry():
     registry = getUtility(IRegistry)
     records = registry.records
-    if 'cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence' in records:
+    if 'cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence' in records:  # noqa
         return
 
     logger.info(
-        'Adding cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence to registry')
+        'Adding cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence to registry')  # noqa
     record = Record(field.Bool(title=_(u'Sub menu persistence'),
                                description=_(u'Is level 2 menu persist?'),
                                required=False,
                                default=True),
                     value=True)
-    records['cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence'] = record
+    records['cpskin.core.interfaces.ICPSkinSettings.sub_menu_persistence'] = record  # noqa
 
 
 def addAutoPlaySliderToRegistry():
@@ -354,13 +355,14 @@ def addAutoPlaySliderToRegistry():
         return
 
     logger.info(
-        'Adding cpskin.core.interfaces.ICPSkinSettings.auto_play_slider to registry')
-    record = Record(field.Bool(title=_(u'Auto play slider'),
-                               description=_(
-                                   u'Is the front page slider automatically play?'),
-                               required=False,
-                               default=True),
-                    value=True)
+        'Adding cpskin.core.interfaces.ICPSkinSettings.auto_play_slider to registry')  # noqa
+    record = Record(
+        field.Bool(
+            title=_(u'Auto play slider'),
+            description=_(u'Is the front page slider automatically play?'),
+            required=False,
+            default=True),
+        value=True)
     records['cpskin.core.interfaces.ICPSkinSettings.auto_play_slider'] = record
 
 
@@ -371,13 +373,14 @@ def addSliderTimerToRegistry():
         return
 
     logger.info(
-        'Adding cpskin.core.interfaces.ICPSkinSettings.slider_timer to registry')
-    record = Record(field.Bool(title=_(u'Slider timer'),
-                               description=_(
-                                   u'Number of seconds between each transition.'),
-                               required=False,
-                               default=5000),
-                    value=5000)
+        'Adding cpskin.core.interfaces.ICPSkinSettings.slider_timer to registry')  # noqa
+    record = Record(
+        field.Bool(
+            title=_(u'Slider timer'),
+            description=_(u'Number of seconds between each transition.'),
+            required=False,
+            default=5000),
+        value=5000)
     records['cpskin.core.interfaces.ICPSkinSettings.slider_timer'] = record
 
 
@@ -409,7 +412,7 @@ def addSliderTypeToRegistry():
         return
 
     logger.info(
-        'Adding cpskin.core.interfaces.ICPSkinSettings.slider_type to registry')
+        'Adding cpskin.core.interfaces.ICPSkinSettings.slider_type to registry')  # noqa
     record = Record(
         field.TextLine(
             title=_(u'Slider type'),
@@ -418,28 +421,6 @@ def addSliderTypeToRegistry():
             default=u'slider_view'),
         value=u'slider_view')
     records['cpskin.core.interfaces.ICPSkinSettings.slider_type'] = record
-
-
-# def add_homepage_keywords():
-#     # TO BE DELETED, no more used
-#     registry = getUtility(IRegistry)
-#     records = registry.records
-#     if 'cpskin.core.interfaces.ICPSkinSettings.homepage_keywords' in records:
-#         return
-#
-#     logger.info(
-#         'Adding cpskin.core.interfaces.ICPSkinSettings.homepage_keywords to registry')
-#     record = Record(
-#         field.Tuple(
-#             title=_(u'Homepage keywords'),
-#             description=_(
-#                 u'Please select which hidden keywords is use by collections for homepage.'),
-#             value_type=field.Choice(
-#                 vocabulary=u'cpskin.core.vocabularies.hiddenTags'
-#             )
-#         ),
-#         value=(u'homepage',))
-#     records['cpskin.core.interfaces.ICPSkinSettings.homepage_keywords'] = record
 
 
 def set_googleapi_key():

@@ -14,13 +14,19 @@ class TestPermissions(unittest.TestCase):
     def test_portlets_permissions(self):
         portal = self.layer['portal']
         permission = 'Portlets: Manage portlets'
-        roles = [r['name'] for r in portal.rolesOfPermission(permission) if r['selected']]
-        self.assertEqual(roles, ['Editor', 'Manager', 'Portlets Manager', 'Site Administrator'])
+        roles = [r['name'] for r in portal.rolesOfPermission(permission) if r['selected']]  # noqa
+        self.assertEqual(
+            roles,
+            ['Editor', 'Manager', 'Portlets Manager', 'Site Administrator']
+        )
 
         permission = 'CPSkin: Edit keywords'
-        roles = [r['name'] for r in portal.rolesOfPermission(permission) if r['selected']]
-        self.assertEqual(roles, ['Manager', 'Portlets Manager', 'Site Administrator'])
+        roles = [r['name'] for r in portal.rolesOfPermission(permission) if r['selected']]  # noqa
+        self.assertEqual(
+            roles,
+            ['Manager', 'Portlets Manager', 'Site Administrator']
+        )
 
         permission = 'CPSkin: Site administrator'
-        roles = [r['name'] for r in portal.rolesOfPermission(permission) if r['selected']]
+        roles = [r['name'] for r in portal.rolesOfPermission(permission) if r['selected']]  # noqa
         self.assertEqual(roles, ['Manager', 'Site Administrator'])

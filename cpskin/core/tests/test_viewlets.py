@@ -5,14 +5,15 @@ from cpskin.core.utils import add_keyword
 from cpskin.core.utils import add_leadimage_from_file
 from plone import api
 from plone.app.testing import applyProfile
-from plone.app.testing import TEST_USER_ID, setRoles
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from Products.Five.browser import BrowserView
+from z3c.relationfield.relation import RelationValue
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
 from zope.intid.interfaces import IIntIds
 from zope.viewlet.interfaces import IViewletManager
-from z3c.relationfield.relation import RelationValue
 
 import unittest
 
@@ -28,9 +29,9 @@ class TestViewlets(unittest.TestCase):
 
     def test_navigation_toggle_viewlet(self):
         folder = api.content.create(
-            container=self.portal, type="Folder", id="folder1")
+            container=self.portal, type='Folder', id='folder1')
         view = getMultiAdapter(
-            (folder, self.request), name="navigation_toggle_activation")
+            (folder, self.request), name='navigation_toggle_activation')
         navtogglesettings = view.settings
         self.assertEqual(navtogglesettings.selectors, ())
         self.assertFalse(view.is_enabled)
@@ -51,7 +52,7 @@ class TestViewlets(unittest.TestCase):
 
     def test_set_media_viewlet(self):
         view = getMultiAdapter(
-            (self.portal, self.request), name="media_activation")
+            (self.portal, self.request), name='media_activation')
         self.assertFalse('videos' in self.portal.keys())
         self.assertFalse(view.is_enabled)
         self.assertFalse(view.can_disable_media)
@@ -74,7 +75,7 @@ class TestViewlets(unittest.TestCase):
     def test_media_viewlet(self):
         keywords = ['album-a-la-une']
         view = getMultiAdapter(
-            (self.portal, self.request), name="media_activation")
+            (self.portal, self.request), name='media_activation')
         # create video collection used to viewlet
         view.enable_media()
         album_collection = self.portal.albums.index
@@ -119,7 +120,7 @@ class TestViewlets(unittest.TestCase):
         self.assertEqual(len(media_viewlet.get_albums()), 0)
 
         # Set lead image to album folder
-        add_leadimage_from_file(album, "cpskinlogo.png")
+        add_leadimage_from_file(album, 'cpskinlogo.png')
         add_keyword(album, 'hiddenTags', keywords)
 
         self.assertEqual(len(media_viewlet.get_albums()), 1)
@@ -129,8 +130,8 @@ class TestViewlets(unittest.TestCase):
             'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
         event = api.content.create(
             container=self.portal,
-            type="Event",
-            id="myevent"
+            type='Event',
+            id='myevent'
         )
 
         # getting viewlet
@@ -145,7 +146,7 @@ class TestViewlets(unittest.TestCase):
         manager.update()
 
         my_viewlet = [
-            v for v in manager.viewlets if v.__name__ == 'cpskin.above_related_contacts']
+            v for v in manager.viewlets if v.__name__ == 'cpskin.above_related_contacts']  # noqa
         self.assertEqual(len(my_viewlet), 1)
         above_viewlet = my_viewlet[0]
 
@@ -197,8 +198,8 @@ class TestViewlets(unittest.TestCase):
             'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
         event = api.content.create(
             container=self.portal,
-            type="Event",
-            id="myevent"
+            type='Event',
+            id='myevent'
         )
 
         # getting viewlet
@@ -213,7 +214,7 @@ class TestViewlets(unittest.TestCase):
         manager.update()
 
         my_viewlet = [
-            v for v in manager.viewlets if v.__name__ == 'cpskin.below_related_contacts']
+            v for v in manager.viewlets if v.__name__ == 'cpskin.below_related_contacts']  # noqa
         self.assertEqual(len(my_viewlet), 1)
         below_viewlet = my_viewlet[0]
 
@@ -255,16 +256,17 @@ class TestViewlets(unittest.TestCase):
         # test get_title method
         self.assertFalse(below_viewlet.get_title(person))
         event.belowVisbileFields = ('title')
-        self.assertEqual(below_viewlet.get_title(person),
-                         u'<a href="http://nohost/plone/directory/person" target="_blank"><h4>Foo Bar</h4></a>')
+        self.assertEqual(
+            below_viewlet.get_title(person),
+            u'<a href="http://nohost/plone/directory/person" target="_blank"><h4>Foo Bar</h4></a>')  # noqa
 
     def test_use_parent_address(self):
         add_behavior(
             'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
         event = api.content.create(
             container=self.portal,
-            type="Event",
-            id="myevent"
+            type='Event',
+            id='myevent'
         )
 
         # getting viewlet
@@ -279,7 +281,7 @@ class TestViewlets(unittest.TestCase):
         manager.update()
 
         my_viewlet = [
-            v for v in manager.viewlets if v.__name__ == 'cpskin.below_related_contacts']
+            v for v in manager.viewlets if v.__name__ == 'cpskin.below_related_contacts']  # noqa
         self.assertEqual(len(my_viewlet), 1)
         below_viewlet = my_viewlet[0]
 

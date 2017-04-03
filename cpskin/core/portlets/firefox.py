@@ -1,7 +1,8 @@
-from zope.interface import implements
-from plone.portlets.interfaces import IPortletDataProvider
+# -*- coding: utf-8 -*-
 from plone.app.portlets.portlets import base
+from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.interface import implements
 
 
 class IFirefoxPortlet(IPortletDataProvider):

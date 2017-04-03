@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
+from cpskin.core.utils import get_address_from_obj
+from cpskin.core.utils import has_lat_lng
+from cpskin.core.utils import set_coord
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
-
-from cpskin.core.utils import get_address_from_obj
-from cpskin.core.utils import has_lat_lng
-from cpskin.core.utils import set_coord
 
 
 def set_lat_lng(obj, event):
