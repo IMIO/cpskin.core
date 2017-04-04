@@ -25,3 +25,4 @@ include/
 lib/
 share/
 .coverage
+geckodriver.log
