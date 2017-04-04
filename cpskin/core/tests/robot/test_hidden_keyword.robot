@@ -29,7 +29,7 @@ Resource  plone/app/robotframework/selenium.robot
 
 Library  Remote  ${PLONE_URL}/RobotRemote
 
-Suite setup  Set Selenium speed  0.4s
+Suite setup  Set Selenium speed  0.5s
 
 Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
