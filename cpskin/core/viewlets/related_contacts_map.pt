@@ -1,0 +1,39 @@
+<div i18n:domain="cpskin" id="relatedcontactsmap" tal:condition="view/available">
+
+  <div id="geojson" tal:attributes="
+      data-name string:${context/title};
+      data-geojson view/data_geojson;">
+  </div>
+  <metal:use use-macro="context/@@collectivegeoleaflet-macros/map-div"/>
+  <!-- <metal:use use-macro="context/@@collectivegeoleaflet-macros/map-geojson" /> -->
+  <metal:use use-macro="context/@@collectivegeoleaflet-macros/map-init-leaflet"/>
+  <metal:use use-macro="context/@@collectivegeoleaflet-macros/map-search"/>
+
+  <script>
+    function markerFunction(id){
+        for (var i in markers){
+            var markerID = markers[i].feature.id;
+            if (markerID == id){
+                latlng = markers[i]._latlng;
+                map.setView(latlng, map.getZoom(), { animation: true });
+                markers[i].openPopup();
+            };
+        }
+    }
+    $("a.seemaplink").click(function(event){
+        event.preventDefault();
+        var maptopoffset = $("#relatedcontactsmap").offset().top;
+        var mapbottomoffset = maptopoffset + map.getSize().y
+        windowheight = window.innerHeight;
+        scrollto = mapbottomoffset - windowheight;
+        var offset = mapbottomoffset - $(window).scrollTop();
+        if(offset > windowheight){
+          // Not in view so scroll to it
+          $('html, body').animate({
+              scrollTop: scrollto
+          }, 1000);
+        }
+        markerFunction($(this)[0].id);
+    });
+  </script>
+</div>

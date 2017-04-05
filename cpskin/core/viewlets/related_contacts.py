@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 from collective.contact.core.interfaces import IContactable
+from collective.geo.json.browser.jsonview import get_marker_image
+from collective.geo.leaflet.interfaces import IGeoMap
+from collective.geo.mapwidget import utils
 from cpskin.core.utils import format_phone
+from plone import api
 from plone.app.layout.viewlets import common
 from plone.outputfilters.filters.resolveuid_and_caption import ResolveUIDAndCaptionFilter  # noqa
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from pygeoif.geometry import as_shape
 
+import geojson
 import logging
 
 
@@ -20,6 +26,12 @@ class RelatedContactsViewlet(common.ViewletBase):
                           'website')
     ignore_fields = ('title', )
 
+    def __init__(self, context, request, view, manager=None, field=[], selected=[]):  # noqa
+        super(RelatedContactsViewlet, self).__init__(
+            context, request, view, manager)
+        self.field = field
+        self.selected = selected
+
     def available(self):
         contacts = getattr(self.context, self.field, None)
         return bool(contacts)
@@ -30,9 +42,16 @@ class RelatedContactsViewlet(common.ViewletBase):
 
     def get_contacts(self):
         contacts = []
-        related_contacts = getattr(self.context, self.field, [])
+        if isinstance(self.field, list):
+            related_contacts = []
+            for field in self.field:
+                related_contacts += getattr(self.context, field, [])
+        else:
+            related_contacts = getattr(self.context, self.field, [])
         for related_contact in related_contacts:
-            contacts.append(related_contact.to_object)
+            obj = related_contact.to_object
+            if obj not in contacts:
+                contacts.append(obj)
         return contacts
 
     def get_title(self, contact):
@@ -45,13 +64,15 @@ class RelatedContactsViewlet(common.ViewletBase):
         return field in self.selected_fields
 
     def get_field(self, contact, field):
+        if field is 'id':
+            return getattr(contact, field, '')
         if field not in self.selected_fields:
             return ''
         if field in self.address_fields:
             contactable = IContactable(contact)
             details = contactable.get_contact_details()
             return details['address'].get(field)
-        # XXX find way to check if field is richetext or image or simple field
+        # find way to check if field is richetext or image or simple field
         if field == 'activity':
             if getattr(contact, field, ''):
                 text = getattr(contact, field).raw
@@ -103,7 +124,7 @@ class RelatedContactsViewlet(common.ViewletBase):
         else:
             url = 'http://{0}'.format(website)
             website_name = website
-        html = ""
+        html = ''
         html += '<a class="website" href="{0}" target="_blank">{1}</a>'.format(
             url, website_name)
         return html
@@ -111,14 +132,32 @@ class RelatedContactsViewlet(common.ViewletBase):
 
 class AboveRelatedContactsViewlet(RelatedContactsViewlet):
 
-    field = 'aboveContentContact'
-    selected = 'aboveVisbileFields'
+    def __init__(self, context, request, view, manager=None):
+        field = 'aboveContentContact'
+        selected = 'aboveVisbileFields'
+        super(AboveRelatedContactsViewlet, self).__init__(
+            context,
+            request,
+            view,
+            manager,
+            field,
+            selected
+        )
 
 
 class BelowRelatedContactsViewlet(RelatedContactsViewlet):
 
-    field = 'belowContentContact'
-    selected = 'belowVisbileFields'
+    def __init__(self, context, request, view, manager=None):
+        field = 'belowContentContact'
+        selected = 'belowVisbileFields'
+        super(BelowRelatedContactsViewlet, self).__init__(
+            context,
+            request,
+            view,
+            manager,
+            field,
+            selected
+        )
 
     def get_title(self, contact):
         if self.in_fields('title'):
@@ -127,3 +166,68 @@ class BelowRelatedContactsViewlet(RelatedContactsViewlet):
                 contact.title)
         else:
             return False
+
+
+class RelatedContactsMapViewlet(RelatedContactsViewlet):
+    index = ViewPageTemplateFile('related_contacts_map.pt')
+
+    def __init__(self, context, request, view, manager=None):
+        self.fields = ['aboveContentContact', 'belowContentContact']
+        super(RelatedContactsMapViewlet, self).__init__(
+            context,
+            request,
+            view,
+            manager,
+            self.fields
+        )
+
+    def available(self):
+        see_map = getattr(self.context, 'see_map', False)
+        empty_content = True
+        for field in self.fields:
+            if len(getattr(self.context, field, [])) > 0:
+                empty_content = False
+        return see_map and not empty_content
+
+    @property
+    def geomap(self):
+        return IGeoMap(self.context)
+
+    def data_geojson(self):
+        style = {}
+        global_style = utils.get_feature_styles(self.context)
+        style['fill'] = global_style['polygoncolor']
+        style['stroke'] = global_style['linecolor']
+        style['width'] = global_style['linewidth']
+        if global_style.get('marker_image', None):
+            img = get_marker_image(self.context, global_style['marker_image'])
+            style['image'] = img
+        else:
+            style['image'] = None
+        json_result = []
+        pc = api.portal.get_tool('portal_catalog')
+        for contact in self.get_contacts():
+            brain = pc(UID=contact.UID())[0]
+            geom = {'type': brain.zgeo_geometry['type'],
+                    'coordinates': brain.zgeo_geometry['coordinates']}
+            if geom['coordinates']:
+                if geom['type']:
+                    classes = geom['type'].lower() + ' '
+                else:
+                    classes = ''
+                classes += brain.getPath().split('/')[-2].replace('.', '-')
+                json_result.append(
+                    geojson.Feature(
+                        id=contact.id.replace('.', '-'),
+                        geometry=as_shape(geom),
+                        style=style,
+                        properties={
+                            'title': brain.Title,
+                            'description': brain.Description,
+                            'style': style,
+                            'url': brain.getURL(),
+                            'classes': classes,
+                        }))
+        feature_collection = geojson.FeatureCollection(json_result)
+        feature_collection.update({'title': self.context.title})
+        return geojson.dumps(feature_collection)

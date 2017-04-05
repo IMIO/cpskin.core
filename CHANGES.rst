@@ -4,6 +4,9 @@ Changelog
 0.8.59 (unreleased)
 -------------------
 
+- Add map below related_contacts.
+  [bsuttor]
+
 - Remove collective.directory auto install.
   [bsuttor]
 

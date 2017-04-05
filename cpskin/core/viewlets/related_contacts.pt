@@ -1,14 +1,8 @@
-<div
-  i18n:domain="cpskin"
-  tal:attributes="id view/field"
-  tal:condition="view/available">
+<div i18n:domain="cpskin" tal:attributes="id view/field" tal:condition="view/available">
   <ul tal:attributes="id string:ul-${view/field}">
     <li tal:repeat="contact view/get_contacts" class="related-contact">
 
-      <h4
-        tal:define="title python: view.get_title(contact)"
-        tal:condition="title"
-        tal:replace="structure title"/>
+      <h4 tal:define="title python: view.get_title(contact)" tal:condition="title" tal:replace="structure title"/>
       <div
         class="coordinates"
         tal:define="street python: view.get_field(contact, 'street');
@@ -23,20 +17,19 @@
           <div class="address" tal:condition="view/has_address">
             <div class="street">
               <span class="streetname" tal:condition="street" tal:content="street"/>
-              <span class="streetcomma" tal:condition="number">,
-              </span>
+              <span class="streetcomma" tal:condition="number">,</span>
               <span class="streetnumber" tal:condition="number" tal:content="number"/>
             </div>
-            <div
-              class="additional_address_details"
-              tal:condition="additional_address_details"
-              tal:content="additional_address_details"/>
+            <div class="additional_address_details" tal:condition="additional_address_details" tal:content="additional_address_details"/>
             <div class="city">
               <span class="zipcode" tal:condition="zip_code" tal:content="zip_code"/>
               <span class="cityname" tal:condition="city" tal:content="city"/>
             </div>
             <div class="region" tal:condition="region" tal:content="region"/>
             <div class="country" tal:condition="country" tal:content="country"/>
+          </div>
+          <div tal:condition="context/see_map">
+            <a href='#' class="seemaplink" tal:attributes="id python:view.get_field(contact, 'id')"><span i18n:translate="See on map">See on map</span></a>
           </div>
           <div
             class="coordinates-tab"
@@ -47,37 +40,30 @@
                         im_handle python: view.get_field(contact, 'im_handle');
                         website python: view.get_field(contact, 'website');">
             <div class="phone" tal:condition="phones">
-                <tal:loop repeat="phone phones">
-                <a tal:condition="phone" href="" tal:attributes="href string:tel:${phone/raw}" >
-                    <div tal:content="phone/formated" />
+              <tal:loop repeat="phone phones">
+                <a tal:condition="phone" href="" tal:attributes="href string:tel:${phone/raw}">
+                  <div tal:content="phone/formated"/>
                 </a>
-                </tal:loop>
+              </tal:loop>
             </div>
             <div class="cell_phone" tal:condition="cell_phones">
-                <tal:loop repeat="cell_phone cell_phones" >
-                <a tal:condition="cell_phone" href="" tal:attributes="href string:tel:${cell_phone/raw}" >
-                    <div tal:content="cell_phone/formated" />
+              <tal:loop repeat="cell_phone cell_phones">
+                <a tal:condition="cell_phone" href="" tal:attributes="href string:tel:${cell_phone/raw}">
+                  <div tal:content="cell_phone/formated"/>
                 </a>
-                </tal:loop>
+              </tal:loop>
             </div>
             <div class="fax" tal:condition="faxes">
-                <tal:loop repeat="fax faxes">
-                    <span tal:content="fax/formated" tal:condition="fax" />
-                    <span i18n:translate="(fax)" class="faxtext">(fax)</span>
-                </tal:loop>
+              <tal:loop repeat="fax faxes">
+                <span tal:content="fax/formated" tal:condition="fax"/>
+                <span i18n:translate="(fax)" class="faxtext">(fax)</span>
+              </tal:loop>
             </div>
 
-            <div class="email"><a
-              class="email"
-              tal:condition="email"
-              tal:attributes="href string:mailto:${email};"
-              tal:content="email"/></div>
+            <div class="email"><a class="email" tal:condition="email" tal:attributes="href string:mailto:${email};" tal:content="email"/></div>
             <div class="im_handle" tal:condition="im_handle" tal:content="im_handle"/>
             <div class="website">
-              <a
-                class="website"
-                tal:condition="website"
-                tal:replace="structure python: view.get_website(contact)"/>
+              <a class="website" tal:condition="website" tal:replace="structure python: view.get_website(contact)"/>
             </div>
           </div>
         </div>
@@ -89,8 +75,9 @@
             </div>
           </tal:define>
         </tal:block>
-      </div>
 
+      </div>
     </li>
+
   </ul>
 </div>

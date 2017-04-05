@@ -99,9 +99,14 @@ class FolderView(FoldV):
                 'v': homepage_keywords
             })
         sort_on = getattr(content, 'sort_on', None)
-        sort_order = 'reverse' if getattr(content, 'sort_reversed', False) else 'ascending'
+        sort_order = 'reverse' if getattr(content, 'sort_reversed', False) else 'ascending'  # noqa
         sort_reversed = getattr(content, 'sort_reversed', False)
-        parsedquery = queryparser.parseFormquery(content, query, sort_on, sort_order)
+        parsedquery = queryparser.parseFormquery(
+            content,
+            query,
+            sort_on,
+            sort_order
+        )
         portal_catalog = api.portal.get_tool('portal_catalog')
         brains = portal_catalog(parsedquery)
         item_count_homepage = getattr(content, 'item_count_homepage', 8)
@@ -113,7 +118,14 @@ class FolderView(FoldV):
                 item_count = getattr(content, 'item_count', 8)
                 # item_count = content.item_count
                 content.item_count = 1000
-                filter_and_resort_brains = filter_and_resort(content, brains, start, None, sort_on, sort_reversed)
+                filter_and_resort_brains = filter_and_resort(
+                    content,
+                    brains,
+                    start,
+                    None,
+                    sort_on,
+                    sort_reversed
+                )
                 brains = filter_and_resort_brains[:item_count_homepage]
                 content.item_count = item_count
         else:
@@ -189,7 +201,7 @@ class FolderView(FoldV):
 
     def getSliderType(self):
         portal_registry = getToolByName(self.context, 'portal_registry')
-        return portal_registry['cpskin.core.interfaces.ICPSkinSettings.slider_type']
+        return portal_registry['cpskin.core.interfaces.ICPSkinSettings.slider_type']  # noqa
 
     def hasFlexSlider(self):
         """Check if flexslider is available and installed"""
@@ -298,30 +310,30 @@ class FolderView(FoldV):
             'cpskin.core.interfaces.ICPSkinSettings.auto_play_slider']
         config = """
         (function($) {
-             "use strict";
-             var animation = "slide";
-             // IE 9 does not support 'slide' animation
-             if (navigator.sayswho === 'MSIE 9' || navigator.sayswho === 'IE 9')
-             {
-                animation = "fade";
-             }
-             $('#carousel').flexslider({
-               animation: animation,
-               controlNav: false,
-               animationLoop: false,
-               slideshow: false,
-               itemWidth: 210,
-               itemMargin: 5,
-               asNavFor: '#slider'
-             });
-             $('#slider').flexslider({
-               animation: animation,
-               controlNav: false,
-               animationLoop: true,
-               slideshow: %(auto_play_slider)s,
-               slideshowSpeed: %(slider_timer)s,
-               sync: "#carousel"
-             });
+            "use strict";
+            var animation = "slide";
+            // IE 9 does not support 'slide' animation
+            if (navigator.sayswho === 'MSIE 9' || navigator.sayswho === 'IE 9')
+            {
+            animation = "fade";
+            }
+            $('#carousel').flexslider({
+              animation: animation,
+              controlNav: false,
+              animationLoop: false,
+              slideshow: false,
+              itemWidth: 210,
+              itemMargin: 5,
+              asNavFor: '#slider'
+            });
+            $('#slider').flexslider({
+              animation: animation,
+              controlNav: false,
+              animationLoop: true,
+              slideshow: %(auto_play_slider)s,
+              slideshowSpeed: %(slider_timer)s,
+              sync: "#carousel"
+            });
          })(jQuery);
         """ % {'auto_play_slider': auto_play_slider and 'true' or 'false',
                'slider_timer': slider_timer}
@@ -360,7 +372,7 @@ class FolderView(FoldV):
             target_language=lang)
         if getattr(collection, 'link_text', ''):
             return collection.link_text.encode('utf-8')
-        return "{0} {1}".format(trans, collection.Title().lower())
+        return '{0} {1}'.format(trans, collection.Title().lower())
 
     def see_categories(self, collection):
         result = True
@@ -389,9 +401,14 @@ class FolderView(FoldV):
             cat = vocabulary.inv_data.get(token)
             categories.append(cat[1:])
         categories.sort()
-        return ", ".join(categories)
+        return ', '.join(categories)
 
-    def toLocalizedTime(self, time=None, long_format=None, time_only=None, event=None, startend='start'):
+    def toLocalizedTime(self,
+                        time=None,
+                        long_format=None,
+                        time_only=None,
+                        event=None,
+                        startend='start'):
         if event:
             if not isinstance(event, Event):
                 event = event.getObject()
@@ -406,20 +423,16 @@ class FolderView(FoldV):
 
     def is_one_day(self, event):
         if not IDexterityContent.providedBy(event):
-            return self.toLocalizedTime(event.start_date, long_format=0) == self.toLocalizedTime(
-                event.end_date, long_format=0)
-        return self.toLocalizedTime(event.start, long_format=0) == self.toLocalizedTime(
-            event.end, long_format=0)
+            return self.toLocalizedTime(event.start_date, long_format=0) == self.toLocalizedTime(event.end_date, long_format=0)  # noqa
+        return self.toLocalizedTime(event.start, long_format=0) == self.toLocalizedTime(event.end, long_format=0)  # noqa
 
     def is_with_hours(self, event):
         if not IDexterityContent.providedBy(event):
-            return self.toLocalizedTime(event.start_date, long_format=1)[11:] != '00:00' \
-                or self.toLocalizedTime(event.end_date, long_format=1)[11:] != '00:00'
+            return self.toLocalizedTime(event.start_date, long_format=1)[11:] != '00:00' or self.toLocalizedTime(event.end_date, long_format=1)[11:] != '00:00'  # noqa
         if getattr(event, 'whole_day', False):
             return not(event.whole_day)
         else:
-            return self.toLocalizedTime(event.start, long_format=1)[11:] != '00:00' \
-                or self.toLocalizedTime(event.end, long_format=1)[11:] != '00:00'
+            return self.toLocalizedTime(event.start, long_format=1)[11:] != '00:00' or self.toLocalizedTime(event.end, long_format=1)[11:] != '00:00'  # noqa
 
     def is_open_end(self, event):
         if not IDexterityContent.providedBy(event):
@@ -447,7 +460,7 @@ class FolderView(FoldV):
         If None, you get 01/01/1000 and strftime cannot convert it.
         Also check if collection is checked to see publication date.
         """
-        if not getattr(brain, 'start', None) and not getattr(brain, 'end', None):
+        if not getattr(brain, 'start', None) and not getattr(brain, 'end', None):  # noqa
             return getattr(collection, 'hide_date', True)
         else:
             # always hide effective date for events

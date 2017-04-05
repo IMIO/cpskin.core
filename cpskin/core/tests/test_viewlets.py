@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective.geo.behaviour.interfaces import ICoordinates
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import add_keyword
@@ -12,9 +13,12 @@ from z3c.relationfield.relation import RelationValue
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
+from zope.event import notify
 from zope.intid.interfaces import IIntIds
+from zope.lifecycleevent import ObjectModifiedEvent
 from zope.viewlet.interfaces import IViewletManager
 
+import json
 import unittest
 
 
@@ -320,3 +324,88 @@ class TestViewlets(unittest.TestCase):
         event.belowVisbileFields = ('zip_code',)
         self.assertNotIn('5190', below_viewlet.render())
         self.assertNotIn('Foo', below_viewlet.render())
+
+    def test_related_contacts_map_viewlet(self):
+        add_behavior(
+            'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
+        event = api.content.create(
+            container=self.portal,
+            type='Event',
+            id='myevent'
+        )
+
+        # getting viewlet
+        view = BrowserView(event, self.request)
+        manager_name = 'plone.belowcontentbody'
+        manager = queryMultiAdapter(
+            (event, self.request, view),
+            IViewletManager,
+            manager_name,
+            default=None)
+        self.assertIsNotNone(manager)
+        manager.update()
+
+        my_viewlet = [
+            v for v in manager.viewlets if v.__name__ == 'cpskin.related_contacts_map']  # noqa
+        self.assertEqual(len(my_viewlet), 1)
+        map_viewlet = my_viewlet[0]
+
+        contacts = map_viewlet.get_contacts()
+        self.assertEqual(contacts, [])
+        self.assertFalse(map_viewlet.available())
+
+        # add some contacts
+        applyProfile(self.portal, 'collective.contact.core:default')
+        directory = api.content.create(
+            container=self.portal, type='directory', id='directory')
+        person = api.content.create(
+            container=directory, type='person', id='person')
+        person.firstname = u'Foo'
+        person.lastname = u'Bar'
+        person.gender = u'F'
+        person.street = u'Zoning Industriel'
+        person.number = u'34'
+        person.zip_code = u'5190'
+        person.city = u'Mornimont'
+
+        # set related contact
+        intids = getUtility(IIntIds)
+        to_id = intids.getId(person)
+        rv = RelationValue(to_id)
+        event.belowContentContact = event.belowContentContact + [rv]
+        self.assertTrue(map_viewlet.available())
+        contacts = map_viewlet.get_contacts()
+        self.assertEqual(len(contacts), 1)
+        self.assertEqual(contacts[0], person)
+
+        # Do not see duplicate
+        event.aboveContentContact = event.aboveContentContact + [rv]
+        contacts = map_viewlet.get_contacts()
+        self.assertEqual(len(contacts), 1)
+        self.assertEqual(contacts[0], person)
+
+        person2 = api.content.create(directory, 'person', 'person2')
+        person2.firstname = u'James'
+        person2.lastname = u'Bond'
+        person2.gender = u'M'
+        person2.street = u"Boulevard d'avroy"
+        person2.number = u'007'
+        person2.zip_code = u'4000'
+        person2.city = u'Liège'
+        to_id2 = intids.getId(person2)
+        rv2 = RelationValue(to_id2)
+        event.aboveContentContact = event.aboveContentContact + [rv2]
+        contacts = map_viewlet.get_contacts()
+        self.assertEqual(len(contacts), 2)
+        event.see_map = False
+        self.assertFalse(map_viewlet.available())
+        event.see_map = True
+
+        add_behavior('person', ICoordinates.__identifier__)
+        notify(ObjectModifiedEvent(person))
+        notify(ObjectModifiedEvent(person2))
+
+        geojson = map_viewlet.data_geojson()
+        results = json.loads(geojson)
+        self.assertEqual(results['type'], u'FeatureCollection')
+        self.assertEqual(len(results['features']), 2)

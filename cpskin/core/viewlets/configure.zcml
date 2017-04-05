@@ -110,6 +110,14 @@
         layer="..interfaces.ICPSkinCoreLayer"
         />
 
+    <browser:viewlet
+        name="cpskin.related_contacts_map"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class=".related_contacts.RelatedContactsMapViewlet"
+        permission="zope.Public"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
     <configure package="imio.dashboard">
         <browser:viewlet
             for="OFS.interfaces.IItem"
