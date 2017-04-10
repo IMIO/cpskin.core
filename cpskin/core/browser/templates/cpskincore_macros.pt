@@ -46,9 +46,20 @@
                         </tal:loop>
                         </tal:block>
                         <a href=""
-                           tal:attributes="href result/getURL">
-                               <tal:block tal:condition="not: view/is_dexterity">
+                           tal:define="show_day_and_month python: view.show_day_and_month(content)"
+                           tal:attributes="href result/getURL;
+                                           title result/Title">
 
+                             <tal:if tal:condition="show_day_and_month">
+                                <div class="day"
+                                     tal:content="python: view.to_day(result)"></div>
+                                <div class="month"
+                                     tal:content="python: view.to_localized_month(result)"></div>
+                             </tal:if>
+
+                             <tal:else tal:condition="not: show_day_and_month">
+                            
+                               <tal:block tal:condition="not: view/is_dexterity">
                                 <img class=""
                                    tal:define="oddRow repeat/result/odd;
                                                imageClass python: oddRow and 'myimageleft' or 'myimageleft';
@@ -58,6 +69,7 @@
                                    tal:attributes="title result/Description;
                                                    src python: result.getURL() + '/' + thumbsize" />
                                 </tal:block>
+
                                 <tal:block tal:condition="view/is_dexterity">
                                 <div class="homepageleadImage"
                                      tal:define="scaled_image python:view.collection_image_scale(content, obj)">
@@ -71,6 +83,8 @@
 
                                 </div>
                                 </tal:block>
+
+                              </tal:else>
 
                               <h3 tal:content="result/Title"></h3>
                             </a>
@@ -162,14 +176,24 @@
                         </tal:block>
                         <a href=""
                            title=""
+                           tal:define="show_day_and_month python: view.show_day_and_month(content)"
                            tal:attributes="href result/getURL;
                                            title result/Title">
 
-                          <div class="pageleadImage"
-                               style=""
-                               tal:define="scaled_image_url python:view.scaled_image_url(content, obj, isBigImage)"
-                               tal:attributes="style string:background-image: url(${scaled_image_url})">
-                          </div>
+                          <tal:if tal:condition="show_day_and_month">
+                            <div class="day"
+                                 tal:content="python: view.to_day(result)"></div>
+                            <div class="month"
+                                 tal:content="python: view.to_localized_month(result)"></div>
+                          </tal:if>
+
+                          <tal:else tal:condition="not: show_day_and_month">
+                            <div class="pageleadImage"
+                                 style=""
+                                 tal:define="scaled_image_url python:view.scaled_image_url(content, obj, isBigImage)"
+                                 tal:attributes="style string:background-image: url(${scaled_image_url})">
+                            </div>
+                          </tal:else>
 
                           <div class="pagecaption">
 

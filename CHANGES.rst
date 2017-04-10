@@ -4,7 +4,9 @@ Changelog
 0.8.60 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add 'day and month' option on index view collections to style results
+  differently (without leadimage) : #16800
+  [laulaz]
 
 
 0.8.59 (2017-04-11)

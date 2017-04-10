@@ -18,6 +18,7 @@ from plone.dexterity.interfaces import IDexterityFTI
 from plone.event.interfaces import IEvent
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.i18nl10n import monthname_msgid
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.i18n import translate
@@ -421,6 +422,24 @@ class FolderView(FoldV):
         return self.context.restrictedTraverse('@@plone').toLocalizedTime(
             time, long_format, time_only)
 
+    def to_day(self, result):
+        date = getattr(result, 'start')
+        if not date:
+            return ''
+        day = date.day()
+        return str(day)
+
+    def to_localized_month(self, result):
+        date = getattr(result, 'start')
+        if not date:
+            return ''
+        month = translate(
+            monthname_msgid(date.month()),
+            'plonelocales',
+            context=self.request
+        )
+        return month
+
     def is_one_day(self, event):
         if not IDexterityContent.providedBy(event):
             return self.toLocalizedTime(event.start_date, long_format=0) == self.toLocalizedTime(event.end_date, long_format=0)  # noqa
@@ -465,6 +484,9 @@ class FolderView(FoldV):
         else:
             # always hide effective date for events
             return True
+
+    def show_day_and_month(self, collection):
+        return getattr(collection, 'show_day_and_month', False)
 
     def use_new_template(self, collection):
         return getattr(collection, 'use_new_template', False)
