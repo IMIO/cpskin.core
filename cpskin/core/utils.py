@@ -118,7 +118,8 @@ def remove_behavior(type_name, behavior_name):
         fti._updateProperty('behaviors', tuple(behaviors))
 
 
-def add_leadimage_from_file(container, file_name, folder_name='data'):
+def add_leadimage_from_file(container, file_name,
+                            folder_name='data', image_field='image'):
     """Add leadimage from a file from a folder"""
     if not container:
         container = api.portal.get()
@@ -140,7 +141,7 @@ def add_leadimage_from_file(container, file_name, folder_name='data'):
                                    container=image_container)
         image.setTitle(file_name)
         image.reindexObject()
-        setattr(container, 'image', namedblobimage)
+        setattr(container, image_field, namedblobimage)
 
 
 def image_scale(obj, css_class, default_scale, generate_tag=True):
@@ -234,7 +235,8 @@ def set_coord(obj, request):
             if geocode.lng and geocode.lat:
                 coord = u'POINT({0} {1})'.format(geocode.lng, geocode.lat)
                 ICoordinates(obj).coordinates = coord
-                obj.reindexObject()
+                obj.reindexObject(
+                    idxs=['zgeo_geometry', 'collective_geo_styles'])
                 path = '/'.join(obj.getPhysicalPath())
                 message = 'lat lng of {0} updated'.format(path)
                 logger.info(message)
