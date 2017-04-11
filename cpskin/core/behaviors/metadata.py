@@ -113,7 +113,8 @@ class IRelatedContacts(model.Schema):
         'related_contacts',
         label=_(u'Related contacts'),
         fields=('aboveContentContact', 'aboveVisbileFields',
-                'belowContentContact', 'belowVisbileFields', 'see_map'),
+                'belowContentContact', 'belowVisbileFields',
+                'see_map', 'see_logo_in_popup'),
     )
 
     aboveContentContact = RelationList(
@@ -162,9 +163,17 @@ class IRelatedContacts(model.Schema):
             vocabulary=u'cpskin.core.vocabularies.contact_fields'
         )
     )
+
     see_map = schema.Bool(
         title=_(u'See map'),
         description=_(u'Do you want to map with links of contacts ?'),
+        required=False,
+        default=True
+    )
+
+    see_logo_in_popup = schema.Bool(
+        title=_(u'See logo on map popup'),
+        description=_(u'Do you want to logo of contact on the popup on map ?'),
         required=False,
         default=True
     )
