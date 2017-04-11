@@ -76,7 +76,7 @@ class TestBehaviors(unittest.TestCase):
         see_logo_in_popup = getattr(self.document, 'see_logo_in_popup')
         self.assertTrue(see_logo_in_popup)
         setattr(self.document, 'see_logo_in_popup', False)
-        see_logo_in_popup = getattr(self.document, 'see_map')
+        see_logo_in_popup = getattr(self.document, 'see_logo_in_popup')
         self.assertFalse(see_logo_in_popup)
         remove_behavior('Document', IRelatedContacts.__identifier__)
 
