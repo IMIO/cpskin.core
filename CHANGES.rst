@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.59 (unreleased)
+0.8.59 (2017-04-11)
 -------------------
 
 - Add logo and address into map popup.
