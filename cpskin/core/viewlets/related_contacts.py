@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective.contact.core.browser.address import get_address
 from collective.contact.core.interfaces import IContactable
 from collective.geo.json.browser.jsonview import get_marker_image
 from collective.geo.leaflet.interfaces import IGeoMap
@@ -6,12 +7,14 @@ from collective.geo.mapwidget import utils
 from cpskin.core.utils import format_phone
 from plone import api
 from plone.app.layout.viewlets import common
+from plone.dexterity.utils import safe_utf8
 from plone.outputfilters.filters.resolveuid_and_caption import ResolveUIDAndCaptionFilter  # noqa
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from pygeoif.geometry import as_shape
 
 import geojson
 import logging
+import Missing
 
 
 logger = logging.getLogger('cpskin.core related contacts viewlet')
@@ -31,6 +34,7 @@ class RelatedContactsViewlet(common.ViewletBase):
             context, request, view, manager)
         self.field = field
         self.selected = selected
+        self.pc = api.portal.get_tool('portal_catalog')
 
     def available(self):
         contacts = getattr(self.context, self.field, None)
@@ -129,6 +133,14 @@ class RelatedContactsViewlet(common.ViewletBase):
             url, website_name)
         return html
 
+    def see_map_link(self, contact):
+        if self.available:
+            brain = self.pc(UID=contact.UID())[0]
+            if brain.zgeo_geometry == Missing.Value:
+                return False
+            return True
+        return False
+
 
 class AboveRelatedContactsViewlet(RelatedContactsViewlet):
 
@@ -205,9 +217,11 @@ class RelatedContactsMapViewlet(RelatedContactsViewlet):
         else:
             style['image'] = None
         json_result = []
-        pc = api.portal.get_tool('portal_catalog')
+        self.pc = api.portal.get_tool('portal_catalog')
         for contact in self.get_contacts():
-            brain = pc(UID=contact.UID())[0]
+            brain = self.pc(UID=contact.UID())[0]
+            if brain.zgeo_geometry == Missing.Value:
+                continue
             geom = {'type': brain.zgeo_geometry['type'],
                     'coordinates': brain.zgeo_geometry['coordinates']}
             if geom['coordinates']:
@@ -215,6 +229,23 @@ class RelatedContactsMapViewlet(RelatedContactsViewlet):
                     classes = geom['type'].lower() + ' '
                 else:
                     classes = ''
+                address = get_address(contact)
+                number = ''
+                if address['number']:
+                    number = ', {0}'.format(address['number'])
+                formated_address = '{0} {1}<br />{2} {3}'.format(
+                    safe_utf8(address['street']),
+                    number,
+                    address['zip_code'],
+                    safe_utf8(address['city'])
+                )
+                img = ''
+                if self.context.see_logo_in_popup:
+                    acc = getattr(contact, 'logo', None)
+                    if acc and acc.filename:
+                        img = '{0}/@@images/logo/thumb'.format(
+                            contact.absolute_url()
+                        )
                 classes += brain.getPath().split('/')[-2].replace('.', '-')
                 json_result.append(
                     geojson.Feature(
@@ -227,6 +258,8 @@ class RelatedContactsMapViewlet(RelatedContactsViewlet):
                             'style': style,
                             'url': brain.getURL(),
                             'classes': classes,
+                            'image': img,
+                            'address': formated_address
                         }))
         feature_collection = geojson.FeatureCollection(json_result)
         feature_collection.update({'title': self.context.title})

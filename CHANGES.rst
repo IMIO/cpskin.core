@@ -4,6 +4,9 @@ Changelog
 0.8.59 (unreleased)
 -------------------
 
+- Add logo and address into map popup.
+  [bsuttor]
+
 - Add map below related_contacts.
   [bsuttor]
 

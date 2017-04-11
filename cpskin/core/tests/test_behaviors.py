@@ -71,6 +71,15 @@ class TestBehaviors(unittest.TestCase):
         self.assertFalse(see_map)
         remove_behavior('Document', IRelatedContacts.__identifier__)
 
+    def test_related_contacts_see_logo_in_popup(self):
+        add_behavior('Document', IRelatedContacts.__identifier__)
+        see_logo_in_popup = getattr(self.document, 'see_logo_in_popup')
+        self.assertTrue(see_logo_in_popup)
+        setattr(self.document, 'see_logo_in_popup', False)
+        see_logo_in_popup = getattr(self.document, 'see_map')
+        self.assertFalse(see_logo_in_popup)
+        remove_behavior('Document', IRelatedContacts.__identifier__)
+
     def test_hidden_tags(self):
         add_behavior('Document', IHiddenTags.__identifier__)
         hiddenTags = getattr(self.document, 'hiddenTags')

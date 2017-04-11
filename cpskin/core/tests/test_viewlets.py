@@ -19,6 +19,7 @@ from zope.lifecycleevent import ObjectModifiedEvent
 from zope.viewlet.interfaces import IViewletManager
 
 import json
+import os
 import unittest
 
 
@@ -328,6 +329,7 @@ class TestViewlets(unittest.TestCase):
     def test_related_contacts_map_viewlet(self):
         add_behavior(
             'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
+
         event = api.content.create(
             container=self.portal,
             type='Event',
@@ -356,6 +358,9 @@ class TestViewlets(unittest.TestCase):
 
         # add some contacts
         applyProfile(self.portal, 'collective.contact.core:default')
+        add_behavior('person', ICoordinates.__identifier__)
+        from collective.contact.core.behaviors import IContactDetails
+        add_behavior('person', IContactDetails.__identifier__)
         directory = api.content.create(
             container=self.portal, type='directory', id='directory')
         person = api.content.create(
@@ -367,7 +372,11 @@ class TestViewlets(unittest.TestCase):
         person.number = u'34'
         person.zip_code = u'5190'
         person.city = u'Mornimont'
-
+        notify(ObjectModifiedEvent(person))
+        person.street = u'Zoning Industriel'
+        person.number = u'34'
+        person.zip_code = u'5190'
+        person.city = u'Mornimont'
         # set related contact
         intids = getUtility(IIntIds)
         to_id = intids.getId(person)
@@ -392,6 +401,11 @@ class TestViewlets(unittest.TestCase):
         person2.number = u'007'
         person2.zip_code = u'4000'
         person2.city = u'Liège'
+        notify(ObjectModifiedEvent(person2))
+        person2.street = u"Boulevard d'avroy"
+        person2.number = u'007'
+        person2.zip_code = u'4000'
+        person2.city = u'Liège'
         to_id2 = intids.getId(person2)
         rv2 = RelationValue(to_id2)
         event.aboveContentContact = event.aboveContentContact + [rv2]
@@ -401,11 +415,24 @@ class TestViewlets(unittest.TestCase):
         self.assertFalse(map_viewlet.available())
         event.see_map = True
 
-        add_behavior('person', ICoordinates.__identifier__)
-        notify(ObjectModifiedEvent(person))
-        notify(ObjectModifiedEvent(person2))
-
         geojson = map_viewlet.data_geojson()
         results = json.loads(geojson)
         self.assertEqual(results['type'], u'FeatureCollection')
         self.assertEqual(len(results['features']), 2)
+        self.assertEqual(u'', results['features'][0]['properties']['image'])
+
+        # add a logo
+        core_path = '/'.join(os.path.dirname(__file__).split('/')[:-1])
+        data_path = os.path.join(core_path, 'data')
+        file_path = os.path.join(data_path, 'cpskinlogo.png')
+        from plone.namedfile.file import NamedBlobImage
+        namedblobimage = NamedBlobImage(
+            data=open(file_path, 'r').read(),
+            filename=unicode('cpskinlogo.png')
+        )
+        person.logo = namedblobimage
+        geojson = map_viewlet.data_geojson()
+        results = json.loads(geojson)
+        self.assertEqual(
+            u'http://nohost/plone/directory/person/@@images/logo/thumb',
+            results['features'][0]['properties']['image'])
