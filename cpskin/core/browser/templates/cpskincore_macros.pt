@@ -51,10 +51,12 @@
                                            title result/Title">
 
                              <tal:if tal:condition="show_day_and_month">
-                                <div class="day"
-                                     tal:content="python: view.to_day(result)"></div>
-                                <div class="month"
-                                     tal:content="python: view.to_localized_month(result)"></div>
+                               <div class="day-month">
+                                 <div class="day"
+                                      tal:content="python: view.to_day(result)"></div>
+                                 <div class="month"
+                                      tal:content="python: view.to_localized_month(result)"></div>
+                               </div>
                              </tal:if>
 
                              <tal:else tal:condition="not: show_day_and_month">
@@ -181,10 +183,12 @@
                                            title result/Title">
 
                           <tal:if tal:condition="show_day_and_month">
-                            <div class="day"
-                                 tal:content="python: view.to_day(result)"></div>
-                            <div class="month"
-                                 tal:content="python: view.to_localized_month(result)"></div>
+                            <div class="day-month">
+                              <div class="day"
+                                   tal:content="python: view.to_day(result)"></div>
+                              <div class="month"
+                                   tal:content="python: view.to_localized_month(result)"></div>
+                            </div>
                           </tal:if>
 
                           <tal:else tal:condition="not: show_day_and_month">
