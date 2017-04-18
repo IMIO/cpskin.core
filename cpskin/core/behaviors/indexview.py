@@ -15,6 +15,7 @@ class ICpskinIndexViewSettings(model.Schema):
         label=_(
             u'Index view'),
         fields=(
+            'use_slider',
             'collection_image_scale',
             'slider_image_scale',
             'carousel_image_scale',
@@ -29,6 +30,13 @@ class ICpskinIndexViewSettings(model.Schema):
             'show_descriptions',
             'use_new_template',
         ),
+    )
+
+    use_slider = schema.Bool(
+        title=_(u'Use slider'),
+        description=_(u'Do you want to use a slider for this collection on index view display ?'),  # noqa
+        required=False,
+        default=False
     )
 
     collection_image_scale = schema.Choice(

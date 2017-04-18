@@ -24,6 +24,16 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def migrate_a_la_une_sliders(context):
+    brains = api.content.find(
+        id="a-la-une",
+        portal_type="Collection",
+    )
+    for brain in brains:
+        obj = brain.getObject()
+        obj.use_slider = True
+
+
 def update_theme_variables(context):
     context.runAllImportStepsFromProfile('profile-cpskin.theme:default')
     key = 'plone.app.theming.interfaces.IThemeSettings.parameterExpressions'

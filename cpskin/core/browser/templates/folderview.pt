@@ -13,9 +13,7 @@
   </metal:styleslot>
 
   <metal:javascript_head_slot fill-slot="javascript_head_slot"
-                              tal:define="hasFlexSlider view/hasFlexSlider;
-                                          alaune exists: context/a-la-une"
-                              tal:condition="python: hasFlexSlider and alaune">
+                              tal:condition="view/hasFlexSlider">
       <script type="text/javascript"
               charset="utf-8"
               src=""
@@ -33,14 +31,16 @@
       <metal:main-macro define-macro="main">
         <div id="accueil">
             <tal:bcl tal:repeat="content contents">
-              <tal:def tal:define="use_new_template python: view.use_new_template(content)">
+              <tal:def tal:define="use_new_template python: view.use_new_template(content);
+                                   use_slider content/use_slider | nothing">
 
                 <div id="flex"
-                     tal:condition="python: content.id == 'a-la-une' and view.hasFlexSlider() and view.is_browser_compatible()">
+                     tal:condition="python: use_slider and view.hasFlexSlider() and view.is_browser_compatible()"
+                     tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-slider ${content/id}">
 
                     <div class="flex-container"
-                         tal:define="context nocall:context/a-la-une/a-la-une;
-                                     here nocall:context/a-la-une/a-la-une;">
+                         tal:define="context nocall:content;
+                                     here nocall:content">
                         <tal:cond condition="python:view.getSliderType() == 'slider_view_vertical'">
                               <metal:block use-macro="context/@@slider_view_vertical/macros/content-core" />
                         </tal:cond>
@@ -50,7 +50,9 @@
                     </div>
 
                 </div>
-                <div id="no-flex" tal:condition="python: content.id == 'a-la-une' and not view.is_browser_compatible()">
+                <div id="no-flex"
+                     tal:condition="python: use_slider and not view.is_browser_compatible()"
+                     tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-slider ${content/id}">
 
                     <tal:if tal:condition="use_new_template">
                         <metal:use use-macro="context/@@cpskincore-macros/homepage-collection-new-template" />
@@ -62,7 +64,7 @@
                 </div>
 
                 <div class=""
-                     tal:condition="python: content.portal_type == 'Collection' and content.results() and content.id != 'a-la-une'"
+                     tal:condition="python: not use_slider and content.portal_type == 'Collection' and content.results()"
                      tal:attributes="class string:bloc-${repeat/content/number} bloc-collection ${content/id}">
 
                     <tal:if tal:condition="use_new_template">

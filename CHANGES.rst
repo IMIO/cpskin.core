@@ -4,6 +4,13 @@ Changelog
 0.8.60 (unreleased)
 -------------------
 
+- Add class on each and every index view block
+  [laulaz]
+
+- Add 'use slider' option on index view collections to replace 'a-la-une'
+  magic and allow to have more sliders : #16991
+  [laulaz]
+
 - Add 'show descriptions' option on index view collections to include results
   descriptions : #16991
   [laulaz]
