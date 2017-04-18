@@ -4,6 +4,10 @@ Changelog
 0.8.60 (unreleased)
 -------------------
 
+- Add 'show descriptions' option on index view collections to include results
+  descriptions : #16991
+  [laulaz]
+
 - Add 'day and month' option on index view collections to style results
   differently (without leadimage) : #16800
   [laulaz]

@@ -488,6 +488,9 @@ class FolderView(FoldV):
     def show_day_and_month(self, collection):
         return getattr(collection, 'show_day_and_month', False)
 
+    def show_descriptions(self, collection):
+        return getattr(collection, 'show_descriptions', False)
+
     def use_new_template(self, collection):
         return getattr(collection, 'use_new_template', False)
 
