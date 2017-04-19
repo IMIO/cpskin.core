@@ -326,6 +326,13 @@ class FolderView(FoldV):
               itemWidth: 210,
               itemMargin: 5,
               asNavFor: '#slider-%(content_id)s',
+              start: function(slider) {
+                slider.find('.current-slide').text(slider.currentSlide+1);
+                slider.find('.total-slides').text(slider.count);
+              },
+              after: function(slider) {
+                slider.find('.current-slide').text(slider.currentSlide+1);
+              }
             });
             $('#slider-%(content_id)s').flexslider({
               animation: animation,

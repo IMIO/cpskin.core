@@ -4,6 +4,9 @@ Changelog
 0.8.60 (unreleased)
 -------------------
 
+- Add slide number / count calculation : #16991
+  [laulaz]
+
 - Allow to give id to slider_config to allow multiple sliders on page : #16991
   [laulaz]
 
