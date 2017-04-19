@@ -4,6 +4,9 @@ Changelog
 0.8.60 (unreleased)
 -------------------
 
+- Allow to give id to slider_config to allow multiple sliders on page : #16991
+  [laulaz]
+
 - Add class on each and every index view block
   [laulaz]
 

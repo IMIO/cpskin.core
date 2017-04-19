@@ -303,7 +303,7 @@ class FolderView(FoldV):
         self._redirect(
             _(u'Big images are not used anymore on this folder view.'))
 
-    def slider_config(self):
+    def slider_config(self, content_id):
         portal_registry = getToolByName(self.context, 'portal_registry')
         slider_timer = portal_registry[
             'cpskin.core.interfaces.ICPSkinSettings.slider_timer']
@@ -318,26 +318,27 @@ class FolderView(FoldV):
             {
             animation = "fade";
             }
-            $('#carousel').flexslider({
+            $('#carousel-%(content_id)s').flexslider({
               animation: animation,
               controlNav: false,
               animationLoop: false,
               slideshow: false,
               itemWidth: 210,
               itemMargin: 5,
-              asNavFor: '#slider'
+              asNavFor: '#slider-%(content_id)s',
             });
-            $('#slider').flexslider({
+            $('#slider-%(content_id)s').flexslider({
               animation: animation,
               controlNav: false,
               animationLoop: true,
               slideshow: %(auto_play_slider)s,
               slideshowSpeed: %(slider_timer)s,
-              sync: "#carousel"
+              sync: "#carousel-%(content_id)s"
             });
          })(jQuery);
         """ % {'auto_play_slider': auto_play_slider and 'true' or 'false',
-               'slider_timer': slider_timer}
+               'slider_timer': slider_timer,
+               'content_id': content_id}
         return config
 
     def is_dexterity(self):
