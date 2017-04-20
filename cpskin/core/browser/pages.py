@@ -303,7 +303,7 @@ class TransmoExport(BrowserView):
         portal_quickinstaller = api.portal.get_tool('portal_quickinstaller')
         product_ids = [product['id'] for product in portal_quickinstaller.listInstalledProducts()]
         objects['products'] = product_ids
-        #groups
+        # groups
         groups = []
         for site_group in api.group.get_groups():
             group = {}
@@ -316,7 +316,7 @@ class TransmoExport(BrowserView):
             group['users'] = users
             groups.append(group)
         objects['groups'] = groups
-        #users
+        # users
         pas = api.portal.get().acl_users
         passwords = dict(pas.source_users._user_passwords)
         portal_membership = api.portal.get_tool('portal_membership')
@@ -329,7 +329,7 @@ class TransmoExport(BrowserView):
             user['fullname'] = member.getProperty('fullname', None)
             login_time = member.getProperty('login_time', None)
             if login_time == DateTime('2000/01/01'):
-                user['login_date'] = ""
+                user['login_date'] = ''
             else:
                 user['login_date'] = login_time.strftime('%d/%m/%Y')
             last_login_time = member.getProperty(
@@ -337,11 +337,11 @@ class TransmoExport(BrowserView):
                 None
             )
             if last_login_time == DateTime('2000/01/01'):
-                user['last_login_date'] = ""
+                user['last_login_date'] = ''
             else:
                 user['last_login_date'] = last_login_time.strftime('%d/%m/%Y')
             if user['login_date'] == user['last_login_date']:
-                user['last_login_date'] = ""
+                user['last_login_date'] = ''
             user['roles'] = member.getRoles()
             user['domains'] = member.getDomains()
             user['password'] = passwords.get(user['id'])
@@ -374,6 +374,10 @@ class TransmoExport(BrowserView):
         # portal_languages
         portal_languages = api.portal.get_tool('portal_languages')
         objects['languages'] = portal_languages.supported_langs
+
+        portal_catalog = api.portal.get_tool('portal_catalog')
+        total_objects = len(portal_catalog({}))
+        objects['total_objects'] = str(total_objects)
         return json.dumps(objects)
 
 
