@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.60 (unreleased)
+0.8.60 (2017-04-20)
 -------------------
 
 - Add 'day and month' option on index view collections to style results
