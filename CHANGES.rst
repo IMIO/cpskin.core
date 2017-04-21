@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.61 (unreleased)
+0.8.61 (2017-04-21)
 -------------------
 
 - Bugfix: Index view get logo instead of image if there is an organization or a person.
