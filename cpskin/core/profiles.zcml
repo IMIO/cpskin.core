@@ -45,7 +45,7 @@
 
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v21: Migrate A la une sliders"
-        description="Sets use_slider value on all a-la-une collections"
+        description="Sets display_type value on all a-la-une collections"
         handler=".upgradehandlers.migrate_a_la_une_sliders"
         source="21"
         destination="22"

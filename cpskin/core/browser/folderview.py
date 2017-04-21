@@ -4,6 +4,7 @@ from Acquisition import aq_parent
 from cpskin.core.interfaces import IFolderViewSelectedContent
 from cpskin.core.interfaces import IFolderViewWithBigImages
 from cpskin.core.utils import image_scale
+from cpskin.core.vocabulary import DISPLAY_TYPES
 from cpskin.locales import CPSkinMessageFactory as _
 from DateTime import DateTime
 from datetime import datetime
@@ -303,12 +304,14 @@ class FolderView(FoldV):
         self._redirect(
             _(u'Big images are not used anymore on this folder view.'))
 
-    def slider_config(self, content_id):
+    def slider_config(self, content):
+        content_id = content.id
         portal_registry = getToolByName(self.context, 'portal_registry')
         slider_timer = portal_registry[
             'cpskin.core.interfaces.ICPSkinSettings.slider_timer']
         auto_play_slider = portal_registry[
             'cpskin.core.interfaces.ICPSkinSettings.auto_play_slider']
+        min_items, max_items = self.get_items_number(content)
         config = """
         (function($) {
             "use strict";
@@ -325,6 +328,8 @@ class FolderView(FoldV):
               slideshow: false,
               itemWidth: 210,
               itemMargin: 5,
+              minItems: %(min_items_in_slider)s,
+              maxItems: %(max_items_in_slider)s,
               asNavFor: '#slider-%(content_id)s',
               start: function(slider) {
                 slider.find('.current-slide').text(slider.currentSlide+1);
@@ -345,7 +350,9 @@ class FolderView(FoldV):
          })(jQuery);
         """ % {'auto_play_slider': auto_play_slider and 'true' or 'false',
                'slider_timer': slider_timer,
-               'content_id': content_id}
+               'content_id': content_id,
+               'min_items_in_slider': min_items,
+               'max_items_in_slider': max_items}
         return config
 
     def is_dexterity(self):
@@ -501,6 +508,26 @@ class FolderView(FoldV):
 
     def use_new_template(self, collection):
         return getattr(collection, 'use_new_template', False)
+
+    def use_slider(self, collection):
+        display_type = getattr(collection, 'display_type', '')
+        if not display_type or display_type not in DISPLAY_TYPES:
+            return False
+        return DISPLAY_TYPES[display_type]['slider']
+
+    def get_items_number(self, collection):
+        display_type = getattr(collection, 'display_type', '')
+        if display_type != 'slider-with-elements-count-choice':
+            return 0, 0
+        min_items = getattr(collection, 'minimum_items_in_slider', 0)
+        max_items = getattr(collection, 'maximum_items_in_slider', 0)
+        return min_items, max_items
+
+    def get_block_class(self, collection):
+        display_type = getattr(collection, 'display_type', '')
+        if not display_type or display_type not in DISPLAY_TYPES:
+            return ''
+        return DISPLAY_TYPES[display_type]['class']
 
 
 def configure_folderviews(context):

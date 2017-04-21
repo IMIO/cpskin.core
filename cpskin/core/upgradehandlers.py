@@ -31,7 +31,7 @@ def migrate_a_la_une_sliders(context):
     )
     for brain in brains:
         obj = brain.getObject()
-        obj.use_slider = True
+        obj.display_type = u'slider-with-carousel'
 
 
 def update_theme_variables(context):

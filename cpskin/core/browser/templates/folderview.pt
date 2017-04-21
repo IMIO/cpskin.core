@@ -32,11 +32,12 @@
         <div id="accueil">
             <tal:bcl tal:repeat="content contents">
               <tal:def tal:define="use_new_template python: view.use_new_template(content);
-                                   use_slider content/use_slider | nothing">
+                                   use_slider python: view.use_slider(content);
+                                   bloc_class python: view.get_block_class(content)">
 
                 <div id="flex"
                      tal:condition="python: use_slider and view.hasFlexSlider() and view.is_browser_compatible()"
-                     tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-slider ${content/id}">
+                     tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-slider ${content/id} ${bloc_class}">
 
                     <div class="flex-container"
                          tal:define="context nocall:content;
@@ -52,7 +53,7 @@
                 </div>
                 <div id="no-flex"
                      tal:condition="python: use_slider and not view.is_browser_compatible()"
-                     tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-slider ${content/id}">
+                     tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-slider ${content/id} ${bloc_class}">
 
                     <tal:if tal:condition="use_new_template">
                         <metal:use use-macro="context/@@cpskincore-macros/homepage-collection-new-template" />
@@ -65,7 +66,7 @@
 
                 <div class=""
                      tal:condition="python: not use_slider and content.portal_type == 'Collection' and content.results()"
-                     tal:attributes="class string:bloc-${repeat/content/number} bloc-collection ${content/id}">
+                     tal:attributes="class string:bloc-${repeat/content/number} bloc-collection ${content/id} ${bloc_class}">
 
                     <tal:if tal:condition="use_new_template">
                         <metal:use use-macro="context/@@cpskincore-macros/homepage-collection-new-template" />
@@ -78,7 +79,7 @@
 
                 <div class=""
                      tal:condition="python: content.portal_type == 'Document'"
-                     tal:attributes="class string:bloc-${repeat/content/number} bloc-document ${content/id}">
+                     tal:attributes="class string:bloc-${repeat/content/number} bloc-document ${content/id} ${bloc_class}">
 
                     <p tal:condition="python: member.has_permission('Modify portal content', content)">
                       <a href=""
