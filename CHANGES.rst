@@ -4,7 +4,8 @@ Changelog
 0.8.61 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Bugfix: Index view get logo instead of image if there is an organization or a person.
+  [bsuttor]
 
 
 0.8.60 (2017-04-20)

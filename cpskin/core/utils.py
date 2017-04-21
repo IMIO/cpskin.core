@@ -146,7 +146,10 @@ def add_leadimage_from_file(container, file_name,
 
 def image_scale(obj, css_class, default_scale, generate_tag=True):
     images = obj.restrictedTraverse('@@images')
-    image = images.scale('image', scale=default_scale)
+    if obj.portal_type in ['organization', 'person']:
+        image = images.scale('logo', scale=default_scale)
+    else:
+        image = images.scale('image', scale=default_scale)
     if not image:
         return False
     if not generate_tag:
