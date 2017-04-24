@@ -4,7 +4,8 @@ Changelog
 0.8.63 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Bad release.
+  [bsuttor]
 
 
 0.8.62 (2017-04-24)

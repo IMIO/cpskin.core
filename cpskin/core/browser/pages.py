@@ -303,13 +303,9 @@ class TransmoExport(BrowserView):
         portal_quickinstaller = api.portal.get_tool('portal_quickinstaller')
         product_ids = [product['id'] for product in portal_quickinstaller.listInstalledProducts()]
         objects['products'] = product_ids
-<<<<<<< Updated upstream
-        # groups
-=======
 
         list_members = portal_membership.listMembers()
         #groups
->>>>>>> Stashed changes
         groups = []
         for site_group in api.group.get_groups():
             group = {}
