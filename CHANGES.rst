@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.64 (unreleased)
+0.8.64 (2017-04-24)
 -------------------
 
 - Update transmo-export.
