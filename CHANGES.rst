@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.62 (unreleased)
+0.8.62 (2017-04-24)
 -------------------
 
 - Check if user exists for transmo.
