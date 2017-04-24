@@ -303,7 +303,13 @@ class TransmoExport(BrowserView):
         portal_quickinstaller = api.portal.get_tool('portal_quickinstaller')
         product_ids = [product['id'] for product in portal_quickinstaller.listInstalledProducts()]
         objects['products'] = product_ids
+<<<<<<< Updated upstream
         # groups
+=======
+
+        list_members = portal_membership.listMembers()
+        #groups
+>>>>>>> Stashed changes
         groups = []
         for site_group in api.group.get_groups():
             group = {}
@@ -312,7 +318,7 @@ class TransmoExport(BrowserView):
             group['description'] = site_group.description
             group['roles'] = site_group.getRoles()
             group['groups'] = site_group.getGroups()
-            users = [user.id for user in api.user.get_users(groupname=group['id'])]
+            users = [user.id for user in api.user.get_users(groupname=group['id']) if user in list_members]  # noqa
             group['users'] = users
             groups.append(group)
         objects['groups'] = groups
@@ -321,7 +327,7 @@ class TransmoExport(BrowserView):
         passwords = dict(pas.source_users._user_passwords)
         portal_membership = api.portal.get_tool('portal_membership')
         users = []
-        for member in portal_membership.listMembers():
+        for member in list_members:
             user = {}
             user['id'] = member.getId()
             user['name'] = member.getProperty('fullname', member.getUserName())

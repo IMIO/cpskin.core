@@ -4,7 +4,8 @@ Changelog
 0.8.62 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Check if user exists for transmo.
+  [bsuttor]
 
 
 0.8.61 (2017-04-21)
