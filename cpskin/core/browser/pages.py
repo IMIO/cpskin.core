@@ -304,6 +304,7 @@ class TransmoExport(BrowserView):
         product_ids = [product['id'] for product in portal_quickinstaller.listInstalledProducts()]
         objects['products'] = product_ids
 
+        portal_membership = api.portal.get_tool('portal_membership')
         list_members = portal_membership.listMembers()
         #groups
         groups = []
@@ -321,7 +322,6 @@ class TransmoExport(BrowserView):
         # users
         pas = api.portal.get().acl_users
         passwords = dict(pas.source_users._user_passwords)
-        portal_membership = api.portal.get_tool('portal_membership')
         users = []
         for member in list_members:
             user = {}

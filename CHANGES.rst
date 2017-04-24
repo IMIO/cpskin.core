@@ -4,7 +4,8 @@ Changelog
 0.8.64 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Update transmo-export.
+  [bsuttor]
 
 
 0.8.63 (2017-04-24)
