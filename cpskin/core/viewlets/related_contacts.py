@@ -135,7 +135,7 @@ class RelatedContactsViewlet(common.ViewletBase):
 
     def see_map_link(self, contact):
         if self.available:
-            brain = self.pc(UID=contact.UID())[0]
+            brain = self.pc.unrestrictedSearchResults(UID=contact.UID())[0]
             if brain.zgeo_geometry == Missing.Value:
                 return False
             return True
@@ -219,7 +219,7 @@ class RelatedContactsMapViewlet(RelatedContactsViewlet):
         json_result = []
         self.pc = api.portal.get_tool('portal_catalog')
         for contact in self.get_contacts():
-            brain = self.pc(UID=contact.UID())[0]
+            brain = self.pc.unrestrictedSearchResults(UID=contact.UID())[0]
             if brain.zgeo_geometry == Missing.Value:
                 continue
             geom = {'type': brain.zgeo_geometry['type'],
