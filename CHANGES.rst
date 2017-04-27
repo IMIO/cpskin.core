@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.66 (unreleased)
+0.8.66 (2017-04-27)
 -------------------
 
 - Bugfix: be able to get related contacts which are not 'active' (use unrestrictedSearchResults).
