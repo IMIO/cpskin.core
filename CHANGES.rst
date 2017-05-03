@@ -4,7 +4,8 @@ Changelog
 0.8.67 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add default_skin to tranmo-export view.
+  [bsuttor]
 
 
 0.8.66 (2017-04-27)

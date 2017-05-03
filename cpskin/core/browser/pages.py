@@ -299,6 +299,7 @@ class TransmoExport(BrowserView):
                     logger.info('Not able to export {}'.format(
                         '/'.join(item.getPhysicalPath()))
                     )
+        objects['default_skin'] = portal_skins.default_skin
         # get list of installed profile
         portal_quickinstaller = api.portal.get_tool('portal_quickinstaller')
         product_ids = [product['id'] for product in portal_quickinstaller.listInstalledProducts()]
