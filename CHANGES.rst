@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.67 (unreleased)
+0.8.67 (2017-05-04)
 -------------------
 
 - Add default_skin to tranmo-export view.
