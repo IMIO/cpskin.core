@@ -307,7 +307,7 @@ class TransmoExport(BrowserView):
 
         portal_membership = api.portal.get_tool('portal_membership')
         list_members = portal_membership.listMembers()
-        #groups
+        # groups
         groups = []
         for site_group in api.group.get_groups():
             group = {}
