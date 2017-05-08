@@ -369,9 +369,11 @@ class TransmoExport(BrowserView):
         # geo
         lat_key = 'collective.geo.settings.interfaces.IGeoSettings.latitude'
         lng_key = 'collective.geo.settings.interfaces.IGeoSettings.longitude'
+        zoom_key = 'collective.geo.settings.interfaces.IGeoSettings.zoom'
         geo = {}
         geo['latitude'] = str(api.portal.get_registry_record(lat_key))
         geo['longitude'] = str(api.portal.get_registry_record(lng_key))
+        geo['zoom'] = str(api.portal.get_registry_record(zoom_key))
         objects['geo'] = geo
 
         # portal_languages

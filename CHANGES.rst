@@ -4,7 +4,8 @@ Changelog
 0.9.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add zoom to transmo-export view.
+  [bsuttor]
 
 
 0.9 (2017-05-08)
