@@ -7,6 +7,8 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
 
+from cpskin.core.vocabulary import index_view_display_type
+
 
 @provider(IFormFieldProvider)
 class ICpskinIndexViewSettings(model.Schema):
@@ -15,6 +17,9 @@ class ICpskinIndexViewSettings(model.Schema):
         label=_(
             u'Index view'),
         fields=(
+            'display_type',
+            'minimum_items_in_slider',
+            'maximum_items_in_slider',
             'collection_image_scale',
             'slider_image_scale',
             'carousel_image_scale',
@@ -26,8 +31,34 @@ class ICpskinIndexViewSettings(model.Schema):
             'hide_see_all_link',
             'hide_date',
             'show_day_and_month',
+            'show_descriptions',
             'use_new_template',
         ),
+    )
+
+    display_type = schema.Choice(
+        title=_(u'Collection display type'),
+        description=_(u'How do you want to display this collection on index view ?'),  # noqa
+        required=False,
+        vocabulary=index_view_display_type
+    )
+
+    minimum_items_in_slider = schema.Int(
+        title=_(u'Minimum number of items in slider'),
+        description=_(u'How many items do you want to see at least in slider (used only for "Slider with elements count choice" display type) ?'),  # noqa
+        required=True,
+        default=2,
+        min=1,
+        max=5,
+    )
+
+    maximum_items_in_slider = schema.Int(
+        title=_(u'Maximum number of items in slider'),
+        description=_(u'How many items do you want to see at most in slider (used only for "Slider with elements count choice" display type) ?'),  # noqa
+        required=True,
+        default=4,
+        min=1,
+        max=7,
     )
 
     collection_image_scale = schema.Choice(
@@ -117,6 +148,14 @@ class ICpskinIndexViewSettings(model.Schema):
         title=_(u'Show day and month'),
         description=_(
             u'Do you want to show day and month instead of lead image on index view ?'),  # noqa
+        required=False,
+        default=False
+    )
+
+    show_descriptions = schema.Bool(
+        title=_(u'Show items descriptions'),
+        description=_(
+            u'Do you want to show items descriptions on index view ?'),
         required=False,
         default=False
     )

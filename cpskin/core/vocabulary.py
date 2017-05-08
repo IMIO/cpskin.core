@@ -17,6 +17,8 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+from cpskin.locales import CPSkinMessageFactory as _
+
 
 class BaseTagsVocabulary(object):
     """Vocabulary factory listing all catalog keywords from specified tags"""
@@ -173,3 +175,37 @@ class GeoTypesFactory(object):
 
 
 GeoTypesVocabularyFactory = GeoTypesFactory()
+
+
+DISPLAY_TYPES = {
+    u'slider-with-carousel': {
+        'value': u'slider-with-carousel',
+        'title': _(u'Slider with carousel'),
+        'slider': True,
+        'class': 'slider-carousel',
+    },
+    u'slider-with-elements-count-choice': {
+        'value': u'slider-with-elements-count-choice',
+        'title': _(u'Slider with elements count choice'),
+        'slider': True,
+        'class': 'slider-multiple',
+    },
+    u'unique-slider-with-title-carousel': {
+        'value': u'unique-slider-with-title-carousel',
+        'title': _(u'Unique slider with carousel on title'),
+        'slider': True,
+        'class': 'slider-unique-titre',
+    },
+    u'highlighted-unique-item': {
+        'value': u'highlighted-unique-item',
+        'title': _(u'Unique highlighted item'),
+        'slider': False,
+        'class': 'element-en-evidence',
+    },
+}
+
+items = [(disp['value'], disp['title']) for disp in DISPLAY_TYPES.values()]
+items.sort(key=lambda x: x[1])
+index_view_display_type = SimpleVocabulary(
+    [SimpleTerm(i[0], i[0], i[1]) for i in items]
+)

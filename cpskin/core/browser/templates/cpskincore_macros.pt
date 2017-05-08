@@ -123,6 +123,10 @@
                               <span tal:content="python: view.toLocalizedTime(result.effective, long_format=0)" />
                             </span>
 
+                            <div class="description"
+                                 tal:condition="python: view.show_descriptions(content)"
+                                 tal:content="result/Description" />
+
                           </li>
                          </tal:bcl>
                         </ul>
@@ -234,6 +238,10 @@
                                   tal:condition="python: not view.hide_date(result, content)">
                               <span tal:content="python: view.toLocalizedTime(result.effective, long_format=0)" />
                             </span>
+
+                            <div class="description"
+                                 tal:condition="python: view.show_descriptions(content)"
+                                 tal:content="result/Description" />
 
                            </div>
                           </a>
