@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.8.68 (unreleased)
--------------------
+0.9 (2017-05-08)
+----------------
 
 - Add slide number / count calculation : #16991
   [laulaz]
