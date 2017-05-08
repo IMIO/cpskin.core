@@ -4,7 +4,22 @@ Changelog
 0.8.68 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add slide number / count calculation : #16991
+  [laulaz]
+
+- Allow to give id to slider_config to allow multiple sliders on page : #16991
+  [laulaz]
+
+- Add class on each and every index view block
+  [laulaz]
+
+- Add 'use slider' option on index view collections to replace 'a-la-une'
+  magic and allow to have more sliders : #16991
+  [laulaz]
+
+- Add 'show descriptions' option on index view collections to include results
+  descriptions : #16991
+  [laulaz]
 
 
 0.8.67 (2017-05-04)
@@ -58,23 +73,6 @@ Changelog
 
 0.8.60 (2017-04-20)
 -------------------
-
-- Add slide number / count calculation : #16991
-  [laulaz]
-
-- Allow to give id to slider_config to allow multiple sliders on page : #16991
-  [laulaz]
-
-- Add class on each and every index view block
-  [laulaz]
-
-- Add 'use slider' option on index view collections to replace 'a-la-une'
-  magic and allow to have more sliders : #16991
-  [laulaz]
-
-- Add 'show descriptions' option on index view collections to include results
-  descriptions : #16991
-  [laulaz]
 
 - Add 'day and month' option on index view collections to style results
   differently (without leadimage) : #16800
