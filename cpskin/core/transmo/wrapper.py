@@ -472,3 +472,8 @@ class Wrapper(Wrapper):
                 self['coordinates'] = coord
             except:
                 pass
+
+    def get_comments(self):
+        if getattr(self.context, 'author_email', None) and getattr(self.context, 'author_name', None):
+            self['author_email'] = getattr(self.context, 'author_email', None)
+            self['author_name'] = getattr(self.context, 'author_name', None)

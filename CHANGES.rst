@@ -4,7 +4,8 @@ Changelog
 0.9.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add comments author to transmo wrapper.
+  [bsuttor]
 
 
 0.9.1 (2017-05-09)
