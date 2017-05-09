@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9.2 (unreleased)
+0.9.2 (2017-05-09)
 ------------------
 
 - Add comments author to transmo wrapper.
