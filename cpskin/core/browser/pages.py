@@ -380,6 +380,30 @@ class TransmoExport(BrowserView):
         portal_languages = api.portal.get_tool('portal_languages')
         objects['languages'] = portal_languages.supported_langs
 
+        # discussion
+        discussion = {}
+        anonymous_comments = 'plone.app.discussion.interfaces.IDiscussionSettings.anonymous_comments'  # bool
+        anonymous_email_enabled = 'plone.app.discussion.interfaces.IDiscussionSettings.anonymous_email_enabled'   # bool
+        captcha = 'plone.app.discussion.interfaces.IDiscussionSettings.captcha'  # choice
+        edit_comment_enabled = 'plone.app.discussion.interfaces.IDiscussionSettings.edit_comment_enabled'  # bool
+        globally_enabled = 'plone.app.discussion.interfaces.IDiscussionSettings.globally_enabled'  # bool
+        moderation_enabled = 'plone.app.discussion.interfaces.IDiscussionSettings.moderation_enabled'  # bool
+        moderator_email = 'plone.app.discussion.interfaces.IDiscussionSettings.moderator_email'  # textline
+        moderator_notification_enabled = 'plone.app.discussion.interfaces.IDiscussionSettings.moderator_notification_enabled'  # bool
+        show_commenter_image = 'plone.app.discussion.interfaces.IDiscussionSettings.show_commenter_image'  # bool
+        user_notification_enabled = 'plone.app.discussion.interfaces.IDiscussionSettings.user_notification_enabled'  # bool
+        discussion['anonymous_comments'] = str(api.portal.get_registry_record(anonymous_comments))
+        discussion['anonymous_email_enabled'] = str(api.portal.get_registry_record(anonymous_email_enabled))
+        discussion['captcha'] = api.portal.get_registry_record(captcha)
+        discussion['edit_comment_enabled'] = str(api.portal.get_registry_record(edit_comment_enabled))
+        discussion['globally_enabled'] = str(api.portal.get_registry_record(globally_enabled))
+        discussion['moderation_enabled'] = str(api.portal.get_registry_record(moderation_enabled))
+        discussion['moderator_email'] = str(api.portal.get_registry_record(moderator_email))
+        discussion['moderator_notification_enabled'] = str(api.portal.get_registry_record(moderator_notification_enabled))
+        discussion['show_commenter_image'] = str(api.portal.get_registry_record(show_commenter_image))
+        discussion['user_notification_enabled'] = str(api.portal.get_registry_record(user_notification_enabled))
+        objects['discussion'] = discussion
+
         portal_catalog = api.portal.get_tool('portal_catalog')
         total_objects = len(portal_catalog({}))
         objects['total_objects'] = str(total_objects)

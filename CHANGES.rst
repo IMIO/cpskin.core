@@ -4,6 +4,9 @@ Changelog
 0.9.1 (unreleased)
 ------------------
 
+- Add discussion settings to transmo-export view.
+  [bsuttor]
+
 - Add zoom to transmo-export view.
   [bsuttor]
 
