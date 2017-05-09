@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9.1 (unreleased)
+0.9.1 (2017-05-09)
 ------------------
 
 - Add discussion settings to transmo-export view.
