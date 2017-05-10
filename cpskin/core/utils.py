@@ -73,6 +73,14 @@ def publish_content(content):
                 wftool.doActionFor(content, 'publish')
 
 
+def set_exclude_from_nav(obj):
+    if getattr(obj, 'setExcludeFromNav', None):
+        obj.setExcludeFromNav(True)
+    else:
+        # dexterity with exludefromnav behavior
+        obj.exclude_from_nav = True
+
+
 def add_keyword(obj, tag_id='hiddenTags', tag_value=[]):
     """Add a keyword to a object."""
     old_value = getattr(obj, tag_id)

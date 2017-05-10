@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.utils import add_behavior
+from cpskin.core.utils import set_exclude_from_nav
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 from plone.dexterity.interfaces import IDexterityFTI
@@ -238,14 +239,6 @@ def ChangeCollectionsIds(portal):
             api.content.rename(obj=events['aggregator'], new_id='index')
         set_exclude_from_nav(events)
         api.content.rename(obj=events, new_id='evenements')
-
-
-def set_exclude_from_nav(obj):
-    if getattr(obj, 'setExcludeFromNav', None):
-        obj.setExcludeFromNav(True)
-    else:
-        # dexterity with exludefromnav behavior
-        obj.exclude_from_nav = True
 
 
 def addImageFromFile(portal, fileName):
