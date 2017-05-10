@@ -4,7 +4,8 @@ Changelog
 0.9.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Unpin z3c.form (already pinned in main buildout versions) to fix tests
+  [laulaz]
 
 
 0.9.4 (2017-05-10)
