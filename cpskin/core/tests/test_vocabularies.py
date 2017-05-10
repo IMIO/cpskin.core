@@ -83,6 +83,11 @@ class TestVocabularies(unittest.TestCase):
         vocabulary = factory(self.portal)
         keys = vocabulary.by_value.keys()
         self.assertEqual(len(keys), len(orig_keys))
+        api.content.create(container=self.portal,
+                           type='Document', title='testdocument')
+        vocabulary = factory(self.portal)
+        keys = vocabulary.by_value.keys()
+        self.assertEqual(len(keys), len(orig_keys))
         set_exclude_from_nav(testfolder)
         testfolder.reindexObject()
         vocabulary = factory(self.portal)
