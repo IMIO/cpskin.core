@@ -46,6 +46,12 @@ class IFolderViewWithBigImages(Interface):
     """
 
 
+class IElectedContentForTopMenu(Interface):
+    """
+    Marker interface to select content for action top menu
+    """
+
+
 class ICPSkinSettings(Interface):
     """
     Settings for CPSkin

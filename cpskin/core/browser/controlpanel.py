@@ -1,14 +1,20 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.interfaces import ICPSkinSettings
+from cpskin.core.interfaces import IElectedContentForTopMenu
 from cpskin.locales import CPSkinMessageFactory as _
+from plone import api
 from plone.app.controlpanel.form import ControlPanelForm
+from plone.app.multilingual.interfaces import ITranslationManager
 from plone.registry.interfaces import IRegistry
 from Products.CMFDefault.formlib.schema import SchemaAdapterBase
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from zope.component import adapts
 from zope.component import getUtility
 from zope.formlib import form
+from zope.interface import alsoProvides
 from zope.interface import implements
+from zope.interface import noLongerProvides
+from zope.schema.interfaces import IVocabularyFactory
 
 
 class CPSkinControlPanelAdapter(SchemaAdapterBase):
@@ -75,6 +81,32 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
     def setContentsInActionMenu(self, value):
         self.settings.contents_in_action_menu = value
+        portal = root = api.portal.get()
+        if 'fr' in root.objectIds():
+            fr = getattr(root, 'fr')
+            root = api.portal.get_navigation_root(fr)
+        catalog = api.portal.get_tool('portal_catalog')
+        name = 'cpskin.core.vocabularies.action_menu_eligible'
+        factory = getUtility(IVocabularyFactory, name)
+        vocabulary = factory(portal)
+        all_values = vocabulary.by_value.keys()
+        for content_id in all_values:
+            content = getattr(root, content_id, None)
+            if not content:
+                continue
+            translations = [content]  # XXX ITranslationManager(content).get_translations()
+            if content_id in value:
+                for t in translations:
+                    if IElectedContentForTopMenu.providedBy(t):
+                        continue
+                    alsoProvides(t, IElectedContentForTopMenu)
+                    catalog.reindexObject(t)
+            else:
+                for t in translations:
+                    if not IElectedContentForTopMenu.providedBy(t):
+                        continue
+                    noLongerProvides(t, IElectedContentForTopMenu)
+                    catalog.reindexObject(t)
 
     contents_in_action_menu = property(
         getContentsInActionMenu,
