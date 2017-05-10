@@ -4,7 +4,8 @@ Changelog
 0.9.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Transmo: Add author when a connect user have post a message.
+  [bsuttor]
 
 
 0.9.2 (2017-05-09)

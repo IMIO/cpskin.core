@@ -474,6 +474,7 @@ class Wrapper(Wrapper):
                 pass
 
     def get_comments(self):
-        if getattr(self.context, 'author_email', None) and getattr(self.context, 'author_name', None):
+        if self.context.portal_type == 'Discussion Item':
             self['author_email'] = getattr(self.context, 'author_email', None)
             self['author_name'] = getattr(self.context, 'author_name', None)
+            self['author_username'] = getattr(self.context, 'author_username', None)
