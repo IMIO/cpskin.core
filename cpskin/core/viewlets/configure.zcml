@@ -17,6 +17,14 @@
     <!-- CPSkin viewlets -->
 
     <browser:viewlet
+        name="cpskin.top_menu"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".top_menu.TopMenuViewlet"
+        permission="zope.Public"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:viewlet
         name="cpskin.banner"
         manager="plone.app.layout.viewlets.interfaces.IPortalTop"
         class=".banner.CPSkinBannerViewlet"

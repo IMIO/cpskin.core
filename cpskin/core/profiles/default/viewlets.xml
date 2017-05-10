@@ -2,6 +2,7 @@
 <object>
   <order manager="plone.portalheader" skinname="Plone Default">
     <viewlet name="plone.skip_links" />
+    <viewlet name="cpskin.top_menu" />
     <viewlet name="plone.personal_bar" />
     <viewlet name="cpskin.social_viewlet" />
     <viewlet name="plone.app.i18n.locales.languageselector" />

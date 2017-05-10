@@ -1,0 +1,8 @@
+<div tal:repeat="menu view/menus">
+    <div tal:content="menu/root/Title"></div>
+    <ul>
+        <li tal:repeat="submenu menu/submenu">
+            <span tal:replace="submenu/Title" />
+        </li>
+    </ul>
+</div>
