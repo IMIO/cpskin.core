@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9.3 (unreleased)
+0.9.3 (2017-05-10)
 ------------------
 
 - Transmo: Add author when a connect user have post a message.
