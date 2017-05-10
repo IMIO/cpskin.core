@@ -4,7 +4,8 @@ Changelog
 0.9.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix: upgrade_to_nineteen upgrade steps.
+  [bsuttor]
 
 
 0.9.3 (2017-05-10)

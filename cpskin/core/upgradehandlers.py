@@ -56,9 +56,12 @@ def empty_value_of_link_text(context):
 
 def upgrade_to_nineteen(context):
     context.runImportStepFromProfile('profile-cpskin.core:to19', 'jsregistry')
-    for brain in api.content.find(object_provides=IPossibleFacetedNavigable):
+    pc = api.portal.get_tool('portal_catalog')
+    for brain in pc.unrestrictedSearchResults(
+                    object_provides=IPossibleFacetedNavigable.__identifier__):
         obj = brain.getObject()
-        alsoProvides(obj, ICPSkinPossibleFacetedNavigable)
+        if obj:
+            alsoProvides(obj, ICPSkinPossibleFacetedNavigable)
 
 
 def clean_old_keyword_homepage(context):
