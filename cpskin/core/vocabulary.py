@@ -177,6 +177,36 @@ class GeoTypesFactory(object):
 GeoTypesVocabularyFactory = GeoTypesFactory()
 
 
+class ActionMenuEligibleFactory(object):
+    implements(IVocabularyFactory)
+
+    def __call__(self, context, query=None):
+        root = api.portal.get()
+        if 'fr' in root.objectIds():
+            fr = getattr(root, 'fr')
+            root = api.portal.get_navigation_root(fr)
+
+        rootPath = '/'.join(root.getPhysicalPath())
+        query = {}
+        query['path'] = {'query': rootPath, 'depth': 1}
+        query['portal_type'] = ['Folder']
+        query['sort_on'] = 'getObjPositionInParent'
+        query['sort_order'] = 'asc'
+        query['is_default_page'] = False
+        portal_catalog = api.portal.get_tool('portal_catalog')
+        results = portal_catalog.searchResults(query)
+        items = []
+        for result in results:
+            if not result.exclude_from_nav:
+                continue
+            items.append(
+                SimpleTerm(result.id, result.id, result.Title)
+            )
+        return SimpleVocabulary(items)
+
+ActionMenuEligibleVocabularyFactory = ActionMenuEligibleFactory()
+
+
 DISPLAY_TYPES = {
     u'slider-with-carousel': {
         'value': u'slider-with-carousel',

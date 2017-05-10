@@ -70,6 +70,28 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
     slider_type = property(getSliderType, setSliderType)
 
+    def getContentsInActionMenu(self):
+        return self.settings.contents_in_action_menu
+
+    def setContentsInActionMenu(self, value):
+        self.settings.contents_in_action_menu = value
+
+    contents_in_action_menu = property(
+        getContentsInActionMenu,
+        setContentsInActionMenu,
+    )
+
+    def getShowLeadimageInActionMenu(self):
+        return self.settings.show_leadimage_in_action_menu
+
+    def setShowLeadimageInActionMenu(self, value):
+        self.settings.show_leadimage_in_action_menu = value
+
+    show_leadimage_in_action_menu = property(
+        getShowLeadimageInActionMenu,
+        setShowLeadimageInActionMenu,
+    )
+
 
 class CPSkinControlPanel(ControlPanelForm):
 

@@ -4,6 +4,7 @@ from cpskin.core.behaviors.metadata import IHiddenTags
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
+from cpskin.core.utils import set_exclude_from_nav
 from plone import api
 from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
@@ -69,3 +70,21 @@ class TestVocabularies(unittest.TestCase):
         self.assertIn(u'Document', keys)
 
         remove_behavior('Document', ICoordinates.__identifier__)
+
+    def test_action_menu_eligible_vocabulary(self):
+        name = 'cpskin.core.vocabularies.action_menu_eligible'
+        factory = getUtility(IVocabularyFactory, name)
+        vocabulary = factory(self.portal)
+        orig_keys = vocabulary.by_value.keys()
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        testfolder = api.content.create(container=self.portal,
+                                        type='Folder', title='testfolder')
+        api.content.transition(obj=testfolder, transition='publish')
+        vocabulary = factory(self.portal)
+        keys = vocabulary.by_value.keys()
+        self.assertEqual(len(keys), len(orig_keys))
+        set_exclude_from_nav(testfolder)
+        testfolder.reindexObject()
+        vocabulary = factory(self.portal)
+        keys = vocabulary.by_value.keys()
+        self.assertEqual(len(keys), len(orig_keys) + 1)

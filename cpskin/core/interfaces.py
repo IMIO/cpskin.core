@@ -93,6 +93,22 @@ class ICPSkinSettings(Interface):
         default=u'slider_view'
     )
 
+    contents_in_action_menu = schema.Tuple(
+        title=_(u'Content to show in special action menu (top)'),
+        description=_(u'Please select which contents should be taken to this menu.'),  # noqa
+        required=False,
+        value_type=schema.Choice(
+            vocabulary=u'cpskin.core.vocabularies.action_menu_eligible'
+        )
+    )
+
+    show_leadimage_in_action_menu = schema.Bool(
+        title=_(u'Show leadimage in action menu'),
+        description=_(u'Show leadimage (if any) in the top action menu with content selected in the field before.'),  # noqa
+        required=False,
+        default=False
+    )
+
 
 class IVideoCollection(Interface):
     """

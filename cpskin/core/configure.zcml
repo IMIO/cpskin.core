@@ -25,6 +25,9 @@
     <include package=".faceted" />
     <include package=".transmo" />
 
+    <utility component=".vocabulary.ActionMenuEligibleVocabularyFactory"
+             name="cpskin.core.vocabularies.action_menu_eligible" />
+
     <utility component=".vocabulary.IStandardTagsVocabularyFactory"
              name="cpskin.core.vocabularies.standardTags" />
 
