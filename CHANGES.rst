@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9.4 (unreleased)
+0.9.4 (2017-05-10)
 ------------------
 
 - Fix: upgrade_to_nineteen upgrade steps.
