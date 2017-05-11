@@ -199,7 +199,11 @@ class ActionMenuEligibleFactory(object):
             if not result.exclude_from_nav:
                 continue
             items.append(
-                SimpleTerm(result.id, result.id, result.Title)
+                SimpleTerm(
+                    safe_unicode(result.id),
+                    safe_unicode(result.id),
+                    safe_unicode(result.Title),
+                )
             )
         return SimpleVocabulary(items)
 
