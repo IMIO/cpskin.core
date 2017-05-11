@@ -190,8 +190,7 @@ class ActionMenuEligibleFactory(object):
         query = {}
         query['path'] = {'query': rootPath, 'depth': 1}
         query['portal_type'] = ['Folder']
-        query['sort_on'] = 'getObjPositionInParent'
-        query['sort_order'] = 'asc'
+        query['sort_on'] = 'sortable_title'
         query['is_default_page'] = False
         portal_catalog = api.portal.get_tool('portal_catalog')
         results = portal_catalog.searchResults(query)
