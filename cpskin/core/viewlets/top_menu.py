@@ -28,3 +28,7 @@ class TopMenuViewlet(common.ViewletBase):
             }
             menus.append(menu_item)
         return menus
+
+    def show_lead_image(self):
+        portal_registry = api.portal.get_tool('portal_registry')
+        return portal_registry['cpskin.core.interfaces.ICPSkinSettings.show_leadimage_in_action_menu']  # noqa

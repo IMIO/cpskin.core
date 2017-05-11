@@ -1,4 +1,5 @@
-<div id="top-menu-actions">
+<div id="top-menu-actions"
+     tal:define="show_lead_image view/show_lead_image">
     <div class="top-menu-action"
          tal:repeat="menu view/menus">
         <a href="#"
@@ -10,8 +11,20 @@
             <li tal:repeat="submenu menu/submenu">
                 <a href="#"
                    tal:attributes="href submenu/getURL;
-                                   title submenu/Description"
-                   tal:content="submenu/Title"></a>
+                                   title submenu/Description">
+                    <tal:leadimage tal:condition="show_lead_image">
+                        <div class="top-submenu-item-leadimage"
+                             tal:define="item_object submenu/getObject;
+                                         item_has_leadimage python: getattr(item_object, 'hasContentLeadImage', False);"
+                             tal:condition="item_has_leadimage">
+                            <img tal:define="scale item_object/@@images;
+                                             img python:scale.scale('leadImage', width=280, height=280)"
+                                 tal:replace="structure python: img.tag() if img else None" />
+                        </div>
+                    </tal:leadimage>
+                    <div class="top-submenu-item-title"
+                         tal:replace="submenu/Title" />
+                </a>
             </li>
         </ul>
     </div>
