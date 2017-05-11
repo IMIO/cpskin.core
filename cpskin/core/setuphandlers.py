@@ -416,6 +416,39 @@ def addSliderTypeToRegistry():
     records['cpskin.core.interfaces.ICPSkinSettings.slider_type'] = record
 
 
+def addTopMenuLeadImageToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if 'cpskin.core.interfaces.ICPSkinSettings.show_leadimage_in_action_menu' in records:  # noqa
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.show_leadimage_in_action_menu to registry')  # noqa
+    record = Record(field.Bool(title=_(u'Show leadimage in action menu'),
+                               description=_(u'Show leadimage (if any) in the top action menu with content selected in the field before.'),  # noqa
+                               required=False,
+                               default=False),
+                    value=False)
+    records['cpskin.core.interfaces.ICPSkinSettings.show_leadimage_in_action_menu'] = record  # noqa
+
+
+def addTopMenuContentsToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+    if 'cpskin.core.interfaces.ICPSkinSettings.contents_in_action_menu' in records:  # noqa
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.contents_in_action_menu to registry')  # noqa
+    record = Record(field.Tuple(title=_(u'Content to show in special action menu (top)'),
+                                description=_(u'Please select which contents should be taken to this menu.'),  # noqa
+                                value_type=field.TextLine(title=u"Value"),
+                                required=False),
+                    )
+    records['cpskin.core.interfaces.ICPSkinSettings.contents_in_action_menu'] = record  # noqa
+
+
 def set_googleapi_key():
     record_name = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'
     default_value = 'AIzaSyDmbfEFrVcZ_x7Snn4Kv_WkqCmiZXn01rY'

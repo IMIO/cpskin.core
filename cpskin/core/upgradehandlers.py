@@ -7,6 +7,8 @@ from cpskin.core.setuphandlers import addLoadPageMenuToRegistry
 from cpskin.core.setuphandlers import addSliderTimerToRegistry
 from cpskin.core.setuphandlers import addSliderTypeToRegistry
 from cpskin.core.setuphandlers import addSubMenuPersistenceToRegistry
+from cpskin.core.setuphandlers import addTopMenuContentsToRegistry
+from cpskin.core.setuphandlers import addTopMenuLeadImageToRegistry
 from cpskin.core.setuphandlers import setPageText
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
@@ -22,6 +24,15 @@ import logging
 
 
 logger = logging.getLogger('cpskin.core')
+
+
+def upgrade_viewlets(context):
+    context.runImportStepFromProfile('profile-cpskin.core:default', 'viewlets')
+
+
+def upgrade_registry_for_top_menu(context):
+    addTopMenuContentsToRegistry()
+    addTopMenuLeadImageToRegistry()
 
 
 def migrate_a_la_une_sliders(context):
