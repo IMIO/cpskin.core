@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.interfaces import ICPSkinSettings
 from cpskin.core.interfaces import IElectedContentForTopMenu
+from cpskin.core.utils import is_plone_app_multilingual_installed
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 from plone.app.controlpanel.form import ControlPanelForm
@@ -94,15 +95,18 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
             content = getattr(root, content_id, None)
             if not content:
                 continue
-            translations = [content]  # XXX ITranslationManager(content).get_translations()
+            translations = [content]
+            request = getattr(self.context, 'REQUEST', None)
+            if is_plone_app_multilingual_installed(request):
+                translations = ITranslationManager(content).get_translations()
             if content_id in value:
-                for t in translations:
+                for t in translations.values():
                     if IElectedContentForTopMenu.providedBy(t):
                         continue
                     alsoProvides(t, IElectedContentForTopMenu)
                     catalog.reindexObject(t)
             else:
-                for t in translations:
+                for t in translations.values():
                     if not IElectedContentForTopMenu.providedBy(t):
                         continue
                     noLongerProvides(t, IElectedContentForTopMenu)
