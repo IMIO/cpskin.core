@@ -95,7 +95,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
             content = getattr(root, content_id, None)
             if not content:
                 continue
-            translations = [content]
+            translations = {'fr': content}
             request = getattr(self.context, 'REQUEST', None)
             if is_plone_app_multilingual_installed(request):
                 translations = ITranslationManager(content).get_translations()
