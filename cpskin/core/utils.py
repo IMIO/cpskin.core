@@ -3,6 +3,7 @@ from Acquisition import aq_base
 from collective.geo.behaviour.interfaces import ICoordinates
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
+from plone.app.multilingual.interfaces import IPloneAppMultilingualInstalled
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.namedfile.file import NamedBlobImage
 from Products.CMFCore.interfaces import ISiteRoot
@@ -287,3 +288,7 @@ def set_plonecustom_last():
     custom_id = 'ploneCustom.css'
     if custom_id in [res.getId() for res in resources]:
         portal_css.moveResource(custom_id, len(resources))
+
+
+def is_plone_app_multilingual_installed(request):
+    return IPloneAppMultilingualInstalled.providedBy(request)
