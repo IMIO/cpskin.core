@@ -4,6 +4,9 @@ Changelog
 0.9.5 (unreleased)
 ------------------
 
+- Add toggeable top menu with contents selected in cpskin settings : #16772
+  [laulaz]
+
 - Unpin z3c.form (already pinned in main buildout versions) to fix tests
   [laulaz]
 
