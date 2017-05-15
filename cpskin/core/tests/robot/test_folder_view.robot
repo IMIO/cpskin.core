@@ -34,6 +34,7 @@ Suite setup  Set Selenium speed  0.7s
 Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
 
+
 *** Test cases ***
 
 Scenario: Test folder view with collection

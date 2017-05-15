@@ -1,3 +1,27 @@
+
+# ============================================================================
+# DEXTERITY ROBOT TESTS
+# ============================================================================
+#
+# Run this robot test stand-alone:
+#
+#  $ bin/test -s cpskin.core -t test_sticky.robot --all
+#
+# Run this robot test with robot server (which is faster):
+#
+# 1) Start robot server:
+#
+# $ bin/robot-server --reload-path cpskin cpskin.core.testing.CPSKIN_CORE_ROBOT_TESTING
+#
+# 2) Run robot tests:
+#
+# $ bin/robot cpskin/core/tests/robot/test_sticky.robot
+#
+# See the http://docs.plone.org for further details (search for robot
+# framework).
+#
+# ============================================================================
+
 *** Settings ***
 
 Resource  plone/app/robotframework/keywords.robot
