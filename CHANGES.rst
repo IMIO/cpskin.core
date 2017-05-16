@@ -4,7 +4,7 @@ Changelog
 0.9.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Bad release.
 
 
 0.9.5 (2017-05-16)
