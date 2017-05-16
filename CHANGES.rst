@@ -7,6 +7,9 @@ Changelog
 - Add toggeable top menu with contents selected in cpskin settings : #16772
   [laulaz]
 
+- Override facetednavigation_view to add text from collection.
+  [bsuttor]
+
 - Unpin z3c.form (already pinned in main buildout versions) to fix tests
   [laulaz]
 
