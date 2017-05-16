@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9.5 (unreleased)
+0.9.5 (2017-05-16)
 ------------------
 
 - Add toggeable top menu with contents selected in cpskin settings : #16772
