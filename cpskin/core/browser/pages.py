@@ -148,7 +148,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
                 (dict_text, dict_field_name) = field_name.items()[0]
                 value = self.get_taxonomy_value(dict_field_name, second_sep)
                 if value:
-                    text.append('{} {}'.format(dict_text, value))
+                    text.append('{0} {1}'.format(dict_text, value))
             else:
                 value = self.get_taxonomy_value(field_name, second_sep)
                 if value:
@@ -211,7 +211,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         partners = self.get_relation_value('partners', 'title', sep)
         text = partners
         if prefix:
-            text = '{} {}'.format(prefix, partners)
+            text = '{0} {1}'.format(prefix, partners)
         return text
 
     def get_info(self):
@@ -285,7 +285,7 @@ class TransmoExport(BrowserView):
                         'data': data
                     })
                 except:
-                    logger.info('Not able to export {}'.format(
+                    logger.info('Not able to export {0}'.format(
                         '/'.join(item.getPhysicalPath()))
                     )
             else:
@@ -296,7 +296,7 @@ class TransmoExport(BrowserView):
                         'raw': item.raw
                     })
                 except:
-                    logger.info('Not able to export {}'.format(
+                    logger.info('Not able to export {0}'.format(
                         '/'.join(item.getPhysicalPath()))
                     )
         objects['default_skin'] = portal_skins.default_skin
@@ -403,6 +403,9 @@ class TransmoExport(BrowserView):
         discussion['show_commenter_image'] = str(api.portal.get_registry_record(show_commenter_image))
         discussion['user_notification_enabled'] = str(api.portal.get_registry_record(user_notification_enabled))
         objects['discussion'] = discussion
+
+        portal_workflow = api.portal.get_tool('portal_workflow')
+        objects['workflow'] = portal_workflow.getDefaultChain()[0]
 
         portal_catalog = api.portal.get_tool('portal_catalog')
         total_objects = len(portal_catalog({}))
