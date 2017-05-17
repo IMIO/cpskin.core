@@ -4,7 +4,8 @@ Changelog
 0.9.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix traceback when a related content doesn't have complete address : #17422
+  [laulaz]
 
 
 0.9.6 (2017-05-16)

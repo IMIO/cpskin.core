@@ -231,13 +231,13 @@ class RelatedContactsMapViewlet(RelatedContactsViewlet):
                     classes = ''
                 address = get_address(contact)
                 number = ''
-                if address['number']:
+                if 'number' in address:
                     number = ', {0}'.format(address['number'])
                 formated_address = '{0} {1}<br />{2} {3}'.format(
-                    safe_utf8(address['street']),
+                    safe_utf8(address.get('street') or ''),
                     number,
-                    address['zip_code'],
-                    safe_utf8(address['city'])
+                    address.get('zip_code') or '',
+                    safe_utf8(address.get('city') or '')
                 )
                 img = ''
                 if self.context.see_logo_in_popup:
