@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9.7 (unreleased)
+0.9.7 (2017-05-19)
 ------------------
 
 - Use h2 balise instead of h4 in related_contacts. Now, related_contacts are no more in summary link.
