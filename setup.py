@@ -68,6 +68,7 @@ setup(name='cpskin.core',
           'collective.contact.facetednav',
           'collective.dexteritytextindexer',
           'plone.app.imagecropping',
+          'plone.app.multilingual',
       ],
       extras_require={
           'test': [

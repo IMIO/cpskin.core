@@ -4,6 +4,9 @@ Changelog
 0.9.7 (unreleased)
 ------------------
 
+- Add missing dependency on plone.app.multilingual
+  [laulaz]
+
 - Fix traceback when a related content doesn't have complete address : #17422
   [laulaz]
 
