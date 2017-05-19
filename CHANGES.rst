@@ -4,6 +4,9 @@ Changelog
 0.9.7 (unreleased)
 ------------------
 
+- Use h2 balise instead of h4 in related_contacts. Now, related_contacts are no more in summary link.
+  [bsuttor]
+
 - Add missing dependency on plone.app.multilingual
   [laulaz]
 
