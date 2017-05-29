@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import random
+
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -57,3 +59,14 @@ class CPSkinBannerViewlet(ViewletBase):
             return False
         request = self.request
         return IInPortal.providedBy(request)
+
+    def getImageBanner(self):
+        context = self.context
+        banner_folder = getattr(context, 'banner', None)
+        image = ''.join([context.absolute_url(), '/banner.jpg'])
+        if banner_folder:
+            images = api.content.find(context=banner_folder, portal_type='Image')
+            if images:
+                item = images[random.randrange(len(images))]
+                image = item.getURL()
+        return image
