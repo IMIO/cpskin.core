@@ -19,7 +19,8 @@
     <img src=""
          alt="Banner"
          class="banner"
-         tal:attributes="src string:${context/absolute_url}/banner.jpg"
+         tal:define="image view/getImageBanner"
+         tal:attributes="src image"
          i18n:attributes="alt" />
 
 </div>
