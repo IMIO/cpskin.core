@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9.8 (unreleased)
+0.9.8 (2017-06-01)
 ------------------
 
 - Improve transmo wrapper.
