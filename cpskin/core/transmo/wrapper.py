@@ -51,6 +51,11 @@ class Wrapper(Wrapper):
         self.has_tg = 'TranslationGroup' in pc.indexes()
         super(Wrapper, self).__init__(context)
 
+    def is_multilingual(self):
+        """return true if there is fr folder on top nav"""
+        portal = api.portal.get()
+        return 'fr' in portal.contentIds()
+
     def get_archetypes_fields(self):
         """ If Archetypes is used then dump schema
         """
@@ -62,7 +67,7 @@ class Wrapper(Wrapper):
         except:
             return
 
-        if self.has_tg and len(ITranslationManager(self.context).get_translations()) > 1:  # noqa
+        if is_multilingual() and self.has_tg and len(ITranslationManager(self.context).get_translations()) > 1:  # noqa
             translations = ITranslationManager(self.context).get_translations()
             portal_level = len(self.portal.getPhysicalPath())
             trans = {}

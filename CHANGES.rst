@@ -4,7 +4,8 @@ Changelog
 0.9.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Improve transmo wrapper.
+  [bsuttor]
 
 
 0.9.7 (2017-05-19)
