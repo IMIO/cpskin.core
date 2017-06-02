@@ -4,7 +4,8 @@ Changelog
 0.9.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Allow to have random images as banner : #17395
+  [AuroreMariscal]
 
 
 0.9.8 (2017-06-01)
