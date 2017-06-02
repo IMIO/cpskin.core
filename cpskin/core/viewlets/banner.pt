@@ -19,7 +19,7 @@
     <img src=""
          alt="Banner"
          class="banner"
-         tal:define="image view/getImageBanner"
+         tal:define="image view/getImageBannerUrl"
          tal:attributes="src image"
          i18n:attributes="alt" />
 
