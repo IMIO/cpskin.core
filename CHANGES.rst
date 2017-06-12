@@ -4,6 +4,10 @@ Changelog
 0.9.9 (unreleased)
 ------------------
 
+- Force uninstall of packages that are not marked as installed but were
+  imported in portal_setup : #17714
+  [laulaz]
+
 - Allow to have random images as banner : #17395
   [AuroreMariscal]
 

@@ -26,6 +26,41 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def clean_portal_setup(context):
+    """
+    Force uninstall of packages that are not marked as installed but were
+    imported in portal_setup : #17714
+    """
+    ps = api.portal.get_tool('portal_setup')
+    qi = api.portal.get_tool('portal_quickinstaller')
+    quick_installed = [p['id'] for p in qi.listInstalledProducts()]
+    all_profiles = [p['id'] for p in context.listContextInfos() \
+                    if p['type'] == 'extension']
+    cpskin_profiles = [p for p in all_profiles \
+                       if p.startswith('profile-cpskin.diazotheme.')]
+    for profile_id in cpskin_profiles:
+        if 'uninstall' in profile_id:
+            continue
+        if ps.getLastVersionForProfile(profile_id) == 'unknown':
+            # profile is not installed
+            logger.info('{0} is not installed - skipping'.format(profile_id))
+            continue
+        package_id = profile_id.split('-')[1].split(':')[0]
+        if package_id in quick_installed:
+            # profile is installed, product is also installed in quickinstaller
+            logger.info('{0} is well installed - skipping'.format(profile_id))
+            continue
+        logger.warn('{0} is NOT installed correctly'.format(profile_id))
+        uninstall_profile_id = 'profile-{0}:uninstall'.format(package_id)
+        if uninstall_profile_id in all_profiles:
+            context.runAllImportStepsFromProfile(uninstall_profile_id)
+            ps.unsetLastVersionForProfile(profile_id)
+            qi.uninstallProducts(products=[str(package_id)])
+            logger.info('{0} uninstalled successfully !'.format(package_id))
+        else:
+            logger.warn('No uninstall profile for {0}'.format(package_id))
+
+
 def upgrade_viewlets(context):
     context.runImportStepFromProfile('profile-cpskin.core:default', 'viewlets')
 

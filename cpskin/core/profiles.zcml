@@ -44,6 +44,15 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v25: Clean wrong installs from portal setup"
+        description="Clean wrong installs from portal setup : #17714"
+        handler=".upgradehandlers.clean_portal_setup"
+        source="24"
+        destination="25"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v24: Add registry for top menu"
         description="Add records for top menu action in registry"
         handler=".upgradehandlers.upgrade_registry_for_top_menu"
