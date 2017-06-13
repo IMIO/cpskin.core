@@ -322,6 +322,9 @@ class FolderView(FoldV):
             {
             animation = "fade";
             }
+            $('.slider_multiple_link').click(function() {
+                window.location.href = $(this).attr('href');
+            });
             $('#carousel-%(content_id)s').flexslider({
               animation: animation,
               controlNav: false,
