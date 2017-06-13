@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from Acquisition import aq_parent
+from imio.media.browser import utils
 from cpskin.core.interfaces import IFolderViewSelectedContent
 from cpskin.core.interfaces import IFolderViewWithBigImages
 from cpskin.core.utils import image_scale
@@ -389,6 +390,10 @@ class FolderView(FoldV):
         if getattr(collection, 'link_text', ''):
             return collection.link_text.encode('utf-8')
         return '{0} {1}'.format(trans, collection.Title().lower())
+
+    def get_video(self, video):
+        result = utils.embed(video, self.request)
+        return result
 
     def see_categories(self, collection):
         result = True

@@ -114,6 +114,14 @@
 
   <browser:page
       for="*"
+      name="folderview_view"
+      class=".folderview.FolderView"
+      permission="zope.Public"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
+      for="*"
       name="folderview_configuration"
       class=".folderview.FolderView"
       permission="zope.Public"
