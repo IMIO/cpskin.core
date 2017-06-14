@@ -25,6 +25,14 @@
         />
 
     <browser:viewlet
+        name="cpskin.right_actions"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".right_actions.RightActionsViewlet"
+        permission="zope.Public"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:viewlet
         name="cpskin.banner"
         manager="plone.app.layout.viewlets.interfaces.IPortalTop"
         class=".banner.CPSkinBannerViewlet"

@@ -128,6 +128,17 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         setShowLeadimageInActionMenu,
     )
 
+    def getshowPortletsInRightActionsPanel(self):
+        return self.settings.show_portlets_in_right_actions_panel
+
+    def setshowPortletsInRightActionsPanel(self, value):
+        self.settings.show_portlets_in_right_actions_panel = value
+
+    show_portlets_in_right_actions_panel = property(
+        getshowPortletsInRightActionsPanel,
+        setshowPortletsInRightActionsPanel,
+    )
+
 
 class CPSkinControlPanel(ControlPanelForm):
 

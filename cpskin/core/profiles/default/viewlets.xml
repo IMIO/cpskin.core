@@ -15,6 +15,9 @@
     <viewlet name="cpskin.banner" />
     <viewlet name="cpskin.minisitemenu" />
   </order>
+  <order manager="plone.abovecontent" skinname="Plone Default">
+    <viewlet name="cpskin.right_actions" />
+  </order>
   <order manager="plone.belowcontent" skinname="Plone Default">
     <viewlet name="cpskin.media" />
   </order>

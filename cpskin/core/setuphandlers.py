@@ -416,6 +416,23 @@ def addSliderTypeToRegistry():
     records['cpskin.core.interfaces.ICPSkinSettings.slider_type'] = record
 
 
+def addPortletsInRightActionsToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if 'cpskin.core.interfaces.ICPSkinSettings.show_portlets_in_right_actions_panel' in records:  # noqa
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.show_portlets_in_right_actions_panel to registry')  # noqa
+    record = Record(field.Bool(title=_(u'Show (right) portlets in right actions panel'),
+                               description=_(u'Show (right) portlets (if any) in right actions panel after related contents.'),  # noqa
+                               required=False,
+                               default=False),
+                    value=False)
+    records['cpskin.core.interfaces.ICPSkinSettings.show_portlets_in_right_actions_panel'] = record  # noqa
+
+
 def addTopMenuLeadImageToRegistry():
     registry = getUtility(IRegistry)
     records = registry.records
