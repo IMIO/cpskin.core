@@ -4,6 +4,9 @@ Changelog
 0.9.9 (unreleased)
 ------------------
 
+- Changing the slide configuration to stop it #16991
+  [Aurore]
+
 - Force uninstall of packages that are not marked as installed but were
   imported in portal_setup : #17714
   [laulaz]

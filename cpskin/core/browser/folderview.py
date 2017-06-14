@@ -325,6 +325,14 @@ class FolderView(FoldV):
             $('.slider_multiple_link').click(function() {
                 window.location.href = $(this).attr('href');
             });
+            function SlideShow(autoplayslider, content_id) {
+                if ($('#slider-' + content_id).parents('.slider-unique-titre').length) {
+                    return false;
+                }
+                else {
+                    return autoplayslider;
+                }
+            }
             $('#carousel-%(content_id)s').flexslider({
               animation: animation,
               controlNav: false,
@@ -347,7 +355,7 @@ class FolderView(FoldV):
               animation: animation,
               controlNav: false,
               animationLoop: true,
-              slideshow: %(auto_play_slider)s,
+              slideshow: SlideShow(%(auto_play_slider)s, '%(content_id)s'),
               slideshowSpeed: %(slider_timer)s,
               sync: "#carousel-%(content_id)s",
               after: function(slider) {
