@@ -26,6 +26,10 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def update_types(context):
+    context.runImportStepFromProfile('profile-cpskin.core:default', 'typeinfo')
+
+
 def clean_portal_setup(context):
     """
     Force uninstall of packages that are not marked as installed but were

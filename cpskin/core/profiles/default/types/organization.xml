@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object name="organization" meta_type="Dexterity FTI" i18n:domain="collective.contact.core"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title" i18n:translate="">Organization</property>
+ <property name="description" i18n:translate="">Organization can be shown in directory.</property>
+</object>

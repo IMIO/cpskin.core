@@ -44,6 +44,15 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v26: Update types"
+        description="Puropose : Add description to organization type for #17660"
+        handler=".upgradehandlers.update_types"
+        source="25"
+        destination="26"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v25: Clean wrong installs from portal setup"
         description="Clean wrong installs from portal setup : #17714"
         handler=".upgradehandlers.clean_portal_setup"

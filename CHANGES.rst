@@ -4,6 +4,9 @@ Changelog
 0.9.9 (unreleased)
 ------------------
 
+- Add description to organization type to translate it in citizen : #17660
+  [laulaz]
+
 - Changing the slide configuration to stop it #16991
   [Aurore]
 
