@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.9.9 (unreleased)
-------------------
+0.10 (2017-06-15)
+-----------------
 
 - Add description to organization type to translate it in citizen : #17660
   [laulaz]
