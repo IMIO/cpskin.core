@@ -24,17 +24,26 @@ jQuery(document).ready(function($) {
   $('#useful-links-button').click(function(event) {
       show = $('#useful-links-container').hasClass('hidden-right-panel');
       toggle_useful_links(show);
+      event.stopPropagation();
       event.preventDefault();
   });
 
   $('#table-of-contents-button').click(function(event) {
       show = $('#table-of-contents-container').hasClass('hidden-right-panel');
       toggle_toc(show);
+      event.stopPropagation();
       event.preventDefault();
   });
 
   $('#document-toc a').click(function(event) {
       hide_all();
+      event.stopPropagation();
+  });
+
+
+  $(window).click(function() {
+      hide_all();
+  });
   });
 
 });
