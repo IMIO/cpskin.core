@@ -7,6 +7,8 @@
       class="contact-details"
       tal:define="portal_url context/@@plone_portal_state/portal_url;">
 
+    <p id="address" tal:replace="structure view/render_address" />
+
     <p id="email" class="field" tal:condition="view/contact_details/email">
         <label><tal:block i18n:translate="">Email</tal:block>:</label>
         <a class="email"
@@ -60,8 +62,6 @@
            tal:content="website"
            tal:attributes="href website" />
     </p>
-
-    <p id="address" tal:replace="structure view/render_address" />
 
     <p id="download_vcard" tal:condition="view/contact_details">
         <a href="@@contact.vcf" tal:attributes="href string: ${context/absolute_url}/@@contact.vcf">

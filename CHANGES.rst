@@ -4,7 +4,8 @@ Changelog
 0.10.1 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Change address position : #17751
+  [laulaz]
 
 
 0.10 (2017-06-15)
