@@ -53,6 +53,9 @@ class RelatedContactsViewlet(common.ViewletBase):
         else:
             related_contacts = getattr(self.context, self.field, [])
         for related_contact in related_contacts:
+            if related_contact.isBroken():
+                related_contacts.remove(related_contact)
+                setattr(self.context, self.field, related_contacts)
             obj = related_contact.to_object
             if obj not in contacts:
                 contacts.append(obj)

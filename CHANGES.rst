@@ -21,6 +21,9 @@ Changelog
   imported in portal_setup : #17714
   [laulaz]
 
+- Remove broken related_contacts.
+  [bsuttor]
+
 - Allow to have random images as banner : #17395
   [AuroreMariscal]
 
