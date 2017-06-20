@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.1 (unreleased)
+0.10.1 (2017-06-20)
 -------------------
 
 - Do not show empty phone, cell_phone or fax.
