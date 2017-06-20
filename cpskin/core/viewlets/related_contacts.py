@@ -102,6 +102,8 @@ class RelatedContactsViewlet(common.ViewletBase):
                 return ''
         if field in ['phone', 'cell_phone', 'fax']:
             phones = getattr(contact, field, '')
+            if not phones:
+                return False
             if not isinstance(phones, list):
                 phones = [getattr(contact, field)]
             return [format_phone(phone) for phone in phones]

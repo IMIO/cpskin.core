@@ -4,6 +4,12 @@ Changelog
 0.10.1 (unreleased)
 -------------------
 
+- Do not show empty phone, cell_phone or fax.
+  [bsuttor]
+
+- Remove broken related_contacts.
+  [bsuttor]
+
 - Change address position : #17751
   [laulaz]
 
@@ -20,9 +26,6 @@ Changelog
 - Force uninstall of packages that are not marked as installed but were
   imported in portal_setup : #17714
   [laulaz]
-
-- Remove broken related_contacts.
-  [bsuttor]
 
 - Allow to have random images as banner : #17395
   [AuroreMariscal]
