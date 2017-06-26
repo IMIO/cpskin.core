@@ -182,6 +182,7 @@
                         </tal:block>
                         <a href=""
                            title=""
+                           class="medialink"
                            tal:define="show_day_and_month python: view.show_day_and_month(content);
                                        item_type result/Type;"
                            tal:attributes="href result/getURL;
@@ -206,13 +207,14 @@
                           </tal:else>
 
                           <div class="pagecaption">
-
-                            <h3 tal:content="result/Title"></h3>
                             <div tal:condition="python: item_type == 'Media Link'"
                                  tal:define="item python: result.getObject();
                                              video python: view.get_video(item)">
-                                <div tal:content='structure video' class="medialink"/>
+                                <div tal:content='structure video'/>
                             </div>
+                            
+                            <h3 tal:content="result/Title"></h3>
+                            
 
                             <span class="documentByLine"
                                   tal:condition="python: view.see_start_end_date(result, content)"
