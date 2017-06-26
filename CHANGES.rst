@@ -4,7 +4,8 @@ Changelog
 0.10.2 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add class medialink on tag  #17396
+  [Aurore]
 
 
 0.10.1 (2017-06-20)
