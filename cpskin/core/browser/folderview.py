@@ -424,6 +424,12 @@ class FolderView(FoldV):
         result = utils.embed(video, self.request)
         return result
 
+    def get_class(self, classe):
+        if classe == 'Media Link':
+            return 'medialink'
+        else:
+            return None
+
     def see_categories(self, collection):
         result = True
         taxonomy_field = getattr(collection, 'taxonomy_category', '')

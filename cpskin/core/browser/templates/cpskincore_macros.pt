@@ -183,9 +183,11 @@
                         <a href=""
                            title=""
                            tal:define="show_day_and_month python: view.show_day_and_month(content);
-                                       item_type result/Type;"
+                                       item_type result/Type;
+                                       classe python: view.get_class(item_type)"
                            tal:attributes="href result/getURL;
-                                           title result/Title">
+                                           title result/Title;
+                                           class classe">
 
                           <tal:if tal:condition="show_day_and_month">
                             <div class="day-month">
