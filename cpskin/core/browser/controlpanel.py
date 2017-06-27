@@ -128,6 +128,17 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         setShowLeadimageInActionMenu,
     )
 
+    def getShowSlogan(self):
+        return self.settings.show_slogan
+
+    def setShowSlogan(self, value):
+        self.settings.show_slogan = value
+
+    show_slogan = property(
+        getShowSlogan,
+        setShowSlogan,
+    )
+
 
 class CPSkinControlPanel(ControlPanelForm):
 

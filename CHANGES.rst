@@ -4,6 +4,9 @@ Changelog
 0.10.2 (unreleased)
 -------------------
 
+- Use banner title and description as site slogan into banner : #17207
+  [laulaz]
+
 - Add class medialink on tag  #17396
   [Aurore]
 

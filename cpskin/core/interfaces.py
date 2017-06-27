@@ -115,6 +115,13 @@ class ICPSkinSettings(Interface):
         default=False
     )
 
+    show_slogan = schema.Bool(
+        title=_(u'Show slogan with banner'),
+        description=_(u'Show banner title and description as homepage slogan.'),  # noqa
+        required=False,
+        default=False
+    )
+
 
 class IVideoCollection(Interface):
     """

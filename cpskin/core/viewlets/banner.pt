@@ -1,3 +1,11 @@
+<div id="cpskin-slogan"
+     tal:condition="view/show_slogan">
+  <tal:def tal:define="infos view/slogan">
+    <div id="cpskin-slogan-titre" tal:content="infos/title"></div>
+    <div id="cpskin-slogan-description" tal:content="infos/description"></div>
+  </tal:def>
+</div>
+
 <div id="cpskin-banner"
      tal:condition="view/available"
      i18n:domain="cpskin">

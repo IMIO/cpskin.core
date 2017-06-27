@@ -449,6 +449,23 @@ def addTopMenuContentsToRegistry():
     records['cpskin.core.interfaces.ICPSkinSettings.contents_in_action_menu'] = record  # noqa
 
 
+def addShowSloganToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if 'cpskin.core.interfaces.ICPSkinSettings.show_slogan' in records:
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.show_slogan to registry')  # noqa
+    record = Record(field.Bool(title=_(u'Show slogan with banner'),
+                               description=_(u'Show banner title and description as homepage slogan.'),  # noqa
+                               required=False,
+                               default=False),
+                    value=False)
+    records['cpskin.core.interfaces.ICPSkinSettings.show_slogan'] = record  # noqa
+
+
 def set_googleapi_key():
     record_name = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'
     default_value = 'AIzaSyDmbfEFrVcZ_x7Snn4Kv_WkqCmiZXn01rY'
