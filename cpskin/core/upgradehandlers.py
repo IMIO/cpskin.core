@@ -4,6 +4,7 @@ from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
 from cpskin.core.setuphandlers import addLoadPageMenuToRegistry
+from cpskin.core.setuphandlers import addPortletsInRightActionsToRegistry
 from cpskin.core.setuphandlers import addShowSloganToRegistry
 from cpskin.core.setuphandlers import addSliderTimerToRegistry
 from cpskin.core.setuphandlers import addSliderTypeToRegistry
@@ -25,6 +26,16 @@ import logging
 
 
 logger = logging.getLogger('cpskin.core')
+
+
+def add_right_actions(context):
+    addPortletsInRightActionsToRegistry()
+    context.runImportStepFromProfile('profile-cpskin.core:default',
+        'viewlets'
+    )
+    context.runImportStepFromProfile('profile-cpskin.core:default',
+        'jsregistry'
+    )
 
 
 def upgrade_registry_for_slogan(context):

@@ -4,6 +4,9 @@ Changelog
 0.10.2 (unreleased)
 -------------------
 
+- Add sticky right actions panel (for portlets and TOC) : #17748
+  [laulaz]
+
 - Use banner title and description as site slogan into banner : #17207
   [laulaz]
 

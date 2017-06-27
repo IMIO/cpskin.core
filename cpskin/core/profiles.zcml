@@ -44,6 +44,15 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v28: Right actions"
+        description="Upgrade settings / viewlets / JS to add new right_actions"
+        handler=".upgradehandlers.add_right_actions"
+        source="27"
+        destination="28"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v27: Add registry for slogan"
         description="Add record for slogan in registry"
         handler=".upgradehandlers.upgrade_registry_for_slogan"

@@ -79,6 +79,15 @@
 
   <browser:page
       for="*"
+      name="sunburstview"
+      class=".sunburstview.SunburstView"
+      permission="zope.Public"
+      allowed_interface="plonetheme.sunburst.browser.interfaces.ISunburstView"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
+      for="*"
       name="sendtomanager_form"
       class=".sendtomanager.SendToManagerForm"
       permission="zope.Public"

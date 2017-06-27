@@ -1,0 +1,33 @@
+<div id="right-actions-viewlet"
+     i18n:domain="cpskin"
+     tal:condition="view/available">
+  <div class="scroller_anchor"></div>
+  <div id="right-actions-viewlet-inner">
+    <tal:if tal:condition="view/has_useful_links">
+      <a href=""
+         id="useful-links-button"
+         i18n:translate="Useful links">Useful links</a>
+      <div id="useful-links-container"
+           class="right-panel hidden-right-panel">
+         <div id="useful-links-related-contents"
+              tal:condition="view/has_related">
+              Related items
+         </div>
+         <div id="useful-links-portlets"
+              tal:condition="view/has_portlets">
+              Portlets
+         </div>
+      </div>
+    </tal:if>
+    <tal:if tal:condition="view/has_toc">
+      <a href="" id="table-of-contents-button"
+         i18n:translate="Table of contents">Table of contents</a>
+      <div id="table-of-contents-container"
+           class="right-panel hidden-right-panel"></div>
+    </tal:if>
+
+    <div id="other-actions" />
+
+  </div>
+  
+</div>

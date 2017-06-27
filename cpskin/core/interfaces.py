@@ -122,6 +122,13 @@ class ICPSkinSettings(Interface):
         default=False
     )
 
+    show_portlets_in_right_actions_panel = schema.Bool(
+        title=_(u'Show (right) portlets in right actions panel'),
+        description=_(u'Show (right) portlets (if any) in right actions panel after related contents.'),  # noqa
+        required=False,
+        default=False
+    )
+
 
 class IVideoCollection(Interface):
     """

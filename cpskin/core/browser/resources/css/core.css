@@ -51,3 +51,11 @@ div.table-responsive {
 dt.actionMenuHeader a::after {
     content: " ▼";
 }
+
+.hidden-right-panel {
+	display: none;
+}
+
+.shown-right-panel {
+	display: block;
+}
