@@ -44,6 +44,24 @@ jQuery(document).ready(function($) {
   $(window).click(function() {
       hide_all();
   });
+
+  $(window).scroll(function(e) {
+      var scroller_anchor = $(".scroller_anchor").offset().top;
+
+      if ($(this).scrollTop() >= scroller_anchor && $('#right-actions-viewlet-inner').css('position') != 'fixed')
+      {   // Fix panel at the top of the screen when users scrolls below anchor.
+          top_position = $('#top-navigation-inner').height();
+          $('#right-actions-viewlet-inner').css({
+              'position': 'fixed',
+              'top': top_position + 'px'
+          });
+      }
+      else if (($(this).scrollTop() < scroller_anchor) && $('#right-actions-viewlet-inner').css('position') != 'relative')
+      {   // Put it back to its original position when users scrolls back
+          $('#right-actions-viewlet-inner').css({
+              'position': 'relative'
+          });
+      }
   });
 
 });
