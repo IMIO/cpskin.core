@@ -44,6 +44,15 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v26: Add cpskin_navigation_view"
+        description="Puropose : Add cpskin_navigation_view"
+        handler=".upgradehandlers.update_types"
+        source="28"
+        destination="29"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v28: Right actions"
         description="Upgrade settings / viewlets / JS to add new right_actions"
         handler=".upgradehandlers.add_right_actions"

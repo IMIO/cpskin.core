@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from Acquisition import aq_parent
-from imio.media.browser import utils
 from cpskin.core.interfaces import IFolderViewSelectedContent
 from cpskin.core.interfaces import IFolderViewWithBigImages
 from cpskin.core.utils import image_scale
@@ -9,6 +8,7 @@ from cpskin.core.vocabulary import DISPLAY_TYPES
 from cpskin.locales import CPSkinMessageFactory as _
 from DateTime import DateTime
 from datetime import datetime
+from imio.media.browser import utils
 from plone import api
 from plone.app.contenttypes.browser.folder import FolderView as FoldV
 from plone.app.contenttypes.content import Event

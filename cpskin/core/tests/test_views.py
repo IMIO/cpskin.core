@@ -7,6 +7,7 @@ from cpskin.core.interfaces import ICPSkinCoreLayer
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import add_leadimage_from_file
+from cpskin.menu.interfaces import IDirectAccess
 from DateTime import DateTime
 from datetime import datetime
 from datetime import timedelta
@@ -21,6 +22,7 @@ from zope import schema
 from zope.component import getMultiAdapter
 from zope.component import queryUtility
 from zope.event import notify
+from zope.interface import alsoProvides
 from zope.interface import directlyProvides
 from zope.lifecycleevent import ObjectAddedEvent
 
@@ -474,3 +476,20 @@ class TestViews(unittest.TestCase):
         scale = view.collection_image_scale(collection, news)
         self.assertEqual(scale.height, 200)
         self.assertEqual(scale.width, 133)
+
+    def test_cpskin_navigation_view(self):
+        applyProfile(self.portal, 'cpskin.workflow:default')
+        self.portal.portal_workflow.setDefaultChain('cpskin_workflow')
+        folder = api.content.create(self.portal, 'Folder', 'folder')
+        subfolder = api.content.create(folder, 'Folder', 'subfolder')
+        view = api.content.get_view(
+            name='cpskin_navigation_view',
+            context=folder,
+            request=folder.REQUEST)
+        self.assertEqual(0, len(view.menus()))
+        api.content.transition(obj=subfolder, transition='publish_and_show')
+        self.assertEqual(1, len(view.menus()))
+        self.assertEqual(0, len(view.accesses()))
+        alsoProvides(subfolder, IDirectAccess)
+        subfolder.reindexObject()
+        self.assertEqual(1, len(view.accesses()))

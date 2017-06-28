@@ -4,6 +4,9 @@ Changelog
 0.10.2 (unreleased)
 -------------------
 
+- Add cpskin_navigation_view.
+  [bsuttor]
+
 - Add sticky right actions panel (for portlets and TOC) : #17748
   [laulaz]
 

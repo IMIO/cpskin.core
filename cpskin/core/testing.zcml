@@ -9,6 +9,7 @@
   <include package="collective.taxonomy" />
   <include package="collective.navigationtoggle" />
   <include package="collective.documentgenerator" />
+  <include package="cpskin.workflow" />
 
 
   <genericsetup:registerProfile
