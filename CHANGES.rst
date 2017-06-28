@@ -4,6 +4,9 @@ Changelog
 0.10.2 (unreleased)
 -------------------
 
+- Add publication date check to display it on index view items : #17895
+  [laulaz]
+
 - Add cpskin_navigation_view.
   [bsuttor]
 

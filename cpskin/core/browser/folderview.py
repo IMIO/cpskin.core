@@ -569,6 +569,12 @@ class FolderView(FoldV):
             return ''
         return DISPLAY_TYPES[display_type]['class']
 
+    def show_publication_date(self, collection, result):
+        if self.hide_date(result, collection):
+            return False
+        display_type = getattr(collection, 'display_type', '')
+        return (display_type == 'slider-with-elements-count-choice')
+
 
 def configure_folderviews(context):
     """
