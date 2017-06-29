@@ -3,6 +3,16 @@
   xmlns:faceted="http://namespaces.zope.org/faceted"
   xmlns:browser="http://namespaces.zope.org/browser">
 
+  <!-- override main faceted view to add text -->
+  <browser:page
+    for="eea.facetednavigation.interfaces.IFacetedNavigable"
+    name="facetednavigation_view"
+    template="facetednavigation_view.pt"
+    class="eea.facetednavigation.browser.app.view.FacetedContainerView"
+    permission="zope2.View"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+    />
+
   <faceted:view
     name="faceted-list-items"
     template="list-items.pt"
@@ -17,12 +27,19 @@
     permission="zope2.View"
     />
 
-  <!-- override main faceted view to add text -->
+  <!-- New faceted contacts view -->
+  <faceted:view
+    name="faceted-preview-contacts"
+    template="preview-contacts.pt"
+    title="Faceted contacts preview"
+    permission="zope2.View"
+    />
+
   <browser:page
-    for="eea.facetednavigation.interfaces.IFacetedNavigable"
-    name="facetednavigation_view"
-    template="facetednavigation_view.pt"
-    class="eea.facetednavigation.browser.app.view.FacetedContainerView"
+    name="faceted-preview-contact"
+    for="zope.interface.Interface"
+    template="preview-contact.pt"
+    class=".view.PreviewItem"
     permission="zope2.View"
     layer="cpskin.core.interfaces.ICPSkinCoreLayer"
     />

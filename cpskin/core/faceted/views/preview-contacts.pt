@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="collective.contact.facetednav">
+
+<body>
+  <metal:content-core fill-slot="content-core">
+    <metal:block define-macro="content-core">
+      <div tal:define="
+        folderContents folderContents | python:context.getFolderContents();
+        Batch python:modules['Products.CMFPlone'].Batch;
+        b_start python:request.get('b_start', 0);
+        batch python:isinstance(folderContents, Batch) and folderContents or Batch(folderContents, 100, int(b_start), orphan=2);
+        ">
+
+       <tal:results condition="batch">
+         <tal:buttons condition="actions_enabled"
+                      content="structure provider:collective.contact.facetednav.batchactions" />
+        <div metal:use-macro="context/batch_macros/macros/navigation"></div>
+
+        <div class="eea-preview-items">
+          <tal:entries repeat="brain batch">
+           <div class="contact-entry"
+                tal:define="doc brain/getObject|nothing">
+              <div tal:condition="actions_enabled" class="contact-selection">
+                <input type="checkbox"
+                       tal:attributes="value doc/UID;
+                                       id string:contact-${doc/UID}" />
+              </div>
+            <tal:entry
+              condition="exists:doc/@@faceted-preview-contact"
+              replace="structure doc/@@faceted-preview-contact" />
+            </div>
+          </tal:entries>
+
+        </div>
+
+        <div metal:use-macro="context/batch_macros/macros/navigation"></div>
+	   </tal:results>
+	   <div tal:condition="not:batch" i18n:translate="help_no_result"
+	        id="msg-no-results">
+	   	There is no contact matching your criteria.
+	   </div>
+	   	<div tal:condition="python:context.portal_membership.checkPermission('Add portal content', context)"
+	   	     tal:define="search_text python:request.get('texte[]', '')"
+	   	     id="faceted-add"
+	   	     i18n:domain="collective.contact.core">
+	   	<tal:addperson condition="python:request.get('type[]', '') in ('person', 'held_position')"
+	   	    define="splitname python:search_text.split(' ', 1);
+	   	            lastname python:splitname[-1].replace(' ', '+');
+	   	            firstname python:len(splitname)>1 and splitname[0].replace(' ', '+') or ''">
+         <a class="faceted-add-person"
+            tal:attributes="href string:${context/absolute_url}/++add++person?form.widgets.lastname=${lastname}&form.widgets.firstname=${firstname}">
+	 	  <img src="create_contact.png" />
+		  <span i18n:translate="">
+		   Create <tal:name i18n:name="name" i18n:translate="">Person</tal:name>
+		  </span>
+		 </a>
+	   	</tal:addperson>
+	   	<tal:addcontact condition="python:request.get('type[]', '') in ('person', 'held_position')"
+	   	    define="splitname python:search_text.split(' ', 1);
+	   	            lastname python:splitname[-1].replace(' ', '+');
+	   	            firstname python:len(splitname)>1 and splitname[0].replace(' ', '+') or ''">
+         <a class="faceted-add-contact" tal:attributes="href string:${context/absolute_url}/@@add-contact">
+	 	  <img src="create_contact.png" />
+		  <span i18n:translate="">
+		   Create <tal:name i18n:name="name" i18n:translate="">Contact</tal:name>
+		  </span>
+		 </a>
+	   	</tal:addcontact>
+	   	<tal:addorga condition="python:request.get('type[]', '') == 'organization'"
+	   	  			 define="title python:search_text.replace(' ', '+')">
+		  <a class="faceted-add-organization"
+		     tal:attributes="href string:${context/absolute_url}/++add++organization?form.widgets.title=${title}">
+			<img src="organization_icon.png" />
+			<span i18n:translate="">
+				Create <tal:name i18n:name="name" i18n:translate="">Organization</tal:name>
+		    </span>
+		  </a>
+	   	</tal:addorga>
+	   	</div>
+      </div>
+
+    </metal:block>
+  </metal:content-core>
+</body>
+</html>

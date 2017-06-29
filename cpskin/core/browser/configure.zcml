@@ -49,15 +49,6 @@
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
-  <browser:page
-      for="plone.dexterity.interfaces.IDexterityContainer"
-      name="cpskin_navigation_view"
-      class=".folder.CpskinNavigationView"
-      layer="..interfaces.ICPSkinCoreLayer"
-      template="templates/cpskin_navigation_view.pt"
-      permission="zope.Public"
-      />
-
   <browser:view
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
       name="teleservice-template"
@@ -77,6 +68,15 @@
 
 
   <!-- Other browser pages -->
+
+  <browser:page
+      for="plone.dexterity.interfaces.IDexterityContainer"
+      name="cpskin_navigation_view"
+      class=".folder.CpskinNavigationView"
+      layer="..interfaces.ICPSkinCoreLayer"
+      template="templates/cpskin_navigation_view.pt"
+      permission="zope.Public"
+      />
 
   <browser:page
       for="*"

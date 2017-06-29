@@ -7,6 +7,9 @@ Changelog
 - Add publication date check to display it on index view items : #17895
   [laulaz]
 
+- Add Faceted contacts preview view.
+  [bsuttor]
+
 - Add main-homepage css class on LRF and Plone Site portal_types.
   [bsuttor]
 
