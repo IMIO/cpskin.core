@@ -10,6 +10,7 @@
   <include package="collective.navigationtoggle" />
   <include package="collective.documentgenerator" />
   <include package="cpskin.workflow" />
+  <include package="cpskin.menu" />
 
 
   <genericsetup:registerProfile
