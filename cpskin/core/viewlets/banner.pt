@@ -27,8 +27,7 @@
     <img src=""
          alt="Banner"
          class="banner"
-         tal:define="image view/getImageBannerUrl"
-         tal:attributes="src image"
+         tal:attributes="src view/getImageBannerUrl"
          i18n:attributes="alt" />
 
 </div>

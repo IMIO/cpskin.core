@@ -4,7 +4,8 @@ Changelog
 0.10.3 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add banner image field #17809
+  [Aurore]
 
 
 0.10.2 (2017-06-29)
