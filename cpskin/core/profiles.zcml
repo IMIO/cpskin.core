@@ -43,8 +43,8 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
-        title="CPSKIN Core: upgrade to v30: Add banner image for event"
-        description="Puropose : Add banner image for event #17809"
+        title="CPSKIN Core: upgrade to v30: Add banner image field for event"
+        description="Purpose : use different banner for events #17809"
         handler=".upgradehandlers.add_banner_view_behavior"
         source="29"
         destination="30"
@@ -53,7 +53,7 @@
 
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v26: Add cpskin_navigation_view"
-        description="Puropose : Add cpskin_navigation_view"
+        description="Purpose : Add cpskin_navigation_view"
         handler=".upgradehandlers.update_types"
         source="28"
         destination="29"

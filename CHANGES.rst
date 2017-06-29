@@ -4,7 +4,7 @@ Changelog
 0.10.3 (unreleased)
 -------------------
 
-- Add banner image field #17809
+- Add banner image field for events and use it as banner : #17809
   [Aurore]
 
 

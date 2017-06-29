@@ -23,7 +23,10 @@ class ICpskinEventViewSettings(model.Schema):
 
     image_banner = namedfile.NamedBlobImage(
         title=_(u'label_bannerimage', default=u'Banner image'),
-        description=_(u'help_bannerimage', default=u''),
+        description=_(
+            u'help_bannerimage',
+            default=u'Image used as banner replacement when viewing this event'
+        ),
         required=False,
     )
 

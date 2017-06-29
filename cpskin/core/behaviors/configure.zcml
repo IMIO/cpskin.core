@@ -60,8 +60,8 @@
     />
 
   <plone:behavior
-    title="Banner Image"
-    description="Adds image and image caption fields"
+    title="Banner image"
+    description="Adds a banner image field used as banner"
     provides=".eventview.ICpskinEventViewSettings"
     factory=".eventview.CpskinEventViewSettings"
     for="plone.app.contenttypes.interfaces.IEvent"
