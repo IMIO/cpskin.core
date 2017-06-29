@@ -92,8 +92,11 @@ class CPSkinBannerViewlet(ViewletBase):
     def getBanner(self):
         context = self.context
         banner_folder = getattr(context, 'banner', None)
+        banner_event = getattr(context, 'image_banner', None)
         banner = getattr(context, 'banner.jpg', None)
-        if banner_folder:
+        if context.portal_type == 'Event' and banner_event:
+            banner = context.restrictedTraverse('@@images').scale(fieldname='image_banner')
+        elif banner_folder:
             images = api.content.find(
                 context=banner_folder,
                 portal_type='Image',

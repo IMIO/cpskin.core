@@ -42,6 +42,14 @@
         />
 
     <!-- Upgrade steps -->
+    <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v27: Add banner image for event"
+        description="Puropose : Add banner image for event #17809"
+        handler=".upgradehandlers.add_banner_view_behavior"
+        source="28"
+        destination="29"
+        profile="cpskin.core:default"
+        />
 
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v26: Add cpskin_navigation_view"

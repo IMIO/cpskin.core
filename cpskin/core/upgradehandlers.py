@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
+from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
@@ -159,6 +160,10 @@ def add_index_view_behavior(context):
     del registry.records[
         'cpskin.core.interfaces.ICPSkinSettings.homepage_keywords']
     add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
+
+
+def add_banner_view_behavior(context):
+    add_behavior('Event', ICpskinEventViewSettings.__identifier__)
 
 
 def upgrade_homepage_keywords(context):

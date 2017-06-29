@@ -60,6 +60,15 @@
     />
 
   <plone:behavior
+    title="Banner Image"
+    description="Adds image and image caption fields"
+    provides=".eventview.ICpskinEventViewSettings"
+    factory=".eventview.CpskinEventViewSettings"
+    for="plone.app.contenttypes.interfaces.IEvent"
+    marker=".eventview.ICpskinEventViewSettings"
+    />
+
+  <plone:behavior
     title="Contact details for directory"
     description="Contact details (phone numbers, address, email, ...)."
     provides=".directorycontact.IDirectoryContactDetails"
