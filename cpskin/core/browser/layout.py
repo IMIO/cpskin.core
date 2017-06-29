@@ -67,4 +67,15 @@ class LayoutPolicy(base.LayoutPolicy):
             if minisite.is_in_portal_mode:
                 body_class += ' in-minisite-in-portal'
 
+        if is_main_homepage(context):
+            # import ipdb; ipdb.set_trace()
+            body_class += ' main-homepage'
+
         return body_class
+
+
+def is_main_homepage(context):
+    homepage_types = ['LRF', 'Plone Site']
+    if context.portal_type in homepage_types:
+        return True
+    return False
