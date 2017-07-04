@@ -172,7 +172,10 @@ def image_scale(obj, css_class, default_scale, generate_tag=True):
 def get_lat_lng_from_address(address):
     """Return tuple with status and geocoder object
        0: error, 1: success, 2: not found"""
-    geocode = geocoder.google(address)
+    try:
+        geocode = geocoder.google(address)
+    except:
+        geocode = geocoder.osm(address)
     if geocode.content['status'] == u'OVER_QUERY_LIMIT':
         message = geocode.content['error_message']
         logger.info(message)
