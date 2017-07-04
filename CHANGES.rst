@@ -4,6 +4,9 @@ Changelog
 0.10.3 (unreleased)
 -------------------
 
+- Try to find address with OSM fi Google do not work.
+  [bsuttor]
+
 - Add banner image field for events and use it as banner : #17809
   [Aurore]
 
