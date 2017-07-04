@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.3 (unreleased)
+0.10.3 (2017-07-04)
 -------------------
 
 - Try to find address with OSM fi Google do not work.
