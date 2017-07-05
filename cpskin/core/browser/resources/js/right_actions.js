@@ -46,6 +46,7 @@ jQuery(document).ready(function($) {
   });
 
   $(window).scroll(function(e) {
+      if ($(".scroller_anchor").length == 0) return;
       var scroller_anchor = $(".scroller_anchor").offset().top;
 
       if ($(this).scrollTop() >= scroller_anchor && $('#right-actions-viewlet-inner').css('position') != 'fixed')
