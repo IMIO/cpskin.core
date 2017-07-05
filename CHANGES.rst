@@ -1,11 +1,11 @@
 Changelog
 =========
 
-0.10.5 (unreleased)
+0.10.5 (2017-07-05)
 -------------------
 
-- Nothing changed yet.
-
+- Adding a condition when the right action panel is not there.
+  [mgennart]
 
 0.10.4 (2017-07-05)
 -------------------
