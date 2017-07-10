@@ -1,7 +1,8 @@
 <configure
   xmlns="http://namespaces.zope.org/zope"
   xmlns:faceted="http://namespaces.zope.org/faceted"
-  xmlns:browser="http://namespaces.zope.org/browser">
+  xmlns:browser="http://namespaces.zope.org/browser"
+  i18n_domain="cpskin">
 
   <!-- override main faceted view to add text -->
   <browser:page
