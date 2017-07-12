@@ -48,10 +48,6 @@ div.table-responsive {
     overflow-y: initial;
 }
 
-dt.actionMenuHeader a::after {
-    content: " ▼";
-}
-
 .hidden-right-panel {
 	display: none;
 }
