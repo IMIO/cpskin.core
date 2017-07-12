@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_get
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
@@ -80,6 +81,15 @@ def clean_portal_setup(context):
             logger.info('{0} uninstalled successfully !'.format(package_id))
         else:
             logger.warn('No uninstall profile for {0}'.format(package_id))
+
+    psk = api.portal.get_tool('portal_skins')
+    selected_skin = 'Sunburst Theme'
+    if psk.default_skin != selected_skin:
+        psk.default_skin = selected_skin
+        request = aq_get(context, 'REQUEST', None)
+        portal = api.portal.get()
+        portal.changeSkin(selected_skin, request)
+        logger.info('Restored default_skin : {0}'.format(selected_skin))
 
 
 def upgrade_viewlets(context):

@@ -4,6 +4,10 @@ Changelog
 0.10.6 (unreleased)
 -------------------
 
+- Fix default_skin after uninstalling other profiles (was reset to 'Plone
+  Default' causing a main_template traceback)
+  [laulaz]
+
 - Allow to have all results without sticky distinction : #18026
   [laulaz]
 
