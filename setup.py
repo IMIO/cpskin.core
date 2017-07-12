@@ -38,6 +38,7 @@ setup(name='cpskin.core',
       install_requires=[
           'setuptools',
           'cpskin.locales',
+          'cpskin.citizen',
           'cpskin.minisite',
           'cpskin.menu',
           'plone.api',

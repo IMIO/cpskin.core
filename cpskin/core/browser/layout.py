@@ -4,6 +4,8 @@ from plone.app.layout.globals import layout as base
 from plone.app.layout.globals.interfaces import ILayoutPolicy
 from zope.interface import implements
 
+from cpskin.citizen.utils import is_citizen
+
 
 class LayoutPolicy(base.LayoutPolicy):
     """
@@ -68,8 +70,11 @@ class LayoutPolicy(base.LayoutPolicy):
                 body_class += ' in-minisite-in-portal'
 
         if is_main_homepage(context):
-            # import ipdb; ipdb.set_trace()
             body_class += ' main-homepage'
+
+        user = api.user.get_current()
+        if is_citizen(user):
+            body_class += ' user-citizen'
 
         return body_class
 

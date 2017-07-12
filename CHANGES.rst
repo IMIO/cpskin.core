@@ -4,6 +4,9 @@ Changelog
 0.10.6 (unreleased)
 -------------------
 
+- Add class on <body> for logged in citizen users
+  [laulaz]
+
 - Fix default_skin after uninstalling other profiles (was reset to 'Plone
   Default' causing a main_template traceback)
   [laulaz]
