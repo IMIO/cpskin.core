@@ -4,7 +4,8 @@ Changelog
 0.10.6 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Allow to have all results without sticky distinction : #18026
+  [laulaz]
 
 
 0.10.5 (2017-07-05)

@@ -88,7 +88,7 @@ class FolderView(FoldV):
             return IEvent.providedBy(obj)
         return False
 
-    def getResults(self, content):
+    def getResults(self, content, with_sticky=True):
         """Content is a Collection"""
         # Make a copy of the query to avoid modifying it
         query = list(content.query)
@@ -133,6 +133,8 @@ class FolderView(FoldV):
                 content.item_count = item_count
         else:
             brains = brains[:item_count_homepage]
+        if not with_sticky:
+            return brains
         portal_catalog = api.portal.get_tool(name='portal_catalog')
         results = {'sticky-results': [],
                    'standard-results': []}
