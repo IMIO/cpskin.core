@@ -335,6 +335,32 @@ class FolderView(FoldV):
                     return autoplayslider;
                 }
             }
+            function ChangeSlideCurrent(content_id) {
+                if ($('#carousel-evenements').parents('.slider-unique-titre').length) {
+                    var slides = $('#carousel-evenements').find('.slides');
+                    var len = slides.find('li').length;
+                    var current = (Math.ceil(len/2) - 1);
+                    return current;
+                }
+            }
+            function deplaceSlideCurrent(content_id) {
+                $('.slider-unique-titre').each(function (){
+                    var carousel = $(this).find('#carousel-%(content_id)s');
+                    var carousel_slide = carousel.find('ul.slides');
+                    var carousel_slide_active = carousel_slide.find('li.flex-active-slide');
+                    var carousel_slide_width = carousel_slide_active.outerWidth(true);
+                    var slide_current = carousel_slide_active.index();
+                    if (slide_current != 0) {
+                        var translate3D_px = -(slide_current * carousel_slide_width) + carousel_slide_width;
+                        carousel_slide.css('transform', 'translate3d(' + translate3D_px + 'px, 0px, 0px)');
+                    }
+                    else {
+                        var translate3D_px = carousel_slide_width;
+                        carousel_slide.css('transform', 'translate3d(' + translate3D_px + 'px, 0px, 0px)');
+                    }
+                    carousel_slide.css('transition-duration', '0.2s');
+                });
+            }
             $('#carousel-%(content_id)s').flexslider({
               animation: animation,
               controlNav: false,
@@ -345,12 +371,15 @@ class FolderView(FoldV):
               minItems: %(min_items_in_slider)s,
               maxItems: %(max_items_in_slider)s,
               asNavFor: '#slider-%(content_id)s',
+              startAt: ChangeSlideCurrent('%(content_id)s'),
               start: function(slider) {
                 slider.find('.current-slide').text(slider.currentSlide+1);
                 slider.find('.total-slides').text(slider.count);
+                deplaceSlideCurrent('%(content_id)s');
               },
               after: function(slider) {
                 slider.find('.current-slide').text(slider.currentSlide+1);
+                deplaceSlideCurrent('%(content_id)s');
               }
             });
             $('#slider-%(content_id)s').flexslider({
@@ -360,23 +389,11 @@ class FolderView(FoldV):
               slideshow: SlideShow(%(auto_play_slider)s, '%(content_id)s'),
               slideshowSpeed: %(slider_timer)s,
               sync: "#carousel-%(content_id)s",
+              start: function(slider) {
+                  deplaceSlideCurrent('%(content_id)s');
+              },
               after: function(slider) {
-                $('.slider-unique-titre').each(function (){
-                    var carousel = $(this).find('#carousel-%(content_id)s');
-                    var carousel_slide = carousel.find('ul.slides');
-                    var carousel_slide_active = carousel_slide.find('li.flex-active-slide');
-                    var carousel_slide_width = carousel_slide_active.outerWidth(true);
-                    var slide_current = carousel_slide_active.index();
-                    if (slide_current != 0) {
-                        var translate3D_px = (slide_current * carousel_slide_width) - (carousel_slide_width/2);
-                        carousel_slide.css('transform', 'translate3d(-' + translate3D_px + 'px, 0px, 0px)');
-                    }
-                    else {
-                        var translate3D_px = carousel_slide_width/2;
-                        carousel_slide.css('transform', 'translate3d(' + translate3D_px + 'px, 0px, 0px)');
-                    }
-                    carousel_slide.css('transition-duration', '0.2s');
-                });
+                deplaceSlideCurrent('%(content_id)s');
               }
             });
          })(jQuery);

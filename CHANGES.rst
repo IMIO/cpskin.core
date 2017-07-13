@@ -4,6 +4,9 @@ Changelog
 0.10.6 (unreleased)
 -------------------
 
+- Change order of slide #18057
+  [Aurore]
+
 - Add class on <body> for logged in citizen users
   [laulaz]
 
