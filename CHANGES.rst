@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.6 (unreleased)
+0.10.6 (2017-07-17)
 -------------------
 
 - Change order of slide #18057
