@@ -78,6 +78,7 @@ setup(name='cpskin.core',
               'plone.app.multilingual',
               'Products.contentmigration',
               'ipdb',
+              'cpskin.workflow'
           ]
       },
       entry_points={},
