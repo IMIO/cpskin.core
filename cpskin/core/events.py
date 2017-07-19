@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from cpskin.core.utils import get_address_from_obj
+# from cpskin.core.utils import get_address_from_obj
 from cpskin.core.utils import has_lat_lng
 from cpskin.core.utils import set_coord
 from plone.app.imagecropping import PAI_STORAGE_KEY

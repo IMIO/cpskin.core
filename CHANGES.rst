@@ -4,7 +4,8 @@ Changelog
 0.10.7 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improve set lat and lng on Organization and Person.
+  [bsuttor]
 
 
 0.10.6 (2017-07-17)

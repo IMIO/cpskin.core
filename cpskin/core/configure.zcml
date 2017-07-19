@@ -60,7 +60,15 @@
   <adapter factory=".indexer.HiddenTagIndexer" name="hiddenTags" />
 
   <subscriber for="collective.contact.core.content.organization.IOrganization
+                   zope.lifecycleevent.interfaces.IObjectAddedEvent"
+              handler=".events.set_lat_lng" />
+
+  <subscriber for="collective.contact.core.content.organization.IOrganization
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+              handler=".events.set_lat_lng" />
+
+  <subscriber for="collective.contact.core.content.person.IPerson
+                   zope.lifecycleevent.interfaces.IObjectAddedEvent"
               handler=".events.set_lat_lng" />
 
   <subscriber for="collective.contact.core.content.person.IPerson

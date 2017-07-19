@@ -13,6 +13,7 @@ import geocoder
 import logging
 import os
 import phonenumbers
+import sys
 
 
 logger = logging.getLogger('cpskin.core.utils')
@@ -171,11 +172,19 @@ def image_scale(obj, css_class, default_scale, generate_tag=True):
 
 def get_lat_lng_from_address(address):
     """Return tuple with status and geocoder object
-       0: error, 1: success, 2: not found"""
+       0: error, 1: success, 2: not found, 3: unexpected error"""
     try:
-        geocode = geocoder.google(address)
+        googleapi = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'
+        key = api.portal.get_registry_record(googleapi)
+        if key:
+            geocode = geocoder.google(safe_utf8(address), key=key)
+        else:
+            geocode = geocoder.google(safe_utf8(address))
     except:
-        geocode = geocoder.osm(address)
+        try:
+            geocode = geocoder.osm(safe_utf8(address))
+        except:
+            return (3, 'Unexpected error: {0}'.format(sys.exc_info()[0]))
     if geocode.content['status'] == u'OVER_QUERY_LIMIT':
         message = geocode.content['error_message']
         logger.info(message)
@@ -228,7 +237,7 @@ def has_lat_lng(obj):
     try:
         if ICoordinates(obj).coordinates:
             return True
-    except:
+    except:  # noqa
         return False
     return False
 
@@ -239,13 +248,12 @@ def set_coord(obj, request):
     address = get_address_from_obj(obj)
     if address:
         status, geocode = get_lat_lng_from_address(address)
-        if status == 0:
-            # stop if limit is 'OVER_QUERY_LIMIT'
+        if status in [0, 2, 3]:
+            # 0: stop if limit is 'OVER_QUERY_LIMIT'
+            # 2: not found
+            # 3: unexpected error
             api.portal.show_message(message=geocode, request=request)
-            return geocode
-        elif status == 2:
-            # not found
-            api.portal.show_message(message=geocode, request=request)
+            logger.info(geocode)
         else:
             if geocode.lng and geocode.lat:
                 coord = u'POINT({0} {1})'.format(geocode.lng, geocode.lat)
@@ -262,7 +270,7 @@ def set_coord(obj, request):
             obj.id
         )
         api.portal.show_message(message=message, request=request)
-        logger.warn(message)
+        logger.info(message)
 
 
 def format_phone(value):
