@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.7 (unreleased)
+0.10.7 (2017-07-19)
 -------------------
 
 - Improve set lat and lng on Organization and Person.
