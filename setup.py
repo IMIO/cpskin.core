@@ -71,6 +71,7 @@ setup(name='cpskin.core',
           'collective.dexteritytextindexer',
           'plone.app.imagecropping',
           'plone.app.multilingual',
+          'plone.app.event',
       ],
       extras_require={
           'test': [
