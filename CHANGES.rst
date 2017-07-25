@@ -4,7 +4,8 @@ Changelog
 0.10.8 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Check validity of google api key.
+  [bsuttor]
 
 
 0.10.7 (2017-07-19)

@@ -169,7 +169,6 @@ def image_scale(obj, css_class, default_scale, generate_tag=True):
 
 # --------------- Address ---------------
 
-
 def get_lat_lng_from_address(address):
     """Return tuple with status and geocoder object
        0: error, 1: success, 2: not found, 3: unexpected error"""
@@ -178,6 +177,10 @@ def get_lat_lng_from_address(address):
         key = api.portal.get_registry_record(googleapi)
         if key:
             geocode = geocoder.google(safe_utf8(address), key=key)
+            if geocode.content['status'] == 'REQUEST_DENIED':
+                logger.info('Google maps API: {0}'.format(
+                    geocode.content['error_message']))
+                geocode = geocoder.google(safe_utf8(address))
         else:
             geocode = geocoder.google(safe_utf8(address))
     except:
