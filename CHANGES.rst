@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.8 (unreleased)
+0.10.8 (2017-07-27)
 -------------------
 
 - Hack for right_action with bad related.
