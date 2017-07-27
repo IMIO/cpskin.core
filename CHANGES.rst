@@ -4,6 +4,9 @@ Changelog
 0.10.8 (unreleased)
 -------------------
 
+- Hack for right_action with bad related.
+  [bsuttor]
+
 - Check validity of google api key.
   [bsuttor]
 
