@@ -13,7 +13,10 @@ class RightActionsViewlet(ContentRelatedItems):
 
     def update(self):
         self.has_toc = self.hasTOC()
-        self.has_related = len(self.related_items()) > 0
+        try:
+            self.has_related = len(self.related_items()) > 0
+        except:
+            self.has_related = 0
         self.has_portlets = self.hasPortletsToShow()
         self.has_useful_links = self.has_related or self.has_portlets
         self.available = self.has_toc or self.has_related or self.has_portlets

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_get
-from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
+from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
@@ -281,19 +281,3 @@ def upgrade_to_two(context):
                     delattr(obj, attr)
                 except AttributeError:
                     logger.info('No {0} on: {1}'.format(attr, obj))
-
-
-def upgrade_front_page(context):
-    portal = api.portal.get()
-    if not portal.hasObject('front-page'):
-        frontPage = api.content.create(
-            container=portal,
-            type='Document',
-            id='front-page',
-            title='Bienvenue chez IMIO'
-        )
-    else:
-        frontPage = getattr(portal, 'front-page', None)
-    # if frontPage is not None:
-    #     frontPage.setExcludeFromNav(True)
-    setPageText(portal, frontPage, 'cpskin-frontpage-setup')

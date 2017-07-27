@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
+from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import set_exclude_from_nav
 from cpskin.locales import CPSkinMessageFactory as _
@@ -89,6 +89,7 @@ def installCore(context):
     addSubMenuPersistenceToRegistry()
     addSliderTypeToRegistry()
     set_googleapi_key()
+    upgrade_front_page()
 
 
 def uninstallCore(context):
@@ -492,3 +493,19 @@ def set_googleapi_key():
     if value == default_value:
         api.portal.set_registry_record(
             record_name, 'ABQIAAAAaKes6QWqobpCx2AOamo-shTwM0brOpm')
+
+
+def upgrade_front_page():
+    portal = api.portal.get()
+    if not portal.hasObject('front-page'):
+        frontPage = api.content.create(
+            container=portal,
+            type='Document',
+            id='front-page',
+            title='Bienvenue chez IMIO'
+        )
+    else:
+        frontPage = getattr(portal, 'front-page', None)
+    # if frontPage is not None:
+    #     frontPage.setExcludeFromNav(True)
+    setPageText(portal, frontPage, 'cpskin-frontpage-setup')
