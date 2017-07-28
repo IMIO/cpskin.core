@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.9 (unreleased)
+0.10.9 (2017-07-28)
 -------------------
 
 - related contact: Move schedule div into wrapped-coord.

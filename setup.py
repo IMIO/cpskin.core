@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-version = '0.10.9.dev0'
+version = '0.10.9'
 
 from setuptools import setup, find_packages
 
