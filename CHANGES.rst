@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.10 (unreleased)
+0.10.10 (2017-07-28)
 --------------------
 
 - Move schedule div.
