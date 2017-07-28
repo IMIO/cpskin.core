@@ -4,7 +4,8 @@ Changelog
 0.10.10 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Move schedule div.
+  [bsuttor]
 
 
 0.10.9 (2017-07-28)

@@ -14,6 +14,8 @@
                             country python: view.get_field(contact, 'country');
                             schedule python: view.get_field(contact, 'schedule');
                             ">
+
+        <div class="schedule" tal:condition="schedule" tal:content="structure schedule" />
         <div class="wrapped-coord">
           <div class="address" tal:condition="view/has_address">
             <div class="street">
@@ -67,7 +69,6 @@
               <a class="website" tal:condition="website" tal:replace="structure python: view.get_website(contact)"/>
             </div>
           </div>
-          <div class="schedule" tal:condition="schedule" tal:content="structure schedule" />
         </div>
 
         <tal:block tal:repeat="field view/fields_without_address">
