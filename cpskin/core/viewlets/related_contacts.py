@@ -26,7 +26,7 @@ class RelatedContactsViewlet(common.ViewletBase):
     address_fields = ('street', 'number', 'zip_code', 'city',
                       'additional_address_details', 'region', 'country')
     coordinates_fields = ('phone', 'cell_phone', 'fax', 'email', 'im_handle',
-                          'website')
+                          'website', 'schedule')
     ignore_fields = ('title', )
 
     def __init__(self, context, request, view, manager=None, field=[], selected=[]):  # noqa

@@ -4,7 +4,8 @@ Changelog
 0.10.9 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- related contact: Move schedule div into wrapped-coord.
+  [bsuttor]
 
 
 0.10.8 (2017-07-27)

@@ -12,6 +12,7 @@
                             city python: view.get_field(contact, 'city');
                             region python: view.get_field(contact, 'region');
                             country python: view.get_field(contact, 'country');
+                            schedule python: view.get_field(contact, 'schedule');
                             ">
         <div class="wrapped-coord">
           <div class="address" tal:condition="view/has_address">
@@ -39,14 +40,14 @@
             <div class="phone" tal:condition="phones">
               <tal:loop repeat="phone phones">
                 <a tal:condition="phone" href="" tal:attributes="href string:tel:${phone/raw}">
-                  <div tal:content="phone/formated"/>
+                  <div tal:content="phone/formated"></div>
                 </a>
               </tal:loop>
             </div>
             <div class="cell_phone" tal:condition="cell_phones">
               <tal:loop repeat="cell_phone cell_phones">
                 <a tal:condition="cell_phone" href="" tal:attributes="href string:tel:${cell_phone/raw}">
-                  <div tal:content="cell_phone/formated"/>
+                  <div tal:content="cell_phone/formated"></div>
                 </a>
               </tal:loop>
             </div>
@@ -61,11 +62,12 @@
             </div>
 
             <div class="email"><a class="email" tal:condition="email" tal:attributes="href string:mailto:${email};" tal:content="email"/></div>
-            <div class="im_handle" tal:condition="im_handle" tal:content="im_handle"/>
+            <div class="im_handle" tal:condition="im_handle" tal:content="im_handle"></div>
             <div class="website">
               <a class="website" tal:condition="website" tal:replace="structure python: view.get_website(contact)"/>
             </div>
           </div>
+          <div class="schedule" tal:condition="schedule" tal:content="structure schedule" />
         </div>
 
         <tal:block tal:repeat="field view/fields_without_address">
