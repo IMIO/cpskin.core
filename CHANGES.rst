@@ -1,10 +1,11 @@
 Changelog
 =========
 
-0.10.11 (unreleased)
+0.10.11 (2017-08-01)
 --------------------
 
-- Nothing changed yet.
+- Move h2 and activity div.
+  [mgennart]
 
 
 0.10.10 (2017-07-28)
