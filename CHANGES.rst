@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.12 (unreleased)
+0.10.12 (2017-08-02)
 --------------------
 
 - Check if lesscss is installed before uninstallation of diazotheme.
