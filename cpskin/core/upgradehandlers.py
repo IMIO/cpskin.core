@@ -75,6 +75,11 @@ def clean_portal_setup(context):
         logger.warn('{0} is NOT installed correctly'.format(profile_id))
         uninstall_profile_id = 'profile-{0}:uninstall'.format(package_id)
         if uninstall_profile_id in all_profiles:
+            # install lesscss because uninstall profiles need it.
+            if not qi.isProductInstalled('collective.lesscss'):
+                context.runAllImportStepsFromProfile(
+                    'profile-collective.lesscss:default')
+                qi.installProduct('collective.lesscss')
             context.runAllImportStepsFromProfile(uninstall_profile_id)
             ps.unsetLastVersionForProfile(profile_id)
             qi.uninstallProducts(products=[str(package_id)])
