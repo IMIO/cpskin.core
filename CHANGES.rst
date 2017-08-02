@@ -4,7 +4,8 @@ Changelog
 0.10.12 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Check if lesscss is installed before uninstallation of diazotheme.
+  [bsuttor]
 
 
 0.10.11 (2017-08-01)
