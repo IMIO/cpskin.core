@@ -289,7 +289,10 @@ class Wrapper(Wrapper):
             return
         # get translation if thereis
         try:
-            trans = ITranslationManager(self.context).get_translations()
+            if self.is_multilingual() and self.has_tg and len(ITranslationManager(self.context).get_translations()) > 1:
+                trans = ITranslationManager(self.context).get_translations()
+            else:
+                trans = {}
         except:
             trans = {}
         if len(trans) > 1:
