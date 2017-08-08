@@ -66,8 +66,7 @@ class Wrapper(Wrapper):
                 return
         except:
             return
-
-        if is_multilingual() and self.has_tg and len(ITranslationManager(self.context).get_translations()) > 1:  # noqa
+        if self.is_multilingual() and self.has_tg and len(ITranslationManager(self.context).get_translations()) > 1:  # noqa
             translations = ITranslationManager(self.context).get_translations()
             portal_level = len(self.portal.getPhysicalPath())
             trans = {}
