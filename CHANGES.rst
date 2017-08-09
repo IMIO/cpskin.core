@@ -4,7 +4,8 @@ Changelog
 0.10.13 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add resources to transmo-export view.
+  [bsuttor]
 
 
 0.10.12 (2017-08-02)
