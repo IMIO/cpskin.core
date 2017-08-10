@@ -162,10 +162,7 @@ def image_scale(obj, css_class, default_scale, generate_tag=True):
         else:
             image = None
     else:
-        if getattr(images, 'image', False):
-            image = images.scale('image', scale=default_scale)
-        else:
-            image = None
+        image = images.scale('image', scale=default_scale)
     if not image:
         return False
     if not generate_tag:

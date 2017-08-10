@@ -434,55 +434,74 @@ class EmptyPathBarViewlet(PathBarViewlet):
 
 
 class CpskinHealthy(BrowserView):
-    index = ViewPageTemplateFile('templates/cpskinheathy.pt')
+    index = ViewPageTemplateFile('templates/cpskinhealthy.pt')
+
+    def __init__(self, context, request):
+        self.portal = api.portal.get()
+        self.context = context
+        self.request = request
+        form = request.form
+        if 'method' in form.keys():
+            method = form['method']
+            if method in dir(self):
+                try:
+                    self.__getattribute__(method)()
+                except:
+                    msg = 'You can not start method: {0}'.format(method)
+            else:
+                msg = 'Method "{0}" do not exists.'.format(method)
+
+    def title(self):
+        return _(u'Cpskin Healthy')
+
+    def _redirect(self, msg=''):
+        if self.request:
+            if msg:
+                api.portal.show_message(message=msg,
+                                        request=self.request,
+                                        type='info')
+            url = '{0}/cpskinhealthy'.format(self.context.absolute_url())
+            self.request.response.redirect(url)
+        return msg
 
     def contacts(self):
         """Check if collective contact is installed and use cpskin workflow"""
         results = {}
         results['errors'] = []
-        results['is_cpskin_workflow'] = False
         qi = api.portal.get_tool('portal_quickinstaller')
         product_ids = [product['id'] for product in qi.listInstalledProducts()]
         if 'collective.contact.core' in product_ids:
             results['is_installed'] = True
         else:
             results['is_installed'] = False
-
-        is_orga, orga = self.get_one_orga()
-        if not is_orga:
-            results['errors'].append(orga)
             return results
-        is_workflow_id, workflow_id = self.get_workflow_id(orga)
-        if not is_workflow_id:
-            results['errors'].append(workflow_id)
-            return results
+        workflow_id = self.get_workflow_id('organization')
         if workflow_id == 'collective_contact_core_workflow':
             results['is_cpskin_workflow'] = False
         else:
             results['is_cpskin_workflow'] = True
         return results
 
-    def get_one_orga(self):
-        organizations = api.content.find(portal_type='organization')
-        if len(organizations) == 0:
-            return False, 'No organization'
-        else:
-            return True, organizations[0].getObject()
-
-    def get_workflow_id(self, obj):
+    def get_workflow_id(self, type_id):
         portal_workflow = api.portal.get_tool('portal_workflow')
-        workflow = portal_workflow.getWorkflowsFor(obj)
+        workflow = portal_workflow.getWorkflowsFor(type_id)
         if len(workflow) > 1:
-            return False, 'To much workflow for contacts.'
+            self._redirect('To much workflow for contacts.')
         workflow_id = workflow[0].id
-        return True, workflow_id
+        return workflow_id
+
+    def install_contact_core(self):
+        portal_setup = api.portal.get_tool('portal_setup')
+        portal_setup.runAllImportStepsFromProfile(
+            'collective.contact.core:default'
+        )
+        self._redirect('collective.contact.core installed.')
 
     def set_contact_worflow(self):
         portal = api.portal.get()
-        is_orga, orga = self.get_one_orga()
-        is_workflow_id, workflow_id = self.get_workflow_id(orga)
+        workflow_id = self.get_workflow_id('organization')
         if workflow_id == 'cpskin_collective_contact_workflow':
-            self.request.response.redirect('{0}/cpskinhealthy'.format(portal.absolute_url()))
+            self._redirect('cpskin_collective_contact_workflow already set.')
         chain = ('cpskin_collective_contact_workflow',)
         types = ('held_position',
                  'organization',
@@ -495,5 +514,4 @@ class CpskinHealthy(BrowserView):
         util = queryUtility(IRAMCache)
         if util is not None:
             util.invalidateAll()
-        self.request.response.redirect('{0}/cpskinhealthy'.format(portal.absolute_url()))
-        return "finished"
+        self._redirect('cpskin_collective_contact_workflow set.')

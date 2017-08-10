@@ -5,7 +5,7 @@
 
     <genericsetup:registerProfile
         name="default"
-        title="cpskin.core"
+        title="cpskin.core: default"
         directory="profiles/default"
         description="Installs CPSkin core"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
@@ -25,7 +25,7 @@
 
     <genericsetup:registerProfile
         name="to17"
-        title="cpskin.core"
+        title="cpskin.core: to17"
         directory="upgrades/to17"
         description="CPSKIN Core: upgrade to v17"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
@@ -34,7 +34,7 @@
 
     <genericsetup:registerProfile
         name="to19"
-        title="cpskin.core"
+        title="cpskin.core: to19"
         directory="upgrades/to19"
         description="CPSKIN Core: upgrade to v19"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
