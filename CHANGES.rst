@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.14 (unreleased)
+0.10.14 (2017-08-10)
 --------------------
 
 - First step on adding cpskinhealthy view.
