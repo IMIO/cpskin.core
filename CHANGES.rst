@@ -4,6 +4,9 @@ Changelog
 0.10.14 (unreleased)
 --------------------
 
+- First step on adding cpskinhealthy view.
+  [bsuttor]
+
 - Fix images scale for person with no logo.
   [bsuttor]
 

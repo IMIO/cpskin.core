@@ -312,4 +312,21 @@
     permission="zope2.View"
     />
 
+  <browser:view
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="cpskinhealthy"
+      class=".pages.CpskinHealthy"
+      permission="cmf.ModifyPortalContent"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:view
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="cpskinhealthy_config"
+      class=".pages.CpskinHealthy"
+      permission="cmf.ModifyPortalContent"
+      allowed_attributes="set_contact_worflow"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
 </configure>

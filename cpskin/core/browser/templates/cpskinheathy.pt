@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="cpskin">
+  <body>
+    <div metal:fill-slot="content">
+      <h2 i18n:translate="cpskinhealthy">Cpskin Healthy</h2>
+      <div id="contacts" tal:define="contacts view/contacts">
+        <h3 i18n:translate="collective contact">collective.contact</h3>
+        <div><span>Is collective.contact installed: </span><span tal:content="contacts/is_installed"></span></div>
+        <div>
+          <span>Is cpskin collective.contact worflow: </span>
+          <span tal:content="contacts/is_cpskin_workflow"> </span>
+          <!-- <a tal:condition="not: contacts/is_cpskin_workflow" tal:attributes="href string:${context/absolute_url}/cpskinhealthy_config/set_contact_worflow">Set cpksin workflow</a> -->
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from collective.documentgenerator.browser.generation_view import DocumentGenerationView
-from collective.documentgenerator.helper.dexterity import DXDocumentGenerationHelperView
+from collective.documentgenerator.browser.generation_view import DocumentGenerationView  # noqa
+from collective.documentgenerator.helper.dexterity import DXDocumentGenerationHelperView  # noqa
 from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.core.interfaces import IFolderViewSelectedContent as IFVSC
 from cpskin.core.utils import safe_utf8
@@ -12,12 +12,15 @@ from plone import api
 from plone.app.event.base import date_speller
 from plone.app.event.base import dates_for_display
 from plone.app.layout.viewlets.common import PathBarViewlet
+from plone.app.workflow.remap import remap_workflow
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.MailHost.interfaces import IMailHost
 from zope.component import getSiteManager
 from zope.component import getUtility
+from zope.component import queryUtility
 from zope.component.interfaces import ComponentLookupError
 from zope.publisher.browser import BrowserView
+from zope.ramcache.interfaces.ram import IRAMCache
 
 import base64
 import json
@@ -82,8 +85,9 @@ class OpenData(BrowserView):
 
 
 class IDocumentGenerationView(DocumentGenerationView):
-    """Override the 'get_generation_context' properly so 'get_base_generation_context'
-       is available for sub-packages that want to extend the template generation context."""
+    """Override the 'get_generation_context' properly so
+       'get_base_generation_context' is available for sub-packages
+       that want to extend the template generation context."""
 
     def _get_generation_context(self, helper_view, pod_template):
         result = super(IDocumentGenerationView, self)._get_generation_context(helper_view, pod_template)
@@ -427,3 +431,69 @@ class TeleService(BrowserView):
 
 class EmptyPathBarViewlet(PathBarViewlet):
     index = ViewPageTemplateFile('templates/empty.pt')
+
+
+class CpskinHealthy(BrowserView):
+    index = ViewPageTemplateFile('templates/cpskinheathy.pt')
+
+    def contacts(self):
+        """Check if collective contact is installed and use cpskin workflow"""
+        results = {}
+        results['errors'] = []
+        results['is_cpskin_workflow'] = False
+        qi = api.portal.get_tool('portal_quickinstaller')
+        product_ids = [product['id'] for product in qi.listInstalledProducts()]
+        if 'collective.contact.core' in product_ids:
+            results['is_installed'] = True
+        else:
+            results['is_installed'] = False
+
+        is_orga, orga = self.get_one_orga()
+        if not is_orga:
+            results['errors'].append(orga)
+            return results
+        is_workflow_id, workflow_id = self.get_workflow_id(orga)
+        if not is_workflow_id:
+            results['errors'].append(workflow_id)
+            return results
+        if workflow_id == 'collective_contact_core_workflow':
+            results['is_cpskin_workflow'] = False
+        else:
+            results['is_cpskin_workflow'] = True
+        return results
+
+    def get_one_orga(self):
+        organizations = api.content.find(portal_type='organization')
+        if len(organizations) == 0:
+            return False, 'No organization'
+        else:
+            return True, organizations[0].getObject()
+
+    def get_workflow_id(self, obj):
+        portal_workflow = api.portal.get_tool('portal_workflow')
+        workflow = portal_workflow.getWorkflowsFor(obj)
+        if len(workflow) > 1:
+            return False, 'To much workflow for contacts.'
+        workflow_id = workflow[0].id
+        return True, workflow_id
+
+    def set_contact_worflow(self):
+        portal = api.portal.get()
+        is_orga, orga = self.get_one_orga()
+        is_workflow_id, workflow_id = self.get_workflow_id(orga)
+        if workflow_id == 'cpskin_collective_contact_workflow':
+            self.request.response.redirect('{0}/cpskinhealthy'.format(portal.absolute_url()))
+        chain = ('cpskin_collective_contact_workflow',)
+        types = ('held_position',
+                 'organization',
+                 'person',
+                 'position')
+        state_map = {'active': 'active',
+                     'deactivated': 'deactivated'}
+        remap_workflow(portal, type_ids=types, chain=chain,
+                       state_map=state_map)
+        util = queryUtility(IRAMCache)
+        if util is not None:
+            util.invalidateAll()
+        self.request.response.redirect('{0}/cpskinhealthy'.format(portal.absolute_url()))
+        return "finished"

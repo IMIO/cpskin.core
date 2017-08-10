@@ -493,3 +493,26 @@ class TestViews(unittest.TestCase):
         alsoProvides(subfolder, IDirectAccess)
         subfolder.reindexObject()
         self.assertEqual(1, len(view.accesses()))
+
+    def test_cpskinhealthy_view(self):
+        applyProfile(self.portal, 'cpskin.workflow:default')
+        view = self.portal.restrictedTraverse('cpskinhealthy')
+        contacts = view.contacts()
+        self.assertEqual(contacts['is_installed'], False)
+        applyProfile(self.portal, 'collective.contact.core:default')
+        self.assertEqual(contacts['is_cpskin_workflow'], False)
+        contacts = view.contacts()
+        self.assertEqual(contacts['is_installed'], True)
+        directory = api.content.create(
+            container=self.portal, type='directory', id='directory')
+        organization = api.content.create(
+            container=directory, type='organization', id='organization')
+        organization.street = u'Rue Léon Morel'
+        organization.number = u'1'
+        organization.zip_code = u'5032'
+        organization.city = u'Isnes'
+        contacts = view.contacts()
+        self.assertEqual(contacts['is_cpskin_workflow'], False)
+        view.set_contact_worflow()
+        contacts = view.contacts()
+        self.assertEqual(contacts['is_cpskin_workflow'], True)
