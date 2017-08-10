@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.13 (unreleased)
+0.10.13 (2017-08-10)
 --------------------
 
 - Add resources to transmo-export view.
