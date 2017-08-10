@@ -4,7 +4,8 @@ Changelog
 0.10.14 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix images scale for person with no logo.
+  [bsuttor]
 
 
 0.10.13 (2017-08-10)
