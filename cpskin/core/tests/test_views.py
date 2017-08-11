@@ -502,15 +502,6 @@ class TestViews(unittest.TestCase):
         view.install_contact_core()
         contacts = view.contacts()
         self.assertEqual(contacts['is_installed'], True)
-        # directory = api.content.create(
-        #     container=self.portal, type='directory', id='directory')
-        # organization = api.content.create(
-        #     container=directory, type='organization', id='organization')
-        # organization.street = u'Rue Léon Morel'
-        # organization.number = u'1'
-        # organization.zip_code = u'5032'
-        # organization.city = u'Isnes'
-        # contacts = view.contacts()
         self.assertEqual(contacts['is_cpskin_workflow'], False)
         view.set_contact_worflow()
         contacts = view.contacts()
