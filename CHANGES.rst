@@ -4,7 +4,8 @@ Changelog
 0.10.15 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix empty images on homepage.
+  [bsuttor]
 
 
 0.10.14 (2017-08-10)
