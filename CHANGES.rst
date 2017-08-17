@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.15 (unreleased)
+0.10.15 (2017-08-17)
 --------------------
 
 - Fix empty images on homepage.
