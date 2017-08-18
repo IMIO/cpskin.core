@@ -200,7 +200,7 @@ class Wrapper(Wrapper):
                 value = field.getRaw(self.context)
                 self[fieldname] = [dict(q) for q in value]
 
-            elif type_ in ['ReferenceField']:
+            elif type_ in ['ReferenceField', 'OrderableReferenceField']:
                 pass
 
             elif type_ in ['ComputedField']:

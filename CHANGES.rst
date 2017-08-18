@@ -4,7 +4,8 @@ Changelog
 0.10.16 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add OrderableReferenceField for transmo.
+  [bsuttor]
 
 
 0.10.15 (2017-08-17)
