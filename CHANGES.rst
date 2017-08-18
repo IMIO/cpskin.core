@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.16 (unreleased)
+0.10.16 (2017-08-18)
 --------------------
 
 - Export subscribers in transmo-export view
