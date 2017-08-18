@@ -4,6 +4,9 @@ Changelog
 0.10.16 (unreleased)
 --------------------
 
+- Export subscribers in transmo-export view
+  [bsuttor]
+
 - Add OrderableReferenceField for transmo.
   [bsuttor]
 

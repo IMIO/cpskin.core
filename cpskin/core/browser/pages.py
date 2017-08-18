@@ -13,6 +13,7 @@ from plone.app.event.base import date_speller
 from plone.app.event.base import dates_for_display
 from plone.app.layout.viewlets.common import PathBarViewlet
 from plone.app.workflow.remap import remap_workflow
+from plone.resource.interfaces import IResourceDirectory
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.MailHost.interfaces import IMailHost
 from zope.component import getSiteManager
@@ -411,7 +412,6 @@ class TransmoExport(BrowserView):
         portal_workflow = api.portal.get_tool('portal_workflow')
         objects['workflow'] = portal_workflow.getDefaultChain()[0]
 
-        from plone.resource.interfaces import IResourceDirectory
         portal_resources = getUtility(IResourceDirectory, name='persistent')
         cpskin_resources_folder = portal_resources['cpskin']
         if cpskin_resources_folder:
@@ -419,6 +419,26 @@ class TransmoExport(BrowserView):
             for res in cpskin_resources_folder.listDirectory():
                 resources[res] = cpskin_resources_folder[res].data
             objects['resources'] = resources
+
+        # abonnes
+        brains = api.content.find(portal_type='NewsletterTheme')
+        newsletters = {}
+        for brain in brains:
+            obj = brain.getObject()
+            path = brain.getPath()
+            subscriber_brains = obj.getSubscribers()
+            subscribers = []
+            for subscriber_brain in subscriber_brains:
+                subscriber_obj = subscriber_brain.getObject()
+                subs = {}
+                subs['active'] = subscriber_obj.active
+                subs['email'] = subscriber_obj.email
+                subs['fullname'] = subscriber_obj.fullname
+                subs['format'] = subscriber_obj.format
+                subscribers.append(subs)
+            newsletters[path] = subscribers
+        objects['newsletters'] = newsletters
+
         portal_catalog = api.portal.get_tool('portal_catalog')
         total_objects = len(portal_catalog({}))
         objects['total_objects'] = str(total_objects)
