@@ -1,10 +1,11 @@
 Changelog
 =========
 
-0.10.17 (unreleased)
+0.10.17 (2017-08-24)
 --------------------
 
-- Nothing changed yet.
+- Add logo to coordinates in related_contact view.
+  [mgennart]
 
 
 0.10.16 (2017-08-18)
