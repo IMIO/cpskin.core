@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.18 (unreleased)
+0.10.18 (2017-08-25)
 --------------------
 
 - Fix banner acquisition : parent banner folder was taken before local banner
