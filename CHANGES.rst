@@ -4,6 +4,10 @@ Changelog
 0.10.18 (unreleased)
 --------------------
 
+- Add div to be able to fill schedule, etc. in Diazo even if activity is
+  empty : #18469
+  [laulaz]
+
 - We must always display right actions as content is coming unconditionnaly
   from Diazo
   [laulaz]

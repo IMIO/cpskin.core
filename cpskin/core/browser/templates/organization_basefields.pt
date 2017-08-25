@@ -23,6 +23,8 @@
                i18n:translate="" />
     </div>
 
+    <div id="before-activity"></div>
+
     <div id="activity" class="field" tal:condition="view/activity">
          <label><tal:block i18n:translate="">Activity</tal:block>:</label>
          <span class="note" tal:content="structure view/activity/output" />
