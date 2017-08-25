@@ -43,7 +43,7 @@ class CPSkinBannerViewlet(ViewletBase):
             'title': "",
             'description': "",
         }
-        if not self.isHomepage():
+        if not self.isFolderView():
             return default
         banner = self.getBanner()
         if not banner:
@@ -77,6 +77,11 @@ class CPSkinBannerViewlet(ViewletBase):
         obj = aq_inner(self.context)
         return INavigationRoot.providedBy(obj)
 
+    def isFolderView(self):
+        context = self.context
+        layout = context.getLayout()
+        return (layout == 'folderview')
+
     def isInMinisiteMode(self):
         if not HAS_MINISITE:
             return False
@@ -91,14 +96,18 @@ class CPSkinBannerViewlet(ViewletBase):
 
     def getBanner(self):
         context = self.context
+        local_banner_folder = getattr(context.aq_explicit, 'banner', None)
+        local_banner_event = getattr(context.aq_explicit, 'image_banner', None)
+        local_banner = getattr(context.aq_explicit, 'banner.jpg', None)
         banner_folder = getattr(context, 'banner', None)
-        banner_event = getattr(context, 'image_banner', None)
         banner = getattr(context, 'banner.jpg', None)
-        if context.portal_type == 'Event' and banner_event:
+        if context.portal_type == 'Event' and local_banner_event:
             banner = context.restrictedTraverse('@@images').scale(fieldname='image_banner')
-        elif banner_folder:
+            return banner
+        if local_banner_folder or (banner_folder and not local_banner):
+            banner_folder_to_use = local_banner_folder and local_banner_folder or banner_folder
             images = api.content.find(
-                context=banner_folder,
+                context=banner_folder_to_use,
                 portal_type='Image',
             )
             if images:

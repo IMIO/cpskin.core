@@ -4,6 +4,10 @@ Changelog
 0.10.18 (unreleased)
 --------------------
 
+- Fix banner acquisition : parent banner folder was taken before local banner
+  image : #18467
+  [laulaz]
+
 - Add div to be able to fill schedule, etc. in Diazo even if activity is
   empty : #18469
   [laulaz]
