@@ -4,7 +4,9 @@ Changelog
 0.10.18 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- We must always display right actions as content is coming unconditionnaly
+  from Diazo
+  [laulaz]
 
 
 0.10.17 (2017-08-24)

@@ -19,7 +19,7 @@ class RightActionsViewlet(ContentRelatedItems):
             self.has_related = 0
         self.has_portlets = self.hasPortletsToShow()
         self.has_useful_links = self.has_related or self.has_portlets
-        self.available = self.has_toc or self.has_related or self.has_portlets
+        self.available = True
 
     def showPortletsInRightPanel(self):
         portal_registry = api.portal.get_tool('portal_registry')
