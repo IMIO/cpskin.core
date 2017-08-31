@@ -4,7 +4,8 @@ Changelog
 0.10.19 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Avoid error when related items are broken : #18546
+  [laulaz]
 
 
 0.10.18 (2017-08-25)

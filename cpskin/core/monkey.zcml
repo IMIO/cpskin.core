@@ -4,6 +4,13 @@
     <include package="collective.monkeypatcher" />
 
     <monkey:patch
+        description="Patch of related items search when one is broken #18546"
+        class="plone.app.layout.viewlets.content.ContentRelatedItems"
+        original="related2brains"
+        replacement=".monkeypatches.related2brains"
+        />
+
+    <monkey:patch
         description="Patch of empty method called after user creation"
         class="Products.CMFCore.RegistrationTool.RegistrationTool"
         original="afterAdd"

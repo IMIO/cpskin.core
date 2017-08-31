@@ -3,7 +3,29 @@ from datetime import datetime
 from plone import api
 from plone.formwidget.datetime.z3cform.widget import DatetimeWidget
 from plone.formwidget.datetime.z3cform.widget import DateWidget
+from Products.CMFCore.utils import getToolByName
 from Products.PluginIndexes.KeywordIndex.KeywordIndex import KeywordIndex
+
+
+def related2brains(self, related):
+    """Return a list of brains based on a list of relations. Will filter
+    relations if the user has no permission to access the content.
+
+    :param related: related items
+    :type related: list of relations
+    :return: list of catalog brains
+    """
+    catalog = getToolByName(self.context, 'portal_catalog')
+    brains = []
+    for r in related:
+        path = r.to_path
+        if not path:
+            # See #18546 for broken related items
+            continue
+        # the query will return an empty list if the user has no
+        # permission to see the target object
+        brains.extend(catalog(path=dict(query=path, depth=0)))
+    return brains
 
 
 def afterMemberAdd(self, member, id, password, properties):
