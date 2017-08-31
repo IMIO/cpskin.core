@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.19 (unreleased)
+0.10.19 (2017-08-31)
 --------------------
 
 - Avoid error when related items are broken : #18546
