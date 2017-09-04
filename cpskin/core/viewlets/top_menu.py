@@ -20,7 +20,11 @@ class TopMenuViewlet(common.ViewletBase):
         menus = []
         for r in results:
             query_path = {'query': r.getPath(), 'depth': 1}
-            sub_items = api.content.find(path=query_path)
+            query = {
+                'path': query_path,
+                'sort_on': 'getObjPositionInParent',
+            }
+            sub_items = portal_catalog.searchResults(query)
             sub_items = [s for s in sub_items if not s.exclude_from_nav]
             menu_item = {
                 'root': r,

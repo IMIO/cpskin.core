@@ -4,7 +4,8 @@ Changelog
 0.10.20 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix sort order in top menu : #18586
+  [laulaz]
 
 
 0.10.19 (2017-08-31)
