@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.20 (unreleased)
+0.10.20 (2017-09-04)
 --------------------
 
 - Fix sort order in top menu : #18586
