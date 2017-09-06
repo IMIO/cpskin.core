@@ -15,11 +15,14 @@ class LayoutPolicy(base.LayoutPolicy):
 
     def bodyClass(self, template, view):
         """
-        Extend Plone to add a CSS class on <body> based on the 1st level
-        folder of the current context :
+        Extend Plone to add a CSS class on <body> based on :
+        1. the 1st level folder of the current context :
          - 'section-theme1' or 'section-theme2' or ... for portal tabs folders
            based on their positions
          - section-notheme if not in a portal tab folder
+        2. the citizen user
+        3. minisite
+        4. homepage
         """
         context = self.context
 
