@@ -4,7 +4,8 @@ Changelog
 0.10.21 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add css class on body for collection portal_types : #18592
+  [laulaz]
 
 
 0.10.20 (2017-09-04)

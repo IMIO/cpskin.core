@@ -2,6 +2,8 @@
 from plone import api
 from plone.app.layout.globals import layout as base
 from plone.app.layout.globals.interfaces import ILayoutPolicy
+from plone.i18n.normalizer import IIDNormalizer
+from zope.component import queryUtility
 from zope.interface import implements
 
 from cpskin.citizen.utils import is_citizen
@@ -23,6 +25,7 @@ class LayoutPolicy(base.LayoutPolicy):
         2. the citizen user
         3. minisite
         4. homepage
+        5. the portal_type of the collection (if any)
         """
         context = self.context
 
@@ -78,6 +81,16 @@ class LayoutPolicy(base.LayoutPolicy):
         user = api.user.get_current()
         if is_citizen(user):
             body_class += ' user-citizen'
+
+        if context.portal_type == 'Collection':
+            normalizer = queryUtility(IIDNormalizer).normalize
+            query = context.query
+            portal_types = []
+            for criteria in query:
+                if criteria.get('i') == 'portal_type':
+                    portal_types = criteria.get('v')
+            for portal_type in portal_types:
+                body_class += ' collection-%s' % normalizer(portal_type)
 
         return body_class
 
