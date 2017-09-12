@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.21 (unreleased)
+0.10.21 (2017-09-12)
 --------------------
 
 - Fix get level navigation when you are on edit of dexterty types.
