@@ -4,6 +4,9 @@ Changelog
 0.10.21 (unreleased)
 --------------------
 
+- Fix get level navigation when you are on edit of dexterty types.
+  [bsuttor]
+
 - Add css class on body for collection portal_types : #18592
   [laulaz]
 

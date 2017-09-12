@@ -38,7 +38,7 @@ def calculateTopLevel(context, portlet, request=None):
     portalPhyPath = portal.getPhysicalPath()
     path = [elem for elem in list(contextPhyPath) if elem not in list(portalPhyPath)]  # noqa
     depth = len(path)
-    if depth >= 3:
+    if depth >= 3 and 'dexterity-types' not in path:
         subLevels = depth - 3
         if subLevels:
             thirdLevelPath = '/'.join(contextPhyPath[:-subLevels])
