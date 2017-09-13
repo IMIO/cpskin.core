@@ -132,12 +132,14 @@
                         </ul>
                       </tal:bcl>
                     </div>
-                    <a tal:condition='python: not view.hide_see_all_link(content)'
+                    <div class="voir-tout-content">
+                      <a tal:condition='python: not view.hide_see_all_link(content)'
                        href=""
                        class="voir-tout"
                        tal:attributes="href string:${content/absolute_url}">
                        <span tal:replace='python: view.see_all(content)' />
-                    </a>
+                      </a>
+                    </div>
 
     </metal:homepage-collection>
 
@@ -262,12 +264,14 @@
                         </ul>
                       </tal:bcl>
                     </div>
-                    <a tal:condition='python: not view.hide_see_all_link(content)'
+                    <div class="voir-tout-content">
+                      <a tal:condition='python: not view.hide_see_all_link(content)'
                        href=""
                        class="voir-tout"
                        tal:attributes="href string:${content/absolute_url}">
                        <span tal:replace='python: view.see_all(content)' />
-                    </a>
+                      </a>
+                    </div>
 
     </metal:homepage-collection-new-template>
 
