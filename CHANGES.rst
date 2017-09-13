@@ -4,13 +4,15 @@ Changelog
 0.10.24 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Change date position on faceted view for News Item content types : #18697
+  Refactor tal conditions
+  [laulaz]
 
 
 0.10.23 (2017-09-13)
 --------------------
 
-- Add publication date on facted view for News Item content types : #18697
+- Add publication date on faceted view for News Item content types : #18697
   [laulaz]
 
 

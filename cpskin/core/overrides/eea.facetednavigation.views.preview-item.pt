@@ -24,9 +24,6 @@
         src string:$url/@@images/image/thumb"/>
     </span>
 
-    <span class="photoAlbumEntryTitle" tal:content="context/pretty_title_or_id|string:">Title</span>
-    <span class="photoAlbumEntryDescription" tal:content="description">Description</span>
-
 </tal:block>
 
 <tal:block tal:condition="not:is_namedimage">
@@ -41,8 +38,6 @@
       <img tal:replace="structure python:image_tag(scale='thumb', title=description)" />
     </span>
 
-    <span class="photoAlbumEntryTitle" tal:content="context/pretty_title_or_id|string:">Title</span>
-    <span class="photoAlbumEntryDescription" tal:content="description">Description</span>
 </tal:block>
 
     <span class="news-date"
@@ -50,6 +45,9 @@
           tal:condition="python: context.portal_type == 'News Item'">
       <span tal:replace="python: toLocalizedTime(context.effective(), long_format=0)" />
     </span>
+
+    <span class="photoAlbumEntryTitle" tal:content="context/pretty_title_or_id|string:">Title</span>
+    <span class="photoAlbumEntryDescription" tal:content="description">Description</span>
 
   </a>
 </div>
