@@ -4,7 +4,8 @@ Changelog
 0.10.23 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add publication date on facted view for News Item content types : #18697
+  [laulaz]
 
 
 0.10.22 (2017-09-13)
