@@ -55,3 +55,6 @@ div.table-responsive {
 .shown-right-panel {
 	display: block;
 }
+#portal-footer-wrapper.row {
+    clear: both;
+}

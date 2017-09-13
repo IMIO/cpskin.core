@@ -15,7 +15,7 @@
 #
 # 2) Run robot tests:
 #
-# $ bin/robot cpskin/core/tests/robot/test_sticky.robot
+# $ bin/robot -i current cpskin/core/tests/robot/test_sticky.robot
 #
 # See the http://docs.plone.org for further details (search for robot
 # framework).
