@@ -1,10 +1,11 @@
 Changelog
 =========
 
-0.10.22 (unreleased)
+0.10.22 (2017-09-13)
 --------------------
 
-- Nothing changed yet.
+- Add div for class voir-tout-content.
+  [mgennart]
 
 
 0.10.21 (2017-09-12)
