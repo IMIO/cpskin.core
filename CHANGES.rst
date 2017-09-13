@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10.23 (unreleased)
+0.10.23 (2017-09-13)
 --------------------
 
 - Add publication date on facted view for News Item content types : #18697
