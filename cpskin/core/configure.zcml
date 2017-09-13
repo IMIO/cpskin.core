@@ -1,4 +1,5 @@
-<configure xmlns="http://namespaces.zope.org/zope">
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser">
 
     <!-- Dependencies -->
     <include package="archetypes.schemaextender" />
@@ -12,6 +13,8 @@
     <include package="cpskin.locales" />
     <include package="collective.z3cform.keywordwidget" />
     <include package="eea.facetednavigation" />
+    <include package="z3c.jbot" file="meta.zcml" />
+    <browser:jbot directory="overrides" />
 
     <include file="permissions.zcml" />
     <include file="profiles.zcml" />

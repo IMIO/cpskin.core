@@ -72,6 +72,7 @@ setup(name='cpskin.core',
           'plone.app.imagecropping',
           'plone.app.multilingual',
           'plone.app.event',
+          'z3c.jbot',
       ],
       extras_require={
           'test': [
