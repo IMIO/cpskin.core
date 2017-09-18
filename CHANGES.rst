@@ -4,6 +4,9 @@ Changelog
 0.10.24 (unreleased)
 --------------------
 
+- Fix bodyclass related error when creating a new collection : #18592
+  [laulaz]
+
 - Avoid error when cpskin is not installed
   [laulaz]
 

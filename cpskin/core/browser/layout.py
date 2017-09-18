@@ -86,9 +86,10 @@ class LayoutPolicy(base.LayoutPolicy):
             normalizer = queryUtility(IIDNormalizer).normalize
             query = context.query
             portal_types = []
-            for criteria in query:
-                if criteria.get('i') == 'portal_type':
-                    portal_types = criteria.get('v')
+            if query is not None:
+                for criteria in query:
+                    if criteria.get('i') == 'portal_type':
+                        portal_types = criteria.get('v')
             for portal_type in portal_types:
                 body_class += ' collection-%s' % normalizer(portal_type)
 
