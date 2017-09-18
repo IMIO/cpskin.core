@@ -4,6 +4,9 @@ Changelog
 0.10.24 (unreleased)
 --------------------
 
+- Avoid error when cpskin is not installed
+  [laulaz]
+
 - Change date position on faceted view for News Item content types : #18697
   Refactor tal conditions
   [laulaz]

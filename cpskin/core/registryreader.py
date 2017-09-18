@@ -14,6 +14,8 @@ class CpskinQuerystringRegistryReader(QuerystringRegistryReader):
         values.get(self.prefix + '.field')
         for cpskin_index in cpskin_indexes:
             index = values.get(self.prefix + '.field').get(cpskin_index, None)
+            if index is None:
+                continue
             for value in index.values():
                 if isinstance(value, dict):
                     i18n_value = dict((k.encode('utf8'), v)
