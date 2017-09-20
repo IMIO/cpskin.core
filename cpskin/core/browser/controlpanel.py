@@ -150,6 +150,28 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         setshowPortletsInRightActionsPanel,
     )
 
+    def getMediaViewletVisibleAlbums(self):
+        return self.settings.media_viewlet_visible_albums
+
+    def setMediaViewletVisibleAlbums(self, value):
+        self.settings.media_viewlet_visible_albums = value
+
+    media_viewlet_visible_albums = property(
+        getMediaViewletVisibleAlbums,
+        setMediaViewletVisibleAlbums,
+    )
+
+    def getMediaViewletVisibleVideos(self):
+        return self.settings.media_viewlet_visible_videos
+
+    def setMediaViewletVisibleVideos(self, value):
+        self.settings.media_viewlet_visible_videos = value
+
+    media_viewlet_visible_videos = property(
+        getMediaViewletVisibleVideos,
+        setMediaViewletVisibleVideos,
+    )
+
 
 class CPSkinControlPanel(ControlPanelForm):
 

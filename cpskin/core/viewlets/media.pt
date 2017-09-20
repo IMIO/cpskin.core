@@ -1,6 +1,10 @@
 <div id="multimediaviewlet" tal:condition="view/available">
-    <div class="albums-container"
-         tal:define="albums view/get_albums"
+
+  <tal:def tal:define="albums view/get_albums;
+                       videos view/get_videos">
+
+    <div class=""
+         tal:attributes="class python: videos and 'albums-container' or 'albums-container albums-only'"
          tal:condition="albums">
         <h2 i18n:translate="Photos">Photos</h2>
         <div class="left"
@@ -30,8 +34,8 @@
                 Voir tous les albums
         </a>
     </div>
-    <div class="videos-container"
-         tal:define="videos view/get_videos"
+    <div class=""
+         tal:attributes="class python: albums and 'videos-container' or 'videos-container videos-only'"
          tal:condition="videos">
         <h2 i18n:translate="Videos">Vidéos</h2>
         <div class="right">
@@ -52,4 +56,7 @@
 
     </div>
     <div class="visualClear"></div>
+
+  </tal:def>
+
 </div>

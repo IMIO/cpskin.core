@@ -23,8 +23,5 @@
     <record name="cpskin.core.socialviewlet"
             remove="True" />
 
-    <record name="cpskin.core.default_visible_albums"
-            remove="True" />
-
 
 </registry>

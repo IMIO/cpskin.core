@@ -486,6 +486,57 @@ def addShowSloganToRegistry():
     records['cpskin.core.interfaces.ICPSkinSettings.show_slogan'] = record  # noqa
 
 
+def addMediaViewletAlbumsToRegistry(value):
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if 'cpskin.core.interfaces.ICPSkinSettings.media_viewlet_visible_albums' in records:
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.media_viewlet_visible_albums to registry')  # noqa
+    record = Record(field.Int(title=_(u'Viewlet media : Visible albums'),
+                               description=_(u'Number of visible albums on media viewlet.'),  # noqa
+                               required=False,
+                               default=1),
+                    value=value)
+    records['cpskin.core.interfaces.ICPSkinSettings.media_viewlet_visible_albums'] = record  # noqa
+
+
+def addMediaViewletVideosToRegistry(value):
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if 'cpskin.core.interfaces.ICPSkinSettings.media_viewlet_visible_videos' in records:
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.media_viewlet_visible_videos to registry')  # noqa
+    record = Record(field.Bool(title=_(u'Viewlet media : Visible videos'),
+                               description=_(u'Number of visible videos on media viewlet.'),  # noqa
+                               required=False,
+                               default=1),
+                    value=value)
+    records['cpskin.core.interfaces.ICPSkinSettings.media_viewlet_visible_videos'] = record  # noqa
+
+
+def addMediaViewletOptionsToRegistry(upgrade=False):
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    value = 1
+    if 'cpskin.core.default_visible_albums' in records:
+        logger.info('Using existing value for visible_albums')
+        value = records['cpskin.core.default_visible_albums'].value
+        del records['cpskin.core.default_visible_albums']
+    addMediaViewletAlbumsToRegistry(value)
+
+    value = 1
+    if upgrade:
+        value = 2  # old default value was fixed in Python code
+    addMediaViewletVideosToRegistry(value)
+
+
 def set_googleapi_key():
     record_name = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'
     default_value = 'AIzaSyDmbfEFrVcZ_x7Snn4Kv_WkqCmiZXn01rY'

@@ -62,13 +62,6 @@ class MediaActivationView(BrowserView):
         catalog.reindexObject(context)
         self._redirect(_(u'Multimedia viewlet enabled on content'))
         create_collections(context)
-        if 'visible_albums' not in self.context.propertyIds():
-            default_visible_albums = api.portal.get_registry_record(
-                'cpskin.core.default_visible_albums')
-            self.context.manage_addProperty(
-                'visible_albums',
-                default_visible_albums,
-                'int')
 
     def disable_media(self):
         """Disable the media"""
@@ -76,8 +69,6 @@ class MediaActivationView(BrowserView):
         noLongerProvides(context, IMediaActivated)
         catalog = api.portal.get_tool('portal_catalog')
         catalog.reindexObject(context)
-        if 'visible_albums' in self.context.propertyIds():
-            self.context.manage_delProperties([u'visible_albums'])
         self._redirect(_(u'Multimedia viewlet disabled for content'))
 
 

@@ -4,6 +4,10 @@ Changelog
 0.10.24 (unreleased)
 --------------------
 
+- Allow to set number of albums & videos for media viewlet in control panel
+  Also don't use local property visible_albums anymore
+  [laulaz]
+
 - Don't fetch / request all albums twice in media viewlet
   [laulaz]
 

@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v31: Add registry for media viewlet"
+        description="Add 2 records for media viewlet in registry"
+        handler=".upgradehandlers.upgrade_registry_for_media_viewlet"
+        source="30"
+        destination="31"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v30: Add banner image field for event"
         description="Purpose : use different banner for events #17809"
         handler=".upgradehandlers.add_banner_view_behavior"

@@ -36,8 +36,8 @@ class MediaViewlet(common.ViewletBase):
         collection = self.get_videos_collection()
         if not collection:
             return None
-        # limit = collection.getLimit()
-        limit = 2
+        limit = api.portal.get_registry_record(
+            'cpskin.core.interfaces.ICPSkinSettings.media_viewlet_visible_videos')  # noqa
         brains = [b for b in collection.queryCatalog()][:limit]
         for brain in brains:
             video = brain.getObject()
@@ -78,12 +78,8 @@ class MediaViewlet(common.ViewletBase):
             else:
                 logger.debug("{} has no lead image".format(
                     gallery_brain.getURL()))
-        limit = 5
-        if 'visible_albums' in self.context.propertyIds():
-            limit = self.context.getProperty('visible_albums')
-        else:
-            limit = api.portal.get_registry_record(
-                'cpskin.core.default_visible_albums')
+        limit = api.portal.get_registry_record(
+            'cpskin.core.interfaces.ICPSkinSettings.media_viewlet_visible_albums')  # noqa
         return albums[:limit]
 
     def get_collection(self, object_provide):

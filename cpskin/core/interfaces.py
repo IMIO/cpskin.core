@@ -129,6 +129,22 @@ class ICPSkinSettings(Interface):
         default=False
     )
 
+    media_viewlet_visible_albums = schema.Int(
+        title=_(u'Viewlet media : Visible albums'),
+        description=_(u'Number of visible albums on media viewlet.'),
+        required=False,
+        min=0,
+        default=1
+    )
+
+    media_viewlet_visible_videos = schema.Int(
+        title=_(u'Viewlet media : Visible videos'),
+        description=_(u'Number of visible videos on media viewlet.'),
+        required=False,
+        min=0,
+        default=1
+    )
+
 
 class IVideoCollection(Interface):
     """
