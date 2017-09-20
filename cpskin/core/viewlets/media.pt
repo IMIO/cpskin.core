@@ -1,19 +1,22 @@
 <div id="multimediaviewlet" tal:condition="view/available">
-    <div class="albums-container" tal:condition="view/get_one_album">
+    <div class="albums-container"
+         tal:define="albums view/get_albums"
+         tal:condition="albums">
         <h2 i18n:translate="Photos">Photos</h2>
-        <div class="left">
+        <div class="left"
+             tal:define="first_album python: albums[0]">
             <ul class="albums">
-                <li tal:repeat='album view/get_one_album'
-                    class="album-0">
+                <li class="album-0">
                 <div class="lead-image-wrapper" >
-                    <img tal:replace="structure album" />
+                    <img tal:replace="structure first_album" />
                 </div>
                 </li>
             </ul>
         </div>
-        <div class="center">
+        <div class="center"
+             tal:define="other_albums python: albums[1:]">
             <ul class="albums">
-                <li tal:repeat='album view/get_four_albums'
+                <li tal:repeat='album other_albums'
                     tal:attributes="class string:album-${repeat/album/number}">
                     <div class="lead-image-wrapper" >
                         <img tal:replace="structure album" />

@@ -4,6 +4,9 @@ Changelog
 0.10.24 (unreleased)
 --------------------
 
+- Don't fetch / request all albums twice in media viewlet
+  [laulaz]
+
 - Fix bodyclass related error when creating a new collection : #18592
   [laulaz]
 

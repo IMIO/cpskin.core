@@ -103,11 +103,3 @@ class MediaViewlet(common.ViewletBase):
         if not collection:
             return None
         return collection
-
-    def get_one_album(self):
-        galleries = self.get_albums()
-        return galleries[:1]
-
-    def get_four_albums(self):
-        galleries = self.get_albums()
-        return galleries[1:5]
