@@ -371,7 +371,7 @@ def addSliderTimerToRegistry():
     logger.info(
         'Adding cpskin.core.interfaces.ICPSkinSettings.slider_timer to registry')  # noqa
     record = Record(
-        field.Bool(
+        field.Int(
             title=_(u'Slider timer'),
             description=_(u'Number of seconds between each transition.'),
             required=False,
