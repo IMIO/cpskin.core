@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.10.24 (unreleased)
---------------------
+0.11 (2017-09-20)
+-----------------
 
 - Hide top actions submenu on page load : #18474
   [laulaz]
