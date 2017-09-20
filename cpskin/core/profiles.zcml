@@ -52,7 +52,7 @@
         />
 
     <genericsetup:upgradeStep
-        title="CPSKIN Core: upgrade to v26: Add cpskin_navigation_view"
+        title="CPSKIN Core: upgrade to v29: Add cpskin_navigation_view"
         description="Purpose : Add cpskin_navigation_view"
         handler=".upgradehandlers.update_types"
         source="28"
