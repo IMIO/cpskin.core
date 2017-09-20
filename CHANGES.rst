@@ -4,6 +4,9 @@ Changelog
 0.10.24 (unreleased)
 --------------------
 
+- Add 'expired-content' class on body if current context has expired : #18846
+  [laulaz]
+
 - Add show_description option to show description on portal tab items : #17333
   [laulaz]
 

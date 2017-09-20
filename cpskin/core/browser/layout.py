@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from DateTime import DateTime
 from plone import api
 from plone.app.layout.globals import layout as base
 from plone.app.layout.globals.interfaces import ILayoutPolicy
@@ -26,6 +27,7 @@ class LayoutPolicy(base.LayoutPolicy):
         3. minisite
         4. homepage
         5. the portal_type of the collection (if any)
+        6. the expiration of the content
         """
         context = self.context
 
@@ -92,6 +94,10 @@ class LayoutPolicy(base.LayoutPolicy):
                         portal_types = criteria.get('v')
             for portal_type in portal_types:
                 body_class += ' collection-%s' % normalizer(portal_type)
+
+        expiration_date = context.expiration_date
+        if expiration_date and expiration_date < DateTime():
+            body_class += ' expired-content'
 
         return body_class
 
