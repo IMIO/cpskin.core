@@ -13,7 +13,6 @@ from cpskin.core.setuphandlers import addSliderTypeToRegistry
 from cpskin.core.setuphandlers import addSubMenuPersistenceToRegistry
 from cpskin.core.setuphandlers import addTopMenuContentsToRegistry
 from cpskin.core.setuphandlers import addTopMenuLeadImageToRegistry
-from cpskin.core.setuphandlers import setPageText
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
 from eea.facetednavigation.subtypes.interfaces import IPossibleFacetedNavigable
