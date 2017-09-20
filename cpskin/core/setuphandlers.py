@@ -537,6 +537,23 @@ def addMediaViewletOptionsToRegistry(upgrade=False):
     addMediaViewletVideosToRegistry(value)
 
 
+def addDescriptionOnThemesOptionToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if 'cpskin.core.interfaces.ICPSkinSettings.show_description_on_themes' in records:  # noqa
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.show_description_on_themes to registry')  # noqa
+    record = Record(field.Bool(title=_(u'Show description on themes'),
+                               description=_(u'Add content description after every portal tab menu title.'),  # noqa
+                               required=False,
+                               default=False),
+                    value=False)
+    records['cpskin.core.interfaces.ICPSkinSettings.show_description_on_themes'] = record  # noqa
+
+
 def set_googleapi_key():
     record_name = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'
     default_value = 'AIzaSyDmbfEFrVcZ_x7Snn4Kv_WkqCmiZXn01rY'

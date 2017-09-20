@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v32: Add registry for themes descriptions"
+        description="Add record for themes descriptions in registry"
+        handler=".upgradehandlers.upgrade_registry_for_themes_descriptions"
+        source="31"
+        destination="32"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v31: Add registry for media viewlet"
         description="Add 2 records for media viewlet in registry"
         handler=".upgradehandlers.upgrade_registry_for_media_viewlet"

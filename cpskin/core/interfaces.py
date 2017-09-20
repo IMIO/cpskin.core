@@ -145,6 +145,13 @@ class ICPSkinSettings(Interface):
         default=1
     )
 
+    show_description_on_themes = schema.Bool(
+        title=_(u'Show description on themes'),
+        description=_(u'Add content description after every portal tab menu title.'),
+        required=False,
+        default=False
+    )
+
 
 class IVideoCollection(Interface):
     """

@@ -4,6 +4,9 @@ Changelog
 0.10.24 (unreleased)
 --------------------
 
+- Add show_description option to show description on portal tab items : #17333
+  [laulaz]
+
 - Allow to set number of albums & videos for media viewlet in control panel
   Also don't use local property visible_albums anymore
   [laulaz]

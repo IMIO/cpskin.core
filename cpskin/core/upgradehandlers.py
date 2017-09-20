@@ -5,6 +5,7 @@ from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
+from cpskin.core.setuphandlers import addDescriptionOnThemesOptionToRegistry
 from cpskin.core.setuphandlers import addLoadPageMenuToRegistry
 from cpskin.core.setuphandlers import addMediaViewletOptionsToRegistry
 from cpskin.core.setuphandlers import addPortletsInRightActionsToRegistry
@@ -28,6 +29,10 @@ import logging
 
 
 logger = logging.getLogger('cpskin.core')
+
+
+def upgrade_registry_for_themes_descriptions(context):
+    addDescriptionOnThemesOptionToRegistry()
 
 
 def upgrade_registry_for_media_viewlet(context):

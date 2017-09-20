@@ -172,6 +172,17 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         setMediaViewletVisibleVideos,
     )
 
+    def getShowDescriptionOnThemes(self):
+        return self.settings.show_description_on_themes
+
+    def setShowDescriptionOnThemes(self, value):
+        self.settings.show_description_on_themes = value
+
+    show_description_on_themes = property(
+        getShowDescriptionOnThemes,
+        setShowDescriptionOnThemes,
+    )
+
 
 class CPSkinControlPanel(ControlPanelForm):
 
