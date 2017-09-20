@@ -2,7 +2,7 @@
      tal:define="show_lead_image view/show_lead_image">
   <div class="top-menu-action"
        tal:repeat="menu view/menus">
-    <dl class="actionMenu" id=""
+    <dl class="actionMenu deactivated" id=""
         tal:define="root menu/root"
         tal:attributes="id string:top-menu-${root/getId}">
       <dt class="actionMenuHeader">

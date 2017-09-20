@@ -4,6 +4,9 @@ Changelog
 0.10.24 (unreleased)
 --------------------
 
+- Hide top actions submenu on page load : #18474
+  [laulaz]
+
 - Add 'expired-content' class on body if current context has expired : #18846
   [laulaz]
 
