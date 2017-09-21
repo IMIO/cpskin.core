@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.1 (unreleased)
+0.11.1 (2017-09-21)
 -------------------
 
 - On cpskin_navigation_view, only get direct access object after first level folder #18827.
