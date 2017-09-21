@@ -46,4 +46,4 @@ class CpskinNavigationViewWithLeadImage(FolderView):
 
     def image(self, brain):
         obj = brain.getObject()
-        return image_scale(obj, 'leadimage-navigation', 'mini')
+        return image_scale(obj, 'leadimage-navigation', 'thumb')
