@@ -4,6 +4,9 @@ Changelog
 0.11.1 (unreleased)
 -------------------
 
+- On cpskin_navigation_view, only get direct access object after first level folder #18827.
+  [bsuttor]
+
 - Add cpskin_navigation_view_with_leadimage.
   [bsuttor]
 

@@ -16,6 +16,8 @@ class CpskinNavigationView(FolderView):
         return portal_catalog(query)
 
     def accesses(self):
+        if self.level() < 2:
+            return []
         portal_catalog = api.portal.get_tool('portal_catalog')
         context_path = '/'.join(self.context.getPhysicalPath())
         query = {}
@@ -23,6 +25,12 @@ class CpskinNavigationView(FolderView):
         query['sort_on'] = 'sortable_title'
         query['object_provides'] = 'cpskin.menu.interfaces.IDirectAccess'
         return portal_catalog(query)
+
+    def level(self):
+        portal = api.portal.get()
+        portal_level = len(portal.getPhysicalPath())
+        context_level = len(self.context.getPhysicalPath())
+        return context_level - portal_level
 
 
 class CpskinNavigationViewWithLeadImage(FolderView):

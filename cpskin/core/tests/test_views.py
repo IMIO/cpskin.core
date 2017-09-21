@@ -483,6 +483,9 @@ class TestViews(unittest.TestCase):
         self.portal.portal_workflow.setDefaultChain('cpskin_workflow')
         folder = api.content.create(self.portal, 'Folder', 'folder')
         subfolder = api.content.create(folder, 'Folder', 'subfolder')
+        subsubfolder = api.content.create(subfolder, 'Folder', 'subfolder')
+        alsoProvides(subsubfolder, IDirectAccess)
+        subsubfolder.reindexObject()
         view = api.content.get_view(
             name='cpskin_navigation_view',
             context=folder,
@@ -491,8 +494,10 @@ class TestViews(unittest.TestCase):
         api.content.transition(obj=subfolder, transition='publish_and_show')
         self.assertEqual(1, len(view.menus()))
         self.assertEqual(0, len(view.accesses()))
-        alsoProvides(subfolder, IDirectAccess)
-        subfolder.reindexObject()
+        view = api.content.get_view(
+            name='cpskin_navigation_view',
+            context=subfolder,
+            request=subfolder.REQUEST)
         self.assertEqual(1, len(view.accesses()))
 
     def test_cpskinhealthy_view(self):
@@ -508,7 +513,7 @@ class TestViews(unittest.TestCase):
         contacts = view.contacts()
         self.assertEqual(contacts['is_cpskin_workflow'], True)
 
-    def test_cpskin_navigation_view_with_leadimage(self):
+    def test_cpskin_navigation_with_leadimage_view(self):
         applyProfile(self.portal, 'cpskin.workflow:default')
         add_behavior(
             'Folder',
