@@ -8,15 +8,16 @@ from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import add_leadimage_from_file
 from cpskin.menu.interfaces import IDirectAccess
-from DateTime import DateTime
 from datetime import datetime
 from datetime import timedelta
+from DateTime import DateTime
 from plone import api
 from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.schemaeditor.utils import FieldAddedEvent
 from plone.schemaeditor.utils import IEditableSchema
+from plone.uuid.interfaces import IUUID
 from Products.statusmessages.interfaces import IStatusMessage
 from zope import schema
 from zope.component import getMultiAdapter
@@ -506,3 +507,25 @@ class TestViews(unittest.TestCase):
         view.set_contact_worflow()
         contacts = view.contacts()
         self.assertEqual(contacts['is_cpskin_workflow'], True)
+
+    def test_cpskin_navigation_view_with_leadimage(self):
+        applyProfile(self.portal, 'cpskin.workflow:default')
+        add_behavior(
+            'Folder',
+            'plone.app.contenttypes.behaviors.leadimage.ILeadImage')
+        self.portal.portal_workflow.setDefaultChain('cpskin_workflow')
+        folder = api.content.create(self.portal, 'Folder', 'folder')
+        subfolder = api.content.create(folder, 'Folder', 'subfolder')
+        view = api.content.get_view(
+            name='cpskin_navigation_view_with_leadimage',
+            context=folder,
+            request=folder.REQUEST)
+        self.assertEqual(0, len(view.menus()))
+        api.content.transition(obj=subfolder, transition='publish_and_show')
+        self.assertEqual(1, len(view.menus()))
+        brain = api.content.find(UID=IUUID(subfolder))[0]
+        self.assertFalse(view.image(brain))
+        add_leadimage_from_file(subfolder, 'visuel.png')
+        self.assertTrue(view.image(brain).startswith(
+            u'<img src="http://nohost/plone/folder/subfolder/@@images'
+        ))

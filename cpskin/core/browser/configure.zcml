@@ -79,6 +79,15 @@
       />
 
   <browser:page
+      for="plone.dexterity.interfaces.IDexterityContainer"
+      name="cpskin_navigation_view_with_leadimage"
+      class=".folder.CpskinNavigationViewWithLeadImage"
+      layer="..interfaces.ICPSkinCoreLayer"
+      template="templates/cpskin_navigation_view_with_leadimage.pt"
+      permission="zope.Public"
+      />
+
+  <browser:page
       for="*"
       name="plone_layout"
       class=".layout.LayoutPolicy"

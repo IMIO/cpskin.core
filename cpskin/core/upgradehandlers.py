@@ -41,10 +41,12 @@ def upgrade_registry_for_media_viewlet(context):
 
 def add_right_actions(context):
     addPortletsInRightActionsToRegistry()
-    context.runImportStepFromProfile('profile-cpskin.core:default',
+    context.runImportStepFromProfile(
+        'profile-cpskin.core:default',
         'viewlets'
     )
-    context.runImportStepFromProfile('profile-cpskin.core:default',
+    context.runImportStepFromProfile(
+        'profile-cpskin.core:default',
         'jsregistry'
     )
 

@@ -4,7 +4,8 @@ Changelog
 0.11.1 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add cpskin_navigation_view_with_leadimage.
+  [bsuttor]
 
 
 0.11 (2017-09-20)

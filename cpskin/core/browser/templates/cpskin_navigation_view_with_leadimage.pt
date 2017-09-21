@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="plone">
+<body>
+
+<metal:content-core fill-slot="content-core">
+
+<div class="navigation-view-menus" tal:repeat="menu view/menus">
+
+  <a href="" tal:attributes="href menu/getURL" >
+    <div class="navigation-view-menu"
+        tal:define="scaled_image python:view.image(menu)">
+      <img tal:condition="scaled_image"
+           tal:replace="structure python: scaled_image" />
+      <h2 class="navigation-view-menu-title" tal:content="menu/Title"></h2>
+      <div class="navigation-view-menu-description" tal:content="menu/Description"></div>
+    </div>
+  </a>
+</div>
+
+
+
+
+</metal:content-core>
+
+</body>
+</html>

@@ -3,5 +3,6 @@
   <property name="view_methods" purge="False">
     <element value="folderview" />
     <element value="cpskin_navigation_view" />
+    <element value="cpskin_navigation_view_with_leadimage" />
   </property>
 </object>

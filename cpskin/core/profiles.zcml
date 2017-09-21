@@ -42,6 +42,16 @@
         />
 
     <!-- Upgrade steps -->
+
+    <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v33: Add cpskin_navigation_view_with_leadimage"
+        description="Purpose : Add cpskin_navigation_view"
+        handler=".upgradehandlers.update_types"
+        source="32"
+        destination="33"
+        profile="cpskin.core:default"
+        />
+
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v32: Add registry for themes descriptions"
         description="Add record for themes descriptions in registry"
