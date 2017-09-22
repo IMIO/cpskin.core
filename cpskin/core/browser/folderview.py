@@ -6,8 +6,8 @@ from cpskin.core.interfaces import IFolderViewWithBigImages
 from cpskin.core.utils import image_scale
 from cpskin.core.vocabulary import DISPLAY_TYPES
 from cpskin.locales import CPSkinMessageFactory as _
-from DateTime import DateTime
 from datetime import datetime
+from DateTime import DateTime
 from imio.media.browser import utils
 from plone import api
 from plone.app.contenttypes.browser.folder import FolderView as FoldV
@@ -131,8 +131,8 @@ class FolderView(FoldV):
                 )
                 brains = filter_and_resort_brains[:item_count_homepage]
                 content.item_count = item_count
-        else:
-            brains = brains[:item_count_homepage]
+
+        brains = brains[:item_count_homepage]
         if not with_sticky:
             return brains
         portal_catalog = api.portal.get_tool(name='portal_catalog')

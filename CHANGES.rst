@@ -4,7 +4,8 @@ Changelog
 0.11.2 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix item count on index view for events collection.
+  [bsuttor]
 
 
 0.11.1 (2017-09-21)
