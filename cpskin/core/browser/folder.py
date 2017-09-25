@@ -27,10 +27,10 @@ class CpskinNavigationView(FolderView):
         return portal_catalog(query)
 
     def level(self):
-        portal = api.portal.get()
-        portal_level = len(portal.getPhysicalPath())
+        navroot_level = len(
+            api.portal.get_navigation_root(self.context).getPhysicalPath())
         context_level = len(self.context.getPhysicalPath())
-        return context_level - portal_level
+        return context_level - navroot_level
 
 
 class CpskinNavigationViewWithLeadImage(FolderView):

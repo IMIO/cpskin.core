@@ -4,7 +4,8 @@ Changelog
 0.11.3 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use navigation root instead of portal to compute level of folder.
+  [bsuttor]
 
 
 0.11.2 (2017-09-22)
