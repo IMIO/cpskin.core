@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.3 (unreleased)
+0.11.3 (2017-09-25)
 -------------------
 
 - Use navigation root instead of portal to compute level of folder.
