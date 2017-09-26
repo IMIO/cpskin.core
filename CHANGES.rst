@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.4 (unreleased)
+0.11.4 (2017-09-26)
 -------------------
 
 - Get only published_and_shown objects into top menu.
