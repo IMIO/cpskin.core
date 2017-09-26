@@ -4,7 +4,8 @@ Changelog
 0.11.4 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Get only published_and_shown objects into top menu.
+  [bsuttor]
 
 
 0.11.3 (2017-09-25)

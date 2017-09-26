@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from cpskin.core.interfaces import IElectedContentForTopMenu
 from plone import api
 from plone.app.layout.viewlets import common
-
-from cpskin.core.interfaces import IElectedContentForTopMenu
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class TopMenuViewlet(common.ViewletBase):
@@ -23,6 +21,7 @@ class TopMenuViewlet(common.ViewletBase):
             query = {
                 'path': query_path,
                 'sort_on': 'getObjPositionInParent',
+                'review_state': ('published_and_shown', )
             }
             sub_items = portal_catalog.searchResults(query)
             sub_items = [s for s in sub_items if not s.exclude_from_nav]
