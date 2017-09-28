@@ -4,7 +4,8 @@ Changelog
 0.11.5 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Reimplement validatePhone method to add / and ..
+  [bsuttor]
 
 
 0.11.4 (2017-09-26)
