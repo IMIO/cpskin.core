@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.5 (unreleased)
+0.11.5 (2017-09-29)
 -------------------
 
 - Reimplement validatePhone method to add / and ..
