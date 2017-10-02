@@ -154,18 +154,27 @@ def add_leadimage_from_file(container, file_name,
         setattr(container, image_field, namedblobimage)
 
 
-def image_scale(obj, css_class, default_scale, generate_tag=True):
+def image_scale(obj, css_class, default_scale, generate_tag=True, with_uid=True):
     images = obj.restrictedTraverse('@@images')
     if obj.portal_type in ['organization', 'person']:
         if getattr(images, 'logo', False):
-            image = images.scale('logo', scale=default_scale)
+            image_field_id = 'logo'
+            image = images.scale(image_field_id, scale=default_scale)
         else:
             image = None
     else:
-        image = images.scale('image', scale=default_scale)
+        image_field_id = 'image'
+        image = images.scale(image_field_id, scale=default_scale)
     if not image:
         return False
     if not generate_tag:
+        return image
+    if not with_uid:
+        image_path = '{0}/@@images/{1}/{2}'.format(
+            '/'.join(obj.getPhysicalPath()),
+            image_field_id,
+            default_scale)
+        image.url = image_path
         return image
     return image.tag(css_class=css_class) if image.tag() else ''
 

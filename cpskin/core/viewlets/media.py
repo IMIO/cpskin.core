@@ -67,8 +67,11 @@ class MediaViewlet(common.ViewletBase):
                 albums.append(html)
             # DX
             elif ICollection.providedBy(collection) and imagescale:
-                scale = image_scale(gallery, 'image', 'multimedia')
-                # scale = imagescale.scale('image', width=300, height=300)
+                scale = image_scale(
+                    gallery,
+                    'image',
+                    'multimedia',
+                    with_uid=False)
                 if not scale:
                     logger.debug(
                         '{0} has no album collection'.format(self.context))
