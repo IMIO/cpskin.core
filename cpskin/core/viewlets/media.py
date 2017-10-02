@@ -22,7 +22,7 @@ class MediaViewlet(common.ViewletBase):
     def available(self):
         context = self.context
         media_view = getMultiAdapter((context, self.request),
-                                     name="media_activation")
+                                     name='media_activation')
         return media_view.is_enabled
 
     @property
@@ -52,15 +52,15 @@ class MediaViewlet(common.ViewletBase):
         albums = []
         collection = self.get_albums_collection()
         if not collection:
-            logger.debug("{} has no album collection".format(self.context))
-            return ""
+            logger.debug('{0} has no album collection'.format(self.context))
+            return ''
         for gallery_brain in collection.queryCatalog():
             gallery = gallery_brain.getObject()
             imagescale = self.context.unrestrictedTraverse(
                 gallery.getPhysicalPath() + ('@@images',))
             # AT
             if getattr(gallery_brain, 'hasContentLeadImage', False):
-                html = "<a href='{}'>".format(gallery.absolute_url())
+                html = '<a href="{0}">'.format(gallery.absolute_url())
                 html += imagescale.scale('leadImage',
                                          width=300, height=300).tag()
                 html += '</a>'
@@ -71,14 +71,14 @@ class MediaViewlet(common.ViewletBase):
                 # scale = imagescale.scale('image', width=300, height=300)
                 if not scale:
                     logger.debug(
-                        "{} has no album collection".format(self.context))
+                        '{0} has no album collection'.format(self.context))
                 else:
-                    html = "<a href='{}'>".format(gallery.absolute_url())
+                    html = '<a href="{0}">'.format(gallery.absolute_url())
                     html += scale.tag()
                     html += '</a>'
                     albums.append(html)
             else:
-                logger.debug("{} has no lead image".format(
+                logger.debug('{0} has no lead image'.format(
                     gallery_brain.getURL()))
         limit = api.portal.get_registry_record(
             'cpskin.core.interfaces.ICPSkinSettings.media_viewlet_visible_albums')  # noqa
