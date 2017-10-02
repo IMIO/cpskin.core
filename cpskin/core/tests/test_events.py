@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 from collective.geo.behaviour.interfaces import ICoordinates
 from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING

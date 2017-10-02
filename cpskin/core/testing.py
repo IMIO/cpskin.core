@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.utils import add_behavior
+from plone import api
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
@@ -43,6 +44,10 @@ class CPSkinCorePloneWithPackageLayer(PloneWithPackageLayer):
         footer_static.text = richtextvalue
         add_behavior('Document', 'cpskin.core.behaviors.metadata.IHiddenTags')
         add_behavior('News Item', 'collective.sticky.behavior.ISticky')
+        googleapi = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'
+        api.portal.set_registry_record(
+            googleapi,
+            u'AIzaSyChlyBRkPYJvny6t0mRqawQtQao2cJBvaA')
 
 
 CPSKIN_CORE_FIXTURE = CPSkinCorePloneWithPackageLayer(

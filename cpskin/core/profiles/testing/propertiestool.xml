@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object name="portal_properties">
+    <object name="imaging_properties" meta_type="Plone Property Sheet">
+        <property name="allowed_sizes" type="lines" purge="False">
+            <!-- <element value="banner 1200:300" />
+            <element value="carousel 250:250" />
+            <element value="collection 250:116" />
+            <element value="header 1920:400" />
+            <element value="large 950:950" />
+            <element value="leadimage 81:67" /> -->
+            <element value="mini 450:450" />
+            <element value="multimedia 300:200" />
+            <element value="preview 600:600" />
+            <element value="slider 950:440" />
+            <element value="thumb 250:250" />
+            <element value="visuel 200:300" />
+        </property>
+    </object>
+</object>

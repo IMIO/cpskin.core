@@ -127,7 +127,6 @@ class TestViewlets(unittest.TestCase):
         # Set lead image to album folder
         add_leadimage_from_file(album, 'cpskinlogo.png')
         add_keyword(album, 'hiddenTags', keywords)
-
         self.assertEqual(len(media_viewlet.get_albums()), 1)
 
     def test_above_related_contacts_viewlet(self):
