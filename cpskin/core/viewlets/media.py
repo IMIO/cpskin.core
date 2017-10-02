@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from cpskin.core.interfaces import IAlbumCollection
 from cpskin.core.interfaces import IVideoCollection
+from cpskin.core.utils import image_scale
 from imio.media.browser import utils
 from plone import api
 from plone.app.contenttypes.interfaces import ICollection
@@ -66,7 +67,8 @@ class MediaViewlet(common.ViewletBase):
                 albums.append(html)
             # DX
             elif ICollection.providedBy(collection) and imagescale:
-                scale = imagescale.scale('image', width=300, height=300)
+                scale = image_scale(gallery, 'image', 'multimedia')
+                # scale = imagescale.scale('image', width=300, height=300)
                 if not scale:
                     logger.debug(
                         "{} has no album collection".format(self.context))

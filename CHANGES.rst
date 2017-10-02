@@ -4,7 +4,8 @@ Changelog
 0.11.6 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use multimedia scale for images into media viewlet.
+  [bsuttor]
 
 
 0.11.5 (2017-09-29)
