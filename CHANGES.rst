@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.6 (unreleased)
+0.11.6 (2017-10-02)
 -------------------
 
 - Use multimedia scale for images into media viewlet.
