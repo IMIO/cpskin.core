@@ -1,6 +1,9 @@
 pipeline {
     agent {
-        docker { image 'docker-staging.imio.be/mutual-website:latest' }
+        docker {
+            image 'docker-staging.imio.be/mutual-website:latest'
+            args '-u imio'
+        }
     }
 
     stages {
