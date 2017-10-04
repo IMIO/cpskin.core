@@ -5,8 +5,17 @@ pipeline {
             args '-u imio'
         }
     }
-
+    triggers {
+        pollSCM('*/3 * * * *')
+    }
     stages {
+        stage('INIT') {
+            steps {
+                sh 'echo `whoami`'
+                sh 'echo `pwd`'
+                sh 'echo ls -lah'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'python bootstrap.py'
