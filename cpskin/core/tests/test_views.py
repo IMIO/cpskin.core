@@ -95,11 +95,11 @@ class TestViews(unittest.TestCase):
         self.assertFalse(scale)
         add_leadimage_from_file(news, 'visuel.png')
         scale = view.collection_image_scale(collection, news)
-        self.assertTrue('height="200"' in scale)
+        self.assertTrue('height="450"' in scale)
 
         collection.collection_image_scale = 'thumb'
         scale = view.collection_image_scale(collection, news)
-        self.assertTrue('height="128"' in scale)
+        self.assertTrue('height="250"' in scale)
 
     def test_folderview_add_remove_content(self):
         configure_folderviews(self.portal)
@@ -471,12 +471,12 @@ class TestViews(unittest.TestCase):
         self.assertEqual(collection.collection_image_scale, 'mini')
         add_leadimage_from_file(news, 'visuel.png')
         scale = view.collection_image_scale(collection, news)
-        self.assertTrue('height="200"' in scale)
+        self.assertTrue('height="450"' in scale)
 
         collection.use_new_template = True
         scale = view.collection_image_scale(collection, news)
-        self.assertEqual(scale.height, 200)
-        self.assertEqual(scale.width, 133)
+        self.assertEqual(scale.height, 450)
+        self.assertEqual(scale.width, 300)
 
     def test_cpskin_navigation_view(self):
         applyProfile(self.portal, 'cpskin.workflow:default')
