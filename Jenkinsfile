@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'docker-staging.imio.be/mutual-website:latest'
-            args '-u imio'
+            args '-u root'
         }
     }
     triggers {
