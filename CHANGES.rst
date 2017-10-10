@@ -4,6 +4,9 @@ Changelog
 0.11.7 (unreleased)
 -------------------
 
+- Related items: Check if field has row to check if this is a RichTextValue value object.
+  [bsuttor]
+
 - Use sc.social.like instead of sc.social.bookmarks.
   [bsuttor]
 
