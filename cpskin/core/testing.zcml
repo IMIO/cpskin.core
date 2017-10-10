@@ -11,6 +11,7 @@
   <include package="collective.documentgenerator" />
   <include package="cpskin.workflow" />
   <include package="cpskin.menu" />
+  <include package="sc.social.like" />
 
 
   <genericsetup:registerProfile
