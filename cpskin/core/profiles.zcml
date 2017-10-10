@@ -42,6 +42,13 @@
         />
 
     <!-- Upgrade steps -->
+  <genericsetup:upgradeStep
+      title="Use sc.social.like instead of sc.social.bookmarks"
+      source="33"
+      destination="34"
+      handler=".upgradehandlers.use_sc_social_like_instead_of_bookmarks"
+      profile="cpskin.core:default"
+      />
 
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v33: Add cpskin_navigation_view_with_leadimage"

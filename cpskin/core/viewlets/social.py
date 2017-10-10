@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from plone.app.layout.viewlets import common
 from plone.registry.interfaces import IRegistry
+from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from sc.social.like.browser.viewlets import SocialLikesViewlet as SLV
 from zope.component import getUtility
 
 import operator
@@ -18,3 +21,15 @@ class SocialViewlet(common.ViewletBase):
         # Fix bad encoded cpskin.core.socialviewlet registry :
         links_ordered = [li for li in links_ordered if len(li) == 3]
         return links_ordered
+
+
+class SocialLikesViewlet(SLV):
+    def enabled(self):
+        """Check if the viewlet should be visible on this context."""
+        states = ['published_and_shown', 'published_and_hidden']
+        try:
+            published = api.content.get_state(self.context) in states
+        except WorkflowException:
+            # no workflow on context, like in site root
+            published = True
+        return all([published, self.helper.enabled(), self.plugins()])

@@ -4,7 +4,8 @@ Changelog
 0.11.7 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use sc.social.like instead of sc.social.bookmarks.
+  [bsuttor]
 
 
 0.11.6 (2017-10-02)

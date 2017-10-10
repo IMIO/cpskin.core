@@ -134,6 +134,14 @@
         layer="..interfaces.ICPSkinCoreLayer"
         />
 
+    <browser:viewlet
+        name="sc.social.likes"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        class=".social.SocialLikesViewlet"
+        permission="zope2.View"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
     <configure package="imio.dashboard">
         <browser:viewlet
             for="OFS.interfaces.IItem"

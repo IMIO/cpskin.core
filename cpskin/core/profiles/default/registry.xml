@@ -87,5 +87,10 @@
             </element>
         </value>
     </record>
-
+    <records interface="sc.social.like.interfaces.ISocialLikeSettings">
+        <value key="fbbuttons">
+            <element>Share</element>
+        </value>
+        <value key="fbshowlikes">False</value>
+    </records>
 </registry>
