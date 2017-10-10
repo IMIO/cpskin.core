@@ -34,13 +34,26 @@ logger = logging.getLogger('cpskin.core')
 def use_sc_social_like_instead_of_bookmarks(context):
     portal_setup = api.portal.get_tool('portal_setup')
     portal_setup.runAllImportStepsFromProfile('profile-sc.social.like:default')
+    from sc.social.like.interfaces import ISocialLikeSettings
+    api.portal.set_registry_record(
+        'plugins_enabled',
+        ('Facebook',),
+        interface=ISocialLikeSettings)
+    api.portal.set_registry_record(
+        'sc.social.like.interfaces.ISocialLikeSettings.fbbuttons',
+        (u'Share',)
+    )
+    api.portal.set_registry_record(
+        'sc.social.like.interfaces.ISocialLikeSettings.fbshowlikes',
+        False
+    )
     portal_properties = api.portal.get_tool('portal_properties')
     sc_social_bookmarks_properties = portal_properties.get(
         'sc_social_bookmarks_properties')
+
     if sc_social_bookmarks_properties:
         enabled_portal_types = sc_social_bookmarks_properties.enabled_portal_types
 
-        from sc.social.like.interfaces import ISocialLikeSettings
         api.portal.set_registry_record(
             'enabled_portal_types',
             enabled_portal_types,
@@ -54,14 +67,6 @@ def use_sc_social_like_instead_of_bookmarks(context):
         portal_properties.manage_delObjects(sc_social_bookmarks_properties.id)
         portal_setup.runAllImportStepsFromProfile(
                 'profile-sc.social.bookmarks:uninstall')
-    api.portal.set_registry_record(
-        'sc.social.like.interfaces.ISocialLikeSettings.fbbuttons',
-        (u'Share',)
-    )
-    api.portal.set_registry_record(
-        'sc.social.like.interfaces.ISocialLikeSettings.fbshowlikes',
-        False
-    )
 
 
 def upgrade_registry_for_themes_descriptions(context):

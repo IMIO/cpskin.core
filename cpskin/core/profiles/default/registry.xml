@@ -88,6 +88,9 @@
         </value>
     </record>
     <records interface="sc.social.like.interfaces.ISocialLikeSettings">
+        <value key="plugins_enabled">
+          <element>Facebook</element>
+        </value>
         <value key="fbbuttons">
             <element>Share</element>
         </value>
