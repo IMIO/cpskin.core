@@ -70,29 +70,30 @@ class RelatedContactsViewlet(common.ViewletBase):
     def in_fields(self, field):
         return field in self.selected_fields
 
-    def get_field(self, contact, field):
-        if field is 'id':
-            return getattr(contact, field, '')
-        if field not in self.selected_fields:
+    def get_field(self, contact, field_name):
+        if field_name is 'id':
+            return getattr(contact, field_name, '')
+        if field_name not in self.selected_fields:
             return ''
-        if field in self.address_fields:
+        if field_name in self.address_fields:
             contactable = IContactable(contact)
             details = contactable.get_contact_details()
-            return details['address'].get(field)
+            return details['address'].get(field_name)
+        # field = getattr(contact, field_name, '')
         # find way to check if field is richetext or image or simple field
-        if field == 'activity':
-            if getattr(contact, field, ''):
-                text = getattr(contact, field).raw
+        if getattr(getattr(contact, field_name, ''), 'raw', None):
+            if getattr(contact, field_name, ''):
+                text = getattr(contact, field_name).raw
                 text = text.replace('http://resolveuid/', 'resolveuid/')
                 parser = ResolveUIDAndCaptionFilter(contact)
                 transform_text = parser(text)
                 return transform_text if transform_text else ''
-        if field in ['logo', 'photo']:
-            if getattr(contact, field, ''):
+        if field_name in ['logo', 'photo']:
+            if getattr(contact, field_name, ''):
                 img = contact.restrictedTraverse('@@images')
-                logo = img.scale(field)
+                logo = img.scale(field_name)
                 return logo.tag() if logo.tag() else ''
-        if field == 'schedule':
+        if field_name == 'schedule':
             from plone.directives import dexterity
             display = dexterity.DisplayForm(contact, self.request)
             display.update()
@@ -100,14 +101,14 @@ class RelatedContactsViewlet(common.ViewletBase):
                 return display.w.get('IScheduledContent.schedule').render()
             else:
                 return ''
-        if field in ['phone', 'cell_phone', 'fax']:
-            phones = getattr(contact, field, '')
+        if field_name in ['phone', 'cell_phone', 'fax']:
+            phones = getattr(contact, field_name, '')
             if not phones:
                 return False
             if not isinstance(phones, list):
-                phones = [getattr(contact, field)]
+                phones = [getattr(contact, field_name)]
             return [format_phone(phone) for phone in phones]
-        return getattr(contact, field, '')
+        return getattr(contact, field_name, '')
 
     def has_address(self):
         i = 0
@@ -130,6 +131,9 @@ class RelatedContactsViewlet(common.ViewletBase):
         if website.startswith('http'):
             url = website
             website_name = website.replace('http://', '')
+        elif website.startswith('https'):
+            url = website
+            website_name = website.replace('https://', '')
         else:
             url = 'http://{0}'.format(website)
             website_name = website
