@@ -1,8 +1,8 @@
 pipeline {
     agent {
         docker {
-            image 'docker-staging.imio.be/mutual-website:latest'
-            args '-u root'
+            image 'docker-staging.imio.be/cpskin.test:latest'
+            args '-u imio'
         }
     }
     triggers {
@@ -19,7 +19,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'python bootstrap.py'
-                sh 'bin/buildout -c jenkins.cfg buildout:download-cache="/home/imio/imio-website/buildout-cache/downloads" buildout:eggs-directory="/home/imio/imio-website/buildout-cache/eggs" -t 15'
+                sh 'bin/buildout'
             }
         }
         stage('Test') {
