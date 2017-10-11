@@ -2,7 +2,6 @@ pipeline {
     agent {
         docker {
             image 'docker-staging.imio.be/cpskin.test:latest'
-            args '-u imio'
         }
     }
     triggers {
