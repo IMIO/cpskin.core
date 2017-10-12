@@ -13,11 +13,13 @@
 
   <a href="" tal:attributes="href menu/getURL" >
     <div class="navigation-view-menu"
-        tal:define="scaled_image python:view.image(menu)">
-      <img tal:condition="scaled_image"
-           tal:replace="structure python: scaled_image" />
-      <h2 class="navigation-view-menu-title" tal:content="menu/Title"></h2>
-      <div class="navigation-view-menu-description" tal:content="menu/Description"></div>
+        tal:define="scaled_image_url python:view.image(menu)">
+      <div class="navigationLeadImage"
+           style=""
+           tal:attributes="style string:background-image: url(${scaled_image_url})">
+        <h2 class="navigation-view-menu-title" tal:content="menu/Title"></h2>
+        <div class="navigation-view-menu-description" tal:content="menu/Description"></div>
+      </div>
     </div>
   </a>
 </div>

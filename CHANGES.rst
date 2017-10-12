@@ -4,6 +4,9 @@ Changelog
 0.11.7 (unreleased)
 -------------------
 
+- Use cover instead of <img> for navigation with leadimages
+  [laulaz]
+
 - Add cellphones numbers on contact preview : #19126
   [laulaz]
 
