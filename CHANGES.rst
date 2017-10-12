@@ -4,6 +4,9 @@ Changelog
 0.11.7 (unreleased)
 -------------------
 
+- Use span instead of h2 tag for related contacts title.
+  [bsuttor]
+
 - Change events dates display to handle multi-days events
   [laulaz]
 

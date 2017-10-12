@@ -63,7 +63,7 @@ class RelatedContactsViewlet(common.ViewletBase):
 
     def get_title(self, contact):
         if self.in_fields('title'):
-            return u'<h2>{0}</h2>'.format(contact.title)
+            return u'<span class="related-contact-title">{0}</span>'.format(contact.title)
         else:
             return False
 

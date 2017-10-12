@@ -12,7 +12,7 @@
                             country python: view.get_field(contact, 'country');
                             schedule python: view.get_field(contact, 'schedule');
                             ">
-        <h2 tal:define="title python: view.get_title(contact)" tal:condition="title" tal:replace="structure title"/>
+        <span class="related-contact-title" tal:define="title python: view.get_title(contact)" tal:condition="title" tal:replace="structure title"/>
         <div class="photo">
           <img tal:replace="structure python:view.get_field(contact, 'photo')" />
         </div>
@@ -75,13 +75,13 @@
         <tal:block tal:repeat="field view/fields_without_address">
           <tal:cond tal:condition="python:field not in ['logo', 'photo']">
           <tal:define tal:define="data python:view.get_field(contact, field)">
-            <div tal:condition="data" tal:attributes="class string:${field}">            
+            <div tal:condition="data" tal:attributes="class string:${field}">
               <div tal:replace="structure data"/>
             </div>
           </tal:define>
           </tal:cond>
         </tal:block>
-      
+
     </li>
 
   </ul>
