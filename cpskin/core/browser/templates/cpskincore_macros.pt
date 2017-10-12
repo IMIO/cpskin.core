@@ -51,12 +51,15 @@
                                            title result/Title">
 
                              <tal:if tal:condition="show_day_and_month">
-                               <div class="day-month">
-                                 <div class="day"
-                                      tal:content="python: view.to_day(result)"></div>
-                                 <div class="month"
-                                      tal:content="python: view.to_localized_month(result)"></div>
-                               </div>
+                                <div class="day-month"
+                                     tal:define="dates python: view.get_event_dates(result);
+                                                 start dates/start;
+                                                 end dates/end">
+                                  <div tal:content="start"
+                                       tal:condition="start" />
+                                  <div tal:content="end"
+                                       tal:condition="end" />
+                                </div>
                              </tal:if>
 
                              <tal:else tal:condition="not: show_day_and_month">
@@ -193,11 +196,14 @@
                                            class classe">
 
                           <tal:if tal:condition="show_day_and_month">
-                            <div class="day-month">
-                              <div class="day"
-                                   tal:content="python: view.to_day(result)"></div>
-                              <div class="month"
-                                   tal:content="python: view.to_localized_month(result)"></div>
+                            <div class="day-month"
+                                 tal:define="dates python: view.get_event_dates(result);
+                                             start dates/start;
+                                             end dates/end">
+                              <div tal:content="start"
+                                   tal:condition="start" />
+                              <div tal:content="end"
+                                   tal:condition="end" />
                             </div>
                           </tal:if>
 

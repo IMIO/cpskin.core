@@ -4,6 +4,9 @@ Changelog
 0.11.7 (unreleased)
 -------------------
 
+- Change events dates display to handle multi-days events
+  [laulaz]
+
 - Related items: Check if field has row to check if this is a RichTextValue value object.
   [bsuttor]
 
