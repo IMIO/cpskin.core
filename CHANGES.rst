@@ -4,6 +4,9 @@ Changelog
 0.11.7 (unreleased)
 -------------------
 
+- Add cellphones numbers on contact preview : #19126
+  [laulaz]
+
 - Use span instead of h2 tag for related contacts title.
   [bsuttor]
 

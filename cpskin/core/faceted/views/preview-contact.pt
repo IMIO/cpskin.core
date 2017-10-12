@@ -37,6 +37,17 @@
        </a>
        </tal:block>
     </span>
+
+    <span class="organization-cellphone" tal:condition="view/cell_phones" tal:repeat="cell_phone view/cell_phones">
+       <tal:block tal:condition="cell_phone">
+       <a tal:attributes="href string:tel:${cell_phone/raw}" >
+       <span class="tel"
+             tal:content="cell_phone/formated"
+             i18n:translate="" />
+       </a>
+       </tal:block>
+    </span>
+
     <!-- <span class="organization-phone"
        tal:condition="context/phone"
        tal:attributes="href string:tel:${context/phone}"
