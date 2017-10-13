@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.7 (unreleased)
+0.11.7 (2017-10-13)
 -------------------
 
 - Use cover instead of <img> for navigation with leadimages
