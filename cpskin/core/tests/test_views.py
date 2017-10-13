@@ -532,5 +532,5 @@ class TestViews(unittest.TestCase):
         self.assertFalse(view.image(brain))
         add_leadimage_from_file(subfolder, 'visuel.png')
         self.assertTrue(view.image(brain).startswith(
-            u'<img src="http://nohost/plone/folder/subfolder/@@images'
+            u'http://nohost/plone/folder/subfolder/@@images'
         ))
