@@ -195,7 +195,9 @@ class TestViewlets(unittest.TestCase):
         # test get_title method
         self.assertFalse(above_viewlet.get_title(person))
         event.aboveVisbileFields = ('title')
-        self.assertEqual(above_viewlet.get_title(person), u'<h2>Foo Bar</h2>')
+        self.assertEqual(
+            above_viewlet.get_title(person),
+            u'<span class="related-contact-title">Foo Bar</span>')
 
     def test_below_related_contacts_viewlet(self):
         add_behavior(
