@@ -26,8 +26,8 @@
            class="right-panel hidden-right-panel"></div>
     </tal:if>
 
-    <div id="other-actions" />
+    <div id="other-actions" />    
 
   </div>
-  
+
 </div>
