@@ -4,7 +4,8 @@ Changelog
 0.11.8 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add code for foldable social viewlet in right actions #19300
+  [laulaz]
 
 
 0.11.7 (2017-10-13)

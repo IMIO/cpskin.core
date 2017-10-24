@@ -21,6 +21,14 @@ jQuery(document).ready(function($) {
       }
   }
 
+  function toggle_share_viewlet(show) {
+      hide_all();
+      if (show) {
+          $('#social-share-container').removeClass('hidden-right-panel');
+          $('#social-share-container').addClass('shown-right-panel');
+      }
+  }
+
   $('#useful-links-button').click(function(event) {
       show = $('#useful-links-container').hasClass('hidden-right-panel');
       toggle_useful_links(show);
@@ -40,6 +48,12 @@ jQuery(document).ready(function($) {
       event.stopPropagation();
   });
 
+  $('#social-share').click(function(event) {
+      show = $('#social-share-container').hasClass('hidden-right-panel');
+      toggle_share_viewlet(show);
+      event.stopPropagation();
+      event.preventDefault();
+  });
 
   $(window).click(function() {
       hide_all();
