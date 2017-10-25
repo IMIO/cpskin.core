@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.8 (unreleased)
+0.11.8 (2017-10-25)
 -------------------
 
 - Add code for foldable social viewlet in right actions #19300
