@@ -16,7 +16,6 @@
         <div class="photo">
           <img tal:replace="structure python:view.get_field(contact, 'photo')" />
         </div>
-        <div class="schedule" tal:condition="schedule" tal:content="structure schedule" />
         <div class="wrapped-coord">
           <div class="address" tal:condition="view/has_address">
             <div class="street">
@@ -71,6 +70,7 @@
             </div>
           </div>
         </div>
+        <div class="schedule" tal:condition="schedule" tal:content="structure schedule" />
         </div>
         <tal:block tal:repeat="field view/fields_without_address">
           <tal:cond tal:condition="python:field not in ['logo', 'photo']">
