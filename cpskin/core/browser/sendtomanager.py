@@ -97,5 +97,8 @@ class SendToManagerForm(form.Form):
             type=u'info'
         )
 
+        self.request.response.redirect(self.context.absolute_url())
+        return ''
+
 
 send_to_form = layout.wrap_form(SendToManagerForm)

@@ -4,6 +4,9 @@ Changelog
 0.11.9 (unreleased)
 -------------------
 
+- Redirect to content after having submitted sendtomanager_form : #19359
+  [laulaz]
+
 - View see_map link if map is visible.
   [bsuttor]
 
