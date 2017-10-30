@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.9 (unreleased)
+0.11.9 (2017-10-30)
 -------------------
 
 - Use Unrestrictedtraverse to get images in related_contacts.
