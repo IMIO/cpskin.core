@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('INIT') {
             steps {
+                deleteDir()
                 sh 'echo `whoami`'
                 sh 'echo `pwd`'
                 sh 'echo ls -lah'
