@@ -14,7 +14,6 @@ pipeline {
                 sh 'echo `whoami`'
                 sh 'echo `pwd`'
                 sh 'echo ls -lah'
-                sh 'sleep 1000'
             }
         }
         stage('Build') {
