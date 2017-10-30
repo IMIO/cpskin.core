@@ -147,6 +147,8 @@ class RelatedContactsViewlet(common.ViewletBase):
             brain = self.pc.unrestrictedSearchResults(UID=contact.UID())[0]
             if brain.zgeo_geometry == Missing.Value:
                 return False
+            if not getattr(self.context, 'see_map', True):
+                return False
             return True
         return False
 

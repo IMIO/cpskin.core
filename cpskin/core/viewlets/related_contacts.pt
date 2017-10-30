@@ -60,7 +60,9 @@
               </tal:loop>
             </div>
             <div tal:condition="python: view.see_map_link(contact)">
-              <a href='#' class="seemaplink" tal:attributes="id python:view.get_field(contact, 'id')"><span i18n:translate="See on map">See on map</span></a>
+              <a href='#' class="seemaplink" tal:attributes="id python:view.get_field(contact, 'id')">
+                <span i18n:translate="See on map">See on map</span>
+              </a>
             </div>
 
             <div class="email"><a class="email" tal:condition="email" tal:attributes="href string:mailto:${email};" tal:content="email"/></div>

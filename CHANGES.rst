@@ -4,7 +4,8 @@ Changelog
 0.11.9 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- View see_map link if map is visible.
+  [bsuttor]
 
 
 0.11.8 (2017-10-25)
