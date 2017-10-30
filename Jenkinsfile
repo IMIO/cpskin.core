@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'docker-staging.imio.be/cpskin.test:latest'
+            args '-v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro'
         }
     }
     triggers {
@@ -18,7 +19,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'python bootstrap.py'
+                sh 'python bootstrap.py buildout:download-cache=/.buildout/buildout-cache/downloads buildout:eggs-directory=/.buildout/buildout-cache/eggs'
                 sh 'bin/buildout buildout:download-cache=/.buildout/buildout-cache/downloads buildout:eggs-directory=/.buildout/buildout-cache/eggs'
             }
         }
