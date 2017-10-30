@@ -90,7 +90,7 @@ class RelatedContactsViewlet(common.ViewletBase):
                 return transform_text if transform_text else ''
         if field_name in ['logo', 'photo']:
             if getattr(contact, field_name, ''):
-                img = contact.restrictedTraverse('@@images')
+                img = contact.unrestrictedTraverse('@@images')
                 logo = img.scale(field_name)
                 return logo.tag() if logo.tag() else ''
         if field_name == 'schedule':
