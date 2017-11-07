@@ -9,6 +9,7 @@ pipeline {
         pollSCM('*/3 * * * *')
     }
     stages {
+        XvfbBuildWrapper('xvfb')
         stage('INIT') {
             steps {
                 sh 'echo `whoami`'
