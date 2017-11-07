@@ -59,6 +59,11 @@ def use_sc_social_like_instead_of_bookmarks(context):
             enabled_portal_types,
             interface=ISocialLikeSettings)
         bookmark_providers = sc_social_bookmarks_properties.bookmark_providers
+        if 'Google Bookmarks' in bookmark_providers:
+            lst = list(bookmark_providers)
+            index = lst.index('Google Bookmarks')
+            lst[index] = 'Google+'
+            bookmark_providers = tuple(lst)
         api.portal.set_registry_record(
             'plugins_enabled',
             bookmark_providers,
