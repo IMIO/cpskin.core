@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+from setuptools import find_packages
+from setuptools import setup
 
 version = '0.11.10.dev0'
-
-from setuptools import setup, find_packages
 
 long_description = (
     open('README.rst').read()
@@ -80,7 +80,7 @@ setup(name='cpskin.core',
               'plone.app.robotframework',
               'plone.app.multilingual',
               'Products.contentmigration',
-              'ipdb',
+              'pdbpp',
               'cpskin.workflow'
           ]
       },

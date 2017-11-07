@@ -4,7 +4,8 @@ Changelog
 0.11.10 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Override vcard organization method to understand phones list.
+  [bsuttor]
 
 
 0.11.9 (2017-10-30)

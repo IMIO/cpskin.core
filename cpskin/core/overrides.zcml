@@ -6,4 +6,10 @@
     factory=".registryreader.CpskinQuerystringRegistryReader"
     />
 
+  <adapter
+     for="collective.contact.core.content.organization.Organization"
+     provides="collective.contact.core.interfaces.IVCard"
+     factory=".adapter.CPskinOrganizationVCard"
+     />
+
 </configure>
