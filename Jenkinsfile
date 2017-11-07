@@ -9,7 +9,6 @@ pipeline {
         pollSCM('*/3 * * * *')
     }
     stages {
-        XvfbBuildWrapper('xvfb')
         stage('INIT') {
             steps {
                 sh 'echo `whoami`'
@@ -25,7 +24,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'bin/test --all'
+                sh 'Xvfb :10 -ac & export DISPLAY=:10; bin/test --all'
             }
         }
         stage('Coverage') {
