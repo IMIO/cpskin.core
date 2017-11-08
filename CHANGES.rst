@@ -4,7 +4,8 @@ Changelog
 0.11.11 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix dates with timezones on calendar views : #19490
+  [laulaz]
 
 
 0.11.10 (2017-11-08)

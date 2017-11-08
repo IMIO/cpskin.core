@@ -13,11 +13,13 @@ from plone import api
 from plone.app.contenttypes.browser.folder import FolderView as FoldV
 from plone.app.contenttypes.content import Event
 from plone.app.event.base import filter_and_resort
+from plone.app.event.interfaces import IEventSettings
 from plone.app.event.recurrence import RecurrenceSupport
 from plone.app.querystring import queryparser
 from plone.dexterity.interfaces import IDexterityContent
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.event.interfaces import IEvent
+from plone.registry.interfaces import IRegistry
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
@@ -29,6 +31,7 @@ from zope.schema import getFields
 from zope.schema.interfaces import IVocabularyFactory
 
 import httpagentparser
+import pytz
 
 
 ADDABLE_TYPES = ['Collection', 'Document', 'Folder']
@@ -495,14 +498,22 @@ class FolderView(FoldV):
         return self.context.restrictedTraverse('@@plone').toLocalizedTime(
             time, long_format, time_only)
 
+    def get_portal_timezone(self):
+        reg = getUtility(IRegistry)
+        settings = reg.forInterface(IEventSettings, prefix='plone.app.event')
+        return settings.portal_timezone
+
     def get_event_dates(self, result):
+        timezone = self.get_portal_timezone()
         start_date = getattr(result, 'start')
         if not start_date:
             return {'start': '', 'end': ''}
+        start_date = start_date.astimezone(pytz.timezone(timezone))
         end_date = getattr(result, 'end')
         formated_start = start_date.strftime('%d/%m')
         if not end_date:
             return {'start': formated_start, 'end': ''}
+        end_date = end_date.astimezone(pytz.timezone(timezone))
         formated_end = end_date.strftime('%d/%m')
         if formated_start != formated_end:
             return {'start': formated_start, 'end': formated_end}
