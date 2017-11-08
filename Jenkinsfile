@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'Xvfb :10 -ac & export DISPLAY=:10; bin/test --all'
+                sh 'bin/test --all'
             }
         }
         stage('Coverage') {
