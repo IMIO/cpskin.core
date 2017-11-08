@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.10 (unreleased)
+0.11.10 (2017-11-08)
 --------------------
 
 - Override vcard organization method to understand phones list.
