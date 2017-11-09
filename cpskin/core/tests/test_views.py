@@ -513,6 +513,12 @@ class TestViews(unittest.TestCase):
         contacts = view.contacts()
         self.assertEqual(contacts['is_cpskin_workflow'], True)
 
+        self.assertEqual(view.get_site_language(), 'en')
+        self.assertFalse(view.is_site_language_fr())
+        view.set_site_language()
+        self.assertEqual(view.get_site_language(), 'fr')
+        self.assertTrue(view.is_site_language_fr())
+
     def test_cpskin_navigation_with_leadimage_view(self):
         applyProfile(self.portal, 'cpskin.workflow:default')
         add_behavior(

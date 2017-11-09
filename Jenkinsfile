@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'bin/test --all'
+                sh ' /etc/init.d/xvfb start && bin/test --all &&  /etc/init.d/xvfb stop'
             }
         }
         stage('Coverage') {
