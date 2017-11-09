@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.11 (unreleased)
+0.11.11 (2017-11-09)
 --------------------
 
 - Improve cpskinhealthy.
