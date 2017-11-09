@@ -9,13 +9,6 @@ pipeline {
         pollSCM('*/3 * * * *')
     }
     stages {
-        stage('INIT') {
-            steps {
-                sh 'echo `whoami`'
-                sh 'echo `pwd`'
-                sh 'echo ls -lah'
-            }
-        }
         stage('Build') {
             steps {
                 sh 'python bootstrap.py buildout:download-cache=/.buildout/buildout-cache/downloads buildout:eggs-directory=/.buildout/buildout-cache/eggs'
@@ -24,7 +17,9 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh ' /etc/init.d/xvfb start && bin/test --all &&  /etc/init.d/xvfb stop'
+                sh '/etc/init.d/xvfb start 2> /dev/null &'
+                sh 'bin/test --all'
+                sh '/etc/init.d/xvfb stop'
             }
         }
         stage('Coverage') {
