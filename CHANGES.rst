@@ -4,6 +4,9 @@ Changelog
 0.11.11 (unreleased)
 --------------------
 
+- Improve cpskinhealthy.
+  [bsuttor]
+
 - Fix dates with timezones on calendar views : #19490
   [laulaz]
 

@@ -535,3 +535,12 @@ class CpskinHealthy(BrowserView):
         if util is not None:
             util.invalidateAll()
         self._redirect('cpskin_collective_contact_workflow set.')
+
+    def get_site_language(self):
+        return api.portal.get().language
+
+    def is_site_language_fr(self):
+        return self.get_site_language() == 'fr'
+
+    def set_site_language(self):
+        api.portal.get().language = 'fr'
