@@ -38,10 +38,10 @@ class CPSkinBannerViewlet(ViewletBase):
             'cpskin.core.interfaces.ICPSkinSettings.show_slogan']
         return show_slogan
 
-    def slogan(self):
+    def get_slogan(self):
         default = {
-            'title': "",
-            'description': "",
+            'title': '',
+            'description': '',
         }
         if not self.isFolderView():
             return default
