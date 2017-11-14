@@ -15,6 +15,9 @@ class DashboardPODTemplateCondition(DPTC):
 
 
 class CPskinOrganizationVCard(OrganizationVCard):
+    """Override from OrganizationVCard to get multi phones and mutli
+    cell_phones on vcard export"""
+
     def get_vcard(self):
         vcard = vobject.vCard()
         contactable = IContactable(self.context)

@@ -78,6 +78,7 @@ class RelatedContactsViewlet(common.ViewletBase):
         if field_name in self.address_fields:
             contactable = IContactable(contact)
             details = contactable.get_contact_details()
+            # import pdb; pdb.set_trace()
             return details['address'].get(field_name)
         # field = getattr(contact, field_name, '')
         # find way to check if field is richetext or image or simple field
@@ -144,7 +145,10 @@ class RelatedContactsViewlet(common.ViewletBase):
 
     def see_map_link(self, contact):
         if self.available:
-            brain = self.pc.unrestrictedSearchResults(UID=contact.UID())[0]
+            obj = contact
+            if contact.use_parent_address:
+                obj = contact.aq_parent
+            brain = self.pc.unrestrictedSearchResults(UID=obj.UID())[0]
             if brain.zgeo_geometry == Missing.Value:
                 return False
             if not getattr(self.context, 'see_map', True):
@@ -231,6 +235,9 @@ class RelatedContactsMapViewlet(RelatedContactsViewlet):
         self.pc = api.portal.get_tool('portal_catalog')
         for contact in self.get_contacts():
             brain = self.pc.unrestrictedSearchResults(UID=contact.UID())[0]
+            if contact.use_parent_address:
+                brain = self.pc.unrestrictedSearchResults(
+                    UID=contact.aq_parent.UID())[0]
             if brain.zgeo_geometry == Missing.Value:
                 continue
             geom = {'type': brain.zgeo_geometry['type'],

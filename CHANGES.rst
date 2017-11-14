@@ -4,7 +4,8 @@ Changelog
 0.11.13 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Get address from parent when use_parent_address checked.
+  [bsuttor]
 
 
 0.11.12 (2017-11-14)

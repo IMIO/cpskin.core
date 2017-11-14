@@ -327,6 +327,78 @@ class TestViewlets(unittest.TestCase):
         self.assertNotIn('5190', below_viewlet.render())
         self.assertNotIn('Foo', below_viewlet.render())
 
+    def test_use_parent_address_in_map(self):
+        add_behavior(
+            'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
+        event = api.content.create(
+            container=self.portal,
+            type='Event',
+            id='myevent'
+        )
+
+        # getting viewlet
+        view = BrowserView(event, self.request)
+        manager_name = 'plone.belowcontentbody'
+        manager = queryMultiAdapter(
+            (event, self.request, view),
+            IViewletManager,
+            manager_name,
+            default=None)
+        self.assertIsNotNone(manager)
+        manager.update()
+
+        my_viewlet = [
+            v for v in manager.viewlets if v.__name__ == 'cpskin.related_contacts_map']  # noqa
+        self.assertEqual(len(my_viewlet), 1)
+        map_viewlet = my_viewlet[0]
+
+        contacts = map_viewlet.get_contacts()
+        self.assertEqual(contacts, [])
+        self.assertFalse(map_viewlet.available())
+
+        # add some contacts
+        applyProfile(self.portal, 'collective.contact.core:default')
+        directory = api.content.create(
+            container=self.portal, type='directory', id='directory')
+
+        organization = api.content.create(
+            container=directory, type='organization', id='organization')
+        organization.title = u'IMIO'
+        organization.street = u'Rue Léon Morel'
+        organization.number = u'1'
+        organization.zip_code = u'5032'
+        organization.city = u'Isnes'
+        organization.use_parent_address = False
+
+        orga_child = api.content.create(
+            container=organization, type='organization', id='organization')
+        orga_child.title = 'DevOps'
+        orga_child.use_parent_address = False
+
+        # set related contact
+        intids = getUtility(IIntIds)
+        to_id = intids.getId(orga_child)
+        rv = RelationValue(to_id)
+        event.belowContentContact = [rv]
+        add_behavior('organization', ICoordinates.__identifier__)
+        notify(ObjectModifiedEvent(organization))
+
+        self.assertTrue(map_viewlet.see_map_link(organization))
+        self.assertFalse(map_viewlet.see_map_link(orga_child))
+        data_geojson = map_viewlet.data_geojson()
+        results = json.loads(data_geojson)
+        self.assertEqual(len(results['features']), 0)
+
+        orga_child.use_parent_address = True
+        notify(ObjectModifiedEvent(orga_child))
+        self.assertTrue(map_viewlet.see_map_link(orga_child))
+        data_geojson = map_viewlet.data_geojson()
+        results = json.loads(data_geojson)
+        self.assertEqual(
+            results['features'][0]['properties']['address'],
+            u'Rue L\xe9on Morel , 1<br />5032 Isnes'
+        )
+
     def test_related_contacts_map_viewlet(self):
         add_behavior(
             'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
