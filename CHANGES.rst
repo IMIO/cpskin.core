@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.12 (unreleased)
+0.11.12 (2017-11-14)
 --------------------
 
 - Check if astimezone exists in get_event_dates method.
