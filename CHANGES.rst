@@ -4,7 +4,8 @@ Changelog
 0.11.12 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Check if astimezone exists in get_event_dates method.
+  [bsuttor]
 
 
 0.11.11 (2017-11-09)

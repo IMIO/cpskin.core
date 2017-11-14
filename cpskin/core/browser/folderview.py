@@ -508,12 +508,14 @@ class FolderView(FoldV):
         start_date = getattr(result, 'start')
         if not start_date:
             return {'start': '', 'end': ''}
-        start_date = start_date.astimezone(pytz.timezone(timezone))
+        if getattr(start_date, 'astimezone', False):
+            start_date = start_date.astimezone(pytz.timezone(timezone))
         end_date = getattr(result, 'end')
         formated_start = start_date.strftime('%d/%m')
         if not end_date:
             return {'start': formated_start, 'end': ''}
-        end_date = end_date.astimezone(pytz.timezone(timezone))
+        if getattr(end_date, 'astimezone', False):
+            end_date = end_date.astimezone(pytz.timezone(timezone))
         formated_end = end_date.strftime('%d/%m')
         if formated_start != formated_end:
             return {'start': formated_start, 'end': formated_end}
