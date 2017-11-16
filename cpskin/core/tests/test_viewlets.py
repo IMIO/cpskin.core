@@ -445,6 +445,7 @@ class TestViewlets(unittest.TestCase):
         person.number = u'34'
         person.zip_code = u'5190'
         person.city = u'Mornimont'
+        person.use_parent_address = False
         notify(ObjectModifiedEvent(person))
         person.street = u'Zoning Industriel'
         person.number = u'34'
@@ -479,6 +480,7 @@ class TestViewlets(unittest.TestCase):
         person2.number = u'007'
         person2.zip_code = u'4000'
         person2.city = u'Liège'
+        person2.use_parent_address = False
         to_id2 = intids.getId(person2)
         rv2 = RelationValue(to_id2)
         event.aboveContentContact = event.aboveContentContact + [rv2]
