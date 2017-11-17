@@ -73,7 +73,8 @@ setup(name='cpskin.core',
           'plone.app.multilingual',
           'plone.app.event',
           'z3c.jbot',
-          'sc.social.like'
+          'sc.social.like',
+          'collective.autopublishing'
       ],
       extras_require={
           'test': [
