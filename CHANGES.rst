@@ -4,9 +4,6 @@ Changelog
 0.11.13 (unreleased)
 --------------------
 
-- Get logo on related contact view if there is logo.
-  [bsuttor]
-
 - Get address from parent when use_parent_address checked.
   [bsuttor]
 
