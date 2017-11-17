@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.13 (unreleased)
+0.11.13 (2017-11-17)
 --------------------
 
 - Get logo on related contact view if there is logo.
