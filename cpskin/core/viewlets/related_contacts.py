@@ -78,7 +78,6 @@ class RelatedContactsViewlet(common.ViewletBase):
         if field_name in self.address_fields:
             contactable = IContactable(contact)
             details = contactable.get_contact_details()
-            # import pdb; pdb.set_trace()
             return details['address'].get(field_name)
         # field = getattr(contact, field_name, '')
         # find way to check if field is richetext or image or simple field

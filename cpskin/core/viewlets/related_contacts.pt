@@ -11,10 +11,15 @@
                             region python: view.get_field(contact, 'region');
                             country python: view.get_field(contact, 'country');
                             schedule python: view.get_field(contact, 'schedule');
+                            logo python: view.get_field(contact, 'logo');
+                            photo python: view.get_field(contact, 'photo');
                             ">
         <span class="related-contact-title" tal:define="title python: view.get_title(contact)" tal:condition="title" tal:replace="structure title"/>
-        <div class="photo">
+        <div class="photo" tal:condition="photo">
           <img tal:replace="structure python:view.get_field(contact, 'photo')" />
+        </div>
+        <div class="logo" tal:condition="logo">
+          <img tal:replace="structure python:view.get_field(contact, 'logo')" />
         </div>
         <div class="wrapped-coord">
           <div class="address" tal:condition="view/has_address">
