@@ -4,7 +4,8 @@ Changelog
 0.11.14 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Bad release.
+  [bsuttor]
 
 
 0.11.13 (2017-11-17)
