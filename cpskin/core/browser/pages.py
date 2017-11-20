@@ -439,6 +439,14 @@ class TransmoExport(BrowserView):
             newsletters[path] = subscribers
         objects['newsletters'] = newsletters
 
+        # leadimage
+        portal_properties = api.portal.get_tool('portal_properties')
+        cli_properties = portal_properties.get('cli_properties', None)
+        if cli_properties:
+            leadimage_settings = {}
+            leadimage_settings['allowed_types'] = cli_properties.allowed_types
+            objects['leadimage'] = leadimage_settings
+
         portal_catalog = api.portal.get_tool('portal_catalog')
         total_objects = len(portal_catalog({}))
         objects['total_objects'] = str(total_objects)
