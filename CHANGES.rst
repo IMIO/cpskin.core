@@ -4,7 +4,8 @@ Changelog
 0.11.15 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Improve transmo-export view.
+  [bsuttor]
 
 
 0.11.14 (2017-11-17)
