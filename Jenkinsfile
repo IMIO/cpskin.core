@@ -19,7 +19,6 @@ pipeline {
             steps {
                 sh '/etc/init.d/xvfb start 2> /dev/null &'
                 sh 'bin/test --all'
-                sh '/etc/init.d/xvfb stop'
             }
         }
         stage('Coverage') {
