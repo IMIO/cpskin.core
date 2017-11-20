@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'docker-staging.imio.be/cpskin.test:latest'
-            args '-v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro -e DISPLAY=:123'
+            args '-v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro -v /var/lib/jenkins:/var/lib/jenkins -e DISPLAY=:123'
         }
     }
     triggers {
