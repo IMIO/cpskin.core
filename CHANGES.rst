@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.16 (unreleased)
+0.11.16 (2017-11-27)
 --------------------
 
 - Use depth path to 2 to get opendata links.
