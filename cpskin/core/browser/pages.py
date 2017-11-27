@@ -52,7 +52,7 @@ class OpenData(BrowserView):
         path = '/'.join(portal.getPhysicalPath())
         portal_catalog = api.portal.get_tool('portal_catalog')
         query_dict = {}
-        query_dict['path'] = {'query': path, 'depth': 1}
+        query_dict['path'] = {'query': path, 'depth': 2}
         query_dict['portal_type'] = ['Folder']
         query_dict['object_provides'] = IFVSC.__identifier__
         query_dict['sort_on'] = 'getObjPositionInParent'

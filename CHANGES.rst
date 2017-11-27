@@ -4,7 +4,8 @@ Changelog
 0.11.16 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Use depth path to 2 to get opendata links.
+  [bsuttor]
 
 
 0.11.15 (2017-11-20)
