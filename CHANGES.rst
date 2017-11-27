@@ -4,7 +4,8 @@ Changelog
 0.11.17 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Viewlets.xml : Insert "cpskin.banner" after "plone.header".
+  [bsuttor]
 
 
 0.11.16 (2017-11-27)

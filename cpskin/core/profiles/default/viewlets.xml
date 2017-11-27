@@ -12,8 +12,8 @@
   </order>
   <order manager="plone.portaltop" skinname="Plone Default">
     <viewlet name="plone.header" />
-    <viewlet name="cpskin.banner" />
-    <viewlet name="cpskin.minisitemenu" />
+    <viewlet name="cpskin.banner" insert-after="plone.header" />
+    <viewlet name="cpskin.minisitemenu" insert-after="cpskin.minisitemenu" />
   </order>
   <order manager="plone.abovecontent" skinname="Plone Default">
     <viewlet name="cpskin.right_actions" />
