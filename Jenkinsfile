@@ -24,6 +24,7 @@ pipeline {
         stage('Coverage') {
             steps {
                 sh 'bin/code-analysis'
+                warnings canComputeNew: false, canResolveRelativePaths: false, parserConfigurations: [[parserName: 'Pep8', pattern: '**/parts/code-analysis/flake8.log']]
                 sh 'bin/createcoverage'
                 sh 'bin/coverage xml'
             }
