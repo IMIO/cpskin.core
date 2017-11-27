@@ -5,6 +5,8 @@ from cpskin.core.utils import add_behavior
 from cpskin.core.utils import set_exclude_from_nav
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
+from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
+from plone.app.viewletmanager.manager import ManageViewlets
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.registry import field
 from plone.registry import Record
@@ -90,6 +92,18 @@ def installCore(context):
     addSliderTypeToRegistry()
     set_googleapi_key()
     upgrade_front_page()
+    order_portaltop_viewlets()
+
+
+def order_portaltop_viewlets():
+    storage = getUtility(IViewletSettingsStorage)
+    manager_name = 'plone.portaltop'
+    portal = api.portal.get()
+    skinname = portal.getCurrentSkinName()
+    view = ManageViewlets(portal, portal.REQUEST)
+    order = view._getOrder(manager_name)
+    order.insert(1, 'cpskin.banner')
+    storage.setOrder(manager_name, skinname, order)
 
 
 def uninstallCore(context):
