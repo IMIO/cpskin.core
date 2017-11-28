@@ -134,7 +134,7 @@ class ICPSkinSettings(Interface):
         description=_(u'Number of visible albums on media viewlet.'),
         required=False,
         min=0,
-        default=1
+        default=5
     )
 
     media_viewlet_visible_videos = schema.Int(
@@ -142,7 +142,7 @@ class ICPSkinSettings(Interface):
         description=_(u'Number of visible videos on media viewlet.'),
         required=False,
         min=0,
-        default=1
+        default=2
     )
 
     show_description_on_themes = schema.Bool(
