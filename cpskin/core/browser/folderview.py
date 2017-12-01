@@ -423,7 +423,7 @@ class FolderView(FoldV):
             return url
 
     def collection_image_scale(self, collection, obj):
-        scale = getattr(collection, 'collection_image_scale', 'mini')
+        scale = getattr(collection, 'collection_image_scale', 'collection')
         if self.use_new_template(collection):
             return image_scale(obj, 'newsImage', scale, generate_tag=False)
         else:

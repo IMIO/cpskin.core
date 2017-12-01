@@ -95,7 +95,7 @@ class TestViews(unittest.TestCase):
         self.assertFalse(scale)
         add_leadimage_from_file(news, 'visuel.png')
         scale = view.collection_image_scale(collection, news)
-        self.assertTrue('height="450"' in scale)
+        self.assertTrue('height="116"' in scale)
 
         collection.collection_image_scale = 'thumb'
         scale = view.collection_image_scale(collection, news)
