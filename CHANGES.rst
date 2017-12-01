@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.17 (unreleased)
+0.11.17 (2017-12-01)
 --------------------
 - Set default image collection value to collection.
   [bsuttor]
