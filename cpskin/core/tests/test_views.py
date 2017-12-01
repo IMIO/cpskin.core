@@ -88,7 +88,7 @@ class TestViews(unittest.TestCase):
         collection = self.portal.actualites.actualites
         view = getMultiAdapter(
             (self.portal, self.request), name='folderview')
-        self.assertEqual(collection.collection_image_scale, 'mini')
+        self.assertEqual(collection.collection_image_scale, 'collection')
         self.assertEqual(collection.slider_image_scale, 'slider')
         self.assertEqual(collection.carousel_image_scale, 'carousel')
         scale = view.collection_image_scale(collection, news)
@@ -468,7 +468,7 @@ class TestViews(unittest.TestCase):
         collection = self.portal.actualites.actualites
         view = getMultiAdapter(
             (self.portal, self.request), name='folderview')
-        self.assertEqual(collection.collection_image_scale, 'mini')
+        self.assertEqual(collection.collection_image_scale, 'collection')
         add_leadimage_from_file(news, 'visuel.png')
         scale = view.collection_image_scale(collection, news)
         self.assertTrue('height="450"' in scale)
