@@ -471,12 +471,12 @@ class TestViews(unittest.TestCase):
         self.assertEqual(collection.collection_image_scale, 'collection')
         add_leadimage_from_file(news, 'visuel.png')
         scale = view.collection_image_scale(collection, news)
-        self.assertTrue('height="450"' in scale)
+        self.assertTrue('height="116"' in scale)
 
         collection.use_new_template = True
         scale = view.collection_image_scale(collection, news)
-        self.assertEqual(scale.height, 450)
-        self.assertEqual(scale.width, 300)
+        self.assertEqual(scale.height, 116)
+        self.assertEqual(scale.width, 77)
 
     def test_cpskin_navigation_view(self):
         applyProfile(self.portal, 'cpskin.workflow:default')
