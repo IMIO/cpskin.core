@@ -3,6 +3,8 @@ Changelog
 
 0.11.17 (unreleased)
 --------------------
+- Set default image collection value to collection.
+  [bsuttor]
 
 - Set default visible albums to 5 and default visible videos to 2.
   [bsuttor]

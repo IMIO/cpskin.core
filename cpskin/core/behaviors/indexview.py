@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from cpskin.core.vocabulary import index_view_display_type
 from cpskin.locales import CPSkinMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.directives import form
@@ -6,8 +7,6 @@ from plone.supermodel import model
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
-
-from cpskin.core.vocabulary import index_view_display_type
 
 
 @provider(IFormFieldProvider)
@@ -65,7 +64,7 @@ class ICpskinIndexViewSettings(model.Schema):
         title=_(u'Which image scale use for collections of index view'),
         description=_(u'Please select which fields should be visible.'),
         required=False,
-        default='mini',
+        default='collection',
         vocabulary=u'plone.app.vocabularies.ImagesScales'
     )
 
