@@ -75,7 +75,7 @@ class HiddenTagsVocabulary(BaseTagsVocabulary):
         voc = super(HiddenTagsVocabulary, self).__call__(context, query)
         # Add a-la-une term if it does not already exist, aka still not used
         # for any document
-        if u'a-la-une' not in voc.by_token:
+        if u'a-la-une' not in voc.by_token and u'A la une' not in voc.by_token:
             simpleTerms = [term for term in voc]
             simpleTerms.append(SimpleTerm(u'a-la-une', title=u'A la une'))
             voc = SimpleVocabulary(simpleTerms)

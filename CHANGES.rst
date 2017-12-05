@@ -4,7 +4,8 @@ Changelog
 0.11.18 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Check if 'A la une' is not in hiddenTags before adding it.
+  [bsuttor]
 
 
 0.11.17 (2017-12-01)
