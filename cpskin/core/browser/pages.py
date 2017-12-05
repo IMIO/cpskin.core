@@ -450,6 +450,8 @@ class TransmoExport(BrowserView):
         portal_catalog = api.portal.get_tool('portal_catalog')
         total_objects = len(portal_catalog({}))
         objects['total_objects'] = str(total_objects)
+        response = self.request.response
+        response.setHeader('Content-type', 'application/json')
         return json.dumps(objects)
 
 

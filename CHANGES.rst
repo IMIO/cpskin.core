@@ -4,6 +4,9 @@ Changelog
 0.11.18 (unreleased)
 --------------------
 
+- Improve transmo-export view.
+  [bsuttor]
+
 - Check if 'A la une' is not in hiddenTags before adding it.
   [bsuttor]
 
