@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.18 (unreleased)
+0.11.18 (2017-12-05)
 --------------------
 
 - Improve transmo-export view.
