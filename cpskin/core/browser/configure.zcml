@@ -328,5 +328,15 @@
       permission="cmf.ModifyPortalContent"
       layer="..interfaces.ICPSkinCoreLayer"
       />
-
+<!-- adapt plone.app.search view to add * at the end of searchterm -->
+  <configure package="plone.app.search">
+    <browser:page
+        name="search"
+        class="cpskin.core.browser.search.CpskinSearch"
+        permission="zope2.View"
+        for="*"
+        template="search.pt"
+        layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+        />
+    </configure>
 </configure>

@@ -4,6 +4,9 @@ Changelog
 0.11.19 (unreleased)
 --------------------
 
+- Override search view to add * at the end of SearchableText.
+  [bsuttor]
+
 - Add postion and held_position into "contact field vocabulary".
   [bsuttor]
 

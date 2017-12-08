@@ -540,3 +540,20 @@ class TestViews(unittest.TestCase):
         self.assertTrue(view.image(brain).startswith(
             u'http://nohost/plone/folder/subfolder/@@images'
         ))
+
+    def test_cpskin_search_view(self):
+        api.content.create(
+            container=self.portal,
+            type='Document',
+            id='document',
+            title='My testing document'
+        )
+        request = self.portal.REQUEST
+        request.form = {'SearchableText': 'testi'}
+        view = api.content.get_view(
+            name='search',
+            context=self.portal,
+            request=request)
+        query = view.filter_query({})
+        self.assertEqual(query['SearchableText'], 'testi*')
+        self.assertEqual(len(view.results()), 1)
