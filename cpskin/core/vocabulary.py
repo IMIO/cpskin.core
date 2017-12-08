@@ -99,6 +99,7 @@ class ContactFieldsFactory(object):
 
     def __call__(self, context, query=None):
         results = []
+        field_ids = []
         exclude = ['im_handle', 'use_parent_address']
         exclude_behaviors = ['plone.app.content.interfaces.INameFromTitle']
         behaviors = set()
@@ -109,9 +110,10 @@ class ContactFieldsFactory(object):
                 IDexterityFTI, name=contact_portal_type).lookupSchema()
             fieldsets = mergedTaggedValueList(schema, FIELDSETS_KEY)
             for name, field in getFieldsInOrder(schema):
-                if name not in exclude:
+                if name not in exclude and name not in field_ids:
                     visible_name = u'{0}: {1}'.format(
                         contact_portal_type, field.title)
+                    field_ids.append(name)
                     results.append((name, visible_name))
 
             portal_type = getattr(portal_types, contact_portal_type)
@@ -134,13 +136,14 @@ class ContactFieldsFactory(object):
                         interface = nameToInterface(context, behavior)
                     fieldsets = mergedTaggedValueList(interface, FIELDSETS_KEY)
                     for name, field in getFieldsInOrder(interface):
-                        if name not in exclude:
+                        if name not in exclude and name not in field_ids:
                             if not fieldsets:
                                 visible_name = field.title
                             else:
                                 fieldset = [
                                     fieldset for fieldset in fieldsets if name in fieldset.fields  # noqa
                                 ][0]
+                                field_ids.append(name)
                                 visible_name = u'{0}: {1}'.format(
                                     fieldset.label, field.title)
                             results.append((name, visible_name))

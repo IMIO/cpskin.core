@@ -108,6 +108,9 @@ class RelatedContactsViewlet(common.ViewletBase):
             if not isinstance(phones, list):
                 phones = [getattr(contact, field_name)]
             return [format_phone(phone) for phone in phones]
+        if field_name in ['position']:
+            positions = [pos.title.strip() for pos in contact.get_held_positions()]
+            return ', '.join(positions)
         return getattr(contact, field_name, '')
 
     def has_address(self):
