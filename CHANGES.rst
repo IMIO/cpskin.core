@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.19 (unreleased)
+0.11.19 (2017-12-08)
 --------------------
 
 - Add document_with_description view for document.
