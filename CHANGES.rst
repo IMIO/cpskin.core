@@ -4,7 +4,8 @@ Changelog
 0.11.19 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add postion and held_position into "contact field vocabulary".
+  [bsuttor]
 
 
 0.11.18 (2017-12-05)

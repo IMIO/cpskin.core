@@ -101,8 +101,9 @@ class ContactFieldsFactory(object):
         results = []
         exclude = ['im_handle', 'use_parent_address']
         exclude_behaviors = ['plone.app.content.interfaces.INameFromTitle']
+        behaviors = set()
         portal_types = api.portal.get_tool('portal_types')
-        contact_portal_types = ['person', 'organization']
+        contact_portal_types = ['person', 'organization', 'position', 'held_position']  # noqa
         for contact_portal_type in contact_portal_types:
             schema = getUtility(
                 IDexterityFTI, name=contact_portal_type).lookupSchema()
@@ -114,9 +115,12 @@ class ContactFieldsFactory(object):
                     results.append((name, visible_name))
 
             portal_type = getattr(portal_types, contact_portal_type)
-            behaviors = list(set(portal_type.behaviors))
-
-        behaviors = set(behaviors)
+            behaviors.update(set(portal_type.behaviors))
+        try:
+            # remove duplicates photo
+            results.remove(('photo', u'held_position: Photo'))
+        except ValueError:
+            pass
         for behavior in behaviors:
             if behavior not in exclude_behaviors:
                 try:
