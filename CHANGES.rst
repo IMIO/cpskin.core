@@ -4,6 +4,9 @@ Changelog
 0.11.19 (unreleased)
 --------------------
 
+- Add document_with_description view for document.
+  [bsuttor]
+
 - Override search view to add * at the end of SearchableText.
   [bsuttor]
 

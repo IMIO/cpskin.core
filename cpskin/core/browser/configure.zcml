@@ -328,7 +328,8 @@
       permission="cmf.ModifyPortalContent"
       layer="..interfaces.ICPSkinCoreLayer"
       />
-<!-- adapt plone.app.search view to add * at the end of searchterm -->
+
+  <!-- adapt plone.app.search view to add * at the end of searchterm -->
   <configure package="plone.app.search">
     <browser:page
         name="search"
@@ -338,5 +339,16 @@
         template="search.pt"
         layer="cpskin.core.interfaces.ICPSkinCoreLayer"
         />
-    </configure>
+  </configure>
+
+  <browser:page
+      name="document_with_description"
+      for="plone.app.contenttypes.interfaces.IDocument"
+      template="templates/document_with_description.pt"
+      layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+      permission="zope2.View"
+      menu="plone_displayviews"
+      title="View Document with description"
+      />
+
 </configure>
