@@ -396,7 +396,7 @@ class TestViewlets(unittest.TestCase):
         results = json.loads(data_geojson)
         self.assertEqual(
             results['features'][0]['properties']['address'],
-            u'Rue L\xe9on Morel , 1<br />5032 Isnes'
+            u'Rue L\xe9on Morel, 1<br />5032 Isnes'
         )
 
     def test_related_contacts_map_viewlet(self):
