@@ -251,9 +251,9 @@ class RelatedContactsMapViewlet(RelatedContactsViewlet):
                     classes = ''
                 address = get_address(contact)
                 number = ''
-                if 'number' in address:
+                if address.get('number', None):
                     number = ', {0}'.format(address['number'])
-                formated_address = '{0} {1}<br />{2} {3}'.format(
+                formated_address = '{0}{1}<br />{2} {3}'.format(
                     safe_utf8(address.get('street') or ''),
                     number,
                     address.get('zip_code') or '',
