@@ -4,7 +4,8 @@ Changelog
 0.11.20 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Do not add Firefox portlet on install.
+  [bsuttor]
 
 
 0.11.19 (2017-12-08)

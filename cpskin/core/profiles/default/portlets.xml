@@ -45,12 +45,4 @@
      name="Photo"
      />
 
- <assignment
-     manager="plone.rightcolumn"
-     category="context"
-     key="/"
-     type="cpskin.portlets.Firefox"
-     name="Firefox"
-     />
-
 </portlets>
