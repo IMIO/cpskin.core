@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.20 (unreleased)
+0.11.20 (2017-12-14)
 --------------------
 
 - Do not add Firefox portlet on install.
