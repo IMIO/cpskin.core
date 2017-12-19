@@ -363,7 +363,10 @@ class Wrapper(Wrapper):
                     self['latitude'] = getattr(value, 'latitude', 0)
                     self['longitude'] = getattr(value, 'longitude', 0)
                     continue
-
+                elif field_type == 'ContactChoice':
+                    pos = getattr(self.context, fieldname, None)
+                    if pos:
+                        value = unicode(pos.to_path)
                 elif isinstance(value, date):
                     value = value.isoformat()
 

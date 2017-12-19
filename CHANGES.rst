@@ -4,7 +4,8 @@ Changelog
 0.11.21 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add ContactChoice to wrapper transmo export.
+  [bsuttor]
 
 
 0.11.20 (2017-12-14)
