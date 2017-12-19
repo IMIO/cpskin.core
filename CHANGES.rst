@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.21 (unreleased)
+0.11.21 (2017-12-19)
 --------------------
 
 - Add ContactChoice to wrapper transmo export.
