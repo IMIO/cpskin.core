@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.23 (unreleased)
+0.11.23 (2018-01-03)
 --------------------
 
 - Improve export view.
