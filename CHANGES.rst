@@ -4,7 +4,8 @@ Changelog
 0.11.23 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Improve export view.
+  [bsuttor]
 
 
 0.11.22 (2018-01-03)

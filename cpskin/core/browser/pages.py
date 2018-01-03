@@ -201,6 +201,10 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         return related_obj.to_object
 
     def get_relation_value(self, field_name, value_name, sep=' '):
+        if field_name == 'localisation':
+            import pdb; pdb.set_trace()
+        if not getattr(self.real_context, field_name, None):
+            return False
         if isinstance(value_name, list):
             result = []
             for value in value_name:
@@ -216,6 +220,8 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         return getattr(relation_field, value_name, '')
 
     def get_partners(self, prefix='', sep=' '):
+        if not getattr(self.real_context, 'partners', None):
+            return False
         partners = self.get_relation_value('partners', 'title', sep)
         text = partners
         if prefix:
@@ -223,6 +229,8 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         return text
 
     def get_info(self):
+        if not getattr(self.real_context, 'contact', None):
+            return False
         obj = self.get_relation_field('contact')
         info = []
         phone = getattr(obj, 'phone', None)
