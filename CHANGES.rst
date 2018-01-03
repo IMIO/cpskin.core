@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.22 (unreleased)
+0.11.22 (2018-01-03)
 --------------------
 
 - Format phone for export view.
