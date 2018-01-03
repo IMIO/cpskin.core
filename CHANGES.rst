@@ -4,7 +4,8 @@ Changelog
 0.11.22 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Format phone for export view.
+  [bsuttor]
 
 
 0.11.21 (2017-12-19)

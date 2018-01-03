@@ -3,6 +3,7 @@ from collective.documentgenerator.browser.generation_view import DocumentGenerat
 from collective.documentgenerator.helper.dexterity import DXDocumentGenerationHelperView  # noqa
 from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.core.interfaces import IFolderViewSelectedContent as IFVSC
+from cpskin.core.utils import format_phone
 from cpskin.core.utils import safe_utf8
 from cpskin.locales import CPSkinMessageFactory as _
 from DateTime import DateTime
@@ -193,6 +194,8 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         related_obj = self.get_value(field_name)
         if not related_obj:
             return None
+        if isinstance(related_obj, str):
+            return self.real_context
         if isinstance(related_obj, list):
             return [obj.to_object for obj in related_obj]
         return related_obj.to_object
@@ -228,9 +231,9 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             phone = getattr(obj, 'phone', None)
         if phone:
             if isinstance(phone, list):
-                info.append(' '.join(phone))
+                info.append(' '.join([format_phone(p)['formated'] for p in phone]))
             else:
-                info.append(phone)
+                info.append(format_phone(phone)['formated'])
         website = getattr(obj, 'website', None)
         if website:
             info.append(website)

@@ -352,6 +352,11 @@ class TestViews(unittest.TestCase):
         self.assertEqual(
             view.get_formatted_date(), u'1 January\n\xe0 10:00')
 
+        event.contact = 'Imio'
+        event.phone = '081/586.100'
+        info = view.get_info()
+        self.assertEqual(info, 'Info :  +32 (0) 81 58 61 00')
+
     def test_folderview_hide_title(self):
         # directlyProvides(self.portal.REQUEST, ICPSkinCoreLayer)  # noqa
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
