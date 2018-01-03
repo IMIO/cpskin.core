@@ -201,8 +201,6 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         return related_obj.to_object
 
     def get_relation_value(self, field_name, value_name, sep=' '):
-        if field_name == 'localisation':
-            import pdb; pdb.set_trace()
         if not getattr(self.real_context, field_name, None):
             return False
         if isinstance(value_name, list):
