@@ -9,12 +9,13 @@ from cpskin.core.utils import add_behavior
 from cpskin.core.utils import add_leadimage_from_file
 from cpskin.menu.interfaces import IDirectAccess
 from datetime import datetime
-from datetime import timedelta
 from DateTime import DateTime
+from datetime import timedelta
 from plone import api
 from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.app.textfield.value import RichTextValue
 from plone.schemaeditor.utils import FieldAddedEvent
 from plone.schemaeditor.utils import IEditableSchema
 from plone.uuid.interfaces import IUUID
@@ -562,3 +563,18 @@ class TestViews(unittest.TestCase):
         query = view.filter_query({})
         self.assertEqual(query['SearchableText'], 'testi*')
         self.assertEqual(len(view.results()), 1)
+
+    def test_replace_rich_text_view(self):
+        doc = api.content.create(self.portal, 'Document', 'doc')
+        text = '<a href="http://nohost/plone/at_download/file">link</a>'
+        doc.text = RichTextValue(text)
+        form = getMultiAdapter(
+            (self.portal, self.portal.REQUEST), name='replace-richtext-form')
+        form.request.form = {
+            'form.widgets.old_text': '/at_download/file',
+            'form.widgets.new_text': ''
+        }
+        form.update()
+        self.assertTrue('at_download/file' in doc.text.raw)
+        form.handleApply(form, 'Ok')
+        self.assertFalse('at_download/file' in doc.text.raw)

@@ -216,6 +216,14 @@
     class=".form.GeoForm"
     />
 
+  <browser:page
+    name="replace-richtext-form"
+    for="Products.CMFCore.interfaces.ISiteRoot"
+    permission="cmf.ModifyPortalContent"
+    class=".form.ReplaceRichtextForm"
+    />
+
+
 
   <!-- Document generator -->
   <browser:page

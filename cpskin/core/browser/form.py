@@ -3,6 +3,7 @@ from cpskin.core.utils import has_lat_lng
 from cpskin.core.utils import set_coord
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
+from plone.app.textfield.value import RichTextValue
 from plone.directives import form
 from z3c.form import button
 from zope import schema
@@ -82,3 +83,68 @@ def set_lat_lng(portal_type, request):
                 results.append(message)
         logger.info('{0}/{1}'.format(i, nbre))
     return results
+
+
+class IReplaceRichtextForm(form.Schema):
+    """ Define form fields """
+
+    old_text = schema.TextLine(
+        title=_(u'Old text'),
+        description=_(
+            u'Text to be replaced in all your RichTextValue'),
+        required=False,
+    )
+
+    new_text = schema.TextLine(
+        title=_(u'New text'),
+        description=_(
+            u'Text which will replace all your old_text into RichTextValue'),
+        required=False,
+    )
+
+
+class ReplaceRichtextForm(form.SchemaForm):
+    schema = IReplaceRichtextForm
+    ignoreContext = True
+
+    label = u"What text do you want to change ?"
+    description = u'This script will update old_text value with new_text value'
+
+    @button.buttonAndHandler(u'Ok')
+    def handleApply(self, action):
+        data, errors = self.extractData()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+        # Do something with valid data here
+
+        # Set status on this form page (this status message
+        # is not bind to the session and does not go thru redirects)
+        old_text = data['old_text']
+        new_text = data['new_text']
+        if not old_text:
+            old_text = u''
+        if not new_text:
+            new_text = u''
+        catalog = api.portal.get_tool('portal_catalog')
+        query = {}
+        query['object_provides'] = 'plone.app.contenttypes.behaviors.richtext.IRichText'  # noqa
+        results = catalog(**query)
+        updated = []
+        for result in results:
+            obj = result.getObject()
+            text = getattr(obj, 'text', None)
+            if text:
+                clean_text = text.raw.replace(old_text, new_text)
+                if clean_text != text.raw:
+                    obj.text = RichTextValue(
+                        raw=clean_text,
+                        mimeType=text.mimeType,
+                        outputMimeType=text.outputMimeType,
+                        encoding=text.encoding
+                    )
+                    obj.reindexObject()
+                    updated.append(obj.absolute_url())
+                    message = '{0} is updated'.format(updated)
+                    api.portal.show_message(
+                        message=message, request=self.request)

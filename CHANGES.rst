@@ -4,7 +4,8 @@ Changelog
 0.11.24 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add replace-richtext-form view.
+  [bsuttor]
 
 
 0.11.23 (2018-01-03)
