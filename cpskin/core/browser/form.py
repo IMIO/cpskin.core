@@ -107,7 +107,7 @@ class ReplaceRichtextForm(form.SchemaForm):
     schema = IReplaceRichtextForm
     ignoreContext = True
 
-    label = u"What text do you want to change ?"
+    label = u'What text do you want to change ?'
     description = u'This script will update old_text value with new_text value'
 
     @button.buttonAndHandler(u'Ok')
