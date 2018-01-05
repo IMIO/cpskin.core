@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11.24 (unreleased)
+0.11.24 (2018-01-05)
 --------------------
 
 - Add replace-richtext-form view.
