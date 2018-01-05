@@ -130,7 +130,6 @@ class ReplaceRichtextForm(form.SchemaForm):
         query = {}
         query['object_provides'] = 'plone.app.contenttypes.behaviors.richtext.IRichText'  # noqa
         results = catalog(**query)
-        updated = []
         for result in results:
             obj = result.getObject()
             text = getattr(obj, 'text', None)
@@ -144,7 +143,7 @@ class ReplaceRichtextForm(form.SchemaForm):
                         encoding=text.encoding
                     )
                     obj.reindexObject()
-                    updated.append(obj.absolute_url())
-                    message = '{0} is updated'.format(updated)
+                    message = '{0} is updated'.format(obj.absolute_url())
+                    logger.info(message)
                     api.portal.show_message(
                         message=message, request=self.request)
