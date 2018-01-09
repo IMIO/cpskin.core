@@ -60,6 +60,7 @@ class ContactDetailsView(BrowserView, ContactDetails):
             'Windows 7': 'maps:?q={longitude},{latitude}',
             'Windows 8.1': 'maps:?q={longitude},{latitude}',
             'Windows 10': 'maps:?q={longitude},{latitude}',
+            'Windows': 'maps:?q={longitude},{latitude}',
         }
         if infos['os']['family'] not in links:
             return '#map'
