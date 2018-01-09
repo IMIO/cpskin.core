@@ -4,7 +4,8 @@ Changelog
 0.11.25 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add a link to maps applications on directory addresses : #17317
+  [mpeeters]
 
 
 0.11.24 (2018-01-05)

@@ -1,0 +1,37 @@
+<div xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+     i18n:domain="collective.contact.core"
+     tal:define="address python: args[0];
+                 link python: args[1];">
+    <div tal:condition="address" class="field adr address">
+    <label><tal:block i18n:translate="">Address</tal:block>:</label>
+    <div class="street-address" class="address_line street-address">
+      <a href="" tal:attributes="href link">
+          <span tal:replace="address/street"></span>
+          <span tal:replace="address/number"></span>
+      </a>
+    </div>
+    <div class="additional_address_details" class="address_line">
+        <a href="" tal:attributes="href link">
+          <span i18n:translate="" tal:replace="address/additional_address_details"></span>
+        </a>
+    </div>
+    <div class="postal_code_and_locality" class="address_line">
+        <a href="" tal:attributes="href link">
+          <span class="postal-code" i18n:translate="" tal:condition="address/zip_code" tal:content="address/zip_code"></span>
+          <span class="locality" i18n:translate="" tal:condition="address/city" tal:content="address/city"></span>
+        </a>
+    </div>
+    <div class="region" class="address_line region" tal:condition="address/region">
+        <a href="" tal:attributes="href link">
+          <span i18n:translate="" tal:replace="address/region"></span>
+        </a>
+    </div>
+    <div class="country" class="address_line country-name" tal:condition="address/country">
+        <a href="" tal:attributes="href link">
+          <span i18n:translate="" tal:replace="address/country"></span>
+        </a>
+    </div>
+
+    </div>
+</div>
