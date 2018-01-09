@@ -55,10 +55,8 @@ class ContactDetailsView(BrowserView, ContactDetails):
         links = {
             'Mac OS X': 'maps:?q={longitude},{latitude}',
             'iOS': 'maps:?q={longitude},{latitude}',
-            'Android': 'geo:{longitude},{latitude}',
+            'Android': 'geo:?q={longitude},{latitude}',
             'Windows Phone': 'maps:?q={longitude},{latitude}',
-            'Windows 7': 'maps:?q={longitude},{latitude}',
-            'Windows 8.1': 'maps:?q={longitude},{latitude}',
             'Windows 10': 'maps:?q={longitude},{latitude}',
             'Windows': 'maps:?q={longitude},{latitude}',
         }
