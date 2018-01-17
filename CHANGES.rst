@@ -4,6 +4,9 @@ Changelog
 0.11.25 (unreleased)
 --------------------
 
+- Remove old collective.contentleadimage dependency.
+  [bsuttor]
+
 - Add a link to maps applications on directory addresses : #17317
   [mpeeters]
 
