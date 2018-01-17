@@ -6,6 +6,8 @@ class CpskinSearch(Search):
 
     def filter_query(self, query):
         query = super(CpskinSearch, self).filter_query(query)
+        if query is None:
+            return {}
         if 'SearchableText' in query.keys():
             searchable_text = query.get('SearchableText', '')
             if searchable_text:
