@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
+from collective.contact.core.browser.address import get_address
 from collective.geo.behaviour.interfaces import ICoordinates
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
@@ -226,10 +227,11 @@ def get_address_from_obj(obj):
         return address
 
     # collective.contact.core
-    street = get_field(obj, 'street')
-    number = get_field(obj, 'number')
-    zip_code = get_field(obj, 'zip_code')
-    city = get_field(obj, 'city')
+    dict_address = get_address(obj)
+    street = safe_utf8(dict_address.get('street'))
+    number = safe_utf8(dict_address.get('number'))
+    zip_code = safe_utf8(dict_address.get('zip_code'))
+    city = safe_utf8(dict_address.get('city'))
     if street and city:
         address = '{0} {1} {2} {3}'.format(
             number, street, zip_code, city

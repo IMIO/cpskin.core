@@ -4,6 +4,9 @@ Changelog
 0.11.25 (unreleased)
 --------------------
 
+- Get address for contacts with contact method.
+  [bsuttor]
+
 - Remove old collective.contentleadimage dependency.
   [bsuttor]
 
