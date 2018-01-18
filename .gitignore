@@ -28,3 +28,4 @@ share/
 geckodriver.log
 local/
 pip-selfcheck.json
+htmlcov/
