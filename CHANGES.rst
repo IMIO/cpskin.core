@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.11.25 (unreleased)
---------------------
+0.12.0 (2018-01-18)
+-------------------
 
 - Get address for contacts with contact method.
   [bsuttor]
