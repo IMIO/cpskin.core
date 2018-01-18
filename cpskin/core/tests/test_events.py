@@ -29,13 +29,14 @@ class TestEvents(unittest.TestCase):
             container=self.portal, type='directory', id='directory')
         orga = api.content.create(
             container=directory, type='organization', id='orga')
-        orga.street = u'Zoning Industriel'
-        orga.number = u'34'
+        orga.use_parent_address = False
+        orga.street = u'Rue Léon Morel'
+        orga.number = u'1'
         # notify(ObjectAddedEvent(orga))
         coord = ICoordinates(orga).coordinates
         self.assertFalse(coord.startswith('POINT '))
-        orga.zip_code = u'5190'
-        orga.city = u'Mornimont'
+        orga.zip_code = u'5032'
+        orga.city = u'Isnes'
         notify(ObjectModifiedEvent(orga))
         coord = ICoordinates(orga).coordinates
         self.assertTrue(coord.startswith('POINT '))
