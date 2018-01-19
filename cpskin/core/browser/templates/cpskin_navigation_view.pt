@@ -8,7 +8,7 @@
 <body>
 
 <metal:content-core fill-slot="content-core">
-
+<div class="description-navigation-view" tal:content="context/description" />
 <div class="navigation-view-menus" tal:repeat="menu view/menus">
 
   <a href="" tal:attributes="href menu/getURL" >

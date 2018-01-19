@@ -4,7 +4,8 @@ Changelog
 0.12.1 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add description into cpskin navigation views.
+  [bsuttor]
 
 
 0.12.0 (2018-01-18)
