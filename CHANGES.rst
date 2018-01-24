@@ -4,6 +4,9 @@ Changelog
 0.12.1 (unreleased)
 -------------------
 
+- Export behaviors for transmo view.
+  [bsuttor]
+
 - Add description into cpskin navigation views.
   [bsuttor]
 
