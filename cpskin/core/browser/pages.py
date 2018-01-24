@@ -14,6 +14,7 @@ from plone.app.event.base import date_speller
 from plone.app.event.base import dates_for_display
 from plone.app.layout.viewlets.common import PathBarViewlet
 from plone.app.workflow.remap import remap_workflow
+from plone.dexterity.interfaces import IDexterityFTI
 from plone.resource.interfaces import IResourceDirectory
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.MailHost.interfaces import IMailHost
@@ -455,6 +456,15 @@ class TransmoExport(BrowserView):
             leadimage_settings = {}
             leadimage_settings['allowed_types'] = cli_properties.allowed_types
             objects['leadimage'] = leadimage_settings
+
+        # behaviors
+        portal_types = api.portal.get_tool('portal_types')
+        behaviors = {}
+        for portal_type in portal_types:
+            fti = portal_types[portal_type]
+            if IDexterityFTI.providedBy(fti):
+                behaviors[portal_type] = fti.behaviors
+        objects['behaviors'] = behaviors
 
         portal_catalog = api.portal.get_tool('portal_catalog')
         total_objects = len(portal_catalog({}))
