@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.2 (unreleased)
+0.12.2 (2018-01-24)
 -------------------
 
 - Improve portlet export, add visible.
