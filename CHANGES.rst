@@ -4,7 +4,8 @@ Changelog
 0.12.2 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improve portlet export, add visible.
+  [bsuttor]
 
 
 0.12.1 (2018-01-24)

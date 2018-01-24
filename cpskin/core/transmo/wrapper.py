@@ -24,6 +24,7 @@ from plone.portlets.constants import USER_CATEGORY
 from plone.portlets.interfaces import ILocalPortletAssignable
 from plone.portlets.interfaces import ILocalPortletAssignmentManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
+from plone.portlets.interfaces import IPortletAssignmentSettings
 from plone.portlets.interfaces import IPortletManager
 from xml.dom import minidom
 from zope.component import getUtilitiesFor
@@ -434,6 +435,9 @@ class Wrapper(Wrapper):
                             obj.getPhysicalPath()))
                         child.setAttribute('type', type_)
                         child.setAttribute('name', name)
+                        settings = IPortletAssignmentSettings(assignment)
+                        if not settings.get('visible', True):
+                            child.setAttribute('visible', False)
 
                         assignment = assignment.__of__(mapping)
                         # use existing adapter for exporting a portlet assignment  # noqa
