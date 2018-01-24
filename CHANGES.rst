@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.1 (unreleased)
+0.12.1 (2018-01-24)
 -------------------
 
 - Export behaviors for transmo view.
