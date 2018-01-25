@@ -437,7 +437,7 @@ class Wrapper(Wrapper):
                         child.setAttribute('name', name)
                         settings = IPortletAssignmentSettings(assignment)
                         if not settings.get('visible', True):
-                            child.setAttribute('visible', False)
+                            child.setAttribute('visible', 'False')
 
                         assignment = assignment.__of__(mapping)
                         # use existing adapter for exporting a portlet assignment  # noqa
