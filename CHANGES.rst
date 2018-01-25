@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.12.3 (unreleased)
-----------------
+0.12.3 (2018-01-25)
+-------------------
 
 - Check if there is a version in browser agent.
   [bsuttor]
