@@ -1,10 +1,11 @@
 Changelog
 =========
 
-[A (unreleased)
+0.12.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Check if there is a version in browser agent.
+  [bsuttor]
 
 
 0.12.2 (2018-01-24)

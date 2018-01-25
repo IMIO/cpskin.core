@@ -231,7 +231,8 @@ class FolderView(FoldV):
             browser = browser_user_agent.get('browser')
             if browser:
                 if 'Internet Explorer' in browser.get('name'):
-                    results = int(browser['version'].split('.')[0]) >= 9
+                    if browser.get('version', False):
+                        results = int(browser['version'].split('.')[0]) >= 9
         return results
 
     def addContent(self):
