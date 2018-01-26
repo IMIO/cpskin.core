@@ -4,7 +4,8 @@ Changelog
 0.12.4 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add figcaption to valid xhtml tags.
+  [bsuttor]
 
 
 0.12.3 (2018-01-25)
