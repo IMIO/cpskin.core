@@ -14,14 +14,14 @@
   </property>
  </object>
 
- <object name="cli_properties" meta_type="Plone Property Sheet">
+ <!-- <object name="cli_properties" meta_type="Plone Property Sheet">
   <property name="allowed_types" type="lines" purge="True">
    <element value="Document" />
    <element value="Event" />
    <element value="Folder" />
    <element value="File" />
   </property>
- </object>
+ </object> -->
 
  <object name="ckeditor_properties" meta_type="Plone Property Sheet">
   <property name="forcePasteAsPlainText" type="boolean">True</property>
