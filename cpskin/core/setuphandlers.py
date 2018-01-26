@@ -7,7 +7,6 @@ from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
 from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
 from plone.app.viewletmanager.manager import ManageViewlets
-from plone.dexterity.interfaces import IDexterityFTI
 from plone.registry import field
 from plone.registry import Record
 from plone.registry.interfaces import IRegistry
@@ -48,29 +47,6 @@ def installCore(context):
     # Create default logo
     addImageFromFile(portal, 'cpskinlogo.png')
 
-    # Add HiddenTags behavior to collective.directory types
-    # addBehavior(
-    #     portal,
-    #     'cpskin.core.behaviors.metadata.IHiddenTags',
-    #     'collective.directory.directory')
-    # addBehavior(
-    #     portal,
-    #     'cpskin.core.behaviors.metadata.IISearchTags',
-    #     'collective.directory.directory')
-    #
-    # addBehavior(
-    #     portal,
-    #     'cpskin.core.behaviors.metadata.IHiddenTags',
-    #     'collective.directory.category')
-    # addBehavior(
-    #     portal,
-    #     'cpskin.core.behaviors.metadata.IHiddenTags',
-    #     'collective.directory.card')
-    # addBehavior(
-    #     portal,
-    #     'cpskin.core.behaviors.metadata.IISearchTags',
-    #     'collective.directory.card')
-
     add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
     add_behavior('Event', ICpskinEventViewSettings.__identifier__)
 
@@ -93,6 +69,26 @@ def installCore(context):
     set_googleapi_key()
     upgrade_front_page()
     order_portaltop_viewlets()
+    add_other_xhtml_valid_tags()
+
+
+def add_other_xhtml_valid_tags():
+    portal_transforms = api.portal.get_tool('portal_transforms')
+    safe_html = getattr(portal_transforms, 'safe_html')
+    key = 'valid_tags'
+    valids = safe_html.get_parameter_value('valid_tags')
+    other_tags = ['figcaption']
+    kwargs = {}
+    kwargs[key + '_key'] = valids.keys()
+    kwargs[key + '_value'] = [str(s) for s in valids.values()]
+    for tag in other_tags:
+        if tag not in valids.keys():
+            kwargs[key + '_key'].append(tag)
+            kwargs[key + '_value'].append('1')
+            logger.info('Add {0} to valid html tags'.format(tag))
+    safe_html.set_parameters(**kwargs)
+    safe_html._p_changed = True
+    safe_html.reload()
 
 
 def order_portaltop_viewlets():
@@ -128,29 +124,6 @@ def uninstallCore(context):
     # Remove footer static
     if portal.hasObject('footer-static'):
         api.content.delete(obj=portal['footer-static'])
-
-    # Remove dexterity behaviors
-    # removeBehavior(
-    #     portal,
-    #     'cpskin.core.behaviors.metadata.IHiddenTags',
-    #     'collective.directory.directory')
-    # removeBehavior(
-    #     portal,
-    #     'cpskin.core.behaviors.metadata.IISearchTags',
-    #     'collective.directory.directory')
-    #
-    # removeBehavior(
-    #     portal,
-    #     'cpskin.core.behaviors.metadata.IHiddenTags',
-    #     'collective.directory.category')
-    # removeBehavior(
-    #     portal,
-    #     'cpskin.core.behaviors.metadata.IHiddenTags',
-    #     'collective.directory.card')
-    # removeBehavior(
-    #     portal,
-    #     'cpskin.core.behaviors.metadata.IISearchTags',
-    #     'collective.directory.card')
 
     unregisterProvidesInterfaces(portal)
 
@@ -284,32 +257,6 @@ def addImageFromFile(portal, fileName):
                                        language='fr')
         image.setTitle(fileName)
         image.reindexObject()
-
-
-def addBehavior(portal, behavior, name):
-    """
-    Add HiddenTags behavior to dexterity named type
-    """
-    fti = getUtility(IDexterityFTI, name=name)
-
-    behaviors = list(fti.behaviors)
-
-    if behavior not in behaviors:
-        behaviors.append(behavior)
-        fti.behaviors = behaviors
-
-
-def removeBehavior(portal, behavior, name):
-    """
-    Remove HiddenTags behavior dexterity named type
-    """
-    fti = getUtility(IDexterityFTI, name=name)
-
-    behaviors = list(fti.behaviors)
-
-    if behavior in behaviors:
-        behaviors.remove(behavior)
-        fti.behaviors = behaviors
 
 
 def configCollectiveQucikupload(portal):

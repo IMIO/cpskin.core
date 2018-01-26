@@ -3,6 +3,7 @@ from Acquisition import aq_get
 from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
+from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
 from cpskin.core.setuphandlers import addDescriptionOnThemesOptionToRegistry
@@ -29,6 +30,10 @@ import logging
 
 
 logger = logging.getLogger('cpskin.core')
+
+
+def set_other_xhtml_valid_tags(context):
+    add_other_xhtml_valid_tags()
 
 
 def use_sc_social_like_instead_of_bookmarks(context):
