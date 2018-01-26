@@ -492,3 +492,23 @@ class Wrapper(Wrapper):
             self['author_email'] = getattr(self.context, 'author_email', None)
             self['author_name'] = getattr(self.context, 'author_name', None)
             self['author_username'] = getattr(self.context, 'author_username', None)
+
+    def get_newsletter(self):
+        pt = self.context.portal_type
+        if pt == 'NewsletterTheme':
+            self['testEmail'] = getattr(self.context, 'testEmail', None)
+            self['authorEmail'] = getattr(self.context, 'authorEmail', None)
+            self['replyto'] = getattr(self.context, 'replyto', None)
+            self['activationMailSubject'] = getattr(self.context, 'activationMailSubject', None)
+            self['activationMailTemplate'] = getattr(self.context, 'activationMailTemplate', None)
+            self['newsletterHeader'] = getattr(self.context, 'newsletterHeader', None)
+            self['newsletterFooter'] = getattr(self.context, 'newsletterFooter', None)
+            self['newsletterStyle'] = getattr(self.context, 'newsletterStyle', None)
+            self['notify'] = getattr(self.context, 'notify', False)
+            self['renderTemplate'] = getattr(self.context, 'renderTemplate', None)
+            self['extraRecipients'] = getattr(self.context, 'extraRecipients', None)
+            self['subscriber_folder_id'] = getattr(self.context, 'subscriber_folder_id', None)
+            self['alternative_portal_url'] = getattr(self.context, 'alternative_portal_url', None)
+        if pt == 'Newsletter':
+            self['setFormat'] = getattr(self.context, 'setFormat', None)
+            self['dateEmitted'] = getattr(self.context, 'dateEmitted', None)
