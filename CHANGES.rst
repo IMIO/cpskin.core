@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.4 (unreleased)
+0.12.4 (2018-01-26)
 -------------------
 
 - Add figcaption to valid xhtml tags.
