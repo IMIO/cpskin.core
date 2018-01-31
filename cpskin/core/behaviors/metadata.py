@@ -107,6 +107,10 @@ alsoProvides(IISearchTags, IFormFieldProvider)
 alsoProvides(IIAmTags, IFormFieldProvider)
 
 
+class IUseKeywordHomepage(model.Schema):
+    pass
+
+
 @provider(IFormFieldProvider)
 class IRelatedContacts(model.Schema):
     model.fieldset(

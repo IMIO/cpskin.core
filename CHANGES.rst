@@ -4,7 +4,8 @@ Changelog
 0.12.5 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Temporary readd 'IUseKeywordHomepage' to fix bug with florennes.
+  [bsuttor]
 
 
 0.12.4 (2018-01-26)
