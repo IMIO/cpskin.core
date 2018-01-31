@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.5 (unreleased)
+0.12.5 (2018-01-31)
 -------------------
 
 - Temporary readd 'IUseKeywordHomepage' to fix bug with florennes.
