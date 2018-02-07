@@ -15,15 +15,37 @@
         batch python:isinstance(folderContents, Batch) and folderContents or Batch(folderContents, 100, int(b_start), orphan=2);
         ">
 
+       <script type="text/javascript">
+         jQuery(document).ready(function($) {
+            $('.dynamic-hover').hover(
+                function() {
+                    var image_hover = $(this).attr('hover-image-url');
+                    $(this).css('background-image', 'url(' + image_hover + ')');
+                },
+                function() {
+                    var image = $(this).attr('image-url');
+                    $(this).css('background-image', 'url(' + image + ')');
+                }
+            );
+         });
+       </script>
+
        <tal:results condition="batch">
          <tal:buttons condition="actions_enabled"
                       content="structure provider:collective.contact.facetednav.batchactions" />
         <div metal:use-macro="context/batch_macros/macros/navigation"></div>
 
-        <div class="eea-preview-items">
+        <div class="eea-preview-items"
+             tal:define="utils_view nocall:context/@@faceted-utils">
           <tal:entries repeat="brain batch">
-           <div class="contact-entry"
-                tal:define="doc brain/getObject|nothing">
+           <div class=""
+                tal:define="doc brain/getObject|nothing;
+                            image1 python: utils_view.image_url(doc, 'image1');
+                            image2 python: utils_view.image_url(doc, 'image2');"
+                tal:attributes="class python: (image1 and image2) and 'contact-entry dynamic-hover' or 'contact-entry';
+                                style string: background-image: url(${image1});
+                                image-url image1;
+                                hover-image-url image2">
               <div tal:condition="actions_enabled" class="contact-selection">
                 <input type="checkbox"
                        tal:attributes="value doc/UID;

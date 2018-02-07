@@ -74,4 +74,11 @@
     provides=".directorycontact.IDirectoryContactDetails"
     />
 
+  <plone:behavior
+    title="Images for organizations"
+    description="Images to display on faceted view."
+    provides=".organization.IOrganizationImages"
+    for="collective.contact.core.content.organization.IOrganization"
+    />
+
 </configure>

@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v36: Add photos fields for organization"
+        source="35"
+        destination="36"
+        handler=".upgradehandlers.add_images_behavior"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="Add figcaption to valid_tags"
         source="34"
         destination="35"

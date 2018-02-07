@@ -28,6 +28,14 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    for="eea.facetednavigation.interfaces.IFacetedNavigable"
+    name="faceted-utils"
+    class=".view.UtilsView"
+    permission="zope2.View"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+    />
+
   <!-- New faceted contacts view -->
   <faceted:view
     name="faceted-preview-contacts"

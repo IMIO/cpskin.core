@@ -2,6 +2,7 @@
 from Acquisition import aq_get
 from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
+from cpskin.core.behaviors.organization import IOrganizationImages
 from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
 from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
@@ -30,6 +31,10 @@ import logging
 
 
 logger = logging.getLogger('cpskin.core')
+
+
+def add_images_behavior(context):
+    add_behavior('organization', IOrganizationImages.__identifier__)
 
 
 def set_other_xhtml_valid_tags(context):
