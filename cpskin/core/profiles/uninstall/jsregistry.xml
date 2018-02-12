@@ -3,5 +3,6 @@
 
   <javascript id="++resource++cpskin.core.js/multilinewidget.js" remove="True" />
   <javascript id="++resource++cpskin.core.js/right_actions.js" remove="True" />
+  <javascript id="++resource++cpskin.core.js/organization.js" remove="True" />
 
 </object>

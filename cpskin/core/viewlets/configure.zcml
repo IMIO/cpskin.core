@@ -135,6 +135,14 @@
         />
 
     <browser:viewlet
+        name="cpskin.organization_gallery"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+        class=".organization_gallery.OrganizationGalleryViewlet"
+        permission="zope.Public"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:viewlet
         name="sc.social.likes"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
         class=".social.SocialLikesViewlet"
@@ -169,6 +177,12 @@
     <browser:resource
         file="css/mediaviewlet.css"
         name="cpskin.core.mediaviewlet.css"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:resource
+        file="css/organization.css"
+        name="cpskin.core.organization.css"
         layer="..interfaces.ICPSkinCoreLayer"
         />
 

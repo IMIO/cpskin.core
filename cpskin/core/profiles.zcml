@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v37: Add cpskin.organization_gallery viewlet / CSS / JS"
+        source="36"
+        destination="37"
+        handler=".upgradehandlers.upgrade_organization_gallery"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v36: Add photos fields for organization"
         source="35"
         destination="36"

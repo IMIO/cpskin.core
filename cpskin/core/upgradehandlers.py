@@ -33,6 +33,21 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def upgrade_organization_gallery(context):
+    context.runImportStepFromProfile(
+        'profile-cpskin.core:default',
+        'cssregistry'
+    )
+    context.runImportStepFromProfile(
+        'profile-cpskin.core:default',
+        'jsregistry'
+    )
+    context.runImportStepFromProfile(
+        'profile-cpskin.core:default',
+        'viewlets'
+    )
+
+
 def add_images_behavior(context):
     add_behavior('organization', IOrganizationImages.__identifier__)
 
