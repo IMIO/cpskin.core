@@ -19,11 +19,13 @@ class IOrganizationImages(model.Schema):
     )
 
     image1 = NamedImage(
-        title=_("Image 1"),
+        title=_('Image 1'),
+        description=_(u'This image is shown on directory view.'),
         required=False,
     )
 
     image2 = NamedImage(
-        title=_("Image 2"),
+        title=_('Image 2'),
+        description=_(u'This image is shown on directory view when mouse hovers the card.'),  # noqa
         required=False,
     )
