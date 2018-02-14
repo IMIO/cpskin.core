@@ -55,6 +55,25 @@ div.table-responsive {
 .shown-right-panel {
 	display: block;
 }
+
 #portal-footer-wrapper.row {
     clear: both;
+}
+
+.dynamic-hover {
+	background-position: center !important;
+}
+
+.contact-entry-photos {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	padding-top: 0px !important;
+}
+
+.organization-photos {
+	height: 70%;
+}
+
+.organization-informations {
+	margin: 1em;
 }

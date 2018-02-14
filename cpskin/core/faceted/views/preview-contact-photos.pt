@@ -1,0 +1,38 @@
+<a id="" class=""
+   tal:define="short_title context/title|string:;
+               title context/get_full_title|string:;
+               url context/absolute_url|string:#;
+               image1 python: view.image_url(context, 'image1');
+               image2 python: view.image_url(context, 'image2');"
+   tal:attributes="href url;
+                   title title;
+                   class python: (image1 and image2) and 'dynamic-hover' or '';
+                   id string:hover-${context/UID}"
+   i18n:domain="collective.contact.facetednav">
+
+  <div id="" class="organization-photos"
+       tal:attributes="style string: background-image: url(${image1});
+                       image-url image1;
+                       hover-image-url image2;
+                       id string:image-${context/UID}">
+
+  </div>
+
+  <div class="organization-informations">
+
+      <span class="organization-title" tal:content="short_title"></span>
+
+      <div class="contact-info">
+
+        <div class="organization-address"
+           tal:define="city view/city"
+           tal:condition="city"
+           tal:content="city">Isnes</div>
+
+      </div>
+
+  </div>
+
+</a>
+
+<tal:buttons content="structure provider:collective.contact.facetednav.actions" />

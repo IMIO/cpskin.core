@@ -1,5 +1,6 @@
 .organization-photo a {
     background-size: cover;
+    background-position: center;
     display: inline-block;
     float: left;
     margin: 1em;

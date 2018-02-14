@@ -28,14 +28,6 @@
     permission="zope2.View"
     />
 
-  <browser:page
-    for="eea.facetednavigation.interfaces.IFacetedNavigable"
-    name="faceted-utils"
-    class=".view.UtilsView"
-    permission="zope2.View"
-    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
-    />
-
   <!-- New faceted contacts view -->
   <faceted:view
     name="faceted-preview-contacts"
@@ -48,6 +40,23 @@
     name="faceted-preview-contact"
     for="zope.interface.Interface"
     template="preview-contact.pt"
+    class=".view.PreviewItem"
+    permission="zope2.View"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+    />
+
+  <!-- New faceted contacts view with photos and gallery -->
+  <faceted:view
+    name="faceted-preview-contacts-photos"
+    template="preview-contacts-photos.pt"
+    title="Faceted contacts preview with photos"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    name="faceted-preview-contact-photos"
+    for="zope.interface.Interface"
+    template="preview-contact-photos.pt"
     class=".view.PreviewItem"
     permission="zope2.View"
     layer="cpskin.core.interfaces.ICPSkinCoreLayer"

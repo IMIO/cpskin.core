@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.contact.core.browser.address import get_address
 from cpskin.core.browser.contactdetails import ContactDetailsView
@@ -13,10 +12,12 @@ class PreviewItem(ContactDetailsView):
         template = ViewPageTemplateFile(template_path)
         return template(self, dict_address)
 
+    def city(self):
+        dict_address = get_address(self.context)
+        city = dict_address.get('city')
+        return city
 
-class UtilsView(BrowserView):
-
-    def image_url(self, obj, field, default_scale='preview'):
+    def image_url(self, obj, field, default_scale='thumb'):
         url = ''
         images = obj.restrictedTraverse('@@images')
         if getattr(obj, field, False):
