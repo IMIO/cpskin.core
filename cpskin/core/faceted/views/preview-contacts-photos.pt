@@ -9,6 +9,7 @@
   <metal:content-core fill-slot="content-core">
     <metal:block define-macro="content-core">
       <div tal:define="
+        preview_view nocall:context/@@faceted-preview-contacts-photos;
         folderContents folderContents | python:context.getFolderContents();
         Batch python:modules['Products.CMFPlone'].Batch;
         b_start python:request.get('b_start', 0);
@@ -48,8 +49,7 @@
                                        id string:contact-${doc/UID}" />
               </div>
             <tal:entry
-              condition="exists:doc/@@faceted-preview-contact-photos"
-              replace="structure doc/@@faceted-preview-contact-photos" />
+              replace="structure python:preview_view.render_contact_photo_preview(doc)" />
             </div>
           </tal:entries>
 

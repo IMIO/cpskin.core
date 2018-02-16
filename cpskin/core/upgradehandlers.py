@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_get
+from cpskin.core.behaviors.directory import ICpskinDirectoryViewSettings
 from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.organization import IOrganizationImages
@@ -247,6 +248,10 @@ def move_cpskin_actions(context):
 
 def add_navigation_toggle_action(context):
     context.runImportStepFromProfile('profile-cpskin.core:default', 'actions')
+
+
+def add_directory_view_behavior(context):
+    add_behavior('directory', ICpskinDirectoryViewSettings.__identifier__)
 
 
 def add_index_view_behavior(context):

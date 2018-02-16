@@ -3,6 +3,7 @@ from Acquisition import aq_inner
 from Acquisition import aq_parent
 from cpskin.core.interfaces import IFolderViewSelectedContent
 from cpskin.core.interfaces import IFolderViewWithBigImages
+from cpskin.core.browser.common import CommonView
 from cpskin.core.utils import image_scale
 from cpskin.core.vocabulary import DISPLAY_TYPES
 from cpskin.locales import CPSkinMessageFactory as _
@@ -17,7 +18,6 @@ from plone.app.event.interfaces import IEventSettings
 from plone.app.event.recurrence import RecurrenceSupport
 from plone.app.querystring import queryparser
 from plone.dexterity.interfaces import IDexterityContent
-from plone.dexterity.interfaces import IDexterityFTI
 from plone.event.interfaces import IEvent
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.interfaces import IFolderish
@@ -27,8 +27,6 @@ from zope.component import getUtility
 from zope.i18n import translate
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
-from zope.schema import getFields
-from zope.schema.interfaces import IVocabularyFactory
 
 import httpagentparser
 import pytz
@@ -37,7 +35,7 @@ import pytz
 ADDABLE_TYPES = ['Collection', 'Document', 'Folder']
 
 
-class FolderView(FoldV):
+class FolderView(FoldV, CommonView):
 
     def _redirect(self, msg=''):
         if self.request:
@@ -451,35 +449,6 @@ class FolderView(FoldV):
             return 'medialink'
         else:
             return None
-
-    def see_categories(self, collection):
-        result = True
-        taxonomy_field = getattr(collection, 'taxonomy_category', '')
-        if not taxonomy_field:
-            result = False
-        return result
-
-    def get_categories(self, collection, obj):
-        portal_type = obj.portal_type
-        schema = getUtility(IDexterityFTI, name=portal_type).lookupSchema()
-        fields = getFields(schema)
-        taxonomy_field = getattr(collection, 'taxonomy_category', '')
-        if taxonomy_field not in fields.keys():
-            return ''
-
-        field = fields[taxonomy_field]
-        vocabulary_name = field.value_type.vocabularyName
-        factory = getUtility(IVocabularyFactory, vocabulary_name)
-        vocabulary = factory(api.portal.get())
-        tokens = getattr(obj, taxonomy_field, '')
-        if not tokens:
-            return ''
-        categories = []
-        for token in tokens:
-            cat = vocabulary.inv_data.get(token)
-            categories.append(cat[1:])
-        categories.sort()
-        return ', '.join(categories)
 
     def toLocalizedTime(self,
                         time=None,

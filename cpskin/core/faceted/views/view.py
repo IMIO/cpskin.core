@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.contact.core.browser.address import get_address
+from cpskin.core.browser.common import CommonView
 from cpskin.core.browser.contactdetails import ContactDetailsView
+from zope.component import getMultiAdapter
 
 
-class PreviewItem(ContactDetailsView):
+class PreviewItem(ContactDetailsView, CommonView):
 
     def address(self):
         dict_address = get_address(self.context)
@@ -25,3 +27,11 @@ class PreviewItem(ContactDetailsView):
             if image:
                 url = image.url
         return url
+
+    def render_contact_photo_preview(self, obj):
+        context = self.context
+        request = self.request
+        request['directory'] = context
+        render_view = u'faceted-preview-contact-photos'
+        view = getMultiAdapter((obj, request), name=render_view)
+        return view and view() or ''

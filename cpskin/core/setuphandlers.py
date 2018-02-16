@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from cpskin.core.behaviors.directory import ICpskinDirectoryViewSettings
 from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.organization import IOrganizationImages
@@ -51,6 +52,7 @@ def installCore(context):
     add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
     add_behavior('Event', ICpskinEventViewSettings.__identifier__)
     add_behavior('organization', IOrganizationImages.__identifier__)
+    add_behavior('directory', ICpskinDirectoryViewSettings.__identifier__)
 
     # Create footer static page
     footer_name = 'footer-static'

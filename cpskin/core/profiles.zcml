@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v38: Add settings behavior for directory"
+        source="37"
+        destination="38"
+        handler=".upgradehandlers.add_directory_view_behavior"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v37: Add cpskin.organization_gallery viewlet / CSS / JS"
         source="36"
         destination="37"

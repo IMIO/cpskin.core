@@ -60,6 +60,13 @@
     />
 
   <plone:behavior
+    title="Cpskin directory view settings"
+    description="Adds some configuration for cpskin directory view."
+    provides=".directory.ICpskinDirectoryViewSettings"
+    for="collective.contact.core.content.directory.IDirectory"
+    />
+
+  <plone:behavior
     title="Banner image"
     description="Adds a banner image field used as banner"
     provides=".eventview.ICpskinEventViewSettings"
