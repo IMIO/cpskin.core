@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.6 (unreleased)
+0.12.6 (2018-02-28)
 -------------------
 
 - Add photo gallery on organizations : #19171
