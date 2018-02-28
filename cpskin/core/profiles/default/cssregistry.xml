@@ -1,12 +1,19 @@
 <?xml version="1.0"?>
 <object name="portal_css">
 
+ <stylesheet title="CPSkin organization gallery basic styles"
+    id="++resource++cpskin.core.organization.css"
+    media="screen" rel="stylesheet" rendering="import"
+    cacheable="True" compression="safe" cookable="True"
+    enabled="1" expression=""
+    insert-before="ploneCustom.css" />
+
  <stylesheet title="CPSkin banner basic styles"
     id="++resource++cpskin.core.banner.css"
     media="screen" rel="stylesheet" rendering="import"
     cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="context/@@banner_activation/is_enabled"
-    insert-before="ploneCustom.css" />
+    insert-before="++resource++cpskin.core.banner.css" />
 
  <stylesheet title="CPSkin tags basic styles"
     id="++resource++cpskin.core.tags.css"
@@ -21,7 +28,6 @@
     cacheable="True" compression="safe" cookable="True"
     enabled="1" expression=""
     insert-before="++resource++cpskin.core.tags.css" />
-
 
  <stylesheet title="CPSkin index view basic styles"
     id="++resource++cpskin.core.css/core.css"

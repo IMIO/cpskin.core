@@ -31,15 +31,35 @@
   <!-- New faceted contacts view -->
   <faceted:view
     name="faceted-preview-contacts"
-    template="preview-contacts.pt"
+    template="preview-contacts-photos.pt"
     title="Faceted contacts preview"
     permission="zope2.View"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
     />
 
   <browser:page
     name="faceted-preview-contact"
     for="zope.interface.Interface"
-    template="preview-contact.pt"
+    template="preview-contact-photos.pt"
+    class=".view.PreviewItem"
+    permission="zope2.View"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+    />
+
+  <!-- New faceted contacts view with photos and gallery -->
+  <faceted:view
+    name="faceted-preview-contacts-photos"
+    class=".view.PreviewItem"
+    template="preview-contacts-photos.pt"
+    title="Faceted contacts preview with photos"
+    permission="zope2.View"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+    />
+
+  <browser:page
+    name="faceted-preview-contact-photos"
+    for="zope.interface.Interface"
+    template="preview-contact-photos.pt"
     class=".view.PreviewItem"
     permission="zope2.View"
     layer="cpskin.core.interfaces.ICPSkinCoreLayer"

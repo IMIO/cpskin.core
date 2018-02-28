@@ -1,0 +1,9 @@
+.organization-photo a {
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    float: left;
+    margin: 1em;
+    min-height: 10em;
+    min-width: 10em;
+}

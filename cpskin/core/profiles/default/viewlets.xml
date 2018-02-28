@@ -18,6 +18,9 @@
   <order manager="plone.abovecontent" skinname="Plone Default">
     <viewlet name="cpskin.right_actions" />
   </order>
+  <order manager="plone.belowcontentbody" skinname="Plone Default">
+    <viewlet name="cpskin.organization_gallery" />
+  </order>
   <order manager="plone.belowcontent" skinname="Plone Default">
     <viewlet name="cpskin.media" />
   </order>
