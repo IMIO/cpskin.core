@@ -4,7 +4,12 @@ Changelog
 0.12.6 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add photo gallery on organizations : #19171
+  [laulaz]
+
+- Add new faceted view for directory with changing images and optional
+  taxonomy : #19171
+  [laulaz]
 
 
 0.12.5 (2018-01-31)
