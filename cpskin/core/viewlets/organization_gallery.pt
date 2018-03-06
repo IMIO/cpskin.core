@@ -8,7 +8,7 @@
   <div class="organization-photo"
        tal:repeat="photo photos">
 
-    <a href="" title="" style=""
+    <a href="" title="" style="" rel="gallery"
        tal:define="title photo/Title;
                    image_url python: view.image_url(photo)"
        tal:attributes="href photo/absolute_url;

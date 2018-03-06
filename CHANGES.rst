@@ -4,6 +4,9 @@ Changelog
 0.12.7 (unreleased)
 -------------------
 
+- Make fancybox organization gallery scrollable : #20754
+  [laulaz]
+
 - Add 'hover' class when organization image changes : #20754
   [laulaz]
 
