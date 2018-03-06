@@ -4,6 +4,10 @@ Changelog
 0.12.7 (unreleased)
 -------------------
 
+- Allow to fetch taxonomy from behaviors : #20754
+  Also move categories in template.
+  [laulaz]
+
 - Allow to specify scale for directory organization previews : #20754
   [laulaz]
 

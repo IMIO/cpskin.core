@@ -24,6 +24,13 @@
 
       <span class="organization-title" tal:content="short_title"></span>
 
+      <tal:block tal:condition="python: preview_view.see_categories(directory)">
+        <tal:loop tal:define="categories python: preview_view.get_categories(directory, context, limit=1)"
+                  tal:condition="categories">
+          <div class="indexview-categories" tal:content="categories" />
+        </tal:loop>
+      </tal:block>
+
       <div class="contact-info">
 
         <div class="organization-address"
@@ -32,14 +39,6 @@
            tal:content="city">Isnes</div>
 
       </div>
-
-    <tal:block tal:condition="python: preview_view.see_categories(directory)">
-        <tal:loop tal:define="categories python: preview_view.get_categories(directory, context)"
-              tal:condition="categories">
-          <div class="indexview-categories" tal:content="categories" />
-        </tal:loop>
-    </tal:block>
-
 
   </div>
 
