@@ -16,6 +16,7 @@ class ICpskinDirectoryViewSettings(model.Schema):
             u'Directory view'),
         fields=(
             'taxonomy_category',
+            'organization_image_scale',
         ),
     )
 
@@ -24,4 +25,12 @@ class ICpskinDirectoryViewSettings(model.Schema):
         description=_(u'Please write which taxonomy id should be used.'),
         default=u'',
         required=False,
+    )
+
+    organization_image_scale = schema.Choice(
+        title=_(u'Which image scale use for organizations preview in directory ?'),  # noqa
+        description=_(u'Please select the scale.'),
+        required=False,
+        default='mini',
+        vocabulary=u'plone.app.vocabularies.ImagesScales'
     )

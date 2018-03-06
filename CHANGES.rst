@@ -4,6 +4,9 @@ Changelog
 0.12.7 (unreleased)
 -------------------
 
+- Allow to specify scale for directory organization previews : #20754
+  [laulaz]
+
 - Make fancybox organization gallery scrollable : #20754
   [laulaz]
 

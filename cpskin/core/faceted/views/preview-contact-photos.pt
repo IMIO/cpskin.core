@@ -2,8 +2,8 @@
    tal:define="short_title context/title|string:;
                title context/get_full_title|string:;
                url context/absolute_url|string:#;
-               image1 python: view.image_url(context, 'image1');
-               image2 python: view.image_url(context, 'image2');
+               image1 python: view.scaled_image_url('image1');
+               image2 python: view.scaled_image_url('image2');
                directory nocall: request/directory;
                preview_view nocall:context/@@faceted-preview-contact-photos;"
    tal:attributes="href url;

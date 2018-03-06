@@ -19,11 +19,14 @@ class PreviewItem(ContactDetailsView, CommonView):
         city = dict_address.get('city')
         return city
 
-    def image_url(self, obj, field, default_scale='thumb'):
+    def scaled_image_url(self, field):
+        obj = self.context
+        directory = self.request.get('directory')
+        scale = getattr(directory, 'organization_image_scale', 'mini')
         url = ''
         images = obj.restrictedTraverse('@@images')
         if getattr(obj, field, False):
-            image = images.scale(field, scale=default_scale)
+            image = images.scale(field, scale=scale)
             if image:
                 url = image.url
         return url
