@@ -4,7 +4,8 @@ Changelog
 0.12.7 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add 'hover' class when organization image changes : #20754
+  [laulaz]
 
 
 0.12.6 (2018-02-28)
