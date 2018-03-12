@@ -28,15 +28,19 @@
                     var id = $(this).attr('id').split('-')[1];
                     var div_image = $('#image-' + id);
                     var image_hover = div_image.attr('hover-image-url');
-                    div_image.addClass('hover');
                     div_image.css('background-image', 'url(' + image_hover + ')');
+                    window.setTimeout(function(){
+                      div_image.addClass('hover');
+                    }, 500);
                 },
                 function() {
                     var id = $(this).attr('id').split('-')[1];
                     var div_image = $('#image-' + id);
                     var image = div_image.attr('image-url');
-                    div_image.removeClass('hover');
                     div_image.css('background-image', 'url(' + image + ')');
+                    window.setTimeout(function(){
+                      div_image.removeClass('hover');
+                    }, 500);
                 }
             );
         </script>

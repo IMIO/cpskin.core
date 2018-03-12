@@ -17,7 +17,7 @@ Changelog
 - Make fancybox organization gallery scrollable : #20754
   [laulaz]
 
-- Add 'hover' class when organization image changes : #20754
+- Add 'hover' class when organization image changes (with delay) : #20754
   [laulaz]
 
 
