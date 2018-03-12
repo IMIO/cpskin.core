@@ -9,6 +9,8 @@
   <metal:content-core fill-slot="content-core">
     <metal:block define-macro="content-core">
       <div tal:define="
+        preview_view nocall:context/@@faceted-preview-contacts;
+        show_photos preview_view/show_photos_previews;
         folderContents folderContents | python:context.getFolderContents();
         Batch python:modules['Products.CMFPlone'].Batch;
         b_start python:request.get('b_start', 0);
@@ -20,18 +22,51 @@
                       content="structure provider:collective.contact.facetednav.batchactions" />
         <div metal:use-macro="context/batch_macros/macros/navigation"></div>
 
+        <script type="text/javascript"
+                tal:condition="show_photos">
+            // Can't put this in a separate file, because of faceted Ajax loading
+            $('.dynamic-hover').hover(
+                function() {
+                    var id = $(this).attr('id').split('-')[1];
+                    var div_image = $('#image-' + id);
+                    var image_hover = div_image.attr('hover-image-url');
+                    div_image.css('background-image', 'url(' + image_hover + ')');
+                    window.setTimeout(function(){
+                      div_image.addClass('hover');
+                    }, 500);
+                },
+                function() {
+                    var id = $(this).attr('id').split('-')[1];
+                    var div_image = $('#image-' + id);
+                    var image = div_image.attr('image-url');
+                    div_image.css('background-image', 'url(' + image + ')');
+                    window.setTimeout(function(){
+                      div_image.removeClass('hover');
+                    }, 500);
+                }
+            );
+        </script>
+
         <div class="eea-preview-items">
           <tal:entries repeat="brain batch">
-           <div class="contact-entry"
-                tal:define="doc brain/getObject|nothing">
+           <div class=""
+                tal:define="doc brain/getObject|nothing"
+                tal:attributes="class python: show_photos and 'contact-entry contact-entry-photos' or 'contact-entry'">
               <div tal:condition="actions_enabled" class="contact-selection">
                 <input type="checkbox"
                        tal:attributes="value doc/UID;
                                        id string:contact-${doc/UID}" />
               </div>
-            <tal:entry
-              condition="exists:doc/@@faceted-preview-contact"
-              replace="structure doc/@@faceted-preview-contact" />
+
+            <tal:entry condition="show_photos"
+                       replace="structure python:preview_view.render_contact_photo_preview(doc)" />
+
+            <tal:entry condition="not: show_photos">
+              <tal:render
+                 condition="exists:doc/@@faceted-preview-contact"
+                 replace="structure doc/@@faceted-preview-contact" />
+            </tal:entry>
+
             </div>
           </tal:entries>
 

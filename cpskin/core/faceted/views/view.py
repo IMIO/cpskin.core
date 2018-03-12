@@ -31,6 +31,10 @@ class PreviewItem(ContactDetailsView, CommonView):
                 url = image.url
         return url
 
+    def show_photos_previews(self):
+        directory = self.context
+        return getattr(directory, 'show_organization_images', False)
+
     def render_contact_photo_preview(self, obj):
         context = self.context
         request = self.request

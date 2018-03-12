@@ -16,6 +16,7 @@ class ICpskinDirectoryViewSettings(model.Schema):
             u'Directory view'),
         fields=(
             'taxonomy_category',
+            'show_organization_images',
             'organization_image_scale',
         ),
     )
@@ -25,6 +26,13 @@ class ICpskinDirectoryViewSettings(model.Schema):
         description=_(u'Please write which taxonomy id should be used.'),
         default=u'',
         required=False,
+    )
+
+    show_organization_images = schema.Bool(
+        title=_(u'Show organizations images'),
+        description=_(u'Do you want to show images for organizations preview in directory ?'),  # noqa
+        required=False,
+        default=False,
     )
 
     organization_image_scale = schema.Choice(

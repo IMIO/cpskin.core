@@ -4,6 +4,10 @@ Changelog
 0.12.7 (unreleased)
 -------------------
 
+- Merge faceted contact preview and faceted contact preview with photos by
+  using a new parameter on directory (show_organization_images) : #20754
+  [laulaz]
+
 - Fix templates for old faceted contact preview
   [laulaz]
 

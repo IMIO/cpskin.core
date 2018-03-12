@@ -28,9 +28,10 @@
     permission="zope2.View"
     />
 
-  <!-- New faceted contacts view -->
+  <!-- New faceted contacts view with optional photos -->
   <faceted:view
     name="faceted-preview-contacts"
+    class=".view.PreviewItem"
     template="preview-contacts.pt"
     title="Faceted contacts preview"
     permission="zope2.View"
@@ -42,16 +43,6 @@
     for="zope.interface.Interface"
     template="preview-contact.pt"
     class=".view.PreviewItem"
-    permission="zope2.View"
-    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
-    />
-
-  <!-- New faceted contacts view with photos and gallery -->
-  <faceted:view
-    name="faceted-preview-contacts-photos"
-    class=".view.PreviewItem"
-    template="preview-contacts-photos.pt"
-    title="Faceted contacts preview with photos"
     permission="zope2.View"
     layer="cpskin.core.interfaces.ICPSkinCoreLayer"
     />
