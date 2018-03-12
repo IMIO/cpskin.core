@@ -31,7 +31,7 @@
   <!-- New faceted contacts view -->
   <faceted:view
     name="faceted-preview-contacts"
-    template="preview-contacts-photos.pt"
+    template="preview-contacts.pt"
     title="Faceted contacts preview"
     permission="zope2.View"
     layer="cpskin.core.interfaces.ICPSkinCoreLayer"
@@ -40,7 +40,7 @@
   <browser:page
     name="faceted-preview-contact"
     for="zope.interface.Interface"
-    template="preview-contact-photos.pt"
+    template="preview-contact.pt"
     class=".view.PreviewItem"
     permission="zope2.View"
     layer="cpskin.core.interfaces.ICPSkinCoreLayer"

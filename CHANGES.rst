@@ -4,6 +4,9 @@ Changelog
 0.12.7 (unreleased)
 -------------------
 
+- Fix templates for old faceted contact preview
+  [laulaz]
+
 - Allow to fetch taxonomy from behaviors : #20754
   Also move categories in template.
   [laulaz]
