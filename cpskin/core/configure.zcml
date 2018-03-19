@@ -13,6 +13,7 @@
     <include package="cpskin.locales" />
     <include package="collective.z3cform.keywordwidget" />
     <include package="eea.facetednavigation" />
+    <include package="collective.js.fancybox" />
     <include package="z3c.jbot" file="meta.zcml" />
     <browser:jbot directory="overrides" />
 

@@ -4,7 +4,8 @@ Changelog
 0.12.8 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix missing zcml import
+  [laulaz]
 
 
 0.12.7 (2018-03-19)
