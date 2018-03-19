@@ -34,6 +34,13 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def install_fancybox(context):
+    portal_setup = api.portal.get_tool('portal_setup')
+    portal_setup.runAllImportStepsFromProfile(
+        'profile-collective.js.fancybox:default'
+    )
+
+
 def upgrade_organization_gallery(context):
     context.runImportStepFromProfile(
         'profile-cpskin.core:default',

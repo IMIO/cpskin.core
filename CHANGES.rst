@@ -4,6 +4,9 @@ Changelog
 0.12.7 (unreleased)
 -------------------
 
+- Add collective.js.fancybox dependency
+  [laulaz]
+
 - Merge faceted contact preview and faceted contact preview with photos by
   using a new parameter on directory (show_organization_images) : #20754
   [laulaz]

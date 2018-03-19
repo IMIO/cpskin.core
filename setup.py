@@ -73,6 +73,7 @@ setup(name='cpskin.core',
           'plone.app.event',
           'z3c.jbot',
           'sc.social.like',
+          'collective.js.fancybox',
       ],
       extras_require={
           'test': [

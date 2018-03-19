@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v39: Install Fancybox"
+        source="38"
+        destination="39"
+        handler=".upgradehandlers.install_fancybox"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v38: Add settings behavior for directory"
         source="37"
         destination="38"

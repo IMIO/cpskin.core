@@ -13,5 +13,6 @@
     <dependency>profile-eea.facetednavigation:default</dependency>
     <dependency>profile-collective.navigationtoggle:default</dependency>
     <dependency>profile-sc.social.like:default</dependency>
+    <dependency>profile-collective.js.fancybox:default</dependency>
   </dependencies>
 </metadata>
