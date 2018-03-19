@@ -1,11 +1,14 @@
 Changelog
 =========
 
-0.12.8 (unreleased)
+0.12.8 (2018-03-19)
 -------------------
 
 - Fix missing zcml import
   [laulaz]
+  
+- Change time delay
+  [osnickers ]
 
 
 0.12.7 (2018-03-19)
