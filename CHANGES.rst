@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.7 (unreleased)
+0.12.7 (2018-03-19)
 -------------------
 
 - Add collective.js.fancybox dependency
