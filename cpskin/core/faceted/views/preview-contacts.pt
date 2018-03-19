@@ -34,7 +34,7 @@
                     div_image.css('background-image', 'url(' + image_hover + ')');
                     window.setTimeout(function(){
                       div_image.addClass('hover-delay');
-                    }, 500);
+                    }, 50);
                 },
                 function() {
                     var id = $(this).attr('id').split('-')[1];
@@ -44,7 +44,7 @@
                     div_image.css('background-image', 'url(' + image + ')');
                     window.setTimeout(function(){
                       div_image.removeClass('hover-delay');
-                    }, 500);
+                    }, 50);
                 }
             );
         </script>
