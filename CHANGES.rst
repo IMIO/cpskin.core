@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.9 (unreleased)
+0.12.9 (2018-03-20)
 -------------------
 
 - Improve contactdetail VCF export with mutli phones.
