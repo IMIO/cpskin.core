@@ -4,7 +4,8 @@ Changelog
 0.12.9 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improve contactdetail VCF export with mutli phones.
+  [bsuttor]
 
 
 0.12.8 (2018-03-19)

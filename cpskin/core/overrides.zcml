@@ -12,4 +12,10 @@
      factory=".adapter.CPskinOrganizationVCard"
      />
 
+ <adapter
+    for="*"
+    provides="collective.contact.core.interfaces.IVCard"
+    factory=".adapter.CPskinContactDetailsVCard"
+    />
+
 </configure>
