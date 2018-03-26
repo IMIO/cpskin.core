@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'docker-staging.imio.be/cpskin.test:latest'
+            image 'docker-staging.imio.be/cpskin.test:110'
             args '-v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro -v /var/lib/jenkins:/var/lib/jenkins'
         }
     }
@@ -11,8 +11,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'python bootstrap.py buildout:download-cache=/.buildout/buildout-cache/downloads buildout:eggs-directory=/.buildout/buildout-cache/eggs --buildout-version=2.7.0'
-                sh 'bin/buildout buildout:download-cache=/.buildout/buildout-cache/downloads buildout:eggs-directory=/.buildout/buildout-cache/eggs code-analysis:jenkins=True'
+                sh 'python bootstrap.py --buildout-version 2.9.5'
+                sh 'bin/buildout code-analysis:jenkins=True'
             }
         }
         stage('Test') {
