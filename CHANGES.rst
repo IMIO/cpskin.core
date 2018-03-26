@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.10 (unreleased)
+0.12.10 (2018-03-26)
 --------------------
 
 - Handle top menu actions with empty sub-menus
