@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v40: Update JS registry"
+        source="39"
+        destination="40"
+        handler=".upgradehandlers.upgrade_js_registry"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v39: Install Fancybox"
         source="38"
         destination="39"

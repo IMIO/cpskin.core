@@ -4,6 +4,9 @@ Changelog
 0.12.10 (unreleased)
 --------------------
 
+- Handle top menu actions with empty sub-menus
+  [laulaz]
+
 - Add a parameter to define the states where the social viewlet should be
   displayed.
   [mpeeters]

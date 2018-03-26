@@ -34,6 +34,13 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def upgrade_js_registry(context):
+    context.runImportStepFromProfile(
+        'profile-cpskin.core:default',
+        'jsregistry'
+    )
+
+
 def install_fancybox(context):
     portal_setup = api.portal.get_tool('portal_setup')
     portal_setup.runAllImportStepsFromProfile(
