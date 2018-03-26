@@ -87,6 +87,17 @@
             </element>
         </value>
     </record>
+    <record name="cpskin.core.social.allowed_states">
+        <field type="plone.registry.field.List">
+            <title i18n:translate="">Allowed states for social viewlet</title>
+            <key_type type="plone.registry.field.TextLine" />
+            <value_type type="plone.registry.field.TextLine" />
+        </field>
+        <value>
+          <element>published_and_shown</element>
+          <element>published_and_hidden</element>
+        </value>
+    </record>
     <records interface="sc.social.like.interfaces.ISocialLikeSettings">
         <value key="plugins_enabled">
           <element>Facebook</element>

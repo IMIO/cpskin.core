@@ -26,9 +26,12 @@ class SocialViewlet(common.ViewletBase):
 class SocialLikesViewlet(SLV):
     def enabled(self):
         """Check if the viewlet should be visible on this context."""
-        states = ['published_and_shown', 'published_and_hidden']
+        allowed_states = api.portal.get_registry_record(
+            'cpskin.core.social.allowed_states',
+            default=['published_and_shown', 'published_and_hidden'],
+        )
         try:
-            published = api.content.get_state(self.context) in states
+            published = api.content.get_state(self.context) in allowed_states
         except WorkflowException:
             # no workflow on context, like in site root
             published = True

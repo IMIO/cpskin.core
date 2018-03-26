@@ -4,7 +4,9 @@ Changelog
 0.12.10 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add a parameter to define the states where the social viewlet should be
+  displayed.
+  [mpeeters]
 
 
 0.12.9 (2018-03-20)
@@ -19,7 +21,7 @@ Changelog
 
 - Fix missing zcml import
   [laulaz]
-  
+
 - Change time delay
   [osnickers ]
 
