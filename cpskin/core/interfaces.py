@@ -2,9 +2,10 @@
 from cpskin.locales import CPSkinMessageFactory as _
 from zope import schema
 from zope.interface import Interface
+from sc.social.like.interfaces import ISocialLikeLayer
 
 
-class ICPSkinCoreLayer(Interface):
+class ICPSkinCoreLayer(ISocialLikeLayer):
     """
     Marker interface that defines a ZTK browser layer.
     """
