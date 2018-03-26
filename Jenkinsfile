@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'docker-staging.imio.be/cpskin.test:110'
+            image 'docker-staging.imio.be/iasmartweb/test:110'
             args '-v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro -v /var/lib/jenkins:/var/lib/jenkins'
         }
     }
