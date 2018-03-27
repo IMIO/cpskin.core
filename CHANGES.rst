@@ -4,7 +4,8 @@ Changelog
 0.12.11 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Handle link in homepage view
+  [mpeeters]
 
 
 0.12.10 (2018-03-26)

@@ -89,6 +89,11 @@
                     <p tal:replace="structure content/getText" />
 
                 </div>
+                <div class=""
+                     tal:condition="python: content.portal_type == 'Link'"
+                     tal:attributes="class string:bloc-${repeat/content/number} bloc-document ${content/id} ${bloc_class}">
+                    <span tal:replace="structure content/render" />
+                </div>
 
               </tal:def>
             </tal:bcl>

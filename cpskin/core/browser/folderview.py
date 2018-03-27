@@ -161,6 +161,17 @@ class FolderView(FoldV, CommonView):
                             realObjects.append(realObject)
                 else:
                     continue
+            elif obj.portal_type == 'Link':
+                try:
+                    realObjects.append(type('Link', (object, ), {
+                        'id': obj.id,
+                        'render': self.context.unrestrictedTraverse(
+                            str(obj.remoteUrl),
+                        ),
+                        'portal_type': obj.portal_type,
+                    })())
+                except:
+                    pass
             else:
                 realObjects.append(obj)
         return realObjects
