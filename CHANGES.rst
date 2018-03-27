@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.11 (unreleased)
+0.12.11 (2018-03-27)
 --------------------
 
 - Handle link in homepage view
