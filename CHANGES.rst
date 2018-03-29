@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.12 (unreleased)
+0.12.12 (2018-03-29)
 --------------------
 
 - Split show_day_and_month index view setting into show_day_and_month and
