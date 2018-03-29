@@ -4,7 +4,9 @@ Changelog
 0.12.12 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Split show_day_and_month index view setting into show_day_and_month and
+  show_lead_image : #20879
+  [laulaz]
 
 
 0.12.11 (2018-03-27)

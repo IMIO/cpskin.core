@@ -550,6 +550,9 @@ class FolderView(FoldV, CommonView):
     def show_day_and_month(self, collection):
         return getattr(collection, 'show_day_and_month', False)
 
+    def show_lead_image(self, collection):
+        return getattr(collection, 'show_lead_image', True)
+
     def show_descriptions(self, collection):
         return getattr(collection, 'show_descriptions', False)
 

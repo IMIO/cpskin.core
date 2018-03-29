@@ -34,6 +34,17 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def split_show_day_and_month(context):
+    index_collections_brains = api.content.find(
+        portal_type='Collection',
+        object_provides=ICpskinIndexViewSettings.__identifier__,
+    )
+    for brain in index_collections_brains:
+        obj = brain.getObject()
+        show_day_and_month = getattr(obj, 'show_day_and_month')
+        obj.show_lead_image = not(show_day_and_month)
+
+
 def upgrade_js_registry(context):
     context.runImportStepFromProfile(
         'profile-cpskin.core:default',

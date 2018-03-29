@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v41: Split show_day_and_month setting"
+        source="40"
+        destination="41"
+        handler=".upgradehandlers.split_show_day_and_month"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v40: Update JS registry"
         source="39"
         destination="40"

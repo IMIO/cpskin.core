@@ -46,7 +46,8 @@
                         </tal:loop>
                         </tal:block>
                         <a href=""
-                           tal:define="show_day_and_month python: view.show_day_and_month(content)"
+                           tal:define="show_day_and_month python: view.show_day_and_month(content);
+                                       show_lead_image python: view.show_lead_image(content)"
                            tal:attributes="href result/getURL;
                                            title result/Title">
 
@@ -62,7 +63,7 @@
                                 </div>
                              </tal:if>
 
-                             <tal:else tal:condition="not: show_day_and_month">
+                             <tal:if tal:condition="show_lead_image">
                             
                                <tal:block tal:condition="not: view/is_dexterity">
                                 <img class=""
@@ -89,7 +90,7 @@
                                 </div>
                                 </tal:block>
 
-                              </tal:else>
+                              </tal:if>
 
                               <h3 tal:content="result/Title"></h3>
                             </a>
@@ -189,6 +190,7 @@
                            title=""
                            class="medialink"
                            tal:define="show_day_and_month python: view.show_day_and_month(content);
+                                       show_lead_image python: view.show_lead_image(content);
                                        item_type result/Type;
                                        classe python: view.get_class(item_type)"
                            tal:attributes="href result/getURL;
@@ -207,14 +209,14 @@
                             </div>
                           </tal:if>
 
-                          <tal:else tal:condition="not: show_day_and_month">
+                          <tal:if tal:condition="show_lead_image">
                             <div class="pageleadImage"
                                  tal:condition="python: item_type != 'Media Link'"
                                  style=""
                                  tal:define="scaled_image_url python:view.scaled_image_url(content, obj, isBigImage)"
                                  tal:attributes="style string:background-image: url(${scaled_image_url})">
                             </div>
-                          </tal:else>
+                          </tal:if>
 
                           <div class="pagecaption">
                             <div tal:condition="python: item_type == 'Media Link'"

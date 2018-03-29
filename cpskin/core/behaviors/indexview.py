@@ -30,6 +30,7 @@ class ICpskinIndexViewSettings(model.Schema):
             'hide_see_all_link',
             'hide_date',
             'show_day_and_month',
+            'show_lead_image',
             'show_descriptions',
             'use_new_template',
         ),
@@ -146,9 +147,17 @@ class ICpskinIndexViewSettings(model.Schema):
     show_day_and_month = schema.Bool(
         title=_(u'Show day and month'),
         description=_(
-            u'Do you want to show day and month instead of lead image on index view ?'),  # noqa
+            u'Do you want to show day and month on index view ?'),
         required=False,
         default=False
+    )
+
+    show_lead_image = schema.Bool(
+        title=_(u'Show lead image'),
+        description=_(
+            u'Do you want to show lead image on index view ?'),
+        required=False,
+        default=True
     )
 
     show_descriptions = schema.Bool(
