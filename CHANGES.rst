@@ -4,7 +4,8 @@ Changelog
 0.12.13 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add title to info on export agenda view.
+  [bsuttor]
 
 
 0.12.12 (2018-03-29)

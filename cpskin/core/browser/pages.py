@@ -131,7 +131,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         # hour
         if not dates.get('whole_day'):
             if dates.get('open_end'):
-                date_formated += _(u'\nà ')
+                date_formated += _(u' à ')
                 date_formated += u'{0}:{1}'.format(
                     date_spel_start.get('hour'),
                     date_spel_start.get('minute2'))
@@ -143,8 +143,8 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
                 date_formated += _(u' à ')
                 date_formated += u'{0}:{1}'.format(
                     date_spel_end.get('hour'),
-                    date_spel_end.get('minute2'))
-
+                    date_spel_end.get('minute2')
+                )
         return date_formated
 
     def get_taxonomy_values_in_one_line(self, field_names, sep, second_sep=' '):
@@ -232,6 +232,9 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             return False
         obj = self.get_relation_field('contact')
         info = []
+        title = getattr(obj, 'title', None)
+        if title:
+            info.append(title)
         phone = getattr(obj, 'phone', None)
         if not phone:
             obj = self.get_relation_field('organizer')
