@@ -335,28 +335,27 @@ class TestViews(unittest.TestCase):
             (event, self.portal.REQUEST),
             name='document_generation_helper_view')
         view.real_context = event
-
         self.assertEqual(
-            view.get_formatted_date(), u'1 January\nde 10:00 \xe0 11:00')
+            view.get_formatted_date(), u'1 January de 10:00 \xe0 11:00')
 
         event.end = datetime(2001, 1, 3, 11, 0, tzinfo=utc)
         self.assertEqual(
-            view.get_formatted_date(), u'1 au 3 January\nde 10:00 \xe0 11:00')
+            view.get_formatted_date(), u'1 au 3 January de 10:00 \xe0 11:00')
 
         event.end = datetime(2001, 2, 1, 11, 0, tzinfo=utc)
         self.assertEqual(
             view.get_formatted_date(),
-            u'1 January au 1 February\nde 10:00 \xe0 11:00')
+            u'1 January au 1 February de 10:00 \xe0 11:00')
 
         event.end = datetime(2001, 1, 1, 11, 0, tzinfo=utc)
         event.open_end = True
         self.assertEqual(
-            view.get_formatted_date(), u'1 January\n\xe0 10:00')
+            view.get_formatted_date(), u'1 January \xe0 10:00')
 
         event.contact = 'Imio'
         event.phone = '081/586.100'
         info = view.get_info()
-        self.assertEqual(info, 'Info :  +32 (0) 81 58 61 00')
+        self.assertEqual(info, 'Info : my_event - +32 (0) 81 58 61 00')
 
     def test_folderview_hide_title(self):
         # directlyProvides(self.portal.REQUEST, ICPSkinCoreLayer)  # noqa

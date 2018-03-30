@@ -136,7 +136,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
                     date_spel_start.get('hour'),
                     date_spel_start.get('minute2'))
             else:
-                date_formated += _(u'\nde ')
+                date_formated += _(u' de ')
                 date_formated += u'{0}:{1}'.format(
                     date_spel_start.get('hour'),
                     date_spel_start.get('minute2'))
@@ -248,7 +248,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         if website:
             info.append(website)
         if len(info) >= 1:
-            infomsg = _(u'Info : ')
+            infomsg = _(u'Info :')
             return '{0} {1}'.format(infomsg, ' - '.join(info))
         else:
             return ''
