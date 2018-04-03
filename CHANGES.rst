@@ -4,6 +4,9 @@ Changelog
 0.12.13 (unreleased)
 --------------------
 
+- Add migration after allowing to display / hide titles for sliders
+  [laulaz]
+
 - Always use start / end of first / last recurrences for events : #20824
   [laulaz]
 

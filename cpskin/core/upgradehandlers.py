@@ -34,6 +34,18 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def migrate_hide_title_for_sliders(context):
+    index_collections_brains = api.content.find(
+        portal_type='Collection',
+        object_provides=ICpskinIndexViewSettings.__identifier__,
+    )
+    for brain in index_collections_brains:
+        obj = brain.getObject()
+        display_type = getattr(obj, 'display_type') or ''
+        if 'slider' in display_type:
+            obj.hide_title = True
+
+
 def split_show_day_and_month(context):
     index_collections_brains = api.content.find(
         portal_type='Collection',

@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v42: Migrate hide_title for sliders"
+        source="41"
+        destination="42"
+        handler=".upgradehandlers.migrate_hide_title_for_sliders"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v41: Split show_day_and_month setting"
         source="40"
         destination="41"
