@@ -13,6 +13,8 @@ from imio.media.browser import utils
 from plone import api
 from plone.app.contenttypes.browser.folder import FolderView as FoldV
 from plone.app.contenttypes.content import Event
+from plone.app.event.base import RET_MODE_ACCESSORS
+from plone.app.event.base import expand_events
 from plone.app.event.base import filter_and_resort
 from plone.app.event.interfaces import IEventSettings
 from plone.app.event.recurrence import RecurrenceSupport
@@ -475,7 +477,10 @@ class FolderView(FoldV, CommonView):
                 occurences = [occ for occ in rs.occurrences(datetime.today())]
                 if len(occurences) >= 1:
                     # do not get object which started in the past
-                    time = getattr(occurences[0], startend)
+                    if startend == 'start':
+                        time = getattr(occurences[0], 'start')
+                    elif startend == 'end':
+                        time = getattr(occurences[-1], 'end')
         return self.context.restrictedTraverse('@@plone').toLocalizedTime(
             time, long_format, time_only)
 
@@ -486,12 +491,17 @@ class FolderView(FoldV, CommonView):
 
     def get_event_dates(self, result):
         timezone = self.get_portal_timezone()
-        start_date = getattr(result, 'start')
+        if IDexterityContent.providedBy(result):
+            occurences = expand_events([result], RET_MODE_ACCESSORS)
+            start_date = getattr(occurences[0], 'start')
+            end_date = getattr(occurences[-1], 'end')
+        else:
+            start_date = getattr(result, 'start')
+            end_date = getattr(result, 'end')
         if not start_date:
             return {'start': '', 'end': ''}
         if getattr(start_date, 'astimezone', False):
             start_date = start_date.astimezone(pytz.timezone(timezone))
-        end_date = getattr(result, 'end')
         formated_start = start_date.strftime('%d/%m')
         if not end_date:
             return {'start': formated_start, 'end': ''}
@@ -505,7 +515,10 @@ class FolderView(FoldV, CommonView):
     def is_one_day(self, event):
         if not IDexterityContent.providedBy(event):
             return self.toLocalizedTime(event.start_date, long_format=0) == self.toLocalizedTime(event.end_date, long_format=0)  # noqa
-        return self.toLocalizedTime(event.start, long_format=0) == self.toLocalizedTime(event.end, long_format=0)  # noqa
+        occurences = expand_events([event], RET_MODE_ACCESSORS)
+        start_date = getattr(occurences[0], 'start')
+        end_date = getattr(occurences[-1], 'end')
+        return self.toLocalizedTime(start_date, long_format=0) == self.toLocalizedTime(end_date, long_format=0)  # noqa
 
     def is_with_hours(self, event):
         if not IDexterityContent.providedBy(event):

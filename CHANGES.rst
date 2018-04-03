@@ -4,6 +4,9 @@ Changelog
 0.12.13 (unreleased)
 --------------------
 
+- Always use start / end of first / last recurrences for events : #20824
+  [laulaz]
+
 - Add title to info on export agenda view.
   [bsuttor]
 
