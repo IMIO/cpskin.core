@@ -222,22 +222,24 @@ class TestViews(unittest.TestCase):
         self.assertEqual(len(result['standard-results']), 2)
 
     def test_folderview_event_localizedtime(self):
+        utc = pytz.utc
+        start = datetime(2001, 1, 1, 10, 0, tzinfo=utc)
+        end = datetime(2001, 1, 1, 11, 0, tzinfo=utc)
         event = api.content.create(
             container=self.portal,
             type='Event',
-            id='testevent')
-        now = datetime.now(pytz.utc)
-        tomorrow = datetime.today() + timedelta(days=1)
-        tomorrow.replace(tzinfo=pytz.utc)
-        event.start = now
-        event.end = now
+            id='testevent',
+            start=start,
+            end=end,
+            timezone='UTC')
+
         view = getMultiAdapter(
             (self.portal, self.portal.REQUEST), name='folderview')
 
         oneday = view.is_one_day(event)
         self.assertTrue(oneday)
 
-        event.end = tomorrow
+        event.end = datetime(2001, 1, 2, 11, 0, tzinfo=utc)
         oneday = view.is_one_day(event)
         self.assertFalse(oneday)
 
