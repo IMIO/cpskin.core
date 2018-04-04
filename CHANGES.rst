@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.13 (unreleased)
+0.12.13 (2018-04-04)
 --------------------
 
 - Add migration after allowing to display / hide titles for sliders
