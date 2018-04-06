@@ -4,7 +4,9 @@ Changelog
 0.12.14 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix date display on index view : we need the object and not the brain to
+  get occurences : #21068
+  [laulaz]
 
 
 0.12.13 (2018-04-04)
