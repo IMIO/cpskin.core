@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.14 (unreleased)
+0.12.14 (2018-04-25)
 --------------------
 
 - Fix date display on index view : we need the object and not the brain to
