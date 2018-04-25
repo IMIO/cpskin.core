@@ -3,7 +3,7 @@
      tal:condition="photos"
      i18n:domain="cpskin">
 
-  <h2 i18n:translate="">Gallerie</h2>
+  <h2 i18n:translate="">Galerie</h2>
 
   <div class="organization-photo"
        tal:repeat="photo photos">
