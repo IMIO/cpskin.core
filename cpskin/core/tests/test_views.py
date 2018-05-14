@@ -183,7 +183,7 @@ class TestViews(unittest.TestCase):
         categories = view.get_categories(collection, event)
         self.assertEqual(
             categories,
-            'Information Science, Information Science/Book Collecting')
+            'Book Collecting, Information Science')
 
         event.taxonomy_test = set()
         categories = view.get_categories(collection, event)
