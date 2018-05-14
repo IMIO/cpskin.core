@@ -4,7 +4,8 @@ Changelog
 0.12.15 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Don't display images of sub-organizations in organization gallery : #21364
+  [laulaz]
 
 
 0.12.14 (2018-04-25)

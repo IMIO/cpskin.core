@@ -17,6 +17,7 @@ class OrganizationGalleryViewlet(common.ViewletBase):
             return []
         brains = api.content.find(
             context=self.context,
+            depth=1,
             portal_type='Image'
         )
         return [b.getObject() for b in brains]
