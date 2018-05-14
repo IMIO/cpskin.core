@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from Acquisition import aq_parent
+from cpskin.core.browser.common import CommonView
 from cpskin.core.interfaces import IFolderViewSelectedContent
 from cpskin.core.interfaces import IFolderViewWithBigImages
-from cpskin.core.browser.common import CommonView
 from cpskin.core.utils import image_scale
 from cpskin.core.vocabulary import DISPLAY_TYPES
 from cpskin.locales import CPSkinMessageFactory as _
@@ -13,9 +13,9 @@ from imio.media.browser import utils
 from plone import api
 from plone.app.contenttypes.browser.folder import FolderView as FoldV
 from plone.app.contenttypes.content import Event
-from plone.app.event.base import RET_MODE_ACCESSORS
 from plone.app.event.base import expand_events
 from plone.app.event.base import filter_and_resort
+from plone.app.event.base import RET_MODE_ACCESSORS
 from plone.app.event.interfaces import IEventSettings
 from plone.app.event.recurrence import RecurrenceSupport
 from plone.app.querystring import queryparser

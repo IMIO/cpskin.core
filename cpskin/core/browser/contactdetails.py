@@ -7,11 +7,11 @@ Created by mpeeters
 :license: GPL, see LICENCE.txt for more details.
 """
 
-from Products.Five import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.contact.core.browser.contactable import ContactDetails
 from collective.geo.geographer.geoview import GeoView
 from cpskin.core import utils
+from Products.Five import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ua_parser import user_agent_parser
 
 import os
