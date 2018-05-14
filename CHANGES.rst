@@ -4,6 +4,9 @@ Changelog
 0.12.15 (unreleased)
 --------------------
 
+- Simplify organization gallery viewlet availability code
+  [laulaz]
+
 - Don't display images of sub-organizations in organization gallery : #21364
   [laulaz]
 

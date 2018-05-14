@@ -9,12 +9,7 @@ class OrganizationGalleryViewlet(common.ViewletBase):
 
     index = ViewPageTemplateFile('organization_gallery.pt')
 
-    def available(self):
-        return self.context.portal_type == 'organization'
-
     def get_photos(self):
-        if not self.available():
-            return []
         brains = api.content.find(
             context=self.context,
             depth=1,
