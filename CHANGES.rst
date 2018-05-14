@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.15 (unreleased)
+0.12.15 (2018-05-14)
 --------------------
 
 - Show only last term of taxonomy : #21398
