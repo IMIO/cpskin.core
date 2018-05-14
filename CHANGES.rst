@@ -4,6 +4,9 @@ Changelog
 0.12.15 (unreleased)
 --------------------
 
+- Show only last term of taxonomy : #21398
+  [laulaz]
+
 - Simplify organization gallery viewlet availability code
   [laulaz]
 
