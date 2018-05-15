@@ -28,6 +28,24 @@
     permission="zope2.View"
     />
 
+  <!-- EEA overidden views -->
+  <faceted:view
+    name="faceted-preview-items"
+    class=".view.PreviewItem"
+    template="preview-items.pt"
+    title="Faceted items preview"
+    permission="zope2.View"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+    />
+
+  <browser:page
+    name="faceted-preview-item"
+    for="zope.interface.Interface"
+    template="preview-item.pt"
+    permission="zope2.View"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+    />
+
   <!-- New faceted contacts view with optional photos -->
   <faceted:view
     name="faceted-preview-contacts"

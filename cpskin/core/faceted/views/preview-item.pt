@@ -1,44 +1,25 @@
 <div class="photoAlbumEntry"
   tal:define="portal_type context/portal_type;
               useViewTypes context/portal_properties/site_properties/typesUseViewActionInListings;
-              useView python:portal_type in useViewTypes;">
+              useView python:portal_type in useViewTypes;
+              scale request/scale;">
 
   <a tal:define="
       description context/Description|string:;
       title context/pretty_title_or_id|string:;
       desc_or_title python:description or title;
       url context/absolute_url|string:#;
-      view_url python:(url and useView and url + '/view') or url;
-      is_namedimage python:getattr(getattr(context, 'image', None), 'getImageSize', None) is not None;
-      image_thumb exists:context/image_thumb;
-      image_tag python:getattr(context, 'tag', None)"
+      view_url python:(url and useView and url + '/view') or url;"
      tal:attributes="href view_url;
                      title description">
 
-<tal:block tal:condition="is_namedimage">
     <span class="photoAlbumEntryWrapper">
 
        <img style="border: none" tal:attributes="
         title desc_or_title;
         alt title;
-        src string:$url/@@images/image/thumb"/>
+        src string:$url/@@images/image/$scale"/>
     </span>
-
-</tal:block>
-
-<tal:block tal:condition="not:is_namedimage">
-    <span class="photoAlbumEntryWrapper" tal:condition="image_thumb">
-      <img style="border: none" tal:attributes="
-        title desc_or_title;
-        alt title;
-        src string:$url/image_thumb"/>
-    </span>
-
-    <span class="photoAlbumEntryWrapper" tal:condition="python:not image_thumb and image_tag">
-      <img tal:replace="structure python:image_tag(scale='thumb', title=description)" />
-    </span>
-
-</tal:block>
 
     <span class="news-date"
           tal:define="toLocalizedTime nocall: context/@@plone/toLocalizedTime;"

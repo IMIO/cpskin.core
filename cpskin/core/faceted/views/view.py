@@ -42,3 +42,13 @@ class PreviewItem(ContactDetailsView, CommonView):
         render_view = u'faceted-preview-contact-photos'
         view = getMultiAdapter((obj, request), name=render_view)
         return view and view() or ''
+
+    def render_item_preview(self, obj):
+        context = self.context
+        request = self.request
+        scale = getattr(context, 'collection_image_scale', 'thumb')
+        request['scale'] = scale
+        request['collection'] = context
+        render_view = u'faceted-preview-item'
+        view = getMultiAdapter((obj, request), name=render_view)
+        return view and view() or ''

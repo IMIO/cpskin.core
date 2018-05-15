@@ -4,7 +4,8 @@ Changelog
 0.12.16 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Override eea preview items to re-use scale defined in index view : #21333
+  [laulaz]
 
 
 0.12.15 (2018-05-14)
