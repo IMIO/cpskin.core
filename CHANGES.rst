@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.16 (unreleased)
+0.12.16 (2018-05-15)
 --------------------
 
 - Override eea preview items to re-use scale defined in index view : #21333
