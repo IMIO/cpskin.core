@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.17 (unreleased)
+0.12.17 (2018-05-16)
 --------------------
 
 - Don't try to display image on faceted preview if there is none
