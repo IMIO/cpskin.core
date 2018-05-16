@@ -4,7 +4,8 @@ Changelog
 0.12.17 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Don't try to display image on faceted preview if there is none
+  [laulaz]
 
 
 0.12.16 (2018-05-15)

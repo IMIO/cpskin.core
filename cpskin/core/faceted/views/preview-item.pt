@@ -9,11 +9,13 @@
       title context/pretty_title_or_id|string:;
       desc_or_title python:description or title;
       url context/absolute_url|string:#;
-      view_url python:(url and useView and url + '/view') or url;"
+      view_url python:(url and useView and url + '/view') or url;
+      has_image python:getattr(getattr(context, 'image', None), 'getImageSize', None) is not None;"
      tal:attributes="href view_url;
                      title description">
 
-    <span class="photoAlbumEntryWrapper">
+    <span class="photoAlbumEntryWrapper"
+          tal:condition="has_image">
 
        <img style="border: none" tal:attributes="
         title desc_or_title;
