@@ -44,7 +44,6 @@
     for="plone.dexterity.interfaces.IDexterityContent"
     />
 
-
   <plone:behavior
     title="Additional searchable text"
     description="Add an addtional searchable text"

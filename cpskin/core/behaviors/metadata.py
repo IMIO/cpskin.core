@@ -127,7 +127,7 @@ class IRelatedContacts(model.Schema):
         value_type=RelationChoice(
             title=_(u'Related'),
             source=ObjPathSourceBinder(
-                portal_type=('person', 'organization')
+                portal_type=('person', 'organization', 'held_position')
             )
         ),
         required=False,
@@ -151,7 +151,7 @@ class IRelatedContacts(model.Schema):
         value_type=RelationChoice(
             title=_(u'Related'),
             source=ObjPathSourceBinder(
-                portal_type=('person', 'organization')
+                portal_type=('person', 'organization', 'held_position')
             )
         ),
         required=False,

@@ -4,7 +4,8 @@ Changelog
 0.12.18 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add held_position to related_contacts widgets.
+  [bsuttor]
 
 
 0.12.17 (2018-05-16)
@@ -40,7 +41,7 @@ Changelog
 - Fix date display on index view : we need the object and not the brain to
   get occurences : #21068
   [laulaz]
-  
+
 - Spelling correction "gallery" in organizations.
   [mgennart]
 
