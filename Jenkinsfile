@@ -11,7 +11,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'python bootstrap.py --buildout-version 2.9.5'
+                sh 'virtualenv -p python2.7 .'
+                sh 'bin/pip install -r requirements.txt'
                 sh 'bin/buildout code-analysis:jenkins=True'
             }
         }
