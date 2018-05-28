@@ -5,3 +5,4 @@ omit =
     */test*
     cpskin/__init__.py
     cpskin/core/__init__.py
+    cpskin/core/transmo/*
