@@ -74,6 +74,7 @@ setup(name='cpskin.core',
           'z3c.jbot',
           'sc.social.like',
           'collective.js.fancybox',
+          'imio.gdpr',
       ],
       extras_require={
           'test': [

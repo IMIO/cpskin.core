@@ -14,5 +14,6 @@
     <dependency>profile-collective.navigationtoggle:default</dependency>
     <dependency>profile-sc.social.like:default</dependency>
     <dependency>profile-collective.js.fancybox:default</dependency>
+    <dependency>profile-imio.gdpr:default</dependency>
   </dependencies>
 </metadata>

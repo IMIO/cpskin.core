@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v43: Add GDPR link"
+        source="42"
+        destination="43"
+        handler=".upgradehandlers.install_imiogdpr"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v42: Migrate hide_title for sliders"
         source="41"
         destination="42"

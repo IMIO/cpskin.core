@@ -34,6 +34,13 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def install_imiogdpr(context):
+    portal_setup = api.portal.get_tool('portal_setup')
+    portal_setup.runAllImportStepsFromProfile(
+        'profile-imio.gdpr:default'
+    )
+
+
 def migrate_hide_title_for_sliders(context):
     index_collections_brains = api.content.find(
         portal_type='Collection',
