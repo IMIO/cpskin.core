@@ -511,3 +511,21 @@ class TestViewlets(unittest.TestCase):
         self.assertEqual(
             u'http://nohost/plone/directory/person/@@images/logo/thumb',
             results['features'][0]['properties']['image'])
+
+    def test_footer_viewlet(self):
+        # getting viewlet
+        view = BrowserView(self.portal, self.request)
+        manager_name = 'plone.portalfooter'
+        manager = queryMultiAdapter(
+            (self.portal, self.request, view),
+            IViewletManager,
+            manager_name,
+            default=None)
+        self.assertIsNotNone(manager)
+        manager.update()
+
+        my_viewlet = [
+            v for v in manager.viewlets if v.__name__ == 'cpskin.footer']  # noqa
+        self.assertEqual(len(my_viewlet), 1)
+        viewlet = my_viewlet[0]
+        self.assertIn('Mentions L&eacute;gales', viewlet.render())

@@ -4,6 +4,9 @@ Changelog
 0.12.18 (unreleased)
 --------------------
 
+- Add Mentions Légales link.
+  [bsuttor]
+
 - Add held_position to related_contacts widgets.
   [bsuttor]
 
