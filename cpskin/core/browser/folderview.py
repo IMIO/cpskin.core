@@ -19,7 +19,6 @@ from plone.app.event.base import RET_MODE_ACCESSORS
 from plone.app.event.interfaces import IEventSettings
 from plone.app.event.recurrence import RecurrenceSupport
 from plone.app.querystring import queryparser
-from plone.dexterity.interfaces import IDexterityContent
 from plone.event.interfaces import IEvent
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.interfaces import IFolderish
@@ -418,21 +417,9 @@ class FolderView(FoldV, CommonView):
                'max_items_in_slider': max_items}
         return config
 
-    def is_dexterity(self):
-        portal_types = api.portal.get_tool('portal_types')
-        if portal_types.get('Image').meta_type == 'Dexterity FTI':
-            return True
-        else:
-            return False
-
     def scaled_image_url(self, context, obj, isBigImage):
-        if self.is_dexterity():
-            image = self.collection_image_scale(context, obj)
-            return image and image.url or ''
-        else:
-            thumbsize = self.getThumbSize(obj, isBigImage)
-            url = '{0}/{1}'.format(obj.absolute_url(), thumbsize)
-            return url
+        image = self.collection_image_scale(context, obj)
+        return image and image.url or ''
 
     def collection_image_scale(self, collection, obj):
         scale = getattr(collection, 'collection_image_scale', 'collection')
@@ -472,15 +459,14 @@ class FolderView(FoldV, CommonView):
         if event:
             if not isinstance(event, Event):
                 event = event.getObject()
-            if IDexterityContent.providedBy(event):
-                rs = RecurrenceSupport(event)
-                occurences = [occ for occ in rs.occurrences(datetime.today())]
-                if len(occurences) >= 1:
-                    # do not get object which started in the past
-                    if startend == 'start':
-                        time = getattr(occurences[0], 'start')
-                    elif startend == 'end':
-                        time = getattr(occurences[-1], 'end')
+            rs = RecurrenceSupport(event)
+            occurences = [occ for occ in rs.occurrences(datetime.today())]
+            if len(occurences) >= 1:
+                # do not get object which started in the past
+                if startend == 'start':
+                    time = getattr(occurences[0], 'start')
+                elif startend == 'end':
+                    time = getattr(occurences[-1], 'end')
         return self.context.restrictedTraverse('@@plone').toLocalizedTime(
             time, long_format, time_only)
 
@@ -491,13 +477,10 @@ class FolderView(FoldV, CommonView):
 
     def get_event_dates(self, result):
         timezone = self.get_portal_timezone()
-        if IDexterityContent.providedBy(result):
-            occurences = expand_events([result], RET_MODE_ACCESSORS)
-            start_date = getattr(occurences[0], 'start')
-            end_date = getattr(occurences[-1], 'end')
-        else:
-            start_date = getattr(result, 'start')
-            end_date = getattr(result, 'end')
+        occurences = expand_events([result], RET_MODE_ACCESSORS)
+        start_date = getattr(occurences[0], 'start')
+        end_date = getattr(occurences[-1], 'end')
+
         if not start_date:
             return {'start': '', 'end': ''}
         if getattr(start_date, 'astimezone', False):
@@ -513,26 +496,19 @@ class FolderView(FoldV, CommonView):
         return {'start': formated_start, 'end': ''}
 
     def is_one_day(self, event):
-        if not IDexterityContent.providedBy(event):
-            return self.toLocalizedTime(event.start_date, long_format=0) == self.toLocalizedTime(event.end_date, long_format=0)  # noqa
         occurences = expand_events([event], RET_MODE_ACCESSORS)
         start_date = getattr(occurences[0], 'start')
         end_date = getattr(occurences[-1], 'end')
         return self.toLocalizedTime(start_date, long_format=0) == self.toLocalizedTime(end_date, long_format=0)  # noqa
 
     def is_with_hours(self, event):
-        if not IDexterityContent.providedBy(event):
-            return self.toLocalizedTime(event.start_date, long_format=1)[11:] != '00:00' or self.toLocalizedTime(event.end_date, long_format=1)[11:] != '00:00'  # noqa
         if getattr(event, 'whole_day', False):
             return not(event.whole_day)
         else:
             return self.toLocalizedTime(event.start, long_format=1)[11:] != '00:00' or self.toLocalizedTime(event.end, long_format=1)[11:] != '00:00'  # noqa
 
     def is_open_end(self, event):
-        if not IDexterityContent.providedBy(event):
-            return False
-        else:
-            return getattr(event, 'open_end', False)
+        return getattr(event, 'open_end', False)
 
     def see_start_end_date(self, brain, collection):
         if getattr(brain, 'start', False) and getattr(brain, 'end', False):

@@ -64,19 +64,7 @@
                              </tal:if>
 
                              <tal:if tal:condition="show_lead_image">
-                            
-                               <tal:block tal:condition="not: view/is_dexterity">
-                                <img class=""
-                                   tal:define="oddRow repeat/result/odd;
-                                               imageClass python: oddRow and 'myimageleft' or 'myimageleft';
-                                               thumbsize python: view.getThumbSize(result, isBigImage)"
-                                   src="#"
-                                   alt=""
-                                   tal:attributes="title result/Description;
-                                                   src python: result.getURL() + '/' + thumbsize" />
-                                </tal:block>
 
-                                <tal:block tal:condition="view/is_dexterity">
                                 <div class="homepageleadImage"
                                      tal:define="scaled_image python:view.collection_image_scale(content, obj)">
 
@@ -88,7 +76,6 @@
                                   </figure>
 
                                 </div>
-                                </tal:block>
 
                               </tal:if>
 
@@ -224,9 +211,9 @@
                                              video python: view.get_video(item)">
                                 <div tal:content='structure video'/>
                             </div>
-                            
+
                             <h3 tal:content="result/Title"></h3>
-                            
+
 
                             <span class="documentByLine"
                                   tal:condition="python: view.see_start_end_date(result, content)"
