@@ -12,6 +12,7 @@
   <include package="cpskin.workflow" />
   <include package="cpskin.menu" />
   <include package="sc.social.like" />
+  <include package="imio.gdpr" />
 
 
   <genericsetup:registerProfile
