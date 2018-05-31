@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.18 (unreleased)
+0.12.18 (2018-05-31)
 --------------------
 
 - Add Mentions Légales link.
