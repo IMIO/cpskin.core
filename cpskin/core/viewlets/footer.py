@@ -48,8 +48,9 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
         if footer_static is None:
             return
         if footer_static.Language() == self.context.Language():
-            text = footer_static.text.raw
-            return text
+            if getattr(footer_static, 'text', None):
+                text = footer_static.text.raw
+                return text
         if getattr(footer_static, 'getTranslation', None):
             lang = self.context.REQUEST.get('LANGUAGE', 'fr')
             footer_static = footer_static.getTranslation(lang)
