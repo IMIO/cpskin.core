@@ -1,8 +1,17 @@
 Changelog
 =========
 
-0.12.19 (unreleased)
+0.12.20 (unreleased)
 --------------------
+
+- Nothing changed yet.
+
+
+0.12.19 (2018-06-04)
+--------------------
+
+- Fix footer static error
+  [bsuttor]
 
 - Always use cropped scale for banner image : #21448
   [laulaz]
