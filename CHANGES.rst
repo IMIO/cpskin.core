@@ -4,6 +4,9 @@ Changelog
 0.12.19 (unreleased)
 --------------------
 
+- Fix footer static error
+  [bsuttor]
+
 - Always use cropped scale for banner image : #21448
   [laulaz]
 
