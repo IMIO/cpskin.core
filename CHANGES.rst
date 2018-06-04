@@ -4,7 +4,8 @@ Changelog
 0.12.19 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Always use cropped scale for banner image : #21448
+  [laulaz]
 
 
 0.12.18 (2018-05-31)

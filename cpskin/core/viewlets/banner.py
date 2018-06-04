@@ -2,10 +2,11 @@
 import random
 
 from Acquisition import aq_inner
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets.common import ViewletBase
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone.namedfile.scaling import ImageScale
 from zope.component import getMultiAdapter
 
 
@@ -117,4 +118,11 @@ class CPSkinBannerViewlet(ViewletBase):
 
     def getImageBannerUrl(self):
         banner = self.getBanner()
-        return banner and banner.absolute_url() or ''
+        if not banner:
+            return ''
+        if isinstance(banner, ImageScale):
+            image_scale = banner
+        else:
+            view = banner.restrictedTraverse('@@images')
+            image_scale = view.scale('image', scale='banner')
+        return image_scale.absolute_url()
