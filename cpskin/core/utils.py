@@ -3,11 +3,13 @@ from Acquisition import aq_base
 from collective.contact.core.browser.address import get_address
 from collective.geo.behaviour.interfaces import ICoordinates
 from plone import api
+from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.multilingual.interfaces import IPloneAppMultilingualInstalled
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.namedfile.file import NamedBlobImage
 from Products.CMFCore.interfaces import ISiteRoot
+from zope.annotation.interfaces import IAnnotations
 from zope.component import queryUtility
 
 import geocoder
@@ -153,6 +155,13 @@ def add_leadimage_from_file(container, file_name,
         image.setTitle(file_name)
         image.reindexObject()
         setattr(container, image_field, namedblobimage)
+
+
+def has_crop(obj, fieldname, scale):
+    crops = IAnnotations(obj).get(PAI_STORAGE_KEY)
+    if not crops:
+        return False
+    return '{0:s}_{1:s}'.format(fieldname, scale) in crops
 
 
 def image_scale(obj, css_class, default_scale, generate_tag=True, with_uid=True):

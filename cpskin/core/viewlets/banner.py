@@ -6,8 +6,9 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets.common import ViewletBase
-from plone.namedfile.scaling import ImageScale
 from zope.component import getMultiAdapter
+
+from cpskin.core.utils import has_crop
 
 
 HAS_MINISITE = False
@@ -47,11 +48,12 @@ class CPSkinBannerViewlet(ViewletBase):
         if not self.isFolderView():
             return default
         banner = self.getBanner()
-        if not banner:
+        if not banner['object']:
             return default
+        obj = banner['object']
         return {
-            'title': banner.Title(),
-            'description': banner.Description(),
+            'title': obj.Title(),
+            'description': obj.Description(),
         }
 
     def homeUrl(self):
@@ -95,6 +97,19 @@ class CPSkinBannerViewlet(ViewletBase):
         request = self.request
         return IInPortal.providedBy(request)
 
+    def getUnscaleUrl(self, obj, fieldname, scale):
+        if obj is None:
+            return ''
+        if has_crop(obj, fieldname, scale):
+            view = obj.restrictedTraverse('@@images')
+            banner_url = view.scale(fieldname, scale=scale)
+        else:
+            banner_url = '{0}/@@images/{1}'.format(
+                obj.absolute_url(),
+                fieldname,
+            )
+        return banner_url
+
     def getBanner(self):
         context = self.context
         local_banner_folder = getattr(context.aq_explicit, 'banner', None)
@@ -103,26 +118,28 @@ class CPSkinBannerViewlet(ViewletBase):
         banner_folder = getattr(context, 'banner', None)
         banner = getattr(context, 'banner.jpg', None)
         if context.portal_type == 'Event' and local_banner_event:
-            banner = context.restrictedTraverse('@@images').scale(fieldname='image_banner')
-            return banner
+            return {
+                'object': context,
+                'url': self.getUnscaleUrl(context, 'image_banner', 'banner'),
+            }
         if local_banner_folder or (banner_folder and not local_banner):
             banner_folder_to_use = local_banner_folder and local_banner_folder or banner_folder
-            images = api.content.find(
+            brains = api.content.find(
                 context=banner_folder_to_use,
                 portal_type='Image',
             )
-            if images:
-                banner = images[random.randrange(len(images))]
-                return banner.getObject()
-        return banner
+            if brains:
+                brain = brains[random.randrange(len(brains))]
+                obj = brain.getObject()
+                return {
+                    'object': obj,
+                    'url': self.getUnscaleUrl(obj, 'image', 'banner'),
+                }
+        return {
+            'object': banner,
+            'url': self.getUnscaleUrl(banner, 'image', 'banner'),
+        }
 
     def getImageBannerUrl(self):
         banner = self.getBanner()
-        if not banner:
-            return ''
-        if isinstance(banner, ImageScale):
-            image_scale = banner
-        else:
-            view = banner.restrictedTraverse('@@images')
-            image_scale = view.scale('image', scale='banner')
-        return image_scale.absolute_url()
+        return banner['url']

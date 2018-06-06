@@ -4,7 +4,11 @@ Changelog
 0.12.20 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Never scale banner if it wasn't cropped : #21448
+  [laulaz]
+
+- Refactor banner url fetching code
+  [laulaz]
 
 
 0.12.19 (2018-06-04)
