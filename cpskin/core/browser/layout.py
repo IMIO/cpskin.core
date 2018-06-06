@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from DateTime import DateTime
+from eea.facetednavigation.layout.interfaces import IFacetedLayout
+from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from plone import api
 from plone.app.layout.globals import layout as base
 from plone.app.layout.globals.interfaces import ILayoutPolicy
 from plone.i18n.normalizer import IIDNormalizer
+from zope.component import queryAdapter
 from zope.component import queryUtility
 from zope.interface import implements
 
@@ -28,6 +31,7 @@ class LayoutPolicy(base.LayoutPolicy):
         4. homepage
         5. the portal_type of the collection (if any)
         6. the expiration of the content
+        7. the layout used for faceted navigations
         """
         context = self.context
 
@@ -98,6 +102,11 @@ class LayoutPolicy(base.LayoutPolicy):
         expiration_date = context.expiration_date
         if expiration_date and expiration_date < DateTime():
             body_class += ' expired-content'
+
+        if IFacetedNavigable.providedBy(context):
+            faceted_adapter = queryAdapter(context, IFacetedLayout)
+            if faceted_adapter:
+                body_class += ' %s' % faceted_adapter.layout
 
         return body_class
 

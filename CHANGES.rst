@@ -4,6 +4,9 @@ Changelog
 0.12.20 (unreleased)
 --------------------
 
+- Add class on body based on faceted navigation layout : #21603
+  [laulaz]
+
 - Never scale banner if it wasn't cropped : #21448
   [laulaz]
 
