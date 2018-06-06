@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.20 (unreleased)
+0.12.20 (2018-06-06)
 --------------------
 
 - Add class on body based on faceted navigation layout : #21603
