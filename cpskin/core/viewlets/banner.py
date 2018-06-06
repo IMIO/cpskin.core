@@ -102,7 +102,8 @@ class CPSkinBannerViewlet(ViewletBase):
             return ''
         if has_crop(obj, fieldname, scale):
             view = obj.restrictedTraverse('@@images')
-            banner_url = view.scale(fieldname, scale=scale)
+            scale = view.scale(fieldname, scale=scale)
+            banner_url = scale.absolute_url()
         else:
             banner_url = '{0}/@@images/{1}'.format(
                 obj.absolute_url(),
