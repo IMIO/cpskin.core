@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.21 (unreleased)
+0.12.21 (2018-06-13)
 --------------------
 
 - Override FooterViewlet to add is_gdpr method.
