@@ -6,7 +6,7 @@ if (ploneFormTabbing) {
 </script>
 <div i18n:domain="cpskin" id="portal-footer">
     <p>
-      <span><a href=""
+      <span tal:condition="view/is_gdpr"><a href=""
                 tal:attributes="href string:${view/navigation_root_url}/gdpr-view"
                 i18n:translate="Mentions L&eacute;gales">Mentions L&eacute;gales</a> - </span>
         <span i18n:translate="" omit-tag="">Site r&eacute;alis&eacute; en collaboration avec</span>&nbsp;<a href="http://www.imio.be" target="_blank">IMIO</a>&nbsp;<tal:block i18n:translate="sous licence">sous licence</tal:block>

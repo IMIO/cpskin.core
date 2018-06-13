@@ -43,7 +43,7 @@
     <browser:viewlet
         name="cpskin.footer"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
-        class="plone.app.layout.viewlets.common.FooterViewlet"
+        class=".footer.CpskinFooterViewlet"
         template="footer.pt"
         for="*"
         layer="..interfaces.ICPSkinCoreLayer"

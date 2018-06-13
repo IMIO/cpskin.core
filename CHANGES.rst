@@ -4,6 +4,9 @@ Changelog
 0.12.21 (unreleased)
 --------------------
 
+- Override FooterViewlet to add is_gdpr method.
+  [bsuttor]
+
 - Improve image_scale utils, get aboslute url of album.
   [bsuttor]
 

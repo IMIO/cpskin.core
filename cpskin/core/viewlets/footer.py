@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from plone import api
+from plone.app.layout.viewlets.common import FooterViewlet
 from plone.app.layout.viewlets.common import ViewletBase
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -57,3 +58,13 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
         if getattr(footer_static, 'text', None):
             text = footer_static.text.raw
         return text
+
+
+class CpskinFooterViewlet(FooterViewlet):
+
+    def is_gdpr(self):
+        from imio.gdpr.interfaces import IGDPRSettings
+        return api.portal.get_registry_record(
+            'is_text_ready',
+            interface=IGDPRSettings,
+            default=False)
