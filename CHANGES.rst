@@ -4,7 +4,8 @@ Changelog
 0.12.21 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Improve image_scale utils, get aboslute url of album.
+  [bsuttor]
 
 
 0.12.20 (2018-06-06)

@@ -181,7 +181,7 @@ def image_scale(obj, css_class, default_scale, generate_tag=True, with_uid=True)
         return image
     if not with_uid:
         image_path = '{0}/@@images/{1}/{2}'.format(
-            '/'.join(obj.getPhysicalPath()),
+            obj.absolute_url(),
             image_field_id,
             default_scale)
         image.url = image_path

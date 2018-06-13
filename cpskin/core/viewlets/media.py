@@ -58,15 +58,7 @@ class MediaViewlet(common.ViewletBase):
             gallery = gallery_brain.getObject()
             imagescale = self.context.unrestrictedTraverse(
                 gallery.getPhysicalPath() + ('@@images',))
-            # AT
-            if getattr(gallery_brain, 'hasContentLeadImage', False):
-                html = '<a href="{0}">'.format(gallery.absolute_url())
-                html += imagescale.scale('leadImage',
-                                         width=300, height=300).tag()
-                html += '</a>'
-                albums.append(html)
-            # DX
-            elif ICollection.providedBy(collection) and imagescale:
+            if imagescale:
                 scale = image_scale(
                     gallery,
                     'image',
