@@ -4,6 +4,7 @@ from cpskin.core.testing import CPSKIN_CORE_INTEGRATION_TESTING
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import add_keyword
 from cpskin.core.utils import add_leadimage_from_file
+from imio.gdpr.interfaces import IGDPRSettings
 from plone import api
 from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
@@ -528,4 +529,10 @@ class TestViewlets(unittest.TestCase):
             v for v in manager.viewlets if v.__name__ == 'cpskin.footer']  # noqa
         self.assertEqual(len(my_viewlet), 1)
         viewlet = my_viewlet[0]
+        self.assertNotIn('Mentions L&eacute;gales', viewlet.render())
+        api.portal.set_registry_record(
+            'is_text_ready',
+            True,
+            interface=IGDPRSettings
+        )
         self.assertIn('Mentions L&eacute;gales', viewlet.render())
