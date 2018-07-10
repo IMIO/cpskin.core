@@ -4,7 +4,8 @@ Changelog
 0.12.22 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Adapt index view to wrap first element into div and other into another div #21989.
+  [bsuttor]
 
 
 0.12.21 (2018-06-13)
