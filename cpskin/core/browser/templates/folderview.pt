@@ -30,19 +30,10 @@
                      contents view/getContents">
       <metal:main-macro define-macro="main">
         <div id="accueil">
-          <div class="accueil-first">
-            <tal:bcl tal:repeat="content python:contents[0:1]">
+            <tal:bcl tal:repeat="content python:contents">
               <metal:use use-macro="context/@@cpskincore-macros/homepage" />
             </tal:bcl>
-          </div>
-          <div class="accueil-other">
-            <tal:bcl tal:repeat="content python:contents[1:]">
-              <metal:use use-macro="context/@@cpskincore-macros/homepage" />
-            </tal:bcl>
-          </div>
-
             <div class="visualClear"></div>
-
       </metal:main-macro>
     </div>
   </body>

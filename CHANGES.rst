@@ -4,6 +4,9 @@ Changelog
 0.12.22 (unreleased)
 --------------------
 
+- Remove divs "accueil-first" and "accueil-other".
+  [bsuttor]
+
 - Adapt index view to wrap first element into div and other into another div #21989.
   [bsuttor]
 
