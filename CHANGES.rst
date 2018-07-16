@@ -4,6 +4,9 @@ Changelog
 0.12.22 (unreleased)
 --------------------
 
+- Avoid an error when `imio.gdpr` is not installed
+  [mpeeters]
+
 - Remove divs "accueil-first" and "accueil-other".
   [bsuttor]
 

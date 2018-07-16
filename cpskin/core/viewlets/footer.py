@@ -63,8 +63,6 @@ class CPSkinFooterSitemapViewlet(ViewletBase):
 class CpskinFooterViewlet(FooterViewlet):
 
     def is_gdpr(self):
-        from imio.gdpr.interfaces import IGDPRSettings
         return api.portal.get_registry_record(
-            'is_text_ready',
-            interface=IGDPRSettings,
+            'imio.gdpr.interfaces.IGDPRSettings.is_text_ready',
             default=False)
