@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.22 (unreleased)
+0.12.22 (2018-07-16)
 --------------------
 
 - Avoid an error when `imio.gdpr` is not installed
