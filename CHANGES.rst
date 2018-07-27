@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.24 (unreleased)
+0.12.24 (2018-07-27)
 --------------------
 
 - Add display_phones method to export.
