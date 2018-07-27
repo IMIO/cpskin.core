@@ -4,7 +4,8 @@ Changelog
 0.12.24 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add display_phones method to export.
+  [bsuttor]
 
 
 0.12.23 (2018-07-27)

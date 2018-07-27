@@ -210,14 +210,17 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             return None
 
     def get_relation_field(self, field_name):
-        related_obj = self.get_value(field_name)
+        try:
+            related_obj = self.get_value(field_name)
+        except:
+            return None
         if not related_obj:
             return None
         if isinstance(related_obj, str):
             return self.real_context
         if isinstance(related_obj, list):
             return [obj.to_object for obj in related_obj]
-        return related_obj.to_object
+        return getattr(related_obj, 'to_object', None)
 
     def get_relation_value(self, field_name, value_name, sep=' '):
         if not getattr(self.real_context, field_name, None):
@@ -244,6 +247,18 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         if prefix:
             text = '{0} {1}'.format(prefix, partners)
         return text
+
+    def display_phones(self, related_name='contact', field_name='phone'):
+        obj = self.get_relation_field(related_name)
+        # import pdb; pdb.set_trace()
+        phone = getattr(obj, field_name, None)
+        result = ''
+        if phone:
+            if isinstance(phone, list):
+                result = ' '.join([format_phone(p)['formated'] for p in phone])
+            else:
+                result = format_phone(phone)['formated']
+        return result
 
     def get_info(self):
         if not getattr(self.real_context, 'contact', None):
