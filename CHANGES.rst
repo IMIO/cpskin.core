@@ -4,7 +4,8 @@ Changelog
 0.12.23 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Occurence are now considered as event during exportation.
+  [bsuttor]
 
 
 0.12.22 (2018-07-16)

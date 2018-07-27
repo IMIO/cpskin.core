@@ -12,9 +12,11 @@ from imio.dashboard.utils import getDashboardQueryResult
 from plone import api
 from plone.app.event.base import date_speller
 from plone.app.event.base import dates_for_display
+from plone.app.event.base import expand_events
 from plone.app.layout.viewlets.common import PathBarViewlet
 from plone.app.workflow.remap import remap_workflow
 from plone.dexterity.interfaces import IDexterityFTI
+from plone.event.interfaces import IOccurrence
 from plone.resource.interfaces import IResourceDirectory
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.MailHost.interfaces import IMailHost
@@ -28,6 +30,7 @@ from zope.ramcache.interfaces.ram import IRAMCache
 import base64
 import json
 import logging
+import zope.copy
 
 
 logger = logging.getLogger('cpskin.core.browser.pages')
@@ -93,15 +96,30 @@ class IDocumentGenerationView(DocumentGenerationView):
        that want to extend the template generation context."""
 
     def _get_generation_context(self, helper_view, pod_template):
-        result = super(IDocumentGenerationView, self)._get_generation_context(helper_view, pod_template)
+        result = super(IDocumentGenerationView, self)._get_generation_context(
+            helper_view, pod_template)
         # if pod_template.portal_type == 'ConfigurablePODTemplate':
         if IFacetedNavigable.providedBy(self.context):
-            result['brains'] = getDashboardQueryResult(self.context)
+            brains = getDashboardQueryResult(self.context)
+            result['brains'] = brains
+            if len(brains) > 0 and brains[0].portal_type == 'Event':
+                expandevents = expand_events(brains, 2)
+                events = []
+                for event in expandevents:
+                    if IOccurrence.providedBy(event):
+                        start = event.start
+                        end = event.end
+                        parent = zope.copy.copy(event.aq_parent.aq_base)
+                        parent.start = start
+                        parent.end = end
+                        events.append(parent)
+                    else:
+                        events.append(event)
+                result['brains'] = events
             return result
 
 
 class EventGenerationHelperView(DXDocumentGenerationHelperView):
-
     def is_same_month(self, start, end):
         return start.get('month') == end.get('month')
 
