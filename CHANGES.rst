@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.23 (unreleased)
+0.12.23 (2018-07-27)
 --------------------
 
 - Occurence are now considered as event during exportation.
