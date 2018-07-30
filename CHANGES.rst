@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.25 (unreleased)
+0.12.25 (2018-07-30)
 --------------------
 
 - Add get_image_from_text method to export.
