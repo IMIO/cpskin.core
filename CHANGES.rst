@@ -4,7 +4,8 @@ Changelog
 0.12.25 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add get_image_from_text method to export.
+  [bsuttor]
 
 
 0.12.24 (2018-07-27)

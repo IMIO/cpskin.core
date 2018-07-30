@@ -308,6 +308,16 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         else:
             return ''
 
+    def get_image_from_text(self, field_name=None, text=None):
+        if field_name:
+            text = self.get_value(field_name)
+        images = []
+        import bs4
+        soup = bs4.BeautifulSoup(text, 'html.parser')
+        for img in soup.find_all('img'):
+            images.append(img.get('src'))
+        return images[0] if len(images) > 0 else images
+
 
 class TupleErrorPage(BrowserView):
     def __call__(self):
