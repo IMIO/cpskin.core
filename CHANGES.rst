@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.27 (unreleased)
+0.12.27 (2018-07-31)
 --------------------
 
 - Add year to formatted date to export.
