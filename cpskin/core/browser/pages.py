@@ -112,6 +112,10 @@ class IDocumentGenerationView(DocumentGenerationView):
                         parent = zope.copy.copy(event.aq_parent.aq_base)
                         parent.start = start
                         parent.end = end
+                        req = event.REQUEST
+                        parent.REQUEST = req
+                        parent.occurrence = True
+                        parent.base_event = event.aq_parent
                         events.append(parent)
                     else:
                         events.append(event)
@@ -120,17 +124,25 @@ class IDocumentGenerationView(DocumentGenerationView):
 
 
 class EventGenerationHelperView(DXDocumentGenerationHelperView):
+
+    def __init__(self, context, request):
+        super(EventGenerationHelperView, self).__init__(context, request)
+        if getattr(self.real_context, 'occurrence', False):
+            self.dates = dates_for_display(self.real_context)
+            self.real_context = self.real_context.base_event
+        else:
+            self.dates = dates_for_display(self.real_context)
+
     def is_same_month(self, start, end):
         return start.get('month') == end.get('month')
 
     def get_formatted_date(self):
         date_formated = u''
         event = self.real_context
-        dates = dates_for_display(event)
-        date_spel_start = date_speller(event, dates.get('start_iso'))
-        date_spel_end = date_speller(event, dates.get('end_iso'))
+        date_spel_start = date_speller(event, self.dates.get('start_iso'))
+        date_spel_end = date_speller(event, self.dates.get('end_iso'))
         # day and month
-        if dates.get('same_day'):
+        if self.dates.get('same_day'):
             date_formated = u'{0} {1}'.format(
                 date_spel_start.get('day'),
                 date_spel_start.get('month'))
@@ -147,8 +159,8 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
                 date_spel_end.get('month'))
 
         # hour
-        if not dates.get('whole_day'):
-            if dates.get('open_end'):
+        if not self.dates.get('whole_day'):
+            if self.dates.get('open_end'):
                 date_formated += _(u' à ')
                 date_formated += u'{0}:{1}'.format(
                     date_spel_start.get('hour'),
@@ -250,7 +262,6 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
 
     def display_phones(self, related_name='contact', field_name='phone'):
         obj = self.get_relation_field(related_name)
-        # import pdb; pdb.set_trace()
         phone = getattr(obj, field_name, None)
         result = ''
         if phone:

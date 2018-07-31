@@ -4,7 +4,8 @@ Changelog
 0.12.26 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add some information to Occurrence to be exported.
+  [bsuttor]
 
 
 0.12.25 (2018-07-30)
