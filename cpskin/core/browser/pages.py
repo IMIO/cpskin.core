@@ -5,6 +5,7 @@ from collective.taxonomy.interfaces import ITaxonomy
 from cpskin.core.interfaces import IFolderViewSelectedContent as IFVSC
 from cpskin.core.utils import format_phone
 from cpskin.core.utils import safe_utf8
+from cpskin.core.utils import safe_unicode
 from cpskin.locales import CPSkinMessageFactory as _
 from DateTime import DateTime
 from eea.facetednavigation.interfaces import IFacetedNavigable
@@ -143,20 +144,24 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         date_spel_end = date_speller(event, self.dates.get('end_iso'))
         # day and month
         if self.dates.get('same_day'):
-            date_formated = u'{0} {1}'.format(
-                date_spel_start.get('day'),
-                date_spel_start.get('month'))
-        elif self.is_same_month(date_spel_start, date_spel_end):
-            date_formated = u'{0} au {1} {2}'.format(
-                date_spel_start.get('day'),
-                date_spel_end.get('day'),
-                date_spel_start.get('month'))
-        else:
-            date_formated += u'{0} {1} au {2} {3}'.format(
+            date_formated = u'{0} {1} {2}'.format(
                 date_spel_start.get('day'),
                 date_spel_start.get('month'),
+                date_spel_start.get('year'))
+        elif self.is_same_month(date_spel_start, date_spel_end):
+            date_formated = u'{0} au {1} {2} {3}'.format(
+                date_spel_start.get('day'),
                 date_spel_end.get('day'),
-                date_spel_end.get('month'))
+                date_spel_start.get('month'),
+                date_spel_start.get('year'))
+        else:
+            date_formated += u'{0} {1} {2} au {3} {4} {5}'.format(
+                date_spel_start.get('day'),
+                date_spel_start.get('month'),
+                date_spel_start.get('year'),
+                date_spel_end.get('day'),
+                date_spel_end.get('month'),
+                date_spel_start.get('year'))
 
         # hour
         if not self.dates.get('whole_day'):
@@ -257,7 +262,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         partners = self.get_relation_value('partners', 'title', sep)
         text = partners
         if prefix:
-            text = '{0} {1}'.format(prefix, partners)
+            text = u'{0} {1}'.format(safe_unicode(prefix), partners)
         return text
 
     def display_phones(self, related_name='contact', field_name='phone'):
@@ -266,7 +271,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
         result = ''
         if phone:
             if isinstance(phone, list):
-                result = ' '.join([format_phone(p)['formated'] for p in phone])
+                result = u' '.join([format_phone(p)['formated'] for p in phone])
             else:
                 result = format_phone(phone)['formated']
         return result
@@ -285,7 +290,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             phone = getattr(obj, 'phone', None)
         if phone:
             if isinstance(phone, list):
-                info.append(' '.join([format_phone(p)['formated'] for p in phone]))
+                info.append(u' '.join([format_phone(p)['formated'] for p in phone]))
             else:
                 info.append(format_phone(phone)['formated'])
         website = getattr(obj, 'website', None)
@@ -293,7 +298,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             info.append(website)
         if len(info) >= 1:
             infomsg = _(u'Info :')
-            return '{0} {1}'.format(infomsg, ' - '.join(info))
+            return u'{0} {1}'.format(infomsg, ' - '.join(info))
         else:
             return ''
 

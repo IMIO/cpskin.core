@@ -2,7 +2,7 @@
 .PHONY: buildout cleanall test instance
 
 bin/pip:
-	virtualenv-2.7 .
+	if [ -f /usr/bin/virtualenv-2.7 ] ; then virtualenv-2.7 .;else virtualenv -p python2.7 .;fi
 	touch $@
 
 bin/buildout: bin/pip

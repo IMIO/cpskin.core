@@ -4,7 +4,11 @@ Changelog
 0.12.27 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add year to formatted date to export.
+  [bsuttor]
+
+- Fix unicode export partners and info
+  [bsuttor]
 
 
 0.12.26 (2018-07-31)
