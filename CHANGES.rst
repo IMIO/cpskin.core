@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.26 (unreleased)
+0.12.26 (2018-07-31)
 --------------------
 
 - Add some information to Occurrence to be exported.
