@@ -190,12 +190,26 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
                 (dict_text, dict_field_name) = field_name.items()[0]
                 value = self.get_taxonomy_value(dict_field_name, second_sep)
                 if value:
-                    text.append('{0} {1}'.format(dict_text, value))
+                    if self.hack_namur(field_name, value):
+                        text.append('{0} {1}'.format(dict_text, value))
             else:
                 value = self.get_taxonomy_value(field_name, second_sep)
                 if value:
-                    text.append(value)
+                    if self.hack_namur(field_name, value):
+                        text.append(value)
         return sep.join(text)
+
+    def hack_namur(self, field_name, value):
+        """ This is developped for Namur agenda export only """
+        # if isinstance(field_name, dict):
+        #    field_name = field_name.values()[0]
+        if field_name.endswith('publiccible') and value == 'Tout public':
+            return False
+        if field_name.endswith('gratuite') and value != 'Gratuit':
+            return False
+            # if field_name.endswith('danslecadrede'):
+            #     import ipdb; ipdb.set_trace()
+        return True
 
     def get_taxonomy_value(self, field_name, sep=' '):
         lang = self.real_context.language
@@ -290,9 +304,15 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             phone = getattr(obj, 'phone', None)
         if phone:
             if isinstance(phone, list):
-                info.append(u' '.join([format_phone(p)['formated'] for p in phone]))
+                phone = u' '.join([format_phone(p)['formated'] for p in phone])
+                # hack for namur
+                phone = phone.replace('+32 (0) ', '0')
+                info.append(phone)
             else:
-                info.append(format_phone(phone)['formated'])
+                phone = format_phone(phone)['formated']
+                # hack for namur
+                phone = phone.replace('+32 (0) ', '0')
+                info.append(phone)
         website = getattr(obj, 'website', None)
         if website:
             info.append(website)

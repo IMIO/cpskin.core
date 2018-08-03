@@ -7,6 +7,9 @@ Changelog
 - Add new search_position option for eligible themes : #21303
   [laulaz]
 
+- Add Namur hack.
+  [bsuttor]
+
 
 0.12.27 (2018-07-31)
 --------------------
