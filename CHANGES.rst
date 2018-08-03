@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.28 (unreleased)
+0.12.28 (2018-08-03)
 --------------------
 
 - Add new search_position option for eligible themes : #21303
