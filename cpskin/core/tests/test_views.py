@@ -366,7 +366,7 @@ class TestViews(unittest.TestCase):
         event.contact = 'Imio'
         event.phone = '081/586.100'
         info = view.get_info()
-        self.assertEqual(info, 'Info : my_event - +32 (0) 81 58 61 00')
+        self.assertEqual(info, 'Info : my_event - 081 58 61 00')
 
     def test_folderview_hide_title(self):
         # directlyProvides(self.portal.REQUEST, ICPSkinCoreLayer)  # noqa
