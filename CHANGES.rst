@@ -4,7 +4,8 @@ Changelog
 0.12.29 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add get_values_in_one_line export method.
+  [bsuttor]
 
 
 0.12.28 (2018-08-03)

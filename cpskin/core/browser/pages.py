@@ -182,6 +182,10 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
                 )
         return date_formated
 
+    def get_values_in_one_line(self, values, sep=u' - '):
+        results = [safe_unicode(value) for value in values if value]
+        return sep.join(results)
+
     def get_taxonomy_values_in_one_line(self, field_names, sep, second_sep=' '):
         text = []
         for field_name in field_names:
@@ -201,8 +205,8 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
 
     def hack_namur(self, field_name, value):
         """ This is developped for Namur agenda export only """
-        # if isinstance(field_name, dict):
-        #    field_name = field_name.values()[0]
+        if isinstance(field_name, dict):
+            field_name = field_name.values()[0]
         if field_name.endswith('publiccible') and value == 'Tout public':
             return False
         if field_name.endswith('gratuite') and value != 'Gratuit':
@@ -211,7 +215,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             #     import ipdb; ipdb.set_trace()
         return True
 
-    def get_taxonomy_value(self, field_name, sep=' '):
+    def get_taxonomy_value(self, field_name, sep=' ', end=''):
         lang = self.real_context.language
         taxonomy_ids = self.get_value(field_name)
         if not taxonomy_ids:
@@ -236,7 +240,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
                         )
                     )
                 )
-            return sep.join(text)
+            return '{0}{1}'.format(sep.join(text), end)
         else:
             return None
 
@@ -253,7 +257,7 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             return [obj.to_object for obj in related_obj]
         return getattr(related_obj, 'to_object', None)
 
-    def get_relation_value(self, field_name, value_name, sep=' '):
+    def get_relation_value(self, field_name, value_name, sep=' ', end=''):
         if not getattr(self.real_context, field_name, None):
             return False
         if isinstance(value_name, list):
@@ -261,14 +265,14 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             for value in value_name:
                 relation_field = self.get_relation_field(field_name)
                 result.append(getattr(relation_field, value, ''))
-            return sep.join(result)
+            return u'{0}{1}'.format(sep.join(result), end)
         relation_field = self.get_relation_field(field_name)
         if isinstance(relation_field, list):
             result = []
             for rel in relation_field:
                 result.append(getattr(rel, value_name, ''))
-            return sep.join(result)
-        return getattr(relation_field, value_name, '')
+            return u'{0}{1}'.format(sep.join(result), end)
+        return u'{0}{1}'.format(getattr(relation_field, value_name, ''), end)
 
     def get_partners(self, prefix='', sep=' '):
         if not getattr(self.real_context, 'partners', None):
