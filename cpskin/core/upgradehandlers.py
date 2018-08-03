@@ -5,7 +5,6 @@ from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.organization import IOrganizationImages
 from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
-from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
 from cpskin.core.setuphandlers import addDescriptionOnThemesOptionToRegistry
@@ -18,10 +17,14 @@ from cpskin.core.setuphandlers import addSliderTypeToRegistry
 from cpskin.core.setuphandlers import addSubMenuPersistenceToRegistry
 from cpskin.core.setuphandlers import addTopMenuContentsToRegistry
 from cpskin.core.setuphandlers import addTopMenuLeadImageToRegistry
+from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
+from cpskin.locales import CPSkinMessageFactory as _
 from eea.facetednavigation.subtypes.interfaces import IPossibleFacetedNavigable
 from plone import api
+from plone.registry import Record
+from plone.registry import field
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 from zope.interface import alsoProvides
@@ -329,6 +332,24 @@ def upgrade_city_name(context):
 
 def upgrade_slider_type(context):
     addSliderTypeToRegistry()
+
+
+def upgrade_search_position(context):
+    registry = getUtility(IRegistry)
+    records = registry.records
+    if 'cpskin.core.interfaces.ICPSkinSettings.search_position' in records:
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.search_position to registry')  # noqa
+    record = Record(
+        field.TextLine(
+            title=_(u'Search position'),
+            description=_(u'Search box position in eligible themes.'),
+            required=True,
+            default=u'default_position'),
+        value=u'default_position')
+    records['cpskin.core.interfaces.ICPSkinSettings.search_position'] = record
 
 
 def upgrade_footer_viewlet(context):

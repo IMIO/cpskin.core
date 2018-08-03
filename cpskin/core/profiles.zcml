@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v44: Add search_position option"
+        source="43"
+        destination="44"
+        handler=".upgradehandlers.upgrade_search_position"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v43: Add GDPR link"
         source="42"
         destination="43"

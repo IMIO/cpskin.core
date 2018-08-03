@@ -4,7 +4,8 @@ Changelog
 0.12.28 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add new search_position option for eligible themes : #21303
+  [laulaz]
 
 
 0.12.27 (2018-07-31)

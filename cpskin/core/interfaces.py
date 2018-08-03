@@ -153,6 +153,19 @@ class ICPSkinSettings(Interface):
         default=False
     )
 
+    search_position = schema.Choice(
+        title=_(u'Search position'),
+        description=_(u'Search box position in eligible themes.'),
+        required=True,
+        values=[
+            u'default_position',
+            u'always_in_navigation',
+            u'always_in_actions',
+        ],
+        default=u'default_position'
+    )
+
+
 
 class IVideoCollection(Interface):
     """

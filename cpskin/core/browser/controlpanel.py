@@ -183,6 +183,14 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         setShowDescriptionOnThemes,
     )
 
+    def getSearchPosition(self):
+        return self.settings.search_position
+
+    def setSearchPosition(self, value):
+        self.settings.search_position = value
+
+    search_position = property(getSearchPosition, setSearchPosition)
+
 
 class CPSkinControlPanel(ControlPanelForm):
 
