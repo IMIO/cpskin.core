@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.29 (unreleased)
+0.12.29 (2018-08-03)
 --------------------
 
 - Add get_values_in_one_line export method.
