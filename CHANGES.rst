@@ -4,7 +4,8 @@ Changelog
 0.12.30 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Do not change collection count_items value during homepage loading.
+  [bsuttor]
 
 
 0.12.29 (2018-08-03)

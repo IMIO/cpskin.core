@@ -118,10 +118,6 @@ class FolderView(FoldV, CommonView):
             start = DateTime()
             sort_on = getattr(content, 'sort_on', 'start')
             if sort_on in ('start', 'end'):
-                # set item_count to higher value to sort with all events
-                item_count = getattr(content, 'item_count', 8)
-                # item_count = content.item_count
-                content.item_count = 1000
                 filter_and_resort_brains = filter_and_resort(
                     content,
                     brains,
@@ -131,7 +127,6 @@ class FolderView(FoldV, CommonView):
                     sort_reversed
                 )
                 brains = filter_and_resort_brains[:item_count_homepage]
-                content.item_count = item_count
 
         brains = brains[:item_count_homepage]
         if not with_sticky:
