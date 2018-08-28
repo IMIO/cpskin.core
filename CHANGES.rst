@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.30 (unreleased)
+0.12.30 (2018-08-28)
 --------------------
 
 - Do not change collection count_items value during homepage loading.
