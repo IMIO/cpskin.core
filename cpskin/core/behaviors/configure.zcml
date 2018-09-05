@@ -87,4 +87,11 @@
     for="collective.contact.core.content.organization.IOrganization"
     />
 
+  <plone:behavior
+    title="Booking field"
+    description="Add additional booking field"
+    provides=".booking.IBooking"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
+
 </configure>

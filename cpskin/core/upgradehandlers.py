@@ -4,6 +4,7 @@ from cpskin.core.behaviors.directory import ICpskinDirectoryViewSettings
 from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.organization import IOrganizationImages
+from cpskin.core.behaviors.booking import IBooking
 from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
@@ -30,6 +31,7 @@ from zope.component import getUtility
 from zope.interface import alsoProvides
 from zope.interface import directlyProvidedBy
 from zope.interface import directlyProvides
+from plone.schemaeditor.interfaces import IEditableSchema
 
 import logging
 
@@ -435,3 +437,20 @@ def upgrade_to_two(context):
                     delattr(obj, attr)
                 except AttributeError:
                     logger.info('No {0} on: {1}'.format(attr, obj))
+
+
+def upgrade_add_booking_behavior(context):
+    portal_types = api.portal.get_tool(name='portal_types')
+    event_type = portal_types.get('Event')
+
+    if ('tarifs' in event_type.lookupSchema().names()) or ('reservation'in event_type.lookupSchema().names()):
+        add_behavior('booking', IBooking.__identifier__)
+        for brain in api.content.find(portal_type='Event'):
+            obj = brain.getObject()
+            if (getattr(obj,'tarifs') is not None) or (getattr(obj, 'reservation') is not None):
+                obj.booking_price = getattr(obj,'tarifs')
+                obj.booking_enable = getattr(obj, 'reservation')
+        schema = IEditableSchema(event_type.lookupSchema())
+        schema.removeField('tarifs')
+        schema.removeField('reservation')
+
