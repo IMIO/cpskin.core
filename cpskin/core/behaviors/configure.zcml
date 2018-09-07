@@ -88,8 +88,8 @@
     />
 
   <plone:behavior
-    title="Booking field"
-    description="Add additional booking field"
+    title="Booking fields"
+    description="Add additional booking fields"
     provides=".booking.IBooking"
     for="plone.dexterity.interfaces.IDexterityContent"
   />

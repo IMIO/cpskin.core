@@ -4,7 +4,8 @@ Changelog
 0.12.31 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add booking behavior and migrate existing TTW fields : #20989
+  [laulaz]
 
 
 0.12.30 (2018-08-28)

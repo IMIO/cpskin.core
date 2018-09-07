@@ -20,6 +20,30 @@ from zope.schema.vocabulary import SimpleVocabulary
 from cpskin.locales import CPSkinMessageFactory as _
 
 
+class BookingTypesFactory(object):
+    """Vocabulary factory listing booking types"""
+    implements(IVocabularyFactory)
+    indexName = ''
+
+    def __call__(self, context, query=None):
+        items = [
+            ('no_booking', _(u'No booking')),
+            ('mandatory', _(u'Mandatory booking')),
+            ('optional', _(u'Optional booking')),
+        ]
+        terms = [
+            SimpleTerm(
+                value=pair[0],
+                token=pair[0],
+                title=pair[1],
+            ) for pair in items
+        ]
+        return SimpleVocabulary(terms)
+
+
+BookingTypesVocabularyFactory = BookingTypesFactory()
+
+
 class BaseTagsVocabulary(object):
     """Vocabulary factory listing all catalog keywords from specified tags"""
     implements(IVocabularyFactory)

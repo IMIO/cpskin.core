@@ -30,6 +30,9 @@
     <include package=".faceted" />
     <include package=".transmo" />
 
+    <utility component=".vocabulary.BookingTypesVocabularyFactory"
+             name="cpskin.core.vocabularies.booking_types" />
+
     <utility component=".vocabulary.ActionMenuEligibleVocabularyFactory"
              name="cpskin.core.vocabularies.action_menu_eligible" />
 

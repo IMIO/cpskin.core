@@ -442,15 +442,24 @@ def upgrade_to_two(context):
 def upgrade_add_booking_behavior(context):
     portal_types = api.portal.get_tool(name='portal_types')
     event_type = portal_types.get('Event')
+    fields = event_type.lookupSchema().names()
 
-    if ('tarifs' in event_type.lookupSchema().names()) or ('reservation'in event_type.lookupSchema().names()):
-        add_behavior('booking', IBooking.__identifier__)
-        for brain in api.content.find(portal_type='Event'):
-            obj = brain.getObject()
-            if (getattr(obj,'tarifs') is not None) or (getattr(obj, 'reservation') is not None):
-                obj.booking_price = getattr(obj,'tarifs')
-                obj.booking_enable = getattr(obj, 'reservation')
-        schema = IEditableSchema(event_type.lookupSchema())
-        schema.removeField('tarifs')
-        schema.removeField('reservation')
+    if ('tarifs' not in fields and 'reservation' not in fields):
+        # This upgrade step is specific to Liege, where those fields have been
+        # added TTW.
+        return
 
+    add_behavior('Event', IBooking.__identifier__)
+    for brain in api.content.find(portal_type='Event'):
+        obj = brain.getObject()
+        if getattr(obj, 'tarifs') is not None:
+            obj.booking_price = getattr(obj, 'tarifs')
+        if getattr(obj, 'reservation') is not None:
+            has_booking = getattr(obj, 'reservation')
+            if has_booking:
+                obj.booking_type = 'mandatory'
+            else:
+                obj.booking_type = 'no_booking'
+    schema = IEditableSchema(event_type.lookupSchema())
+    schema.removeField('tarifs')
+    schema.removeField('reservation')
