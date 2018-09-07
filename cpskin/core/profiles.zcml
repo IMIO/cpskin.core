@@ -44,7 +44,7 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
-      title="CPSKIN Core: upgrade to v44: Add booking behavior"
+      title="CPSKIN Core: upgrade to v45: Add booking behavior"
       source="44"
       destination="45"
       handler=".upgradehandlers.upgrade_add_booking_behavior"
