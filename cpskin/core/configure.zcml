@@ -15,6 +15,7 @@
     <include package="eea.facetednavigation" />
     <include package="collective.js.fancybox" />
     <include package="sc.social.like" />
+    <include package="collective.printrss" />
     <include package="z3c.jbot" file="meta.zcml" />
     <browser:jbot directory="overrides" />
 
