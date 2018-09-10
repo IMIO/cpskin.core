@@ -15,7 +15,6 @@
     <include package="eea.facetednavigation" />
     <include package="collective.js.fancybox" />
     <include package="sc.social.like" />
-    <include package="collective.printrss" />
     <include package="z3c.jbot" file="meta.zcml" />
     <browser:jbot directory="overrides" />
 
@@ -30,6 +29,8 @@
     <include package=".viewlets" />
     <include package=".faceted" />
     <include package=".transmo" />
+
+    <include package="collective.printrss" />
 
     <utility component=".vocabulary.BookingTypesVocabularyFactory"
              name="cpskin.core.vocabularies.booking_types" />
