@@ -75,6 +75,7 @@ setup(name='cpskin.core',
           'sc.social.like',
           'collective.js.fancybox',
           'imio.gdpr',
+          'collective.printrss',
       ],
       extras_require={
           'test': [

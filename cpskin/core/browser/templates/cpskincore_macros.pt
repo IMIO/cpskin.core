@@ -331,7 +331,12 @@
            tal:attributes="class string:bloc-${repeat/content/number} bloc-document ${content/id} ${bloc_class}">
           <span tal:replace="structure content/render" />
       </div>
-
+      <div class=""
+           tal:condition="python: content.portal_type == 'rss_feed'">
+           <a tal:attributes="href content/url" target="_blank" class="rss-title"><h2 tal:content="content/title" /></a>
+           <span tal:replace="structure content/@@rss_feed_macro" />
+           <a tal:attributes="href content/url" target="_blank" class="view-all" tal:content="content/title" />
+      </div>
     </tal:def>
   </metal:homepage>
 

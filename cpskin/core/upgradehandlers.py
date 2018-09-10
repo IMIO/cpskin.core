@@ -39,6 +39,12 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def install_collective_printrss(context):
+    portal_setup = api.portal.get_tool('portal_setup')
+    portal_setup.runAllImportStepsFromProfile(
+        'profile-collective.printrss:default'
+    )
+
 def install_imiogdpr(context):
     portal_setup = api.portal.get_tool('portal_setup')
     portal_setup.runAllImportStepsFromProfile(

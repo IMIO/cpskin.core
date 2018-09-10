@@ -33,7 +33,7 @@ import httpagentparser
 import pytz
 
 
-ADDABLE_TYPES = ['Collection', 'Document', 'Folder']
+ADDABLE_TYPES = ['Collection', 'Document', 'Folder', 'rss_feed']
 
 
 class FolderView(FoldV, CommonView):
@@ -157,6 +157,8 @@ class FolderView(FoldV, CommonView):
                             realObjects.append(realObject)
                 else:
                     continue
+            elif obj.portal_type == 'rss_feed':
+                 realObjects.append(obj)
             elif obj.portal_type == 'Link':
                 try:
                     realObjects.append(type('Link', (object, ), {
