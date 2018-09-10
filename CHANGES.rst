@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.31 (unreleased)
+0.12.31 (2018-09-10)
 --------------------
 
 - Add booking behavior and migrate existing TTW fields : #20989
