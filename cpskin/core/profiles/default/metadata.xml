@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <metadata>
-  <version>46</version>
+  <version>45</version>
   <dependencies>
     <dependency>profile-plone.resource:default</dependency>
     <dependency>profile-plone.app.registry:default</dependency>
@@ -15,6 +15,5 @@
     <dependency>profile-sc.social.like:default</dependency>
     <dependency>profile-collective.js.fancybox:default</dependency>
     <dependency>profile-imio.gdpr:default</dependency>
-    <dependency>profile-collective.printrss:default</dependency>
   </dependencies>
 </metadata>

@@ -44,14 +44,6 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
-      title="CPSKIN Core: upgrade to v46: Add collective.printrss"
-      source="45"
-      destination="46"
-      handler=".upgradehandlers.install_collective_printrss"
-      profile="cpskin.core:default"
-    />
-
-    <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v45: Add booking behavior"
       source="44"
       destination="45"

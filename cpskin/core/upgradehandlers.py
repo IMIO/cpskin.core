@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_get
+from cpskin.core.behaviors.booking import IBooking
 from cpskin.core.behaviors.directory import ICpskinDirectoryViewSettings
 from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.organization import IOrganizationImages
-from cpskin.core.behaviors.booking import IBooking
 from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
+from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
 from cpskin.core.setuphandlers import addDescriptionOnThemesOptionToRegistry
@@ -18,32 +19,25 @@ from cpskin.core.setuphandlers import addSliderTypeToRegistry
 from cpskin.core.setuphandlers import addSubMenuPersistenceToRegistry
 from cpskin.core.setuphandlers import addTopMenuContentsToRegistry
 from cpskin.core.setuphandlers import addTopMenuLeadImageToRegistry
-from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
 from cpskin.locales import CPSkinMessageFactory as _
 from eea.facetednavigation.subtypes.interfaces import IPossibleFacetedNavigable
 from plone import api
-from plone.registry import Record
 from plone.registry import field
+from plone.registry import Record
 from plone.registry.interfaces import IRegistry
+from plone.schemaeditor.interfaces import IEditableSchema
 from zope.component import getUtility
 from zope.interface import alsoProvides
 from zope.interface import directlyProvidedBy
 from zope.interface import directlyProvides
-from plone.schemaeditor.interfaces import IEditableSchema
 
 import logging
 
 
 logger = logging.getLogger('cpskin.core')
 
-
-def install_collective_printrss(context):
-    portal_setup = api.portal.get_tool('portal_setup')
-    portal_setup.runAllImportStepsFromProfile(
-        'profile-collective.printrss:default'
-    )
 
 def install_imiogdpr(context):
     portal_setup = api.portal.get_tool('portal_setup')
