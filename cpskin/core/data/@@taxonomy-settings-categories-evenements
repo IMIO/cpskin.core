@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vdex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd" profileType="hierarchicalTokenTerms" orderSignificant="false" language="fr">
+  <vocabName>
+    <langstring language="fr">Catégories événements</langstring>
+  </vocabName>
+  <vocabIdentifier>categoriesevenements</vocabIdentifier>
+  <term>
+    <termIdentifier>sl9norfl4o</termIdentifier>
+    <caption>
+      <langstring language="fr">Littérature &amp;Poésie</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>g2ivyj6un7</termIdentifier>
+    <caption>
+      <langstring language="fr">Fêtes &amp; Folklore</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>6no1ll46js</termIdentifier>
+    <caption>
+      <langstring language="fr">Cinéma</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>j0edvhsydh</termIdentifier>
+    <caption>
+      <langstring language="fr">Danse &amp; Théâtre</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>5srj21xgc7</termIdentifier>
+    <caption>
+      <langstring language="fr">Exposition</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>if8jnc0q82</termIdentifier>
+    <caption>
+      <langstring language="fr">Conférences &amp; Ateliers</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>eocpydy7la</termIdentifier>
+    <caption>
+      <langstring language="fr">Réunions publiques</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>lijiyam4ls</termIdentifier>
+    <caption>
+      <langstring language="fr">Nature</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>5e01p1ktn2</termIdentifier>
+    <caption>
+      <langstring language="fr">Stages &amp; Plaines</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>6wbs2hakc4</termIdentifier>
+    <caption>
+      <langstring language="fr">Balades &amp; Visites guidées</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>76onvbyo72</termIdentifier>
+    <caption>
+      <langstring language="fr">Brocantes &amp; Marchés</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>8polecimfv</termIdentifier>
+    <caption>
+      <langstring language="fr">Sport</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>veinwgfw36</termIdentifier>
+    <caption>
+      <langstring language="fr">Salons &amp; Foires</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>jomwjaffgl</termIdentifier>
+    <caption>
+      <langstring language="fr">Divers</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>fsbjv3he5u</termIdentifier>
+    <caption>
+      <langstring language="fr">Musique</langstring>
+    </caption>
+  </term>
+</vdex>

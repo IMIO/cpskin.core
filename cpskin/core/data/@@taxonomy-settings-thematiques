@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vdex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd" profileType="hierarchicalTokenTerms" orderSignificant="false" language="fr">
+  <vocabName>
+    <langstring language="fr">Thématiques</langstring>
+  </vocabName>
+  <vocabIdentifier>thematiques</vocabIdentifier>
+  <term>
+    <termIdentifier>pn7eyalj3d</termIdentifier>
+    <caption>
+      <langstring language="fr">Economie</langstring>
+    </caption>
+    <term>
+      <termIdentifier>3inx4f6mu1</termIdentifier>
+      <caption>
+        <langstring language="fr">Commerces</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>23tphe1w5y</termIdentifier>
+      <caption>
+        <langstring language="fr">Développement</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>7m9wpxout7</termIdentifier>
+      <caption>
+        <langstring language="fr">Emploi</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>1wgly4abie</termIdentifier>
+      <caption>
+        <langstring language="fr">Entreprise</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>2e8d5cqo8x</termIdentifier>
+    <caption>
+      <langstring language="fr">Loisirs</langstring>
+    </caption>
+    <term>
+      <termIdentifier>tnjvki3bpo</termIdentifier>
+      <caption>
+        <langstring language="fr">Culture</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>46d1v6f0d3</termIdentifier>
+      <caption>
+        <langstring language="fr">Folklore</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>prlh1e453</termIdentifier>
+      <caption>
+        <langstring language="fr">Tourisme</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>wxi6gbv798</termIdentifier>
+      <caption>
+        <langstring language="fr">Sports</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>tim9f9e181</termIdentifier>
+    <caption>
+      <langstring language="fr">Ma commune</langstring>
+    </caption>
+    <term>
+      <termIdentifier>cv5fa9kdoa</termIdentifier>
+      <caption>
+        <langstring language="fr">Vie politique</langstring>
+      </caption>
+      <term>
+        <termIdentifier>57onwgxa3w</termIdentifier>
+        <caption>
+          <langstring language="fr">Collège communal</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>xv1vmj30cs</termIdentifier>
+        <caption>
+          <langstring language="fr">Conseil communal</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>wxn4p31bp1</termIdentifier>
+      <caption>
+        <langstring language="fr">Services communaux</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>dhigewqid7</termIdentifier>
+      <caption>
+        <langstring language="fr">Sécurité</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>m829pgq8r9</termIdentifier>
+      <caption>
+        <langstring language="fr">Education</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>264ra94m9j</termIdentifier>
+      <caption>
+        <langstring language="fr">Citoyenneté</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>9hr76smlx3</termIdentifier>
+      <caption>
+        <langstring language="fr">Social</langstring>
+      </caption>
+    </term>
+  </term>
+</vdex>

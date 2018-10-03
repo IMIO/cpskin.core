@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from collective.taxonomy.exportimport import TaxonomyImportExportAdapter
+from collective.taxonomy.factory import registerTaxonomy
 from cpskin.core.behaviors.directory import ICpskinDirectoryViewSettings
 from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
@@ -74,6 +76,7 @@ def installCore(context):
     upgrade_front_page()
     order_portaltop_viewlets()
     add_other_xhtml_valid_tags()
+    add_default_taxonomies()
 
 
 def add_other_xhtml_valid_tags():
@@ -533,3 +536,63 @@ def upgrade_front_page():
     # if frontPage is not None:
     #     frontPage.setExcludeFromNav(True)
     setPageText(portal, frontPage, 'cpskin-frontpage-setup')
+
+
+def add_default_taxonomies():
+    taxonomies = [{
+        'filename': '@@taxonomy-settings-categories-evenements',
+        'name': 'categoriesevenements',
+        'title': u'Catégories événements',
+        'field_description': '',
+        'default_language': 'fr'
+    }, {
+        'filename': '@@taxonomy-settings-thematiques',
+        'name': 'thematiques',
+        'title': u'Thématiques',
+        'field_description': '',
+        'default_language': 'fr'
+    }, {
+        'filename': '@@taxonomy-settings-types-activites',
+        'name': 'types_activites',
+        'title': u"Types d'activités",
+        'field_description': '',
+        'default_language': 'fr'
+    }, {
+        'filename': '@@taxonomy-settings-types-organisations',
+        'name': 'types_organisations',
+        'title': u"Types d'organisations",
+        'field_description': '',
+        'default_language': 'fr'
+    }]
+    for tax in taxonomies:
+        # TODO check if no taxonomy exist with same id
+        portal = api.portal.get()
+        taxonomy = registerTaxonomy(
+            portal,
+            name=tax['name'],
+            title=tax['title'],
+            description=tax['field_description'],
+            default_language=tax['default_language']
+        )
+
+        # Import
+        adapter = TaxonomyImportExportAdapter(portal)
+        data_path = os.path.join(os.path.dirname(__file__), 'data')
+        file_path = os.path.join(data_path, tax['filename'])
+        data = open(file_path, 'r').read(),
+        import_file = data[0]
+        adapter.importDocument(taxonomy, import_file)
+        del tax['filename']
+        # {'field_description': None, 'title': u'Cat\xe9gorie', 'field_title': u'Cat\xe9gorie', 'description': None, 'is_required': False, 'default_language': u'fr', 'write_permission': None, 'is_single_select': False, 'name': 'collective.taxonomy.generated.categorievent'}
+        # {'field_description': '', 'title': 'Cat\xc3\xa9gories \xc3\xa9v\xc3\xa9nements','description': '',  'is_required': False, 'default_language': 'fr', 'write_permission': None, 'is_single_select': False, 'name': 'collective.taxonomy.generated.categoriesevenements'}
+
+        # {'field_description': None,
+        # 'title': u'Cat\xe9gorie',
+        tax['field_title'] = tax['title']
+        # 'description': None,
+        tax['is_required'] = False
+        tax['write_permission'] = None
+        tax['is_single_select'] = False
+        # 'name': 'collective.taxonomy.generated.categorievent'}
+        taxonomy.registerBehavior(**tax)
+        logger.info('Taxonomy {0} imported'.format(tax['name']))

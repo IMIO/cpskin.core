@@ -1,0 +1,307 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vdex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd" profileType="hierarchicalTokenTerms" orderSignificant="false" language="fr">
+  <vocabName>
+    <langstring language="fr">Types d'organisations</langstring>
+  </vocabName>
+  <vocabIdentifier>types_organisations</vocabIdentifier>
+  <term>
+    <termIdentifier>abth7j0psi</termIdentifier>
+    <caption>
+      <langstring language="fr">Jardins</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>4c63558fmm</termIdentifier>
+    <caption>
+      <langstring language="fr">Plaines de vacances</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>rvfwfrxwmh</termIdentifier>
+    <caption>
+      <langstring language="fr">Commissions</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>71bj0xtcqq</termIdentifier>
+    <caption>
+      <langstring language="fr">Maisons de jeunes</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>grfxlkgteh</termIdentifier>
+    <caption>
+      <langstring language="fr">Organisateurs d'événements</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>8uiglhgt4t</termIdentifier>
+    <caption>
+      <langstring language="fr">Touristique</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>yjbxgkjrs4</termIdentifier>
+    <caption>
+      <langstring language="fr">Petites enfances</langstring>
+    </caption>
+    <term>
+      <termIdentifier>xqqgq5bgcr</termIdentifier>
+      <caption>
+        <langstring language="fr">Accueillantes conventionnées</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>v0f8itd0w4</termIdentifier>
+      <caption>
+        <langstring language="fr">Halte garderie</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>pw0hcobuf7</termIdentifier>
+      <caption>
+        <langstring language="fr">Organisateurs d'événements</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>goiswg7c49</termIdentifier>
+      <caption>
+        <langstring language="fr">Maisons d'enfants</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>pkp0l8ty6r</termIdentifier>
+      <caption>
+        <langstring language="fr">Crèches</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>w6rwyprj1r</termIdentifier>
+      <caption>
+        <langstring language="fr">Accueillantes autonomes</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>ndstr8vtpk</termIdentifier>
+    <caption>
+      <langstring language="fr">Organisateurs de stages</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>cqy0msux2k</termIdentifier>
+    <caption>
+      <langstring language="fr">Associations</langstring>
+    </caption>
+    <term>
+      <termIdentifier>j616btgm3q</termIdentifier>
+      <caption>
+        <langstring language="fr">Anciens combattants</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>l5w5j4l7wx</termIdentifier>
+      <caption>
+        <langstring language="fr">Amicale des écoles</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>rfx1d9eokk</termIdentifier>
+      <caption>
+        <langstring language="fr">Animaux</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>hd9llvn8e7</termIdentifier>
+      <caption>
+        <langstring language="fr">Divers</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>vaax5dxcsr</termIdentifier>
+      <caption>
+        <langstring language="fr">Cohésion sociale - Citoyenneté - Santé</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>vfe8kitmn5</termIdentifier>
+      <caption>
+        <langstring language="fr">Nature - Patrimoine - Tourisme</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>y1o2i4vwlw</termIdentifier>
+      <caption>
+        <langstring language="fr">Mouvement de jeunesse</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>uo9c9rn6qt</termIdentifier>
+      <caption>
+        <langstring language="fr">3ème âge</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>a844o4p03i</termIdentifier>
+      <caption>
+        <langstring language="fr">Sports</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>fj0x6chla2</termIdentifier>
+      <caption>
+        <langstring language="fr">Associations philanthropiques</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>a49cp15kho</termIdentifier>
+      <caption>
+        <langstring language="fr">Loisirs</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>u3o3p1ucd7</termIdentifier>
+      <caption>
+        <langstring language="fr">Culture</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>8hrxua8yu3</termIdentifier>
+      <caption>
+        <langstring language="fr">Folklore</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>6m7cko00jg</termIdentifier>
+    <caption>
+      <langstring language="fr">Infrastructures</langstring>
+    </caption>
+    <term>
+      <termIdentifier>cc8lwwmhn2</termIdentifier>
+      <caption>
+        <langstring language="fr">Bibliothèques</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>qx2ho5jutr</termIdentifier>
+      <caption>
+        <langstring language="fr">Salles de spectacles</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>lheyvxkj4s</termIdentifier>
+      <caption>
+        <langstring language="fr">Centres sportifs</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>8hx7xktxja</termIdentifier>
+      <caption>
+        <langstring language="fr">Lieux de cultes</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>gwkeag3i7m</termIdentifier>
+      <caption>
+        <langstring language="fr">Piscines</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>uw48mpwhjj</termIdentifier>
+      <caption>
+        <langstring language="fr">Mutuelles</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>kbrqsb1j3c</termIdentifier>
+      <caption>
+        <langstring language="fr">Hôpitaux</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>xt4h31gnnw</termIdentifier>
+      <caption>
+        <langstring language="fr">Centres de santé</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>uhmaf1d2m8</termIdentifier>
+      <caption>
+        <langstring language="fr">Ecoles</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>10lxdfydco</termIdentifier>
+      <caption>
+        <langstring language="fr">Bâtiments communaux</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>k2n28gxjn5</termIdentifier>
+      <caption>
+        <langstring language="fr">Musées</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>7f0spii08g</termIdentifier>
+      <caption>
+        <langstring language="fr">Pharmacies</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>tbd02tedf3</termIdentifier>
+      <caption>
+        <langstring language="fr">Cimetières</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>a5999t461m</termIdentifier>
+      <caption>
+        <langstring language="fr">Lieux d'expositions</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>o23isya73s</termIdentifier>
+      <caption>
+        <langstring language="fr">Cinémas</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>ootwb9msa9</termIdentifier>
+    <caption>
+      <langstring language="fr">Hébergements</langstring>
+    </caption>
+    <term>
+      <termIdentifier>9uoy3dhu8x</termIdentifier>
+      <caption>
+        <langstring language="fr">Hôtels</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>k8jnsp2fj3</termIdentifier>
+      <caption>
+        <langstring language="fr">Gites</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>biaiip3or0</termIdentifier>
+      <caption>
+        <langstring language="fr">Hébergements fluviaux</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>8d1ese9095</termIdentifier>
+      <caption>
+        <langstring language="fr">Campings</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ujgh6np8d4</termIdentifier>
+      <caption>
+        <langstring language="fr">Auberge de jeunesse</langstring>
+      </caption>
+    </term>
+  </term>
+</vdex>

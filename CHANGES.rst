@@ -4,6 +4,9 @@ Changelog
 0.12.32 (unreleased)
 --------------------
 
+- Install collective.taxonomy and add 4 default taxonomies.
+  [bsuttor]
+
 - Add specific typesUseViewActionInListings in propertiestools.xml + upgrade step.
   [boulch]
 

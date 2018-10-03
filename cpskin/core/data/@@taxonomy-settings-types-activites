@@ -1,0 +1,1507 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vdex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd" profileType="hierarchicalTokenTerms" orderSignificant="false" language="fr">
+  <vocabName>
+    <langstring language="fr">Types d'activités</langstring>
+  </vocabName>
+  <vocabIdentifier>types_activites</vocabIdentifier>
+  <term>
+    <termIdentifier>nvf7kib5ed</termIdentifier>
+    <caption>
+      <langstring language="fr">Animations</langstring>
+    </caption>
+    <term>
+      <termIdentifier>f8bvklelyb</termIdentifier>
+      <caption>
+        <langstring language="fr">Autres</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>rxbfr6sf4n</termIdentifier>
+      <caption>
+        <langstring language="fr">Jeux de rôles</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>k46qc276b5</termIdentifier>
+      <caption>
+        <langstring language="fr">Groupes</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>0u72aic1nr</termIdentifier>
+    <caption>
+      <langstring language="fr">Sports</langstring>
+    </caption>
+    <term>
+      <termIdentifier>lqx6u4qanb</termIdentifier>
+      <caption>
+        <langstring language="fr">Raquettes</langstring>
+      </caption>
+      <term>
+        <termIdentifier>q4devjrrrt</termIdentifier>
+        <caption>
+          <langstring language="fr">Tennis de table</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>ibdpvqjo5u</termIdentifier>
+        <caption>
+          <langstring language="fr">Tennis</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>ogatqqummj</termIdentifier>
+        <caption>
+          <langstring language="fr">Badminton</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>y3335rndsl</termIdentifier>
+        <caption>
+          <langstring language="fr">Squash</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>g1bk29efp4</termIdentifier>
+      <caption>
+        <langstring language="fr">Combat et arts martiaux</langstring>
+      </caption>
+      <term>
+        <termIdentifier>x5myu7rvja</termIdentifier>
+        <caption>
+          <langstring language="fr">Boxe</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>j8r66r13ql</termIdentifier>
+        <caption>
+          <langstring language="fr">Karaté</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>r2nxd2eyoc</termIdentifier>
+        <caption>
+          <langstring language="fr">Taekwondo</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>not1smynwp</termIdentifier>
+        <caption>
+          <langstring language="fr">Escrime</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>ifwpq6fgxy</termIdentifier>
+        <caption>
+          <langstring language="fr">Aïkido</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>9q4qva6h91</termIdentifier>
+        <caption>
+          <langstring language="fr">Judo</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>1n7ql02bt0</termIdentifier>
+        <caption>
+          <langstring language="fr">Ju jitsu</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>tdbnvbwsgc</termIdentifier>
+      <caption>
+        <langstring language="fr">Golf</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>2b7rhamhgh</termIdentifier>
+      <caption>
+        <langstring language="fr">Sports adaptés</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>puemkwurc4</termIdentifier>
+      <caption>
+        <langstring language="fr">Nautique</langstring>
+      </caption>
+      <term>
+        <termIdentifier>ffv9x8ody8</termIdentifier>
+        <caption>
+          <langstring language="fr">Natation</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>qsqv85ej5b</termIdentifier>
+        <caption>
+          <langstring language="fr">Plongée</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>j2nyg69fxx</termIdentifier>
+        <caption>
+          <langstring language="fr">Sauvetage sportif</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>9kf63caytf</termIdentifier>
+      <caption>
+        <langstring language="fr">Cible</langstring>
+      </caption>
+      <term>
+        <termIdentifier>nqdq5x6f90</termIdentifier>
+        <caption>
+          <langstring language="fr">Mini-golf</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>vvqbuik44s</termIdentifier>
+        <caption>
+          <langstring language="fr">Disc-golf</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>8uljgab83f</termIdentifier>
+        <caption>
+          <langstring language="fr">Tir à l'arc</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>a4eo6ns0xx</termIdentifier>
+        <caption>
+          <langstring language="fr">Tir</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>f2pmcr3ri4</termIdentifier>
+        <caption>
+          <langstring language="fr">Golf</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>h1cl6jc8gp</termIdentifier>
+        <caption>
+          <langstring language="fr">Billard</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>hdfmlrwyx3</termIdentifier>
+        <caption>
+          <langstring language="fr">Pétanque</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>qkqp6h8ch0</termIdentifier>
+        <caption>
+          <langstring language="fr">Fléchette</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>p2tkne7d8c</termIdentifier>
+      <caption>
+        <langstring language="fr">Mécanique</langstring>
+      </caption>
+      <term>
+        <termIdentifier>0w439iov83</termIdentifier>
+        <caption>
+          <langstring language="fr">Motocyclisme</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>vjuywn1mpv</termIdentifier>
+        <caption>
+          <langstring language="fr">Automobilisme</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>oirt2glgjv</termIdentifier>
+      <caption>
+        <langstring language="fr">Tous</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>cmu35wp13n</termIdentifier>
+      <caption>
+        <langstring language="fr">Collectifs</langstring>
+      </caption>
+      <term>
+        <termIdentifier>bugpyg12f4</termIdentifier>
+        <caption>
+          <langstring language="fr">Lacrosse</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>nacoil9vb3</termIdentifier>
+        <caption>
+          <langstring language="fr">Hockey</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>696b35exnq</termIdentifier>
+        <caption>
+          <langstring language="fr">Volley</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>8hmfkp4a5j</termIdentifier>
+        <caption>
+          <langstring language="fr">Baseball</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>akmvpcttxa</termIdentifier>
+        <caption>
+          <langstring language="fr">Rugby</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>q3boqwlqyk</termIdentifier>
+        <caption>
+          <langstring language="fr">Football</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>0sxwiuqkuv</termIdentifier>
+        <caption>
+          <langstring language="fr">Basket-ball</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>kd6thxoq1t</termIdentifier>
+        <caption>
+          <langstring language="fr">Balle pelote</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>exlagq8m8p</termIdentifier>
+        <caption>
+          <langstring language="fr">Mini football</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>15bdihltw2</termIdentifier>
+      <caption>
+        <langstring language="fr">Plein air et Nature</langstring>
+      </caption>
+      <term>
+        <termIdentifier>mpa8owj9fa</termIdentifier>
+        <caption>
+          <langstring language="fr">Jogging</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>baokt5q2jo</termIdentifier>
+        <caption>
+          <langstring language="fr">Alpinisme</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>vpswnq8su9</termIdentifier>
+        <caption>
+          <langstring language="fr">Athlétisme</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>u9bqsen7pp</termIdentifier>
+        <caption>
+          <langstring language="fr">Course d'orientation</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>4hupgl2g8u</termIdentifier>
+        <caption>
+          <langstring language="fr">Spéléologie</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>d5b942d0qb</termIdentifier>
+        <caption>
+          <langstring language="fr">Pêche</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>mqbmq84rds</termIdentifier>
+        <caption>
+          <langstring language="fr">Marche</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>sc9t6umdfp</termIdentifier>
+        <caption>
+          <langstring language="fr">Aviation</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>orabuqvugf</termIdentifier>
+        <caption>
+          <langstring language="fr">Triathlon</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>2cq0nva7ln</termIdentifier>
+      <caption>
+        <langstring language="fr">Sports pour ainés</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>40o83oc40h</termIdentifier>
+      <caption>
+        <langstring language="fr">Cyclisme</langstring>
+      </caption>
+      <term>
+        <termIdentifier>xjof6m1w0g</termIdentifier>
+        <caption>
+          <langstring language="fr">VTT</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>xbjxsypd9t</termIdentifier>
+        <caption>
+          <langstring language="fr">Vélo de route</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>tp4yihgdn5</termIdentifier>
+      <caption>
+        <langstring language="fr">Gymnastique</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ytnl9h3lg3</termIdentifier>
+      <caption>
+        <langstring language="fr">Glisse</langstring>
+      </caption>
+      <term>
+        <termIdentifier>uisu3uioky</termIdentifier>
+        <caption>
+          <langstring language="fr">Skateboard</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>935m2rn2cp</termIdentifier>
+        <caption>
+          <langstring language="fr">Roller</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>4yctcyuhje</termIdentifier>
+        <caption>
+          <langstring language="fr">Patin à glace</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>0ix46gp5w7</termIdentifier>
+        <caption>
+          <langstring language="fr">Ski</langstring>
+        </caption>
+      </term>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>iu1wbm6ph3</termIdentifier>
+    <caption>
+      <langstring language="fr">Artistiques</langstring>
+    </caption>
+    <term>
+      <termIdentifier>chbxjmh57w</termIdentifier>
+      <caption>
+        <langstring language="fr">Musique</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ruvvei07w0</termIdentifier>
+      <caption>
+        <langstring language="fr">Danse</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>a872f4n257</termIdentifier>
+      <caption>
+        <langstring language="fr">Arts dramatiques</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>e77ewcty7x</termIdentifier>
+      <caption>
+        <langstring language="fr">Arts plastiques</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>i259p59rd7</termIdentifier>
+      <caption>
+        <langstring language="fr">Photographie</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>cpteigkfx1</termIdentifier>
+      <caption>
+        <langstring language="fr">Cirque</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>w2gtn77xml</termIdentifier>
+      <caption>
+        <langstring language="fr">Audiovisuel</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>a4g4w6erh5</termIdentifier>
+    <caption>
+      <langstring language="fr">Commerces</langstring>
+    </caption>
+    <term>
+      <termIdentifier>ih2vmc4pfy</termIdentifier>
+      <caption>
+        <langstring language="fr">Agences de voyages</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>8ppsllei65</termIdentifier>
+      <caption>
+        <langstring language="fr">Photographie - Vidéo - Illustration</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>evtkr2gr1i</termIdentifier>
+      <caption>
+        <langstring language="fr">Stations-services</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>y0sd4my6ol</termIdentifier>
+      <caption>
+        <langstring language="fr">Agences matrimoniales</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>3k5qss4tws</termIdentifier>
+      <caption>
+        <langstring language="fr">Articles de puéricultures</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>44a4y0re7w</termIdentifier>
+      <caption>
+        <langstring language="fr">Armureries</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>fi30dqysbe</termIdentifier>
+      <caption>
+        <langstring language="fr">Pierre</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>9lf9akxuwb</termIdentifier>
+      <caption>
+        <langstring language="fr">Papeteries</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>3l6882b2iu</termIdentifier>
+      <caption>
+        <langstring language="fr">Bureautique</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>vp7p0mfipd</termIdentifier>
+      <caption>
+        <langstring language="fr">Agences intérimaires</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>mdqjjwoq80</termIdentifier>
+      <caption>
+        <langstring language="fr">Coutelleries - Sabres</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>sd0ojqh3j3</termIdentifier>
+      <caption>
+        <langstring language="fr">Aides ménagère - Titres Services - Centrale de repassage</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>qa1it1yfu2</termIdentifier>
+      <caption>
+        <langstring language="fr">Agences de nettoyage</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>fx5qcjuvik</termIdentifier>
+      <caption>
+        <langstring language="fr">Articles de fête - Scouterie</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>m7cgihqw24</termIdentifier>
+      <caption>
+        <langstring language="fr">Pompes funèbres</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>4dqa62v6fo</termIdentifier>
+      <caption>
+        <langstring language="fr">Mercerie</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>crq1h2ac3n</termIdentifier>
+      <caption>
+        <langstring language="fr">Bois</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>637w2s2jsr</termIdentifier>
+      <caption>
+        <langstring language="fr">Librairies</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>m0yc9o9pae</termIdentifier>
+      <caption>
+        <langstring language="fr">Agro-alimentaire</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>342pds7j7i</termIdentifier>
+      <caption>
+        <langstring language="fr">Equipements médicaux</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>kb7yljblea</termIdentifier>
+      <caption>
+        <langstring language="fr">Culture et multimédia</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>w69mramtv9</termIdentifier>
+      <caption>
+        <langstring language="fr">Santé</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>v43k1a9y60</termIdentifier>
+      <caption>
+        <langstring language="fr">Agence de gardiennage</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>36i92t9l0f</termIdentifier>
+      <caption>
+        <langstring language="fr">Banques</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>1gd6sf5l06</termIdentifier>
+      <caption>
+        <langstring language="fr">Loisirs créatifs</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>umr11pnqhd</termIdentifier>
+      <caption>
+        <langstring language="fr">Transport routiers</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>jsui2huids</termIdentifier>
+      <caption>
+        <langstring language="fr">Articles de sport</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>0ypvbbbqc8</termIdentifier>
+      <caption>
+        <langstring language="fr">Industrie</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>xq5atb3vt4</termIdentifier>
+      <caption>
+        <langstring language="fr"></langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>60gqnk88bx</termIdentifier>
+      <caption>
+        <langstring language="fr">Produits de coiffure - Perruqueries</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>5tc982lhii</termIdentifier>
+      <caption>
+        <langstring language="fr">Centre d'affaire - Coworking</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>3b1eoxqc7a</termIdentifier>
+      <caption>
+        <langstring language="fr">Fleuristes</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>bi8epx4a11</termIdentifier>
+      <caption>
+        <langstring language="fr">Aide et soins à domicile</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>stse7q5b1l</termIdentifier>
+      <caption>
+        <langstring language="fr">Cours et ateliers</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>bhvttu8q2m</termIdentifier>
+      <caption>
+        <langstring language="fr">Drogueries</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>mdletapife</termIdentifier>
+      <caption>
+        <langstring language="fr">Transports</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>u5dbjif4rm</termIdentifier>
+      <caption>
+        <langstring language="fr">Alimentation</langstring>
+      </caption>
+      <term>
+        <termIdentifier>16vx9mhwoh</termIdentifier>
+        <caption>
+          <langstring language="fr">Bières - Eaux - Limonades</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>ljd1vk0346</termIdentifier>
+        <caption>
+          <langstring language="fr">Producteurs locaux</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>hktsoonlkt</termIdentifier>
+        <caption>
+          <langstring language="fr">Epicerie fine</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>5uiyg6g4qm</termIdentifier>
+        <caption>
+          <langstring language="fr">Glacier</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>gvrut2m07r</termIdentifier>
+        <caption>
+          <langstring language="fr">Commerces de proximité-détails</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>92ud9fw4w0</termIdentifier>
+        <caption>
+          <langstring language="fr">Chocolats - Pralines - Confiseries - Dragées</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>a5wfb0xef9</termIdentifier>
+        <caption>
+          <langstring language="fr">Boulangeries - Pâtisseries</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>wf72mgcpp9</termIdentifier>
+        <caption>
+          <langstring language="fr">Grossistes</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>9ma2tmd0qx</termIdentifier>
+        <caption>
+          <langstring language="fr">Boucheries</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>c5aye1qos7</termIdentifier>
+        <caption>
+          <langstring language="fr">Grandes surfaces</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>1ky8phrsua</termIdentifier>
+        <caption>
+          <langstring language="fr">Production</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>tb9ws2oa38</termIdentifier>
+        <caption>
+          <langstring language="fr">Traiteurs - Chefs à domicile</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>rw1valyegl</termIdentifier>
+      <caption>
+        <langstring language="fr">Événementiel - Location salles et matériel</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>1vap7nqbkn</termIdentifier>
+      <caption>
+        <langstring language="fr">Navette aéroport</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>98wskh2dhu</termIdentifier>
+      <caption>
+        <langstring language="fr">Automobile - Motos</langstring>
+      </caption>
+      <term>
+        <termIdentifier>dbjgl594kw</termIdentifier>
+        <caption>
+          <langstring language="fr">Pneus</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>plwwstxqsq</termIdentifier>
+        <caption>
+          <langstring language="fr">Garages - Concessionnaires - Carrosseries</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>9m26272ihg</termIdentifier>
+        <caption>
+          <langstring language="fr">Remorques</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>msvsr0ula4</termIdentifier>
+        <caption>
+          <langstring language="fr">Car Wash</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>2bo2nnibd0</termIdentifier>
+        <caption>
+          <langstring language="fr">Accessoires automobiles</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>rds1f9pxkc</termIdentifier>
+        <caption>
+          <langstring language="fr">Location de véhicules</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>dm75bsodmn</termIdentifier>
+        <caption>
+          <langstring language="fr">Motos</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>xkr3adlaha</termIdentifier>
+        <caption>
+          <langstring language="fr">Dépannage</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>gqklmh85wl</termIdentifier>
+      <caption>
+        <langstring language="fr">Secrétariat</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>7bkqyr67oo</termIdentifier>
+      <caption>
+        <langstring language="fr">Musique (Disquaire, instruments de)</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>1lxav52bj7</termIdentifier>
+      <caption>
+        <langstring language="fr">Equipement de la maison</langstring>
+      </caption>
+      <term>
+        <termIdentifier>u7rk3pglvi</termIdentifier>
+        <caption>
+          <langstring language="fr">Châssis - Menuiserie - Escaliers - Verandas</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>3yrsuoqc7w</termIdentifier>
+        <caption>
+          <langstring language="fr">Ameublement</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>tbqkawg1ds</termIdentifier>
+        <caption>
+          <langstring language="fr">Electricité - Eclairage</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>doso3m3yg1</termIdentifier>
+        <caption>
+          <langstring language="fr">Carrelages - Faïences - Parquets</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>d4v6k3w7j0</termIdentifier>
+        <caption>
+          <langstring language="fr">Magasin de peintures</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>f8lugc3q1a</termIdentifier>
+        <caption>
+          <langstring language="fr">Système d'alarme - Sécurité</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>qk618an96s</termIdentifier>
+        <caption>
+          <langstring language="fr">Linge de maison</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>4rf4aijvu8</termIdentifier>
+        <caption>
+          <langstring language="fr">Décoration</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>74gcuarb5e</termIdentifier>
+        <caption>
+          <langstring language="fr">Literie</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>u7beum3ma0</termIdentifier>
+        <caption>
+          <langstring language="fr">Peinture - Papier peint</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>7s9nnj4qeq</termIdentifier>
+        <caption>
+          <langstring language="fr">Encadrement</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>t7r7v05lya</termIdentifier>
+        <caption>
+          <langstring language="fr">Magasin de jouets</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>0uajq2hak2</termIdentifier>
+        <caption>
+          <langstring language="fr">Bricolage</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>aj50n6ituk</termIdentifier>
+        <caption>
+          <langstring language="fr">Electroménager</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>2r2k7wvpkb</termIdentifier>
+        <caption>
+          <langstring language="fr">Parcs et jardins - Matériel agricole - Aménagement - Entretien</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>trgw16ornu</termIdentifier>
+        <caption>
+          <langstring language="fr">Quincaillerie</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>gkf1tfduak</termIdentifier>
+        <caption>
+          <langstring language="fr">Aménagements intérieurs et extérieurs</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>2wj7wwaq56</termIdentifier>
+        <caption>
+          <langstring language="fr">Epuration et traitement des eaux</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>rcwr5fb8fl</termIdentifier>
+        <caption>
+          <langstring language="fr">Cuisines équipées</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>mq7m4qqgaf</termIdentifier>
+        <caption>
+          <langstring language="fr">Piscines</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>074s71cjly</termIdentifier>
+        <caption>
+          <langstring language="fr">Construction - Transformation</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>jjuofptm75</termIdentifier>
+        <caption>
+          <langstring language="fr">Construction métallique</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>cvbyb64m7f</termIdentifier>
+        <caption>
+          <langstring language="fr">Chauffage - Sanitaire - Combustibles</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>m81rlvga3l</termIdentifier>
+      <caption>
+        <langstring language="fr">Animaux</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>8w0qq5e5au</termIdentifier>
+      <caption>
+        <langstring language="fr">Service à la personne</langstring>
+      </caption>
+      <term>
+        <termIdentifier>wiwj2msae3</termIdentifier>
+        <caption>
+          <langstring language="fr">Tatoueurs</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>jq1tbcdlam</termIdentifier>
+        <caption>
+          <langstring language="fr">Coiffeurs</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>gi2u91yrjj</termIdentifier>
+        <caption>
+          <langstring language="fr">Centres esthétiques</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>81a8s6fstc</termIdentifier>
+        <caption>
+          <langstring language="fr">Pédicures, manucures</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>0hbtn721nu</termIdentifier>
+      <caption>
+        <langstring language="fr">Tabac - Cigarettes électroniques</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>piywg6npeo</termIdentifier>
+      <caption>
+        <langstring language="fr">Taxis</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>j3xn6mbtjq</termIdentifier>
+      <caption>
+        <langstring language="fr">Loisirs</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>jj4cnvumd9</termIdentifier>
+      <caption>
+        <langstring language="fr">Cartonnage</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>nc1n331pyu</termIdentifier>
+      <caption>
+        <langstring language="fr">Horeca</langstring>
+      </caption>
+      <term>
+        <termIdentifier>cnetj0gddp</termIdentifier>
+        <caption>
+          <langstring language="fr">Restaurants</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>mefwh0y1mv</termIdentifier>
+        <caption>
+          <langstring language="fr">Friteries - Snacks</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>6fyjnxhn48</termIdentifier>
+        <caption>
+          <langstring language="fr">Café - Salons de thé</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>pjr478xtgc</termIdentifier>
+        <caption>
+          <langstring language="fr">Brasseries - Petite restauration</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>0q9b99tyok</termIdentifier>
+        <caption>
+          <langstring language="fr">Hôtels - Chambres d'hôte - Gites</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>oo8a12lsd3</termIdentifier>
+      <caption>
+        <langstring language="fr">Equipement de la personne</langstring>
+      </caption>
+      <term>
+        <termIdentifier>cnnwunwl6m</termIdentifier>
+        <caption>
+          <langstring language="fr">Optique</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>bs834va3ls</termIdentifier>
+        <caption>
+          <langstring language="fr">Parfumeries</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>ksaugt44e5</termIdentifier>
+        <caption>
+          <langstring language="fr">Chaussures</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>39xp3krfhc</termIdentifier>
+        <caption>
+          <langstring language="fr">Bijouterie</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>83m89h2idf</termIdentifier>
+        <caption>
+          <langstring language="fr">Cordonniers</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>3bwvhgpk4e</termIdentifier>
+        <caption>
+          <langstring language="fr">Mode - Textiles - Accessoires</langstring>
+        </caption>
+      </term>
+      <term>
+        <termIdentifier>cif3xmn0qu</termIdentifier>
+        <caption>
+          <langstring language="fr">Lingerie</langstring>
+        </caption>
+      </term>
+    </term>
+    <term>
+      <termIdentifier>ouapi3dmgn</termIdentifier>
+      <caption>
+        <langstring language="fr">Cinémas</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ol8qu3l3i4</termIdentifier>
+      <caption>
+        <langstring language="fr">Agences immobilières</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>8uq5ycqhwr</termIdentifier>
+      <caption>
+        <langstring language="fr">Agences hippiques</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>2gmfypbi2s</termIdentifier>
+      <caption>
+        <langstring language="fr">Télécommunications</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ubr6y2f0q4</termIdentifier>
+      <caption>
+        <langstring language="fr">Antiquités</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>t925ebr1y9</termIdentifier>
+      <caption>
+        <langstring language="fr">Alcool-Vins-Liqueurs</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>6b3072fgcd</termIdentifier>
+      <caption>
+        <langstring language="fr">Night-Shops</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>f7yycu7rbv</termIdentifier>
+      <caption>
+        <langstring language="fr">Informatique - Multimédia</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>r6tqrh3fxq</termIdentifier>
+      <caption>
+        <langstring language="fr">Nettoyage à sec - Teinturerie</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>mtnxb27ms0</termIdentifier>
+      <caption>
+        <langstring language="fr">Imprimerie - Lettrage - Publicité - Communication</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ylx1bv4cee</termIdentifier>
+      <caption>
+        <langstring language="fr">Cierges</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>9aq4bqbh2b</termIdentifier>
+      <caption>
+        <langstring language="fr">Salles de jeux - Paris sportifs</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>r3wf33ol8l</termIdentifier>
+      <caption>
+        <langstring language="fr">Agences Hippiques</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>st47tfb5pc</termIdentifier>
+    <caption>
+      <langstring language="fr">Professions libérales</langstring>
+    </caption>
+    <term>
+      <termIdentifier>7is2ugvn4p</termIdentifier>
+      <caption>
+        <langstring language="fr">Kinésithérapeutes</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>24wtrao1rx</termIdentifier>
+      <caption>
+        <langstring language="fr">Psychologues</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ql5rc0bgfd</termIdentifier>
+      <caption>
+        <langstring language="fr">Hypnotérapeute</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ho0xseuhsg</termIdentifier>
+      <caption>
+        <langstring language="fr">Bandagiste - Orthésiste - Prothésiste</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>neygiyqwi4</termIdentifier>
+      <caption>
+        <langstring language="fr">Notaires</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>8507glrjl2</termIdentifier>
+      <caption>
+        <langstring language="fr">Comptables</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>15el3p24hm</termIdentifier>
+      <caption>
+        <langstring language="fr">Infirmiers</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>u38fw90hf4</termIdentifier>
+      <caption>
+        <langstring language="fr">Pharmaciens</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>muvno1fln7</termIdentifier>
+      <caption>
+        <langstring language="fr">Dentistes</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>r8te1gcyp5</termIdentifier>
+      <caption>
+        <langstring language="fr">Experts automobiles</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>hvsua5xobi</termIdentifier>
+      <caption>
+        <langstring language="fr">Diététiciens</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>0g5jfjj8j6</termIdentifier>
+      <caption>
+        <langstring language="fr">Assurances - Crédits - Prêts - Financements</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>d188bxlbys</termIdentifier>
+      <caption>
+        <langstring language="fr">Huissiers de justice</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>iwwisnppbm</termIdentifier>
+      <caption>
+        <langstring language="fr">Experts-comptable</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>2bteg6e6ur</termIdentifier>
+      <caption>
+        <langstring language="fr">Logopèdes</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>kt7pphjt90</termIdentifier>
+      <caption>
+        <langstring language="fr">Certificateurs PEB</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>d51oox4i6m</termIdentifier>
+      <caption>
+        <langstring language="fr">Vétérinaires</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>guhmtrbd86</termIdentifier>
+      <caption>
+        <langstring language="fr">Podologues</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>r6xgsgtp1j</termIdentifier>
+      <caption>
+        <langstring language="fr">Avocats</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>epciym3ktj</termIdentifier>
+      <caption>
+        <langstring language="fr">Graphiste - Web designers</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ekwwlscq7j</termIdentifier>
+      <caption>
+        <langstring language="fr">Géomètres</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>lumdioitoo</termIdentifier>
+      <caption>
+        <langstring language="fr">Développement personnel - Coaching</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>8pmib8ol60</termIdentifier>
+      <caption>
+        <langstring language="fr">Auto-Ecole</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>7ifc9ii02n</termIdentifier>
+      <caption>
+        <langstring language="fr">Ingénieurs - Bureau d'étude</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>q02setnngh</termIdentifier>
+      <caption>
+        <langstring language="fr">Architectes</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>4el1enk13s</termIdentifier>
+      <caption>
+        <langstring language="fr">Consultance</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>xt82pch97b</termIdentifier>
+      <caption>
+        <langstring language="fr">Laboratoires d'analyse</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>7sf5u39yph</termIdentifier>
+      <caption>
+        <langstring language="fr">Ostéopathes</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>nsc7yh4dek</termIdentifier>
+      <caption>
+        <langstring language="fr">Orthodontiste</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>lqwuoo3ral</termIdentifier>
+      <caption>
+        <langstring language="fr">Ergothérapeutes</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>eow9om1q7v</termIdentifier>
+      <caption>
+        <langstring language="fr">Médecins</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>u0meldbq8u</termIdentifier>
+    <caption>
+      <langstring language="fr">Education</langstring>
+    </caption>
+    <term>
+      <termIdentifier>rxvwwvmuy7</termIdentifier>
+      <caption>
+        <langstring language="fr">Science</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>obr0ipq5q7</termIdentifier>
+      <caption>
+        <langstring language="fr">Soutien scolaire</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>395fu3s1ah</termIdentifier>
+      <caption>
+        <langstring language="fr">Jeux de société</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>swh06k8yew</termIdentifier>
+      <caption>
+        <langstring language="fr">Formation</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>c2fm8s4u5p</termIdentifier>
+      <caption>
+        <langstring language="fr">Conte</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>fbt1mdq4n3</termIdentifier>
+      <caption>
+        <langstring language="fr">Echange de savoir</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>3ebqbefe0c</termIdentifier>
+      <caption>
+        <langstring language="fr">Conférence</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>n49sks6vpu</termIdentifier>
+      <caption>
+        <langstring language="fr">Education permanente</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>wgyya9wkir</termIdentifier>
+      <caption>
+        <langstring language="fr">Dressage animaux</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>wurbxltd7x</termIdentifier>
+    <caption>
+      <langstring language="fr">Culture</langstring>
+    </caption>
+    <term>
+      <termIdentifier>vllqrwwjaa</termIdentifier>
+      <caption>
+        <langstring language="fr">Stages</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>jsy6igdcjr</termIdentifier>
+      <caption>
+        <langstring language="fr">Ateliers</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>iugn7v0bhg</termIdentifier>
+      <caption>
+        <langstring language="fr">Masterclasse</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>ji0ui2b70w</termIdentifier>
+    <caption>
+      <langstring language="fr">Bourses - Collections</langstring>
+    </caption>
+    <term>
+      <termIdentifier>ukcdvtjch</termIdentifier>
+      <caption>
+        <langstring language="fr">Colobomphilie</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>qqcxj9stg7</termIdentifier>
+      <caption>
+        <langstring language="fr">Philatélie</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>2rqfujxewy</termIdentifier>
+      <caption>
+        <langstring language="fr">Généalogie</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>c7hhdfqv7q</termIdentifier>
+      <caption>
+        <langstring language="fr">Modélisme</langstring>
+      </caption>
+    </term>
+  </term>
+</vdex>
