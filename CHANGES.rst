@@ -4,8 +4,8 @@ Changelog
 0.12.32 (unreleased)
 --------------------
 
-- Nothing changed yet.
-
+- Add specific typesUseViewActionInListings in propertiestools.xml + upgrade step.
+  [boulch]
 
 0.12.31 (2018-09-10)
 --------------------
