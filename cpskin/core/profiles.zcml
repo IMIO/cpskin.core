@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+      title="CPSKIN Core: upgrade to v46: Change in site_properties : Specify a typesUseViewActionInListings"
+      source="45"
+      destination="46"
+      handler=".upgradehandlers.upgrade_add_specific_typesUseViewActionInListings"
+      profile="cpskin.core:default"
+    />
+
+    <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v45: Add booking behavior"
       source="44"
       destination="45"

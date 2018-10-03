@@ -463,3 +463,7 @@ def upgrade_add_booking_behavior(context):
     schema = IEditableSchema(event_type.lookupSchema())
     schema.removeField('tarifs')
     schema.removeField('reservation')
+
+def upgrade_add_specific_typesUseViewActionInListings(context):
+    site_properties = api.portal.get_tool('portal_properties').site_properties
+    site_properties.typesUseViewActionInListings = ('Image',)
