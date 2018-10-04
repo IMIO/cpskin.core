@@ -4,6 +4,9 @@ Changelog
 0.12.32 (unreleased)
 --------------------
 
+- Add properties to only allow folder and document type root (Plone Site type or LRF type)
+  [boulch]
+
 - Install collective.taxonomy and add 4 default taxonomies.
   [bsuttor]
 
