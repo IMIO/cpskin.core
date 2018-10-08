@@ -9,5 +9,6 @@
   <property name="allowed_content_types" purge="True">
     <element value="Document"/>
     <element value="Folder"/>
+    <element value="Image"/>
   </property>
 </object>
