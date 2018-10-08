@@ -32,6 +32,7 @@ class TestViewlets(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.folder = api.content.create(self.portal, 'Folder', 'folder')
 
     def test_navigation_toggle_viewlet(self):
         folder = api.content.create(
@@ -134,7 +135,7 @@ class TestViewlets(unittest.TestCase):
         add_behavior(
             'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
         event = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='Event',
             id='myevent'
         )
@@ -204,7 +205,7 @@ class TestViewlets(unittest.TestCase):
         add_behavior(
             'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
         event = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='Event',
             id='myevent'
         )
@@ -271,7 +272,7 @@ class TestViewlets(unittest.TestCase):
         add_behavior(
             'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
         event = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='Event',
             id='myevent'
         )
@@ -332,7 +333,7 @@ class TestViewlets(unittest.TestCase):
         add_behavior(
             'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
         event = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='Event',
             id='myevent'
         )
@@ -405,7 +406,7 @@ class TestViewlets(unittest.TestCase):
             'Event', 'cpskin.core.behaviors.metadata.IRelatedContacts')
 
         event = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='Event',
             id='myevent'
         )

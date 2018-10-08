@@ -40,6 +40,9 @@ class TestViews(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        fti = api.portal.get_tool('portal_types')['Plone Site']
+        fti.allowed_content_types = fti.allowed_content_types + ('directory',)
+        self.folder = api.content.create(self.portal, 'Folder', 'folder')
 
     def test_opendata_view(self):
         directlyProvides(self.request, ICPSkinCoreLayer)  # noqa
@@ -54,7 +57,7 @@ class TestViews(unittest.TestCase):
             'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
         configure_folderviews(self.portal)
         news = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='News Item',
             id='testnewsitem')
         api.content.transition(obj=news, transition='publish')
@@ -82,7 +85,7 @@ class TestViews(unittest.TestCase):
             'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
         configure_folderviews(self.portal)
         news = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='News Item',
             id='testnewsitem')
         api.content.transition(obj=news, transition='publish')
@@ -106,7 +109,7 @@ class TestViews(unittest.TestCase):
         configure_folderviews(self.portal)
         request = self.portal.actualites.REQUEST
         api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='News Item',
             id='testnewsitem')
         view = getMultiAdapter(
@@ -124,7 +127,7 @@ class TestViews(unittest.TestCase):
         configure_folderviews(self.portal)
         request = self.portal.REQUEST
         testnewsitem = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='News Item',
             id='testnewsitem')
         api.content.transition(obj=testnewsitem, transition='publish')
@@ -132,7 +135,7 @@ class TestViews(unittest.TestCase):
                                transition='publish')
         view = getMultiAdapter((self.portal, request), name='folderview')
         self.assertIn(
-            u'<a href="http://nohost/plone/actualites" title="">Actualit\xe9s',
+            u'<a href="http://nohost/plone/actualites/actualites" title="">Actualit\xe9s',
             view.index())
 
     def test_folderview_event_category(self):
@@ -140,7 +143,7 @@ class TestViews(unittest.TestCase):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
 
         utility = queryUtility(ITaxonomy, name='collective.taxonomy.test')
-        collection = api.content.create(container=self.portal,
+        collection = api.content.create(container=self.folder,
                                         type='Collection',
                                         id='collection')
         collection.taxonomy_category = 'taxonomy_test'
@@ -161,7 +164,7 @@ class TestViews(unittest.TestCase):
         notify(ObjectAddedEvent(taxonomy_test, event_schema))
         notify(FieldAddedEvent(fti, taxonomy_test))
         event = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='Event',
             id='testevent')
         simple_tax = [val for val in utility.data['en'].values()]
@@ -192,7 +195,7 @@ class TestViews(unittest.TestCase):
     def test_folderview_event_item_count_homepage(self):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)
 
-        collection = api.content.create(container=self.portal,
+        collection = api.content.create(container=self.folder,
                                         type='Collection',
                                         id='collection')
 
@@ -203,11 +206,11 @@ class TestViews(unittest.TestCase):
         )
         collection.item_count_homepage = 1
         api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='News Item',
             id='testnews')
         api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='News Item',
             id='testnews2')
 
@@ -226,7 +229,7 @@ class TestViews(unittest.TestCase):
         start = datetime(2001, 1, 1, 10, 0, tzinfo=utc)
         end = datetime(2001, 1, 1, 11, 0, tzinfo=utc)
         event = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='Event',
             id='testevent',
             start=start,
@@ -248,7 +251,7 @@ class TestViews(unittest.TestCase):
 
     def test_event_geo_contents_view(self):
         add_behavior('Event', ICoordinates.__identifier__)
-        event = api.content.create(container=self.portal,
+        event = api.content.create(container=self.folder,
                                    type='Event', title='document')
         event.location = 'Zoning Industriel, 34 5190 Mornimont'
         form = getMultiAdapter(
@@ -330,7 +333,7 @@ class TestViews(unittest.TestCase):
         utc = pytz.utc
         start = datetime(2001, 1, 1, 10, 0, tzinfo=utc)
         end = datetime(2001, 1, 1, 11, 0, tzinfo=utc)
-        event = api.content.create(container=self.portal,
+        event = api.content.create(container=self.folder,
                                    type='Event', title='my_event',
                                    start=start, end=end, timezone='UTC')
         view = getMultiAdapter(
@@ -381,7 +384,7 @@ class TestViews(unittest.TestCase):
         )
         collection.reindexObject()
         news = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='News Item',
             id='testnews')
         news.title = u'My test news'
@@ -412,7 +415,7 @@ class TestViews(unittest.TestCase):
               u'v': [u'News Item']}, ]
         )
         api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='News Item',
             id='testnews')
         api.content.transition(obj=collection, transition='publish')
@@ -441,7 +444,7 @@ class TestViews(unittest.TestCase):
               u'v': [u'News Item']}, ]
         )
         news = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='News Item',
             id='testnews')
         api.content.transition(obj=news, transition='publish')
@@ -477,7 +480,7 @@ class TestViews(unittest.TestCase):
             'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
         configure_folderviews(self.portal)
         news = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='News Item',
             id='testnewsitem')
         api.content.transition(obj=news, transition='publish')
@@ -497,15 +500,14 @@ class TestViews(unittest.TestCase):
     def test_cpskin_navigation_view(self):
         applyProfile(self.portal, 'cpskin.workflow:default')
         self.portal.portal_workflow.setDefaultChain('cpskin_workflow')
-        folder = api.content.create(self.portal, 'Folder', 'folder')
-        subfolder = api.content.create(folder, 'Folder', 'subfolder')
+        subfolder = api.content.create(self.folder, 'Folder', 'subfolder')
         subsubfolder = api.content.create(subfolder, 'Folder', 'subfolder')
         alsoProvides(subsubfolder, IDirectAccess)
         subsubfolder.reindexObject()
         view = api.content.get_view(
             name='cpskin_navigation_view',
-            context=folder,
-            request=folder.REQUEST)
+            context=self.folder,
+            request=self.folder.REQUEST)
         self.assertEqual(0, len(view.menus()))
         api.content.transition(obj=subfolder, transition='publish_and_show')
         self.assertEqual(1, len(view.menus()))
@@ -541,12 +543,11 @@ class TestViews(unittest.TestCase):
             'Folder',
             'plone.app.contenttypes.behaviors.leadimage.ILeadImage')
         self.portal.portal_workflow.setDefaultChain('cpskin_workflow')
-        folder = api.content.create(self.portal, 'Folder', 'folder')
-        subfolder = api.content.create(folder, 'Folder', 'subfolder')
+        subfolder = api.content.create(self.folder, 'Folder', 'subfolder')
         view = api.content.get_view(
             name='cpskin_navigation_view_with_leadimage',
-            context=folder,
-            request=folder.REQUEST)
+            context=self.folder,
+            request=self.folder.REQUEST)
         self.assertEqual(0, len(view.menus()))
         api.content.transition(obj=subfolder, transition='publish_and_show')
         self.assertEqual(1, len(view.menus()))
