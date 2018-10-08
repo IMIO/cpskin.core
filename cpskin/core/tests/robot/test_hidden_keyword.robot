@@ -29,8 +29,6 @@ Resource  plone/app/robotframework/selenium.robot
 
 Library  Remote  ${PLONE_URL}/RobotRemote
 
-Suite setup  Set Selenium speed  1s
-
 Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
 
@@ -65,7 +63,8 @@ a document '${title}' with hidden tag '${keyword}'
 
 a collection
     [Arguments]  ${title}
-    Go to  ${PLONE_URL}
+    ${folder_uid}  Create content  type=Folder  id=folder  title=folder
+    Go to  ${PLONE_URL}/folder
     Open Add New Menu
     Click Link  collection
     Input Text  form-widgets-IDublinCore-title  ${title}
@@ -75,7 +74,7 @@ a collection
 
 
 I set to the collection '${collection_title}' the search terms hidden tag '${keyword}'
-    Go to  ${PLONE_URL}/${collection_title}
+    Go to  ${PLONE_URL}/folder/${collection_title}
     Click Edit In Edit bar
     # Select From List By Value  name=addindex  hiddenTags
     Click Element  css=.querywidget.queryvalue.multipleSelectionWidget
@@ -84,7 +83,7 @@ I set to the collection '${collection_title}' the search terms hidden tag '${key
 
 
 the collection '${collection_title}' should contain '${document_title}'
-    Go to  ${PLONE_URL}/${collection_title}
+    Go to  ${PLONE_URL}/folder/${collection_title}
     The content area should contain  ${document_title}
 
 
