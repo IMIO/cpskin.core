@@ -1,6 +1,6 @@
 language: python
 addons:
-  firefox: "52.0.2"
+  firefox: "62.0.3"
 sudo: true
 cache:
   directories:
