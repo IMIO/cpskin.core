@@ -62,7 +62,7 @@ Scenario: Test folder view configuration
     Click Link  css=#plone-contentmenu-cpskin-configurations-configure_folderview
     Sleep  1
     Page Should Contain  Vue index avec collections configurée.
-    Click Button  Confirm action
+    # Click Button  Confirm action
     Page Should Contain Link  css=#plone-contentmenu-display-folderview.actionMenuSelected
     Click Link  Contents
     Page Should Contain  À la une
