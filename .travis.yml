@@ -10,7 +10,7 @@ python: 2.7
 install:
   - pip install -r requirements.txt
   - buildout -N buildout:download-cache=downloads annotate
-  - buildout buildout:download-cache=downloads
+  - buildout -t 30 buildout:download-cache=downloads
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
