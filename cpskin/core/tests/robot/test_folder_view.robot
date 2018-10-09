@@ -29,8 +29,6 @@ Resource  plone/app/robotframework/keywords.robot
 
 Library  Remote  ${PLONE_URL}/RobotRemote
 
-Suite setup  Set Selenium speed  0.7s
-
 Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
 
@@ -64,6 +62,7 @@ Scenario: Test folder view configuration
     Click Link  css=#plone-contentmenu-cpskin-configurations-configure_folderview
     Sleep  1
     Page Should Contain  Vue index avec collections configurée.
+    # Click Button  Confirm action
     Page Should Contain Link  css=#plone-contentmenu-display-folderview.actionMenuSelected
     Click Link  Contents
     Page Should Contain  À la une

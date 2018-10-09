@@ -464,6 +464,16 @@ def upgrade_add_booking_behavior(context):
     schema.removeField('tarifs')
     schema.removeField('reservation')
 
+
 def upgrade_add_specific_typesUseViewActionInListings(context):
     site_properties = api.portal.get_tool('portal_properties').site_properties
     site_properties.typesUseViewActionInListings = ('Image',)
+
+
+def upgrade_limit_plone_site_portal_type(context):
+    portal_types = api.portal.get_tool('portal_types')
+    types = ['Plone Site', 'LRF']
+    for t in types:
+        plone_site_type = portal_types.get(t)
+        plone_site_type.filter_content_types = True
+        plone_site_type.allowed_content_types = ('Document', 'Folder', 'Image')

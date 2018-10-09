@@ -25,12 +25,9 @@ class TestBehaviors(unittest.TestCase):
         self.request = self.layer['request']
         alsoProvides(self.request, ICPSkinCoreLayer)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        api.content.create(self.portal, 'Folder', 'folder')
-        self.folder = self.portal.folder
-        api.content.create(self.portal, 'Document', 'document')
-        self.document = self.portal.document
-        api.content.create(self.portal, 'Collection', 'collection')
-        self.collection = self.portal.collection
+        self.folder = api.content.create(self.portal, 'Folder', 'folder')
+        self.document = api.content.create(self.folder, 'Document', 'document')
+        self.collection = api.content.create(self.folder, 'Collection', 'collection')
 
     def test_use_slider_image_scale(self):
         add_behavior('Collection', ICpskinIndexViewSettings.__identifier__)

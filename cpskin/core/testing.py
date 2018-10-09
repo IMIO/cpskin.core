@@ -48,6 +48,8 @@ class CPSkinCorePloneWithPackageLayer(PloneWithPackageLayer):
         api.portal.set_registry_record(
             googleapi,
             u'AIzaSyChlyBRkPYJvny6t0mRqawQtQao2cJBvaA')
+        fti = api.portal.get_tool('portal_types')['Plone Site']
+        fti.allowed_content_types = fti.allowed_content_types + ('directory',)
 
 
 CPSKIN_CORE_FIXTURE = CPSkinCorePloneWithPackageLayer(

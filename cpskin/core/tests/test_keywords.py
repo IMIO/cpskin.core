@@ -20,13 +20,14 @@ class TestKeywords(unittest.TestCase):
         self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         configure_folderviews(self.portal)
+        self.folder = api.content.create(self.portal, 'Folder', 'folder')
 
     def test_keyword_indexview_behavior(self):
         add_behavior(
             'Collection',
             'cpskin.core.behaviors.indexview.ICpskinIndexViewSettings')
         collection = api.content.create(
-            container=self.portal,
+            container=self.folder,
             type='Collection',
             id='testcollection')
         self.assertEqual(getattr(collection, 'index_view_keywords'), None)
@@ -42,7 +43,7 @@ class TestKeywords(unittest.TestCase):
 
         # Adding content for fill collection
         news = api.content.create(
-            container=self.portal,
+            container=self.portal.actualites,
             type='News Item',
             id='testnewsitem')
         api.content.transition(obj=news, transition='publish')
@@ -63,7 +64,7 @@ class TestKeywords(unittest.TestCase):
         self.portal.actualites.actualites.index_view_keywords = (u'homepage',)
         view = getMultiAdapter((self.portal, self.request), name='folderview')
         news = api.content.create(
-            container=self.portal,
+            container=self.portal.actualites,
             type='News Item',
             id='testnewsitem')
         api.content.transition(obj=news, transition='publish')

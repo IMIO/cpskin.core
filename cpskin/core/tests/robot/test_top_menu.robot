@@ -29,8 +29,6 @@ Resource  plone/app/robotframework/keywords.robot
 
 Library  Remote  ${PLONE_URL}/RobotRemote
 
-Suite setup  Set Selenium speed  1s
-
 Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
 
