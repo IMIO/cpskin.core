@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.32 (unreleased)
+0.12.32 (2018-10-10)
 --------------------
 
 - Get geo custom icon for related_contact map view.
