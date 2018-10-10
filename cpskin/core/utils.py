@@ -2,6 +2,9 @@
 from Acquisition import aq_base
 from collective.contact.core.browser.address import get_address
 from collective.geo.behaviour.interfaces import ICoordinates
+from collective.geo.mapwidget.interfaces import IGeoCoder
+from geopy import geocoders
+from geopy.exc import GeocoderQueryError
 from plone import api
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.layout.navigation.interfaces import INavigationRoot
@@ -11,6 +14,7 @@ from plone.namedfile.file import NamedBlobImage
 from Products.CMFCore.interfaces import ISiteRoot
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryUtility
+from zope.interface import implements
 
 import geocoder
 import logging
@@ -297,3 +301,21 @@ def set_plonecustom_last():
 
 def is_plone_app_multilingual_installed(request):
     return IPloneAppMultilingualInstalled.providedBy(request)
+
+
+def get_geocoder():
+    return GeoCoderUtility()
+
+
+class GeoCoderUtility(object):
+    """Override collective.geo.mapwidget to use Nominatim instead of google
+    """
+    implements(IGeoCoder)
+
+    def retrieve(self, address=None, google_api=None, language=None):
+        self.geocoder = geocoders.Nominatim(user_agent='cpskinapp')
+
+        if not address:
+            raise GeocoderQueryError
+        return self.geocoder.geocode(address, exactly_one=False,
+                                     language=language)

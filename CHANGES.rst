@@ -4,6 +4,9 @@ Changelog
 0.12.32 (unreleased)
 --------------------
 
+- Override get_geocoder to use Nominatim instead of gmap.
+  [bsuttor]
+
 - Add properties to only allow folder and document type root (Plone Site type or LRF type)
   [boulch]
 

@@ -18,4 +18,9 @@
     factory=".adapter.CPskinContactDetailsVCard"
     />
 
+ <utility
+    provides="collective.geo.mapwidget.interfaces.IGeoCoder"
+    factory=".utils.get_geocoder"
+    />
+
 </configure>
