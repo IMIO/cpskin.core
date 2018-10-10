@@ -242,6 +242,12 @@ class RelatedContactsMapViewlet(RelatedContactsViewlet):
                     UID=contact.aq_parent.UID())[0]
             if brain.zgeo_geometry == Missing.Value:
                 continue
+            if brain.collective_geo_styles == Missing.Value:
+                continue
+            if brain.collective_geo_styles.get('use_custom_styles', False) and \
+                   brain.collective_geo_styles.get('marker_image', None):
+                img = get_marker_image(self.context, brain.collective_geo_styles['marker_image'])
+                style['image'] = img
             geom = {'type': brain.zgeo_geometry['type'],
                     'coordinates': brain.zgeo_geometry['coordinates']}
             if geom['coordinates']:
