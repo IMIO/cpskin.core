@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.33 (unreleased)
+0.12.33 (2018-10-10)
 --------------------
 
 - Fix upgrade_limit_plone_site_portal_type upgrade step.
