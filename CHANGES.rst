@@ -4,7 +4,7 @@ Changelog
 0.12.32 (unreleased)
 --------------------
 
-- Get custom icon on for related_contact map view.
+- Get geo custom icon for related_contact map view.
   [bsuttor]
 
 - Override get_geocoder to use Nominatim instead of gmap.
