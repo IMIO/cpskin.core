@@ -4,7 +4,8 @@ Changelog
 0.12.33 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix upgrade_limit_plone_site_portal_type upgrade step.
+  [bsuttor]
 
 
 0.12.32 (2018-10-10)
@@ -24,6 +25,7 @@ Changelog
 
 - Add specific typesUseViewActionInListings in propertiestools.xml + upgrade step.
   [boulch]
+
 
 0.12.31 (2018-09-10)
 --------------------

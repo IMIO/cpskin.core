@@ -474,6 +474,7 @@ def upgrade_limit_plone_site_portal_type(context):
     portal_types = api.portal.get_tool('portal_types')
     types = ['Plone Site', 'LRF']
     for t in types:
-        plone_site_type = portal_types.get(t)
-        plone_site_type.filter_content_types = True
-        plone_site_type.allowed_content_types = ('Document', 'Folder', 'Image')
+        plone_type = portal_types.get(t)
+        if plone_type:
+            plone_type.filter_content_types = True
+            plone_type.allowed_content_types = ('Document', 'Folder', 'Image')
