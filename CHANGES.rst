@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.34 (unreleased)
+0.12.34 (2018-10-11)
 --------------------
 
 - Do not use google maps api to get latitude and longitude.
