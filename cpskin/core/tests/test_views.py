@@ -253,7 +253,7 @@ class TestViews(unittest.TestCase):
         add_behavior('Event', ICoordinates.__identifier__)
         event = api.content.create(container=self.folder,
                                    type='Event', title='document')
-        event.location = 'Zoning Industriel, 34 5190 Mornimont'
+        event.location = 'Rue Léon Morel, 1 5032 Isnes'
         form = getMultiAdapter(
             (self.portal, self.portal.REQUEST), name='set-geo-contents-form')
         form.request.form = {'form.widgets.content_types': [u'Event']}

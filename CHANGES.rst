@@ -4,7 +4,8 @@ Changelog
 0.12.34 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Do not use google maps api to get latitude and longitude.
+  [bsuttor]
 
 
 0.12.33 (2018-10-10)

@@ -16,11 +16,9 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import queryUtility
 from zope.interface import implements
 
-import geocoder
 import logging
 import os
 import phonenumbers
-import sys
 
 
 logger = logging.getLogger('cpskin.core.utils')
@@ -165,30 +163,11 @@ def image_scale(obj, css_class, default_scale, generate_tag=True, with_uid=True)
 
 def get_lat_lng_from_address(address):
     """Return tuple with status and geocoder object
-       0: error, 1: success, 2: not found, 3: unexpected error"""
-    try:
-        googleapi = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'
-        key = api.portal.get_registry_record(googleapi)
-        if key:
-            geocode = geocoder.google(safe_utf8(address), key=key)
-            if geocode.content['status'] == 'REQUEST_DENIED':
-                logger.info('Google maps API: {0}'.format(
-                    geocode.content['error_message']))
-                geocode = geocoder.google(safe_utf8(address))
-        else:
-            geocode = geocoder.google(safe_utf8(address))
-    except:
-        try:
-            geocode = geocoder.osm(safe_utf8(address))
-        except:
-            return (3, 'Unexpected error: {0}'.format(sys.exc_info()[0]))
-    if geocode.content['status'] == u'OVER_QUERY_LIMIT':
-        message = geocode.content['error_message']
-        logger.info(message)
-        return (0, message)
-    if geocode.content['status'] == u'ZERO_RESULTS':
-        message = u'No result found for {0}'.format(address.decode('utf8'))
-        return (2, message)
+       0: error, 1: success, 2: not found, 3: unexpected error
+    """
+    geocoder = geocoders.Nominatim(
+        user_agent='{0}-cpskinapp'.format(api.portal.get().id))
+    geocode = geocoder.geocode(safe_utf8(address))
     return (1, geocode)
 
 
@@ -253,8 +232,9 @@ def set_coord(obj, request):
             api.portal.show_message(message=geocode, request=request)
             logger.info(geocode)
         else:
-            if geocode.lng and geocode.lat:
-                coord = u'POINT({0} {1})'.format(geocode.lng, geocode.lat)
+            if geocode.longitude and geocode.latitude:
+                coord = u'POINT({0} {1})'.format(
+                    geocode.longitude, geocode.latitude)
                 ICoordinates(obj).coordinates = coord
                 obj.reindexObject(
                     idxs=['zgeo_geometry', 'collective_geo_styles'])
