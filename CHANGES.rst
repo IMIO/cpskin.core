@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.35 (unreleased)
+0.12.35 (2018-10-12)
 --------------------
 
 - Check if geocode exists.
