@@ -4,7 +4,8 @@ Changelog
 0.12.35 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Check if geocode exists.
+  [bsuttor]
 
 
 0.12.34 (2018-10-11)

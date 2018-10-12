@@ -166,7 +166,9 @@ def get_lat_lng_from_address(address):
        0: error, 1: success, 2: not found, 3: unexpected error
     """
     geocoder = geocoders.Nominatim(
-        user_agent='{0}-cpskinapp'.format(api.portal.get().id))
+        user_agent='{0}-cpskinapp'.format(api.portal.get().id),
+        timeout=10,
+    )
     geocode = geocoder.geocode(safe_utf8(address))
     return (1, geocode)
 
@@ -232,7 +234,7 @@ def set_coord(obj, request):
             api.portal.show_message(message=geocode, request=request)
             logger.info(geocode)
         else:
-            if geocode.longitude and geocode.latitude:
+            if geocode and geocode.longitude and geocode.latitude:
                 coord = u'POINT({0} {1})'.format(
                     geocode.longitude, geocode.latitude)
                 ICoordinates(obj).coordinates = coord
@@ -243,9 +245,8 @@ def set_coord(obj, request):
                 logger.info(message)
                 return message
     else:
-        message = 'No address for <a href="{0}">{1}</a>'.format(
+        message = 'No address for {0}'.format(
             obj.absolute_url(),
-            obj.id
         )
         api.portal.show_message(message=message, request=request)
         logger.info(message)
