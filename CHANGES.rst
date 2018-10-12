@@ -4,7 +4,8 @@ Changelog
 0.12.36 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Move related_contact title to wrappedcoord div.
+  [bsuttor]
 
 
 0.12.35 (2018-10-12)

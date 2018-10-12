@@ -14,7 +14,6 @@
                             logo python: view.get_field(contact, 'logo');
                             photo python: view.get_field(contact, 'photo');
                             ">
-        <span class="related-contact-title" tal:define="title python: view.get_title(contact)" tal:condition="title" tal:replace="structure title"/>
         <div class="photo" tal:condition="photo">
           <img tal:replace="structure python:view.get_field(contact, 'photo')" />
         </div>
@@ -22,6 +21,7 @@
           <img tal:replace="structure python:view.get_field(contact, 'logo')" />
         </div>
         <div class="wrapped-coord">
+          <span class="related-contact-title" tal:define="title python: view.get_title(contact)" tal:condition="title" tal:replace="structure title"/>
           <div class="address" tal:condition="view/has_address">
             <div class="street">
               <span class="streetname" tal:condition="street" tal:content="street"/>
