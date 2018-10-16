@@ -40,17 +40,17 @@
                                     obj python: result.getObject()"
                         class=""
                         tal:attributes="class python: isBigImage and 'bigimage bloc-item' or 'bloc-item'">
-                        <tal:block tal:condition="has_category">
-                        <tal:loop tal:define="categories python: view.get_categories(content, obj)" tal:condition="categories">
-                                <div class="indexview-categories" tal:content="categories" />
-                        </tal:loop>
-                        </tal:block>
+
                         <a href=""
                            tal:define="show_day_and_month python: view.show_day_and_month(content);
                                        show_lead_image python: view.show_lead_image(content)"
                            tal:attributes="href result/getURL;
                                            title result/Title">
-
+                             <tal:block tal:condition="has_category">
+                             <tal:loop tal:define="categories python: view.get_categories(content, obj)" tal:condition="categories">
+                                 <div class="indexview-categories" tal:content="categories" />
+                             </tal:loop>
+                             </tal:block>
                              <tal:if tal:condition="show_day_and_month">
                                 <div class="day-month"
                                      tal:define="dates python: view.get_event_dates(obj);

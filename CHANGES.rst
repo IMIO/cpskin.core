@@ -4,6 +4,9 @@ Changelog
 0.12.36 (unreleased)
 --------------------
 
+- Move indexview-categories to a tag.
+  [bsuttor]
+
 - Move related_contact title to wrappedcoord div.
   [bsuttor]
 
