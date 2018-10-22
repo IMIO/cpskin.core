@@ -3,6 +3,8 @@ Changelog
 
 0.12.36 (unreleased)
 --------------------
+- Comment (before delete) old "IUseKeywordHomepage" class from metadata file.
+  [bsuttor]
 
 - Move indexview-categories to a tag.
   [bsuttor]

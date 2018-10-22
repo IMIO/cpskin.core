@@ -107,8 +107,8 @@ alsoProvides(IISearchTags, IFormFieldProvider)
 alsoProvides(IIAmTags, IFormFieldProvider)
 
 
-class IUseKeywordHomepage(model.Schema):
-    pass
+# class IUseKeywordHomepage(model.Schema):
+#     pass
 
 
 @provider(IFormFieldProvider)
