@@ -41,6 +41,8 @@ class CommonView(BrowserView):
         categories = []
         for token in tokens:
             cat = vocabulary.inv_data.get(token)
+            if not cat:
+                return ''
             # format is "/taxlevel1/taxlevel2/..." and we want the last term
             last_term = cat.split(PATH_SEPARATOR)[-1]
             categories.append(last_term)

@@ -3,6 +3,10 @@ Changelog
 
 0.12.36 (unreleased)
 --------------------
+
+- Improve get_field_taxonomy, check if taxonomy value exists.
+  [bsuttor]
+
 - Comment (before delete) old "IUseKeywordHomepage" class from metadata file.
   [bsuttor]
 
