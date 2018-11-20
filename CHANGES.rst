@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.12.36 (unreleased)
+0.12.36 (2018-11-20)
 --------------------
 
 - Improve get_field_taxonomy, check if taxonomy value exists.
