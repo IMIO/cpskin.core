@@ -280,10 +280,10 @@
           <div class="flex-container"
                tal:define="context nocall:content;
                            here nocall:content">
-              <tal:cond condition="python:view.getSliderType() == 'slider-vertical'">
+              <tal:cond condition="python:view.getSliderType(content) == 'slider-vertical'">
                     <metal:block use-macro="context/@@slider_view_vertical/macros/content-core" />
               </tal:cond>
-              <tal:cond condition="python:view.getSliderType() != 'slider-vertical'">
+              <tal:cond condition="python:view.getSliderType(content) != 'slider-vertical'">
                     <metal:block use-macro="context/@@slider_view/macros/content-core" />
               </tal:cond>
           </div>
