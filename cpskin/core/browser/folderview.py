@@ -213,10 +213,10 @@ class FolderView(FoldV, CommonView):
         results = portal_catalog.searchResults(queryDict)
         return results
 
-    # def getSliderType(self, collection=''):
-    #     if collection:
-    #         return getattr(collection, 'display_type', None)
-    #     return None
+    def getSliderType(self, collection=''):
+        if collection:
+            return getattr(collection, 'display_type', None)
+        return None
 
     def hasFlexSlider(self):
         """Check if flexslider is available and installed"""
