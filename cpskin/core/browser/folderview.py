@@ -213,9 +213,10 @@ class FolderView(FoldV, CommonView):
         results = portal_catalog.searchResults(queryDict)
         return results
 
-    def getSliderType(self):
-        portal_registry = getToolByName(self.context, 'portal_registry')
-        return portal_registry['cpskin.core.interfaces.ICPSkinSettings.slider_type']  # noqa
+    # def getSliderType(self, collection=''):
+    #     if collection:
+    #         return getattr(collection, 'display_type', None)
+    #     return None
 
     def hasFlexSlider(self):
         """Check if flexslider is available and installed"""

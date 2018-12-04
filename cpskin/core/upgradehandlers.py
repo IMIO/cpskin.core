@@ -39,6 +39,16 @@ import logging
 logger = logging.getLogger('cpskin.core')
 
 
+def remove_slider_type_to_registry(context):
+    registry = getUtility(IRegistry)
+    records = registry.records
+    key = 'cpskin.core.interfaces.ICPSkinSettings.slider_type'
+    if key in records:
+        logger.info(
+            'Remove cpskin.core.interfaces.ICPSkinSettings.slider_type from registry')  # noqa
+        records.__delitem__(key)
+
+
 def install_imiogdpr(context):
     portal_setup = api.portal.get_tool('portal_setup')
     portal_setup.runAllImportStepsFromProfile(

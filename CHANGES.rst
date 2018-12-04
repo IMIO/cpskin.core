@@ -4,7 +4,11 @@ Changelog
 0.12.37 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add some sliders types to index view behavior.
+  [bsuttor]
+
+- Remove slider_type from registy.
+  [bsuttor]
 
 
 0.12.36 (2018-11-20)

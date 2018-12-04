@@ -71,7 +71,7 @@ def installCore(context):
     addSliderTimerToRegistry()
     addCityNameToRegistry()
     addSubMenuPersistenceToRegistry()
-    addSliderTypeToRegistry()
+    # addSliderTypeToRegistry()
     set_googleapi_key()
     upgrade_front_page()
     order_portaltop_viewlets()

@@ -238,6 +238,7 @@ class ActionMenuEligibleFactory(object):
             )
         return SimpleVocabulary(items)
 
+
 ActionMenuEligibleVocabularyFactory = ActionMenuEligibleFactory()
 
 
@@ -265,6 +266,24 @@ DISPLAY_TYPES = {
         'title': _(u'Unique highlighted item'),
         'slider': False,
         'class': 'element-en-evidence',
+    },
+    u'slider-without-images': {
+        'value': u'slider-without-images',
+        'title': _(u'Slider without images'),
+        'slider': True,
+        'class': 'slider-without-images',
+    },
+    u'slider-vertical': {
+        'value': u'slider-vertical',
+        'title': _(u'Slider vertical'),
+        'slider': True,
+        'class': 'slider-vertical',
+    },
+    u'slider-count': {
+        'value': u'slider-count',
+        'title': _(u'Slider count'),
+        'slider': True,
+        'class': 'slider-count',
     },
 }
 

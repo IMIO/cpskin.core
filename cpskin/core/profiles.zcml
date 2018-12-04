@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
 
+  <genericsetup:upgradeStep
+    title="CPSKIN Core: upgrade to v48: Remove not used slider_type value"
+    source="47"
+    destination="48"
+    handler=".upgradehandlers.remove_slider_type_to_registry"
+    profile="cpskin.core:default"
+    />
+
+
     <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v47: Limit adding portal type (only document and folder) in Plone Site."
       source="46"
