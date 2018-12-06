@@ -4,6 +4,9 @@ Changelog
 0.12.37 (unreleased)
 --------------------
 
+- Add new "top" slider type
+  [laulaz]
+
 - Allow to remove sliders images from html (instead of hiding them)
   [laulaz]
 

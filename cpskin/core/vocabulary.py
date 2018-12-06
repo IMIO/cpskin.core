@@ -299,6 +299,14 @@ DISPLAY_TYPES = {
         'show-image': True,
         'show-carousel': False,
     },
+    u'slider-top': {
+        'value': u'slider-top',
+        'title': _(u'Slider top'),
+        'slider': True,
+        'class': 'slider-top',
+        'show-image': True,
+        'show-carousel': False,
+    },
 }
 
 items = [(disp['value'], disp['title']) for disp in DISPLAY_TYPES.values()]
