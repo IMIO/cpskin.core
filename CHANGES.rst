@@ -4,6 +4,9 @@ Changelog
 0.12.37 (unreleased)
 --------------------
 
+- Allow to remove sliders images from html (instead of hiding them)
+  [laulaz]
+
 - Add some sliders types to index view behavior.
   [bsuttor]
 
