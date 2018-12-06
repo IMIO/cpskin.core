@@ -4,6 +4,9 @@ Changelog
 0.12.37 (unreleased)
 --------------------
 
+- Add control nav dots to eligible sliders
+  [laulaz]
+
 - Add some sliders types to index view behavior.
   [bsuttor]
 
