@@ -11,6 +11,7 @@
     <viewlet name="plone.global_sections" />
   </order>
   <order manager="plone.portaltop" skinname="Plone Default">
+    <viewlet name="cpskin.top_collapse" />
     <viewlet name="plone.header" />
     <viewlet name="cpskin.banner" insert-after="plone.header" />
     <viewlet name="cpskin.minisitemenu" insert-after="cpskin.minisitemenu" />

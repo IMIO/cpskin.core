@@ -4,6 +4,9 @@ Changelog
 0.12.37 (unreleased)
 --------------------
 
+- Add collapsable main menu feature for minisites : WEB-2865
+  [laulaz]
+
 - Add new "top" slider type
   [laulaz]
 

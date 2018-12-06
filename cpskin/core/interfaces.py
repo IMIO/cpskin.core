@@ -157,6 +157,12 @@ class ICPSkinSettings(Interface):
         default=u'default_position'
     )
 
+    collapse_minisite_menu = schema.Bool(
+        title=_(u'Collapse menu on minisites'),
+        description=_(u'Automatically collapse portal main menu on minisites.'),  # noqa
+        required=False,
+        default=False
+    )
 
 
 class IVideoCollection(Interface):
