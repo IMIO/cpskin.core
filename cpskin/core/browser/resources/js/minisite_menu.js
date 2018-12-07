@@ -13,8 +13,9 @@ jQuery(document).ready(function($) {
 
     $(".minisite-collapsable").hide();
     $("#toggle-minisite-menu .hide-menu").hide();
-    $("#toggle-minisite-menu a").click(function() {
-        $("#toggle-minisite-menu a").toggle();
+    $("#toggle-minisite-menu button").click(function(e) {
+        $("#toggle-minisite-menu button").toggle();
         $(".minisite-collapsable").slideToggle('slow');
+        e.preventDefault();
     });
 });

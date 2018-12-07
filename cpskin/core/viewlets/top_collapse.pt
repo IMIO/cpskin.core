@@ -1,10 +1,10 @@
 <div id="toggle-minisite-menu"
      tal:condition="view/available"
      i18n:domain="cpskin">
-  <a href="#"
+  <button href="#"
      class="show-menu"
-     i18n:translate="">Afficher le menu principal</a>
-  <a href="#"
+     i18n:translate=""><span>Afficher le menu principal</span></button>
+  <button href="#"
      class="hide-menu"
-     i18n:translate="">Masquer le menu principal</a>
+     i18n:translate=""><span>Masquer le menu principal</span></button>
 </div>

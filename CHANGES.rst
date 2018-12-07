@@ -4,6 +4,9 @@ Changelog
 0.12.37 (unreleased)
 --------------------
 
+- Change collapsable balise a for balise button and adpate the javascript : WEB-2865
+  [mgennart]
+  
 - Add collapsable main menu feature for minisites : WEB-2865
   [laulaz]
 
