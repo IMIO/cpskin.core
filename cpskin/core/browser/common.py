@@ -46,8 +46,9 @@ class CommonView(BrowserView):
             # format is "/taxlevel1/taxlevel2/..." and we want the last term
             last_term = cat.split(PATH_SEPARATOR)[-1]
             categories.append(last_term)
-        categories.sort()
-        if limit is not None:
+        if limit is None:
+            categories.sort()
+        else:
             categories = categories[:limit]
         return ', '.join(categories)
 
@@ -60,8 +61,9 @@ class CommonView(BrowserView):
                 taxon,
                 domain='collective.taxonomy.' + short_name
             ))
-        categories.sort()
-        if limit is not None:
+        if limit is None:
+            categories.sort()
+        else:
             categories = categories[:limit]
         return ', '.join(categories)
 
