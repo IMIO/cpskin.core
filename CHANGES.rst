@@ -4,6 +4,9 @@ Changelog
 0.12.37 (unreleased)
 --------------------
 
+- Limit categories to first element on index view : WEB-2866
+  [laulaz]
+
 - Change collapsable balise a for balise button and adpate the javascript : WEB-2865
   [mgennart]
   
