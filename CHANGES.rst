@@ -4,6 +4,9 @@ Changelog
 0.12.37 (unreleased)
 --------------------
 
+- Add control nav dots to eligible sliders
+  [laulaz]
+  
 - Limit categories to first element on index view and keep order : WEB-2866
   [laulaz]
 

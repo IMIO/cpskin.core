@@ -334,6 +334,8 @@ class FolderView(FoldV, CommonView):
         auto_play_slider = portal_registry[
             'cpskin.core.interfaces.ICPSkinSettings.auto_play_slider']
         min_items, max_items = self.get_items_number(content)
+        slider_type = self.getSliderType(content)
+        show_control_nav = DISPLAY_TYPES[slider_type]['control-nav']
         config = """
         (function($) {
             "use strict";
@@ -382,7 +384,7 @@ class FolderView(FoldV, CommonView):
             }
             $('#carousel-%(content_id)s').flexslider({
               animation: animation,
-              controlNav: false,
+              controlNav: %(show_control_nav)s,
               animationLoop: false,
               slideshow: false,
               itemWidth: 210,
@@ -403,7 +405,7 @@ class FolderView(FoldV, CommonView):
             });
             $('#slider-%(content_id)s').flexslider({
               animation: animation,
-              controlNav: false,
+              controlNav: %(show_control_nav)s,
               animationLoop: true,
               slideshow: SlideShow(%(auto_play_slider)s, '%(content_id)s'),
               slideshowSpeed: %(slider_timer)s,
@@ -418,6 +420,7 @@ class FolderView(FoldV, CommonView):
          })(jQuery);
         """ % {'auto_play_slider': auto_play_slider and 'true' or 'false',
                'slider_timer': slider_timer,
+               'show_control_nav': show_control_nav and 'true' or 'false',
                'content_id': content_id,
                'min_items_in_slider': min_items,
                'max_items_in_slider': max_items}
