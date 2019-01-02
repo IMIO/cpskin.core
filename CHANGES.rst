@@ -6,6 +6,21 @@ Changelog
 
 - Add control nav dots to eligible sliders
   [laulaz]
+  
+- Limit categories to first element on index view and keep order : WEB-2866
+  [laulaz]
+
+- Change collapsable balise a for balise button and adpate the javascript : WEB-2865
+  [mgennart]
+  
+- Add collapsable main menu feature for minisites : WEB-2865
+  [laulaz]
+
+- Add new "top" slider type
+  [laulaz]
+
+- Allow to remove sliders images from html (instead of hiding them)
+  [laulaz]
 
 - Add some sliders types to index view behavior.
   [bsuttor]

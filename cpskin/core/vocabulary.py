@@ -249,6 +249,8 @@ DISPLAY_TYPES = {
         'slider': True,
         'class': 'slider-carousel',
         'control-nav': False,
+        'show-image': True,
+        'show-carousel': True,
     },
     u'slider-with-elements-count-choice': {
         'value': u'slider-with-elements-count-choice',
@@ -256,6 +258,8 @@ DISPLAY_TYPES = {
         'slider': True,
         'class': 'slider-multiple',
         'control-nav': True,
+        'show-image': True,
+        'show-carousel': True,
     },
     u'unique-slider-with-title-carousel': {
         'value': u'unique-slider-with-title-carousel',
@@ -263,6 +267,8 @@ DISPLAY_TYPES = {
         'slider': True,
         'class': 'slider-unique-titre',
         'control-nav': True,
+        'show-image': True,
+        'show-carousel': True,
     },
     u'highlighted-unique-item': {
         'value': u'highlighted-unique-item',
@@ -270,6 +276,8 @@ DISPLAY_TYPES = {
         'slider': False,
         'class': 'element-en-evidence',
         'control-nav': False,
+        'show-image': True,
+        'show-carousel': True,
     },
     u'slider-without-images': {
         'value': u'slider-without-images',
@@ -277,6 +285,8 @@ DISPLAY_TYPES = {
         'slider': True,
         'class': 'slider-without-images',
         'control-nav': True,
+        'show-image': False,
+        'show-carousel': False,
     },
     u'slider-vertical': {
         'value': u'slider-vertical',
@@ -284,6 +294,8 @@ DISPLAY_TYPES = {
         'slider': True,
         'class': 'slider-vertical',
         'control-nav': None,
+        'show-image': None,
+        'show-carousel': None,
     },
     u'slider-count': {
         'value': u'slider-count',
@@ -291,6 +303,17 @@ DISPLAY_TYPES = {
         'slider': True,
         'class': 'slider-count',
         'control-nav': True,
+        'show-image': True,
+        'show-carousel': False,
+    },
+    u'slider-top': {
+        'value': u'slider-top',
+        'title': _(u'Slider top'),
+        'slider': True,
+        'class': 'slider-top',
+        'control-nav': None,
+        'show-image': True,
+        'show-carousel': False,
     },
 }
 

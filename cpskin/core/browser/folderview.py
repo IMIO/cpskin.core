@@ -230,6 +230,14 @@ class FolderView(FoldV, CommonView):
                 return True
             return False
 
+    def show_image(self, collection):
+        slider_type = self.getSliderType(collection)
+        return DISPLAY_TYPES[slider_type]['show-image']
+
+    def show_carousel(self, collection):
+        slider_type = self.getSliderType(collection)
+        return DISPLAY_TYPES[slider_type]['show-carousel']
+
     def is_browser_compatible(self):
         results = True
         request = getattr(self.context, 'REQUEST', None)

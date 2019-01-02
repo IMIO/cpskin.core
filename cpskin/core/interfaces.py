@@ -92,14 +92,6 @@ class ICPSkinSettings(Interface):
         default=u'City name'
     )
 
-    slider_type = schema.Choice(
-        title=_(u'Slider type'),
-        description=_(u'Slider type (slider_view / slider_view_vertical).'),
-        required=True,
-        values=[_(u'slider_view'), _(u'slider_view_vertical')],
-        default=u'slider_view'
-    )
-
     contents_in_action_menu = schema.Tuple(
         title=_(u'Content to show in special action menu (top)'),
         description=_(u'Please select which contents should be taken to this menu.'),  # noqa
@@ -165,6 +157,12 @@ class ICPSkinSettings(Interface):
         default=u'default_position'
     )
 
+    collapse_minisite_menu = schema.Bool(
+        title=_(u'Collapse menu on minisites'),
+        description=_(u'Automatically collapse portal main menu on minisites.'),  # noqa
+        required=False,
+        default=False
+    )
 
 
 class IVideoCollection(Interface):

@@ -513,6 +513,24 @@ def addDescriptionOnThemesOptionToRegistry():
     records['cpskin.core.interfaces.ICPSkinSettings.show_description_on_themes'] = record  # noqa
 
 
+def addCollapseMinisiteMenuToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if 'cpskin.core.interfaces.ICPSkinSettings.collapse_minisite_menu' in records:  # noqa
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.collapse_minisite_menu to registry')  # noqa
+    record = Record(field.Bool(title=_(u'Collapse menu on minisites'),
+                               description=_(u'Automatically collapse portal main menu on minisites.'),  # noqa
+                               required=False,
+                               default=False),
+                    value=False)
+    records['cpskin.core.interfaces.ICPSkinSettings.collapse_minisite_menu'] = record  # noqa
+
+
+
 def set_googleapi_key():
     record_name = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'
     default_value = 'AIzaSyDmbfEFrVcZ_x7Snn4Kv_WkqCmiZXn01rY'

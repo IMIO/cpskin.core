@@ -9,6 +9,7 @@ from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
 from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
+from cpskin.core.setuphandlers import addCollapseMinisiteMenuToRegistry
 from cpskin.core.setuphandlers import addDescriptionOnThemesOptionToRegistry
 from cpskin.core.setuphandlers import addLoadPageMenuToRegistry
 from cpskin.core.setuphandlers import addMediaViewletOptionsToRegistry
@@ -182,6 +183,8 @@ def add_right_actions(context):
 def upgrade_registry_for_slogan(context):
     addShowSloganToRegistry()
 
+def upgrade_registry_for_minisite_menu(context):
+    addCollapseMinisiteMenuToRegistry()
 
 def update_types(context):
     context.runImportStepFromProfile('profile-cpskin.core:default', 'typeinfo')

@@ -183,6 +183,17 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
     search_position = property(getSearchPosition, setSearchPosition)
 
+    def getCollapseMinisiteMenu(self):
+        return self.settings.collapse_minisite_menu
+
+    def setCollapseMinisiteMenu(self, value):
+        self.settings.collapse_minisite_menu = value
+
+    collapse_minisite_menu = property(
+        getCollapseMinisiteMenu,
+        setCollapseMinisiteMenu,
+    )
+
 
 class CPSkinControlPanel(ControlPanelForm):
 

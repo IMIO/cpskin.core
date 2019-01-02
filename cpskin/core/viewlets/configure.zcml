@@ -25,6 +25,15 @@
         />
 
     <browser:viewlet
+        name="cpskin.top_collapse"
+        manager="plone.app.layout.viewlets.interfaces.IPortalTop"
+        class=".top_collapse.TopCollapseViewlet"
+        template="top_collapse.pt"
+        permission="zope.Public"
+        layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:viewlet
         name="cpskin.right_actions"
         manager="plone.app.layout.viewlets.interfaces.IAboveContent"
         class=".right_actions.RightActionsViewlet"

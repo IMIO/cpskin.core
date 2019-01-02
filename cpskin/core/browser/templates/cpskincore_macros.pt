@@ -47,7 +47,7 @@
                            tal:attributes="href result/getURL;
                                            title result/Title">
                              <tal:block tal:condition="has_category">
-                             <tal:loop tal:define="categories python: view.get_categories(content, obj)" tal:condition="categories">
+                             <tal:loop tal:define="categories python: view.get_categories(content, obj, limit=1)" tal:condition="categories">
                                  <div class="indexview-categories" tal:content="categories" />
                              </tal:loop>
                              </tal:block>
@@ -169,7 +169,7 @@
                         class=""
                         tal:attributes="class python: isBigImage and 'bigimage bloc-item' or 'bloc-item'">
                         <tal:block tal:condition="has_category">
-                        <tal:loop tal:define="categories python: view.get_categories(content, obj)" tal:condition="categories">
+                        <tal:loop tal:define="categories python: view.get_categories(content, obj, limit=1)" tal:condition="categories">
                                 <div class="indexview-categories" tal:content="categories" />
                         </tal:loop>
                         </tal:block>
