@@ -311,7 +311,7 @@ DISPLAY_TYPES = {
         'title': _(u'Slider top'),
         'slider': True,
         'class': 'slider-top',
-        'control-nav': None,
+        'control-nav': True,
         'show-image': True,
         'show-carousel': False,
     },

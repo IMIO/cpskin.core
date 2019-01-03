@@ -4,6 +4,9 @@ Changelog
 0.12.37 (unreleased)
 --------------------
 
+- Active control-nav to top slider : WEB-2407
+  [mgennart]
+
 - Add control nav dots to eligible sliders
   [laulaz]
   
