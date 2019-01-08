@@ -3,19 +3,21 @@ Changelog
 
 0.12.37 (unreleased)
 --------------------
+- Add tooltip (with Description content) to cpskin_navigation_view.
+  [bsuttor]
 
 - Active control-nav to top slider : WEB-2407
   [mgennart]
 
 - Add control nav dots to eligible sliders
   [laulaz]
-  
+
 - Limit categories to first element on index view and keep order : WEB-2866
   [laulaz]
 
 - Change collapsable balise a for balise button and adpate the javascript : WEB-2865
   [mgennart]
-  
+
 - Add collapsable main menu feature for minisites : WEB-2865
   [laulaz]
 

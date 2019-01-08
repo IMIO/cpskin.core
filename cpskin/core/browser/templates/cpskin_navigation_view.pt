@@ -13,7 +13,7 @@
 
 <div class="navigation-view-menus" tal:repeat="menu view/menus">
 
-  <a href="" tal:attributes="href menu/getURL" >
+  <a href="" tal:attributes="href menu/getURL; title menu/Description;">
     <div class="navigation-view-menu"><h2 tal:content="menu/Title"></h2></div>
   </a>
 </div>
