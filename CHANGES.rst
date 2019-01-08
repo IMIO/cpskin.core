@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.12.37 (unreleased)
---------------------
+0.13.0 (2019-01-08)
+-------------------
 
 - Fix unicode error when you call @@contact.vcf.
   [bsuttor]
