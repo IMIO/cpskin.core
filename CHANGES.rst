@@ -3,6 +3,10 @@ Changelog
 
 0.12.37 (unreleased)
 --------------------
+
+- Use URL instead of Path in sitemap theme footer link.
+  [bsuttor]
+
 - Add tooltip (with Description content) to cpskin_navigation_view.
   [bsuttor]
 
