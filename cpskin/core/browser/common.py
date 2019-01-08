@@ -72,6 +72,8 @@ class CommonView(BrowserView):
         schema = getUtility(IDexterityFTI, name=portal_type).lookupSchema()
         fields = getFields(schema)
         taxonomy_field = getattr(container, 'taxonomy_category', '')
+        if not taxonomy_field:
+            return
         if taxonomy_field in fields.keys():
             field = fields[taxonomy_field]
             return self.get_field_taxonomy(obj, field, taxonomy_field, limit)

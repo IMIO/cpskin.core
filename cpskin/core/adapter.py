@@ -78,9 +78,9 @@ class CPskinContactDetailsVCard(ContactDetailsVCard):
     def get_vcard(self):
         vcard = get_vcard(self.context)
         vcard.add('fn')
-        vcard.fn.value = self.context.Title()
+        vcard.fn.value = safe_unicode(self.context.Title())
         vcard.add('n')
-        vcard.n.value = vobject.vcard.Name(self.context.Title())
+        vcard.n.value = vobject.vcard.Name(safe_unicode(self.context.Title()))
         return vcard
 
 
