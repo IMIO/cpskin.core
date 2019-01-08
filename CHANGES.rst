@@ -4,7 +4,7 @@ Changelog
 0.12.37 (unreleased)
 --------------------
 
-- Fix unicode error when you try to call @@contact.vcf.
+- Fix unicode error when you call @@contact.vcf.
   [bsuttor]
 
 - Use URL instead of Path in sitemap theme footer link.
