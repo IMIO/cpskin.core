@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from cpskin.locales import CPSkinMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.supermodel import model
+from plone.event.interfaces import IEvent
 from plone.namedfile import field as namedfile
-from zope.interface import provider
-
+from plone.supermodel import model
 from zope.component import adapter
 from zope.interface import implementer
-from plone.event.interfaces import IEvent
+from zope.interface import provider
 
 
 @provider(IFormFieldProvider)
