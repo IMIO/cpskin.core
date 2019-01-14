@@ -31,7 +31,7 @@ class CustomRegistrationForm(RegistrationForm):
         portal_url = api.portal.get().absolute_url()
         gpdr_url = '/'.join([portal_url, 'gdpr-view'])
         msgid = _(
-            u'accept_legal_conditions',
+            u'see_legal_conditions',
             default=u'See <a href="${legal_conditions_url}">legal terms and conditions</a>.',  #NOQA
             mapping={u'legal_conditions_url': gpdr_url},
         )
