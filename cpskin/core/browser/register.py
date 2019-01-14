@@ -14,7 +14,7 @@ from cpskin.locales import CPSkinMessageFactory as _
 class ICustomRegisterSchema(Interface):
 
     legal_conditions = schema.Bool(
-        title=_(u'Legal terms and conditions'),
+        title=_(u'I Accept Legal terms and conditions'),
         description=_(u''),
         required=True,
     )
@@ -32,7 +32,7 @@ class CustomRegistrationForm(RegistrationForm):
         gpdr_url = '/'.join([portal_url, 'gdpr-view'])
         msgid = _(
             u'accept_legal_conditions',
-            default=u'I accept the <a href="${legal_conditions_url}">legal terms and conditions</a>.',  #NOQA
+            default=u'See <a href="${legal_conditions_url}">legal terms and conditions</a>.',  #NOQA
             mapping={u'legal_conditions_url': gpdr_url},
         )
         legal_description = self.context.translate(msgid)
@@ -48,7 +48,7 @@ class CustomRegistrationForm(RegistrationForm):
             err_str = _(u'You need to accept our legal terms and conditions.')
             error = WidgetInputError(
                 'legal_conditions',
-                _(u'Legal terms and conditions'),
+                _(u'I Accept Legal terms and conditions'),
                 err_str,
             )
             errors.append(error)
