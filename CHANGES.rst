@@ -4,7 +4,8 @@ Changelog
 0.13.1 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add recaptcha on register form : WEB-2883
+  [laulaz]
 
 
 0.13.0 (2019-01-08)
