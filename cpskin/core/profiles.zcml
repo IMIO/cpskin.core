@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v52: Use real footer for minisite"
+        source="51"
+        destination="52"
+        handler=".upgradehandlers.upgrade_footer_minisite"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v51: Add collapse_minisite_menu option"
         source="50"
         destination="51"

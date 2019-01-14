@@ -4,7 +4,8 @@ Changelog
 0.13.1 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Use footer document in whole minisites and not only on index view : WEB-2882
+  [laulaz]
 
 
 0.13.0 (2019-01-08)

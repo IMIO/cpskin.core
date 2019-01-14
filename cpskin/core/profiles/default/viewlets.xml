@@ -26,6 +26,7 @@
     <viewlet name="cpskin.media" />
   </order>
   <order manager="plone.portalfooter" skinname="Plone Default">
+    <viewlet name="cpskin.footer_minisite" />
     <viewlet name="cpskin.footer_sitemap" />
     <viewlet name="cpskin.footer" />
     <viewlet name="plone.footer" />
