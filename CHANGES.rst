@@ -4,7 +4,8 @@ Changelog
 0.13.1 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix collapsable menu display for minisites : WEB-2885
+  [laulaz]
 
 
 0.13.0 (2019-01-08)
