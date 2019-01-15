@@ -4,6 +4,9 @@ Changelog
 0.13.1 (unreleased)
 -------------------
 
+- Fix viewlets.xml that didn't apply at all
+  [laulaz]
+
 - Fix collapsable menu display for minisites : WEB-2885
   [laulaz]
 

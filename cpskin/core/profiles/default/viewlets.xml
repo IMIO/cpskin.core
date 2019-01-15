@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object>
-  <order manager="plone.portalheader" skinname="Plone Default">
+  <order manager="plone.portalheader" skinname="*">
     <viewlet name="plone.skip_links" />
     <viewlet name="cpskin.top_menu" />
     <viewlet name="plone.personal_bar" />
@@ -10,35 +10,35 @@
     <viewlet name="plone.logo" />
     <viewlet name="plone.global_sections" />
   </order>
-  <order manager="plone.portaltop" skinname="Plone Default">
+  <order manager="plone.portaltop" skinname="*">
     <viewlet name="cpskin.top_collapse" />
     <viewlet name="plone.header" />
-    <viewlet name="cpskin.banner" insert-after="plone.header" />
-    <viewlet name="cpskin.minisitemenu" insert-after="cpskin.minisitemenu" />
+    <viewlet name="cpskin.banner" />
+    <viewlet name="cpskin.minisitemenu" />
   </order>
-  <order manager="plone.abovecontent" skinname="Plone Default">
+  <order manager="plone.abovecontent" skinname="*">
     <viewlet name="cpskin.right_actions" />
   </order>
-  <order manager="plone.belowcontentbody" skinname="Plone Default">
+  <order manager="plone.belowcontentbody" skinname="*">
     <viewlet name="cpskin.organization_gallery" />
   </order>
-  <order manager="plone.belowcontent" skinname="Plone Default">
+  <order manager="plone.belowcontent" skinname="*">
     <viewlet name="cpskin.media" />
   </order>
-  <order manager="plone.portalfooter" skinname="Plone Default">
+  <order manager="plone.portalfooter" skinname="*">
     <viewlet name="cpskin.footer_sitemap" />
     <viewlet name="cpskin.footer" />
     <viewlet name="plone.footer" />
     <viewlet name="plone.colophon" />
     <viewlet name="plone.site_actions" />
   </order>
-  <hidden manager="plone.belowcontent" skinname="Plone Default">
+  <hidden manager="plone.belowcontent" skinname="*">
     <viewlet name="plone.belowcontenttitle.keywords" />
   </hidden>
-  <hidden manager="plone.belowcontentbody" skinname="Plone Default">
+  <hidden manager="plone.belowcontentbody" skinname="*">
     <viewlet name="plone.abovecontenttitle.documentactions" />
   </hidden>
-  <hidden manager="plone.portalfooter" skinname="Plone Default">
+  <hidden manager="plone.portalfooter" skinname="*">
     <viewlet name="plone.footer" />
     <viewlet name="plone.colophon" />
   </hidden>
