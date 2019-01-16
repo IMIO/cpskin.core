@@ -6,5 +6,6 @@
  <stylesheet id="++resource++cpskin.core.tags.css" remove="True" />
  <stylesheet id="++resource++cpskin.core.mediaviewlet.css" remove="True" />
  <stylesheet id="++resource++cpskin.core.css/core.css" remove="True" />
+ <stylesheet id="++resource++cpskin.core.css/minisite_dropdown_menu.css" remove="True" />
 
 </object>

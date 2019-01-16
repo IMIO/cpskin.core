@@ -491,3 +491,14 @@ def upgrade_limit_plone_site_portal_type(context):
         if plone_type:
             plone_type.filter_content_types = True
             plone_type.allowed_content_types = ('Document', 'Folder', 'Image')
+
+
+def upgrade_css_js_registry(context):
+    context.runImportStepFromProfile(
+        'profile-cpskin.core:default',
+        'cssregistry'
+    )
+    context.runImportStepFromProfile(
+        'profile-cpskin.core:default',
+        'jsregistry'
+    )

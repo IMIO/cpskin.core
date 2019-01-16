@@ -6,5 +6,6 @@
   <javascript id="++resource++cpskin.core.js/organization.js" remove="True" />
   <javascript id="++resource++cpskin.core.js/top_actions.js" remove="True" />
   <javascript id="++resource++cpskin.core.js/minisite_menu.js" remove="True" />
+  <javascript id="++resource++cpskin.core.js/minisite_dropdown_menu.js" remove="True" />
 
 </object>

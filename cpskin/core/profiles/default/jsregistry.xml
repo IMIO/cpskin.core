@@ -46,4 +46,13 @@
     id="++resource++cpskin.core.js/minisite_menu.js"
     />
 
+  <javascript
+    cacheable="True"
+    compression="safe"
+    cookable="True"
+    enabled="1"
+    expression=""
+    id="++resource++cpskin.core.js/minisite_dropdown_menu.js"
+    />
+
 </object>
