@@ -33,7 +33,7 @@
     color: #333;
 }
 
-.minisite-dropdown-menu> ul {
+.minisite-dropdown-menu > ul {
     margin: 0 auto;
     width: 100%;
     list-style: none;
@@ -43,34 +43,34 @@
     box-sizing: border-box;
 }
 
-.minisite-dropdown-menu> ul:before,
-.minisite-dropdown-menu> ul:after {
+.minisite-dropdown-menu > ul:before,
+.minisite-dropdown-menu > ul:after {
     content: "";
     display: table;
 }
 
-.minisite-dropdown-menu> ul:after {
+.minisite-dropdown-menu > ul:after {
     clear: both;
 }
 
-.minisite-dropdown-menu> ul > li {
+.minisite-dropdown-menu > ul > li {
     float: left;
     background: #e9e9e9;
     padding: 0;
     margin: 0;
 }
 
-.minisite-dropdown-menu> ul > li a {
+.minisite-dropdown-menu > ul > li a {
     text-decoration: none;
     padding: 1.5em 3em;
     display: block;
 }
 
-.minisite-dropdown-menu> ul > li:hover {
+.minisite-dropdown-menu > ul > li:hover {
     background: #f0f0f0;
 }
 
-.minisite-dropdown-menu> ul > li > ul {
+.minisite-dropdown-menu > ul > li > ul {
     display: none;
     width: 100%;
     background: #f0f0f0;
@@ -83,17 +83,17 @@
     box-sizing: border-box;
 }
 
-.minisite-dropdown-menu> ul > li > ul:before,
-.minisite-dropdown-menu> ul > li > ul:after {
+.minisite-dropdown-menu > ul > li > ul:before,
+.minisite-dropdown-menu > ul > li > ul:after {
     content: "";
     display: table;
 }
 
-.minisite-dropdown-menu> ul > li > ul:after {
+.minisite-dropdown-menu > ul > li > ul:after {
     clear: both;
 }
 
-.minisite-dropdown-menu> ul > li > ul > li {
+.minisite-dropdown-menu > ul > li > ul > li {
     margin: 0;
     padding-bottom: 0;
     list-style: none;
@@ -102,7 +102,7 @@
     float: left;
 }
 
-.minisite-dropdown-menu> ul > li > ul > li a {
+.minisite-dropdown-menu > ul > li > ul > li a {
     color: #777;
     padding: .2em 0;
     width: 95%;
@@ -110,7 +110,7 @@
     border-bottom: 1px solid #ccc;
 }
 
-.minisite-dropdown-menu> ul > li > ul > li > ul {
+.minisite-dropdown-menu > ul > li > ul > li > ul {
     display: block;
     padding: 0;
     margin: 10px 0 0;
@@ -118,17 +118,17 @@
     box-sizing: border-box;
 }
 
-.minisite-dropdown-menu> ul > li > ul > li > ul:before,
-.minisite-dropdown-menu> ul > li > ul > li > ul:after {
+.minisite-dropdown-menu > ul > li > ul > li > ul:before,
+.minisite-dropdown-menu > ul > li > ul > li > ul:after {
     content: "";
     display: table;
 }
 
-.minisite-dropdown-menu> ul > li > ul > li > ul:after {
+.minisite-dropdown-menu > ul > li > ul > li > ul:after {
     clear: both;
 }
 
-.minisite-dropdown-menu> ul > li > ul > li > ul > li {
+.minisite-dropdown-menu > ul > li > ul > li > ul > li {
     float: left;
     width: 100%;
     padding: 10px 0;
@@ -136,21 +136,21 @@
     font-size: .8em;
 }
 
-.minisite-dropdown-menu> ul > li > ul > li > ul > li a {
+.minisite-dropdown-menu > ul > li > ul > li > ul > li a {
     border: 0;
 }
 
-.minisite-dropdown-menu> ul > li > ul.normal-sub {
+.minisite-dropdown-menu > ul > li > ul.normal-sub {
     width: 300px;
     left: auto;
     padding: 10px 20px;
 }
 
-.minisite-dropdown-menu> ul > li > ul.normal-sub > li {
+.minisite-dropdown-menu > ul > li > ul.normal-sub > li {
     width: 100%;
 }
 
-.minisite-dropdown-menu> ul > li > ul.normal-sub > li a {
+.minisite-dropdown-menu > ul > li > ul.normal-sub > li a {
     border: 0;
     padding: 1em 0;
 }
@@ -166,40 +166,40 @@
     .menu-dropdown-icon:before {
         display: block;
     }
-    .minisite-dropdown-menu> ul {
+    .minisite-dropdown-menu > ul {
         display: none;
     }
-    .minisite-dropdown-menu> ul > li {
+    .minisite-dropdown-menu > ul > li {
         width: 100%;
         float: none;
         display: block;
     }
-    .minisite-dropdown-menu> ul > li a {
+    .minisite-dropdown-menu > ul > li a {
         padding: 1.5em;
         width: 100%;
         display: block;
     }
-    .minisite-dropdown-menu> ul > li > ul {
+    .minisite-dropdown-menu > ul > li > ul {
         position: relative;
     }
-    .minisite-dropdown-menu> ul > li > ul.normal-sub {
+    .minisite-dropdown-menu > ul > li > ul.normal-sub {
         width: 100%;
     }
-    .minisite-dropdown-menu> ul > li > ul > li {
+    .minisite-dropdown-menu > ul > li > ul > li {
         float: none;
         width: 100%;
         margin-top: 20px;
     }
-    .minisite-dropdown-menu> ul > li > ul > li:first-child {
+    .minisite-dropdown-menu > ul > li > ul > li:first-child {
         margin: 0;
     }
-    .minisite-dropdown-menu> ul > li > ul > li > ul {
+    .minisite-dropdown-menu > ul > li > ul > li > ul {
         position: relative;
     }
-    .minisite-dropdown-menu> ul > li > ul > li > ul > li {
+    .minisite-dropdown-menu > ul > li > ul > li > ul > li {
         float: none;
     }
-    .minisite-dropdown-menu.show-on-mobile {
+    .minisite-dropdown-menu .show-on-mobile {
         display: block;
     }
 }
