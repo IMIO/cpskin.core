@@ -8,6 +8,8 @@ jQuery(document).ready(function($) {
     $('.minisite-dropdown-menu > ul > li > ul:not(:has(ul))').addClass('normal-sub');
     //Checks if drodown menu's li elements have anothere level (ul), if not the dropdown is shown as regular dropdown, not a mega menu (thanks Luka Kladaric)
 
+    $('.minisite-dropdown-menu > ul > li > ul:has(ul)').addClass('mega-sub');
+
     //Mobile menu is hidden if width is more then 616px, but normal menu is displayed
     //Normal menu is hidden if width is below 616px, and jquery adds mobile menu
 
