@@ -76,6 +76,7 @@ setup(name='cpskin.core',
           'imio.gdpr',
           'collective.printrss',
           'collective.recaptcha',
+          'collective.sendinblue',
       ],
       extras_require={
           'test': [
