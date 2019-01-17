@@ -15,6 +15,7 @@
     <include package="eea.facetednavigation" />
     <include package="collective.js.fancybox" />
     <include package="sc.social.like" />
+    <include package="collective.recaptcha" />
     <include package="z3c.jbot" file="meta.zcml" />
     <browser:jbot directory="overrides" />
 
@@ -87,6 +88,9 @@
   <subscriber for="plone.app.imagecropping.interfaces.IImageCroppingMarker
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
               handler=".events.apply_crops_after_modify" />
+
+  <subscriber for="cpskin.minisite.event.IMinisiteMarkedEvent"
+              handler=".events.checkMinisites" />
 
   <adapter
     for="imio.dashboard.content.pod_template.IDashboardPODTemplate

@@ -7,6 +7,15 @@ Changelog
 - Add legal mentions checkbox in Sendinblue portlet : WEB-2886
   [laulaz]
 
+- Use footer document in whole minisites and not only on index view : WEB-2882
+  [laulaz]
+
+- Add legal terms & conditions checkbox on register form : WEB-2883
+  [laulaz]
+
+- Add recaptcha on register form : WEB-2883
+  [laulaz]
+  
 - Fix viewlets.xml that didn't apply at all
   [laulaz]
 
