@@ -89,6 +89,9 @@
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
               handler=".events.apply_crops_after_modify" />
 
+  <subscriber for="cpskin.minisite.event.IMinisiteMarkedEvent"
+              handler=".events.checkMinisites" />
+
   <adapter
     for="imio.dashboard.content.pod_template.IDashboardPODTemplate
          plone.app.contenttypes.interfaces.ICollection"

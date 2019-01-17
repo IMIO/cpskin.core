@@ -1,0 +1,5 @@
+<div class="footer-mini-site"
+     tal:condition="view/available">
+  <span tal:define="document view/content"
+        tal:replace="structure document/text/output" />
+</div>

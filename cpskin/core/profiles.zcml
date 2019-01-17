@@ -44,6 +44,14 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v53: Use real footer for minisite"
+        source="52"
+        destination="53"
+        handler=".upgradehandlers.upgrade_footer_minisite"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v52: Upgrade viewlets"
         description="Upgrade viewlets to sort them right (WEB-2885)"
         handler=".upgradehandlers.upgrade_viewlets"

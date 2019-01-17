@@ -4,6 +4,9 @@ Changelog
 0.13.1 (unreleased)
 -------------------
 
+- Use footer document in whole minisites and not only on index view : WEB-2882
+  [laulaz]
+
 - Add legal terms & conditions checkbox on register form : WEB-2883
   [laulaz]
 
