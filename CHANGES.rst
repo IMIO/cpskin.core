@@ -4,6 +4,12 @@ Changelog
 0.13.1 (unreleased)
 -------------------
 
+- Add legal terms & conditions checkbox on register form : WEB-2883
+  [laulaz]
+
+- Add recaptcha on register form : WEB-2883
+  [laulaz]
+  
 - Fix viewlets.xml that didn't apply at all
   [laulaz]
 
