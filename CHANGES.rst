@@ -4,6 +4,9 @@ Changelog
 0.13.1 (unreleased)
 -------------------
 
+- Add legal mentions checkbox in Sendinblue portlet : WEB-2886
+  [laulaz]
+
 - Use footer document in whole minisites and not only on index view : WEB-2882
   [laulaz]
 

@@ -70,6 +70,15 @@
   <!-- Other browser pages -->
 
   <browser:page
+      for="*"
+      name="is_gdpr"
+      class=".utils.UtilsView"
+      layer="..interfaces.ICPSkinCoreLayer"
+      attribute="is_gdpr"
+      permission="zope.Public"
+      />
+
+  <browser:page
       for="plone.dexterity.interfaces.IDexterityContainer"
       name="cpskin_navigation_view"
       class=".folder.CpskinNavigationView"
