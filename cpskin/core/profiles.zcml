@@ -44,6 +44,15 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v52: Upgrade viewlets"
+        description="Upgrade viewlets to sort them right (WEB-2885)"
+        handler=".upgradehandlers.upgrade_viewlets"
+        source="51"
+        destination="52"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v51: Add collapse_minisite_menu option"
         source="50"
         destination="51"
