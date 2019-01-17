@@ -4,6 +4,9 @@ Changelog
 0.13.1 (unreleased)
 -------------------
 
+- Add legal mentions in Sendinblue portlet : WEB-2886
+  [laulaz]
+
 - Fix viewlets.xml that didn't apply at all
   [laulaz]
 
