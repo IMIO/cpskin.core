@@ -25,10 +25,10 @@ jQuery(document).ready(function($) {
         var thisMenu = $(this).children('ul');
         var prevState = thisMenu.css('display');
         $('.minisite-dropdown-menu > ul > li > ul').fadeOut(200);
+        $('.minisite-dropdown-menu > ul > li').removeClass('activated');
         if (prevState == 'block') return;
-
-        if ($(window).width() < 600) thisMenu.fadeIn(200);
-        else if ($(window).width() >= 600) $(this).children('ul').fadeToggle(200);
+        thisMenu.fadeIn(200);
+        $(this).addClass('activated');
     });
 
     $('.minisite-dropdown-menu-mobile').click(function (e) {
