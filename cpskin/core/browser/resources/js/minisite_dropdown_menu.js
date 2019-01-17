@@ -20,7 +20,8 @@ jQuery(document).ready(function($) {
     });
 
     $('.minisite-dropdown-menu > ul > li').click(function(e) {
-        if($(e.target).parents('ul').length == 1) e.preventDefault();
+        //Top level click on a menu with children
+        if($(e.target).parents('ul').length == 1 && $(this).children('ul').length > 0) e.preventDefault();
         var thisMenu = $(this).children('ul');
         var prevState = thisMenu.css('display');
         $('.minisite-dropdown-menu > ul > li > ul').fadeOut(200);
