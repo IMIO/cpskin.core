@@ -13,8 +13,9 @@ jQuery(document).ready(function($) {
 
     //the following hides the menu when a click is registered outside
     $(document).on('click', function(e){
-        if($(e.target).parents('.minisite-dropdown-menu').length === 0) {
+        if($(e.target).parents('.minisite-dropdown-menu').length === 0 || $(e.target).hasClass('navTree')) {
             $('.minisite-dropdown-menu > ul').removeClass('show-on-mobile');
+            $('.minisite-dropdown-menu > ul > li').removeClass('activated');
             $('.minisite-dropdown-menu > ul > li > ul').fadeOut(200);
         }
     });
