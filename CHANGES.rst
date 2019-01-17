@@ -7,6 +7,18 @@ Changelog
 - Use footer document in whole minisites and not only on index view : WEB-2882
   [laulaz]
 
+- Add legal terms & conditions checkbox on register form : WEB-2883
+  [laulaz]
+
+- Add recaptcha on register form : WEB-2883
+  [laulaz]
+  
+- Fix viewlets.xml that didn't apply at all
+  [laulaz]
+
+- Fix collapsable menu display for minisites : WEB-2885
+  [laulaz]
+
 
 0.13.0 (2019-01-08)
 -------------------

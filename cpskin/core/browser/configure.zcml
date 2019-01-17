@@ -223,6 +223,15 @@
     class=".form.ReplaceRichtextForm"
     />
 
+  <browser:page
+    name="register"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    class=".register.CustomRegistrationForm"
+    layer="..interfaces.ICPSkinCoreLayer"
+    permission="cmf.AddPortalMember"
+    />
+
+
   <!-- Document generator -->
   <browser:page
     for="eea.facetednavigation.interfaces.IFacetedNavigable"

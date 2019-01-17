@@ -75,6 +75,7 @@ setup(name='cpskin.core',
           'collective.js.fancybox',
           'imio.gdpr',
           'collective.printrss',
+          'collective.recaptcha',
       ],
       extras_require={
           'test': [
