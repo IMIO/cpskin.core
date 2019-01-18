@@ -8,8 +8,12 @@
     display: none;
     padding: 20px;
 }
-
-.minisite-dropdown-menu-mobile:after {
+.minisite-dropdown-menu-mobile:before{
+    content: "\f008";
+    font-family: "fontello";
+    margin-right: 0.5em;
+}
+/*.minisite-dropdown-menu-mobile:after {
     content: "\f394";
     font-family: "Ionicons";
     font-size: 2.5rem;
@@ -20,9 +24,9 @@
     -webkit-transform: translateY(-25%);
     -ms-transform: translateY(-25%);
     transform: translateY(-25%);
-}
+}*/
 
-.menu-dropdown-icon:before {
+/*.menu-dropdown-icon:before {
     content: "\f489";
     font-family: "Ionicons";
     display: none;
@@ -31,9 +35,9 @@
     padding: 1.5em 2em;
     background: #fff;
     color: #333;
-}
+}*/
 
-.minisite-dropdown-menu > ul {
+.minisite-dropdown-menu > ul.navTreeLevel0 {
     margin: 0 auto;
     width: 100%;
     list-style: none;
@@ -41,6 +45,7 @@
     position: relative;
     /* IF .minisite-dropdown-menuposition=relative -> ul = container width, ELSE ul = 100% width */
     box-sizing: border-box;
+    background: transparent;
 }
 
 .minisite-dropdown-menu > ul:before,
@@ -53,9 +58,9 @@
     clear: both;
 }
 
-.minisite-dropdown-menu > ul > li {
+.minisite-dropdown-menu> ul.navTreeLevel0 > li {
     float: left;
-    background: #e9e9e9;
+    background: transparent;
     padding: 0;
     margin: 0;
 }
@@ -65,8 +70,13 @@
     padding: 1.5em 3em;
     display: block;
 }
-
-.minisite-dropdown-menu > ul > li:hover {
+.minisite-dropdown-menu > ul > li.menu-dropdown-icon > a::after {
+    content: "\e844";
+    font-family: fontello;
+    margin-left: 0.25em;
+}
+.minisite-dropdown-menu .navTreeLevel0 > li:hover,
+.minisite-dropdown-menu .navTreeLevel0 > .activated{
     background: #f0f0f0;
 }
 
@@ -93,29 +103,52 @@
     clear: both;
 }
 
-.minisite-dropdown-menu > ul > li > ul > li {
+.minisite-dropdown-menu .navTreeLevel1 > li {
     margin: 0;
     padding-bottom: 0;
+    padding-right: 1.5em;
+    box-sizing: border-box;
     list-style: none;
     width: 25%;
     background: none;
     float: left;
 }
 
-.minisite-dropdown-menu > ul > li > ul > li a {
-    color: #777;
-    padding: .2em 0;
-    width: 95%;
+.minisite-dropdown-menu ul.navTreeLevel1 > li > a {
+    color: #333;
     display: block;
-    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
 }
-
-.minisite-dropdown-menu > ul > li > ul > li > ul {
+.minisite-dropdown-menu .navTreeLevel1 li a:hover {
+    background: #fff;
+}
+.minisite-dropdown-menu ul.navTreeLevel1 > li > a:hover::before{
+    border-bottom-color: #c9c9c9;
+    left: 0;
+}
+.minisite-dropdown-menu ul.navTreeLevel1.mega-sub > li > a::before{
+    content: "";
+    position: absolute;
+    height: 1px;
+    border-bottom: 1px solid #333;
+    bottom: 0;
+    left: 0.5em;
+    right: 0;
+}
+.minisite-dropdown-menu ul.navTreeLevel1.mega-sub > li > a:hover::before{
+    left:0;
+}
+/*.minisite-dropdown-menu ul.navTreeLevel1.normal-sub > li > a::before{
+    display: none;
+}*/
+.minisite-dropdown-menu .navTreeLevel2 {
     display: block;
     padding: 0;
     margin: 10px 0 0;
     list-style: none;
     box-sizing: border-box;
+    background: transparent;
 }
 
 .minisite-dropdown-menu > ul > li > ul > li > ul:before,
@@ -128,18 +161,23 @@
     clear: both;
 }
 
-.minisite-dropdown-menu > ul > li > ul > li > ul > li {
+.minisite-dropdown-menu .navTreeLevel2 > li {
     float: left;
     width: 100%;
-    padding: 10px 0;
+    padding: 0;
     margin: 0;
-    font-size: .8em;
+    font-size: 1em;
 }
 
-.minisite-dropdown-menu > ul > li > ul > li > ul > li a {
+.minisite-dropdown-menu .navTreeLevel2 > li a {
     border: 0;
+    margin:0;
+    padding:0.5em 0.75em !important;
 }
-
+.minisite-dropdown-menu .navTreeLevel1 > li a {
+    margin:0;
+    padding: 0.75em !important;
+}
 .minisite-dropdown-menu > ul > li > ul.normal-sub {
     width: 300px;
     left: auto;
@@ -185,7 +223,7 @@
     .minisite-dropdown-menu > ul > li > ul.normal-sub {
         width: 100%;
     }
-    .minisite-dropdown-menu > ul > li > ul > li {
+    .minisite-dropdown-menu .navTreeLevel1 > li {
         float: none;
         width: 100%;
         margin-top: 20px;
