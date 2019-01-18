@@ -217,6 +217,10 @@
         width: 100%;
         display: block;
     }
+    .minisite-dropdown-menu > ul > li.menu-dropdown-icon > a::after{
+        float: left;
+        margin-right: 0.5em;
+    }
     .minisite-dropdown-menu > ul > li > ul {
         position: relative;
     }
