@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 # from cpskin.core.utils import get_address_from_obj
+from cpskin.citizen.utils import execute_under_unrestricted_user
 from cpskin.core.utils import has_lat_lng
 from cpskin.core.utils import set_coord
+from plone import api
 from plone.app.imagecropping import PAI_STORAGE_KEY
 from plone.app.imagecropping.interfaces import IImageCroppingUtils
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
+import logging
+import transaction
+
+logger = logging.getLogger('cpskin.core')
 
 
 def set_lat_lng(obj, event):
@@ -37,3 +43,26 @@ def apply_crops_after_modify(obj, event):
             if crop_key.startswith(fieldname):
                 scalename = crop_key[len(fieldname) + 1:]
                 cropper._crop(fieldname, scalename, crops[crop_key])
+
+
+def checkMinisites(event):
+    minisite_root = event.minisite
+    footer_doc = getattr(minisite_root, 'footer-mini-site', None)
+    if footer_doc:
+        logger.info('Found footer-mini-site doc for {0}'.format(
+            minisite_root.absolute_url(),
+        ))
+        return
+    footer_doc = execute_under_unrestricted_user(
+        api.portal.get(),
+        api.content.create,
+        'admin',
+        type='Document',
+        id='footer-mini-site',
+        title='Footer',
+        container=minisite_root
+    )
+    logger.info('Created footer-mini-site doc for {0}'.format(
+        minisite_root.absolute_url(),
+    ))
+    transaction.commit()

@@ -70,6 +70,15 @@
   <!-- Other browser pages -->
 
   <browser:page
+      for="*"
+      name="is_gdpr"
+      class=".utils.UtilsView"
+      layer="..interfaces.ICPSkinCoreLayer"
+      attribute="is_gdpr"
+      permission="zope.Public"
+      />
+
+  <browser:page
       for="plone.dexterity.interfaces.IDexterityContainer"
       name="cpskin_navigation_view"
       class=".folder.CpskinNavigationView"
@@ -222,6 +231,15 @@
     permission="cmf.ModifyPortalContent"
     class=".form.ReplaceRichtextForm"
     />
+
+  <browser:page
+    name="register"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    class=".register.CustomRegistrationForm"
+    layer="..interfaces.ICPSkinCoreLayer"
+    permission="cmf.AddPortalMember"
+    />
+
 
   <!-- Document generator -->
   <browser:page

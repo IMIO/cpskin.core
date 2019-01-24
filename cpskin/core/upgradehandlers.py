@@ -6,7 +6,7 @@ from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.organization import IOrganizationImages
 from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
-from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
+from cpskin.core.interfaces import IFolderViewSelectedContent
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
 from cpskin.core.setuphandlers import addCollapseMinisiteMenuToRegistry
@@ -20,6 +20,7 @@ from cpskin.core.setuphandlers import addSliderTypeToRegistry
 from cpskin.core.setuphandlers import addSubMenuPersistenceToRegistry
 from cpskin.core.setuphandlers import addTopMenuContentsToRegistry
 from cpskin.core.setuphandlers import addTopMenuLeadImageToRegistry
+from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
 from cpskin.locales import CPSkinMessageFactory as _
@@ -33,6 +34,7 @@ from zope.component import getUtility
 from zope.interface import alsoProvides
 from zope.interface import directlyProvidedBy
 from zope.interface import directlyProvides
+from zope.interface import noLongerProvides
 
 import logging
 
@@ -491,6 +493,19 @@ def upgrade_limit_plone_site_portal_type(context):
         if plone_type:
             plone_type.filter_content_types = True
             plone_type.allowed_content_types = ('Document', 'Folder', 'Image')
+
+
+def upgrade_footer_minisite(context):
+    context.runImportStepFromProfile(
+        'profile-cpskin.core:default',
+        'viewlets'
+    )
+    brains = api.content.find(id='footer-mini-site')
+    for b in brains:
+        obj = b.getObject()
+        noLongerProvides(obj, IFolderViewSelectedContent)
+        obj.reindexObject()
+        logger.info('Removed %s from minisite index view' % obj.absolute_url())
 
 
 def upgrade_css_js_registry(context):

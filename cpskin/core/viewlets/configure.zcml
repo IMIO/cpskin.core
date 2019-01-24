@@ -52,7 +52,7 @@
     <browser:viewlet
         name="cpskin.footer"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
-        class=".footer.CpskinFooterViewlet"
+        class="plone.app.layout.viewlets.common.FooterViewlet"
         template="footer.pt"
         for="*"
         layer="..interfaces.ICPSkinCoreLayer"
@@ -65,6 +65,16 @@
         class=".footer.CPSkinFooterSitemapViewlet"
         permission="zope2.View"
         layer="..interfaces.ICPSkinCoreLayer"
+        />
+
+    <browser:viewlet
+        name="cpskin.footer_minisite"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".footer_minisite.CPSkinFooterMinisiteViewlet"
+        template="footer_minisite.pt"
+        for="*"
+        layer="..interfaces.ICPSkinCoreLayer"
+        permission="zope2.View"
         />
 
     <browser:viewlet
