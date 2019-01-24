@@ -44,6 +44,15 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v54: Upgrade CSS and JS registry"
+        description="Upgrade viewlets CSS and JS registry for minisite dropdown menu (WEBOTT-9)"
+        handler=".upgradehandlers.upgrade_css_js_registry"
+        source="53"
+        destination="54"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v53: Use real footer for minisite"
         source="52"
         destination="53"

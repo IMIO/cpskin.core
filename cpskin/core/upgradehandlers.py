@@ -506,3 +506,14 @@ def upgrade_footer_minisite(context):
         noLongerProvides(obj, IFolderViewSelectedContent)
         obj.reindexObject()
         logger.info('Removed %s from minisite index view' % obj.absolute_url())
+
+
+def upgrade_css_js_registry(context):
+    context.runImportStepFromProfile(
+        'profile-cpskin.core:default',
+        'cssregistry'
+    )
+    context.runImportStepFromProfile(
+        'profile-cpskin.core:default',
+        'jsregistry'
+    )

@@ -4,6 +4,9 @@ Changelog
 0.13.1 (unreleased)
 -------------------
 
+- Add CSS / JS for minisite dropdown menu : WEBOTT-9
+  [laulaz]
+
 - Add legal mentions checkbox in Sendinblue portlet : WEB-2886
   [laulaz]
 
