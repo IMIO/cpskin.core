@@ -1,10 +1,11 @@
 Changelog
 =========
 
-0.13.2 (unreleased)
+0.13.2 (2019-02-11)
 -------------------
 
-- Nothing changed yet.
+- Change css for minisite dropdown menu.
+  [osnickers]
 
 
 0.13.1 (2019-02-11)
