@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.1 (unreleased)
+0.13.1 (2019-02-11)
 -------------------
 
 - Add CSS / JS for minisite dropdown menu : WEBOTT-9
