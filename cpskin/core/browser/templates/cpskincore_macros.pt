@@ -334,9 +334,15 @@
       <div class=""
            tal:condition="python: content.portal_type == 'rss_feed'"
 	   tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-rss ${content/id} ${bloc_class}">
-           <a tal:attributes="href content/url" target="_blank" class="rss-title"><h2 tal:content="content/title" /></a>
+           <a tal:attributes="href python:content.url_main or ('/'.join(content.url.split('/', 3)[:3])
+	       if content.url.startswith('http') 
+	       else '/'.join('http://{}'.format(content.url).split('/', 3)[:3]))"
+	       target="_blank" class="rss-title"><h2 tal:content="content/title" /></a>
            <span tal:replace="structure content/@@rss_feed_macro" />
-           <a tal:attributes="href content/url" target="_blank" class="view-all" tal:content="content/title" />
+           <a tal:attributes="href python:content.url_main or ('/'.join(content.url.split('/', 3)[:3])
+	       if content.url.startswith('http') 
+	       else '/'.join('http://{}'.format(content.url).split('/', 3)[:3]))"
+	       target="_blank" class="view-all" tal:content="content/title" />
       </div>
     </tal:def>
   </metal:homepage>

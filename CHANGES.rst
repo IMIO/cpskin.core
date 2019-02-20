@@ -4,6 +4,9 @@ Changelog
 0.13.1 (unreleased)
 -------------------
 
+- Add usage of new url field with collective.printrss in cpskincore_macros template.
+  [boulch]
+
 - Add CSS / JS for minisite dropdown menu : WEBOTT-9
   [laulaz]
 
