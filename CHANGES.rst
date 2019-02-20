@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.3 (unreleased)
+0.13.3 (2019-02-20)
 -------------------
 
 - Add usage of new url field with collective.printrss in cpskincore_macros template.
