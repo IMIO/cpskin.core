@@ -4,7 +4,8 @@ Changelog
 0.13.3 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add usage of new url field with collective.printrss in cpskincore_macros template.
+  [boulch]
 
 
 0.13.2 (2019-02-11)
@@ -16,9 +17,6 @@ Changelog
 
 0.13.1 (2019-02-11)
 -------------------
-
-- Add usage of new url field with collective.printrss in cpskincore_macros template.
-  [boulch]
 
 - Add CSS / JS for minisite dropdown menu : WEBOTT-9
   [laulaz]
@@ -34,7 +32,7 @@ Changelog
 
 - Add recaptcha on register form : WEB-2883
   [laulaz]
-  
+
 - Fix viewlets.xml that didn't apply at all
   [laulaz]
 
