@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from cpskin.locales import CPSkinMessageFactory as _
+from plone.app.contenttypes.interfaces import IPloneAppContenttypesLayer
+from sc.social.like.interfaces import ISocialLikeLayer
 from zope import schema
 from zope.interface import Interface
-from sc.social.like.interfaces import ISocialLikeLayer
-from plone.app.contenttypes.interfaces import IPloneAppContenttypesLayer
 
 
 class ICPSkinCoreLayer(ISocialLikeLayer, IPloneAppContenttypesLayer):
