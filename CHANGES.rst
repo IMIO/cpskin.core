@@ -4,7 +4,8 @@ Changelog
 0.13.4 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Redirect anon users to file download, connected users to file view : WEB-2931
+  [laulaz]
 
 
 0.13.3 (2019-02-20)

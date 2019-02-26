@@ -375,4 +375,16 @@
       title="View Document with description"
       />
 
+  <!-- adapt file view to redirect anon users to download url -->
+  <configure package="plone.app.contenttypes.browser">
+    <browser:page
+        name="file_view"
+        for="plone.app.contenttypes.interfaces.IFile"
+        class="cpskin.core.browser.file.FileView"
+        template="templates/file.pt"
+        layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+        permission="zope2.View"
+        />
+  </configure>
+
 </configure>

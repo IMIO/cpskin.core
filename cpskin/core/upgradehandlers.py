@@ -482,7 +482,7 @@ def upgrade_add_booking_behavior(context):
 
 def upgrade_add_specific_typesUseViewActionInListings(context):
     site_properties = api.portal.get_tool('portal_properties').site_properties
-    site_properties.typesUseViewActionInListings = ('Image',)
+    site_properties.typesUseViewActionInListings = ('File', 'Image')
 
 
 def upgrade_limit_plone_site_portal_type(context):
