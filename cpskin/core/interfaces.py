@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from cpskin.locales import CPSkinMessageFactory as _
+from plone.app.contenttypes.interfaces import IPloneAppContenttypesLayer
+from sc.social.like.interfaces import ISocialLikeLayer
 from zope import schema
 from zope.interface import Interface
-from sc.social.like.interfaces import ISocialLikeLayer
 
 
-class ICPSkinCoreLayer(ISocialLikeLayer):
+class ICPSkinCoreLayer(ISocialLikeLayer, IPloneAppContenttypesLayer):
     """
     Marker interface that defines a ZTK browser layer.
     """
