@@ -90,7 +90,7 @@ def create_collections(context):
                 container=context,
                 type='Folder',
                 id='videos',
-                title=u"Vidéos"
+                title=u'Vidéos'
             )
 
         alsoProvides(video_folder, IVideoCollection)
@@ -132,7 +132,7 @@ def create_collections(context):
         if not album_folder:
             album_folder = api.content.create(container=context,
                                               type='Folder',
-                                              title=u"Albums")
+                                              title=u'Albums')
         alsoProvides(album_folder, IAlbumCollection)
         album_folder.reindexObject()
 
