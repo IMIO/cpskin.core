@@ -4,7 +4,6 @@ from cpskin.core.interfaces import IVideoCollection
 from cpskin.core.utils import image_scale
 from imio.media.browser import utils
 from plone import api
-from plone.app.contenttypes.interfaces import ICollection
 from plone.app.layout.viewlets import common
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getMultiAdapter
