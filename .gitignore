@@ -6,7 +6,6 @@
 *.EGG
 *.egg-info
 *.EGG-INFO
-.*.cfg
 bin/
 build/
 develop-eggs/
@@ -29,3 +28,5 @@ geckodriver.log
 local/
 pip-selfcheck.json
 htmlcov/
+.installed.cfg
+.mr.developer.cfg
