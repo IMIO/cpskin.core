@@ -21,7 +21,7 @@
                      i18n:attributes="alt flux_rss" />
              </a>
         </div>
-        <div class="results"
+        <div class="results parsable-content"
             tal:define="allresults python: view.getResults(content);
                         resultTypes python: ['sticky-results', 'standard-results']"
             tal:condition="allresults">
@@ -149,7 +149,7 @@
                      i18n:attributes="alt flux_rss" />
              </a>
         </div>
-        <div class="results"
+        <div class="results parsable-content"
             tal:define="allresults python: view.getResults(content);
                         resultTypes python: ['sticky-results', 'standard-results']"
             tal:condition="allresults">
@@ -277,7 +277,7 @@
       <div id="flex"
            tal:condition="python: use_slider and view.hasFlexSlider() and view.is_browser_compatible()"
            tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-slider ${content/id} ${bloc_class}">
-          <div class="flex-container"
+          <div class="flex-container parsable-content"
                tal:define="context nocall:content;
                            here nocall:content">
               <tal:cond condition="python:view.getSliderType(content) == 'slider-vertical'">

@@ -4,7 +4,8 @@ Changelog
 0.13.5 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add class on indexview to allow minisite href transformations : WEBNAM-209
+  [laulaz]
 
 
 0.13.4 (2019-03-19)
