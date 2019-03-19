@@ -4,6 +4,9 @@ Changelog
 0.13.4 (unreleased)
 -------------------
 
+- Change css dropdown menu minisite
+  [osnickers]
+
 - Redirect anon users to file download, connected users to file view : WEB-2931
   [laulaz]
 
