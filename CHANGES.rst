@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.4 (unreleased)
+0.13.4 (2019-03-19)
 -------------------
 
 - Change css dropdown menu minisite
