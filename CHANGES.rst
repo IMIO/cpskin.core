@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.7 (unreleased)
+0.13.7 (2019-03-20)
 -------------------
 
 - Fix file download url when file name has an accent.
