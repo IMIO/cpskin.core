@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.5 (unreleased)
+0.13.5 (2019-03-20)
 -------------------
 
 - Add logging on incompatible browsers detection for sliders : WEBNAM-210
