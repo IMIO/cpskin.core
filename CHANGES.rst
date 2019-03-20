@@ -4,7 +4,8 @@ Changelog
 0.13.7 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix file download url when file name has an accent.
+  [bsuttor]
 
 
 0.13.6 (2019-03-20)
