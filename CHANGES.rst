@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.6 (unreleased)
+0.13.6 (2019-03-20)
 -------------------
 
 - Don't check for browser compatibility anymore : WEBNAM-210
