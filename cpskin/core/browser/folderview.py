@@ -29,7 +29,6 @@ from zope.i18n import translate
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 
-import httpagentparser
 import logging
 import pytz
 
@@ -239,23 +238,6 @@ class FolderView(FoldV, CommonView):
     def show_carousel(self, collection):
         slider_type = self.getSliderType(collection)
         return DISPLAY_TYPES[slider_type]['show-carousel']
-
-    def is_browser_compatible(self):
-        results = True
-        request = getattr(self.context, 'REQUEST', None)
-        http_user_agent = request.getHeader('HTTP_USER_AGENT')
-        browser_user_agent = httpagentparser.detect(http_user_agent)
-        if browser_user_agent:
-            browser = browser_user_agent.get('browser')
-            if browser:
-                if 'Internet Explorer' in browser.get('name'):
-                    if browser.get('version', False):
-                        results = int(browser['version'].split('.')[0]) >= 9
-        if not results:
-            logger.info("Incompatible browser detected for slider : {0}".format(
-                browser_user_agent,
-            ))
-        return results
 
     def addContent(self):
         """Mark content to add it to folder view"""

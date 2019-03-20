@@ -275,7 +275,7 @@
                          use_slider python: view.use_slider(content);
                          bloc_class python: view.get_block_class(content);">
       <div id="flex"
-           tal:condition="python: use_slider and view.hasFlexSlider() and view.is_browser_compatible()"
+           tal:condition="python: use_slider and view.hasFlexSlider()"
            tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-slider ${content/id} ${bloc_class}">
           <div class="flex-container parsable-content"
                tal:define="context nocall:content;
@@ -288,17 +288,6 @@
               </tal:cond>
           </div>
 
-      </div>
-      <div id="no-flex"
-           tal:condition="python: use_slider and not view.is_browser_compatible()"
-           tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-slider ${content/id} ${bloc_class}">
-
-          <tal:if tal:condition="use_new_template">
-              <metal:use use-macro="context/@@cpskincore-macros/homepage-collection-new-template" />
-          </tal:if>
-          <tal:else tal:condition="not: use_new_template">
-              <metal:use use-macro="context/@@cpskincore-macros/homepage-collection" />
-          </tal:else>
       </div>
 
       <div class=""

@@ -4,7 +4,8 @@ Changelog
 0.13.6 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Don't check for browser compatibility anymore : WEBNAM-210
+  [laulaz]
 
 
 0.13.5 (2019-03-20)
