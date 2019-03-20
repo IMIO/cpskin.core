@@ -4,6 +4,9 @@ Changelog
 0.13.5 (unreleased)
 -------------------
 
+- Add logging on incompatible browsers detection for sliders : WEBNAM-210
+  [laulaz]
+
 - Add class on indexview to allow minisite href transformations : WEBNAM-209
   [laulaz]
 

@@ -30,8 +30,10 @@ from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 
 import httpagentparser
+import logging
 import pytz
 
+logger = logging.getLogger('cpskin.core')
 
 ADDABLE_TYPES = ['Collection', 'Document', 'Folder', 'rss_feed']
 
@@ -249,6 +251,10 @@ class FolderView(FoldV, CommonView):
                 if 'Internet Explorer' in browser.get('name'):
                     if browser.get('version', False):
                         results = int(browser['version'].split('.')[0]) >= 9
+        if not results:
+            logger.info("Incompatible browser detected for slider : {0}".format(
+                browser_user_agent,
+            ))
         return results
 
     def addContent(self):
