@@ -4,7 +4,8 @@ Changelog
 0.13.8 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Avoid downloading PDF if user wants to view it in the browser : WEB-2981
+  [laulaz]
 
 
 0.13.7 (2019-03-20)
