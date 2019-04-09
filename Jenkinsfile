@@ -6,19 +6,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'virtualenv-2.7 .'
-                sh 'bin/pip install -r requirements.txt'
-                sh 'bin/buildout code-analysis:jenkins=True'
+                cache(maxCacheSize: 850,
+                      caches: [[$class: 'ArbitraryFileCache', excludes: '', path: '${WORKSPACE}/eggs']]){
+                    sh 'virtualenv-2.7 .'
+                    sh 'bin/pip install -r requirements.txt'
+                    sh 'bin/buildout code-analysis:jenkins=True'
+                }
+                stash 'workspace'
             }
         }
         stage('Test') {
             steps {
+                unstash 'workspace'
                 sh '/etc/init.d/xvfb start 2> /dev/null &'
                 sh 'bin/test --all'
             }
         }
         stage('Coverage') {
             steps {
+                unstash 'workspace'
                 sh 'bin/code-analysis'
                 warnings canComputeNew: false, canResolveRelativePaths: false, parserConfigurations: [[parserName: 'Pep8', pattern: '**/parts/code-analysis/flake8.log']]
                 sh 'bin/createcoverage'
