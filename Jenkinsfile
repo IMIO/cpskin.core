@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'virtualenv -p python2.7 .'
+                sh 'virtualenv-2.7 .'
                 sh 'bin/pip install -r requirements.txt'
                 sh 'bin/buildout code-analysis:jenkins=True'
             }
