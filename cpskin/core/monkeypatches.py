@@ -71,6 +71,23 @@ def keyword_apply_index(self, request, resultset=None):
     return super(KeywordIndex, self)._apply_index(request, resultset)
 
 
+def date_widget_years(self):
+    try:
+        current = int(self.year)
+    except:
+        current = -1
+
+    value = datetime.now().year
+    now = int(value)
+    before = now + self.years_range[0]
+    after  = now + self.years_range[1]
+    year_range = range(*(before, after))
+    return [{'value': x,
+             'name': x,
+             'selected': x == current}
+            for x in year_range]
+
+
 def date_widget_update(self):
     now = datetime.now()
     min_value = -10

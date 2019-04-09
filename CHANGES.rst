@@ -4,6 +4,10 @@ Changelog
 0.13.8 (unreleased)
 -------------------
 
+- Don't use relative year range for date widget : WEB-3002
+  See also https://github.com/plone/plone.formwidget.datetime/issues/19
+  [laulaz]
+
 - Do not index an object which has same name than a field.
   [bsuttor]
 

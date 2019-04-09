@@ -25,6 +25,13 @@
         />
 
     <monkey:patch
+      description="Don't use relative year range for date widget"
+      class="plone.formwidget.datetime.base.AbstractDateWidget"
+      original="years"
+      replacement=".monkeypatches.date_widget_years"
+      />
+
+    <monkey:patch
       description="Fix the year range for date widget"
       class="plone.formwidget.datetime.z3cform.widget.DateWidget"
       original="update"
