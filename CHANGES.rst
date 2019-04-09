@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.8 (unreleased)
+0.13.8 (2019-04-09)
 -------------------
 
 - Don't use relative year range for date widget : WEB-3002
