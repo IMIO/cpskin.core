@@ -4,6 +4,9 @@ Changelog
 0.13.8 (unreleased)
 -------------------
 
+- Do not index an object which has same name than a field.
+  [bsuttor]
+
 - Avoid downloading PDF if user wants to view it in the browser : WEB-2981
   [laulaz]
 

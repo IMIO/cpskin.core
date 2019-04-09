@@ -32,8 +32,9 @@ class BaseTagIndexer(object):
         tags = getattr(aq_base(self.context), field, None)
         if not tags:
             raise AttributeError
-        encodedTags = tuple(safe_utf8(s) for s in tags)
-        return encodedTags
+        if field not in self.context.contentIds():
+            encodedTags = tuple(safe_utf8(s) for s in tags)
+            return encodedTags
 
 
 class StandardTagIndexer(BaseTagIndexer):
