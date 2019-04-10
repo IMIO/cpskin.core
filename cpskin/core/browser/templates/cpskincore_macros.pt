@@ -51,7 +51,7 @@
                                  <div class="indexview-categories" tal:content="categories" />
                              </tal:loop>
                              </tal:block>
-                             <tal:if tal:condition="show_day_and_month">
+                             <tal:if tal:condition="python: obj.portal_type == 'Event' and show_day_and_month">
                                 <div class="day-month"
                                      tal:define="dates python: view.get_event_dates(obj);
                                                  start dates/start;

@@ -4,7 +4,9 @@ Changelog
 0.13.9 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Avoid error when show_day_and_month is set to True on a collection without
+  events : WEB-3004
+  [laulaz]
 
 
 0.13.8 (2019-04-09)
