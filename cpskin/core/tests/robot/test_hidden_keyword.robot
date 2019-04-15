@@ -77,16 +77,13 @@ I set to the collection '${collection_title}' the search terms hidden tag '${key
     Go to  ${PLONE_URL}/folder/${collection_title}
     Click Edit In Edit bar
     Select From List By Value  name=addindex  hiddenTags
-    Click Element  css=.querywidget.queryvalue.multipleSelectionWidget
-    Select Checkbox  css=.querywidget.queryvalue.multipleSelectionWidget input[value=${keyword}]
+    # Click Element  css=.querywidget.queryvalue.multipleSelectionWidget
+    Click Element  css=.querywidget.multipleSelectionWidget
+    Select Checkbox  css=input[value=${keyword}]
+    #Select Checkbox  css=.querywidget.queryvalue.multipleSelectionWidget input[value=${keyword}]
     Click Button  Save
 
 
 the collection '${collection_title}' should contain '${document_title}'
     Go to  ${PLONE_URL}/folder/${collection_title}
-    The content area should contain  ${document_title}
-
-
-The content area should contain
-    [Arguments]  ${text}
-    Element Should Contain  id=content  ${text}
+    Element Should Contain  id=content  ${document_title}
