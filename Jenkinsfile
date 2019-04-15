@@ -10,7 +10,7 @@ pipeline {
             steps {
                 cache(maxCacheSize: 850,
                       caches: [[$class: 'ArbitraryFileCache', excludes: '', path: '${WORKSPACE}/eggs']]){
-                    sh 'virtualenv-2.7 .'
+                    sh 'virtualenv -p python2.7 .'
                     sh 'bin/pip install -r requirements.txt'
                     sh 'bin/buildout code-analysis:jenkins=True'
                 }
