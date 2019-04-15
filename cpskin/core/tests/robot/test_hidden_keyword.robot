@@ -86,4 +86,5 @@ I set to the collection '${collection_title}' the search terms hidden tag '${key
 
 the collection '${collection_title}' should contain '${document_title}'
     Go to  ${PLONE_URL}/folder/${collection_title}
+    Sleep  1
     Element Should Contain  id=content  ${document_title}
