@@ -76,7 +76,7 @@ a collection
 I set to the collection '${collection_title}' the search terms hidden tag '${keyword}'
     Go to  ${PLONE_URL}/folder/${collection_title}
     Click Edit In Edit bar
-    # Select From List By Value  name=addindex  hiddenTags
+    Select From List By Value  name=addindex  hiddenTags
     Click Element  css=.querywidget.queryvalue.multipleSelectionWidget
     Select Checkbox  css=.querywidget.queryvalue.multipleSelectionWidget input[value=${keyword}]
     Click Button  Save
