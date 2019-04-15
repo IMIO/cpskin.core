@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'docker-staging.imio.be/iasmartweb/test:110'
+            args '-v /etc/group:/etc/group:ro -v /etc/passwd:/etc/passwd:ro -v /var/lib/jenkins:/var/lib/jenkins'
+        }
+    }
     stages {
         stage('Build') {
             steps {
