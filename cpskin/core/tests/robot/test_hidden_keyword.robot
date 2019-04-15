@@ -29,6 +29,8 @@ Resource  plone/app/robotframework/selenium.robot
 
 Library  Remote  ${PLONE_URL}/RobotRemote
 
+Suite setup  Set Selenium speed  0.5s
+
 Test Setup  Run keywords  Open test browser
 Test Teardown  Close all browsers
 
@@ -68,7 +70,7 @@ a collection
     Open Add New Menu
     Click Link  collection
     Input Text  form-widgets-IDublinCore-title  ${title}
-    Select From List By Value  name=addindex  hiddenTags
+    # Select From List By Value  name=addindex  hiddenTags
     Click Button  Save
     Element Should Contain  css=.documentFirstHeading  ${title}
 
@@ -86,5 +88,4 @@ I set to the collection '${collection_title}' the search terms hidden tag '${key
 
 the collection '${collection_title}' should contain '${document_title}'
     Go to  ${PLONE_URL}/folder/${collection_title}
-    Sleep  1
     Element Should Contain  id=content  ${document_title}
