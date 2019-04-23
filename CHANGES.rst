@@ -4,6 +4,9 @@ Changelog
 0.13.9 (unreleased)
 -------------------
 
+- Avoid error when checking on Event class if Folderishtypes are installed
+  [laulaz]
+
 - Avoid error when show_day_and_month is set to True on a collection without
   events : WEB-3004
   [laulaz]

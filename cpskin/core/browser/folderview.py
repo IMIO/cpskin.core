@@ -12,7 +12,6 @@ from DateTime import DateTime
 from imio.media.browser import utils
 from plone import api
 from plone.app.contenttypes.browser.folder import FolderView as FoldV
-from plone.app.contenttypes.content import Event
 from plone.app.event.base import expand_events
 from plone.app.event.base import filter_and_resort
 from plone.app.event.base import RET_MODE_ACCESSORS
@@ -454,7 +453,7 @@ class FolderView(FoldV, CommonView):
                         event=None,
                         startend='start'):
         if event:
-            if not isinstance(event, Event):
+            if not IEvent.providedBy(event):
                 event = event.getObject()
             rs = RecurrenceSupport(event)
             occurences = [occ for occ in rs.occurrences(datetime.today())]
