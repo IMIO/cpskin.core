@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.9 (unreleased)
+0.13.9 (2019-04-24)
 -------------------
 
 - Avoid error when checking on Event class if Folderishtypes are installed
