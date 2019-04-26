@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.10 (unreleased)
+0.13.10 (2019-04-26)
 --------------------
 
 - Handle target blank links in sliders : WEB-3013
