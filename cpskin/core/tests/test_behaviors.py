@@ -116,6 +116,3 @@ class TestBehaviors(unittest.TestCase):
             self.document, "additional_searchable_text"
         )
         self.assertEqual(additional_searchable_text, "trash")
-        import ipdb
-
-        ipdb.set_trace()
