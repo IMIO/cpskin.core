@@ -4,7 +4,8 @@ Changelog
 0.13.10 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Handle target blank links in sliders : WEB-3013
+  [laulaz]
 
 
 0.13.9 (2019-04-24)

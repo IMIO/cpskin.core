@@ -333,7 +333,9 @@ class FolderView(FoldV, CommonView):
             animation = "fade";
             }
             $('.slider_multiple_link').click(function() {
-                window.location.href = $(this).attr('href');
+                var href = $(this).attr('href');
+                if ($(this).attr('target') == '_blank') window.open(href);
+                else window.location.href = href;
             });
             function SlideShow(autoplayslider, content_id) {
                 if ($('#slider-' + content_id).parents('.slider-unique-titre').length) {
