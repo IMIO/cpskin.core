@@ -4,7 +4,8 @@ Changelog
 0.13.11 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Release to readd package on devpi
+  [bsuttor]
 
 
 0.13.10 (2019-04-26)
