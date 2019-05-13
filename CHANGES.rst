@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.11 (unreleased)
+0.13.11 (2019-05-13)
 --------------------
 
 - Release to readd package on devpi
