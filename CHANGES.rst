@@ -4,6 +4,9 @@ Changelog
 0.13.12 (unreleased)
 --------------------
 
+- Don't display social-viewlet if there are no social links : WEB-3027
+  [laulaz]
+
 - Add body classes for header, content and footer blocs : WEB-3027
   [laulaz]
 

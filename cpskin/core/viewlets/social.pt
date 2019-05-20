@@ -1,7 +1,9 @@
-<div id="social-viewlet">
+<div id="social-viewlet"
+     tal:define="links view/getSocialLinks"
+     tal:condition="links">
   <ul class="social-list">
     <li class="social"
-        tal:repeat="link view/getSocialLinks">
+        tal:repeat="link links">
       <a tal:define="klass python: link[1]"
          tal:attributes="class string: ${klass};
                          href python: link[2];
