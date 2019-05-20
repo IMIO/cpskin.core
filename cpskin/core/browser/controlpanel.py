@@ -194,6 +194,17 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         setCollapseMinisiteMenu,
     )
 
+    def getShowFooterSitemap(self):
+        return self.settings.show_footer_sitemap
+
+    def setShowFooterSitemap(self, value):
+        self.settings.show_footer_sitemap = value
+
+    show_footer_sitemap = property(
+        getShowFooterSitemap,
+        setShowFooterSitemap,
+    )
+
 
 class CPSkinControlPanel(ControlPanelForm):
 

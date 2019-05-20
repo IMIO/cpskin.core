@@ -4,7 +4,8 @@ Changelog
 0.13.12 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Make footer sitemap optional. It will then be removed in the future : WEB-3027
+  [laulaz]
 
 
 0.13.11 (2019-05-13)

@@ -9,6 +9,10 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 class CPSkinFooterSitemapViewlet(ViewletBase):
     render = ViewPageTemplateFile('footersitemap.pt')
 
+    def showSiteMap(self):
+        return api.portal.get_registry_record(
+            'cpskin.core.interfaces.ICPSkinSettings.show_footer_sitemap')
+
     def createSiteMap(self):
         context = aq_inner(self.context)
         # take the 2 first levels of the site that respect the navigation

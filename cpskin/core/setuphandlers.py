@@ -530,6 +530,23 @@ def addCollapseMinisiteMenuToRegistry():
     records['cpskin.core.interfaces.ICPSkinSettings.collapse_minisite_menu'] = record  # noqa
 
 
+def addFooterSitemapToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if 'cpskin.core.interfaces.ICPSkinSettings.show_footer_sitemap' in records:  # noqa
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.show_footer_sitemap to registry')  # noqa
+    record = Record(field.Bool(title=_(u'Show footer sitemap'),
+                               description=_(u'Automatically generate sitemap footer'),
+                               required=False,
+                               default=True),
+                    value=True)
+    records['cpskin.core.interfaces.ICPSkinSettings.show_footer_sitemap'] = record  # noqa
+
+
 
 def set_googleapi_key():
     record_name = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'

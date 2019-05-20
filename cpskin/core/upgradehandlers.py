@@ -10,6 +10,7 @@ from cpskin.core.interfaces import IFolderViewSelectedContent
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
 from cpskin.core.setuphandlers import addCollapseMinisiteMenuToRegistry
+from cpskin.core.setuphandlers import addFooterSitemapToRegistry
 from cpskin.core.setuphandlers import addDescriptionOnThemesOptionToRegistry
 from cpskin.core.setuphandlers import addLoadPageMenuToRegistry
 from cpskin.core.setuphandlers import addMediaViewletOptionsToRegistry
@@ -187,6 +188,9 @@ def upgrade_registry_for_slogan(context):
 
 def upgrade_registry_for_minisite_menu(context):
     addCollapseMinisiteMenuToRegistry()
+
+def upgrade_registry_for_show_footer_sitemap(context):
+    addFooterSitemapToRegistry()
 
 def update_types(context):
     context.runImportStepFromProfile('profile-cpskin.core:default', 'typeinfo')
