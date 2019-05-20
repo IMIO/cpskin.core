@@ -74,6 +74,18 @@ class LayoutPolicy(base.LayoutPolicy):
         if not inTheme:
             body_class += ' section-notheme'
 
+        header_class = api.portal.get_registry_record(
+            'cpskin.core.interfaces.ICPSkinSettings.header_class'
+        )
+        if header_class:
+            body_class += ' {0}'.format(header_class)
+
+        content_columns_class = api.portal.get_registry_record(
+            'cpskin.core.interfaces.ICPSkinSettings.columns_class'
+        )
+        if content_columns_class:
+            body_class += ' {0}'.format(content_columns_class)
+
         minisite = self.request.get('cpskin_minisite', None)
         if minisite:
             if minisite.is_in_minisite_mode:

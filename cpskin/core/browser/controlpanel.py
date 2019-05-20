@@ -205,6 +205,22 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         setShowFooterSitemap,
     )
 
+    def getHeaderClass(self):
+        return self.settings.header_class
+
+    def setHeaderClass(self, value):
+        self.settings.header_class = value
+
+    header_class = property(getHeaderClass, setHeaderClass)
+
+    def getColumnsClass(self):
+        return self.settings.columns_class
+
+    def setColumnsClass(self, value):
+        self.settings.columns_class = value
+
+    columns_class = property(getColumnsClass, setColumnsClass)
+
 
 class CPSkinControlPanel(ControlPanelForm):
 

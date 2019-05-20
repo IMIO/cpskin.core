@@ -172,6 +172,32 @@ class ICPSkinSettings(Interface):
         default=True
     )
 
+    header_class = schema.Choice(
+        title=_(u'Header class'),
+        description=_(u'CSS class that will be applied to #portal-header.'),
+        required=False,
+        values=[
+            u'header-1',
+            u'header-2',
+            u'header-3',
+            u'header-4',
+        ],
+        default=None
+    )
+
+    columns_class = schema.Choice(
+        title=_(u'Content columns class'),
+        description=_(u'CSS class that will be applied to #portal-columns.'),
+        required=False,
+        values=[
+            u'content-1',
+            u'content-2',
+            u'content-3',
+            u'content-4',
+        ],
+        default=None
+    )
+
 
 class IVideoCollection(Interface):
     """

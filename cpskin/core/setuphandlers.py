@@ -547,6 +547,43 @@ def addFooterSitemapToRegistry():
     records['cpskin.core.interfaces.ICPSkinSettings.show_footer_sitemap'] = record  # noqa
 
 
+def addContentClassesToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if 'cpskin.core.interfaces.ICPSkinSettings.header_class' in records:  # noqa
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.header_class to registry')  # noqa
+    record = Record(field.Choice(title=_(u'Header class'),
+                                 description=_(u'CSS class that will be applied to #portal-header.'),
+                                 required=False,
+                                 values=[
+                                     u'header-1',
+                                     u'header-2',
+                                     u'header-3',
+                                     u'header-4',
+                                 ],
+                                 default=None),
+                    value=None)
+    records['cpskin.core.interfaces.ICPSkinSettings.header_class'] = record  # noqa
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.columns_class to registry')  # noqa
+    record = Record(field.Choice(title=_(u'Content columns class'),
+                                 description=_(u'CSS class that will be applied to #portal-columns.'),
+                                 required=False,
+                                 values=[
+                                     u'content-1',
+                                     u'content-2',
+                                     u'content-3',
+                                     u'content-4',
+                                 ],
+                                 default=None),
+                    value=None)
+    records['cpskin.core.interfaces.ICPSkinSettings.columns_class'] = record  # noqa
+
 
 def set_googleapi_key():
     record_name = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'
