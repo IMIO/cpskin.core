@@ -167,7 +167,7 @@ class ICPSkinSettings(Interface):
 
     show_footer_sitemap = schema.Bool(
         title=_(u'Show footer sitemap'),
-        description=_(u'Automatically generate sitemap footer'),
+        description=_(u'Automatically generate sitemap footer.'),
         required=False,
         default=True
     )
