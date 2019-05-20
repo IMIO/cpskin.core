@@ -4,6 +4,9 @@ Changelog
 0.13.12 (unreleased)
 --------------------
 
+- Add body class for minisite (independant of mode)
+  [laulaz]
+
 - Make footer sitemap optional. It will then be removed in the future : WEB-3027
   [laulaz]
 
