@@ -221,6 +221,14 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
     columns_class = property(getColumnsClass, setColumnsClass)
 
+    def getFooterClass(self):
+        return self.settings.footer_class
+
+    def setFooterClass(self, value):
+        self.settings.footer_class = value
+
+    footer_class = property(getFooterClass, setFooterClass)
+
 
 class CPSkinControlPanel(ControlPanelForm):
 

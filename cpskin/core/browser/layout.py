@@ -86,6 +86,12 @@ class LayoutPolicy(base.LayoutPolicy):
         if content_columns_class:
             body_class += ' {0}'.format(content_columns_class)
 
+        footer_class = api.portal.get_registry_record(
+            'cpskin.core.interfaces.ICPSkinSettings.footer_class'
+        )
+        if footer_class:
+            body_class += ' {0}'.format(footer_class)
+
         minisite = self.request.get('cpskin_minisite', None)
         if minisite:
             if minisite.is_in_minisite_mode:

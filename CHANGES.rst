@@ -4,7 +4,7 @@ Changelog
 0.13.12 (unreleased)
 --------------------
 
-- Add body classes for header and content blocs : WEB-3027
+- Add body classes for header, content and footer blocs : WEB-3027
   [laulaz]
 
 - Add body class for minisite (independant of mode)

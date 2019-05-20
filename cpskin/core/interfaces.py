@@ -173,8 +173,8 @@ class ICPSkinSettings(Interface):
     )
 
     header_class = schema.Choice(
-        title=_(u'Header class'),
-        description=_(u'CSS class that will be applied to #portal-header.'),
+        title=_(u'Header related class'),
+        description=_(u'CSS header class that will be applied to body.'),
         required=False,
         values=[
             u'header-1',
@@ -186,14 +186,27 @@ class ICPSkinSettings(Interface):
     )
 
     columns_class = schema.Choice(
-        title=_(u'Content columns class'),
-        description=_(u'CSS class that will be applied to #portal-columns.'),
+        title=_(u'Content columns related class'),
+        description=_(u'CSS content columns class that will be applied to body.'),
         required=False,
         values=[
             u'content-1',
             u'content-2',
             u'content-3',
             u'content-4',
+        ],
+        default=None
+    )
+
+    footer_class = schema.Choice(
+        title=_(u'Footer related class'),
+        description=_(u'CSS footer class that will be applied to body.'),
+        required=False,
+        values=[
+            u'footer-1',
+            u'footer-2',
+            u'footer-3',
+            u'footer-4',
         ],
         default=None
     )

@@ -44,7 +44,7 @@
     <!-- Upgrade steps -->
 
     <genericsetup:upgradeStep
-        title="CPSKIN Core: upgrade to v57: Add header_class and columns_class options"
+        title="CPSKIN Core: upgrade to v57: Add header, columns and footer options"
         source="56"
         destination="57"
         handler=".upgradehandlers.upgrade_registry_for_content_classes"

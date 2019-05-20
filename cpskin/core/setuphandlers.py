@@ -556,8 +556,8 @@ def addContentClassesToRegistry():
 
     logger.info(
         'Adding cpskin.core.interfaces.ICPSkinSettings.header_class to registry')  # noqa
-    record = Record(field.Choice(title=_(u'Header class'),
-                                 description=_(u'CSS class that will be applied to #portal-header.'),
+    record = Record(field.Choice(title=_(u'Header related class'),
+                                 description=_(u'CSS header class that will be applied to body.'),  # noqa
                                  required=False,
                                  values=[
                                      u'header-1',
@@ -567,12 +567,12 @@ def addContentClassesToRegistry():
                                  ],
                                  default=None),
                     value=None)
-    records['cpskin.core.interfaces.ICPSkinSettings.header_class'] = record  # noqa
+    records['cpskin.core.interfaces.ICPSkinSettings.header_class'] = record
 
     logger.info(
         'Adding cpskin.core.interfaces.ICPSkinSettings.columns_class to registry')  # noqa
-    record = Record(field.Choice(title=_(u'Content columns class'),
-                                 description=_(u'CSS class that will be applied to #portal-columns.'),
+    record = Record(field.Choice(title=_(u'Content columns related class'),
+                                 description=_(u'CSS content columns class that will be applied to body.'),  # noqa
                                  required=False,
                                  values=[
                                      u'content-1',
@@ -582,7 +582,22 @@ def addContentClassesToRegistry():
                                  ],
                                  default=None),
                     value=None)
-    records['cpskin.core.interfaces.ICPSkinSettings.columns_class'] = record  # noqa
+    records['cpskin.core.interfaces.ICPSkinSettings.columns_class'] = record
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.footer_class to registry')  # noqa
+    record = Record(field.Choice(title=_(u'Footer related class'),
+                                 description=_(u'CSS footer class that will be applied to body.'),  # noqa
+                                 required=False,
+                                 values=[
+                                     u'footer-1',
+                                     u'footer-2',
+                                     u'footer-3',
+                                     u'footer-4',
+                                 ],
+                                 default=None),
+                    value=None)
+    records['cpskin.core.interfaces.ICPSkinSettings.footer_class'] = record
 
 
 def set_googleapi_key():
