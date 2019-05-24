@@ -213,6 +213,14 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
     header_class = property(getHeaderClass, setHeaderClass)
 
+    def getNavigationClass(self):
+        return self.settings.navigation_class
+
+    def setNavigationClass(self, value):
+        self.settings.navigation_class = value
+
+    navigation_class = property(getNavigationClass, setNavigationClass)
+
     def getColumnsClass(self):
         return self.settings.columns_class
 

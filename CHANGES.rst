@@ -7,7 +7,7 @@ Changelog
 - Don't display social-viewlet if there are no social links : WEB-3027
   [laulaz]
 
-- Add body classes for header, content and footer blocs : WEB-3027
+- Add body classes for header, navigation, content and footer blocs : WEB-3027
   [laulaz]
 
 - Add body class for minisite (independant of mode)

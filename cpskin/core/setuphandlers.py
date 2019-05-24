@@ -585,6 +585,22 @@ def addContentClassesToRegistry():
     records['cpskin.core.interfaces.ICPSkinSettings.columns_class'] = record
 
     logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.navigation_class to registry')  # noqa
+    record = Record(field.Choice(title=_(u'Navigation related class'),
+                                 description=_(u'CSS navigation class that will be applied to body.'),  # noqa
+                                 required=False,
+                                 values=[
+                                     u'navigation-1',
+                                     u'navigation-2',
+                                     u'navigation-3',
+                                     u'navigation-4',
+                                 ],
+                                 default=None),
+                    value=None)
+    records['cpskin.core.interfaces.ICPSkinSettings.navigation_class'] = record
+
+
+    logger.info(
         'Adding cpskin.core.interfaces.ICPSkinSettings.footer_class to registry')  # noqa
     record = Record(field.Choice(title=_(u'Footer related class'),
                                  description=_(u'CSS footer class that will be applied to body.'),  # noqa

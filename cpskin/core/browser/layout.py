@@ -80,6 +80,12 @@ class LayoutPolicy(base.LayoutPolicy):
         if header_class:
             body_class += ' {0}'.format(header_class)
 
+        navigation_class = api.portal.get_registry_record(
+            'cpskin.core.interfaces.ICPSkinSettings.navigation_class'
+        )
+        if navigation_class:
+            body_class += ' {0}'.format(navigation_class)
+
         content_columns_class = api.portal.get_registry_record(
             'cpskin.core.interfaces.ICPSkinSettings.columns_class'
         )

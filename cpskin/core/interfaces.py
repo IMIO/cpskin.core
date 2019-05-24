@@ -198,6 +198,19 @@ class ICPSkinSettings(Interface):
         default=None
     )
 
+    navigation_class = schema.Choice(
+        title=_(u'Navigation related class'),
+        description=_(u'CSS navigation class that will be applied to body.'),
+        required=False,
+        values=[
+            u'navigation-1',
+            u'navigation-2',
+            u'navigation-3',
+            u'navigation-4',
+        ],
+        default=None
+    )
+
     footer_class = schema.Choice(
         title=_(u'Footer related class'),
         description=_(u'CSS footer class that will be applied to body.'),
