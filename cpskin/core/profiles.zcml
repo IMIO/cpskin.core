@@ -537,14 +537,4 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-
-    <!--genericsetup:upgradeStep
-        title="CPSKIN Core: Install front-page"
-        description="Upgrade step for CPSKIN Core install front-page"
-        handler=".upgradehandlers.upgrade_front_page"
-        source="*"
-        destination="*"
-        profile="cpskin.core:init"
-        /-->
-
 </configure>
