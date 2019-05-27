@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.12 (unreleased)
+0.13.12 (2019-05-27)
 --------------------
 
 - Don't display social-viewlet if there are no social links : WEB-3027
