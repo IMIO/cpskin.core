@@ -4,7 +4,8 @@ Changelog
 0.13.13 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Get related contact title in unicode to fix WEB-3017.
+  [bsuttor]
 
 
 0.13.12 (2019-05-27)
