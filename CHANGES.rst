@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.13 (unreleased)
+0.13.13 (2019-06-03)
 --------------------
 
 - Get related contact title in unicode to fix WEB-3017.
