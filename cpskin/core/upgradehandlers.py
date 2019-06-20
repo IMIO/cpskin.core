@@ -22,6 +22,7 @@ from cpskin.core.setuphandlers import addSliderTypeToRegistry
 from cpskin.core.setuphandlers import addSubMenuPersistenceToRegistry
 from cpskin.core.setuphandlers import addTopMenuContentsToRegistry
 from cpskin.core.setuphandlers import addTopMenuLeadImageToRegistry
+from cpskin.core.setuphandlers import addPersonContactCoreFallbackToRegistry
 from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
@@ -257,6 +258,8 @@ def upgrade_registry_for_top_menu(context):
     addTopMenuContentsToRegistry()
     addTopMenuLeadImageToRegistry()
 
+def upgrade_registry_for_contact_core_fallback(context):
+    addPersonContactCoreFallbackToRegistry()
 
 def migrate_a_la_une_sliders(context):
     brains = api.content.find(

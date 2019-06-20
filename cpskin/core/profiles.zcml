@@ -42,6 +42,15 @@
         />
 
     <!-- Upgrade steps -->
+ 
+    <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v58: Add registry for contact core fallback"
+        description="Add records for contact core fallback"
+        handler=".upgradehandlers.upgrade_registry_for_contact_core_fallback"
+        source="57"
+        destination="58"
+        profile="cpskin.core:default"
+        />
 
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v57: Add header, navigation, columns and footer options"
