@@ -120,6 +120,17 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         setShowLeadimageInActionMenu,
     )
 
+    def getPersonContactCoreFallback(self):
+        return self.settings.person_contact_core_fallback
+
+    def setPersonContactCoreFallback(self, value):
+        self.settings.person_contact_core_fallback = value
+
+    person_contact_core_fallback = property(
+        getPersonContactCoreFallback,
+        setPersonContactCoreFallback,
+    )
+
     def getShowSlogan(self):
         return self.settings.show_slogan
 

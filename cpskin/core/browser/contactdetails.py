@@ -8,8 +8,10 @@ Created by mpeeters
 """
 
 from collective.contact.core.browser.contactable import ContactDetails
+from collective.contact.core.interfaces  import IContactable
 from collective.geo.geographer.geoview import GeoView
 from cpskin.core import utils
+from plone import api
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ua_parser import user_agent_parser
@@ -29,6 +31,17 @@ class ContactDetailsView(BrowserView, ContactDetails):
     def __call__(self):
         self.update()
         return super(ContactDetailsView, self).__call__()
+
+    def update(self):
+        fallback = self.is_contact_core_fallback()
+        contactable = IContactable(self.context)
+        #noFallbackContactDetails or fallback.
+        self.contact_details = contactable.get_contact_details(fallback=fallback)
+
+    def is_contact_core_fallback(self):
+        portal_registry = api.portal.get_tool('portal_registry')
+        return portal_registry['cpskin.core.interfaces.ICPSkinSettings.person_contact_core_fallback']  # noqa
+
 
     @property
     def phones(self):

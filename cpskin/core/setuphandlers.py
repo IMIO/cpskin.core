@@ -412,6 +412,23 @@ def addTopMenuLeadImageToRegistry():
     records['cpskin.core.interfaces.ICPSkinSettings.show_leadimage_in_action_menu'] = record  # noqa
 
 
+def addPersonContactCoreFallbackToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if 'cpskin.core.interfaces.ICPSkinSettings.person_contact_core_fallback' in records:  # noqa
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.person_contact_core_fallback to registry')  # noqa
+    record = Record(field.Bool(title=_(u'Contact properties fallback?'),
+                               description=_(u'Do you want than contact properties fallback? Sample :If no tel on a person, so we get phone thanks to person\'f function.'),  # noqa
+                               required=False,
+                               default=False),
+                    value=False)
+    records['cpskin.core.interfaces.ICPSkinSettings.person_contact_core_fallback'] = record  # noqa
+
+
 def addTopMenuContentsToRegistry():
     registry = getUtility(IRegistry)
     records = registry.records

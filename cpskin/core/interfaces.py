@@ -109,6 +109,13 @@ class ICPSkinSettings(Interface):
         default=False
     )
 
+    person_contact_core_fallback = schema.Bool(
+        title=_(u'Contact properties fallback?'),
+        description=_(u'Do you want than contact properties fallback? Sample :If no tel on a person, so we get phone thanks to person\'f function.'),  # noqa
+        required=False,
+        default=False
+    )
+
     show_slogan = schema.Bool(
         title=_(u'Show slogan with banner'),
         description=_(u'Show banner title and description as homepage slogan.'),  # noqa
