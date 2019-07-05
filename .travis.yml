@@ -1,3 +1,4 @@
+dist: bionic
 language: python
 addons:
   firefox: "62.0.3"
