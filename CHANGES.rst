@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.14 (unreleased)
+0.13.14 (2019-07-08)
 --------------------
 
 - Let town decide if contact.core person properties fallback out of person's function or not. Add new registry params and upgrade steps.
