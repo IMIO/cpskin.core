@@ -86,6 +86,7 @@ class CPSkinNavtreeStrategy(NavtreeStrategy):
 
 class CPSkinRenderer(Renderer):
     _template = ViewPageTemplateFile('navigation.pt')
+    recurse = ViewPageTemplateFile('navigation_recurse.pt')
 
     @memoize
     def getNavRootPath(self):
@@ -98,3 +99,20 @@ class CPSkinRenderer(Renderer):
             root = str(root)
 
         return getRootPath(self.context, currentFolderOnly, topLevel, root)
+
+    def createNavTree(self):
+        data = self.getNavTree()
+        for item in data.get('children'):
+            if item.get('portal_type') == 'Link':
+                current_user = api.user.get_current()
+                obj_link = item.get('item').getObject()
+                can_edit = current_user.has_permission('Edit', obj_link)
+                item['target_blank'] = '_blank' if getattr(obj_link, 'target_blank', False) and not can_edit else '_self'
+        bottomLevel = self.data.bottomLevel or 0
+
+        if bottomLevel < 0:
+            # Special case where navigation tree depth is negative
+            # meaning that the admin does not want the listing to be displayed
+            return self.recurse([], level=1, bottomLevel=bottomLevel)
+        else:
+            return self.recurse(children=data.get('children', []), level=1, bottomLevel=bottomLevel)
