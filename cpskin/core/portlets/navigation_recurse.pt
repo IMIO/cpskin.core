@@ -8,7 +8,7 @@
 <li tal:define="show_children   node/show_children;
                 children        node/children;
                 item_url        node/getURL;
-		item_target     node/target_blank | nothing;
+                item_target     node/target_blank | nothing;
                 item_remote_url node/getRemoteUrl;
                 use_remote_url  node/useRemoteUrl | nothing;
                 item_icon       nocall:node/item_icon;
