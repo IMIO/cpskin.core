@@ -96,6 +96,17 @@
       permission="zope.Public"
       />
 
+  <configure package="plone.app.contenttypes.browser">
+    <browser:page
+        for="plone.dexterity.interfaces.IDexterityContainer"
+        class="cpskin.core.browser.folder.CpskinFolderView"
+        layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+        name="full_view"
+        template="templates/full_view.pt"
+        permission="zope2.View"
+        />
+  </configure>
+
   <browser:page
       for="*"
       name="plone_layout"

@@ -4,7 +4,11 @@ from plone import api
 from plone.app.contenttypes.browser.folder import FolderView
 
 
-class CpskinNavigationView(FolderView):
+class CpskinFolderView(FolderView):
+    def __init__(self, context, request):
+        request.set("limit_display", 100)
+        super(CpskinFolderView, self).__init__(context, request)
+
 
 class CpskinNavigationView(FolderView):
     def menus(self):
