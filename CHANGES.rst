@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.15 (unreleased)
+0.13.15 (2019-07-19)
 --------------------
 
 - Override navigation_recurse template to manage target_blank link behavior in (4th level) menu.
