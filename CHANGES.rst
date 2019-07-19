@@ -4,7 +4,8 @@ Changelog
 0.13.15 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Override navigation_recurse template to manage target_blank link behavior in (4th level) menu.
+  [boulch]
 
 
 0.13.14 (2019-07-08)
