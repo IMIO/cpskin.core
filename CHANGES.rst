@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.16 (unreleased)
+0.13.16 (2019-07-22)
 --------------------
 
 - Override FolderView to set limit_display to 100.
