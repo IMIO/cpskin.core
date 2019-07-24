@@ -4,7 +4,8 @@ Changelog
 0.13.17 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Override folderish viewlet (method available) to avoid printing data structure in folderish element view.
+  [boulch]
 
 
 0.13.16 (2019-07-22)
