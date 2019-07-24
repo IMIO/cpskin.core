@@ -44,6 +44,15 @@
     <!-- Upgrade steps -->
  
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v59: Add registry for new document view (folderish)"
+        description="Add new view on folderish document (but children items aren't print below document)"
+        handler=".upgradehandlers.update_types"
+        source="58"
+        destination="59"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v58: Add registry for contact core fallback"
         description="Add records for contact core fallback"
         handler=".upgradehandlers.upgrade_registry_for_contact_core_fallback"
