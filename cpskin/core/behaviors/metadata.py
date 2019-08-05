@@ -106,9 +106,10 @@ alsoProvides(IHiddenTags, IFormFieldProvider)
 alsoProvides(IISearchTags, IFormFieldProvider)
 alsoProvides(IIAmTags, IFormFieldProvider)
 
-
-# class IUseKeywordHomepage(model.Schema):
-#     pass
+# This is an old interface but there are always some objects that were registered with it (in Florenne) so when we want to register some new contact (with linked contact), sometimes that crash.
+# SUP-7077
+class IUseKeywordHomepage(model.Schema):
+    pass
 
 
 @provider(IFormFieldProvider)
