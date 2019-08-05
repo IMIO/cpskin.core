@@ -4,7 +4,8 @@ Changelog
 0.13.17 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- uncomment IUseKeywordHomepage interface (Florenne "hack" for linked contact).
+  [boulch]
 
 
 0.13.16 (2019-07-22)
