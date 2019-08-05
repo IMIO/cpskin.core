@@ -22,7 +22,7 @@
 
     <metal:content-core fill-slot="content-core">
       <metal:content-core define-macro="content-core">
-        <div id="parent-fieldname-text" tal:condition="context/text" tal:content="structure python:context.text.output_relative_to(view.context)"/>
+        <div id="parent-fieldname-text" tal:condition="context/text" tal:content="structure python:view.extra_output_and_no_folderish()"/>
       </metal:content-core>
     </metal:content-core>
 

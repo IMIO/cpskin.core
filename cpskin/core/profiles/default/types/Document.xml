@@ -2,5 +2,6 @@
 <object name="Document">
   <property name="view_methods" purge="False">
     <element value="document_with_description" />
+    <element value="document_simple" />
   </property>
 </object>

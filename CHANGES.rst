@@ -4,6 +4,9 @@ Changelog
 0.13.17 (unreleased)
 --------------------
 
+- Override folderish viewlet (method available) to avoid printing data structure in folderish element view.
+  [boulch]
+ 
 - uncomment IUseKeywordHomepage interface (Florenne "hack" for linked contact).
   [boulch]
 

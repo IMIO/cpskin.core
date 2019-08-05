@@ -65,6 +65,14 @@
     permission="zope2.View"
     />
 
+  <browser:viewlet
+    name="collective.folderishtypes.listing_viewlet"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+    class=".folderish.FolderishViewlet"
+    for="collective.folderishtypes.interfaces.IFolderishType"
+    layer="..interfaces.ICPSkinCoreLayer"
+    permission="zope2.View"
+    />
 
 
   <!-- Other browser pages -->
@@ -377,6 +385,7 @@
   </configure>
 
   <browser:page
+      class="cpskin.core.browser.document.DescriptionView"
       name="document_with_description"
       for="plone.app.contenttypes.interfaces.IDocument"
       template="templates/document_with_description.pt"
