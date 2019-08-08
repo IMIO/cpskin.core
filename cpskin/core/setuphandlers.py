@@ -64,7 +64,7 @@ def installCore(context):
                                     container=portal)
         footer.setTitle(footer_name)
 
-    configCollectiveQucikupload(portal)
+    configCollectiveQucikupload()
 
     addLoadPageMenuToRegistry()
     addAutoPlaySliderToRegistry()
@@ -257,7 +257,7 @@ def addImageFromFile(portal, fileName):
         image.reindexObject()
 
 
-def configCollectiveQucikupload(portal):
+def configCollectiveQucikupload():
     ptool = api.portal.get_tool('portal_properties')
     qu_props = ptool.get('quickupload_properties')
     if not qu_props.hasProperty('show_upload_action'):
@@ -268,6 +268,10 @@ def configCollectiveQucikupload(portal):
         qu_props._setProperty('sim_upload_limit', 1, 'int')
     else:
         qu_props.sim_upload_limit = 1
+    if not qu_props.hasProperty('size_limit'):
+        qu_props._setProperty('size_limit', 30000, 'int')
+    else:
+        qu_props.sim_upload_limit = 30000
 
 
 def addLoadPageMenuToRegistry():

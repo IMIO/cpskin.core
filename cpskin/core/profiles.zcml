@@ -42,7 +42,15 @@
         />
 
     <!-- Upgrade steps -->
- 
+    <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v60: Set some properties (ex: file size) in collective.quickupload"
+        description="Set some properties (ex: file size) in collective.quickupload"
+        handler=".upgradehandlers.set_quickupload_properties"
+        source="59"
+        destination="60"
+        profile="cpskin.core:default"
+        />
+
     <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v59: Add registry for new document view (folderish)"
         description="Add new view on folderish document (but children items aren't print below document)"

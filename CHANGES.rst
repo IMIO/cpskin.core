@@ -4,7 +4,8 @@ Changelog
 0.13.18 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Define a default file size limit in collective.quickupload product. Make upgradestep (set_quickupload_properties)
+  [boulch]
 
 
 0.13.17 (2019-08-05)
