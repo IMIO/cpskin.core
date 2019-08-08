@@ -24,6 +24,7 @@ from cpskin.core.setuphandlers import addTopMenuContentsToRegistry
 from cpskin.core.setuphandlers import addTopMenuLeadImageToRegistry
 from cpskin.core.setuphandlers import addPersonContactCoreFallbackToRegistry
 from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
+from cpskin.core.setuphandlers import configCollectiveQucikupload
 from cpskin.core.utils import add_behavior
 from cpskin.core.utils import remove_behavior
 from cpskin.locales import CPSkinMessageFactory as _
@@ -507,3 +508,6 @@ def upgrade_footer_minisite(context):
 def upgrade_css_js_registry(context):
     context.runImportStepFromProfile("profile-cpskin.core:default", "cssregistry")
     context.runImportStepFromProfile("profile-cpskin.core:default", "jsregistry")
+
+def set_quickupload_properties(context):
+    configCollectiveQucikupload()
