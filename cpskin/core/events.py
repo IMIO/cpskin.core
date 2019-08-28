@@ -31,6 +31,10 @@ def apply_crops_after_modify(obj, event):
         https://github.com/collective/plone.app.imagecropping/issues/21
     To fix this, we need to re-generate all the crops of an object just after
     it's modification.
+
+    # if croputils.image_field_names() = ['image', 'image_banner'] and crops contains {'image_banner':...
+    # So scalename value is '' and generate error.
+    # FIX : #fix
     """
     crops = IAnnotations(obj).get(PAI_STORAGE_KEY)
     if not crops:
@@ -42,6 +46,9 @@ def apply_crops_after_modify(obj, event):
         for crop_key in crops:
             if crop_key.startswith(fieldname):
                 scalename = crop_key[len(fieldname) + 1:]
+                #fix
+                if scalename == '' and '_' in crop_key:
+                    scalename = crop_key.split('_').pop()
                 cropper._crop(fieldname, scalename, crops[crop_key])
 
 
