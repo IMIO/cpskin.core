@@ -5,6 +5,7 @@ Changelog
 --------------------
 
 - Define a default file size limit in collective.quickupload product. Make upgradestep (set_quickupload_properties)
+- Fix a bug when croputils.image_field_names() contains exactly a same entry than a key in crops
   [boulch]
 
 
