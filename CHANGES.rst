@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.18 (unreleased)
+0.13.18 (2019-08-28)
 --------------------
 
 - Define a default file size limit in collective.quickupload product. Make upgradestep (set_quickupload_properties)
