@@ -32,9 +32,9 @@ def apply_crops_after_modify(obj, event):
     To fix this, we need to re-generate all the crops of an object just after
     it's modification.
 
-    # if croputils.image_field_names() = ['image', 'image_banner'] and crops contains {'image_banner':...
-    # So scalename value is '' and generate error.
-    # FIX : #fix
+    We also need to handle fieldnames conflicting with :
+      other field name + _ + scale name
+      (ex : 'image_banner' field and 'image' field with 'banner' scale)
     """
     crops = IAnnotations(obj).get(PAI_STORAGE_KEY)
     if not crops:
@@ -44,11 +44,8 @@ def apply_crops_after_modify(obj, event):
     cropper = getMultiAdapter((obj, request), name='crop-image')
     for fieldname in croputils.image_field_names():
         for crop_key in crops:
-            if crop_key.startswith(fieldname):
+            if crop_key.startswith(fieldname) and len(crop_key) > len(fieldname):
                 scalename = crop_key[len(fieldname) + 1:]
-                #fix
-                if scalename == '' and '_' in crop_key:
-                    scalename = crop_key.split('_').pop()
                 cropper._crop(fieldname, scalename, crops[crop_key])
 
 

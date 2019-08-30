@@ -4,7 +4,8 @@ Changelog
 0.13.19 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Handle conflicting image fields / scales more robust in crops generation
+  [laulaz]
 
 
 0.13.18 (2019-08-28)
