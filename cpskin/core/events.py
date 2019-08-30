@@ -45,6 +45,8 @@ def apply_crops_after_modify(obj, event):
     for fieldname in croputils.image_field_names():
         for crop_key in crops:
             if crop_key.startswith(fieldname) and len(crop_key) > len(fieldname):
+                if crop_key[len(fieldname)] != "_":
+                    continue
                 scalename = crop_key[len(fieldname) + 1:]
                 cropper._crop(fieldname, scalename, crops[crop_key])
 
