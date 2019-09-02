@@ -48,7 +48,11 @@ def apply_crops_after_modify(obj, event):
                 if crop_key[len(fieldname)] != "_":
                     continue
                 scalename = crop_key[len(fieldname) + 1:]
-                cropper._crop(fieldname, scalename, crops[crop_key])
+                try:
+                    cropper._crop(fieldname, scalename, crops[crop_key])
+                except KeyError:
+                    # Handles special cases with field / scales collisions
+                    continue
 
 
 def checkMinisites(event):
