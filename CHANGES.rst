@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.19 (unreleased)
+0.13.19 (2019-09-04)
 --------------------
 
 - Handle conflicting image fields / scales more robust in crops generation
