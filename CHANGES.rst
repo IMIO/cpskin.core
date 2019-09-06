@@ -4,7 +4,9 @@ Changelog
 0.13.20 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add new field (image_header) in eventview behavior.
+- Update fields descriptions in eventview behavior.
+  [boulch]
 
 
 0.13.19 (2019-09-04)
