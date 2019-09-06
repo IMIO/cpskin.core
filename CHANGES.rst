@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.20 (unreleased)
+0.13.20 (2019-09-06)
 --------------------
 
 - Add new field (image_header) in eventview behavior.
