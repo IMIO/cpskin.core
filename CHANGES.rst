@@ -4,6 +4,9 @@ Changelog
 0.13.21 (unreleased)
 --------------------
 
+- Change in site_properties : Add/authorize document in default_page_types
+  [boulch]
+
 - Fix wrong related contacts inherited from parent : WEB-3078
   [laulaz]
 

@@ -16,6 +16,9 @@
    <element value="Site Administrator"/>
    <element value="Portlets Manager"/>
   </property>
+  <property name="default_page_types" purge="False">
+   <element value="Document"/>
+  </property>
  </object>
 
  <!-- <object name="cli_properties" meta_type="Plone Property Sheet">

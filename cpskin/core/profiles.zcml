@@ -43,6 +43,14 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+      title="CPSKIN Core: upgrade to v61: Change in site_properties : Add/authorize document in default_page_types"
+      source="60"
+      destination="61"
+      handler=".upgradehandlers.upgrade_add_default_page_types_document"
+      profile="cpskin.core:default"
+    />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v60: Set some properties (ex: file size) in collective.quickupload"
         description="Set some properties (ex: file size) in collective.quickupload"
         handler=".upgradehandlers.set_quickupload_properties"

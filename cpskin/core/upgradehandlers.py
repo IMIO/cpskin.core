@@ -485,6 +485,11 @@ def upgrade_add_specific_typesUseViewActionInListings(context):
     site_properties.typesUseViewActionInListings = ("File", "Image")
 
 
+def upgrade_add_default_page_types_document(context):
+    site_properties = api.portal.get_tool("portal_properties").site_properties
+    site_properties.default_page_types = ("Topic", "FormFolder", "Document")
+
+
 def upgrade_limit_plone_site_portal_type(context):
     portal_types = api.portal.get_tool("portal_types")
     types = ["Plone Site", "LRF"]
