@@ -47,7 +47,7 @@ class RelatedContactsViewlet(common.ViewletBase):
     ignore_fields = ("title",)
 
     def __init__(
-        self, context, request, view, manager=None, field=[], selected=[]
+        self, context, request, view, manager=None, field="", selected=""
     ):  # noqa
         super(RelatedContactsViewlet, self).__init__(context, request, view, manager)
         self.field = field
