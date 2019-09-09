@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_base
 from collective.contact.core.browser.address import get_address
 from collective.contact.core.interfaces import IContactable
 from collective.geo.json.browser.jsonview import get_marker_image
@@ -12,6 +13,7 @@ from plone.dexterity.utils import safe_utf8
 from plone.outputfilters.filters.resolveuid_and_caption import (
     ResolveUIDAndCaptionFilter,
 )  # noqa
+from Products.CMFPlone.utils import base_hasattr
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from pygeoif.geometry import as_shape
 
@@ -55,8 +57,7 @@ class RelatedContactsViewlet(common.ViewletBase):
         self.pc = api.portal.get_tool("portal_catalog")
 
     def available(self):
-        contacts = getattr(self.context, self.field, None)
-        return bool(contacts)
+        return bool(base_hasattr(self.context, self.field))
 
     @property
     def selected_fields(self):
@@ -219,10 +220,11 @@ class RelatedContactsMapViewlet(RelatedContactsViewlet):
         )
 
     def available(self):
-        see_map = getattr(self.context, "see_map", False)
+        context = aq_base(self.context)
+        see_map = getattr(context, "see_map", False)
         empty_content = True
         for field in self.fields:
-            if len(getattr(self.context, field, [])) > 0:
+            if len(getattr(context, field, [])) > 0:
                 empty_content = False
         return see_map and not empty_content
 

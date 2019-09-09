@@ -4,7 +4,8 @@ Changelog
 0.13.21 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix wrong related contacts inherited from parent : WEB-3078
+  [laulaz]
 
 
 0.13.20 (2019-09-06)
