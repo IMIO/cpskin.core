@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.22 (unreleased)
+0.13.22 (2019-09-09)
 --------------------
 
 - Fix related contact viewlet condition
