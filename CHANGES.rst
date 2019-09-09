@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.21 (unreleased)
+0.13.21 (2019-09-09)
 --------------------
 
 - Change in site_properties : Add/authorize document in default_page_types
