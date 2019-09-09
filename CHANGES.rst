@@ -4,7 +4,8 @@ Changelog
 0.13.22 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix related contact viewlet condition
+  [laulaz]
 
 
 0.13.21 (2019-09-09)

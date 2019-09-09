@@ -13,7 +13,6 @@ from plone.dexterity.utils import safe_utf8
 from plone.outputfilters.filters.resolveuid_and_caption import (
     ResolveUIDAndCaptionFilter,
 )  # noqa
-from Products.CMFPlone.utils import base_hasattr
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from pygeoif.geometry import as_shape
 
@@ -57,7 +56,8 @@ class RelatedContactsViewlet(common.ViewletBase):
         self.pc = api.portal.get_tool("portal_catalog")
 
     def available(self):
-        return bool(base_hasattr(self.context, self.field))
+        context = aq_base(self.context)
+        return bool(getattr(context, self.field, None))
 
     @property
     def selected_fields(self):
