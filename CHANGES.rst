@@ -4,6 +4,9 @@ Changelog
 0.13.23 (unreleased)
 --------------------
 
+- Make taxonomies and richtext fields of organization searchable : WEB-2940
+  [laulaz]
+
 - Fix indexers for document / file / link content types : WEB-2940
   Usage of collective.dexteritytextindexer avoided original indexing features
   like body text, file content, ...

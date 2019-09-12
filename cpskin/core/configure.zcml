@@ -76,6 +76,8 @@
 
   <adapter factory=".indexer.FileExtender" name="IFile" />
 
+  <adapter factory=".indexer.OrganizationExtender" name="IOrganization" />
+
   <subscriber for="collective.contact.core.content.organization.IOrganization
                    zope.lifecycleevent.interfaces.IObjectAddedEvent"
               handler=".events.set_lat_lng" />

@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
 from collective import dexteritytextindexer
+from collective.contact.core.content.organization import IOrganization
+from collective.taxonomy.interfaces import ITaxonomy
 from OFS.interfaces import IItem
+from plone.app.contenttypes.indexers import _unicode_save_string_concat
 from plone.app.contenttypes.indexers import SearchableText_document
 from plone.app.contenttypes.indexers import SearchableText_file
 from plone.app.contenttypes.indexers import SearchableText_link
@@ -9,11 +12,16 @@ from plone.app.contenttypes.interfaces import IDocument
 from plone.app.contenttypes.interfaces import IFile
 from plone.app.contenttypes.interfaces import ILink
 from plone.indexer.interfaces import IIndexer
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 from Products.ZCatalog.interfaces import IZCatalog
 from zope.component import adapts
+from zope.component import getUtility
+from zope.component.interfaces import ComponentLookupError
 from zope.interface import implements
 
 import logging
+import six
 
 
 try:
@@ -56,6 +64,75 @@ class FileExtender(object):
 
     def __call__(self):
         return SearchableText_file(self.context)()
+
+
+class OrganizationExtender(object):
+    adapts(IOrganization)
+    implements(dexteritytextindexer.IDynamicTextIndexExtender)
+
+    def __init__(self, context):
+        self.context = context
+
+    def __call__(self):
+        rich_text_ids = ["activity", "informations_complementaires"]
+        text_items = []
+        for rich_text_id in rich_text_ids:
+            rich_text = getattr(self.context, rich_text_id, None)
+            if rich_text is None:
+                continue
+            transforms = getToolByName(self.context, "portal_transforms")
+            raw = safe_unicode(rich_text.raw)
+            if six.PY2:
+                raw = raw.encode("utf-8", "replace")
+            text_items.append(
+                safe_unicode(
+                    transforms.convertTo("text/plain", raw, mimetype=rich_text.mimeType)
+                    .getData()
+                    .strip()
+                )
+            )
+        text = u" ".join(text_items)
+
+        taxonomy_ids = ["types_activites"]
+        taxo_items = []
+        lang = self.context.language
+        for taxonomy_id in taxonomy_ids:
+            field_name = taxonomy_id.replace("_", "")
+            keys = getattr(self.context, "taxonomy_{0}".format(field_name), None)
+            if not keys:
+                continue
+            try:
+                taxonomy = getUtility(
+                    ITaxonomy, name="collective.taxonomy.{0}".format(taxonomy_id)
+                )
+            except ComponentLookupError:
+                taxonomy = getUtility(
+                    ITaxonomy, name="collective.taxonomy.{0}".format(field_name)
+                )
+            for key in keys:
+                try:
+                    taxo_items.append(
+                        safe_unicode(
+                            taxonomy.translate(
+                                key, context=self.context, target_language=lang
+                            )
+                        )
+                    )
+                except KeyError:
+                    pass
+        taxo_text = u" ".join(taxo_items)
+
+        return _unicode_save_string_concat(
+            u" ".join(
+                (
+                    safe_unicode(self.context.id),
+                    safe_unicode(self.context.title) or u"",
+                    safe_unicode(self.context.description) or u"",
+                    text,
+                    taxo_text,
+                )
+            )
+        )
 
 
 class BaseTagIndexer(object):
