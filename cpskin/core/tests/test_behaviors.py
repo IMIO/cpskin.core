@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective.dexteritytextindexer.behavior import IDexterityTextIndexer
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
 from cpskin.core.behaviors.metadata import IAdditionalSearchableText
 from cpskin.core.behaviors.metadata import IHiddenTags
@@ -11,6 +12,7 @@ from plone import api
 from plone.app.testing import applyProfile
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.app.textfield.value import RichTextValue
 from zope.interface import alsoProvides
 
 import unittest
@@ -104,7 +106,9 @@ class TestBehaviors(unittest.TestCase):
         self.assertEqual(hide_title, False)
 
     def test_additional_searchable_text(self):
+        catalog = api.portal.get_tool("portal_catalog")
         add_behavior("Document", IAdditionalSearchableText.__identifier__)
+        add_behavior("Document", IDexterityTextIndexer.__identifier__)
         additional_searchable_text = getattr(
             self.document, "additional_searchable_text"
         )
@@ -116,3 +120,20 @@ class TestBehaviors(unittest.TestCase):
             self.document, "additional_searchable_text"
         )
         self.assertEqual(additional_searchable_text, "trash")
+
+        # check that additional_searchable_text is correctly indexed
+        # and that body text is still indexed
+        richtextvalue = RichTextValue(
+            u'richtext_value',
+            'text/plain',
+            'text/html'
+        )
+        self.document.text = richtextvalue
+        self.document.reindexObject()
+
+        brain = catalog(UID=self.document.UID())[0]
+        indexes = catalog.getIndexDataForRID(brain.getRID())
+        searchable_text = indexes['SearchableText']
+        self.assertTrue("trash" in searchable_text)
+        self.assertTrue("document" in searchable_text)
+        self.assertTrue("richtext_value" in searchable_text)

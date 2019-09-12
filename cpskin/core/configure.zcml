@@ -16,6 +16,7 @@
     <include package="collective.js.fancybox" />
     <include package="sc.social.like" />
     <include package="collective.recaptcha" />
+    <include package="collective.dexteritytextindexer" />
     <include package="z3c.jbot" file="meta.zcml" />
     <browser:jbot directory="overrides" />
 
@@ -68,6 +69,12 @@
   <adapter factory=".indexer.ISearchTagIndexer" name="isearchTags" />
 
   <adapter factory=".indexer.HiddenTagIndexer" name="hiddenTags" />
+
+  <adapter factory=".indexer.DocumentExtender" name="IDocument" />
+
+  <adapter factory=".indexer.LinkExtender" name="ILink" />
+
+  <adapter factory=".indexer.FileExtender" name="IFile" />
 
   <subscriber for="collective.contact.core.content.organization.IOrganization
                    zope.lifecycleevent.interfaces.IObjectAddedEvent"

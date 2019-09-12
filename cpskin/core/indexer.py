@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_base
+from collective import dexteritytextindexer
 from OFS.interfaces import IItem
+from plone.app.contenttypes.indexers import SearchableText_document
+from plone.app.contenttypes.indexers import SearchableText_file
+from plone.app.contenttypes.indexers import SearchableText_link
+from plone.app.contenttypes.interfaces import IDocument
+from plone.app.contenttypes.interfaces import IFile
+from plone.app.contenttypes.interfaces import ILink
 from plone.indexer.interfaces import IIndexer
 from Products.ZCatalog.interfaces import IZCatalog
 from zope.component import adapts
@@ -16,6 +23,39 @@ except ImportError:
     from cpskin.core.utils import safe_utf8
 
 logger = logging.getLogger('cpskin.core.indexer')
+
+
+class DocumentExtender(object):
+    adapts(IDocument)
+    implements(dexteritytextindexer.IDynamicTextIndexExtender)
+
+    def __init__(self, context):
+        self.context = context
+
+    def __call__(self):
+        return SearchableText_document(self.context)()
+
+
+class LinkExtender(object):
+    adapts(ILink)
+    implements(dexteritytextindexer.IDynamicTextIndexExtender)
+
+    def __init__(self, context):
+        self.context = context
+
+    def __call__(self):
+        return SearchableText_link(self.context)()
+
+
+class FileExtender(object):
+    adapts(IFile)
+    implements(dexteritytextindexer.IDynamicTextIndexExtender)
+
+    def __init__(self, context):
+        self.context = context
+
+    def __call__(self):
+        return SearchableText_file(self.context)()
 
 
 class BaseTagIndexer(object):

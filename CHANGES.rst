@@ -4,7 +4,10 @@ Changelog
 0.13.23 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix indexers for document / file / link content types : WEB-2940
+  Usage of collective.dexteritytextindexer avoided original indexing features
+  like body text, file content, ...
+  [laulaz]
 
 
 0.13.22 (2019-09-09)
