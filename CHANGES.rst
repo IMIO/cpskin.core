@@ -4,6 +4,9 @@ Changelog
 0.13.23 (unreleased)
 --------------------
 
+- display a link when im_handle contains "http" substring : WEB-3176
+  [boulch]
+
 - Make taxonomies and richtext fields of organization searchable : WEB-2940
   [laulaz]
 
