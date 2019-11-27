@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.23 (unreleased)
+0.13.23 (2019-11-27)
 --------------------
 
 - display a link when im_handle contains "http" substring : WEB-3176
