@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_get
+from collective.dexteritytextindexer.behavior import IDexterityTextIndexer
 from cpskin.core.behaviors.booking import IBooking
 from cpskin.core.behaviors.directory import ICpskinDirectoryViewSettings
 from cpskin.core.behaviors.eventview import ICpskinEventViewSettings
 from cpskin.core.behaviors.indexview import ICpskinIndexViewSettings
+from cpskin.core.behaviors.metadata import IAdditionalSearchableText
 from cpskin.core.behaviors.organization import IOrganizationImages
 from cpskin.core.faceted.interfaces import ICPSkinPossibleFacetedNavigable
 from cpskin.core.interfaces import IFolderViewSelectedContent
@@ -514,5 +516,11 @@ def upgrade_css_js_registry(context):
     context.runImportStepFromProfile("profile-cpskin.core:default", "cssregistry")
     context.runImportStepFromProfile("profile-cpskin.core:default", "jsregistry")
 
+
 def set_quickupload_properties(context):
     configCollectiveQucikupload()
+
+
+def add_searchable_on_organization(context):
+    add_behavior("organization", IAdditionalSearchableText.__identifier__)
+    add_behavior("organization", IDexterityTextIndexer.__identifier__)

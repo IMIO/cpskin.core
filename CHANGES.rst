@@ -4,7 +4,8 @@ Changelog
 0.13.24 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Automatically add searchable behaviors on organizations : WEB-2940
+  [laulaz]
 
 
 0.13.23 (2019-11-27)
