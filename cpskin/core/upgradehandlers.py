@@ -15,6 +15,7 @@ from cpskin.core.setuphandlers import addCollapseMinisiteMenuToRegistry
 from cpskin.core.setuphandlers import addFooterSitemapToRegistry
 from cpskin.core.setuphandlers import addContentClassesToRegistry
 from cpskin.core.setuphandlers import addDescriptionOnThemesOptionToRegistry
+from cpskin.core.setuphandlers import addIndexedTaxonomiesToRegistry
 from cpskin.core.setuphandlers import addLoadPageMenuToRegistry
 from cpskin.core.setuphandlers import addMediaViewletOptionsToRegistry
 from cpskin.core.setuphandlers import addPortletsInRightActionsToRegistry
@@ -344,6 +345,10 @@ def upgrade_city_name(context):
 
 def upgrade_slider_type(context):
     addSliderTypeToRegistry()
+
+
+def upgrade_indexed_taxonomies(context):
+    addIndexedTaxonomiesToRegistry()
 
 
 def upgrade_search_position(context):

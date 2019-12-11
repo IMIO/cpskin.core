@@ -43,6 +43,14 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+      title="CPSKIN Core: upgrade to v63: Add indexed taxonomies setting"
+      source="62"
+      destination="63"
+      handler=".upgradehandlers.upgrade_indexed_taxonomies"
+      profile="cpskin.core:default"
+    />
+
+    <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v62: Add searchable behaviors on organizations"
       source="61"
       destination="62"

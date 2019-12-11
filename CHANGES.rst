@@ -4,6 +4,9 @@ Changelog
 0.13.24 (unreleased)
 --------------------
 
+- Add setting to choose wich taxonomies should be indexed : MWEBOLNA-3
+  [laulaz]
+
 - Translations harmonization
   [laulaz]
 
