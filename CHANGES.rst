@@ -4,6 +4,9 @@ Changelog
 0.13.24 (unreleased)
 --------------------
 
+- Translations harmonization
+  [laulaz]
+
 - Automatically add searchable behaviors on organizations : WEB-2940
   [laulaz]
 

@@ -565,7 +565,7 @@ def addFooterSitemapToRegistry():
     logger.info(
         'Adding cpskin.core.interfaces.ICPSkinSettings.show_footer_sitemap to registry')  # noqa
     record = Record(field.Bool(title=_(u'Show footer sitemap'),
-                               description=_(u'Automatically generate sitemap footer'),
+                               description=_(u'Automatically generate sitemap footer.'),
                                required=False,
                                default=True),
                     value=True)
