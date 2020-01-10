@@ -273,7 +273,7 @@ class TestViews(unittest.TestCase):
             container=self.portal, type='directory', id='directory')
         person = api.content.create(
             container=directory, type='person', id='person')
-        person.street = u'Zoning Industriel'
+        person.street = u'Rue de la Vieille Sambre'
         person.number = u'34'
         person.zip_code = u'5190'
         person.city = u'Mornimont'

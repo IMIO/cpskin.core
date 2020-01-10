@@ -443,7 +443,7 @@ class TestViewlets(unittest.TestCase):
         person.firstname = u'Foo'
         person.lastname = u'Bar'
         person.gender = u'F'
-        person.street = u'Zoning Industriel'
+        person.street = u'Rue de la Vieille Sambre'
         person.number = u'34'
         person.zip_code = u'5190'
         person.city = u'Mornimont'
