@@ -248,6 +248,14 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
     footer_class = property(getFooterClass, setFooterClass)
 
+    def getIndexedTaxonomies(self):
+        return self.settings.indexed_taxonomies
+
+    def setIndexedTaxonomies(self, value):
+        self.settings.indexed_taxonomies = value
+
+    indexed_taxonomies = property(getIndexedTaxonomies, setIndexedTaxonomies)
+
 
 class CPSkinControlPanel(ControlPanelForm):
 

@@ -231,6 +231,13 @@ class ICPSkinSettings(Interface):
         default=None
     )
 
+    indexed_taxonomies = schema.Text(
+        title=_(u'Taxonomies to index'),
+        description=_(u'List of taxonomy IDs (one per line) that should be indexed.'),
+        required=False,
+        default=u'types_activites\n'
+    )
+
 
 class IVideoCollection(Interface):
     """

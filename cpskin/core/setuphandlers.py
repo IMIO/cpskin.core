@@ -641,6 +641,23 @@ def addContentClassesToRegistry():
     records['cpskin.core.interfaces.ICPSkinSettings.footer_class'] = record
 
 
+def addIndexedTaxonomiesToRegistry():
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if 'cpskin.core.interfaces.ICPSkinSettings.indexed_taxonomies' in records:  # noqa
+        return
+
+    logger.info(
+        'Adding cpskin.core.interfaces.ICPSkinSettings.indexed_taxonomies to registry')  # noqa
+    record = Record(field.Text(title=_(u'Taxonomies to index'),
+                               description=_(u'List of taxonomy IDs (one per line) that should be indexed.'),
+                               required=False,
+                               default=u'types_activites\n'),
+                    value=u'types_activites\n')
+    records['cpskin.core.interfaces.ICPSkinSettings.indexed_taxonomies'] = record
+
+
 def set_googleapi_key():
     record_name = 'collective.geo.settings.interfaces.IGeoSettings.googleapi'
     default_value = 'AIzaSyDmbfEFrVcZ_x7Snn4Kv_WkqCmiZXn01rY'

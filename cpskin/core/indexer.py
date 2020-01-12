@@ -15,6 +15,7 @@ from plone.indexer.interfaces import IIndexer
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from Products.ZCatalog.interfaces import IZCatalog
+from plone import api
 from zope.component import adapts
 from zope.component import getUtility
 from zope.component.interfaces import ComponentLookupError
@@ -93,7 +94,9 @@ class OrganizationExtender(object):
             )
         text = u" ".join(text_items)
 
-        taxonomy_ids = ["types_activites"]
+        taxonomy_ids = api.portal.get_registry_record(
+            'cpskin.core.interfaces.ICPSkinSettings.indexed_taxonomies')  # noqa
+        taxonomy_ids = taxonomy_ids.split("\n")
         taxo_items = []
         lang = self.context.language
         for taxonomy_id in taxonomy_ids:
