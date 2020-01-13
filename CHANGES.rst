@@ -1,7 +1,13 @@
 Changelog
 =========
 
-0.13.24 (unreleased)
+0.13.25 (unreleased)
+--------------------
+
+- Nothing changed yet.
+
+
+0.13.24 (2020-01-13)
 --------------------
 
 - Add setting to choose wich taxonomies should be indexed : MWEBOLNA-3
