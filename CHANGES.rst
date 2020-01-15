@@ -4,7 +4,8 @@ Changelog
 0.13.26 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add index view option to display category below image, with date and title
+  [laulaz]
 
 
 0.13.25 (2020-01-13)

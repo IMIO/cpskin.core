@@ -572,6 +572,9 @@ class FolderView(FoldV, CommonView):
         display_type = getattr(collection, 'display_type', '')
         return (display_type == 'slider-with-elements-count-choice')
 
+    def show_event_category_below_image(self, collection):
+        return getattr(collection, 'show_event_category_below_image', False)
+
 
 def configure_folderviews(context):
     """

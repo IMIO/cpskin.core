@@ -33,6 +33,7 @@ class ICpskinIndexViewSettings(model.Schema):
             'show_lead_image',
             'show_descriptions',
             'use_new_template',
+            'show_event_category_below_image',
         ),
     )
 
@@ -171,6 +172,13 @@ class ICpskinIndexViewSettings(model.Schema):
     use_new_template = schema.Bool(
         title=_(u'Use new template'),
         description=_(u'Do you want to use the new (experimental) template ?'),
+        required=False,
+        default=False
+    )
+
+    show_event_category_below_image = schema.Bool(
+        title=_(u'Event category below image'),
+        description=_(u'Show event category below image, with date and title'),
         required=False,
         default=False
     )

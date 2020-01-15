@@ -6,6 +6,187 @@
 
 <body>
 
+    <metal:homepage-event-category-first define-macro="homepage-event-category-first">
+
+        <tal:block tal:condition="has_category">
+        <tal:loop tal:define="categories python: view.get_categories(content, obj, limit=1)" tal:condition="categories">
+                <div class="indexview-categories" tal:content="categories" />
+        </tal:loop>
+        </tal:block>
+        <a href=""
+           title=""
+           class="medialink"
+           tal:define="show_day_and_month python: view.show_day_and_month(content);
+                       show_lead_image python: view.show_lead_image(content);
+                       item_type result/Type;
+                       classe python: view.get_class(item_type)"
+           tal:attributes="href result/getURL;
+                           title result/Title;
+                           class classe">
+
+          <tal:if tal:condition="show_day_and_month">
+            <div class="day-month"
+                 tal:define="dates python: view.get_event_dates(obj);
+                             start dates/start;
+                             end dates/end">
+              <div tal:content="start"
+                   tal:condition="start" />
+              <div tal:content="end"
+                   tal:condition="end" />
+            </div>
+          </tal:if>
+
+          <tal:if tal:condition="show_lead_image">
+            <div class="pageleadImage"
+                 tal:condition="python: item_type != 'Media Link'"
+                 style=""
+                 tal:define="scaled_image_url python:view.scaled_image_url(content, obj, isBigImage)"
+                 tal:attributes="style string:background-image: url(${scaled_image_url})">
+            </div>
+          </tal:if>
+
+          <div class="pagecaption">
+            <div tal:condition="python: item_type == 'Media Link'"
+                 tal:define="item python: result.getObject();
+                             video python: view.get_video(item)">
+                <div tal:content='structure video'/>
+            </div>
+
+            <h3 tal:content="result/Title"></h3>
+
+            <span class="documentByLine"
+                  tal:condition="python: view.see_start_end_date(result, content)"
+                  tal:define="event python: result.getObject()">
+              <tal:one_day condition="python: view.is_one_day(event)">
+              <span i18n:translate="evenement_le">le</span>
+              <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
+                <tal:withHours condition="python: view.is_with_hours(event)">
+                  <tal:openEnd condition="python: view.is_open_end(event)">
+                    <span i18n:translate="evenement_a_lheure">à</span>
+                    <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
+                  </tal:openEnd>
+                  <tal:fixedEnd condition="python: not view.is_open_end(event)">
+                    <span i18n:translate="evenement_de">de</span>
+                    <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
+                    <span i18n:translate="evenement_a">à</span>
+                    <span tal:content="python: view.toLocalizedTime(result.end, long_format=1, event=result, startend='end')[11:]" />
+                  </tal:fixedEnd>
+                </tal:withHours>
+              </tal:one_day>
+              <tal:more_days condition="python: not view.is_one_day(event)">
+                <span i18n:translate="evenement_du">du</span>
+                <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
+                <span i18n:translate="evenement_au">au</span>
+                <span tal:content="python: view.toLocalizedTime(result.end, long_format=0, event=result, startend='end')" />
+              </tal:more_days>
+            </span>
+
+            <span class="documentByLine"
+                  tal:condition="python: not view.hide_date(result, content)">
+              <span tal:content="python: view.toLocalizedTime(result.effective, long_format=0)" />
+            </span>
+
+            <div class="description"
+                 tal:condition="python: view.show_descriptions(content)"
+                 tal:content="result/Description" />
+
+           </div>
+          </a>
+
+    </metal:homepage-event-category-first>
+
+
+    <metal:homepage-event-image-first define-macro="homepage-event-image-first">
+
+        <a href=""
+           title=""
+           class="medialink"
+           tal:define="show_day_and_month python: view.show_day_and_month(content);
+                       show_lead_image python: view.show_lead_image(content);
+                       item_type result/Type;
+                       classe python: view.get_class(item_type)"
+           tal:attributes="href result/getURL;
+                           title result/Title;
+                           class classe">
+
+          <tal:if tal:condition="show_day_and_month">
+            <div class="day-month"
+                 tal:define="dates python: view.get_event_dates(obj);
+                             start dates/start;
+                             end dates/end">
+              <div tal:content="start"
+                   tal:condition="start" />
+              <div tal:content="end"
+                   tal:condition="end" />
+            </div>
+          </tal:if>
+
+          <tal:if tal:condition="show_lead_image">
+            <div class="pageleadImage"
+                 tal:condition="python: item_type != 'Media Link'"
+                 style=""
+                 tal:define="scaled_image_url python:view.scaled_image_url(content, obj, isBigImage)"
+                 tal:attributes="style string:background-image: url(${scaled_image_url})">
+            </div>
+          </tal:if>
+
+          <div class="pagecaption">
+            <div tal:condition="python: item_type == 'Media Link'"
+                 tal:define="item python: result.getObject();
+                             video python: view.get_video(item)">
+                <div tal:content='structure video'/>
+            </div>
+
+            <tal:block tal:condition="has_category">
+            <tal:loop tal:define="categories python: view.get_categories(content, obj, limit=1)" tal:condition="categories">
+                    <div class="indexview-categories" tal:content="categories" />
+            </tal:loop>
+            </tal:block>
+
+            <span class="documentByLine"
+                  tal:condition="python: view.see_start_end_date(result, content)"
+                  tal:define="event python: result.getObject()">
+              <tal:one_day condition="python: view.is_one_day(event)">
+              <span i18n:translate="evenement_le">le</span>
+              <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
+                <tal:withHours condition="python: view.is_with_hours(event)">
+                  <tal:openEnd condition="python: view.is_open_end(event)">
+                    <span i18n:translate="evenement_a_lheure">à</span>
+                    <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
+                  </tal:openEnd>
+                  <tal:fixedEnd condition="python: not view.is_open_end(event)">
+                    <span i18n:translate="evenement_de">de</span>
+                    <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
+                    <span i18n:translate="evenement_a">à</span>
+                    <span tal:content="python: view.toLocalizedTime(result.end, long_format=1, event=result, startend='end')[11:]" />
+                  </tal:fixedEnd>
+                </tal:withHours>
+              </tal:one_day>
+              <tal:more_days condition="python: not view.is_one_day(event)">
+                <span i18n:translate="evenement_du">du</span>
+                <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
+                <span i18n:translate="evenement_au">au</span>
+                <span tal:content="python: view.toLocalizedTime(result.end, long_format=0, event=result, startend='end')" />
+              </tal:more_days>
+            </span>
+
+            <span class="documentByLine"
+                  tal:condition="python: not view.hide_date(result, content)">
+              <span tal:content="python: view.toLocalizedTime(result.effective, long_format=0)" />
+            </span>
+
+            <h3 tal:content="result/Title"></h3>
+
+            <div class="description"
+                 tal:condition="python: view.show_descriptions(content)"
+                 tal:content="result/Description" />
+
+           </div>
+          </a>
+
+    </metal:homepage-event-image-first>
+
+
     <metal:homepage-collection define-macro="homepage-collection">
         <div class="titre-rss" tal:condition="python: not view.hide_title(content)">
             <a href=""
@@ -165,94 +346,18 @@
 
                     <li tal:define="number repeat/result/number;
                                     isBigImage python: view.isBigImage(number, allresults, resultType);
-                                    obj python: result.getObject()"
+                                    obj python: result.getObject();
+                                    show_event_category_below_image python: view.show_event_category_below_image(content);"
                         class=""
                         tal:attributes="class python: isBigImage and 'bigimage bloc-item' or 'bloc-item'">
-                        <tal:block tal:condition="has_category">
-                        <tal:loop tal:define="categories python: view.get_categories(content, obj, limit=1)" tal:condition="categories">
-                                <div class="indexview-categories" tal:content="categories" />
-                        </tal:loop>
-                        </tal:block>
-                        <a href=""
-                           title=""
-                           class="medialink"
-                           tal:define="show_day_and_month python: view.show_day_and_month(content);
-                                       show_lead_image python: view.show_lead_image(content);
-                                       item_type result/Type;
-                                       classe python: view.get_class(item_type)"
-                           tal:attributes="href result/getURL;
-                                           title result/Title;
-                                           class classe">
 
-                          <tal:if tal:condition="show_day_and_month">
-                            <div class="day-month"
-                                 tal:define="dates python: view.get_event_dates(obj);
-                                             start dates/start;
-                                             end dates/end">
-                              <div tal:content="start"
-                                   tal:condition="start" />
-                              <div tal:content="end"
-                                   tal:condition="end" />
-                            </div>
-                          </tal:if>
+                        <tal:if tal:condition="show_event_category_below_image">
+                            <metal:use use-macro="context/@@cpskincore-macros/homepage-event-image-first" />
+                        </tal:if>
+                        <tal:else tal:condition="not: show_event_category_below_image">
+                            <metal:use use-macro="context/@@cpskincore-macros/homepage-event-category-first" />
+                        </tal:else>
 
-                          <tal:if tal:condition="show_lead_image">
-                            <div class="pageleadImage"
-                                 tal:condition="python: item_type != 'Media Link'"
-                                 style=""
-                                 tal:define="scaled_image_url python:view.scaled_image_url(content, obj, isBigImage)"
-                                 tal:attributes="style string:background-image: url(${scaled_image_url})">
-                            </div>
-                          </tal:if>
-
-                          <div class="pagecaption">
-                            <div tal:condition="python: item_type == 'Media Link'"
-                                 tal:define="item python: result.getObject();
-                                             video python: view.get_video(item)">
-                                <div tal:content='structure video'/>
-                            </div>
-
-                            <h3 tal:content="result/Title"></h3>
-
-
-                            <span class="documentByLine"
-                                  tal:condition="python: view.see_start_end_date(result, content)"
-                                  tal:define="event python: result.getObject()">
-                              <tal:one_day condition="python: view.is_one_day(event)">
-                              <span i18n:translate="evenement_le">le</span>
-                              <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
-                                <tal:withHours condition="python: view.is_with_hours(event)">
-                                  <tal:openEnd condition="python: view.is_open_end(event)">
-                                    <span i18n:translate="evenement_a_lheure">à</span>
-                                    <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
-                                  </tal:openEnd>
-                                  <tal:fixedEnd condition="python: not view.is_open_end(event)">
-                                    <span i18n:translate="evenement_de">de</span>
-                                    <span tal:content="python: view.toLocalizedTime(result.start, long_format=1, event=result)[11:]" />
-                                    <span i18n:translate="evenement_a">à</span>
-                                    <span tal:content="python: view.toLocalizedTime(result.end, long_format=1, event=result, startend='end')[11:]" />
-                                  </tal:fixedEnd>
-                                </tal:withHours>
-                              </tal:one_day>
-                              <tal:more_days condition="python: not view.is_one_day(event)">
-                                <span i18n:translate="evenement_du">du</span>
-                                <span tal:content="python: view.toLocalizedTime(result.start, long_format=0, event=result)" />
-                                <span i18n:translate="evenement_au">au</span>
-                                <span tal:content="python: view.toLocalizedTime(result.end, long_format=0, event=result, startend='end')" />
-                              </tal:more_days>
-                            </span>
-
-                            <span class="documentByLine"
-                                  tal:condition="python: not view.hide_date(result, content)">
-                              <span tal:content="python: view.toLocalizedTime(result.effective, long_format=0)" />
-                            </span>
-
-                            <div class="description"
-                                 tal:condition="python: view.show_descriptions(content)"
-                                 tal:content="result/Description" />
-
-                           </div>
-                          </a>
 
                           </li>
                          </tal:bcl>
