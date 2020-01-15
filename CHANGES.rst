@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.26 (unreleased)
+0.13.26 (2020-01-15)
 --------------------
 
 - Add index view option to display category below image, with date and title
