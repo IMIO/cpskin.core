@@ -4,6 +4,8 @@ Changelog
 0.13.27 (unreleased)
 --------------------
 
+- Pinned collective.sendinblue<2.0 in setup.py (2.x abandon Plone4 support).
+  [boulch]
 - Change method calling. To avoid a bug with request in Plone5, we change update method in collective.sendinblue.
   [boulch]
 
