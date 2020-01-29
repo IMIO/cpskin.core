@@ -4,7 +4,8 @@ Changelog
 0.13.27 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Change method calling. To avoid a bug with request in Plone5, we change update method in collective.sendinblue.
+  [boulch]
 
 
 0.13.26 (2020-01-15)
