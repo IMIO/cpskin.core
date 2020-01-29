@@ -78,6 +78,7 @@ setup(name='cpskin.core',
           'collective.printrss',
           'collective.recaptcha',
           'collective.sendinblue<2.0',
+          'collective.lesscss',
       ],
       extras_require={
           'test': [
