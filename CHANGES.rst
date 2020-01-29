@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.27 (unreleased)
+0.13.27 (2020-01-29)
 --------------------
 
 - Add missing soft dependency on collective.lesscss
