@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from Acquisition import aq_inner
 from collective.sendinblue.browser.portlet import PortletSubscribeForm
 from collective.sendinblue.browser.portlet import Renderer
 from collective.sendinblue.interfaces import INewsletterSubscribe
@@ -33,7 +34,7 @@ class GDPRRenderer(Renderer):
     def update(self):
         base.Renderer.update(self)
         z2.switch_on(self, request_layer=IFormLayer)
-        self.form = GDPRPortletSubscribeForm(self.data, self.request)
+        self.form = GDPRPortletSubscribeForm(aq_inner(self.context), self.request, self.data)
         portal_url = api.portal.get_navigation_root(self.context).absolute_url()
         gpdr_url = '/'.join([portal_url, 'gdpr-view'])
         msgid = _(
