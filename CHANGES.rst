@@ -4,7 +4,8 @@ Changelog
 0.13.28 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Override view to keep schedule in top of directory view. [WEB-3207]
+  [boulch]
 
 
 0.13.27 (2020-01-29)

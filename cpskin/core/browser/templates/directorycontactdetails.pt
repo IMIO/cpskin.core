@@ -50,11 +50,11 @@
 
     <p id="im_handle" class="field" tal:condition="view/contact_details/im_handle">
         <label><tal:block i18n:translate="">IM handle</tal:block>:</label>
-        <tal:cond tal:condition="python:'http' not in context.im_handle">
+        <tal:cond tal:condition="python:'http' not in context.im_handle or 'www' not in context.im_handle">
             <span tal:content="view/contact_details/im_handle"
                   i18n:translate="" />
         </tal:cond>
-        <tal:cond tal:condition="python:'http' in context.im_handle">
+        <tal:cond tal:condition="python:'http' in context.im_handle or 'www' in context.im_handle">
             <a class="url" target="_new"
                   tal:content="view/contact_details/im_handle"
                   tal:attributes="href view/contact_details/im_handle" />
