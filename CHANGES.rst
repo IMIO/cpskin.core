@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.28 (unreleased)
+0.13.28 (2020-02-24)
 --------------------
 
 - Override view to keep schedule in top of directory view. [WEB-3207]
