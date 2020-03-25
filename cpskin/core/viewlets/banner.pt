@@ -30,4 +30,8 @@
          tal:attributes="src view/getImageBannerUrl"
          i18n:attributes="alt" />
 
+          <video autoplay muted loop id="banner-video">
+               <source  tal:attributes="src view/getImageBannerUrl" src="" type="video/mp4" > </source>
+          </video>
+
 </div>
