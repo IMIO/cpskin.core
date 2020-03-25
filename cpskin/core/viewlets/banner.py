@@ -112,6 +112,16 @@ class CPSkinBannerViewlet(ViewletBase):
         return banner_url
 
     def getBanner(self):
+        """
+        Find and returns image or video banner informations.
+        Banners types are searched by priotity :
+         1. Event banner if context is event and image_banner field is filled
+         2. Video (1) or random image (2) in local banner folder
+         3. Local banner image
+         4. Video (1) or random image (2) coming from inherited banner folder
+         5. Inherited banner image
+        Videos need 2 files (formats .mp4 & .webm) in the banner folder.
+        """
         context = self.context
         local_banner_folder = getattr(context.aq_explicit, 'banner', None)
         local_banner_event = getattr(context.aq_explicit, 'image_banner', None)
@@ -122,9 +132,28 @@ class CPSkinBannerViewlet(ViewletBase):
             return {
                 'object': context,
                 'url': self.getUnscaleUrl(context, 'image_banner', 'banner'),
+                'type': 'image',
             }
         if local_banner_folder or (banner_folder and not local_banner):
             banner_folder_to_use = local_banner_folder and local_banner_folder or banner_folder
+            brains = api.content.find(
+                context=banner_folder_to_use,
+                portal_type='File',
+            )
+            if brains:
+                result = {
+                    'object': None,
+                    'type': 'video'
+                }
+                for brain in brains:
+                    obj = brain.getObject()
+                    content_type = obj.file.contentType
+                    if content_type == 'video/mp4':
+                        result['url'] = obj.absolute_url()
+                    elif content_type == 'video/webm':
+                        result['url_webm'] = obj.absolute_url()
+                if result.get('url') and result.get('url_webm'):
+                    return result
             brains = api.content.find(
                 context=banner_folder_to_use,
                 portal_type='Image',
@@ -135,12 +164,10 @@ class CPSkinBannerViewlet(ViewletBase):
                 return {
                     'object': obj,
                     'url': self.getUnscaleUrl(obj, 'image', 'banner'),
+                    'type': 'image',
                 }
         return {
             'object': banner,
             'url': self.getUnscaleUrl(banner, 'image', 'banner'),
+            'type': 'image',
         }
-
-    def getImageBannerUrl(self):
-        banner = self.getBanner()
-        return banner['url']
