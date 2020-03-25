@@ -98,12 +98,8 @@ class CPSkinBannerViewlet(ViewletBase):
         return IInPortal.providedBy(request)
 
     def getUnscaleUrl(self, obj, fieldname, scale):
-        if 'obj' is None:
+        if obj is None:
             return ''
-        if fieldname in ('video'):
-            print (fieldname + 'Sous-chaîne trouvée')
-            banner_url = obj.absolute_url()
-            return banner_url
         if has_crop(obj, fieldname, scale):
             view = obj.restrictedTraverse('@@images')
             scale = view.scale(fieldname, scale=scale)
@@ -116,33 +112,47 @@ class CPSkinBannerViewlet(ViewletBase):
         return banner_url
 
     def getBanner(self):
+        """
+        method to find and use image or video banner.
+        There are seven priorities to display the banner.
+            1- Context is event whit image banner field.
+            2- There is the banner local folder. First video and then images.
+            3- There is the local image.
+            4- There is the banner folder. First video and then images.
+            5- There is the banner
+        """
         context = self.context
         local_banner_folder = getattr(context.aq_explicit, 'banner', None)
         local_banner_event = getattr(context.aq_explicit, 'image_banner', None)
         local_banner = getattr(context.aq_explicit, 'banner.jpg', None)
         banner_folder = getattr(context, 'banner', None)
         banner = getattr(context, 'banner.jpg', None)
-        banner_video_folder = getattr(context, 'banner-video', None)
         if context.portal_type == 'Event' and local_banner_event:
             return {
                 'object': context,
                 'url': self.getUnscaleUrl(context, 'image_banner', 'banner'),
+                'type': 'image',
             }
-        if banner_video_folder and (not local_banner and not local_banner_folder ): 
-            banner_folder_to_use = banner_video_folder
+        if local_banner_folder or (banner_folder and not local_banner):
+            banner_folder_to_use = local_banner_folder and local_banner_folder or banner_folder
             brains = api.content.find(
                 context=banner_folder_to_use,
                 portal_type='File',
             )
             if brains:
-                brain = brains[random.randrange(len(brains))]
-                obj = brain.getObject()
-                return {
-                    'object': obj,
-                    'url': self.getUnscaleUrl(obj, 'video', 'banner'),
+                result = {
+                    'object': None,
+                    'type': 'video'
                 }
-        if local_banner_folder or (banner_folder and not local_banner):
-            banner_folder_to_use = local_banner_folder and local_banner_folder or banner_folder
+                for brain in brains:
+                    obj = brain.getObject()
+                    content_type = obj.file.contentType
+                    if content_type == 'video/mp4':
+                        result['url'] = obj.absolute_url(),
+                    elif  content_type == 'video/webm':
+                        result['url_webm'] = obj.absolute_url(),
+                if result.get('url') and result.get('url_webm'):
+                    return result
             brains = api.content.find(
                 context=banner_folder_to_use,
                 portal_type='Image',
@@ -153,12 +163,10 @@ class CPSkinBannerViewlet(ViewletBase):
                 return {
                     'object': obj,
                     'url': self.getUnscaleUrl(obj, 'image', 'banner'),
+                    'type': 'image',
                 }
         return {
             'object': banner,
             'url': self.getUnscaleUrl(banner, 'image', 'banner'),
+            'type': 'image',
         }
-
-    def getImageBannerUrl(self):
-        banner = self.getBanner()
-        return banner['url']
