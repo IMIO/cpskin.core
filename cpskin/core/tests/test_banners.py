@@ -40,13 +40,13 @@ class TestBanners(unittest.TestCase):
                            if v.__name__ == 'cpskin.banner'][0]
 
     def test_banner_without_folder(self):
-        url = self.my_viewlet.getImageBannerUrl()
+        url = self.my_viewlet.getBanner().get('url')
         self.assertTrue(url.startswith('http://nohost/plone/banner.jpg'))
 
     def test_banner_with_folder_without_image(self):
         api.content.create(
             container=self.portal, type='Folder', id='banner')
-        url = self.my_viewlet.getImageBannerUrl()
+        url = self.my_viewlet.getBanner().get('url')
         self.assertTrue(url.startswith('http://nohost/plone/banner.jpg'))
 
     def test_banner_with_folder_with_image(self):
@@ -55,5 +55,5 @@ class TestBanners(unittest.TestCase):
         image = api.content.create(
             container=folder, type='Image', id='img1.png')
         image.image = dummy_image()
-        url = self.my_viewlet.getImageBannerUrl()
+        url = self.my_viewlet.getBanner().get('url')
         self.assertTrue(url.startswith('http://nohost/plone/banner/img1.png'))
