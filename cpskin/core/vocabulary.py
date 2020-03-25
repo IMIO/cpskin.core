@@ -315,15 +315,6 @@ DISPLAY_TYPES = {
         'show-image': True,
         'show-carousel': False,
     },
-    u'slider-count-bottom-text': {
-        'value': u'slider-count-bottom-text',
-        'title': _(u'slider count bottom text'),
-        'slider': True,
-        'class': 'slider-count-bottom-text',
-        'control-nav': True,
-        'show-image': True,
-        'show-carousel': False,
-    },
 }
 
 items = [(disp['value'], disp['title']) for disp in DISPLAY_TYPES.values()]
