@@ -36,8 +36,8 @@
                tal:condition="python:banner['type'] == 'video'"
                autoplay muted loop
                id="banner-video">
-               <source  tal:attributes="src python:banner['url'][0]" src="" type="video/mp4" > </source>
-               <source  tal:attributes="src python:banner['url_webm'][0]" src="" type="video/webm" > </source>
+               <source tal:attributes="src banner/url" src="" type="video/mp4"></source>
+               <source tal:attributes="src banner/url_webm" src="" type="video/webm"></source>
           </video>
      </tal:def>
 </div>
