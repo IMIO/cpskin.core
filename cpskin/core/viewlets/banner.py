@@ -149,7 +149,7 @@ class CPSkinBannerViewlet(ViewletBase):
                     content_type = obj.file.contentType
                     if content_type == 'video/mp4':
                         result['url'] = obj.absolute_url()
-                    elif  content_type == 'video/webm':
+                    elif content_type == 'video/webm':
                         result['url_webm'] = obj.absolute_url()
                 if result.get('url') and result.get('url_webm'):
                     return result
