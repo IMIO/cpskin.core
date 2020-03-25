@@ -113,13 +113,14 @@ class CPSkinBannerViewlet(ViewletBase):
 
     def getBanner(self):
         """
-        method to find and use image or video banner.
-        There are seven priorities to display the banner.
-            1- Context is event whit image banner field.
-            2- There is the banner local folder. First video and then images.
-            3- There is the local image.
-            4- There is the banner folder. First video and then images.
-            5- There is the banner
+        Find and returns image or video banner informations.
+        Banners types are searched by priotity :
+         1. Event banner if context is event and image_banner field is filled
+         2. Video (1) or random image (2) in local banner folder
+         3. Local banner image
+         4. Video (1) or random image (2) coming from inherited banner folder
+         5. Inherited banner image
+        Videos need 2 files (formats .mp4 & .webm) in the banner folder.
         """
         context = self.context
         local_banner_folder = getattr(context.aq_explicit, 'banner', None)
