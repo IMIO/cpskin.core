@@ -4,7 +4,8 @@ Changelog
 0.13.29 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix is_one_day method when there is no real occurence on event.
+  [bsuttor]
 
 
 0.13.28 (2020-02-24)

@@ -31,25 +31,22 @@ from zope.interface import noLongerProvides
 import logging
 import pytz
 
-logger = logging.getLogger('cpskin.core')
+logger = logging.getLogger("cpskin.core")
 
-ADDABLE_TYPES = ['Collection', 'Document', 'Folder', 'rss_feed']
+ADDABLE_TYPES = ["Collection", "Document", "Folder", "rss_feed"]
 
 
 class FolderView(FoldV, CommonView):
-
-    def _redirect(self, msg=''):
+    def _redirect(self, msg=""):
         if self.request:
             if msg:
-                api.portal.show_message(message=msg,
-                                        request=self.request,
-                                        type='info')
+                api.portal.show_message(message=msg, request=self.request, type="info")
             self.request.response.redirect(self.context.absolute_url())
         return msg
 
     def _get_real_context(self):
         context = self.context
-        plone_view = getMultiAdapter((context, self.request), name='plone')
+        plone_view = getMultiAdapter((context, self.request), name="plone")
         if plone_view.isDefaultPageInFolder():
             context = aq_parent(context)
         context = aq_inner(context)
@@ -60,7 +57,7 @@ class FolderView(FoldV, CommonView):
         if context is None:
             context = self.context
         layout = context.getLayout()
-        if layout == 'folderview':
+        if layout == "folderview":
             return True
         return False
 
@@ -70,18 +67,19 @@ class FolderView(FoldV, CommonView):
         if not IFolderish.providedBy(context):
             return False
         already_activated = self.isFolderViewActivated()
-        return (not already_activated)
+        return not already_activated
 
     def configure(self):
         """Configure folders and collections for folderview"""
         context = self.context
         configure_folderviews(context)
         api.portal.show_message(
-            message=_(u'Vue index avec collections configurée.'),
+            message=_(u"Vue index avec collections configurée."),
             request=self.request,
-            type='info')
+            type="info",
+        )
         self.request.response.redirect(context.absolute_url())
-        return ''
+        return ""
 
     def is_event_collection(self, brains):
         if len(brains) > 0:
@@ -93,53 +91,46 @@ class FolderView(FoldV, CommonView):
         """Content is a Collection"""
         # Make a copy of the query to avoid modifying it
         query = list(content.query)
-        index_view_keywords = getattr(content, 'index_view_keywords', False)
+        index_view_keywords = getattr(content, "index_view_keywords", False)
         # set query for homepage
         if index_view_keywords:
             homepage_keywords = content.index_view_keywords
-            query.append({
-                'i': 'hiddenTags',
-                'o': 'plone.app.querystring.operation.selection.is',
-                'v': homepage_keywords
-            })
-        sort_on = getattr(content, 'sort_on', None)
-        sort_order = 'reverse' if getattr(content, 'sort_reversed', False) else 'ascending'  # noqa
-        sort_reversed = getattr(content, 'sort_reversed', False)
-        parsedquery = queryparser.parseFormquery(
-            content,
-            query,
-            sort_on,
-            sort_order
-        )
-        portal_catalog = api.portal.get_tool('portal_catalog')
+            query.append(
+                {
+                    "i": "hiddenTags",
+                    "o": "plone.app.querystring.operation.selection.is",
+                    "v": homepage_keywords,
+                }
+            )
+        sort_on = getattr(content, "sort_on", None)
+        sort_order = (
+            "reverse" if getattr(content, "sort_reversed", False) else "ascending"
+        )  # noqa
+        sort_reversed = getattr(content, "sort_reversed", False)
+        parsedquery = queryparser.parseFormquery(content, query, sort_on, sort_order)
+        portal_catalog = api.portal.get_tool("portal_catalog")
         brains = portal_catalog(parsedquery)
-        item_count_homepage = getattr(content, 'item_count_homepage', 8)
+        item_count_homepage = getattr(content, "item_count_homepage", 8)
         if self.is_event_collection(brains):
             start = DateTime()
-            sort_on = getattr(content, 'sort_on', 'start')
-            if sort_on in ('start', 'end'):
+            sort_on = getattr(content, "sort_on", "start")
+            if sort_on in ("start", "end"):
                 filter_and_resort_brains = filter_and_resort(
-                    content,
-                    brains,
-                    start,
-                    None,
-                    sort_on,
-                    sort_reversed
+                    content, brains, start, None, sort_on, sort_reversed
                 )
                 brains = filter_and_resort_brains[:item_count_homepage]
 
         brains = brains[:item_count_homepage]
         if not with_sticky:
             return brains
-        portal_catalog = api.portal.get_tool(name='portal_catalog')
-        results = {'sticky-results': [],
-                   'standard-results': []}
+        portal_catalog = api.portal.get_tool(name="portal_catalog")
+        results = {"sticky-results": [], "standard-results": []}
         for brain in brains:
-            if portal_catalog.getIndexDataForRID(brain.getRID())['is_sticky']:
-                results['sticky-results'].append(brain)
+            if portal_catalog.getIndexDataForRID(brain.getRID())["is_sticky"]:
+                results["sticky-results"].append(brain)
             else:
-                results['standard-results'].append(brain)
-        if not results['sticky-results'] and not results['standard-results']:
+                results["standard-results"].append(brain)
+        if not results["sticky-results"] and not results["standard-results"]:
             return None
         return results
 
@@ -148,26 +139,32 @@ class FolderView(FoldV, CommonView):
         objects = [brain.getObject() for brain in brains]
         realObjects = []
         for obj in objects:
-            if obj.portal_type == 'Folder':
+            if obj.portal_type == "Folder":
                 if obj.getDefaultPage() is not None:
                     realObject = getattr(obj, obj.getDefaultPage())
                     # check if realObject is a collection :
-                    if getattr(realObject, 'results', None):
+                    if getattr(realObject, "results", None):
                         if len(realObject.results()) > 0:
                             realObjects.append(realObject)
                 else:
                     continue
-            elif obj.portal_type == 'rss_feed':
-                 realObjects.append(obj)
-            elif obj.portal_type == 'Link':
+            elif obj.portal_type == "rss_feed":
+                realObjects.append(obj)
+            elif obj.portal_type == "Link":
                 try:
-                    realObjects.append(type('Link', (object, ), {
-                        'id': obj.id,
-                        'render': self.context.unrestrictedTraverse(
-                            str(obj.remoteUrl),
-                        ),
-                        'portal_type': obj.portal_type,
-                    })())
+                    realObjects.append(
+                        type(
+                            "Link",
+                            (object,),
+                            {
+                                "id": obj.id,
+                                "render": self.context.unrestrictedTraverse(
+                                    str(obj.remoteUrl)
+                                ),
+                                "portal_type": obj.portal_type,
+                            },
+                        )()
+                    )
                 except:
                     pass
             else:
@@ -181,41 +178,42 @@ class FolderView(FoldV, CommonView):
         """
         if not self.bigImagesAreUsed():
             return False
-        if resultType == 'sticky-results' and number < 5:
+        if resultType == "sticky-results" and number < 5:
             return True
-        elif resultType == 'standard-results' and \
-                number < 5 - len(results['sticky-results']):
+        elif resultType == "standard-results" and number < 5 - len(
+            results["sticky-results"]
+        ):
             return True
         return False
 
     def getThumbSize(self, obj, isBigImage=False):
-        prefix = 'image'
-        thumbSize = 'thumb'
-        if getattr(obj, 'hasContentLeadImage', None):
-            prefix = 'leadImage'
+        prefix = "image"
+        thumbSize = "thumb"
+        if getattr(obj, "hasContentLeadImage", None):
+            prefix = "leadImage"
         if isBigImage:
-            thumbSize = 'mini'
-        return '%s_%s' % (prefix, thumbSize)
+            thumbSize = "mini"
+        return "%s_%s" % (prefix, thumbSize)
 
     def searchSelectedContent(self):
-        path = '/'.join(self.context.getPhysicalPath())
-        portal_catalog = api.portal.get_tool('portal_catalog')
+        path = "/".join(self.context.getPhysicalPath())
+        portal_catalog = api.portal.get_tool("portal_catalog")
         queryDict = {}
-        queryDict['path'] = {'query': path, 'depth': 1}
-        queryDict['portal_type'] = ADDABLE_TYPES
-        queryDict['object_provides'] = IFolderViewSelectedContent.__identifier__  # noqa
-        queryDict['sort_on'] = 'getObjPositionInParent'
-        queryDict['review_state'] = (
-            'published_and_hidden',
-            'published_and_shown',
-            'published'
+        queryDict["path"] = {"query": path, "depth": 1}
+        queryDict["portal_type"] = ADDABLE_TYPES
+        queryDict["object_provides"] = IFolderViewSelectedContent.__identifier__  # noqa
+        queryDict["sort_on"] = "getObjPositionInParent"
+        queryDict["review_state"] = (
+            "published_and_hidden",
+            "published_and_shown",
+            "published",
         )
         results = portal_catalog.searchResults(queryDict)
         return results
 
-    def getSliderType(self, collection=''):
+    def getSliderType(self, collection=""):
         if collection:
-            return getattr(collection, 'display_type', None)
+            return getattr(collection, "display_type", None)
         return None
 
     def hasFlexSlider(self):
@@ -225,34 +223,34 @@ class FolderView(FoldV, CommonView):
         except ImportError:
             return False
         else:
-            request = getattr(self.context, 'REQUEST', None)
+            request = getattr(self.context, "REQUEST", None)
             if ICPSkinSliderLayer.providedBy(request):
                 return True
             return False
 
     def show_image(self, collection):
         slider_type = self.getSliderType(collection)
-        return DISPLAY_TYPES[slider_type]['show-image']
+        return DISPLAY_TYPES[slider_type]["show-image"]
 
     def show_carousel(self, collection):
         slider_type = self.getSliderType(collection)
-        return DISPLAY_TYPES[slider_type]['show-carousel']
+        return DISPLAY_TYPES[slider_type]["show-carousel"]
 
     def addContent(self):
         """Mark content to add it to folder view"""
         context = self._get_real_context()
         alsoProvides(context, IFolderViewSelectedContent)
-        catalog = api.portal.get_tool('portal_catalog')
+        catalog = api.portal.get_tool("portal_catalog")
         catalog.reindexObject(context)
-        self._redirect(_(u'Contenu ajouté à la vue index.'))
+        self._redirect(_(u"Contenu ajouté à la vue index."))
 
     def removeContent(self):
         """Unmark content to remove it from folder view"""
         context = self._get_real_context()
         noLongerProvides(context, IFolderViewSelectedContent)
-        catalog = api.portal.get_tool('portal_catalog')
+        catalog = api.portal.get_tool("portal_catalog")
         catalog.reindexObject(context)
-        self._redirect(_(u'Contenu retiré de la vue index.'))
+        self._redirect(_(u"Contenu retiré de la vue index."))
 
     def isEligibleContent(self):
         context = self._get_real_context()
@@ -284,7 +282,7 @@ class FolderView(FoldV, CommonView):
         if not self.isFolderViewActivated():
             return False
         context = self._get_real_context()
-        return (not IFolderViewWithBigImages.providedBy(context))
+        return not IFolderViewWithBigImages.providedBy(context)
 
     def bigImagesAreUsed(self):
         context = self._get_real_context()
@@ -294,35 +292,36 @@ class FolderView(FoldV, CommonView):
         """Check if big images are used on folder view"""
         if not self.isFolderViewActivated():
             return False
-        return (self.bigImagesAreUsed())
+        return self.bigImagesAreUsed()
 
     def useBigImages(self):
         """Use big images for first elements on folder view"""
         context = self._get_real_context()
         alsoProvides(context, IFolderViewWithBigImages)
-        catalog = api.portal.get_tool('portal_catalog')
+        catalog = api.portal.get_tool("portal_catalog")
         catalog.reindexObject(context)
-        self._redirect(_(u'Big images are now used on this folder view.'))
+        self._redirect(_(u"Big images are now used on this folder view."))
 
     def stopBigImagesUse(self):
         """Use using big images for first elements on folder view"""
         context = self._get_real_context()
         noLongerProvides(context, IFolderViewWithBigImages)
-        catalog = api.portal.get_tool('portal_catalog')
+        catalog = api.portal.get_tool("portal_catalog")
         catalog.reindexObject(context)
-        self._redirect(
-            _(u'Big images are not used anymore on this folder view.'))
+        self._redirect(_(u"Big images are not used anymore on this folder view."))
 
     def slider_config(self, content):
         content_id = content.id
-        portal_registry = getToolByName(self.context, 'portal_registry')
+        portal_registry = getToolByName(self.context, "portal_registry")
         slider_timer = portal_registry[
-            'cpskin.core.interfaces.ICPSkinSettings.slider_timer']
+            "cpskin.core.interfaces.ICPSkinSettings.slider_timer"
+        ]
         auto_play_slider = portal_registry[
-            'cpskin.core.interfaces.ICPSkinSettings.auto_play_slider']
+            "cpskin.core.interfaces.ICPSkinSettings.auto_play_slider"
+        ]
         min_items, max_items = self.get_items_number(content)
         slider_type = self.getSliderType(content)
-        show_control_nav = DISPLAY_TYPES[slider_type]['control-nav']
+        show_control_nav = DISPLAY_TYPES[slider_type]["control-nav"]
         config = """
         (function($) {
             "use strict";
@@ -407,53 +406,51 @@ class FolderView(FoldV, CommonView):
               }
             });
          })(jQuery);
-        """ % {'auto_play_slider': auto_play_slider and 'true' or 'false',
-               'slider_timer': slider_timer,
-               'show_control_nav': show_control_nav and 'true' or 'false',
-               'content_id': content_id,
-               'min_items_in_slider': min_items,
-               'max_items_in_slider': max_items}
+        """ % {
+            "auto_play_slider": auto_play_slider and "true" or "false",
+            "slider_timer": slider_timer,
+            "show_control_nav": show_control_nav and "true" or "false",
+            "content_id": content_id,
+            "min_items_in_slider": min_items,
+            "max_items_in_slider": max_items,
+        }
         return config
 
     def scaled_image_url(self, context, obj, isBigImage):
         image = self.collection_image_scale(context, obj)
-        return image and image.url or ''
+        return image and image.url or ""
 
     def collection_image_scale(self, collection, obj):
-        scale = getattr(collection, 'collection_image_scale', 'collection')
+        scale = getattr(collection, "collection_image_scale", "collection")
         if self.use_new_template(collection):
-            return image_scale(obj, 'newsImage', scale, generate_tag=False)
+            return image_scale(obj, "newsImage", scale, generate_tag=False)
         else:
-            return image_scale(obj, 'newsImage', scale)
+            return image_scale(obj, "newsImage", scale)
 
     def see_all(self, collection):
         voirlensemble = _(u"Voir l'ensemble des")
-        coll_lang = getattr(collection, 'language')
-        lang = coll_lang if (coll_lang != '' and '-' not in coll_lang) else 'fr'  # noqa
+        coll_lang = getattr(collection, "language")
+        lang = coll_lang if (coll_lang != "" and "-" not in coll_lang) else "fr"  # noqa
         trans = translate(
-            voirlensemble,
-            domain=voirlensemble.domain,
-            target_language=lang)
-        if getattr(collection, 'link_text', ''):
-            return collection.link_text.encode('utf-8')
-        return '{0} {1}'.format(trans, collection.Title().lower())
+            voirlensemble, domain=voirlensemble.domain, target_language=lang
+        )
+        if getattr(collection, "link_text", ""):
+            return collection.link_text.encode("utf-8")
+        return "{0} {1}".format(trans, collection.Title().lower())
 
     def get_video(self, video):
         result = utils.embed(video, self.request)
         return result
 
     def get_class(self, classe):
-        if classe == 'Media Link':
-            return 'medialink'
+        if classe == "Media Link":
+            return "medialink"
         else:
             return None
 
-    def toLocalizedTime(self,
-                        time=None,
-                        long_format=None,
-                        time_only=None,
-                        event=None,
-                        startend='start'):
+    def toLocalizedTime(
+        self, time=None, long_format=None, time_only=None, event=None, startend="start"
+    ):
         if event:
             if not IEvent.providedBy(event):
                 event = event.getObject()
@@ -461,56 +458,66 @@ class FolderView(FoldV, CommonView):
             occurences = [occ for occ in rs.occurrences(datetime.today())]
             if len(occurences) >= 1:
                 # do not get object which started in the past
-                if startend == 'start':
-                    time = getattr(occurences[0], 'start')
-                elif startend == 'end':
-                    time = getattr(occurences[-1], 'end')
-        return self.context.restrictedTraverse('@@plone').toLocalizedTime(
-            time, long_format, time_only)
+                if startend == "start":
+                    time = getattr(occurences[0], "start")
+                elif startend == "end":
+                    time = getattr(occurences[-1], "end")
+        return self.context.restrictedTraverse("@@plone").toLocalizedTime(
+            time, long_format, time_only
+        )
 
     def get_portal_timezone(self):
         reg = getUtility(IRegistry)
-        settings = reg.forInterface(IEventSettings, prefix='plone.app.event')
+        settings = reg.forInterface(IEventSettings, prefix="plone.app.event")
         return settings.portal_timezone
 
     def get_event_dates(self, result):
         timezone = self.get_portal_timezone()
         occurences = expand_events([result], RET_MODE_ACCESSORS)
-        start_date = getattr(occurences[0], 'start')
-        end_date = getattr(occurences[-1], 'end')
+        start_date = getattr(occurences[0], "start")
+        end_date = getattr(occurences[-1], "end")
 
         if not start_date:
-            return {'start': '', 'end': ''}
-        if getattr(start_date, 'astimezone', False):
+            return {"start": "", "end": ""}
+        if getattr(start_date, "astimezone", False):
             start_date = start_date.astimezone(pytz.timezone(timezone))
-        formated_start = start_date.strftime('%d/%m')
+        formated_start = start_date.strftime("%d/%m")
         if not end_date:
-            return {'start': formated_start, 'end': ''}
-        if getattr(end_date, 'astimezone', False):
+            return {"start": formated_start, "end": ""}
+        if getattr(end_date, "astimezone", False):
             end_date = end_date.astimezone(pytz.timezone(timezone))
-        formated_end = end_date.strftime('%d/%m')
+        formated_end = end_date.strftime("%d/%m")
         if formated_start != formated_end:
-            return {'start': formated_start, 'end': formated_end}
-        return {'start': formated_start, 'end': ''}
+            return {"start": formated_start, "end": formated_end}
+        return {"start": formated_start, "end": ""}
 
     def is_one_day(self, event):
         occurences = expand_events([event], RET_MODE_ACCESSORS)
-        start_date = getattr(occurences[0], 'start')
-        end_date = getattr(occurences[-1], 'end')
-        return self.toLocalizedTime(start_date, long_format=0) == self.toLocalizedTime(end_date, long_format=0)  # noqa
+        if not occurences:
+            start_date = event.start
+            end_date = event.end
+        else:
+            start_date = getattr(occurences[0], "start")
+            end_date = getattr(occurences[-1], "end")
+        return self.toLocalizedTime(start_date, long_format=0) == self.toLocalizedTime(
+            end_date, long_format=0
+        )
 
     def is_with_hours(self, event):
-        if getattr(event, 'whole_day', False):
-            return not(event.whole_day)
+        if getattr(event, "whole_day", False):
+            return not (event.whole_day)
         else:
-            return self.toLocalizedTime(event.start, long_format=1)[11:] != '00:00' or self.toLocalizedTime(event.end, long_format=1)[11:] != '00:00'  # noqa
+            return (
+                self.toLocalizedTime(event.start, long_format=1)[11:] != "00:00"
+                or self.toLocalizedTime(event.end, long_format=1)[11:] != "00:00"
+            )  # noqa
 
     def is_open_end(self, event):
-        return getattr(event, 'open_end', False)
+        return getattr(event, "open_end", False)
 
     def see_start_end_date(self, brain, collection):
-        if getattr(brain, 'start', False) and getattr(brain, 'end', False):
-            if not getattr(collection, 'hide_date', False):
+        if getattr(brain, "start", False) and getattr(brain, "end", False):
+            if not getattr(collection, "hide_date", False):
                 return True
             else:
                 return False
@@ -518,62 +525,64 @@ class FolderView(FoldV, CommonView):
             return False
 
     def hide_title(self, collection):
-        return getattr(collection, 'hide_title', False)
+        return getattr(collection, "hide_title", False)
 
     def hide_see_all_link(self, collection):
-        return getattr(collection, 'hide_see_all_link', False)
+        return getattr(collection, "hide_see_all_link", False)
 
     def hide_date(self, brain, collection):
         """Check if object has a correct effective date.
         If None, you get 01/01/1000 and strftime cannot convert it.
         Also check if collection is checked to see publication date.
         """
-        if not getattr(brain, 'start', None) and not getattr(brain, 'end', None):  # noqa
-            return getattr(collection, 'hide_date', True)
+        if not getattr(brain, "start", None) and not getattr(
+            brain, "end", None
+        ):  # noqa
+            return getattr(collection, "hide_date", True)
         else:
             # always hide effective date for events
             return True
 
     def show_day_and_month(self, collection):
-        return getattr(collection, 'show_day_and_month', False)
+        return getattr(collection, "show_day_and_month", False)
 
     def show_lead_image(self, collection):
-        return getattr(collection, 'show_lead_image', True)
+        return getattr(collection, "show_lead_image", True)
 
     def show_descriptions(self, collection):
-        return getattr(collection, 'show_descriptions', False)
+        return getattr(collection, "show_descriptions", False)
 
     def use_new_template(self, collection):
-        return getattr(collection, 'use_new_template', False)
+        return getattr(collection, "use_new_template", False)
 
     def use_slider(self, collection):
-        display_type = getattr(collection, 'display_type', '')
+        display_type = getattr(collection, "display_type", "")
         if not display_type or display_type not in DISPLAY_TYPES:
             return False
-        return DISPLAY_TYPES[display_type]['slider']
+        return DISPLAY_TYPES[display_type]["slider"]
 
     def get_items_number(self, collection):
-        display_type = getattr(collection, 'display_type', '')
-        if display_type != 'slider-with-elements-count-choice':
+        display_type = getattr(collection, "display_type", "")
+        if display_type != "slider-with-elements-count-choice":
             return 0, 0
-        min_items = getattr(collection, 'minimum_items_in_slider', 0)
-        max_items = getattr(collection, 'maximum_items_in_slider', 0)
+        min_items = getattr(collection, "minimum_items_in_slider", 0)
+        max_items = getattr(collection, "maximum_items_in_slider", 0)
         return min_items, max_items
 
     def get_block_class(self, collection):
-        display_type = getattr(collection, 'display_type', '')
+        display_type = getattr(collection, "display_type", "")
         if not display_type or display_type not in DISPLAY_TYPES:
-            return ''
-        return DISPLAY_TYPES[display_type]['class']
+            return ""
+        return DISPLAY_TYPES[display_type]["class"]
 
     def show_publication_date(self, collection, result):
         if self.hide_date(result, collection):
             return False
-        display_type = getattr(collection, 'display_type', '')
-        return (display_type == 'slider-with-elements-count-choice')
+        display_type = getattr(collection, "display_type", "")
+        return display_type == "slider-with-elements-count-choice"
 
     def show_event_category_below_image(self, collection):
-        return getattr(collection, 'show_event_category_below_image', False)
+        return getattr(collection, "show_event_category_below_image", False)
 
 
 def configure_folderviews(context):
@@ -581,76 +590,88 @@ def configure_folderviews(context):
     """
     existingIds = context.objectIds()
     portalPath = api.portal.get().getPhysicalPath()
-    contextPath = '/'.join(context.getPhysicalPath()[len(portalPath):])
-    if 'a-la-une' not in existingIds:
-        folder = api.content.create(container=context,
-                                    type='Folder',
-                                    id='a-la-une',
-                                    title=_(u'À la une'))
+    contextPath = "/".join(context.getPhysicalPath()[len(portalPath) :])
+    if "a-la-une" not in existingIds:
+        folder = api.content.create(
+            container=context, type="Folder", id="a-la-une", title=_(u"À la une")
+        )
         alsoProvides(folder, IFolderViewSelectedContent)
-        collection = api.content.create(container=folder,
-                                        type='Collection',
-                                        id='a-la-une',
-                                        title=_(u'À la une'))
-        query = [{'i': 'hiddenTags',
-                  'o': 'plone.app.querystring.operation.selection.is',
-                  'v': 'a-la-une'},
-                 {'i': 'path',
-                  'o': 'plone.app.querystring.operation.string.path',
-                  'v': '/%s' % contextPath}]
+        collection = api.content.create(
+            container=folder, type="Collection", id="a-la-une", title=_(u"À la une")
+        )
+        query = [
+            {
+                "i": "hiddenTags",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": "a-la-une",
+            },
+            {
+                "i": "path",
+                "o": "plone.app.querystring.operation.string.path",
+                "v": "/%s" % contextPath,
+            },
+        ]
         collection.setQuery(query)
-        collection.setSort_on('effective')
+        collection.setSort_on("effective")
         collection.setSort_reversed(True)
-        collection.setLayout('summary_view')
-        folder.setDefaultPage('a-la-une')
+        collection.setLayout("summary_view")
+        folder.setDefaultPage("a-la-une")
         folder.reindexObject()
-    if 'actualites' not in existingIds:
-        folder = api.content.create(container=context,
-                                    type='Folder',
-                                    id='actualites',
-                                    title=_(u'Actualités'))
-        collection = api.content.create(container=folder,
-                                        type='Collection',
-                                        id='actualites',
-                                        title=_(u'Actualités'))
-        query = [{'i': 'portal_type',
-                  'o': 'plone.app.querystring.operation.selection.is',
-                  'v': ['News Item']},
-                 {'i': 'path',
-                  'o': 'plone.app.querystring.operation.string.path',
-                  'v': '/%s' % contextPath}]
+    if "actualites" not in existingIds:
+        folder = api.content.create(
+            container=context, type="Folder", id="actualites", title=_(u"Actualités")
+        )
+        collection = api.content.create(
+            container=folder, type="Collection", id="actualites", title=_(u"Actualités")
+        )
+        query = [
+            {
+                "i": "portal_type",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": ["News Item"],
+            },
+            {
+                "i": "path",
+                "o": "plone.app.querystring.operation.string.path",
+                "v": "/%s" % contextPath,
+            },
+        ]
         collection.setQuery(query)
-        collection.setSort_on('effective')
+        collection.setSort_on("effective")
         collection.setSort_reversed(True)
-        collection.setLayout('summary_view')
-        folder.setDefaultPage('actualites')
+        collection.setLayout("summary_view")
+        folder.setDefaultPage("actualites")
     else:
-        folder = context['actualites']
+        folder = context["actualites"]
     alsoProvides(folder, IFolderViewSelectedContent)
     folder.reindexObject()
 
-    if 'evenements' not in existingIds:
-        folder = api.content.create(container=context,
-                                    type='Folder',
-                                    id='evenements',
-                                    title=_(u'Événements'))
-        collection = api.content.create(container=folder,
-                                        type='Collection',
-                                        id='evenements',
-                                        title=_(u'Événements'))
-        query = [{'i': 'portal_type',
-                  'o': 'plone.app.querystring.operation.selection.is',
-                  'v': ['Event']},
-                 {'i': 'path',
-                  'o': 'plone.app.querystring.operation.string.path',
-                  'v': '/%s' % contextPath}]
+    if "evenements" not in existingIds:
+        folder = api.content.create(
+            container=context, type="Folder", id="evenements", title=_(u"Événements")
+        )
+        collection = api.content.create(
+            container=folder, type="Collection", id="evenements", title=_(u"Événements")
+        )
+        query = [
+            {
+                "i": "portal_type",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": ["Event"],
+            },
+            {
+                "i": "path",
+                "o": "plone.app.querystring.operation.string.path",
+                "v": "/%s" % contextPath,
+            },
+        ]
         collection.setQuery(query)
-        collection.setSort_on('effective')
+        collection.setSort_on("effective")
         collection.setSort_reversed(True)
-        collection.setLayout('summary_view')
-        folder.setDefaultPage('evenements')
+        collection.setLayout("summary_view")
+        folder.setDefaultPage("evenements")
     else:
-        folder = context['evenements']
+        folder = context["evenements"]
     alsoProvides(folder, IFolderViewSelectedContent)
     folder.reindexObject()
-    context.setLayout('folderview')
+    context.setLayout("folderview")
