@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.29 (unreleased)
+0.13.29 (2020-03-26)
 --------------------
 
 - Fix is_one_day method when there is no real occurence on event.
