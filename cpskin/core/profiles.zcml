@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+      title="CPSKIN Core: upgrade to v64: Update types"
+      description="Purpose : Add listing_view view to Event type"
+      source="63"
+      destination="64"
+      handler=".upgradehandlers.update_types"
+      profile="cpskin.core:default"
+    />
+
+    <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v63: Add indexed taxonomies setting"
       source="62"
       destination="63"

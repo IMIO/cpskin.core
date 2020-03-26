@@ -4,7 +4,9 @@ Changelog
 0.13.30 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add missing listing_view view to Collection view_methods
+  Detected because Solgema.fullcalendar uninstallation was broken
+  [laulaz]
 
 
 0.13.29 (2020-03-26)
