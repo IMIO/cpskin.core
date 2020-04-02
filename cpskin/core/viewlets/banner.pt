@@ -39,5 +39,13 @@
                <source tal:attributes="src banner/url" src="" type="video/mp4"></source>
                <source tal:attributes="src banner/url_webm" src="" type="video/webm"></source>
           </video>
+
+          <button
+               tal:condition="python:banner['type'] == 'video'"
+               id="toggle-video"
+               class="video-play"
+               type="button">
+               Pause
+          </button>
      </tal:def>
 </div>
