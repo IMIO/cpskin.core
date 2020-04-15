@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.30 (unreleased)
+0.13.30 (2020-04-15)
 --------------------
 
 - Add missing listing_view view to Collection view_methods
