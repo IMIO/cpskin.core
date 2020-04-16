@@ -28,6 +28,7 @@ from zope.i18n import translate
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 
+import json
 import logging
 import pytz
 
@@ -317,6 +318,28 @@ class FolderView(FoldV, CommonView):
         catalog = api.portal.get_tool("portal_catalog")
         catalog.reindexObject(context)
         self._redirect(_(u"Big images are not used anymore on this folder view."))
+
+    def slick_config(self, content):
+        portal_registry = getToolByName(self.context, "portal_registry")
+        slider_timer = portal_registry[
+            "cpskin.core.interfaces.ICPSkinSettings.slider_timer"
+        ]
+        min_items, max_items = self.get_items_number(content)
+        slider_type = self.getSliderType(content)
+        slider_config = DISPLAY_TYPES[slider_type]
+        config = {
+            "autoplay": api.portal.get_registry_record(
+                "cpskin.core.interfaces.ICPSkinSettings.auto_play_slider",
+                default=False,
+            ),
+            "autoplaySpeed": slider_timer,
+            "dots": slider_config.get("control-nav", False),
+            "slidesToShow": min_items,
+            "slidesToScroll": min_items,
+            "easing": slider_config.get("easing", "linear"),
+            "centerMode": getattr(content, "use_center_mode", False),
+        }
+        return json.dumps(config)
 
     def slider_config(self, content):
         content_id = content.id
