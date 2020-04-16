@@ -238,6 +238,13 @@ class ICPSkinSettings(Interface):
         default=u'types_activites\n'
     )
 
+    use_slick = schema.Bool(
+        title=_(u'Use slick for slider'),
+        description=_(u'Do you want to use slick instead of flexslider ?'),
+        required=False,
+        default=False
+    )
+
 
 class IVideoCollection(Interface):
     """
