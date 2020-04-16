@@ -13,7 +13,10 @@
   </metal:styleslot>
 
   <metal:javascript_head_slot fill-slot="javascript_head_slot"
+                              tal:define="has_flexslider view/hasFlexSlider;
+                                          has_slick view/has_slick_slider;"
                               tal:condition="view/hasFlexSlider">
+    <tal:if condition="python: has_flexslider and not has_slick">
       <script type="text/javascript"
               charset="utf-8"
               src=""
@@ -22,6 +25,18 @@
               charset="utf-8"
               src=""
               tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++jquery.flexslider/javascript/cpskin.slider.js"></script>
+    </tal:if>
+
+    <tal:if condition="has_slick">
+      <script type="text/javascript"
+              charset="utf-8"
+              src=""
+              tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++jquery.flexslider/javascript/slick.min.js"></script>
+      <script type="text/javascript"
+              charset="utf-8"
+              src=""
+              tal:attributes="src string:${context/@@plone_portal_state/portal_url}/++resource++jquery.flexslider/javascript/cpskin.slick.js"></script>
+    </tal:if>
   </metal:javascript_head_slot>
 
   <body>

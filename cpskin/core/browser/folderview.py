@@ -228,6 +228,14 @@ class FolderView(FoldV, CommonView):
                 return True
             return False
 
+    def has_slick_slider(self):
+        if self.hasFlexSlider() is True:
+            return api.portal.get_registry_record(
+                "cpskin.core.interfaces.ICPSkinSettings.use_slick",
+                default=False,
+            )
+        return False
+
     def show_image(self, collection):
         slider_type = self.getSliderType(collection)
         return DISPLAY_TYPES[slider_type]["show-image"]
@@ -560,6 +568,14 @@ class FolderView(FoldV, CommonView):
         if not display_type or display_type not in DISPLAY_TYPES:
             return False
         return DISPLAY_TYPES[display_type]["slider"]
+
+    def use_slick(self, collection):
+        if self.use_slider(collection) is True:
+            return api.portal.get_registry_record(
+                "cpskin.core.interfaces.ICPSkinSettings.use_slick",
+                default=False,
+            )
+        return False
 
     def get_items_number(self, collection):
         display_type = getattr(collection, "display_type", "")

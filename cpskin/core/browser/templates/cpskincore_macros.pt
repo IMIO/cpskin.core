@@ -378,9 +378,10 @@
   <metal:homepage define-macro="homepage">
     <tal:def tal:define="use_new_template python: view.use_new_template(content);
                          use_slider python: view.use_slider(content);
+                         use_slick python: view.use_slick(content);
                          bloc_class python: view.get_block_class(content);">
       <div id="flex"
-           tal:condition="python: use_slider and view.hasFlexSlider()"
+           tal:condition="python: use_slider and view.hasFlexSlider() and not use_slick"
            tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-slider ${content/id} ${bloc_class}">
           <div class="flex-container parsable-content"
                tal:define="context nocall:content;
@@ -391,6 +392,16 @@
               <tal:cond condition="python:view.getSliderType(content) != 'slider-vertical'">
                     <metal:block use-macro="context/@@slider_view/macros/content-core" />
               </tal:cond>
+          </div>
+
+      </div>
+      <div class="slick"
+           tal:condition="python: use_slick and view.has_slick_slider()"
+           tal:attributes="class string:bloc-${repeat/content/number} bloc-collection-slider ${content/id} ${bloc_class}">
+          <div class="slick-container parsable-content"
+               tal:define="context nocall:content;
+                           here nocall:content">
+              <metal:block use-macro="context/@@slick_view/macros/content-core" />
           </div>
 
       </div>
