@@ -34,6 +34,7 @@ class ICpskinIndexViewSettings(model.Schema):
             'show_descriptions',
             'use_new_template',
             'show_event_category_below_image',
+            'use_center_mode',
         ),
     )
 
@@ -181,4 +182,10 @@ class ICpskinIndexViewSettings(model.Schema):
         description=_(u'Show event category below image, with date and title'),
         required=False,
         default=False
+    )
+
+    use_center_mode = schema.Bool(
+        title=_(u"User center mode for slick"),
+        required=False,
+        default=False,
     )
