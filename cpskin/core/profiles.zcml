@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+      title="CPSKIN Core: upgrade to v65: Add use_slick parameter"
+      description="Purpose :  Add use_slick parameter"
+      source="64"
+      destination="65"
+      handler=".upgradehandlers.to_65_use_slick"
+      profile="cpskin.core:default"
+      />
+
+    <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v64: Update types"
       description="Purpose : Add listing_view view to Event type"
       source="63"
