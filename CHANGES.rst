@@ -4,7 +4,8 @@ Changelog
 0.13.31 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEB-3302: Implement slick slider
+  [mpeeters]
 
 
 0.13.30 (2020-04-15)
