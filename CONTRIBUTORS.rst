@@ -1,3 +1,4 @@
 - Laurent Lasudry, Original Author [Affinitic]
 - François Bruynbroeck [Affinitic]
 - Gillian Sampont [Affinitic]
+- Leonardo J. Caballero G. [Plone Venezuela]
