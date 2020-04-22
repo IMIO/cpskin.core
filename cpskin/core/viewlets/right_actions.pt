@@ -10,11 +10,13 @@
       <div id="useful-links-container"
            class="right-panel hidden-right-panel">
          <div id="useful-links-related-contents"
-              tal:condition="view/has_related">
+              tal:condition="view/has_related"
+              i18n:translate="">
               Related items
          </div>
          <div id="useful-links-portlets"
-              tal:condition="view/has_portlets">
+              tal:condition="view/has_portlets"
+              i18n:translate="">
               Portlets
          </div>
       </div>

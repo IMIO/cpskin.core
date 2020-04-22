@@ -4,7 +4,8 @@ Changelog
 0.13.31 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add more improvements for i18n support
+  [macagua]
 
 
 0.13.30 (2020-04-15)
