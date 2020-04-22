@@ -4,6 +4,9 @@ Changelog
 0.13.31 (unreleased)
 --------------------
 
+- Moved these translations into cpskin.locales package
+  [macagua]
+
 - Add more improvements for i18n support
   [macagua]
 
