@@ -2,7 +2,7 @@
     i18n:domain="cpskin">
   <dd class="portletItem odd" >
     <img src=""
-         alt="Visuel"
+         alt="Visual"
          style="max-width: 100%;"
          tal:attributes="src string:${view/get_visuel}"
          i18n:attributes="alt visuel" />
