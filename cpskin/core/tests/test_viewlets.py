@@ -530,10 +530,10 @@ class TestViewlets(unittest.TestCase):
             v for v in manager.viewlets if v.__name__ == 'cpskin.footer']  # noqa
         self.assertEqual(len(my_viewlet), 1)
         viewlet = my_viewlet[0]
-        self.assertNotIn('Mentions L&eacute;gales', viewlet.render())
+        self.assertNotIn('Legal notice', viewlet.render())
         api.portal.set_registry_record(
             'is_text_ready',
             True,
             interface=IGDPRSettings
         )
-        self.assertIn('Mentions L&eacute;gales', viewlet.render())
+        self.assertIn('Legal notice', viewlet.render())
