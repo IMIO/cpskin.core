@@ -45,7 +45,8 @@
                tal:condition="python:banner['type'] == 'video'"
                id="toggle-video"
                class="video-play"
-               type="button">
+               type="button"
+               i18n:translate="">
                Pause
           </button>
      </tal:def>

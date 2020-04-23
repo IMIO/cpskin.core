@@ -1,9 +1,9 @@
 <dl class="portlet" id="portlet-firefox"
     i18n:domain="cpskin">
     <dd class="portletItem odd">
-        <span i18n:translate="site_optimise_pour_firefox">Ce site est optimisé pour le navigateur Firefox.</span><br />
+        <span i18n:translate="site_optimise_pour_firefox">This site is optimized for the Firefox browser.</span><br />
         <br />
-        <span i18n:translate="firefox_download_sentence">Sécurisé, fiable et rapide, <a href="http://www.getfirefox.com" i18n:name="Firefox">Firefox</a> est gratuit et simple à installer.</span><br />
+        <span i18n:translate="firefox_download_sentence">Secure, reliable and fast, <a href="http://www.getfirefox.com" i18n:name="Firefox">Firefox</a> is free and easy to install.</span><br />
         <br />
         <a href="http://www.getfirefox.com">
             <img src=""

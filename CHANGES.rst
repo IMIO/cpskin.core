@@ -4,7 +4,11 @@ Changelog
 0.13.31 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Moved these translations into cpskin.locales package
+  [macagua]
+
+- Add more improvements for i18n support
+  [macagua]
 
 
 0.13.30 (2020-04-15)
