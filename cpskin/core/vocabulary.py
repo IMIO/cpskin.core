@@ -261,6 +261,15 @@ DISPLAY_TYPES = {
         'show-image': True,
         'show-carousel': True,
     },
+    u'slider-slick': {
+        'value': u'slider-slick',
+        'title': _(u'Slider Slick'),
+        'slider': True,
+        'class': 'slider-slick-mode',
+        'control-nav': True,
+        'show-image': True,
+        'show-carousel': True,
+    },
     u'unique-slider-with-title-carousel': {
         'value': u'unique-slider-with-title-carousel',
         'title': _(u'Unique slider with carousel on title'),

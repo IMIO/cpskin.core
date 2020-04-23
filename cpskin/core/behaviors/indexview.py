@@ -19,6 +19,15 @@ class ICpskinIndexViewSettings(model.Schema):
             'display_type',
             'minimum_items_in_slider',
             'maximum_items_in_slider',
+            'slide_to_scroll',
+            'speed',
+            'show_arrows',
+            'show_dots',
+            'use_center_mode',
+            'center_padding',
+            'autoplay_mode',
+            'autoplay_speed',
+            'fade',
             'collection_image_scale',
             'slider_image_scale',
             'carousel_image_scale',
@@ -181,4 +190,69 @@ class ICpskinIndexViewSettings(model.Schema):
         description=_(u'Show event category below image, with date and title'),
         required=False,
         default=False
+    )
+
+    use_center_mode = schema.Bool(
+        title=_(u"Center mode (slick)"),
+        description=_(u'Use center mode for slick '),
+        required=False,
+        default=False,
+    )
+
+    center_padding = schema.Int(
+        title=_(u"Center padding (slick)"),
+        description=_(u'Set padding on the sides for center mode '),
+        required=False,
+        default=50,
+    )
+    
+    slide_to_scroll = schema.Int(
+        title=_(u"Slide to scroll (slick)"),
+        description=_(u'Number of slide to scroll '),
+        required=False,
+        default=1,
+        min=1,
+        max=10,
+    )
+
+    autoplay_mode = schema.Bool(
+        title=_(u"Autoplay mode (slick)"),
+        description=_(u'Use autoplay mode to activate automatic scrolling'),
+        required=False,
+        default=False,
+    )
+
+    autoplay_speed = schema.Int(
+        title=_(u"Autoplay speed (slick)"),
+        description=_(u'Use autoplay_speed to define scrolling speed '),
+        required=False,
+        default=4000,
+    )
+
+    show_arrows = schema.Bool(
+        title=_(u"Show arrows (slick)"),
+        description=_(u'Ative to show the arrows'),
+        required=False,
+        default=True,
+    )
+
+    show_dots = schema.Bool(
+        title=_(u"Show dots (slick)"),
+        description=_(u'Ative to show the dots'),
+        required=False,
+        default=True,
+    )
+    
+    fade = schema.Bool(
+        title=_(u"Fade mode (slick)"),
+        description=_(u'Ative to Fade mode'),
+        required=False,
+        default=False,
+    )
+
+    speed = schema.Int(
+        title=_(u"Slide Speed (slick)"),
+        description=_(u'Choose the scroll speed'),
+        required=False,
+        default=300,
     )

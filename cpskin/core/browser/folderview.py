@@ -328,16 +328,17 @@ class FolderView(FoldV, CommonView):
         slider_type = self.getSliderType(content)
         slider_config = DISPLAY_TYPES[slider_type]
         config = {
-            "autoplay": api.portal.get_registry_record(
-                "cpskin.core.interfaces.ICPSkinSettings.auto_play_slider",
-                default=False,
-            ),
-            "autoplaySpeed": slider_timer,
-            "dots": slider_config.get("control-nav", False),
             "slidesToShow": min_items,
-            "slidesToScroll": min_items,
-            "easing": slider_config.get("easing", "linear"),
+            "slidesToScroll": getattr(content, "slide_to_scroll", False),
+            "dots": getattr(content, "show_dots", True),
+            "arrows": getattr(content, "show_arrows", False),
+            "speed": getattr(content, "speed", 300),
+            "easing": slider_config.get("easing", "ease"),
+            "autoplay": getattr(content, "autoplay_mode", False),
+            "autoplaySpeed": getattr(content, "autoplay_speed", False),
             "centerMode": getattr(content, "use_center_mode", False),
+            "centerPadding": getattr(content, "'"+"center_padding"+"'"+"px", False),
+            "fade": getattr(content, "fade", False),
         }
         return json.dumps(config)
 
@@ -602,7 +603,7 @@ class FolderView(FoldV, CommonView):
 
     def get_items_number(self, collection):
         display_type = getattr(collection, "display_type", "")
-        if display_type != "slider-with-elements-count-choice":
+        if display_type != "slider-with-elements-count-choice" and display_type != "slider-slick":
             return 0, 0
         min_items = getattr(collection, "minimum_items_in_slider", 0)
         max_items = getattr(collection, "maximum_items_in_slider", 0)
