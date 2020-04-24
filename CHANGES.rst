@@ -4,6 +4,10 @@ Changelog
 0.13.31 (unreleased)
 --------------------
 
+- Fixed ComponentLookupError: cmf.ManagePortal error,
+  reported into the issue #25
+  [macagua]
+
 - Moved these translations into cpskin.locales package
   [macagua]
 
