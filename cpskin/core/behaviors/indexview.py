@@ -50,7 +50,7 @@ class ICpskinIndexViewSettings(model.Schema):
         title=_(u'Collection display type'),
         description=_(u'How do you want to display this collection on index view ?'),  # noqa
         required=False,
-        vocabulary=index_view_display_type
+        vocabulary=u"cpskin.core.vocabularies.slider_display_types",
     )
 
     minimum_items_in_slider = schema.Int(

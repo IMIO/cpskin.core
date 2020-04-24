@@ -4,6 +4,9 @@ Changelog
 0.13.31 (unreleased)
 --------------------
 
+- WEB-3302: Filter slider on index view based on `use_slick` parameter
+  [mpeeters]
+
 - WEB-3302: Implement slick slider
   [mpeeters]
 

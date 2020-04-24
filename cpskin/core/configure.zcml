@@ -59,6 +59,9 @@
    <utility component=".vocabulary.GeoTypesVocabularyFactory"
             name="cpskin.core.vocabularies.geo_types" />
 
+   <utility component=".vocabulary.SliderDisplayTypeVocabulary"
+            name="cpskin.core.vocabularies.slider_display_types" />
+
    <adapter factory=".extender.ContentExtender"
            provides="archetypes.schemaextender.interfaces.ISchemaExtender"
            name="cpskin.core.extender" />
