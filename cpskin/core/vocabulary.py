@@ -345,6 +345,8 @@ class SliderDisplayTypeVocabularyFactory(object):
         items = [(disp['value'], disp['title']) for disp in DISPLAY_TYPES.values()]
         if use_slick is True:
             items = [e for e in items if DISPLAY_TYPES[e[0]].get("slick", False)]
+        else:
+            items = [e for e in items if not DISPLAY_TYPES[e[0]].get("slick", False)]
         items.sort(key=lambda x: x[1])
         return SimpleVocabulary(
             [SimpleTerm(i[0], i[0], i[1]) for i in items]

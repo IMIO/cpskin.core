@@ -3,6 +3,11 @@ Changelog
 
 0.13.31 (unreleased)
 --------------------
+- WEB-3302: Add breckpoint parameters for slick
+  [thomlamb]
+  
+- WEB-3302: Add breckpoint parameters for slick
+  [thomlamb]
 
 - WEB-3302: Filter slider on index view based on `use_slick` parameter
   [mpeeters]
