@@ -339,6 +339,29 @@ class FolderView(FoldV, CommonView):
             "centerMode": getattr(content, "use_center_mode", False),
             "centerPadding": getattr(content, "'"+"center_padding"+"'"+"px", False),
             "fade": getattr(content, "fade", False),
+            "responsive": [
+                {
+                    "breakpoint": getattr(content, "breakpoint_full", False),
+                    "settings": {
+                        "slidesToShow": getattr(content, "slidesToShow_full", False),
+                        "slidesToScroll":getattr(content, "slidesToScroll_full", False)
+                    }
+                },
+                {
+                    "breakpoint": getattr(content, "breakpoint_medium", False),
+                    "settings": {
+                        "slidesToShow": getattr(content, "slidesToShow_medium", False),
+                        "slidesToScroll":getattr(content, "slidesToScroll_medium", False)
+                    }
+                },
+                {
+                    "breakpoint": getattr(content, "breakpoint_small", False),
+                    "settings": {
+                        "slidesToShow": getattr(content, "slidesToShow_small", False),
+                        "slidesToScroll":getattr(content, "slidesToScroll_small", False)
+                    }
+                }
+            ]
         }
         return json.dumps(config)
 

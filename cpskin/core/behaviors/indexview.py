@@ -23,6 +23,15 @@ class ICpskinIndexViewSettings(model.Schema):
             'speed',
             'show_arrows',
             'show_dots',
+            'breakpoint_full',
+            'slidesToShow_full',
+            'slidesToScroll_full',
+            'breakpoint_medium',
+            'slidesToShow_medium',
+            'slidesToScroll_medium',
+            'breakpoint_small',
+            'slidesToShow_small',
+            'slidesToScroll_small',
             'use_center_mode',
             'center_padding',
             'autoplay_mode',
@@ -255,4 +264,65 @@ class ICpskinIndexViewSettings(model.Schema):
         description=_(u'Choose the scroll speed'),
         required=False,
         default=300,
+    )
+
+    breakpoint_full = schema.Int(
+        title=_(u"Breakpoint full (slick)"),
+        description=_(u'What size to display in breakpoint_full'),
+        required=False,
+        default=1024,
+    )
+
+    slidesToShow_full = schema.Int(
+        title=_(u"slidesToShow_full (slick)"),
+        description=_(u"how many element to display in breakpoint_full"),
+        required=False,
+        default=3,
+    )
+
+    slidesToScroll_full = schema.Int(
+        title=_(u"slidesToScroll_full (slick)"),
+        description=_(u"how many element scroll in breakpoint_full"),
+        required=False,
+        default=1,
+    )
+
+    breakpoint_medium = schema.Int(
+        title=_(u"Breakpoint medium (slick)"),
+        description=_(u'What size to display in breakpoint_medium'),
+        required=False,
+        default=600,
+    )
+
+    slidesToShow_medium = schema.Int(
+        title=_(u"slidesToShow_medium (slick)"),
+        description=_(u"how many element to display in breakpoint_medium"),
+        required=False,
+        default=2,
+    )
+    slidesToScroll_medium = schema.Int(
+        title=_(u"slidesToScroll_medium (slick)"),
+        description=_(u"how many element scroll in breakpoint_medium"),
+        required=False,
+        default=1,
+    )
+
+    breakpoint_small = schema.Int(
+        title=_(u"Breakpoint small (slick)"),
+        description=_(u'What size to display in breakpoint_small'),
+        required=False,
+        default=480,
+    )
+
+    slidesToShow_small = schema.Int(
+        title=_(u"slidesToShow_small (slick)"),
+        description=_(u"how many element to display in breakpoint_small"),
+        required=False,
+        default=1,
+    )
+    slidesToScroll_small = schema.Int(
+        title=_(u"slidesToScroll_small (slick)"),
+        description=_(u"how many element scroll in breakpoint_small"),
+        required=False,
+        default=1,
     )
