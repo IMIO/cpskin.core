@@ -4,7 +4,8 @@ Changelog
 0.13.32 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEB-3302: Fix bad value in slick config
+  [thomlamb]
 
 
 0.13.31 (2020-04-28)
