@@ -337,7 +337,7 @@ class FolderView(FoldV, CommonView):
             "autoplay": getattr(content, "autoplay_mode", False),
             "autoplaySpeed": getattr(content, "autoplay_speed", False),
             "centerMode": getattr(content, "use_center_mode", False),
-            "centerPadding": getattr(content, "'"+"center_padding"+"'"+"px", False),
+            "centerPadding":str(getattr(content, "center_padding", False)) + "px",
             "fade": getattr(content, "fade", False),
             "responsive": [
                 {
