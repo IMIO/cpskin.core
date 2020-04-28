@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.31 (unreleased)
+0.13.31 (2020-04-28)
 --------------------
 - WEB-3302: Add breckpoint parameters for slick
   [thomlamb]
