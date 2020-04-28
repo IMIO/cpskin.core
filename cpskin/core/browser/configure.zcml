@@ -194,6 +194,15 @@
       />
 
   <browser:page
+      for="*"
+      name="slick_config_view"
+      class=".folderview.FolderView"
+      permission="zope.Public"
+      attribute="slick_config"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
       for="Products.CMFCore.interfaces.IFolderish"
       name="folderview"
       class=".folderview.FolderView"

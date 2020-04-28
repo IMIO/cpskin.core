@@ -529,3 +529,24 @@ def set_quickupload_properties(context):
 def add_searchable_on_organization(context):
     add_behavior("organization", IAdditionalSearchableText.__identifier__)
     add_behavior("organization", IDexterityTextIndexer.__identifier__)
+
+
+def to_65_use_slick(context):
+    registry = getUtility(IRegistry)
+    records = registry.records
+
+    if "cpskin.core.interfaces.ICPSkinSettings.use_slick" in records:
+        return
+
+    logger.info(
+        "Adding cpskin.core.interfaces.ICPSkinSettings.use_slick to registry")
+    record = Record(
+        field.Bool(
+            title=_(u"Use slick for slider"),
+            description=_(u"Do you want to use slick instead of flexslider ?"),
+            required=False,
+            default=False,
+        ),
+        value=False,
+    )
+    records["cpskin.core.interfaces.ICPSkinSettings.use_slick"] = record

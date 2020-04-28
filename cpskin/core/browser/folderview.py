@@ -28,6 +28,7 @@ from zope.i18n import translate
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 
+import json
 import logging
 import pytz
 
@@ -228,6 +229,14 @@ class FolderView(FoldV, CommonView):
                 return True
             return False
 
+    def has_slick_slider(self):
+        if self.hasFlexSlider() is True:
+            return api.portal.get_registry_record(
+                "cpskin.core.interfaces.ICPSkinSettings.use_slick",
+                default=False,
+            )
+        return False
+
     def show_image(self, collection):
         slider_type = self.getSliderType(collection)
         return DISPLAY_TYPES[slider_type]["show-image"]
@@ -309,6 +318,52 @@ class FolderView(FoldV, CommonView):
         catalog = api.portal.get_tool("portal_catalog")
         catalog.reindexObject(context)
         self._redirect(_(u"Big images are not used anymore on this folder view."))
+
+    def slick_config(self, content):
+        portal_registry = getToolByName(self.context, "portal_registry")
+        slider_timer = portal_registry[
+            "cpskin.core.interfaces.ICPSkinSettings.slider_timer"
+        ]
+        min_items, max_items = self.get_items_number(content)
+        slider_type = self.getSliderType(content)
+        slider_config = DISPLAY_TYPES[slider_type]
+        config = {
+            "slidesToShow": min_items,
+            "slidesToScroll": getattr(content, "slide_to_scroll", False),
+            "dots": getattr(content, "show_dots", True),
+            "arrows": getattr(content, "show_arrows", False),
+            "speed": getattr(content, "speed", 300),
+            "easing": slider_config.get("easing", "ease"),
+            "autoplay": getattr(content, "autoplay_mode", False),
+            "autoplaySpeed": getattr(content, "autoplay_speed", False),
+            "centerMode": getattr(content, "use_center_mode", False),
+            "centerPadding": getattr(content, "'"+"center_padding"+"'"+"px", False),
+            "fade": getattr(content, "fade", False),
+            "responsive": [
+                {
+                    "breakpoint": getattr(content, "breakpoint_full", False),
+                    "settings": {
+                        "slidesToShow": getattr(content, "slidesToShow_full", False),
+                        "slidesToScroll":getattr(content, "slidesToScroll_full", False)
+                    }
+                },
+                {
+                    "breakpoint": getattr(content, "breakpoint_medium", False),
+                    "settings": {
+                        "slidesToShow": getattr(content, "slidesToShow_medium", False),
+                        "slidesToScroll":getattr(content, "slidesToScroll_medium", False)
+                    }
+                },
+                {
+                    "breakpoint": getattr(content, "breakpoint_small", False),
+                    "settings": {
+                        "slidesToShow": getattr(content, "slidesToShow_small", False),
+                        "slidesToScroll":getattr(content, "slidesToScroll_small", False)
+                    }
+                }
+            ]
+        }
+        return json.dumps(config)
 
     def slider_config(self, content):
         content_id = content.id
@@ -561,9 +616,17 @@ class FolderView(FoldV, CommonView):
             return False
         return DISPLAY_TYPES[display_type]["slider"]
 
+    def use_slick(self, collection):
+        if self.use_slider(collection) is True:
+            return api.portal.get_registry_record(
+                "cpskin.core.interfaces.ICPSkinSettings.use_slick",
+                default=False,
+            )
+        return False
+
     def get_items_number(self, collection):
         display_type = getattr(collection, "display_type", "")
-        if display_type != "slider-with-elements-count-choice":
+        if display_type != "slider-with-elements-count-choice" and display_type != "slider-slick":
             return 0, 0
         min_items = getattr(collection, "minimum_items_in_slider", 0)
         max_items = getattr(collection, "maximum_items_in_slider", 0)

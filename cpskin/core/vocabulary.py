@@ -261,6 +261,16 @@ DISPLAY_TYPES = {
         'show-image': True,
         'show-carousel': True,
     },
+    u'slider-slick': {
+        'value': u'slider-slick',
+        'title': _(u'Slider Slick'),
+        'slider': True,
+        'class': 'slider-slick-mode',
+        'control-nav': True,
+        'show-image': True,
+        'show-carousel': True,
+        'slick': True,
+    },
     u'unique-slider-with-title-carousel': {
         'value': u'unique-slider-with-title-carousel',
         'title': _(u'Unique slider with carousel on title'),
@@ -322,3 +332,25 @@ items.sort(key=lambda x: x[1])
 index_view_display_type = SimpleVocabulary(
     [SimpleTerm(i[0], i[0], i[1]) for i in items]
 )
+
+
+class SliderDisplayTypeVocabularyFactory(object):
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        use_slick = api.portal.get_registry_record(
+            "cpskin.core.interfaces.ICPSkinSettings.use_slick",
+            default=False,
+        )
+        items = [(disp['value'], disp['title']) for disp in DISPLAY_TYPES.values()]
+        if use_slick is True:
+            items = [e for e in items if DISPLAY_TYPES[e[0]].get("slick", False)]
+        else:
+            items = [e for e in items if not DISPLAY_TYPES[e[0]].get("slick", False)]
+        items.sort(key=lambda x: x[1])
+        return SimpleVocabulary(
+            [SimpleTerm(i[0], i[0], i[1]) for i in items]
+        )
+
+
+SliderDisplayTypeVocabulary = SliderDisplayTypeVocabularyFactory()

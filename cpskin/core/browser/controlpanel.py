@@ -256,6 +256,14 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
     indexed_taxonomies = property(getIndexedTaxonomies, setIndexedTaxonomies)
 
+    @property
+    def use_slick(self):
+        return self.settings.use_slick
+
+    @use_slick.setter
+    def use_slick(self, value):
+        self.settings.use_slick = value
+
 
 class CPSkinControlPanel(ControlPanelForm):
 
