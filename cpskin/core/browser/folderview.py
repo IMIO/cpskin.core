@@ -343,22 +343,22 @@ class FolderView(FoldV, CommonView):
                 {
                     "breakpoint": getattr(content, "breakpoint_full", False),
                     "settings": {
-                        "slidesToShow": getattr(content, "slidesToShow_full", False),
-                        "slidesToScroll":getattr(content, "slidesToScroll_full", False)
+                        "slidesToShow": getattr(content, "slides_to_show_full", False),
+                        "slidesToScroll":getattr(content, "slides_to_scroll_full", False)
                     }
                 },
                 {
                     "breakpoint": getattr(content, "breakpoint_medium", False),
                     "settings": {
-                        "slidesToShow": getattr(content, "slidesToShow_medium", False),
-                        "slidesToScroll":getattr(content, "slidesToScroll_medium", False)
+                        "slidesToShow": getattr(content, "slides_to_show_medium", False),
+                        "slidesToScroll":getattr(content, "slides_to_scroll_medium", False)
                     }
                 },
                 {
                     "breakpoint": getattr(content, "breakpoint_small", False),
                     "settings": {
-                        "slidesToShow": getattr(content, "slidesToShow_small", False),
-                        "slidesToScroll":getattr(content, "slidesToScroll_small", False)
+                        "slidesToShow": getattr(content, "slides_to_show_small", False),
+                        "slidesToScroll":getattr(content, "slides_to_scroll_small", False)
                     }
                 }
             ]
