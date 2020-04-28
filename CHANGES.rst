@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.13.32 (unreleased)
+--------------------
+
+- Nothing changed yet.
+
+
 0.13.31 (2020-04-28)
 --------------------
 - WEB-3302: Add breckpoint parameters for slick
