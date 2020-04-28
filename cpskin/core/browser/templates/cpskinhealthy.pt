@@ -4,25 +4,25 @@
       <div id="contacts" tal:define="contacts view/contacts">
         <h3 i18n:translate="collective contact">collective.contact</h3>
         <div>
-          <span>Is collective.contact installed:
+          <span i18n:translate="">Is collective.contact installed:
           </span>
           <span tal:content="contacts/is_installed"></span>
-          <a tal:condition="not: contacts/is_installed" tal:attributes="href string:${context/absolute_url}/cpskinhealthy?method=install_contact_core">Install collective.contact.core</a>
+          <a tal:condition="not: contacts/is_installed" tal:attributes="href string:${context/absolute_url}/cpskinhealthy?method=install_contact_core" i18n:translate="">Install collective.contact.core</a>
         </div>
         <div tal:condition="contacts/is_installed">
-          <span>Is cpskin collective.contact worflow:
+          <span i18n:translate="">Is cpskin collective.contact workflow:
           </span>
           <span tal:content="contacts/is_cpskin_workflow"></span>
-          <a tal:condition="not: contacts/is_cpskin_workflow" tal:attributes="href string:${context/absolute_url}/cpskinhealthy?method=set_contact_worflow">Set cpksin workflow</a>
+          <a tal:condition="not: contacts/is_cpskin_workflow" tal:attributes="href string:${context/absolute_url}/cpskinhealthy?method=set_contact_worflow" i18n:translate="">Set cpksin workflow</a>
         </div>
       </div>
       <div id="language" tal:define="lang view/get_site_language">
-        <h3>Language</h3>
+        <h3 i18n:translate="">Language</h3>
         <div class="portal_language">
-          <span>Portal language:</span>
+          <span i18n:translate="">Portal language:</span>
           <span tal:content="lang"></span>
           <span tal:condition="not: view/is_site_language_fr">
-            <a tal:attributes="href string:${context/absolute_url}/cpskinhealthy?method=set_site_language">
+            <a tal:attributes="href string:${context/absolute_url}/cpskinhealthy?method=set_site_language" i18n:translate="">
               Set site language to fr
             </a>
           </span>

@@ -5,13 +5,22 @@ Changelog
 --------------------
 - WEB-3302: Add breckpoint parameters for slick
   [thomlamb]
-  
 
 - WEB-3302: Filter slider on index view based on `use_slick` parameter
   [mpeeters]
 
 - WEB-3302: Implement slick slider
   [mpeeters]
+
+- Fixed ComponentLookupError: cmf.ManagePortal error,
+  reported into the issue #25
+  [macagua]
+
+- Moved these translations into cpskin.locales package
+  [macagua]
+
+- Add more improvements for i18n support
+  [macagua]
 
 
 0.13.30 (2020-04-15)
