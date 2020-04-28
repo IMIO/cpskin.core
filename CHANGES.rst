@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.32 (unreleased)
+0.13.32 (2020-04-28)
 --------------------
 
 - WEB-3302: Fix bad value in slick config
