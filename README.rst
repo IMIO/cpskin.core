@@ -29,11 +29,11 @@ bin/test
 Run specific robot tests
 ------------------------
 
-You can launch the robot server with the command:
+You can launch the robot server with the command::
 
     bin/robot-server cpskin.core.testing.CPSKIN_CORE_ROBOT_TESTING
 
-And launch the tests:
+And launch the tests::
 
     bin/robot cpskin/core/tests/robot/<yourfile>.robot
 
