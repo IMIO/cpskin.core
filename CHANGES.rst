@@ -4,6 +4,11 @@ Changelog
 0.13.33 (unreleased)
 --------------------
 
+- WEBOTT-25: Folders with default folderish view : improve UX by adding submenu
+  to "Contents" / "Edit" tabs and allow to choose between parent or default view
+  action
+  [laulaz]
+
 - WEBOTT-26: Allow "organization" gallery viewlet also on folderish types
   (document, event and news). Asked not to do renaming (+ migration).
   [laulaz]

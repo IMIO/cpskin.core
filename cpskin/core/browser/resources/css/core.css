@@ -77,3 +77,32 @@ div.table-responsive {
 .organization-informations {
 	margin: 1em;
 }
+
+#content-views dl.actionMenu.activated dd {
+    background-color: #75ad0a;
+    color: White;
+    z-index: 5;
+    border-bottom: 0.5em solid #75ad0a;
+    right: -3px;
+    z-index: 1008;
+}
+
+#content-views dl.actionMenu {
+    display: inline-block;
+    float: none;
+}
+
+#content-views dl.actionMenu.activated dd a:hover,
+#content-views dl.actionMenu.activated dd .actionMenuSelected {
+    background-color: White !important;
+    color: #666;
+}
+
+#content-views dl.actionMenu.activated dd a {
+    border-top-right-radius: 0em;
+    border-top-left-radius: 0em;
+    -webkit-border-top-right-radius: 0em;
+    -webkit-border-top-left-radius: 0em;
+    -moz-border-radius-topleft: 0em;
+    -moz-border-radius-topright: 0em;
+}

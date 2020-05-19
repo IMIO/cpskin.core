@@ -74,6 +74,15 @@
     permission="zope2.View"
     />
 
+  <browser:viewlet
+    name="plone.contentviews"
+    manager="plone.app.layout.viewlets.interfaces.IContentViews"
+    class="plone.app.layout.viewlets.common.ContentViewsViewlet"
+    template="contentviews.pt"
+    for="plone.dexterity.interfaces.IDexterityContainer"
+    layer="..interfaces.ICPSkinCoreLayer"
+    permission="zope2.View"
+    />
 
   <!-- Other browser pages -->
 
@@ -83,6 +92,24 @@
       class=".utils.UtilsView"
       layer="..interfaces.ICPSkinCoreLayer"
       attribute="is_gdpr"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="*"
+      name="has_folderish_default"
+      class=".utils.UtilsView"
+      layer="..interfaces.ICPSkinCoreLayer"
+      attribute="has_folderish_default"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="*"
+      name="convert_default_url"
+      class=".utils.UtilsView"
+      layer="..interfaces.ICPSkinCoreLayer"
+      attribute="convert_default_url"
       permission="zope.Public"
       />
 
