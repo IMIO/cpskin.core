@@ -4,7 +4,9 @@ Changelog
 0.13.33 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEBOTT-26: Allow "organization" gallery viewlet also on folderish types
+  (document, event and news). Asked not to do renaming (+ migration).
+  [laulaz]
 
 
 0.13.32 (2020-04-28)

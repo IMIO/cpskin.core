@@ -1,21 +1,23 @@
-<div id="organization-photos"
-     tal:define="photos view/get_photos"
-     tal:condition="photos"
-     i18n:domain="cpskin">
+<tal:if tal:condition="view/available">
+  <div id="organization-photos"
+       tal:define="photos view/get_photos"
+       tal:condition="photos"
+       i18n:domain="cpskin">
 
-  <h2 i18n:translate="">Gallery</h2>
+    <h2 i18n:translate="">Gallery</h2>
 
-  <div class="organization-photo"
-       tal:repeat="photo photos">
+    <div class="organization-photo"
+         tal:repeat="photo photos">
 
-    <a href="" title="" style="" rel="gallery"
-       tal:define="title photo/Title;
-                   image_url python: view.image_url(photo)"
-       tal:attributes="href photo/absolute_url;
-                       style string:background-image: url(${image_url});
-                       title title">
-    </a>
+      <a href="" title="" style="" rel="gallery"
+         tal:define="title photo/Title;
+                     image_url python: view.image_url(photo)"
+         tal:attributes="href photo/absolute_url;
+                         style string:background-image: url(${image_url});
+                         title title">
+      </a>
+
+    </div>
 
   </div>
-
-</div>
+</tal:if>

@@ -154,7 +154,7 @@
         />
 
     <browser:viewlet
-        for="collective.contact.core.content.organization.IOrganization"
+        for="*"
         name="cpskin.organization_gallery"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
         class=".organization_gallery.OrganizationGalleryViewlet"
