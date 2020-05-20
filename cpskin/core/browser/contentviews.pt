@@ -1,0 +1,81 @@
+<div i18n:domain="plone"
+     tal:omit-tag=""
+     tal:define="ploneview context/@@plone;"
+     tal:condition="ploneview/showEditableBorder">
+
+    <tal:block define="view_actions view/prepareObjectTabs;
+                       convert_default_url nocall: context/@@convert_default_url;">
+
+        <p class="hiddenStructure"
+            tal:condition="view_actions"
+            i18n:translate="heading_views">Views</p>
+
+        <ul class="contentViews"
+            id="content-views"
+            i18n:domain="plone">
+
+            <tal:views repeat="action view_actions">
+
+              <tal:def tal:define="has_folderish_default context/@@has_folderish_default;
+                                   is_folderish_tab python: action.get('id') in ('folderContents', 'edit');
+                                   show_drop_down python: has_folderish_default and is_folderish_tab">
+
+                <tal:bcl tal:condition="python: show_drop_down">
+
+                  <li tal:attributes="id string:contentview-${action/id}"
+                      tal:define="selected action/selected|nothing;">
+                    <dl class="actionMenu deactivated"
+                        tal:attributes="id string:contentview-drop-${action/id};">
+                      <dt class="actionMenuHeader">
+                        <a href="#">
+                          <span i18n:translate="" tal:content="action/title" />
+                          <span class="arrowDownAlternative">&#9660;</span>
+                        </a>
+                      </dt>
+                      <dd class="actionMenuContent">
+                        <ul>
+                          <li>
+                            <a href=""
+                               tal:attributes="href python: convert_default_url(action.get('url'), to_parent=False);
+                                               target action/link_target|nothing;"
+                               i18n:domain="cpskin"
+                               i18n:translate="">Default view</a>
+                          </li>
+                          <li>
+                            <a href=""
+                               tal:attributes="href python: convert_default_url(action.get('url'), to_parent=True);
+                                               target action/link_target|nothing;"
+                               i18n:domain="cpskin"
+                               i18n:translate="">Parent folder</a>
+                          </li>
+                        </ul>
+                      </dd>
+                    </dl>
+                  </li>
+
+                </tal:bcl>
+
+
+                <tal:bcl tal:condition="not: show_drop_down">
+
+                  <li tal:define="selected action/selected|nothing;"
+                      tal:attributes="id string:contentview-${action/id};
+                                      class python:selected and 'selected' or 'plain'">
+                    <a href=""
+                       tal:content="action/title"
+                       tal:attributes="href action/url;
+                                       target action/link_target|nothing;"
+                       i18n:translate="">
+                    View name
+                    </a>
+                  </li>
+
+                </tal:bcl>
+
+              </tal:def>
+            </tal:views>
+
+        </ul>
+
+    </tal:block>
+</div>
