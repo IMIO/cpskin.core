@@ -4,6 +4,9 @@ Changelog
 0.13.33 (unreleased)
 --------------------
 
+- WEB-3243: Make Anysurfer layout policy work with cpskin
+  [laulaz]
+
 - WEBOTT-25: Folders with default folderish view : improve UX by adding submenu
   to "Contents" / "Edit" tabs and allow to choose between parent or default view
   action

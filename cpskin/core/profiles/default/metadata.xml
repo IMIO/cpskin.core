@@ -17,5 +17,6 @@
     <dependency>profile-collective.js.fancybox:default</dependency>
     <dependency>profile-collective.taxonomy:default</dependency>
     <dependency>profile-imio.gdpr:default</dependency>
+    <dependency>profile-collective.anysurfer:default</dependency>
   </dependencies>
 </metadata>

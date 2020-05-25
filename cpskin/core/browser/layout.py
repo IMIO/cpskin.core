@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from DateTime import DateTime
+from collective.anysurfer.layout import LayoutPolicy as AnysurferLayoutPolicy
 from eea.facetednavigation.layout.interfaces import IFacetedLayout
 from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from plone import api
@@ -13,7 +14,7 @@ from zope.interface import implements
 from cpskin.citizen.utils import is_citizen
 
 
-class LayoutPolicy(base.LayoutPolicy):
+class LayoutPolicy(AnysurferLayoutPolicy, base.LayoutPolicy):
     """
     Enhanced layout policy
     """
