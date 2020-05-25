@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.33 (unreleased)
+0.13.33 (2020-05-25)
 --------------------
 
 - WEB-3243: Make Anysurfer layout policy work with cpskin
