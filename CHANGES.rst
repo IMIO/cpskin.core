@@ -4,7 +4,8 @@ Changelog
 0.13.34 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEB-3333: Deactivate autoplay option due to accessibility
+  [mpeeters]
 
 
 0.13.33 (2020-05-25)

@@ -334,8 +334,9 @@ class FolderView(FoldV, CommonView):
             "arrows": getattr(content, "show_arrows", False),
             "speed": getattr(content, "speed", 300),
             "easing": slider_config.get("easing", "ease"),
-            "autoplay": getattr(content, "autoplay_mode", False),
-            "autoplaySpeed": getattr(content, "autoplay_speed", False),
+            # BBB Autoplay options where removed due to accessibility
+            "autoplay": False,
+            "autoplaySpeed": False,
             "centerMode": getattr(content, "use_center_mode", False),
             "centerPadding":str(getattr(content, "center_padding", False)) + "px",
             "fade": getattr(content, "fade", False),
