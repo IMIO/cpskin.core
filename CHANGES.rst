@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.34 (unreleased)
+0.13.34 (2020-06-09)
 --------------------
 
 - WEB-3333: Deactivate autoplay option due to accessibility
