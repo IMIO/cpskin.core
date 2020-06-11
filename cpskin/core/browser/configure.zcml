@@ -9,6 +9,8 @@
 
   <adapter factory=".controlpanel.CPSkinControlPanelAdapter" />
 
+  <include package="z3c.jbot" file="meta.zcml" />
+
   <include package="plone.app.contentmenu" />
 
   <browser:resourceDirectory
@@ -85,6 +87,9 @@
     />
 
   <!-- Other browser pages -->
+  <browser:jbot
+      directory="overrides"
+      layer="..interfaces.ICPSkinCoreLayer" />
 
   <browser:page
       for="*"
