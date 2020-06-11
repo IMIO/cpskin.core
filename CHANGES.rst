@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.35 (unreleased)
+0.13.35 (2020-06-11)
 --------------------
 
 - z3c.jbot : Override plone.app.contenttypes summary view to open Files in target blank.
