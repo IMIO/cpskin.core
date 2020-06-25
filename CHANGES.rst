@@ -4,7 +4,9 @@ Changelog
 0.13.36 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEB-3356: Fix plone_layout view that was overriden by collective.anysurfer
+  Body classes were not applied anymore
+  [laulaz]
 
 
 0.13.35 (2020-06-11)
