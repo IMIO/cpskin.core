@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.36 (unreleased)
+0.13.36 (2020-06-25)
 --------------------
 
 - WEB-3356: Fix plone_layout view that was overriden by collective.anysurfer
