@@ -4,7 +4,9 @@ Changelog
 0.13.37 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEBOTT-30: Fix collapsible minisite menu in Chrome
+  See https://bugs.jquery.com/ticket/12630
+  [laulaz]
 
 
 0.13.36 (2020-06-25)
