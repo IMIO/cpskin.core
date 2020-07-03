@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.37 (unreleased)
+0.13.37 (2020-07-03)
 --------------------
 
 - WEBOTT-29: Ensure than maps appear at the bottom of belowcontentbody viewlets
