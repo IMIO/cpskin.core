@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+      title="CPSKIN Core: upgrade to v66: Upgrade viewlets"
+      description="Purpose : Reorder belowcontentbody viewlets"
+      source="65"
+      destination="66"
+      handler=".upgradehandlers.upgrade_viewlets"
+      profile="cpskin.core:default"
+      />
+
+    <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v65: Add use_slick parameter"
       description="Purpose :  Add use_slick parameter"
       source="64"

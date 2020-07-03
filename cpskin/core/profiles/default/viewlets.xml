@@ -20,17 +20,17 @@
     <viewlet name="cpskin.right_actions" />
   </order>
   <order manager="plone.belowcontentbody" skinname="*">
-    <viewlet name="collective.geo.leaflet.leafletbelowcontentviewlet" />
     <viewlet name="cpskin.organization_gallery" />
     <viewlet name="plone.abovecontenttitle.iconifieddocumentactions" />
     <viewlet name="sc.social.likes" />
     <viewlet name="cpskin.below_related_contacts" />
     <viewlet name="plone.belowcontentbody.relateditems" />
     <viewlet name="collective.folderishtypes.listing_viewlet" />
-    <viewlet name="mapviewlet" />
-    <viewlet name="cpskin.related_contacts_map" />
     <viewlet name="schedulefield.schedule" />
     <viewlet name="labels-viewlet" />
+    <viewlet name="collective.geo.leaflet.leafletbelowcontentviewlet" />
+    <viewlet name="mapviewlet" />
+    <viewlet name="cpskin.related_contacts_map" />
   </order>
   <order manager="plone.belowcontent" skinname="*">
     <viewlet name="cpskin.media" />

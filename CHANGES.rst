@@ -4,6 +4,9 @@ Changelog
 0.13.37 (unreleased)
 --------------------
 
+- WEBOTT-29: Ensure than maps appear at the bottom of belowcontentbody viewlets
+  [laulaz]
+
 - WEBOTT-30: Fix collapsible minisite menu in Chrome
   See https://bugs.jquery.com/ticket/12630
   [laulaz]
