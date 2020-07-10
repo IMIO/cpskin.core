@@ -4,7 +4,8 @@ Changelog
 0.13.38 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEB-3383: From now, set sub_menu_persistence default value to False.
+  [boulch]
 
 
 0.13.37 (2020-07-03)

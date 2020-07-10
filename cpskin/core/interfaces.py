@@ -70,7 +70,7 @@ class ICPSkinSettings(Interface):
         title=_(u'Sub menu persistence'),
         description=_(u'Is level 2 menu persist?'),
         required=False,
-        default=True
+        default=False
     )
 
     city_name = schema.TextLine(
