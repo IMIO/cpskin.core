@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object>
+  <difftypes purge="false">
+    <type portal_type="directory">
+      <field name="any" difftype="Compound Diff for Dexterity types"/>
+    </type>
+    <type portal_type="organization">
+      <field name="any" difftype="Compound Diff for Dexterity types"/>
+    </type>
+    <type portal_type="person">
+      <field name="any" difftype="Compound Diff for Dexterity types"/>
+    </type>
+    <type portal_type="position">
+      <field name="any" difftype="Compound Diff for Dexterity types"/>
+    </type>
+  </difftypes>
+</object>

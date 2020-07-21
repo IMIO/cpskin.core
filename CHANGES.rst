@@ -4,6 +4,9 @@ Changelog
 0.13.38 (unreleased)
 --------------------
 
+- WEB-3344: Enable versioning on collective.contact.core content types
+  [laulaz]
+
 - Fix the IDexterityContainer view to make use of plone.app.contenttype's new
   listing view. Accessing it's macro needs the macro-caller's view variable set
   to the new listing view.
