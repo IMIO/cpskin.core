@@ -20,8 +20,6 @@
     <include package="sc.social.like" />
     <include package="collective.recaptcha" />
     <include package="collective.dexteritytextindexer" />
-    <include package="z3c.jbot" file="meta.zcml" />
-    <browser:jbot directory="overrides" />
 
     <include file="permissions.zcml" />
     <include file="profiles.zcml" />

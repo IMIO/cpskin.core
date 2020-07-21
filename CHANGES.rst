@@ -4,6 +4,9 @@ Changelog
 0.13.38 (unreleased)
 --------------------
 
+- Remove useless duplicate jbot overrides
+  [laulaz]
+
 - WEB-3383: From now, set sub_menu_persistence default value to False.
   [boulch]
 
