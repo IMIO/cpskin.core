@@ -4,6 +4,12 @@ Changelog
 0.13.38 (unreleased)
 --------------------
 
+- Fix the IDexterityContainer view to make use of plone.app.contenttype's new
+  listing view. Accessing it's macro needs the macro-caller's view variable set
+  to the new listing view.
+  --> plone.app.dexterity b74d638 [thet]
+  [laulaz]
+
 - Remove useless duplicate jbot overrides
   [laulaz]
 
