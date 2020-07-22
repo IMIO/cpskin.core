@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+      title="CPSKIN Core: upgrade to v67: Enable changes history in directory"
+      description="Purpose : Enable versioning on collective.contact.core content types"
+      source="66"
+      destination="67"
+      handler=".upgradehandlers.enable_directory_versioning"
+      profile="cpskin.core:default"
+      />
+
+    <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v66: Upgrade viewlets"
       description="Purpose : Reorder belowcontentbody viewlets"
       source="65"

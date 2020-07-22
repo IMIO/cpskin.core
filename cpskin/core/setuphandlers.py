@@ -11,6 +11,7 @@ from cpskin.core.utils import add_behavior
 from cpskin.core.utils import set_exclude_from_nav
 from cpskin.locales import CPSkinMessageFactory as _
 from plone import api
+from plone.app.versioningbehavior.behaviors import IVersionable
 from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
 from plone.app.viewletmanager.manager import ManageViewlets
 from plone.registry import field
@@ -58,7 +59,11 @@ def installCore(context):
     add_behavior('organization', IOrganizationImages.__identifier__)
     add_behavior('organization', IAdditionalSearchableText.__identifier__)
     add_behavior('organization', IDexterityTextIndexer.__identifier__)
+    add_behavior('organization', IVersionable.__identifier__)
+    add_behavior('person', IVersionable.__identifier__)
+    add_behavior('position', IVersionable.__identifier__)
     add_behavior('directory', ICpskinDirectoryViewSettings.__identifier__)
+    add_behavior('directory', IVersionable.__identifier__)
 
     # Create footer static page
     footer_name = 'footer-static'

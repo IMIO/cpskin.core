@@ -33,6 +33,7 @@ from cpskin.core.utils import remove_behavior
 from cpskin.locales import CPSkinMessageFactory as _
 from eea.facetednavigation.subtypes.interfaces import IPossibleFacetedNavigable
 from plone import api
+from plone.app.versioningbehavior.behaviors import IVersionable
 from plone.registry import field
 from plone.registry import Record
 from plone.registry.interfaces import IRegistry
@@ -105,6 +106,15 @@ def upgrade_organization_gallery(context):
 
 def add_images_behavior(context):
     add_behavior("organization", IOrganizationImages.__identifier__)
+
+
+def enable_directory_versioning(context):
+    add_behavior('directory', IVersionable.__identifier__)
+    add_behavior('organization', IVersionable.__identifier__)
+    add_behavior('person', IVersionable.__identifier__)
+    add_behavior('position', IVersionable.__identifier__)
+    context.runImportStepFromProfile("profile-cpskin.core:default", "repositorytool")
+    context.runImportStepFromProfile("profile-cpskin.core:default", "difftool")
 
 
 def set_other_xhtml_valid_tags(context):
