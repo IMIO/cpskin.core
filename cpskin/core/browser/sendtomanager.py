@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_inner
 from cpskin.locales import CPSkinMessageFactory as _
 from interfaces import ISendToManagerForm
+from plone.formwidget.recaptcha.widget import ReCaptchaFieldWidget
 from plone.z3cform import layout
 from Products.CMFPlone.utils import pretty_title_or_id
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -9,12 +11,15 @@ from Products.statusmessages.interfaces import IStatusMessage
 from z3c.form import button
 from z3c.form import field
 from z3c.form import form
+from z3c.form.interfaces import WidgetActionExecutionError
 from ZODB.POSException import ConflictError
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 
-import logging
+from zope.interface import Invalid
 
+
+import logging
 
 logger = logging.getLogger("Plone")
 
@@ -30,6 +35,7 @@ class SendToManagerForm(form.Form):
     )
 
     fields = field.Fields(ISendToManagerForm)
+    fields["captcha"].widgetFactory = ReCaptchaFieldWidget
     ignoreContext = True
 
     mail_template = ViewPageTemplateFile("templates/sendtomanager_mail_template.pt")
@@ -54,6 +60,15 @@ class SendToManagerForm(form.Form):
         title = pretty_title_or_id(self, self.context)
         description = self.context.Description()
         comment = data.get("comment", None)
+
+        captcha = getMultiAdapter(
+            (aq_inner(self.context), self.request), name="recaptcha"
+        )
+        if not captcha.verify():
+            raise WidgetActionExecutionError(
+                "captcha",
+                Invalid(_(u"Please check the captcha to prove you're a human")),
+            )
 
         try:
             # Sends a link of a page to someone.
@@ -94,7 +109,7 @@ class SendToManagerForm(form.Form):
         IStatusMessage(self.request).addStatusMessage(_(u"Mail sent."), type=u"info")
 
         self.request.response.redirect(self.context.absolute_url())
-        return ''
+        return ""
 
 
 send_to_form = layout.wrap_form(SendToManagerForm)

@@ -22,6 +22,8 @@ class ISendToManagerForm(Interface):
         required=False,
     )
 
+    captcha = schema.TextLine(title=u"ReCaptcha", description=u"", required=False)
+
 
 class IBannerActivationView(Interface):
     """ Banner activation """

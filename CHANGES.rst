@@ -4,6 +4,9 @@ Changelog
 0.13.38 (unreleased)
 --------------------
 
+- WEB-3402: Add Captcha to "Report an error to webmaster" form. (sendtomanager_form)
+  [boulch]
+
 - WEB-3344: Enable versioning on collective.contact.core content types
   [laulaz]
 
