@@ -20,45 +20,45 @@ logger = logging.getLogger("Plone")
 
 
 class SendToManagerForm(form.Form):
-    label = _(u'report_error_to_site_manager',
-              default=u'Report an error to the site manager')
+    label = _(
+        u"report_error_to_site_manager", default=u"Report an error to the site manager"
+    )
 
-    description = _(u'provide_maximum_informations',
-                    default=u"Merci de fournir le maximum d'information ainsi que tout renseignement qui permette de la valider (source).")
+    description = _(
+        u"provide_maximum_informations",
+        default=u"Merci de fournir le maximum d'information ainsi que tout renseignement qui permette de la valider (source).",
+    )
 
     fields = field.Fields(ISendToManagerForm)
     ignoreContext = True
 
-    mail_template = ViewPageTemplateFile('templates/sendtomanager_mail_template.pt')
+    mail_template = ViewPageTemplateFile("templates/sendtomanager_mail_template.pt")
 
-    @button.buttonAndHandler(_(u'label_send', default='Send'),
-                             name='send')
+    @button.buttonAndHandler(_(u"label_send", default="Send"), name="send")
     def handle_send(self, action):
         data, errors = self.extractData()
         if errors:
             IStatusMessage(self.request).addStatusMessage(
-                self.formErrorsMessage,
-                type=u'error'
+                self.formErrorsMessage, type=u"error"
             )
             return
 
         portal_state = getMultiAdapter(
-            (self.context, self.request),
-            name=u'plone_portal_state'
+            (self.context, self.request), name=u"plone_portal_state"
         )
         site = portal_state.portal()
 
-        send_from_address = data.get('send_from_address')
-        send_to_address = site.getProperty('email_from_address', None)
-        subject = _(u'error_reported', default=u"Error reported")
+        send_from_address = data.get("send_from_address")
+        send_to_address = site.getProperty("email_from_address", None)
+        subject = _(u"error_reported", default=u"Error reported")
         title = pretty_title_or_id(self, self.context)
         description = self.context.Description()
-        comment = data.get('comment', None)
+        comment = data.get("comment", None)
 
         try:
             # Sends a link of a page to someone.
             host = getUtility(IMailHost)
-            encoding = site.getProperty('email_charset')
+            encoding = site.getProperty("email_charset")
 
             # Cook from template
             message = self.mail_template(
@@ -68,7 +68,7 @@ class SendToManagerForm(form.Form):
                 comment=comment,
                 subject=subject,
                 title=title,
-                description=description
+                description=description,
             )
 
             message = message.encode(encoding)
@@ -78,7 +78,7 @@ class SendToManagerForm(form.Form):
                 mto=send_to_address,
                 mfrom=send_from_address,
                 subject=subject,
-                charset='utf-8'
+                charset="utf-8",
             )
 
         except ConflictError:
@@ -87,15 +87,11 @@ class SendToManagerForm(form.Form):
             # TODO To many things could possibly go wrong. So we catch all.
             logger.info("Unable to send mail: " + str(e))
             IStatusMessage(self.request).addStatusMessage(
-                _(u'Unable to send mail.'),
-                type=u'error'
+                _(u"Unable to send mail."), type=u"error"
             )
             return
 
-        IStatusMessage(self.request).addStatusMessage(
-            _(u'Mail sent.'),
-            type=u'info'
-        )
+        IStatusMessage(self.request).addStatusMessage(_(u"Mail sent."), type=u"info")
 
         self.request.response.redirect(self.context.absolute_url())
         return ''
