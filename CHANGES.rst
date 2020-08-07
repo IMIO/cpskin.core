@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.38 (unreleased)
+0.13.38 (2020-08-07)
 --------------------
 
 - WEB-3402: Add Captcha to "Report an error to webmaster" form. (sendtomanager_form)
