@@ -106,3 +106,13 @@ div.table-responsive {
     -moz-border-radius-topleft: 0em;
     -moz-border-radius-topright: 0em;
 }
+a:focus, input:focus {
+	outline-color: rgba(51, 51, 51, 0.555)!important;
+	outline: thin solid;
+	outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+#content-core a:link{
+    text-decoration: underline;
+}
