@@ -367,9 +367,13 @@ class FolderView(FoldV, CommonView):
 
     def slider_config(self, content):
         content_id = content.id
-        # BBB Autoplay options where removed due to accessibility
-        slider_timer = 0
-        auto_play_slider = False
+        portal_registry = getToolByName(self.context, "portal_registry")
+        slider_timer = portal_registry[
+            "cpskin.core.interfaces.ICPSkinSettings.slider_timer"
+        ]
+        auto_play_slider = portal_registry[
+            "cpskin.core.interfaces.ICPSkinSettings.auto_play_slider"
+        ]
         min_items, max_items = self.get_items_number(content)
         slider_type = self.getSliderType(content)
         show_control_nav = DISPLAY_TYPES[slider_type]["control-nav"]
