@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from cpskin.core.vocabulary import index_view_display_type
 from cpskin.locales import CPSkinMessageFactory as _
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.directives import form
@@ -33,6 +34,8 @@ class ICpskinIndexViewSettings(model.Schema):
             'slides_to_scroll_small',
             'use_center_mode',
             'center_padding',
+            'autoplay_mode',
+            'autoplay_speed',
             'fade',
             'collection_image_scale',
             'slider_image_scale',
@@ -211,7 +214,7 @@ class ICpskinIndexViewSettings(model.Schema):
         required=False,
         default=50,
     )
-
+    
     slide_to_scroll = schema.Int(
         title=_(u"Slide to scroll (slick)"),
         description=_(u'Number of slide to scroll '),
@@ -219,6 +222,20 @@ class ICpskinIndexViewSettings(model.Schema):
         default=1,
         min=1,
         max=10,
+    )
+
+    autoplay_mode = schema.Bool(
+        title=_(u"Autoplay mode (slick)"),
+        description=_(u'Use autoplay mode to activate automatic scrolling'),
+        required=False,
+        default=False,
+    )
+
+    autoplay_speed = schema.Int(
+        title=_(u"Autoplay speed (slick)"),
+        description=_(u'Use autoplay_speed to define scrolling speed '),
+        required=False,
+        default=4000,
     )
 
     show_arrows = schema.Bool(
@@ -234,7 +251,7 @@ class ICpskinIndexViewSettings(model.Schema):
         required=False,
         default=True,
     )
-
+    
     fade = schema.Bool(
         title=_(u"Fade mode (slick)"),
         description=_(u'Ative to Fade mode'),
