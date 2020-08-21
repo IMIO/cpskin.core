@@ -4,6 +4,9 @@ Changelog
 0.13.39 (unreleased)
 --------------------
 
+- WEB-3395 : Remove unwanted alt on banner
+  [mpeeters]
+
 - WEB-3379: Reactivate autoplay option for sliders by deactivated by default (for accessibility reason)
   [mpeeters]
 

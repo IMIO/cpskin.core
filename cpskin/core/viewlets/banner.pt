@@ -24,10 +24,10 @@
     <div id="minisite-search">
     </div>
     <tal:def tal:define="banner view/getBanner">
-          <img 
+          <img
                tal:condition="python:banner['type'] == 'image'"
                src=""
-               alt="Banner"
+               alt=""
                class="banner"
                tal:attributes="src banner/url"
                i18n:attributes="alt" />
