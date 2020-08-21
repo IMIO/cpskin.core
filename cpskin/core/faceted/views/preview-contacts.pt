@@ -18,6 +18,10 @@
         ">
 
        <tal:results condition="batch">
+         <div class="counter" i18n:domain="cpskin" i18n:translate="">
+           <span i18n:name="count" tal:content="batch/sequence_length"></span> result(s)
+         </div>
+
          <tal:buttons condition="actions_enabled"
                       content="structure provider:collective.contact.facetednav.batchactions" />
         <div metal:use-macro="context/batch_macros/macros/navigation"></div>
