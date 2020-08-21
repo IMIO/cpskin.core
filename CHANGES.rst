@@ -4,6 +4,9 @@ Changelog
 0.13.39 (unreleased)
 --------------------
 
+- WEB-3379: Reactivate autoplay option for sliders by deactivated by default (for accessibility reason)
+  [mpeeters]
+
 - WEB-3363: Add a focus trap on overlay
   [mpeeters]
 

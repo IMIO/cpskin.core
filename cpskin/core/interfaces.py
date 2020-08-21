@@ -77,7 +77,7 @@ class ICPSkinSettings(Interface):
         title=_(u'Auto play slider'),
         description=_(u'Is the front page slider automatically play?'),
         required=False,
-        default=True
+        default=False
     )
 
     slider_timer = schema.Int(
