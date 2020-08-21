@@ -4,7 +4,8 @@ Changelog
 0.13.39 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEB-3363: Add a focus trap on overlay
+  [mpeeters]
 
 
 0.13.38 (2020-08-07)

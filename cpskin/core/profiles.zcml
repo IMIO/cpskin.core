@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+      title="CPSKIN Core: upgrade to v68: Add accessibility specific JS"
+      description="Purpose : Fix accessibilty issues"
+      source="67"
+      destination="68"
+      handler=".upgradehandlers.upgrade_js_registry"
+      profile="cpskin.core:default"
+      />
+
+    <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v67: Enable changes history in directory"
       description="Purpose : Enable versioning on collective.contact.core content types"
       source="66"
