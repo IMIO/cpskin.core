@@ -3,6 +3,8 @@ Changelog
 
 0.13.39 (unreleased)
 --------------------
+- WEB-3364 : Adding styles for better link visibility
+  [thomlamb]
 
 - WEB-3397 : Display the number of result on faceted view
   [mpeeters]

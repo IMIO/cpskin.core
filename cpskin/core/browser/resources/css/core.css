@@ -113,6 +113,12 @@ a:focus, input:focus {
     outline-offset: -2px;
 }
 
-#content-core a:link{
+.template-newsitem_view #content-core a:link,
+.template-event_booking #content-core .text a:link,
+.template-document_view #content-core a:link,
+.template-event_view #content-core a:link,
+.portaltype-organization a:link,
+.portaltype-procedure a:link,
+.template-medialink_oembed_view a:link{
     text-decoration: underline;
 }
