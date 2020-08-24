@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.39 (unreleased)
+0.13.39 (2020-08-24)
 --------------------
 - WEB-3364 : Adding styles for better link visibility
   [thomlamb]
