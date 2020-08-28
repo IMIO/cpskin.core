@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.40 (unreleased)
+0.13.40 (2020-08-28)
 --------------------
 
 - WEB-3415 : Authorize (add) Link type in Plone Site root (and upgrade step).
