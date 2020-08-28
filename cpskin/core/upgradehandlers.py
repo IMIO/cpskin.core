@@ -560,3 +560,13 @@ def to_65_use_slick(context):
         value=False,
     )
     records["cpskin.core.interfaces.ICPSkinSettings.use_slick"] = record
+
+
+def upgrade_limit_plone_site_portal_type_2(context):
+    portal_types = api.portal.get_tool("portal_types")
+    types = ["Plone Site", "LRF"]
+    for t in types:
+        plone_type = portal_types.get(t)
+        if plone_type:
+            plone_type.filter_content_types = True
+            plone_type.allowed_content_types = ("Document", "Folder", "Image", "Link")

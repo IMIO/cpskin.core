@@ -8,5 +8,6 @@
     <element value="Document"/>
     <element value="Folder"/>
     <element value="Image"/>
+    <element value="Link"/>
   </property>
 </object>

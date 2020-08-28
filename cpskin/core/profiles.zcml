@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+      title="CPSKIN Core: upgrade to v69: Authorize (add) Link in Plone Site root"
+      description="Purpose : Users can create shortlinks in Plone Site root [WEB-3415]"
+      source="68"
+      destination="69"
+      handler=".upgradehandlers.upgrade_limit_plone_site_portal_type_2"
+      profile="cpskin.core:default"
+      />
+
+    <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v68: Add accessibility specific JS"
       description="Purpose : Fix accessibilty issues"
       source="67"
