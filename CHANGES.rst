@@ -4,7 +4,8 @@ Changelog
 0.13.41 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEB-3397: Add the `aria-live` property for faceted result counter
+  [mpeeters]
 
 
 0.13.40 (2020-08-28)

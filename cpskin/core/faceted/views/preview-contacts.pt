@@ -18,7 +18,7 @@
         ">
 
        <tal:results condition="batch">
-         <div class="counter" i18n:domain="cpskin" i18n:translate="">
+         <div class="counter" i18n:domain="cpskin" i18n:translate="" aria-live="polite">
            <span i18n:name="count" tal:content="batch/sequence_length"></span> result(s)
          </div>
 
