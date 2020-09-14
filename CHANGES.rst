@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.41 (unreleased)
+0.13.41 (2020-09-14)
 --------------------
 
 - WEB-3397: Add the `aria-live` property for faceted result counter
