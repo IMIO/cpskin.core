@@ -328,7 +328,6 @@ class FolderView(FoldV, CommonView):
         slider_type = self.getSliderType(content)
         slider_config = DISPLAY_TYPES[slider_type]
         config = {
-            "slidesToShow": min_items,
             "slidesToScroll": getattr(content, "slide_to_scroll", False),
             "dots": getattr(content, "show_dots", True),
             "arrows": getattr(content, "show_arrows", False),
@@ -339,7 +338,11 @@ class FolderView(FoldV, CommonView):
             "centerMode": getattr(content, "use_center_mode", False),
             "centerPadding":str(getattr(content, "center_padding", False)) + "px",
             "fade": getattr(content, "fade", False),
-            "responsive": [
+        }
+        if slider_config.get("variable-width", False):
+            config["variableWidth"] = True
+        else:
+            config["responsive"] = [
                 {
                     "breakpoint": getattr(content, "breakpoint_full", False),
                     "settings": {
@@ -362,7 +365,7 @@ class FolderView(FoldV, CommonView):
                     }
                 }
             ]
-        }
+            config["slidesToShow"] = min_items
         return json.dumps(config)
 
     def slider_config(self, content):

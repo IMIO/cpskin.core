@@ -271,6 +271,17 @@ DISPLAY_TYPES = {
         'show-carousel': True,
         'slick': True,
     },
+    u'slider-slick-full-width': {
+        'value': u'slider-slick-full-width',
+        'title': _(u'Slider Slick Full Width'),
+        'slider': True,
+        'class': 'slider-slick-mode',
+        'control-nav': True,
+        'show-image': True,
+        'show-carousel': True,
+        'variable-width': True,
+        'slick': True,
+    },
     u'unique-slider-with-title-carousel': {
         'value': u'unique-slider-with-title-carousel',
         'title': _(u'Unique slider with carousel on title'),
