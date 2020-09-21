@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.42 (unreleased)
+0.13.42 (2020-09-21)
 --------------------
 
 - WEB-3428: Added new type of slick slider for full width display
