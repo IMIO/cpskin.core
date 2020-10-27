@@ -4,7 +4,8 @@ Changelog
 0.13.43 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Move to pypi.org.
+  [bsuttor]
 
 
 0.13.42 (2020-09-21)
