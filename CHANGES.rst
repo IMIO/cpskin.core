@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.44 (unreleased)
+0.13.44 (2020-11-23)
 --------------------
 
 - WEB-3476 : Move minisite logo outside banner
