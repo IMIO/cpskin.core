@@ -6,20 +6,20 @@
   </tal:def>
 </div>
 
+<div id="minisite-logo"
+     tal:condition="exists: context/logo-minisite.png">
+    <a href=""
+       tal:attributes="href view/homeUrl">
+        <img src=""
+             alt="Logo"
+             tal:attributes="src string:${context/absolute_url}/logo-minisite.png"
+             i18n:attributes="alt" />
+    </a>
+</div>
+
 <div id="cpskin-banner"
      tal:condition="view/available"
      i18n:domain="cpskin">
-
-    <div id="minisite-logo"
-         tal:condition="exists: context/logo-minisite.png">
-        <a href=""
-           tal:attributes="href view/homeUrl">
-            <img src=""
-                 alt="Logo"
-                 tal:attributes="src string:${context/absolute_url}/logo-minisite.png"
-                 i18n:attributes="alt" />
-        </a>
-    </div>
 
     <div id="minisite-search">
     </div>

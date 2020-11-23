@@ -4,7 +4,8 @@ Changelog
 0.13.44 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEB-3476 : Move minisite logo outside banner
+  [laulaz]
 
 
 0.13.43 (2020-10-27)
