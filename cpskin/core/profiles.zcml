@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+      title="CPSKIN Core: upgrade to v70: Show all minisite menu viewlets"
+      description="Purpose : Availability is now a Python condition in viewlets [WEB-3476]"
+      source="69"
+      destination="70"
+      handler=".upgradehandlers.show_all_minisite_menu_viewlets"
+      profile="cpskin.core:default"
+      />
+
+    <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v69: Authorize (add) Link in Plone Site root"
       description="Purpose : Users can create shortlinks in Plone Site root [WEB-3415]"
       source="68"

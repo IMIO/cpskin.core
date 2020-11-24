@@ -12,12 +12,13 @@ from cpskin.core.interfaces import IFolderViewSelectedContent
 from cpskin.core.setuphandlers import addAutoPlaySliderToRegistry
 from cpskin.core.setuphandlers import addCityNameToRegistry
 from cpskin.core.setuphandlers import addCollapseMinisiteMenuToRegistry
-from cpskin.core.setuphandlers import addFooterSitemapToRegistry
 from cpskin.core.setuphandlers import addContentClassesToRegistry
 from cpskin.core.setuphandlers import addDescriptionOnThemesOptionToRegistry
+from cpskin.core.setuphandlers import addFooterSitemapToRegistry
 from cpskin.core.setuphandlers import addIndexedTaxonomiesToRegistry
 from cpskin.core.setuphandlers import addLoadPageMenuToRegistry
 from cpskin.core.setuphandlers import addMediaViewletOptionsToRegistry
+from cpskin.core.setuphandlers import addPersonContactCoreFallbackToRegistry
 from cpskin.core.setuphandlers import addPortletsInRightActionsToRegistry
 from cpskin.core.setuphandlers import addShowSloganToRegistry
 from cpskin.core.setuphandlers import addSliderTimerToRegistry
@@ -25,7 +26,6 @@ from cpskin.core.setuphandlers import addSliderTypeToRegistry
 from cpskin.core.setuphandlers import addSubMenuPersistenceToRegistry
 from cpskin.core.setuphandlers import addTopMenuContentsToRegistry
 from cpskin.core.setuphandlers import addTopMenuLeadImageToRegistry
-from cpskin.core.setuphandlers import addPersonContactCoreFallbackToRegistry
 from cpskin.core.setuphandlers import add_other_xhtml_valid_tags
 from cpskin.core.setuphandlers import configCollectiveQucikupload
 from cpskin.core.utils import add_behavior
@@ -34,11 +34,13 @@ from cpskin.locales import CPSkinMessageFactory as _
 from eea.facetednavigation.subtypes.interfaces import IPossibleFacetedNavigable
 from plone import api
 from plone.app.versioningbehavior.behaviors import IVersionable
-from plone.registry import field
+from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
 from plone.registry import Record
+from plone.registry import field
 from plone.registry.interfaces import IRegistry
 from plone.schemaeditor.interfaces import IEditableSchema
 from zope.component import getUtility
+from zope.component import queryUtility
 from zope.interface import alsoProvides
 from zope.interface import directlyProvidedBy
 from zope.interface import directlyProvides
@@ -570,3 +572,10 @@ def upgrade_limit_plone_site_portal_type_2(context):
         if plone_type:
             plone_type.filter_content_types = True
             plone_type.allowed_content_types = ("Document", "Folder", "Image", "Link")
+
+
+def show_all_minisite_menu_viewlets(context):
+    storage = queryUtility(IViewletSettingsStorage)
+    hidden = storage.getHidden("plone.portaltop", "Sunburst Theme")
+    new_hidden = tuple(x for x in hidden if x not in ["cpskin.minisitedropdownmenu", "cpskin.minisitemenu"])
+    storage.setHidden("plone.portaltop", "Sunburst Theme", new_hidden)
