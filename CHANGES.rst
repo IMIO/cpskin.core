@@ -4,7 +4,9 @@ Changelog
 0.13.45 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEB-3476 : Revert Move minisite logo outside banner
+  We want to keep original behavior for all themes except newdream
+  [laulaz]
 
 
 0.13.44 (2020-11-23)
