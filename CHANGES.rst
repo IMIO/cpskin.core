@@ -4,7 +4,8 @@ Changelog
 0.13.46 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- [WEB-3423] : Add an option to view/hide a link to accessbility text in footer.
+  [boulch]
 
 
 0.13.45 (2020-12-09)
