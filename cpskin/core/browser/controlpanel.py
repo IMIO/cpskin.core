@@ -42,8 +42,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
     def setSubMenuPersistence(self, value):
         self.settings.sub_menu_persistence = value
 
-    sub_menu_persistence = property(
-        getSubMenuPersistence, setSubMenuPersistence)
+    sub_menu_persistence = property(getSubMenuPersistence, setSubMenuPersistence)
 
     def getAutoPlaySlider(self):
         return self.settings.auto_play_slider
@@ -75,11 +74,11 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
     def setContentsInActionMenu(self, value):
         self.settings.contents_in_action_menu = value
         portal = root = api.portal.get()
-        if 'fr' in root.objectIds():
-            fr = getattr(root, 'fr')
+        if "fr" in root.objectIds():
+            fr = getattr(root, "fr")
             root = api.portal.get_navigation_root(fr)
-        catalog = api.portal.get_tool('portal_catalog')
-        name = 'cpskin.core.vocabularies.action_menu_eligible'
+        catalog = api.portal.get_tool("portal_catalog")
+        name = "cpskin.core.vocabularies.action_menu_eligible"
         factory = getUtility(IVocabularyFactory, name)
         vocabulary = factory(portal)
         all_values = vocabulary.by_value.keys()
@@ -87,8 +86,8 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
             content = getattr(root, content_id, None)
             if not content:
                 continue
-            translations = {'fr': content}
-            request = getattr(self.context, 'REQUEST', None)
+            translations = {"fr": content}
+            request = getattr(self.context, "REQUEST", None)
             if is_plone_app_multilingual_installed(request):
                 translations = ITranslationManager(content).get_translations()
             if content_id in value:
@@ -105,8 +104,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
                     catalog.reindexObject(t)
 
     contents_in_action_menu = property(
-        getContentsInActionMenu,
-        setContentsInActionMenu,
+        getContentsInActionMenu, setContentsInActionMenu,
     )
 
     def getShowLeadimageInActionMenu(self):
@@ -116,8 +114,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         self.settings.show_leadimage_in_action_menu = value
 
     show_leadimage_in_action_menu = property(
-        getShowLeadimageInActionMenu,
-        setShowLeadimageInActionMenu,
+        getShowLeadimageInActionMenu, setShowLeadimageInActionMenu,
     )
 
     def getPersonContactCoreFallback(self):
@@ -127,8 +124,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         self.settings.person_contact_core_fallback = value
 
     person_contact_core_fallback = property(
-        getPersonContactCoreFallback,
-        setPersonContactCoreFallback,
+        getPersonContactCoreFallback, setPersonContactCoreFallback,
     )
 
     def getShowSlogan(self):
@@ -137,10 +133,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
     def setShowSlogan(self, value):
         self.settings.show_slogan = value
 
-    show_slogan = property(
-        getShowSlogan,
-        setShowSlogan,
-    )
+    show_slogan = property(getShowSlogan, setShowSlogan,)
 
     def getshowPortletsInRightActionsPanel(self):
         return self.settings.show_portlets_in_right_actions_panel
@@ -149,8 +142,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         self.settings.show_portlets_in_right_actions_panel = value
 
     show_portlets_in_right_actions_panel = property(
-        getshowPortletsInRightActionsPanel,
-        setshowPortletsInRightActionsPanel,
+        getshowPortletsInRightActionsPanel, setshowPortletsInRightActionsPanel,
     )
 
     def getMediaViewletVisibleAlbums(self):
@@ -160,8 +152,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         self.settings.media_viewlet_visible_albums = value
 
     media_viewlet_visible_albums = property(
-        getMediaViewletVisibleAlbums,
-        setMediaViewletVisibleAlbums,
+        getMediaViewletVisibleAlbums, setMediaViewletVisibleAlbums,
     )
 
     def getMediaViewletVisibleVideos(self):
@@ -171,8 +162,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         self.settings.media_viewlet_visible_videos = value
 
     media_viewlet_visible_videos = property(
-        getMediaViewletVisibleVideos,
-        setMediaViewletVisibleVideos,
+        getMediaViewletVisibleVideos, setMediaViewletVisibleVideos,
     )
 
     def getShowDescriptionOnThemes(self):
@@ -182,8 +172,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
         self.settings.show_description_on_themes = value
 
     show_description_on_themes = property(
-        getShowDescriptionOnThemes,
-        setShowDescriptionOnThemes,
+        getShowDescriptionOnThemes, setShowDescriptionOnThemes,
     )
 
     def getSearchPosition(self):
@@ -200,10 +189,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
     def setCollapseMinisiteMenu(self, value):
         self.settings.collapse_minisite_menu = value
 
-    collapse_minisite_menu = property(
-        getCollapseMinisiteMenu,
-        setCollapseMinisiteMenu,
-    )
+    collapse_minisite_menu = property(getCollapseMinisiteMenu, setCollapseMinisiteMenu,)
 
     def getShowFooterSitemap(self):
         return self.settings.show_footer_sitemap
@@ -211,10 +197,7 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
     def setShowFooterSitemap(self, value):
         self.settings.show_footer_sitemap = value
 
-    show_footer_sitemap = property(
-        getShowFooterSitemap,
-        setShowFooterSitemap,
-    )
+    show_footer_sitemap = property(getShowFooterSitemap, setShowFooterSitemap,)
 
     def getHeaderClass(self):
         return self.settings.header_class
@@ -267,6 +250,6 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
 class CPSkinControlPanel(ControlPanelForm):
 
-    label = _('CPSkin settings')
-    description = _('Lets you change the settings of CPSkin')
+    label = _("CPSkin settings")
+    description = _("Lets you change the settings of CPSkin")
     form_fields = form.FormFields(ICPSkinSettings)
