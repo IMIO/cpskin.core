@@ -569,3 +569,26 @@ def upgrade_limit_plone_site_portal_type_2(context):
         if plone_type:
             plone_type.filter_content_types = True
             plone_type.allowed_content_types = ("Document", "Folder", "Image", "Link")
+
+
+def upgrade_enable_accessibility_link_in_footer(context):
+    portal_setup = api.portal.get_tool("portal_setup")
+    portal_setup.runAllImportStepsFromProfile("profile-cpskin.core:default")
+    registry = getUtility(IRegistry)
+    records = registry.records
+    if "cpskin.core.interfaces.ICPSkinSettings.enable_accessibility_link_in_footer" in records:  # noqa
+        return
+
+    logger.info(
+        "Adding cpskin.core.interfaces.ICPSkinSettings.enable_accessibility_link_in_footer to registry"  # noqa
+    )  # noqa
+    record = Record(
+        field.Bool(
+            title=_(u"Enable accessibility link in footer"),
+            description=_(u"Enable a link to the accessibility text in footer."),
+            required=False,
+            default=True,
+        ),
+        value=True,
+    )
+    records["cpskin.core.interfaces.ICPSkinSettings.enable_accessibility_link_in_footer"] = record  # noqa
