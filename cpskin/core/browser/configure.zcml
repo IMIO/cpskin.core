@@ -102,6 +102,22 @@
 
   <browser:page
       for="*"
+      name="has_enabled_accessibilty_link_in_footer"
+      class=".utils.UtilsView"
+      layer="..interfaces.ICPSkinCoreLayer"
+      attribute="has_enabled_accessibilty_link_in_footer"
+      permission="zope.Public"
+      />
+  <browser:page
+      for="*"
+      name="edit_anysurfer_settings"
+      class=".utils.UtilsView"
+      layer="..interfaces.ICPSkinCoreLayer"
+      attribute="edit_anysurfer_settings"
+      permission="zope.Public"
+      />
+  <browser:page
+      for="*"
       name="has_folderish_default"
       class=".utils.UtilsView"
       layer="..interfaces.ICPSkinCoreLayer"
