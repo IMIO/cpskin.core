@@ -43,6 +43,14 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v70: Add field enable_accessibility_link_in_footer to registry"
+        description="Add field enable_accessibility_link_in_footer to registry"
+        source="69"
+        destination="70"
+        handler=".upgradehandlers.upgrade_enable_accessibility_link_in_footer"
+        profile="cpskin.core:default" />
+
+    <genericsetup:upgradeStep
       title="CPSKIN Core: upgrade to v69: Authorize (add) Link in Plone Site root"
       description="Purpose : Users can create shortlinks in Plone Site root [WEB-3415]"
       source="68"

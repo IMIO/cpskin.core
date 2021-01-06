@@ -246,6 +246,13 @@ class ICPSkinSettings(Interface):
         default=False
     )
 
+    enable_accessibility_link_in_footer = schema.Bool(
+        title=_(u"Enable accessibility link in footer"),
+        description=_(u"Enable a link to the accessibility text in footer."),
+        required=False,
+        default=False,
+    )
+
 
 class IVideoCollection(Interface):
     """

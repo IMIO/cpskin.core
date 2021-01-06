@@ -8,11 +8,26 @@ if (ploneFormTabbing) {
     <p>
       <span tal:condition="context/@@is_gdpr"><a href=""
                 tal:attributes="href string:${view/navigation_root_url}/gdpr-view"
-                i18n:translate="">Legal notice</a> - </span>
-        <span i18n:translate="" omit-tag="">Site created in collaboration with</span>&nbsp;<a href="http://www.imio.be" target="_blank" i18n:translate="">IMIO</a>&nbsp;<tal:block i18n:translate="">under</tal:block>
-        <a href="http://fr.wikipedia.org/wiki/Free_Software_Foundation"
-           target="_blank"
-           i18n:attributes="href string:http://fr.wikipedia.org/wiki/Free_Software_Foundation"
-           i18n:translate="">free license</a> - &copy; <abbr tal:content="view/year" />
+                i18n:translate="">Legal notice</a></span>
+      <span tal:condition="context/@@has_enabled_accessibilty_link_in_footer"> - <a href=""
+            tal:attributes="href string:${view/navigation_root_url}/accessibility-info"
+            i18n:translate="">Accessibility</a></span>
+      <span tal:condition="context/@@edit_anysurfer_settings">
+          (<a tal:attributes="href string:${view/navigation_root_url}/@@anysurfer-settings" i18n:translate="">Edit accessibility text</a>)
+      </span>
+      <!--span tal:condition="context/@@edit_anysurfer_settings"> /
+          <a tal:condition="context/@@has_enabled_accessibilty_link_in_footer"
+             tal:attributes="href string:${view/navigation_root_url}/@@edit_anysurfer_settings?change_link_visibility=True" i18n:translate="">hide accessibility link</a>
+          <a tal:condition="not:context/@@has_enabled_accessibilty_link_in_footer"
+             tal:attributes="href string:${view/navigation_root_url}/@@edit_anysurfer_settings?change_link_visibility=True"
+             i18n:translate="">enable accessibility link</a>
+           )
+      </span-->
+       -
+      <span i18n:translate="" omit-tag="">Site created in collaboration with</span>&nbsp;<a href="http://www.imio.be" target="_blank" i18n:translate="">IMIO</a>&nbsp;<tal:block i18n:translate="">under</tal:block>
+      <a href="http://fr.wikipedia.org/wiki/Free_Software_Foundation"
+         target="_blank"
+         i18n:attributes="href string:http://fr.wikipedia.org/wiki/Free_Software_Foundation"
+         i18n:translate="">free license</a> - &copy; <abbr tal:content="view/year" />
     </p>
 </div>

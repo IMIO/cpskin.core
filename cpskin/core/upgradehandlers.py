@@ -109,10 +109,10 @@ def add_images_behavior(context):
 
 
 def enable_directory_versioning(context):
-    add_behavior('directory', IVersionable.__identifier__)
-    add_behavior('organization', IVersionable.__identifier__)
-    add_behavior('person', IVersionable.__identifier__)
-    add_behavior('position', IVersionable.__identifier__)
+    add_behavior("directory", IVersionable.__identifier__)
+    add_behavior("organization", IVersionable.__identifier__)
+    add_behavior("person", IVersionable.__identifier__)
+    add_behavior("position", IVersionable.__identifier__)
     context.runImportStepFromProfile("profile-cpskin.core:default", "repositorytool")
     context.runImportStepFromProfile("profile-cpskin.core:default", "difftool")
 
@@ -548,8 +548,7 @@ def to_65_use_slick(context):
     if "cpskin.core.interfaces.ICPSkinSettings.use_slick" in records:
         return
 
-    logger.info(
-        "Adding cpskin.core.interfaces.ICPSkinSettings.use_slick to registry")
+    logger.info("Adding cpskin.core.interfaces.ICPSkinSettings.use_slick to registry")
     record = Record(
         field.Bool(
             title=_(u"Use slick for slider"),
@@ -570,3 +569,26 @@ def upgrade_limit_plone_site_portal_type_2(context):
         if plone_type:
             plone_type.filter_content_types = True
             plone_type.allowed_content_types = ("Document", "Folder", "Image", "Link")
+
+
+def upgrade_enable_accessibility_link_in_footer(context):
+    portal_setup = api.portal.get_tool("portal_setup")
+    portal_setup.runAllImportStepsFromProfile("profile-cpskin.core:default")
+    registry = getUtility(IRegistry)
+    records = registry.records
+    if "cpskin.core.interfaces.ICPSkinSettings.enable_accessibility_link_in_footer" in records:  # noqa
+        return
+
+    logger.info(
+        "Adding cpskin.core.interfaces.ICPSkinSettings.enable_accessibility_link_in_footer to registry"  # noqa
+    )  # noqa
+    record = Record(
+        field.Bool(
+            title=_(u"Enable accessibility link in footer"),
+            description=_(u"Enable a link to the accessibility text in footer."),
+            required=False,
+            default=True,
+        ),
+        value=True,
+    )
+    records["cpskin.core.interfaces.ICPSkinSettings.enable_accessibility_link_in_footer"] = record  # noqa
