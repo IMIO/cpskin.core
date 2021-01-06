@@ -11,8 +11,9 @@ class UtilsView(BrowserView):
 
     def is_gdpr(self):
         return api.portal.get_registry_record(
-            'imio.gdpr.interfaces.IGDPRSettings.is_text_ready',
-            default=False)
+            "imio.gdpr.interfaces.IGDPRSettings.is_text_ready", default=False
+        )
+
 
     def has_folderish_default(self):
         if not IFolderishType.providedBy(self.context):
