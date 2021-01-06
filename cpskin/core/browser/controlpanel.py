@@ -239,6 +239,16 @@ class CPSkinControlPanelAdapter(SchemaAdapterBase):
 
     indexed_taxonomies = property(getIndexedTaxonomies, setIndexedTaxonomies)
 
+    def getEnable_accessibility_link_in_footer(self):
+        return self.settings.enable_accessibility_link_in_footer
+
+    def setEnable_accessibility_link_in_footer(self, value):
+        self.settings.enable_accessibility_link_in_footer = value
+
+    enable_accessibility_link_in_footer = property(
+        getEnable_accessibility_link_in_footer, setEnable_accessibility_link_in_footer
+    )
+
     @property
     def use_slick(self):
         return self.settings.use_slick
