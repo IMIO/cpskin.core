@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.46 (unreleased)
+0.13.46 (2021-01-13)
 --------------------
 
 - [WEB-3423] : Add an option to view/hide a link to accessbility text in footer.
