@@ -4,7 +4,8 @@ Changelog
 0.13.47 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Change of a css property for a better display of the mini-site navigation
+  [thomlamb]
 
 
 0.13.46 (2021-01-13)

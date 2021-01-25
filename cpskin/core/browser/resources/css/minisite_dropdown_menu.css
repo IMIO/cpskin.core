@@ -83,7 +83,7 @@
 }
 .minisite-dropdown-menu .navTreeLevel1.mega-sub > li {
     break-inside: avoid;
-    display: inline-block;
+    display: inline;
     width:100%;
 }
 .minisite-dropdown-menu .navTreeLevel1 > li {
