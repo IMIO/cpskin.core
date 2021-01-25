@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.47 (unreleased)
+0.13.47 (2021-01-25)
 --------------------
 
 - Change of a css property for a better display of the mini-site navigation
