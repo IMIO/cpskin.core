@@ -572,8 +572,6 @@ def upgrade_limit_plone_site_portal_type_2(context):
 
 
 def upgrade_enable_accessibility_link_in_footer(context):
-    portal_setup = api.portal.get_tool("portal_setup")
-    portal_setup.runAllImportStepsFromProfile("profile-cpskin.core:default")
     registry = getUtility(IRegistry)
     records = registry.records
     if "cpskin.core.interfaces.ICPSkinSettings.enable_accessibility_link_in_footer" in records:  # noqa

@@ -4,7 +4,8 @@ Changelog
 0.13.48 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix upgrade step that was reinstalling whole cpskin.core
+  [laulaz]
 
 
 0.13.47 (2021-01-25)
