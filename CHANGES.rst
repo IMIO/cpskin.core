@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.48 (unreleased)
+0.13.48 (2021-02-08)
 --------------------
 
 - Fix upgrade step that was reinstalling whole cpskin.core
