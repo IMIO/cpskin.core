@@ -25,7 +25,6 @@
           <div class="address" tal:condition="view/has_address">
             <div class="street">
               <span class="streetname" tal:condition="street" tal:content="street"/>
-              <span class="streetcomma" tal:condition="number">,</span>
               <span class="streetnumber" tal:condition="number" tal:content="number"/>
             </div>
             <div class="additional_address_details" tal:condition="additional_address_details" tal:content="additional_address_details"/>

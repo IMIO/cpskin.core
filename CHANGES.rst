@@ -3,8 +3,11 @@ Changelog
 
 0.13.49 (unreleased)
 --------------------
-
-- Nothing changed yet.
+- Removal of the underline style on the internal page menu
+  [thomlamb]
+  
+- Comma removal for contact addresses
+  [thomlamb]
 
 
 0.13.48 (2021-02-08)

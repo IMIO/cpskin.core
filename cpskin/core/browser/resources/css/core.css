@@ -117,8 +117,8 @@ a:focus, input:focus {
 .template-event_booking #content-core .text a:link,
 .template-document_view #content-core a:link,
 .template-event_view #content-core a:link,
-.portaltype-organization a:link,
-.portaltype-procedure a:link,
-.template-medialink_oembed_view a:link{
+.portaltype-organization #content a:link,
+.portaltype-procedure #content a:link,
+.template-medialink_oembed_view #content a:link{
     text-decoration: underline;
 }
