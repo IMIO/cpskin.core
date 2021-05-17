@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.49 (unreleased)
+0.13.49 (2021-05-17)
 --------------------
 - Removal of the underline style on the internal page menu
   [thomlamb]
