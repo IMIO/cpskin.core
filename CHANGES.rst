@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.13.50 (unreleased)
+--------------------
+
+- Nothing changed yet.
+
+
 0.13.49 (2021-05-17)
 --------------------
 - Removal of the underline style on the internal page menu
