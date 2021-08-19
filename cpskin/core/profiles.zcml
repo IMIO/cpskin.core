@@ -43,6 +43,14 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to 71: Install collective.privacy"
+        source="70"
+        destination="71"
+        handler=".upgradehandlers.install_privacy"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v70: Add field enable_accessibility_link_in_footer to registry"
         description="Add field enable_accessibility_link_in_footer to registry"
         source="69"

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <metadata>
-  <version>70</version>
+  <version>71</version>
   <dependencies>
     <dependency>profile-plone.resource:default</dependency>
     <dependency>profile-plone.app.registry:default</dependency>
@@ -18,5 +18,6 @@
     <dependency>profile-collective.taxonomy:default</dependency>
     <dependency>profile-imio.gdpr:default</dependency>
     <dependency>profile-collective.anysurfer:default</dependency>
+    <dependency>profile-collective.privacy:default</dependency>
   </dependencies>
 </metadata>

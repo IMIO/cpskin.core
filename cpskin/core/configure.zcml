@@ -20,6 +20,7 @@
     <include package="sc.social.like" />
     <include package="collective.recaptcha" />
     <include package="collective.dexteritytextindexer" />
+    <include package="collective.privacy" />
 
     <include file="permissions.zcml" />
     <include file="profiles.zcml" />

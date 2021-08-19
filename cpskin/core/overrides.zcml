@@ -1,5 +1,8 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            i18n_domain="cpskin">
+
+  <include file="privacy.zcml" />
+
   <adapter
     for="plone.registry.interfaces.IRegistry"
     provides="plone.app.querystring.interfaces.IQuerystringRegistryReader"

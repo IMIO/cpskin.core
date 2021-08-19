@@ -80,6 +80,7 @@ setup(name='cpskin.core',
           'collective.sendinblue<2.0',
           'collective.lesscss',
           'collective.anysurfer',
+          'collective.privacy',
       ],
       extras_require={
           'test': [

@@ -590,3 +590,9 @@ def upgrade_enable_accessibility_link_in_footer(context):
         value=True,
     )
     records["cpskin.core.interfaces.ICPSkinSettings.enable_accessibility_link_in_footer"] = record  # noqa
+
+
+def install_privacy(context):
+    portal_setup = api.portal.get_tool("portal_setup")
+    portal_setup.runAllImportStepsFromProfile("profile-collective.privacy:default")
+    api.portal.set_registry_record("collective.privacy.solicit_consent", True)
