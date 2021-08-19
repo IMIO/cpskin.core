@@ -92,6 +92,14 @@
       layer="..interfaces.ICPSkinCoreLayer" />
 
   <browser:page
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      name="consent"
+      permission="zope2.View"
+      class=".privacy.CPSkinConsentForm"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
       for="*"
       name="is_gdpr"
       class=".utils.UtilsView"

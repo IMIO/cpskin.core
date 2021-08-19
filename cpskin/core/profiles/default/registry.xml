@@ -110,4 +110,9 @@
     <records interface="cpskin.core.interfaces.ICPSkinSettings">
       <value key="enable_accessibility_link_in_footer" i18n:translate="">True</value>
     </records>
+
+    <record name="collective.privacy.solicit_consent" />
+      <value>True</value>
+    </record>
+
 </registry>

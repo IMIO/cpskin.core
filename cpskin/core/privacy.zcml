@@ -1,0 +1,33 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:gdpr="http://namespaces.plone.org/gdpr"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n_domain="collective.privacy">
+
+  <browser:resourceDirectory
+    name="collective.privacy"
+    directory="privacy_static"
+    />
+
+  <gdpr:data_use_category
+    name="basic_analytics"
+    title="Unintrusive analytics"
+    description="Analytics that are used to improve the website without
+                 directly tracking users"
+    legal_basis="consent"
+    identifier="collective.privacy.identifiers.CookieIdentifier"
+    storage="collective.privacy.storage.CookieStorage"
+    cookies="_ga,_gat_gtag_*,_gid"
+    />
+
+  <gdpr:data_use_category
+    name="show_media_embed"
+    title="Embedded media"
+    description="We use various providers to embed media into the site."
+    legal_basis="consent"
+    identifier="collective.privacy.identifiers.CookieIdentifier"
+    storage="collective.privacy.storage.CookieStorage"
+    />
+
+</configure>
