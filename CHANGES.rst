@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.50 (unreleased)
+0.13.50 (2021-10-20)
 --------------------
 
 - Fix : Avoid bug when collection return other brains than events
