@@ -22,6 +22,7 @@ from plone.event.interfaces import IEvent
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
+from Products.ZCatalog.interfaces import ICatalogBrain
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.i18n import translate
@@ -509,17 +510,24 @@ class FolderView(FoldV, CommonView):
     def toLocalizedTime(
         self, time=None, long_format=None, time_only=None, event=None, startend="start"
     ):
-        if event:
-            if not IEvent.providedBy(event):
-                event = event.getObject()
-            rs = RecurrenceSupport(event)
-            occurences = [occ for occ in rs.occurrences(datetime.today())]
-            if len(occurences) >= 1:
-                # do not get object which started in the past
-                if startend == "start":
-                    time = getattr(occurences[0], "start")
-                elif startend == "end":
-                    time = getattr(occurences[-1], "end")
+        if not event:
+            return self.context.restrictedTraverse("@@plone").toLocalizedTime(
+                time, long_format, time_only
+            )
+        if ICatalogBrain.providedBy(event):
+            event = event.getObject()
+        if not IEvent.providedBy(event):
+            return self.context.restrictedTraverse("@@plone").toLocalizedTime(
+                time, long_format, time_only
+            )
+        rs = RecurrenceSupport(event)
+        occurences = [occ for occ in rs.occurrences(datetime.today()) if IEvent.providedBy(occ)]
+        if len(occurences) >= 1:
+            # do not get object which started in the past
+            if startend == "start":
+                time = getattr(occurences[0], "start")
+            elif startend == "end":
+                time = getattr(occurences[-1], "end")
         return self.context.restrictedTraverse("@@plone").toLocalizedTime(
             time, long_format, time_only
         )
