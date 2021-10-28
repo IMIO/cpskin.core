@@ -464,4 +464,12 @@
         />
   </configure>
 
+  <browser:page
+    name="event_listing"
+    for="*"
+    permission="zope2.View"
+    class="cpskin.core.browser.event_listing.EventListing"
+    layer="..interfaces.ICPSkinCoreLayer"
+    />
+
 </configure>

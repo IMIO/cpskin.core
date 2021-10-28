@@ -4,7 +4,8 @@ Changelog
 0.13.51 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix : Avoid event_listing can be play on any objects.
+  [boulch]
 
 
 0.13.50 (2021-10-20)
