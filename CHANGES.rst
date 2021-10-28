@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.13.51 (unreleased)
+0.13.51 (2021-10-28)
 --------------------
 
 - Fix : Avoid event_listing can be play on any objects.
