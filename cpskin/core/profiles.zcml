@@ -43,7 +43,8 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
-        title="CPSKIN Core: upgrade to 71: Install collective.privacy"
+        title="CPSKIN Core: upgrade to v71: Install privacy"
+        description="Install iaweb.privacy add-on for cookies consent"
         source="70"
         destination="71"
         handler=".upgradehandlers.install_privacy"

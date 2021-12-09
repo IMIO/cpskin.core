@@ -37,6 +37,7 @@ setup(name='cpskin.core',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'z3c.unconfigure',
           'cpskin.locales',
           'cpskin.citizen',
           'cpskin.minisite',
@@ -81,6 +82,7 @@ setup(name='cpskin.core',
           'collective.lesscss',
           'collective.anysurfer',
           'collective.privacy',
+          'iaweb.privacy',
       ],
       extras_require={
           'test': [
