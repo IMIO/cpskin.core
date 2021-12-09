@@ -18,6 +18,6 @@
     <dependency>profile-collective.taxonomy:default</dependency>
     <dependency>profile-imio.gdpr:default</dependency>
     <dependency>profile-collective.anysurfer:default</dependency>
-    <dependency>profile-collective.privacy:default</dependency>
+    <dependency>profile-iaweb.privacy:default</dependency>
   </dependencies>
 </metadata>

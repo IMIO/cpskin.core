@@ -1,33 +1,41 @@
 <configure
   xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
   xmlns:browser="http://namespaces.zope.org/browser"
-  xmlns:gdpr="http://namespaces.plone.org/gdpr"
-  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  i18n_domain="collective.privacy">
+  xmlns:gdpr="http://namespaces.plone.org/gdpr">
 
+  <include package="iaweb.privacy" />
+  <include package="z3c.unconfigure" file="meta.zcml" />
+
+  <!-- Override privacy JS to load form overlay instead of consent banner(s) -->
   <browser:resourceDirectory
     name="collective.privacy"
-    directory="privacy_static"
+    directory="browser/privacy_static"
     />
 
-  <gdpr:data_use_category
-    name="basic_analytics"
-    title="Unintrusive analytics"
-    description="Analytics that are used to improve the website without
-                 directly tracking users"
-    legal_basis="consent"
-    identifier="collective.privacy.identifiers.CookieIdentifier"
-    storage="collective.privacy.storage.CookieStorage"
-    cookies="_ga,_gat_gtag_*,_gid"
-    />
+  <!-- Include privacy rules -->
+  <include package="iaweb.privacy.rules" file="analytics.zcml" />
+  <include package="iaweb.privacy.rules" file="embed.zcml" />
+  <configure zcml:condition="installed plone.app.multilingual">
+    <include package="iaweb.privacy.rules" file="multilingual.zcml" />
+  </configure>
 
-  <gdpr:data_use_category
-    name="show_media_embed"
-    title="Embedded media"
-    description="We use various providers to embed media into the site."
-    legal_basis="consent"
-    identifier="collective.privacy.identifiers.CookieIdentifier"
-    storage="collective.privacy.storage.CookieStorage"
-    />
+  <!-- Register transform for iframes embed -->
+  <adapter factory=".privacy.EmbedTransform" name="cpskin.core.privacy" />
+
+  <unconfigure>
+    <!-- Privacy preferences cookies are included in basic cpskin cookies
+         so we don't need this category anymore  -->
+    <gdpr:data_use_category
+      name="gdpr_cookies"
+      title="Cookies to record your privacy preferences"
+      description="These store if you've given consent or objected to various
+                   uses of your data. We need to store these to comply with data
+                   protection law."
+      legal_basis="legal_obligation"
+      identifier="collective.privacy.identifiers.NoChoiceIdentifier"
+      storage="collective.privacy.storage.NoChoiceStorage"
+      />
+  </unconfigure>
 
 </configure>

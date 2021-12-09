@@ -594,5 +594,5 @@ def upgrade_enable_accessibility_link_in_footer(context):
 
 def install_privacy(context):
     portal_setup = api.portal.get_tool("portal_setup")
-    portal_setup.runAllImportStepsFromProfile("profile-collective.privacy:default")
-    api.portal.set_registry_record("collective.privacy.solicit_consent", True)
+    portal_setup.runAllImportStepsFromProfile("profile-iaweb.privacy:default")
+    portal_setup.runAllImportStepsFromProfile("profile-collective.cookiecuttr:uninstall")
