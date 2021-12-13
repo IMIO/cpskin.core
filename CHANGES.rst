@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.13.52 (unreleased)
---------------------
+0.14 (2021-12-13)
+-----------------
 
 - WEB-3260: Add new cookies overlay based on collective privcay & iaweb.privacy
   iframes & language selectors are handled through JS code to avoid caching problems
