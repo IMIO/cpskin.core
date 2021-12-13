@@ -4,7 +4,9 @@ Changelog
 0.13.52 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- WEB-3260: Add new cookies overlay based on collective privcay & iaweb.privacy
+  iframes & language selectors are handled through JS code to avoid caching problems
+  [laulaz]
 
 
 0.13.51 (2021-10-28)
@@ -23,6 +25,7 @@ Changelog
 
 0.13.49 (2021-05-17)
 --------------------
+
 - Removal of the underline style on the internal page menu
   [thomlamb]
 
