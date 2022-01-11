@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.14.1 (unreleased)
+0.14.1 (2022-01-11)
 -------------------
 
 - SUP-21477: Allow consent form display on minisite (they are not INavigationRoot)
