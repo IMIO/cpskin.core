@@ -4,7 +4,8 @@ Changelog
 0.14.1 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- WEB-3595: Fix traceback when iframes have no width / height attributes
+  [laulaz]
 
 
 0.14 (2021-12-13)

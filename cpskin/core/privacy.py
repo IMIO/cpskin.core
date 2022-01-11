@@ -23,9 +23,11 @@ def replace_iframe(soup, message):
     tags = soup.findAll("iframe")
     for tag in tags:
         tag["gdpr-src"] = tag["src"]
-        tag["gdpr-width"] = tag["width"]
-        tag["gdpr-height"] = tag["height"]
         tag["src"] = ""
+        if tag.get("width"):
+            tag["gdpr-width"] = tag["width"]
+        if tag.get("height"):
+            tag["gdpr-height"] = tag["height"]
         tag["width"] = tag["height"] = "0"
         tag["class"] = "gdpr-iframe"
         tag.insert_after(privacy_tag)

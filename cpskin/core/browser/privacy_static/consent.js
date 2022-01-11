@@ -21,9 +21,19 @@ jQuery(function($) {
         if (data == true) {
           $('.gdpr-iframe-message').hide();
           $('.gdpr-iframe').each(function() {
-            $(this).attr("height", $(this).attr("gdpr-height"));
-            $(this).attr("width", $(this).attr("gdpr-width"));
             $(this).attr("src", $(this).attr("gdpr-src"));
+            if ($(this).attr("gdpr-height")) {
+                $(this).attr("height", $(this).attr("gdpr-height"));
+            }
+            else {
+                $(this).removeAttr("height");
+            }
+            if ($(this).attr("gdpr-width")) {
+                $(this).attr("width", $(this).attr("gdpr-width"));
+            }
+            else {
+                $(this).removeAttr("width");
+            }
           });
         }
     });
