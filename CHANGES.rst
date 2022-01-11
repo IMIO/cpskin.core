@@ -4,6 +4,9 @@ Changelog
 0.14.1 (unreleased)
 -------------------
 
+- SUP-21477: Allow consent form display on minisite (they are not INavigationRoot)
+  [laulaz]
+
 - WEB-3595: Fix traceback when iframes have no width / height attributes
   [laulaz]
 
