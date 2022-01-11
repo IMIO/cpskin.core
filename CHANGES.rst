@@ -4,7 +4,8 @@ Changelog
 0.14.2 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- SUP-21477: Fix consent form override
+  [laulaz]
 
 
 0.14.1 (2022-01-11)

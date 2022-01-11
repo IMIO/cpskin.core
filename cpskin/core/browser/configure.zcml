@@ -44,7 +44,15 @@
       />
 
   <browser:page
-      for="*"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      name="consent"
+      permission="zope2.View"
+      class=".privacy.ConsentFormWithPolicy"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
+  <browser:page
+      for="cpskin.minisite.interfaces.IMinisiteRoot"
       name="consent"
       permission="zope2.View"
       class=".privacy.ConsentFormWithPolicy"
