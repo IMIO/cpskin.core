@@ -15,7 +15,7 @@ from zope.interface import Interface
 def replace_iframe(soup, message):
     """
     Change <iframe> attributes to make it work only if cookies have been accepted
-    The iframe attributes are put nack through JS (to avoid server caching)
+    The iframe attributes are put back through JS (to avoid server caching)
     """
     privacy_tag = soup.new_tag("div")
     privacy_tag.append(BeautifulSoup(message, "html.parser"))
