@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.14.2 (unreleased)
+0.14.2 (2022-01-11)
 -------------------
 
 - SUP-21477: Fix consent form override
