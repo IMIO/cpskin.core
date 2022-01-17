@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v72: Add privacy specific JS"
+        description="Purpose : Fix transformations on consent form"
+        source="71"
+        destination="72"
+        handler=".upgradehandlers.upgrade_js_registry"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v71: Install privacy"
         description="Install iaweb.privacy add-on for cookies consent"
         source="70"

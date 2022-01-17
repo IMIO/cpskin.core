@@ -64,4 +64,13 @@
     id="++resource++cpskin.core.js/accessibility.js"
     />
 
+  <javascript
+    cacheable="True"
+    compression="safe"
+    cookable="True"
+    enabled="1"
+    expression=""
+    id="++resource++cpskin.core.js/privacy.js"
+    />
+
 </object>

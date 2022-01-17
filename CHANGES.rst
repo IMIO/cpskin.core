@@ -4,6 +4,10 @@ Changelog
 0.14.3 (unreleased)
 -------------------
 
+- Fix JS transformations on consent form: collective.privacy JS is not included
+  on this form, so we need to move that code in a everywhere-included resource
+  [laulaz]
+
 - SUP-21477: Use Allow as default value on cookies consent form
   [laulaz]
 
