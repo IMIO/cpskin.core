@@ -37,6 +37,19 @@ class ConsentFormWithPolicy(ConsentForm):
         )
         self.description = translate(description, target_language=current_lang)
 
+    @property
+    def schema(self):
+        schema = super(ConsentFormWithPolicy, self).schema
+        default_allowed_reasons = [
+            "basic_analytics",
+            "language_preference",
+            "show_genetic_embed",
+        ]
+        for reason_id in default_allowed_reasons:
+            if reason_id in schema:
+                schema[reason_id].default = "Allowed"
+        return schema
+
     @button.buttonAndHandler(_(u"Save"))
     def handleApply(self, action):
         data, errors = self.extractData()

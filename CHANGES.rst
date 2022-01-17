@@ -4,7 +4,8 @@ Changelog
 0.14.3 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- SUP-21477: Use Allow as default value on cookies consent form
+  [laulaz]
 
 
 0.14.2 (2022-01-11)
