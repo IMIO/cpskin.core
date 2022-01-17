@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.14.3 (unreleased)
+0.14.3 (2022-01-17)
 -------------------
 
 - Fix JS transformations on consent form: collective.privacy JS is not included
