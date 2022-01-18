@@ -4,7 +4,8 @@ Changelog
 0.14.4 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix iframe blocked message when there are many iframes on the same page
+  [laulaz]
 
 
 0.14.3 (2022-01-17)
