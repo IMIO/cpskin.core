@@ -1,5 +1,7 @@
 jQuery(function($) {
 
+  var prepareForCookies = function() {
+
     // See if we need to delete language selector
     if ($('#portal-languageselector').length > 0) {
       $.ajax({
@@ -48,5 +50,15 @@ jQuery(function($) {
       closeselector: '[name="form.buttons.cancel"]',
       noform: function(el) {return $.plonepopups.noformerrorshow(el, 'reload');}
     });
+
+  };
+
+  if(window.Faceted){
+    jQuery(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function(){
+        prepareForCookies();
+    });
+  }
+
+  prepareForCookies();
 
 });

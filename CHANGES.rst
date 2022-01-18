@@ -4,6 +4,9 @@ Changelog
 0.14.4 (unreleased)
 -------------------
 
+- Fix iframe (un)blocking on faceted pages
+  [laulaz]
+
 - Fix iframe blocked message when there are many iframes on the same page
   [laulaz]
 
