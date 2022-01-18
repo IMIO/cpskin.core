@@ -4,6 +4,9 @@ Changelog
 0.14.4 (unreleased)
 -------------------
 
+- SUP-21625: Fix iframe class removal if specified manually
+  [laulaz]
+
 - SUP-21477: Change cookies viewlet / overlay logic.
   We now show overlay only to see detailed options about cookies because viewlet
   allows to Accept / Refuse all cookies directly.
