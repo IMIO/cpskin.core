@@ -12,7 +12,7 @@
                           data-json-url string:${context/absolute_url}/@@consent-json">
         <input name="came_from" type="hidden" value="" tal:attributes="value request/ACTUAL_URL">
         <div class="gdpr-actions">
-            <input type="submit" name="consent" value="Allow all" i18n:attributes="value"/>
+            <input type="submit" name="consent" value="Accept all" i18n:attributes="value"/>
             <a href=""
                tal:attributes="href string:${navigation_root_url}/@@consent"
                i18n:translate="">Read more and manage settings</a>
