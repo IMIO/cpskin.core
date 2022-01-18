@@ -1,6 +1,33 @@
 jQuery(function($) {
 
-  var prepareForCookies = function() {
+  var reasons = [];
+  var setConsentForm = function() {
+    if (reasons.length > 0) {
+      $('#gdpr-consent-banner').show();
+      $('#gdpr-consent-banner a').prepOverlay({
+        subtype: 'ajax',
+        filter: '#content',
+        cssclass: 'overlay-privacy',
+        formselector: '#cookies-form',
+        noform: function(el) {return $.plonepopups.noformerrorshow(el, 'reload');}
+      });
+    } else {
+      $('#gdpr-consent-banner').remove();
+    }
+  };
+
+  var url = $('#gdpr-consent-banner form').data('json-url');
+  $.ajax({
+    type: "GET",
+    url: url,
+    headers: {"Cache-Control": "no-cache"},
+  }).done(function(data) {
+    reasons = data;
+    setConsentForm();
+  });
+
+
+  var handleCookiesFeatures = function() {
 
     // See if we need to delete language selector
     if ($('#portal-languageselector').length > 0) {
@@ -46,19 +73,19 @@ jQuery(function($) {
       subtype: 'ajax',
       filter: '#content',
       cssclass: 'overlay-privacy',
-      formselector: '#form',
-      closeselector: '[name="form.buttons.cancel"]',
+      formselector: '#cookies-form',
       noform: function(el) {return $.plonepopups.noformerrorshow(el, 'reload');}
     });
 
   };
 
+
   if(window.Faceted){
     jQuery(Faceted.Events).bind(Faceted.Events.AJAX_QUERY_SUCCESS, function(){
-        prepareForCookies();
+        handleCookiesFeatures();
     });
   }
 
-  prepareForCookies();
+  handleCookiesFeatures();
 
 });

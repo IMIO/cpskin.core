@@ -10,6 +10,12 @@ from zope.i18n import translate
 import json
 
 
+def get_all_consent_reasons(privacy_tool):
+    for reason in privacy_tool.getAllReasons().values():
+        if reason.lawful_basis.__name__ == "consent":
+            yield reason
+
+
 class PrivacyView(BrowserView):
     """ """
 
@@ -23,34 +29,48 @@ class PrivacyView(BrowserView):
         portal_privacy = api.portal.get_tool("portal_privacy")
         return json.dumps(portal_privacy.processingIsAllowed("language_preference"))
 
+    def accept_or_refuse_all(self):
+        form = self.request.form
+        came_from = form.get("came_from")
+        if not came_from:
+            came_from = api.portal.get_navigation_root(self.context).absolute_url()
+        accept_all = True if "consent" in form else False
+        privacy_tool = api.portal.get_tool("portal_privacy")
+        for reason in get_all_consent_reasons(privacy_tool):
+            if accept_all:
+                privacy_tool.consentToProcessing(reason.__name__)
+            else:
+                privacy_tool.objectToProcessing(reason.__name__)
+        self.request.response.redirect(came_from)
+        return ""
+
 
 class ConsentFormWithPolicy(ConsentForm):
+
+    label = _(u"Cookies choice")
+    id = "cookies-form"
+
     def update(self):
         super(ConsentFormWithPolicy, self).update()
         root = api.portal.get_navigation_root(self.context)
         current_lang = api.portal.get_current_language()[:2]
         policy_url = u"{}/@@cookies-view".format(root.absolute_url())
         description = _(
-            u"Choose to opt in or out of various pieces of functionality.<br/>"
-            u'If you want, you can <a href="${policy_url}">read our cookie policy</a>.',
+            u"Choose to opt in or out of cookies use.<br/>"
+            u'Our <a href="${policy_url}">cookies policy</a> can help you choose.',
             mapping={u"policy_url": policy_url},
         )
         self.description = translate(description, target_language=current_lang)
 
-    @property
-    def schema(self):
-        schema = super(ConsentFormWithPolicy, self).schema
-        default_allowed_reasons = [
-            "basic_analytics",
-            "language_preference",
-            "show_genetic_embed",
-        ]
-        for reason_id in default_allowed_reasons:
-            if reason_id in schema:
-                schema[reason_id].default = "Allowed"
-        return schema
+    def _redirect(self):
+        if "ajax_load" in self.request.form:
+            # the form was loaded via an overlay, we need to redirect to
+            # an existing page to close it
+            portal = api.portal.get()
+            self.request.response.redirect("{}/@@ok".format(portal.absolute_url()))
+            return ""
 
-    @button.buttonAndHandler(_(u"Save"))
+    @button.buttonAndHandler(_(u"Save my choices"))
     def handleApply(self, action):
         data, errors = self.extractData()
         if errors:
@@ -65,10 +85,18 @@ class ConsentFormWithPolicy(ConsentForm):
             else:
                 privacy_tool.objectToProcessing(topic)
         self.status = _(u"Your preferences have been saved.")
+        self._redirect()
 
-        if "ajax_load" in self.request.form:
-            # the form was loaded via an overlay, we need to redirect to
-            # an existing page to close it
-            portal = api.portal.get()
-            self.request.response.redirect("{}/@@ok".format(portal.absolute_url()))
-            return ""
+    @button.buttonAndHandler(_(u"Accept all"))
+    def handleAcceptAll(self, action):
+        privacy_tool = api.portal.get_tool("portal_privacy")
+        for reason in get_all_consent_reasons(privacy_tool):
+            privacy_tool.consentToProcessing(reason.__name__)
+        self._redirect()
+
+    @button.buttonAndHandler(_(u"Refuse all"))
+    def handleRefuseAll(self, action):
+        privacy_tool = api.portal.get_tool("portal_privacy")
+        for reason in get_all_consent_reasons(privacy_tool):
+            privacy_tool.objectToProcessing(reason.__name__)
+        self._redirect()

@@ -78,6 +78,15 @@
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
+  <browser:page
+      for="*"
+      name="accept_or_refuse_all"
+      class=".privacy.PrivacyView"
+      attribute="accept_or_refuse_all"
+      permission="zope2.View"
+      layer="..interfaces.ICPSkinCoreLayer"
+      />
+
   <browser:view
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       name="opendata"

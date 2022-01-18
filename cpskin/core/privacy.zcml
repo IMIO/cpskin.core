@@ -7,12 +7,6 @@
   <include package="iaweb.privacy" />
   <include package="z3c.unconfigure" file="meta.zcml" />
 
-  <!-- Override privacy JS to load form overlay instead of consent banner(s) -->
-  <browser:resourceDirectory
-    name="collective.privacy"
-    directory="browser/privacy_static"
-    />
-
   <!-- Include privacy rules -->
   <include package="iaweb.privacy.rules" file="analytics.zcml" />
   <include package="iaweb.privacy.rules" file="embed.zcml" />

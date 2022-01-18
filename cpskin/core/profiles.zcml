@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v73: Reload viewlets"
+        description="Purpose : Add cpskin.privacy_consent viewlet at the top"
+        source="72"
+        destination="73"
+        handler=".upgradehandlers.upgrade_viewlets"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v72: Add privacy specific JS"
         description="Purpose : Fix transformations on consent form"
         source="71"

@@ -4,6 +4,11 @@ Changelog
 0.14.4 (unreleased)
 -------------------
 
+- SUP-21477: Change cookies viewlet / overlay logic.
+  We now show overlay only to see detailed options about cookies because viewlet
+  allows to Accept / Refuse all cookies directly.
+  [laulaz]
+
 - Fix iframe (un)blocking on faceted pages
   [laulaz]
 
