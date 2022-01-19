@@ -199,7 +199,6 @@ Privacy related CSS
     box-shadow: 0 0 18px rgba(0, 0, 0, .2);
     border: none;
     padding: 2rem;
-    max-width: 700px;
     border-radius: 5px;
 }
 
@@ -356,4 +355,10 @@ Privacy related CSS
 a.consent-link.link-overlay {
     text-decoration: underline;
     margin-top: 1rem;
+}
+div.overlay.overlay-privacy{
+    text-align: left;
+}
+.overlay-privacy .pb-ajax > div {
+    margin: 0 auto;
 }
