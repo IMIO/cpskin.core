@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.14.4 (unreleased)
+0.14.4 (2022-01-19)
 -------------------
 - WEB-3260: Styles for cookies viewlets.
   [thomlamb]
