@@ -40,7 +40,7 @@
     display: none;
 }
 
-div#formfield-form-widgets-IDublinCore-subjects  {
+div#formfield-form-widgets-IDublinCore-subjects {
     display: none;
 }
 
@@ -49,11 +49,11 @@ div.table-responsive {
 }
 
 .hidden-right-panel {
-	display: none;
+    display: none;
 }
 
 .shown-right-panel {
-	display: block;
+    display: block;
 }
 
 #portal-footer-wrapper.row {
@@ -61,21 +61,21 @@ div.table-responsive {
 }
 
 .dynamic-hover {
-	background-position: center !important;
+    background-position: center !important;
 }
 
 .contact-entry-photos {
-	padding-left: 0px !important;
-	padding-right: 0px !important;
-	padding-top: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
 }
 
 .organization-photos {
-	height: 70%;
+    height: 70%;
 }
 
 .organization-informations {
-	margin: 1em;
+    margin: 1em;
 }
 
 #content-views dl.actionMenu.activated dd {
@@ -106,10 +106,12 @@ div.table-responsive {
     -moz-border-radius-topleft: 0em;
     -moz-border-radius-topright: 0em;
 }
-a:focus, input:focus {
-	outline-color: rgba(51, 51, 51, 0.555)!important;
-	outline: thin solid;
-	outline: 5px auto -webkit-focus-ring-color;
+
+a:focus,
+input:focus {
+    outline-color: rgba(51, 51, 51, 0.555) !important;
+    outline: thin solid;
+    outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px;
 }
 
@@ -119,7 +121,7 @@ a:focus, input:focus {
 .template-event_view #content-core a:link,
 .portaltype-organization #content a:link,
 .portaltype-procedure #content a:link,
-.template-medialink_oembed_view #content a:link{
+.template-medialink_oembed_view #content a:link {
     text-decoration: underline;
 }
 
@@ -135,12 +137,223 @@ Privacy related CSS
 }
 
 #gdpr-consent-banner {
-    z-index: 999999;
-    width: 100%;
+    z-index: 98;
+    padding: 50px 25px;
+    background: #fff;
     position: fixed;
+    top: 100vh;
+    transform: translateY(-100%);
+    box-shadow: 0 0 18px rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    color: #686868;
+    width: auto;
+    left: 10px;
+    right: 10px;
+}
+
+
+#gdpr-consent-banner .gdpr-actions input[name="consent"] {
+    background: #000;
+    color: #fff;
+    border: 2px solid transparent;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    font-size: 14px;
+    font-family: Arial, FreeSans, sans-serif;
+    cursor: pointer;
+}
+
+#gdpr-consent-banner .gdpr-actions input[name="consent"]:hover {
+    background: #404040;
+}
+
+#gdpr-consent-banner .gdpr-actions .link-overlay {
+    background: #fff;
+    color: #000;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    border: 2px solid #000;
+    font-size: 14px;
+    font-family: Arial, FreeSans, sans-serif;
+    margin-left: 0.6rem;
+}
+
+#gdpr-consent-banner .gdpr-actions .link-overlay:hover {
+    border: 2px solid #404040;
+    color: #404040;
+}
+
+#gdpr-consent-banner .gdpr-actions input[name="refuse"] {
+    background: transparent;
+    border: none;
+    text-decoration: underline;
+    margin-left: auto;
+    display: block;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+.overlay-privacy .pb-ajax {
+    box-shadow: 0 0 18px rgba(0, 0, 0, .2);
+    border: none;
+    padding: 2rem;
+    max-width: 700px;
+    border-radius: 5px;
+}
+
+.overlay-privacy .pb-ajax #content .discreet {
+    font-size: 15px;
+    color: #000;
+}
+
+.overlay-privacy .pb-ajax .formControls input {
+    border: solid 2px #fff;
+    background: #000;
+    font-weight: bold;
+}
+
+.overlay-privacy .pb-ajax .formControls input:hover {
+    background: #404040;
+}
+
+.overlay-privacy .pb-ajax .field.z3cformInlineValidation {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0.6rem 0;
+    border-top: solid 1px #e5e5e5;
+}
+
+.overlay-privacy .pb-ajax .field.z3cformInlineValidation:first-of-type {
+    border-bottom: 0px;
+}
+
+.overlay-privacy .pb-ajax .field.z3cformInlineValidation:first-of-type {
+    display: block;
+}
+
+.overlay-privacy .pb-ajax .field.z3cformInlineValidation label {
+    flex: 0 0 70%;
+}
+
+.overlay-privacy .pb-ajax .field.z3cformInlineValidation span.option {
+    margin-left: 1rem;
+}
+
+.overlay-privacy .pb-ajax .field.z3cformInlineValidation span.option:first-of-type {
+    margin-left: auto;
+}
+
+.overlay-privacy .pb-ajax .field.z3cformInlineValidation>label {
+    font-size: 16px;
+    margin: 0;
+    font-weight: normal;
+    color: #000;
+}
+
+.overlay-privacy .pb-ajax .field.z3cformInlineValidation span.formHelp {
+    font-size: 14px;
+    margin-top: 0.3rem;
+}
+
+@media screen and (max-width: 700px) {
+    .overlay-privacy .pb-ajax .field.z3cformInlineValidation {
+        display: block;
+    }
+
+    .overlay-privacy .pb-ajax .field.z3cformInlineValidation span.option {
+        margin-left: 0;
+    }
+
+    .overlay-privacy .pb-ajax {
+        padding: 5px;
+        margin: 0 10px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .overlay-privacy .pb-ajax .formControls {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    #gdpr-consent-banner {
+        right: 10px;
+    }
+
+    #gdpr-consent-banner .gdpr-actions input[name="consent"] {
+        font-size: 13px !important;
+        width: calc(31% - 4px);
+        display: inline-block;
+        min-width: max-content;
+        padding: 1rem 1.5rem;
+    }
+
+    #gdpr-consent-banner .gdpr-actions .link-overlay {
+        font-size: 13px !important;
+        padding: 1rem 1.5rem;
+        display: inline-block;
+        width: calc(50% - 4px) !important;
+        min-width: max-content;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    #gdpr-consent-banner .gdpr-actions .link-overlay {
+        margin: 1rem 0;
+        width: auto !important;
+        display: block;
+        text-align: center;
+    }
+
+    #gdpr-consent-banner .gdpr-actions input[name="consent"] {
+        margin: 1rem 0;
+        width: 100% !important;
+        display: block;
+        text-align: center;
+    }
+
+    #gdpr-consent-banner .gdpr-actions input[name="refuse"] {
+        font-size: 13px !important;
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    #gdpr-consent-banner {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        align-items: center;
+        right: 10px;
+        max-width: 100%;
+    }
+    #gdpr-consent-banner > span{
+        max-width: 500px;
+    }
+}
+
+
+/* iframe */
+.gdpr-iframe-message {
+    position: absolute;
     top: 0;
-    left: 0;
-    padding: 5px;
-    background: orange;
-    display:none;
+    text-align: center;
+    width: 100%;
+    background: #f2f2f2;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px dashed lightgrey;
+    font-size: 18px;
+}
+
+a.consent-link.link-overlay {
+    text-decoration: underline;
+    margin-top: 1rem;
 }

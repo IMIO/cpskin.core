@@ -3,6 +3,8 @@ Changelog
 
 0.14.4 (unreleased)
 -------------------
+- WEB-3260: Styles for cookies viewlets.
+  [thomlamb]
 
 - SUP-21625: Fix iframe class removal if specified manually
   [laulaz]
