@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.14.6 (unreleased)
+0.14.6 (2022-01-20)
 -------------------
 
 - Hide cookies viewlets by default (JS will show it if needed)
