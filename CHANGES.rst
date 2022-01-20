@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.14.8 (unreleased)
+0.14.8 (2022-01-20)
 -------------------
 
 - Move cpskin.privacy_consent viewlet at the top (in portaltop)
