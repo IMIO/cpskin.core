@@ -4,7 +4,8 @@ Changelog
 0.14.7 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add link to cookies preferences in colophon
+  [boulch]
 
 
 0.14.6 (2022-01-20)

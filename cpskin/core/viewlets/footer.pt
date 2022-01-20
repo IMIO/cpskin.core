@@ -15,6 +15,11 @@ if (ploneFormTabbing) {
       <span tal:condition="context/@@edit_anysurfer_settings">
           (<a tal:attributes="href string:${view/navigation_root_url}/@@anysurfer-settings" i18n:translate="">Edit accessibility text</a>)
       </span>
+      <span> -
+        <a href="" class="consent-link"
+           tal:attributes="href string:${view/navigation_root_url}/@@consent"
+           i18n:translate="">Cookies preferences</a>
+      </span>
       <!--span tal:condition="context/@@edit_anysurfer_settings"> /
           <a tal:condition="context/@@has_enabled_accessibilty_link_in_footer"
              tal:attributes="href string:${view/navigation_root_url}/@@edit_anysurfer_settings?change_link_visibility=True" i18n:translate="">hide accessibility link</a>
