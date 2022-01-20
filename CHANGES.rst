@@ -4,6 +4,9 @@ Changelog
 0.14.8 (unreleased)
 -------------------
 
+- Move cpskin.privacy_consent viewlet at the top (in portaltop)
+  [laulaz]
+
 - Fix link to cookies preferences display
   [laulaz]
 

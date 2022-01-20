@@ -2,7 +2,6 @@
 <object>
   <order manager="plone.portalheader" skinname="*">
     <viewlet name="plone.skip_links" />
-    <viewlet name="cpskin.privacy_consent" />
     <viewlet name="cpskin.top_menu" />
     <viewlet name="plone.personal_bar" />
     <viewlet name="cpskin.social_viewlet" />
@@ -12,6 +11,7 @@
     <viewlet name="plone.global_sections" />
   </order>
   <order manager="plone.portaltop" skinname="*">
+    <viewlet name="cpskin.privacy_consent" />
     <viewlet name="cpskin.top_collapse" />
     <viewlet name="plone.header" />
     <viewlet name="cpskin.banner" />

@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v74: Reload viewlets"
+        description="Purpose : Move cpskin.privacy_consent viewlet at the top (in portaltop)"
+        source="73"
+        destination="74"
+        handler=".upgradehandlers.upgrade_viewlets"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v73: Reload viewlets"
         description="Purpose : Add cpskin.privacy_consent viewlet at the top"
         source="72"
