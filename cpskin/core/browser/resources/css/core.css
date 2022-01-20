@@ -210,11 +210,13 @@ Privacy related CSS
 .overlay-privacy .pb-ajax .formControls{
     margin-left: auto;
     width: max-content;
+    margin-right: 0;
 }
 .overlay-privacy .pb-ajax .formControls input {
     border: solid 2px #fff;
     background: #000;
     font-weight: bold;
+    margin: 0;
 }
 
 .overlay-privacy .pb-ajax .formControls input:hover {
@@ -339,15 +341,20 @@ Privacy related CSS
 
 @media screen and (min-width: 1080px) {
     #gdpr-consent-banner {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        align-items: center;
         right: 10px;
         max-width: 100%;
+        text-align: center;
     }
     #gdpr-consent-banner > span{
         max-width: 500px;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: left;
+        padding-right: 30px;
+    }
+    #gdpr-consent-banner > form{
+        display: inline-block;
+        vertical-align: middle;   
     }
 }
 

@@ -4,6 +4,9 @@ Changelog
 0.14.7 (unreleased)
 -------------------
 
+- Fix styles for cookies viewlets
+  [thomlamb]
+
 - Put cookies viewlet in plone.portaltop (to avoid Diazo manipulations in themes)
   [laulaz]
 
