@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.14.7 (unreleased)
+0.14.7 (2022-01-20)
 -------------------
 
 - Fix styles for cookies viewlets
