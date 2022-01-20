@@ -4,6 +4,9 @@ Changelog
 0.14.7 (unreleased)
 -------------------
 
+- Put cookies viewlet in plone.portaltop (to avoid Diazo manipulations in themes)
+  [laulaz]
+
 - Add link to cookies preferences in colophon
   [boulch]
 

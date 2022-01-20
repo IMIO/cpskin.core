@@ -33,7 +33,7 @@
 
     <browser:viewlet
         name="cpskin.privacy_consent"
-        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        manager="plone.app.layout.viewlets.interfaces.IPortalTop"
         template="privacy.pt"
         permission="zope.Public"
         layer="..interfaces.ICPSkinCoreLayer"
