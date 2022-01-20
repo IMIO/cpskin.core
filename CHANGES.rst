@@ -4,7 +4,8 @@ Changelog
 0.14.8 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix link to cookies preferences display
+  [laulaz]
 
 
 0.14.7 (2022-01-20)

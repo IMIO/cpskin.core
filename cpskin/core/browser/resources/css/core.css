@@ -358,6 +358,9 @@ Privacy related CSS
     }
 }
 
+#portal-footer a.consent-link.link-overlay {
+    text-decoration: none;
+}
 
 /* iframe */
 .gdpr-iframe-message {
