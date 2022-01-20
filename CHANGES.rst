@@ -4,6 +4,9 @@ Changelog
 0.14.6 (unreleased)
 -------------------
 
+- Hide cookies viewlets by default (JS will show it if needed)
+  [laulaz]
+
 - Fix styles for cookies viewlets
   [thomlamb]
 
