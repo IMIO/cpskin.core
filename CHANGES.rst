@@ -4,11 +4,13 @@ Changelog
 0.14.5 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix styles for cookies viewlets
+  [thomlamb]
 
 
 0.14.4 (2022-01-19)
 -------------------
+
 - WEB-3260: Styles for cookies viewlets.
   [thomlamb]
 
