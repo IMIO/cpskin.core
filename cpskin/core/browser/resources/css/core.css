@@ -206,7 +206,10 @@ Privacy related CSS
     font-size: 15px;
     color: #000;
 }
-
+.overlay-privacy .pb-ajax .formControls{
+    margin-left: auto;
+    width: max-content;
+}
 .overlay-privacy .pb-ajax .formControls input {
     border: solid 2px #fff;
     background: #000;
@@ -239,6 +242,12 @@ Privacy related CSS
 
 .overlay-privacy .pb-ajax .field.z3cformInlineValidation span.option {
     margin-left: 1rem;
+}
+.overlay-privacy .pb-ajax .field.z3cformInlineValidation span.option label {
+    cursor: pointer;
+}
+.overlay-privacy .pb-ajax .field.z3cformInlineValidation span.option label input {
+    cursor: pointer;
 }
 
 .overlay-privacy .pb-ajax .field.z3cformInlineValidation span.option:first-of-type {
@@ -277,6 +286,11 @@ Privacy related CSS
         display: flex;
         flex-direction: column;
         gap: 1px;
+    }
+    .overlay-privacy .pb-ajax .formControls{
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
     }
 }
 
