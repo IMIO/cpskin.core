@@ -46,7 +46,7 @@
   <browser:page
       for="plone.app.layout.navigation.interfaces.INavigationRoot"
       name="consent"
-      permission="zope2.View"
+      permission="zope.Public"
       class=".privacy.ConsentFormWithPolicy"
       layer="..interfaces.ICPSkinCoreLayer"
       />
@@ -54,7 +54,7 @@
   <browser:page
       for="cpskin.minisite.interfaces.IMinisiteRoot"
       name="consent"
-      permission="zope2.View"
+      permission="zope.Public"
       class=".privacy.ConsentFormWithPolicy"
       layer="..interfaces.ICPSkinCoreLayer"
       />
@@ -74,7 +74,7 @@
       name="allow_languages"
       class=".privacy.PrivacyView"
       attribute="allow_languages"
-      permission="zope2.View"
+      permission="zope.Public"
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
@@ -83,7 +83,7 @@
       name="accept_or_refuse_all"
       class=".privacy.PrivacyView"
       attribute="accept_or_refuse_all"
-      permission="zope2.View"
+      permission="zope.Public"
       layer="..interfaces.ICPSkinCoreLayer"
       />
 
