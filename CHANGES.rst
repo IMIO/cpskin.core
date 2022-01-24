@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.14.9 (unreleased)
+0.14.9 (2022-01-24)
 -------------------
 
 - WEB-3600 : Change permission to fix entering method "allow_iframes on some context.
