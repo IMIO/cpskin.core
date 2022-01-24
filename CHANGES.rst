@@ -4,7 +4,8 @@ Changelog
 0.14.9 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- WEB-3600 : Change permission to fix entering method "allow_iframes on some context.
+  [boulch]
 
 
 0.14.8 (2022-01-20)
