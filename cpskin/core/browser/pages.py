@@ -211,8 +211,6 @@ class EventGenerationHelperView(DXDocumentGenerationHelperView):
             return False
         if field_name.endswith('gratuite') and value != 'Gratuit':
             return False
-            # if field_name.endswith('danslecadrede'):
-            #     import ipdb; ipdb.set_trace()
         return True
 
     def get_taxonomy_value(self, field_name, sep=' ', end=''):
