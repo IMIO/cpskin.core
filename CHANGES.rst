@@ -4,7 +4,8 @@ Changelog
 0.14.10 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix styles for cookies viewlets
+  [thomlamb]
 
 
 0.14.9 (2022-01-24)
