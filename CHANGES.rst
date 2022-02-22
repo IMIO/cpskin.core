@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.14.11 (unreleased)
+0.14.11 (2022-02-22)
 --------------------
 
 - Add permissions to limit access to vocabulary plone.app.vocabularies.Users
