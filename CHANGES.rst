@@ -4,7 +4,9 @@ Changelog
 0.14.11 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add permissions to limit access to vocabulary plone.app.vocabularies.Users
+  + upgrade step.
+  [boulch]
 
 
 0.14.10 (2022-01-25)

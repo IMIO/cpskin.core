@@ -596,3 +596,12 @@ def install_privacy(context):
     portal_setup = api.portal.get_tool("portal_setup")
     portal_setup.runAllImportStepsFromProfile("profile-iaweb.privacy:default")
     portal_setup.runAllImportStepsFromProfile("profile-collective.cookiecuttr:uninstall")
+
+
+def upgrade_accessrestapiusersvocabulary_roles(context):
+    portal = api.portal.get()
+    portal.manage_permission(
+        "CPSkin: Access REST API users vocabulary",
+        roles=["Manager", "Site Administrator"],
+        acquire=True,
+    )

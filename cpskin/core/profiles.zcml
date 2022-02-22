@@ -43,6 +43,15 @@
 
     <!-- Upgrade steps -->
     <genericsetup:upgradeStep
+        title="CPSKIN Core: upgrade to v75: Add roles to new cpskin.accessrestapiusersvocabulary permission."
+        description="Add roles to new cpskin.accessrestapiusersvocabulary permission."
+        source="74"
+        destination="75"
+        handler=".upgradehandlers.upgrade_accessrestapiusersvocabulary_roles"
+        profile="cpskin.core:default"
+        />
+
+    <genericsetup:upgradeStep
         title="CPSKIN Core: upgrade to v74: Reload viewlets"
         description="Purpose : Move cpskin.privacy_consent viewlet at the top (in portaltop)"
         source="73"

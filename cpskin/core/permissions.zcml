@@ -14,4 +14,10 @@
     description=""
     />
 
+    <permission
+    id="cpskin.accessrestapiusersvocabulary"
+    title="CPSkin: Access REST API users vocabulary"
+    description=""
+    />
+
 </configure>

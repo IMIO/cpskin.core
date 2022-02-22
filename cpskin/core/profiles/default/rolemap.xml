@@ -17,6 +17,11 @@
       <role name="Portlets Manager"/>
     </permission>
 
+    <permission name="CPSkin: Access REST API users vocabulary" acquire="True">
+      <role name="Site Administrator"/>
+      <role name="Manager"/>
+    </permission>
+
     <permission name="Portlets: Manage portlets" acquire="True">
       <role name="Editor"/>
       <role name="Portlets Manager"/>
