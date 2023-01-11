@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.14.12 (unreleased)
+0.14.12 (2023-01-11)
 --------------------
 
 - Add last_login_time, login_time when getting restapi users
