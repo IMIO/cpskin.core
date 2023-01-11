@@ -4,7 +4,8 @@ Changelog
 0.14.12 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add last_login_time, login_time when getting restapi users
+  [boulch]
 
 
 0.14.11 (2022-02-22)
