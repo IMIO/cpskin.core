@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up pyenv and Python
-        uses: gabrielfalcao/pyenv-action@v18
+        uses: gabrielfalcao/pyenv-action@v14
         with:
           default: "${{ matrix.python }}"
           command: pip install -U pip
@@ -30,6 +30,7 @@ jobs:
       - name: Run tests
         run: bin/test --all
   coverage:
+    needs: tests
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
@@ -40,7 +41,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up pyenv and Python
-        uses: gabrielfalcao/pyenv-action@v18
+        uses: gabrielfalcao/pyenv-action@v14
         with:
           default: "${{ matrix.python }}"
           command: pip install -U pip
