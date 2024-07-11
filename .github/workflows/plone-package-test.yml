@@ -1,0 +1,55 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: 2.7.18
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up pyenv and Python
+        uses: gabrielfalcao/pyenv-action@v18
+        with:
+          default: "${{ matrix.python }}"
+          command: pip install -U pip
+      - name: Setup Env
+        run: |
+          pip install -r requirements.txt
+          buildout code-analysis:jenkins=True
+      - name: Start XVFB
+        run: |
+          /etc/init.d/xvfb start 2> /dev/null &
+      - name: Run tests
+        run: bin/test --all
+  coverage:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: 2.7.18
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up pyenv and Python
+        uses: gabrielfalcao/pyenv-action@v18
+        with:
+          default: "${{ matrix.python }}"
+          command: pip install -U pip
+      - name: Setup Env
+        run: |
+          pip install -e .
+          pip install -U coveralls coverage
+      - name: test coverage
+        run: |
+          code-analysis
+          createcoverage
+          coverage xml
