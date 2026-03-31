@@ -9,6 +9,7 @@
 
   <adapter factory=".controlpanel.CPSkinControlPanelAdapter" />
 
+  <include package=".migration" />
   <include package="z3c.jbot" file="meta.zcml" />
 
   <include package="plone.app.contentmenu" />

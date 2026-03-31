@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+  <browser:page
+    name="export_content"
+    for="zope.interface.Interface"
+    class=".export_content.CustomExportContent"
+    layer="cpskin.core.interfaces.ICPSkinCoreLayer"
+    permission="cmf.ManagePortal"
+    />
+
+</configure>
