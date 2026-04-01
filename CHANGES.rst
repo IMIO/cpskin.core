@@ -4,7 +4,8 @@ Changelog
 0.14.13 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Clean old code related to migration from AT to Dexterity.
+  [bsuttor]
 
 
 0.14.12 (2023-01-11)

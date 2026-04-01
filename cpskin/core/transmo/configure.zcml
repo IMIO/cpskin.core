@@ -7,7 +7,7 @@
     i18n_domain="cpskin">
 
     <!-- The actual magic view -->
-    <browser:page
+    <!-- <browser:page
         for="*"
         name="get_item"
         class=".jsonify.GetItem"
@@ -26,6 +26,6 @@
         name="get_catalog_results"
         class=".jsonify.GetCatalogResults"
         permission="zope2.AccessContentsInformation"
-        />
+        /> -->
 
 </configure>

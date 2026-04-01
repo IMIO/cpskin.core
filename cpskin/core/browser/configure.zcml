@@ -457,13 +457,13 @@
     permission="zope2.View"
     />
 
-  <browser:page
+  <!-- <browser:page
     for="*"
     name="transmo-export"
     class=".pages.TransmoExport"
     layer="cpskin.core.interfaces.ICPSkinCoreLayer"
     permission="zope2.View"
-    />
+    /> -->
 
   <browser:view
       for="*"
